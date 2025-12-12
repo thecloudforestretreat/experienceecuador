@@ -12,27 +12,23 @@
   <!-- SEO -->
   <meta name="description" content="Experience Ecuador is launching soon. Discover curated travel experiences across Ecuador — nature, culture, wildlife, eco-retreats, and slow travel journeys." />
 
-  <meta property="og:description" content="Experience Ecuador is launching soon. Discover curated travel experiences across Ecuador — nature, culture, wildlife, eco-retreats, and slow travel journeys." />
-
-  <meta name="twitter:description" content="Experience Ecuador is launching soon. Discover curated travel experiences across Ecuador — nature, culture, wildlife, eco-retreats, and slow travel journeys." />
-
   <!-- Open Graph (Facebook / WhatsApp / LinkedIn) -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
-  <meta property="og:title" content="Experience Ecuador | Curated Travel Experiences" />
-  <meta property="og:description" content="Launching soon. Curated travel experiences across Ecuador — nature, culture, wildlife, and eco-retreats." />
+  <meta property="og:title" content="Experience Ecuador | Curated Travel Experiences & Journeys" />
+  <meta property="og:description" content="Experience Ecuador is launching soon. Discover curated travel experiences across Ecuador — nature, culture, wildlife, eco-retreats, and slow travel journeys." />
   <meta property="og:url" content="https://experienceecuador.com/" />
-  <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-social-preview.jpg" />
-  <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-social-preview.jpg" />
+  <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-social-preview-2.jpg" />
+  <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-social-preview-2.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Experience Ecuador — curated travel experiences across Ecuador" />
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Experience Ecuador | Curated Travel Experiences" />
-  <meta name="twitter:description" content="Launching soon. Curated travel experiences across Ecuador — nature, culture, wildlife, and eco-retreats." />
-  <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-social-preview.jpg" />
+  <meta name="twitter:title" content="Experience Ecuador | Curated Travel Experiences & Journeys" />
+  <meta name="twitter:description" content="Experience Ecuador is launching soon. Discover curated travel experiences across Ecuador — nature, culture, wildlife, eco-retreats, and slow travel journeys." />
+  <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-social-preview-2.jpg" />
 
   <!-- Favicons -->
   <link rel="icon" href="assets/favicons/favicon.ico" sizes="any">
@@ -161,6 +157,33 @@
       display: block;
     }
 
+    /* ===== SUBTLE HERO ENTRANCE ANIMATION ===== */
+    @keyframes eeFadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .ee-animate {
+      opacity: 0;
+      animation: eeFadeUp 700ms ease-out forwards;
+      will-change: transform, opacity;
+    }
+
+    .ee-delay-1 { animation-delay: 0.10s; }
+    .ee-delay-2 { animation-delay: 0.22s; }
+    .ee-delay-3 { animation-delay: 0.34s; }
+    .ee-delay-4 { animation-delay: 0.46s; }
+    .ee-delay-5 { animation-delay: 0.58s; }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .ee-animate {
+        opacity: 1;
+        animation: none !important;
+        transform: none !important;
+      }
+    }
+
     /* ===== MOBILE ===== */
     @media (max-width: 480px) {
       .hero-logo { width: 110px; }
@@ -185,15 +208,15 @@
       <img
         src="assets/logo-experience-ecuador-small.png"
         alt="Experience Ecuador"
-        class="hero-logo"
+        class="hero-logo ee-animate ee-delay-1"
       />
 
-      <h1>Experience Ecuador</h1>
-      <div class="tagline">Curated travel experiences across Ecuador</div>
+      <h1 class="ee-animate ee-delay-2">Experience Ecuador</h1>
+      <div class="tagline ee-animate ee-delay-3">Curated travel experiences across Ecuador</div>
 
-      <div class="coming-soon">COMING SOON</div>
+      <div class="coming-soon ee-animate ee-delay-4">COMING SOON</div>
 
-      <div class="social">
+      <div class="social ee-animate ee-delay-5">
         <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
           <img src="assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
         </a>
