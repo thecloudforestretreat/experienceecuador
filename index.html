@@ -17,15 +17,12 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --brand-blue: #034EA2;
       --cloud-white: #F5F7FA;
-      --charcoal: #1F1F1F;
-      --slate: #6E7B8B;
-      --page-bg: #EEF2F7;
     }
 
     * { box-sizing: border-box; }
@@ -33,123 +30,86 @@
     body {
       margin: 0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--page-bg);
-      color: var(--charcoal);
+      background: #000;
     }
 
-    /* ===== HERO SECTION ===== */
+    /* ===== HERO ===== */
     .hero {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 64px 32px 48px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .hero-left h1 {
-      font-family: Montserrat, Inter, sans-serif;
-      font-size: clamp(44px, 5vw, 72px);
-      font-weight: 800;
-      margin: 0 0 12px;
-      letter-spacing: -0.03em;
-    }
-
-    .hero-left .tagline {
-      font-family: Montserrat, Inter, sans-serif;
-      font-size: clamp(18px, 2vw, 24px);
-      font-weight: 700;
-      color: var(--brand-blue);
-      margin-bottom: 20px;
-    }
-
-    .hero-left p {
-      font-size: 18px;
-      line-height: 1.75;
-      max-width: 620px;
-      color: #2E3A4B;
-      margin-bottom: 16px;
-    }
-
-    .hero-left .note {
-      font-size: 15px;
-      color: var(--slate);
-    }
-
-    .hero-right {
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 32px;
-      text-align: center;
-      box-shadow: 0 30px 80px rgba(16, 24, 40, 0.18);
-    }
-
-    .hero-right img.logo {
-      width: 160px;
-      margin-bottom: 18px;
-    }
-
-    .hero-right h2 {
-      font-family: Montserrat, Inter, sans-serif;
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .hero-right p {
-      font-size: 15px;
-      color: var(--slate);
-    }
-
-    /* ===== IMAGE STRIP ===== */
-    .image-strip {
+      position: relative;
+      min-height: 100vh;
       width: 100%;
-      margin-top: 40px;
-    }
-
-    .image-strip img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 0;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: var(--cloud-white);
-      border-top: 1px solid #E3E5E8;
-      padding: 18px 32px;
-    }
-
-    .footer-inner {
-      max-width: 1280px;
-      margin: 0 auto;
+      background: url("assets/images/EE-HeroImage-01.jpg") center / cover no-repeat;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      justify-content: center;
+      text-align: center;
     }
 
-    .footer-left {
-      font-size: 13px;
-      color: var(--slate);
+    /* overlay for readability */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.55),
+        rgba(0,0,0,0.55)
+      );
     }
 
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 960px;
+      padding: 32px;
+      color: #ffffff;
+    }
+
+    .hero-logo {
+      width: 140px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: Montserrat, Inter, sans-serif;
+      font-size: clamp(42px, 6vw, 80px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 0 0 12px;
+    }
+
+    .hero .tagline {
+      font-family: Montserrat, Inter, sans-serif;
+      font-size: clamp(18px, 2.4vw, 26px);
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+
+    .coming-soon {
+      display: inline-block;
+      padding: 14px 36px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--brand-blue);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+
+    /* ===== SOCIAL ICONS ===== */
     .social {
       display: flex;
-      gap: 12px;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
     .icon-btn {
-      width: 46px;
-      height: 46px;
-      background: #ffffff;
+      width: 52px;
+      height: 52px;
+      background: var(--cloud-white);
       border-radius: 14px;
-      border: 1px solid #E3E5E8;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -157,39 +117,23 @@
     }
 
     .icon-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 32px rgba(16, 24, 40, 0.14);
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
     }
 
     .icon-btn img {
-      width: 24px;
-      height: 24px;
+      width: 26px;
+      height: 26px;
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
+    /* ===== MOBILE ===== */
+    @media (max-width: 480px) {
+      .hero-logo {
+        width: 110px;
       }
 
-      .hero-right {
-        max-width: 640px;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .hero {
-        padding: 48px 20px 32px;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .hero-left p {
-        font-size: 16px;
+      .coming-soon {
+        padding: 12px 28px;
       }
     }
   </style>
@@ -198,44 +142,24 @@
 <body>
 
   <section class="hero">
-    <div class="hero-grid">
-      <div class="hero-left">
-        <h1>Experience Ecuador</h1>
-        <div class="tagline">Curated travel experiences across Ecuador</div>
+    <div class="hero-content">
+      <img
+        src="assets/logo-experience-ecuador-small.png"
+        alt="Experience Ecuador"
+        class="hero-logo"
+      />
 
-        <p>
-          We are building a thoughtfully curated travel platform designed to help you explore Ecuador with confidence.
-          From cloud forests and wildlife encounters to cultural experiences, eco-retreats, and slow travel journeys,
-          Experience Ecuador connects you with authentic destinations and local insight.
-        </p>
+      <h1>Experience Ecuador</h1>
+      <div class="tagline">Curated travel experiences across Ecuador</div>
 
-        <p class="note">
-          Our new site is launching soon. Follow us to be the first to know.
-        </p>
-      </div>
-
-      <div class="hero-right">
-        <img src="assets/logo-experience-ecuador-small.png" alt="Experience Ecuador logo" class="logo">
-        <h2>New site coming soon</h2>
-        <p>Travel inspiration and updates are live on our social channels.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="image-strip">
-    <img src="assets/images/EE-HeroImage-01.jpg" alt="Ecuador travel highlights">
-  </section>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-left">© <span id="y"></span> Experience Ecuador</div>
+      <div class="coming-soon">COMING SOON</div>
 
       <div class="social">
-        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-          <img src="assets/icons/EE-Instagram.png" alt="Instagram">
-        </a>
         <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
           <img src="assets/icons/EE-Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+          <img src="assets/icons/EE-Instagram.png" alt="Instagram">
         </a>
         <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
           <img src="assets/icons/EE-TikTok.png" alt="TikTok">
@@ -245,11 +169,7 @@
         </a>
       </div>
     </div>
-  </footer>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+  </section>
 
 </body>
 </html>
