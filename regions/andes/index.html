@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Coast | Experience Ecuador</title>
+  <title>The Andes | Experience Ecuador</title>
 
   <!-- Favicons -->
   <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
@@ -20,10 +20,8 @@
   <style>
     :root{
       --brand-blue:#034EA2;
-      --cloud-white:#F5F7FA;
       --charcoal:#1F1F1F;
       --slate:#6E7B8B;
-      --light-gray:#E3E5E8;
     }
 
     *{box-sizing:border-box}
@@ -35,10 +33,9 @@
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-    img{ user-select:none; -webkit-user-drag:none; }
+    img{max-width:100%;display:block;user-select:none}
 
-    /* ===== HEADER (LOCKED) ===== */
+    /* ===== HEADER ===== */
     .topbar{
       position:sticky;
       top:0;
@@ -55,7 +52,6 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:16px;
     }
 
     .brand{
@@ -64,191 +60,130 @@
       gap:10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      letter-spacing:-0.02em;
       color:var(--brand-blue);
       font-size:18px;
-      line-height:1;
       white-space:nowrap;
     }
 
-    .brand img{
-      width:28px;
-      height:28px;
-      object-fit:contain;
-    }
+    .brand img{ width:28px; height:28px; }
 
-    /* ===== MENU ===== */
     .nav{
       display:flex;
       align-items:center;
       gap:18px;
-      font-weight:700;
       font-size:14px;
-      color:#1b2b4a;
-      white-space:nowrap;
-    }
-
-    .nav a{
-      padding:8px 8px;
-      border-radius:10px;
-      transition:background 0.15s ease;
-    }
-
-    .nav a:hover{
-      background:rgba(3,78,162,0.08);
+      font-weight:600;
+      color:#0f2f62;
     }
 
     .dropdown{
       position:relative;
-      display:inline-flex;
-      align-items:center;
-    }
-
-    .dropbtn{
-      display:inline-flex;
+      display:flex;
       align-items:center;
       gap:8px;
-      padding:8px 8px;
-      border-radius:10px;
       cursor:pointer;
-      user-select:none;
-      transition:background 0.15s ease;
+      padding:8px 10px;
+      border-radius:999px;
     }
 
-    .dropbtn:hover{
-      background:rgba(3,78,162,0.08);
-    }
+    .dropdown:hover{ background:rgba(3,78,162,0.07); }
 
     .caret{
       width:10px;
       height:10px;
-      display:inline-block;
-      border-right:2px solid currentColor;
-      border-bottom:2px solid currentColor;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
       transform:rotate(45deg);
-      margin-top:-2px;
-      opacity:0.7;
     }
 
     .dropdown-menu{
       position:absolute;
-      top:42px;
+      top:44px;
       right:0;
-      min-width:220px;
       background:#fff;
+      border-radius:16px;
       border:1px solid rgba(0,0,0,0.08);
-      border-radius:14px;
       box-shadow:0 18px 55px rgba(3,78,162,0.16);
       padding:8px;
       display:none;
-      z-index:20;
+      min-width:220px;
     }
+
+    .dropdown:hover .dropdown-menu{ display:block; }
 
     .dropdown-menu a{
       display:block;
-      padding:10px 10px;
-      border-radius:10px;
-      font-weight:700;
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:600;
       color:#0f2f62;
     }
 
-    .dropdown-menu a:hover{
-      background:rgba(3,78,162,0.08);
-    }
-
-    .dropdown:focus-within .dropdown-menu,
-    .dropdown:hover .dropdown-menu{
-      display:block;
-    }
+    .dropdown-menu a:hover{ background:rgba(3,78,162,0.07); }
 
     /* ===== HERO ===== */
     .hero{
-      position:relative;
-      width:100%;
       min-height:64vh;
       display:flex;
       align-items:flex-end;
-      justify-content:center;
-      background:url("/assets/images/EE-Region-Coast-hero-01.jpg") center / cover no-repeat;
+      background:url("/assets/images/EE-Region-Andes-hero-01.jpg") center/cover no-repeat;
       color:#fff;
+      position:relative;
     }
 
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.12),
-        rgba(0,0,0,0.70)
-      );
+      background:linear-gradient(to bottom,rgba(0,0,0,.15),rgba(0,0,0,.72));
     }
 
     .hero-inner{
       position:relative;
-      z-index:2;
-      width:100%;
       max-width:1100px;
+      margin:0 auto;
       padding:54px 18px 34px;
-      text-align:left;
     }
 
     .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
+      display:inline-block;
       padding:8px 12px;
       border-radius:999px;
       background:rgba(3,78,162,0.38);
-      border:1px solid rgba(255,255,255,0.22);
-      font-weight:700;
-      letter-spacing:0.02em;
       font-size:12.5px;
+      font-weight:700;
       margin-bottom:14px;
-      backdrop-filter:blur(10px);
     }
 
     .hero h1{
+      font-family:Montserrat;
+      font-size:clamp(40px,5vw,72px);
       margin:0 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.03em;
-      font-size:clamp(40px,5.4vw,72px);
-      line-height:1.03;
     }
 
     .hero p{
-      margin:0;
       max-width:70ch;
       font-size:clamp(15px,2vw,18px);
       line-height:1.65;
-      color:rgba(255,255,255,0.92);
     }
 
-    /* ===== PAGE WRAP ===== */
+    /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
       padding:36px 18px 0;
     }
 
-    /* ===== SECTION / CARDS ===== */
-    .section{
-      margin-bottom:26px;
-    }
+    .section{ margin-bottom:26px; }
 
     .section h2{
-      margin:0 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
+      font-family:Montserrat;
       font-size:24px;
       color:var(--brand-blue);
+      margin-bottom:10px;
     }
 
     .section p{
-      margin:0;
-      color:#2a2f36;
       font-size:15.8px;
       line-height:1.75;
       max-width:82ch;
@@ -258,114 +193,32 @@
       display:grid;
       grid-template-columns:1.15fr 0.85fr;
       gap:22px;
-      align-items:start;
       margin-top:18px;
     }
 
-    /* ✅ centered card between the 2 right minis (matches About/Mission) */
-    .grid.center-stack{
-      align-items:center;
-    }
-
-    .stack-right{
-      display:flex;
-      flex-direction:column;
-      gap:16px;
-    }
+    /* ✅ key fix */
+    .grid.align-center{ align-items:center; }
 
     .card{
       background:#fff;
       border-radius:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
       padding:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
     }
 
-    .card h3{
-      margin:0 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:18px;
-      color:#0f2f62;
-    }
+    .card h3{ font-family:Montserrat; font-size:18px; }
 
-    .card ul{
-      margin:0;
-      padding-left:18px;
-      color:#24324a;
-      line-height:1.75;
-      font-size:14.8px;
-    }
+    .card ul{ padding-left:18px; line-height:1.75; }
 
     .mini{
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      border:1px solid rgba(3,78,162,0.12);
+      background:linear-gradient(180deg,rgba(3,78,162,.06),rgba(3,78,162,.02));
       border-radius:20px;
       padding:20px;
     }
 
-    .pill-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:14px;
-    }
+    .mini + .mini{ margin-top:16px; }
 
-    .tag{
-      display:inline-flex;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,0.08);
-      border:1px solid rgba(3,78,162,0.12);
-      color:#0f2f62;
-      font-weight:700;
-      font-size:13px;
-    }
-
-    /* ===== GALLERY PLACEHOLDER ===== */
-    .gallery{
-      margin-top:22px;
-      background:#fff;
-      border-radius:22px;
-      border:1px dashed rgba(3,78,162,0.35);
-      padding:18px;
-    }
-
-    .gallery .hint{
-      color:var(--slate);
-      font-size:14.5px;
-      line-height:1.7;
-      margin:0;
-    }
-
-    /* ===== CTA ===== */
-    .cta{
-      margin:28px 0 56px;
-      background:var(--brand-blue);
-      color:#fff;
-      border-radius:24px;
-      padding:22px;
-      box-shadow:0 22px 60px rgba(3,78,162,0.22);
-    }
-
-    .cta h3{
-      margin:0 0 8px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:20px;
-    }
-
-    .cta p{
-      margin:0;
-      color:rgba(255,255,255,0.92);
-      line-height:1.7;
-      font-size:15.5px;
-      max-width:85ch;
-    }
-
-    /* ===== FOOTER (LOCKED) ===== */
+    /* ===== FOOTER ===== */
     .footer{
       background:var(--brand-blue);
       color:#fff;
@@ -374,29 +227,22 @@
 
     .footer-inner{
       max-width:1100px;
-      margin:0 auto;
+      margin:auto;
       padding:28px 18px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:14px;
       text-align:center;
     }
 
     .footer-tagline{
-      font-family:Montserrat,Inter,sans-serif;
+      font-family:Montserrat;
       font-weight:800;
-      letter-spacing:-0.01em;
-      font-size:16px;
-      opacity:0.95;
-      margin-top:2px;
+      margin-bottom:14px;
     }
 
     .social{
       display:flex;
-      gap:18px;
-      flex-wrap:wrap;
       justify-content:center;
+      gap:18px;
+      margin-bottom:14px;
     }
 
     .icon-btn{
@@ -407,217 +253,110 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:0 14px 34px rgba(0,0,0,0.35);
+      box-shadow:0 14px 34px rgba(0,0,0,.35);
     }
 
-    .icon-btn img{
-      width:34px;
-      height:34px;
-    }
+    .icon-btn img{ width:34px; }
 
-    footer small{
-      font-size:13px;
-      opacity:.9;
-    }
-
-    /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
-      .topbar-inner{ justify-content:space-between; }
-      .hero-inner{ text-align:center; }
-      .hero p{ margin:0 auto; }
-
-      /* menu wraps nicely */
-      .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
-      .dropdown-menu{ right:0; left:auto; }
-    }
-
-    @media(max-width:620px){
-      .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
-      .nav{ justify-content:center; }
-      .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
-    }
-
-    @media(max-width:480px){
-      .hero{ min-height:60vh; }
-      .cta{ border-radius:20px; }
+      .nav{ display:none; }
+      .hero-inner{text-align:center}
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="/">
-        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
-        <span>Experience Ecuador</span>
-      </a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/">
+      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="">
+      Experience Ecuador
+    </a>
 
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/mission">Mission</a>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/mission">Mission</a>
 
-        <div class="dropdown">
-          <div class="dropbtn" tabindex="0" role="button" aria-haspopup="true" aria-label="Regions menu">
-            Regions <span class="caret" aria-hidden="true"></span>
-          </div>
-          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
-            <a href="/regions" role="menuitem">All Regions</a>
-            <a href="/regions/galapagos" role="menuitem">Galapagos</a>
-            <a href="/regions/coast" role="menuitem">Coast</a>
-            <a href="/regions/andes" role="menuitem">Andes</a>
-            <a href="/regions/amazon" role="menuitem">Amazon</a>
-          </div>
+      <div class="dropdown">
+        <span>Regions</span><span class="caret"></span>
+        <div class="dropdown-menu">
+          <a href="/regions">All Regions</a>
+          <a href="/regions/galapagos">Galapagos</a>
+          <a href="/regions/coast">Coast</a>
+          <a class="active" href="/regions/andes">Andes</a>
+          <a href="/regions/amazon">Amazon</a>
+        </div>
+      </div>
+
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Region Guide • Coming Soon</div>
+    <h1>The Andes</h1>
+    <p>High-altitude landscapes, volcano views, colonial cities, and rich cultural depth.</p>
+  </div>
+</section>
+
+<main class="wrap">
+  <section class="section">
+    <h2>What makes the Andes special</h2>
+    <p>Culture, scenery, and adventure packed into short distances.</p>
+
+    <div class="grid align-center">
+      <div class="card">
+        <h3>Signature highlights</h3>
+        <ul>
+          <li>Volcano landscapes and crater lakes</li>
+          <li>Colonial cities and artisan towns</li>
+          <li>Outdoor adventures and scenic drives</li>
+          <li>Markets, culture, and food</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="mini">
+          <h3>Best for</h3>
+          <ul>
+            <li>Culture lovers</li>
+            <li>Day-trip travelers</li>
+            <li>Nature + history</li>
+          </ul>
         </div>
 
-        <a href="/contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero" aria-label="Coast hero image">
-    <div class="hero-inner">
-      <div class="kicker">Region Guide • Coming Soon</div>
-      <h1>The Coast</h1>
-      <p>
-        Sun, surf, seafood culture, and relaxed coastal towns.
-        This hub is being built to help you discover where to go, what to do, and how to plan the perfect coastal escape.
-      </p>
+        <div class="mini">
+          <h3>Trip styles we will cover</h3>
+          <ul>
+            <li>City + countryside</li>
+            <li>Volcano routes</li>
+            <li>Wellness & slow travel</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
+</main>
 
-  <!-- CONTENT -->
-  <main class="wrap">
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-tagline">Curated travel experiences across Ecuador</div>
 
-    <section class="section">
-      <h2>What makes the Coast special</h2>
-      <p>
-        Ecuador’s Coast blends beach life with vibrant local culture. Some areas are perfect for unplugging and relaxing,
-        while others are built for surfing, nightlife, and food adventures. This guide will help you match the right places
-        to your travel style and timing.
-      </p>
-
-      <div class="grid center-stack">
-        <div class="card">
-          <h3>Signature highlights</h3>
-          <ul>
-            <li>Beach towns with distinct vibes, from quiet to energetic</li>
-            <li>Surf spots, ocean viewpoints, and coastal sunsets</li>
-            <li>Seafood culture: ceviches, coastal markets, and local favorites</li>
-            <li>Day trips, nature reserves, and coastal excursions</li>
-          </ul>
-
-          <div class="pill-row" aria-label="Coast experience tags">
-            <span class="tag">Beach</span>
-            <span class="tag">Surf</span>
-            <span class="tag">Food</span>
-            <span class="tag">Relaxation</span>
-          </div>
-        </div>
-
-        <div class="stack-right">
-          <div class="mini">
-            <h3>Best for</h3>
-            <ul>
-              <li>Relaxed getaways and beach time</li>
-              <li>Food lovers and coastal culture</li>
-              <li>Surfers and ocean explorers</li>
-              <li>Weekend trips and laid-back itineraries</li>
-            </ul>
-          </div>
-
-          <div class="mini">
-            <h3>Trip styles we will cover</h3>
-            <ul>
-              <li>Quiet beach stays and wellness escapes</li>
-              <li>Surf town hopping and adventure days</li>
-              <li>Family-friendly coastal planning</li>
-              <li>Luxury, mid-range, and budget options</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>What to expect on this page next</h2>
-      <p>
-        This Coast hub will evolve into a complete guide with curated town profiles, experience lists, planning tips,
-        and highlights that make it easy to build a trip.
-      </p>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Planned sections</h3>
-          <ul>
-            <li>Top coastal towns and what each is best for</li>
-            <li>Best beaches, viewpoints, and day trips</li>
-            <li>Food map: must-try dishes and local recommendations</li>
-            <li>Suggested trip lengths and itineraries</li>
-            <li>Seasonality, costs, and planning checklist</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Quick planning mindset</h3>
-          <ul>
-            <li>Choose your vibe first: chill, surf, food, or nightlife</li>
-            <li>Mix a base town with short day trips</li>
-            <li>Plan for weather and ocean conditions</li>
-            <li>Build in downtime, the coast rewards slow travel</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Gallery and highlights</h2>
-
-      <div class="gallery">
-        <p class="hint">
-          Gallery carousel will go here later once you choose the images.
-          We will build one clean carousel component and reuse it across all region pages for consistency and speed.
-        </p>
-      </div>
-    </section>
-
-    <section class="cta" aria-label="Newsletter future CTA">
-      <h3>Coming soon: curated Coast updates</h3>
-      <p>
-        This region hub will expand into curated guides and a newsletter format where travelers discover experiences and trusted partners.
-        Next step: structured town highlights and experience categories, then a reusable gallery carousel.
-      </p>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
-
-      <div class="social">
-        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
-        </a>
-        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
-        </a>
-        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
-        </a>
-        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
-        </a>
-      </div>
-
-      <small>© 2025 Experience Ecuador. All rights reserved.</small>
+    <div class="social">
+      <a class="icon-btn"><img src="/assets/icons/EE-SociaIcon-Facebook.png"></a>
+      <a class="icon-btn"><img src="/assets/icons/EE-SociaIcon-Instagram.png"></a>
+      <a class="icon-btn"><img src="/assets/icons/EE-SociaIcon-TikTok.png"></a>
+      <a class="icon-btn"><img src="/assets/icons/EE-SociaIcon-YouTube.png"></a>
     </div>
-  </footer>
+
+    <small>© 2025 Experience Ecuador. All rights reserved.</small>
+  </div>
+</footer>
 
 </body>
 </html>
