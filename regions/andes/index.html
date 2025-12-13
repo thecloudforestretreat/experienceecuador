@@ -42,10 +42,11 @@
     .topbar{
       position:sticky;
       top:0;
-      z-index:10;
+      z-index:9999; /* strengthened */
       backdrop-filter:saturate(160%) blur(10px);
       background:rgba(255,255,255,0.75);
       border-bottom:1px solid rgba(0,0,0,0.06);
+      overflow:visible; /* important */
     }
 
     .topbar-inner{
@@ -56,6 +57,7 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
+      overflow:visible; /* important */
     }
 
     .brand{
@@ -77,7 +79,7 @@
       object-fit:contain;
     }
 
-    /* ===== MENU (FIXED TO MATCH COAST) ===== */
+    /* ===== MENU ===== */
     .nav{
       display:flex;
       align-items:center;
@@ -86,6 +88,7 @@
       font-weight:700;
       color:#0f2f62;
       white-space:nowrap;
+      overflow:visible; /* important */
     }
 
     .nav a{
@@ -103,9 +106,17 @@
       position:relative;
       display:inline-flex;
       align-items:center;
+      overflow:visible; /* important */
     }
 
+    /* Use a real button for best click behavior */
     .dropbtn{
+      appearance:none;
+      border:0;
+      background:transparent;
+      font:inherit;
+      color:inherit;
+
       display:inline-flex;
       align-items:center;
       gap:8px;
@@ -114,11 +125,15 @@
       cursor:pointer;
       user-select:none;
       transition:background 0.15s ease;
-      outline:none;
     }
 
     .dropbtn:hover{
       background:rgba(3,78,162,0.08);
+    }
+
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
     }
 
     .caret{
@@ -143,7 +158,7 @@
       box-shadow:0 18px 55px rgba(3,78,162,0.16);
       padding:8px;
       display:none;
-      z-index:50; /* important */
+      z-index:99999; /* strengthened */
     }
 
     .dropdown-menu a{
@@ -158,9 +173,8 @@
       background:rgba(3,78,162,0.08);
     }
 
-    /* key fix: allow click/focus to keep menu open */
-    .dropdown:focus-within .dropdown-menu,
-    .dropdown:hover .dropdown-menu{
+    /* open state controlled by class (works on touch and desktop) */
+    .dropdown.open .dropdown-menu{
       display:block;
     }
 
@@ -236,9 +250,7 @@
     }
 
     /* ===== SECTION / CARDS ===== */
-    .section{
-      margin-bottom:26px;
-    }
+    .section{ margin-bottom:26px; }
 
     .section h2{
       margin:0 0 10px;
@@ -265,9 +277,7 @@
       align-items:start;
     }
 
-    .grid.align-center{
-      align-items:center;
-    }
+    .grid.align-center{ align-items:center; }
 
     .card{
       background:#fff;
@@ -321,7 +331,6 @@
       font-size:13px;
     }
 
-    /* ===== GALLERY PLACEHOLDER ===== */
     .gallery{
       margin-top:22px;
       background:#fff;
@@ -337,7 +346,6 @@
       margin:0;
     }
 
-    /* ===== CTA ===== */
     .cta{
       margin:28px 0 56px;
       background:var(--brand-blue);
@@ -363,7 +371,6 @@
       max-width:85ch;
     }
 
-    /* ===== FOOTER (LOCKED) ===== */
     .footer{
       background:var(--brand-blue);
       color:#fff;
@@ -408,24 +415,15 @@
       box-shadow:0 14px 34px rgba(0,0,0,0.35);
     }
 
-    .icon-btn img{
-      width:34px;
-      height:34px;
-    }
+    .icon-btn img{ width:34px; height:34px; }
 
-    footer small{
-      font-size:13px;
-      opacity:.9;
-    }
+    footer small{ font-size:13px; opacity:.9; }
 
-    /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
       .topbar-inner{ justify-content:space-between; }
       .hero-inner{ text-align:center; }
       .hero p{ margin:0 auto; }
-
-      /* keep nav visible and usable like Coast */
       .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
       .dropdown-menu{ right:0; left:auto; }
     }
@@ -458,10 +456,11 @@
         <a href="/about">About</a>
         <a href="/mission">Mission</a>
 
-        <div class="dropdown">
-          <div class="dropbtn" tabindex="0" role="button" aria-haspopup="true" aria-label="Regions menu">
+        <div class="dropdown" id="regionsDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
             Regions <span class="caret" aria-hidden="true"></span>
-          </div>
+          </button>
+
           <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
             <a href="/regions" role="menuitem">All Regions</a>
             <a href="/regions/galapagos" role="menuitem">Galapagos</a>
@@ -616,6 +615,39 @@
       <small>© 2025 Experience Ecuador. All rights reserved.</small>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      const dd = document.getElementById('regionsDropdown');
+      if (!dd) return;
+
+      const btn = dd.querySelector('.dropbtn');
+      const menu = dd.querySelector('.dropdown-menu');
+
+      function setOpen(isOpen) {
+        dd.classList.toggle('open', isOpen);
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        setOpen(!dd.classList.contains('open'));
+      });
+
+      // allow clicking inside menu without closing before navigation
+      menu.addEventListener('click', function (e) {
+        e.stopPropagation();
+      });
+
+      document.addEventListener('click', function () {
+        setOpen(false);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') setOpen(false);
+      });
+    })();
+  </script>
 
 </body>
 </html>
