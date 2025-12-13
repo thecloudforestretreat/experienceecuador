@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Amazon | Experience Ecuador</title>
+  <title>The Andes | Experience Ecuador</title>
 
   <!-- Favicons -->
   <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
@@ -77,69 +77,91 @@
       object-fit:contain;
     }
 
-    /* ===== NAV MENU ===== */
+    /* ===== MENU (FIXED TO MATCH COAST) ===== */
     .nav{
       display:flex;
       align-items:center;
       gap:18px;
-      font-weight:600;
       font-size:14px;
+      font-weight:700;
       color:#0f2f62;
+      white-space:nowrap;
     }
 
-    .nav a{ opacity:.92; }
-    .nav a:hover{ opacity:1; }
-    .nav .active{ color:var(--brand-blue); opacity:1; }
+    .nav a{
+      padding:8px 8px;
+      border-radius:10px;
+      transition:background 0.15s ease;
+      opacity:1;
+    }
+
+    .nav a:hover{
+      background:rgba(3,78,162,0.08);
+    }
 
     .dropdown{
       position:relative;
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      cursor:pointer;
-      padding:8px 10px;
-      border-radius:999px;
     }
 
-    .dropdown:hover{ background:rgba(3,78,162,0.07); }
+    .dropbtn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 8px;
+      border-radius:10px;
+      cursor:pointer;
+      user-select:none;
+      transition:background 0.15s ease;
+      outline:none;
+    }
+
+    .dropbtn:hover{
+      background:rgba(3,78,162,0.08);
+    }
 
     .caret{
       width:10px;
       height:10px;
-      border-right:2px solid rgba(15,47,98,0.75);
-      border-bottom:2px solid rgba(15,47,98,0.75);
+      display:inline-block;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
       transform:rotate(45deg);
       margin-top:-2px;
+      opacity:0.7;
     }
 
     .dropdown-menu{
       position:absolute;
-      top:44px;
+      top:42px;
       right:0;
       min-width:220px;
       background:#fff;
       border:1px solid rgba(0,0,0,0.08);
-      border-radius:16px;
+      border-radius:14px;
       box-shadow:0 18px 55px rgba(3,78,162,0.16);
       padding:8px;
       display:none;
-      z-index:50;
+      z-index:50; /* important */
     }
-
-    .dropdown:hover .dropdown-menu{ display:block; }
 
     .dropdown-menu a{
       display:block;
-      padding:10px 12px;
-      border-radius:12px;
+      padding:10px 10px;
+      border-radius:10px;
+      font-weight:700;
       color:#0f2f62;
-      font-weight:600;
-      font-size:14px;
     }
 
     .dropdown-menu a:hover{
-      background:rgba(3,78,162,0.07);
-      color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
+    }
+
+    /* key fix: allow click/focus to keep menu open */
+    .dropdown:focus-within .dropdown-menu,
+    .dropdown:hover .dropdown-menu{
+      display:block;
     }
 
     /* ===== HERO ===== */
@@ -150,7 +172,7 @@
       display:flex;
       align-items:flex-end;
       justify-content:center;
-      background:url("/assets/images/EE-Region-Amazon-hero-01.jpg") center / cover no-repeat;
+      background:url("/assets/images/EE-Region-Andes-hero-01.jpg") center / cover no-repeat;
       color:#fff;
     }
 
@@ -160,8 +182,8 @@
       inset:0;
       background:linear-gradient(
         to bottom,
-        rgba(0,0,0,0.14),
-        rgba(0,0,0,0.74)
+        rgba(0,0,0,0.12),
+        rgba(0,0,0,0.72)
       );
     }
 
@@ -239,11 +261,10 @@
       display:grid;
       grid-template-columns:1.15fr 0.85fr;
       gap:22px;
-      align-items:start;
       margin-top:18px;
+      align-items:start;
     }
 
-    /* ✅ only used on the first section grid */
     .grid.align-center{
       align-items:center;
     }
@@ -364,8 +385,8 @@
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       letter-spacing:-0.02em;
-      font-size:16px;
-      color:rgba(255,255,255,0.96);
+      font-size:14px;
+      opacity:.95;
       margin-top:2px;
     }
 
@@ -403,7 +424,16 @@
       .topbar-inner{ justify-content:space-between; }
       .hero-inner{ text-align:center; }
       .hero p{ margin:0 auto; }
-      .nav{ display:none; } /* keep header clean on mobile for now */
+
+      /* keep nav visible and usable like Coast */
+      .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+      .dropdown-menu{ right:0; left:auto; }
+    }
+
+    @media(max-width:620px){
+      .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
+      .nav{ justify-content:center; }
+      .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
     }
 
     @media(max-width:480px){
@@ -428,15 +458,16 @@
         <a href="/about">About</a>
         <a href="/mission">Mission</a>
 
-        <div class="dropdown" aria-label="Regions menu">
-          <span>Regions</span>
-          <span class="caret" aria-hidden="true"></span>
-          <div class="dropdown-menu" role="menu">
-            <a href="/regions">All Regions</a>
-            <a href="/regions/galapagos">Galapagos</a>
-            <a href="/regions/coast">Coast</a>
-            <a href="/regions/andes">Andes</a>
-            <a class="active" href="/regions/amazon">Amazon</a>
+        <div class="dropdown">
+          <div class="dropbtn" tabindex="0" role="button" aria-haspopup="true" aria-label="Regions menu">
+            Regions <span class="caret" aria-hidden="true"></span>
+          </div>
+          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+            <a href="/regions" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos" role="menuitem">Galapagos</a>
+            <a href="/regions/coast" role="menuitem">Coast</a>
+            <a href="/regions/andes" role="menuitem">Andes</a>
+            <a href="/regions/amazon" role="menuitem">Amazon</a>
           </div>
         </div>
 
@@ -446,13 +477,13 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero" aria-label="Amazon hero image">
+  <section class="hero" aria-label="Andes hero image">
     <div class="hero-inner">
       <div class="kicker">Region Guide • Coming Soon</div>
-      <h1>The Amazon</h1>
+      <h1>The Andes</h1>
       <p>
-        Jungle rivers, wildlife encounters, and immersive eco experiences.
-        This hub is being built to help you explore Ecuador’s Amazon with trusted highlights and clear planning.
+        High-altitude landscapes, volcano views, colonial cities, artisan towns, and epic day trips.
+        This hub is being built to help you explore the Andes with curated highlights and practical planning.
       </p>
     </div>
   </section>
@@ -461,29 +492,28 @@
   <main class="wrap">
 
     <section class="section">
-      <h2>What makes the Amazon special</h2>
+      <h2>What makes the Andes special</h2>
       <p>
-        Ecuador’s Amazon offers an extraordinary window into biodiversity and nature-first travel.
-        From guided rainforest walks to river adventures and lodge stays, this region is about slowing down,
-        listening, learning, and experiencing a living ecosystem up close.
+        Ecuador’s Andes offer dramatic scenery and rich culture packed into manageable travel distances.
+        One day you can explore a historic city, the next you can hike near volcanoes or relax in a mountain town.
+        This guide will help you find experiences that fit your pace, comfort level, and interests.
       </p>
 
-      <!-- ✅ align-center added here ONLY -->
       <div class="grid align-center">
         <div class="card">
           <h3>Signature highlights</h3>
           <ul>
-            <li>Wildlife spotting with experienced local guides</li>
-            <li>River experiences: canoeing, boat rides, and jungle access routes</li>
-            <li>Eco-lodges and nature-forward stays</li>
-            <li>Night walks and soundscapes that feel otherworldly</li>
+            <li>Volcano landscapes, crater lakes, and panoramic viewpoints</li>
+            <li>Colonial cities, museums, and historic neighborhoods</li>
+            <li>Artisan markets, craft towns, and cultural traditions</li>
+            <li>Outdoor adventures: hikes, hot springs, and scenic drives</li>
           </ul>
 
-          <div class="pill-row" aria-label="Amazon experience tags">
-            <span class="tag">Eco</span>
-            <span class="tag">Wildlife</span>
+          <div class="pill-row" aria-label="Andes experience tags">
+            <span class="tag">Culture</span>
+            <span class="tag">Nature</span>
             <span class="tag">Adventure</span>
-            <span class="tag">Wellness</span>
+            <span class="tag">Photography</span>
           </div>
         </div>
 
@@ -491,20 +521,20 @@
           <div class="mini">
             <h3>Best for</h3>
             <ul>
-              <li>Eco-tourists and nature lovers</li>
-              <li>Wildlife and photography enthusiasts</li>
-              <li>Travelers seeking immersive, guided experiences</li>
-              <li>People who want a true off-the-grid feel</li>
+              <li>Travelers who want a mix of culture and scenery</li>
+              <li>Day trips and itinerary-based exploration</li>
+              <li>Hikers and nature lovers</li>
+              <li>Food, history, and local markets</li>
             </ul>
           </div>
 
           <div class="mini">
             <h3>Trip styles we will cover</h3>
             <ul>
-              <li>Lodge-based jungle itineraries</li>
-              <li>River-centered adventures</li>
-              <li>Family-friendly eco experiences</li>
-              <li>Comfort to luxury planning guidance</li>
+              <li>City + countryside combinations</li>
+              <li>Volcano routes and scenic day trips</li>
+              <li>Wellness: hot springs and slow travel</li>
+              <li>Luxury to budget-friendly planning guidance</li>
             </ul>
           </div>
         </div>
@@ -514,29 +544,29 @@
     <section class="section">
       <h2>What to expect on this page next</h2>
       <p>
-        This Amazon hub will evolve into a complete guide with curated destinations, eco-lodge recommendations,
-        experience categories, and planning tips designed for clarity and safety.
+        This Andes hub will evolve into a complete guide with curated destinations, experience categories,
+        and practical travel planning so you can build an unforgettable itinerary.
       </p>
 
       <div class="grid">
         <div class="card">
           <h3>Planned sections</h3>
           <ul>
-            <li>Entry points and how to plan access</li>
-            <li>Top lodge areas and what they are best for</li>
-            <li>Wildlife and activity highlights</li>
+            <li>Key hubs and towns, with what each is best for</li>
+            <li>Top day trips: volcanoes, lakes, markets, and viewpoints</li>
+            <li>Experience map: culture, adventure, culinary, and wellness</li>
             <li>Suggested trip lengths and itinerary templates</li>
-            <li>Seasonality, packing, and planning checklist</li>
+            <li>Seasonality, altitude tips, and planning checklist</li>
           </ul>
         </div>
 
         <div class="card">
           <h3>Quick planning mindset</h3>
           <ul>
-            <li>Choose a lodge or base area first, then build activities around it</li>
-            <li>Expect guided experiences, it is the best way to explore</li>
-            <li>Pack light but intentional for humidity and rain</li>
-            <li>Prioritize safety, guides, and reputable operators</li>
+            <li>Pick a base city or town, then build day trips outward</li>
+            <li>Plan for altitude and climate changes between stops</li>
+            <li>Mix cultural days with nature days for balance</li>
+            <li>Keep itineraries flexible, the Andes reward discovery</li>
           </ul>
         </div>
       </div>
@@ -554,10 +584,10 @@
     </section>
 
     <section class="cta" aria-label="Newsletter future CTA">
-      <h3>Coming soon: curated Amazon updates</h3>
+      <h3>Coming soon: curated Andes updates</h3>
       <p>
         This region hub will expand into curated guides and a newsletter format where travelers discover experiences and trusted partners.
-        Next step: lodge areas, wildlife highlights, and experience categories, then a reusable gallery carousel.
+        Next step: structured town profiles and experience categories, then a reusable gallery carousel.
       </p>
     </section>
 
