@@ -21,7 +21,7 @@
     :root{
       --brand-blue:#034EA2;
       --slate:#6E7B8B;
-      --charcoal:#1F1F1F;
+      --text:#1F1F1F;
     }
 
     *{box-sizing:border-box}
@@ -29,13 +29,13 @@
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       background:#f6f8fb;
-      color:var(--charcoal);
+      color:var(--text);
     }
 
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
-    /* ===== HEADER (LOCKED + MENU) ===== */
+    /* ===== HEADER (LOCKED) ===== */
     .topbar{
       position:sticky;
       top:0;
@@ -44,6 +44,7 @@
       border-bottom:1px solid rgba(0,0,0,.06);
       z-index:10;
     }
+
     .topbar-inner{
       max-width:1100px;
       margin:auto;
@@ -62,94 +63,95 @@
       font-weight:800;
       color:var(--brand-blue);
       letter-spacing:-0.02em;
-      flex:0 0 auto;
+      white-space:nowrap;
     }
-    .brand img{width:28px;height:28px;object-fit:contain}
-    .brand span{font-size:18px;line-height:1}
 
-    /* NEW: top menu */
+    .brand img{width:28px;height:28px;object-fit:contain}
+
+    /* NAV */
     .nav{
       display:flex;
       align-items:center;
       gap:18px;
-      flex:1 1 auto;
-      justify-content:flex-end;
-    }
-    .nav a,
-    .nav summary{
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       font-weight:600;
-      font-size:14px;
-      color:#0f2f62;
-      opacity:0.92;
-      cursor:pointer;
+      color:#162b55;
     }
+
+    .nav a,
+    .nav button{
+      font:inherit;
+      color:inherit;
+      background:transparent;
+      border:0;
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      line-height:1;
+    }
+
     .nav a:hover,
-    .nav summary:hover{opacity:1}
+    .nav button:hover{
+      background:rgba(3,78,162,.08);
+      color:var(--brand-blue);
+    }
 
     .nav a.active{
       color:var(--brand-blue);
-      opacity:1;
+      background:rgba(3,78,162,.08);
     }
 
-    /* Dropdown using details/summary (no JS needed) */
-    details.dropdown{
+    /* Dropdown */
+    .dropdown{
       position:relative;
-    }
-    details.dropdown summary{
-      list-style:none;
-      display:flex;
+      display:inline-flex;
       align-items:center;
-      gap:6px;
     }
-    details.dropdown summary::-webkit-details-marker{display:none}
+
+    .dropdown-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+
     .caret{
       width:10px;
       height:10px;
       display:inline-block;
-      border-right:2px solid rgba(15,47,98,0.7);
-      border-bottom:2px solid rgba(15,47,98,0.7);
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
       transform:rotate(45deg);
       margin-top:-2px;
+      opacity:.85;
     }
-    details[open] .caret{transform:rotate(-135deg); margin-top:2px;}
 
     .dropdown-menu{
       position:absolute;
+      top:44px;
       right:0;
-      top:calc(100% + 12px);
-      background:#fff;
-      border:1px solid rgba(0,0,0,0.08);
-      border-radius:14px;
-      box-shadow:0 18px 55px rgba(3,78,162,.16);
-      padding:10px;
       min-width:220px;
-      z-index:20;
-    }
-    .dropdown-menu a{
-      display:block;
-      padding:10px 10px;
-      border-radius:10px;
-      font-size:14px;
-      color:#0f2f62;
-      opacity:0.95;
-      white-space:nowrap;
-    }
-    .dropdown-menu a:hover{
-      background:rgba(3,78,162,.06);
-      opacity:1;
+      background:#fff;
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:14px;
+      box-shadow:0 24px 70px rgba(0,0,0,.18);
+      padding:8px;
+      display:none;
+      z-index:50;
     }
 
-    /* Tagline (NO gray box) */
-    .tagline{
-      display:none; /* shown on wider screens below */
-      font-size:13px;
+    .dropdown-menu a{
+      display:block;
+      padding:10px 12px;
+      border-radius:10px;
+      color:#162b55;
       font-weight:600;
-      color:rgba(3,78,162,0.95);
-      opacity:0.9;
-      white-space:nowrap;
-      margin-left:10px;
     }
+
+    .dropdown-menu a:hover{
+      background:rgba(3,78,162,.08);
+      color:var(--brand-blue);
+    }
+
+    .dropdown.open .dropdown-menu{display:block;}
 
     /* ===== CONTENT ===== */
     .wrap{
@@ -157,6 +159,7 @@
       margin:auto;
       padding:40px 18px;
     }
+
     h1{
       font-family:Montserrat,Inter,sans-serif;
       font-size:clamp(34px,4vw,54px);
@@ -164,16 +167,17 @@
       margin:0 0 10px;
       letter-spacing:-0.03em;
     }
-    .lead{
+
+    p{
       color:var(--slate);
       line-height:1.65;
       max-width:75ch;
       margin:0;
     }
 
-    .grid{
+    .content-grid{
       display:grid;
-      grid-template-columns:1.05fr 0.95fr;
+      grid-template-columns:1.15fr 0.85fr;
       gap:22px;
       margin-top:22px;
       align-items:start;
@@ -184,14 +188,10 @@
       padding:22px;
       border-radius:22px;
       box-shadow:0 18px 55px rgba(3,78,162,.12);
-      border:1px solid rgba(0,0,0,0.06);
+      border:1px solid rgba(0,0,0,.06);
     }
 
-    .card p{
-      color:var(--slate);
-      line-height:1.65;
-      margin:0;
-    }
+    .card p{margin:0 0 14px}
 
     .info-item{
       margin-top:16px;
@@ -200,6 +200,7 @@
       background:rgba(3,78,162,.05);
       border:1px solid rgba(3,78,162,.12);
     }
+
     .label{
       font-weight:800;
       font-size:13px;
@@ -213,6 +214,7 @@
       gap:10px;
       flex-wrap:wrap;
     }
+
     .value a{
       text-decoration:underline;
       text-underline-offset:3px;
@@ -229,35 +231,37 @@
       font-weight:600;
       cursor:pointer;
     }
+
     .copy-btn.copied{
       background:var(--brand-blue);
       color:#fff;
       border-color:var(--brand-blue);
     }
 
-    /* Partnership interests forced into 2 lines */
-    .interest-lines{
+    /* Partnership two lines (as requested) */
+    .partners-lines{
       display:flex;
       flex-direction:column;
       gap:6px;
-      color:#0f2f62;
+      color:#162b55;
       font-weight:600;
-      line-height:1.55;
+      line-height:1.35;
+      font-size:14.5px;
     }
 
-    /* RIGHT image */
+    /* Right image */
     .side-image{
       border-radius:22px;
       overflow:hidden;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(0,0,0,0.14);
       background:#000;
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:0 18px 60px rgba(0,0,0,.14);
     }
+
     .side-image img{
       width:100%;
-      height:100%;
-      object-fit:cover;
-      aspect-ratio:4 / 5;
+      height:auto;
+      display:block;
     }
 
     /* ===== FOOTER (LOCKED) ===== */
@@ -266,6 +270,7 @@
       color:#fff;
       margin-top:30px;
     }
+
     .footer-inner{
       max-width:1100px;
       margin:auto;
@@ -274,159 +279,193 @@
       flex-direction:column;
       align-items:center;
       gap:14px;
+      text-align:center;
     }
+
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      opacity:.98;
+    }
+
     .social{
       display:flex;
       gap:18px;
       flex-wrap:wrap;
       justify-content:center;
     }
+
     .icon-btn{
       width:64px;
       height:64px;
       border-radius:50%;
-      background:var(--brand-blue);
+      background:var(--brand-blue); /* brand blue housing */
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:0 14px 34px rgba(0,0,0,.35);
+      box-shadow:0 14px 34px rgba(0,0,0,.35); /* keep shadow look */
     }
+
     .icon-btn img{width:34px;height:34px}
+
     footer small{font-size:13px;opacity:.9}
 
-    /* ===== RESPONSIVE ===== */
-    @media (min-width: 980px){
-      .tagline{display:inline-block;}
+    /* ===== MOBILE ===== */
+    @media(max-width: 980px){
+      .content-grid{grid-template-columns:1fr}
     }
 
-    @media(max-width:900px){
-      .grid{grid-template-columns:1fr;}
-      .topbar-inner{justify-content:space-between;}
-      .nav{gap:14px;}
-      .dropdown-menu{left:0; right:auto;}
-      .side-image img{aspect-ratio:16 / 9;}
+    @media(max-width: 900px){
+      .topbar-inner{justify-content:space-between}
+      .nav{gap:8px}
+      .nav a, .nav button{padding:8px 8px}
     }
 
-    @media(max-width:640px){
-      .nav{gap:12px; flex-wrap:wrap; justify-content:flex-end;}
-      .nav a, .nav summary{font-size:13px;}
+    @media(max-width: 760px){
+      .nav{
+        flex-wrap:wrap;
+        justify-content:flex-end;
+      }
+      .dropdown-menu{
+        right:auto;
+        left:0;
+      }
     }
   </style>
 </head>
 
 <body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+        <span>Experience Ecuador</span>
+      </a>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="/">
-      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
-      <span>Experience Ecuador</span>
-      <span class="tagline">Curated travel experiences across Ecuador</span>
-    </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/mission/">Mission</a>
 
-    <nav class="nav" aria-label="Primary navigation">
-      <a href="/">Home</a>
-      <a href="/about/">About</a>
-      <a href="/mission/">Mission</a>
-
-      <details class="dropdown">
-        <summary>Regions <span class="caret" aria-hidden="true"></span></summary>
-        <div class="dropdown-menu" role="menu" aria-label="Regions">
-          <a href="/regions/">All Regions</a>
-          <a href="/regions/galapagos/">Galapagos</a>
-          <a href="/regions/coast/">Coast</a>
-          <a href="/regions/andes/">Andes</a>
-          <a href="/regions/amazon/">Amazon</a>
+        <div class="dropdown" id="regionsDropdown">
+          <button class="dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false" id="regionsBtn">
+            Regions <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+            <a href="/regions/">All Regions</a>
+            <a href="/regions/galapagos/">Galapagos</a>
+            <a href="/regions/coast/">Coast</a>
+            <a href="/regions/andes/">Andes</a>
+            <a href="/regions/amazon/">Amazon</a>
+          </div>
         </div>
-      </details>
 
-      <a class="active" href="/contact/">Contact</a>
-    </nav>
-  </div>
-</header>
+        <a class="active" href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<main class="wrap">
-  <h1>Contact</h1>
-  <p class="lead">
-    Want to collaborate, feature an experience, or be part of our future newsletter and regional guides?
-    Experience Ecuador is being built as a one-stop hub for travel, culture, and discovery across the country.
-  </p>
+  <main class="wrap">
+    <h1>Contact</h1>
+    <p>
+      Want to collaborate, feature an experience, or be part of our future newsletter and regional guides?
+      Experience Ecuador is being built as a one-stop hub for travel, culture, and discovery across the country.
+    </p>
 
-  <section class="grid">
-    <div class="card">
-      <p>
-        If you are a lodging, restaurant, tour operator, retreat, guide, or local business and want to be featured,
-        we are actively building partnerships across Ecuador.
-      </p>
+    <section class="content-grid" aria-label="Contact content">
+      <div class="card">
+        <p>
+          If you are a lodging, restaurant, tour operator, retreat, guide, or local business and want to be featured,
+          we are actively building partnerships across Ecuador.
+        </p>
 
-      <div class="info-item">
-        <div class="label">Email</div>
-        <div class="value">
-          <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
-          <button class="copy-btn" id="copyEmail" type="button">Copy</button>
+        <div class="info-item">
+          <div class="label">Email</div>
+          <div class="value">
+            <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
+            <button class="copy-btn" id="copyEmail" type="button">Copy</button>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="label">Partnership interests</div>
+          <div class="partners-lines" aria-label="Partnership interests list">
+            <div>Lodging • Restaurants • Tours • Excursions</div>
+            <div>Retreats • Cultural • Nature &amp; Wildlife</div>
+          </div>
         </div>
       </div>
 
-      <div class="info-item">
-        <div class="label">Partnership interests</div>
-        <div class="interest-lines" aria-label="Partnership interests list">
-          <div>Lodging • Restaurants • Tours • Excursions</div>
-          <div>Retreats • Cultural • Nature &amp; Wildlife</div>
-        </div>
+      <!-- Right-aligned image -->
+      <aside class="side-image" aria-label="Contact image">
+        <img src="/assets/images/EE-contact-image-01.jpg" alt="Ecuador travel collage">
+      </aside>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
+      <div class="social" aria-label="Social media links">
+        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+        </a>
+        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+        </a>
+        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+        </a>
       </div>
+
+      <small>© 2025 Experience Ecuador. All rights reserved.</small>
     </div>
+  </footer>
 
-    <div class="side-image" aria-label="Contact image">
-      <img src="/assets/images/EE-contact-image-01.jpg" alt="Ecuador contact inspiration">
-    </div>
-  </section>
-</main>
+  <script>
+    // Copy email button
+    const btn = document.getElementById('copyEmail');
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('info@experienceecuador.com');
+        btn.textContent = 'Copied';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      } catch (e) {
+        // fallback: do nothing silently
+      }
+    });
 
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="social">
-      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
-      </a>
-      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
-      </a>
-      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
-      </a>
-      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
-      </a>
-    </div>
-    <small>© 2025 Experience Ecuador. All rights reserved.</small>
-  </div>
-</footer>
+    // Regions dropdown (click + close on outside click)
+    const dd = document.getElementById('regionsDropdown');
+    const ddBtn = document.getElementById('regionsBtn');
 
-<script>
-  // Copy email button
-  const btn = document.getElementById('copyEmail');
-  btn.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText('info@experienceecuador.com');
-      btn.textContent = 'Copied';
-      btn.classList.add('copied');
-      setTimeout(() => {
-        btn.textContent = 'Copy';
-        btn.classList.remove('copied');
-      }, 2000);
-    } catch (e) {
-      // Fallback: select text via prompt if clipboard is blocked
-      window.prompt('Copy this email:', 'info@experienceecuador.com');
-    }
-  });
+    ddBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isOpen = dd.classList.toggle('open');
+      ddBtn.setAttribute('aria-expanded', String(isOpen));
+    });
 
-  // Close Regions dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    const dd = document.querySelector('details.dropdown');
-    if (!dd) return;
-    if (dd.open && !dd.contains(e.target)) dd.open = false;
-  });
-</script>
+    document.addEventListener('click', (e) => {
+      if (!dd.contains(e.target)) {
+        dd.classList.remove('open');
+        ddBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
 
+    // Light deterrent: disable right-click on images (cannot fully prevent saving)
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+  </script>
 </body>
 </html>
