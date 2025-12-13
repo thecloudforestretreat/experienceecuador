@@ -16,6 +16,7 @@
       --cloud-white:#F5F7FA;
       --charcoal:#1F1F1F;
       --slate:#6E7B8B;
+      --light-gray:#E3E5E8;
     }
 
     *{box-sizing:border-box}
@@ -24,18 +25,10 @@
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--charcoal);
       background:linear-gradient(180deg,#ffffff 0%, #f6f8fb 100%);
-      -webkit-user-select:none;
-      user-select:none;
     }
 
     a{color:inherit;text-decoration:none}
-    img{
-      max-width:100%;
-      display:block;
-      -webkit-user-drag:none;
-      user-drag:none;
-      pointer-events:none;
-    }
+    img{max-width:100%;display:block}
 
     /* ===== TOP BAR ===== */
     .topbar{
@@ -69,27 +62,23 @@
       line-height:1;
     }
 
-    /* 🔧 PIN FIX — THIS IS THE ONLY CHANGE */
     .brand .pin{
       width:28px;
       height:28px;
       flex:0 0 auto;
-      background:#ffffff;        /* forces clean edge */
-      border-radius:50%;         /* clips any halo */
-      display:flex;
-      align-items:center;
-      justify-content:center;
     }
 
     .brand .pin img{
       width:100%;
       height:100%;
       object-fit:contain;
-      background:transparent;
-      border-radius:0;
+      background:none;
     }
 
     .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
       padding:8px 12px;
       border-radius:999px;
       background:rgba(3,78,162,0.08);
@@ -106,18 +95,26 @@
       padding:40px 18px 0;
     }
 
+    .hero{
+      padding:18px 0 28px;
+      text-align:left;
+    }
+
     .hero h1{
+      margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       letter-spacing:-0.03em;
       font-size:clamp(34px,4.4vw,54px);
-      margin-bottom:10px;
+      line-height:1.05;
     }
 
     .hero p{
+      margin:0;
       color:var(--slate);
-      max-width:70ch;
+      font-size:clamp(15px,1.8vw,18px);
       line-height:1.6;
+      max-width:70ch;
     }
 
     .grid{
@@ -125,67 +122,143 @@
       grid-template-columns:1.15fr 0.85fr;
       gap:22px;
       padding:26px 0 34px;
+      align-items:start;
     }
 
     .card{
-      background:#fff;
+      background:#ffffff;
+      border:1px solid rgba(0,0,0,0.06);
       border-radius:18px;
-      padding:22px;
       box-shadow:0 18px 50px rgba(3,78,162,0.07);
+      padding:22px;
     }
 
-    .stack{display:flex;flex-direction:column;gap:16px}
+    .card h2{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:22px;
+    }
 
+    .card p{
+      margin:0;
+      color:#2a2f36;
+      line-height:1.7;
+      font-size:15.5px;
+    }
+
+    .stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .mini{
+      padding:18px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.12);
+    }
+
+    .mini h3{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:16px;
+      letter-spacing:-0.01em;
+      color:#0f2f62;
+    }
+
+    .mini ul{
+      margin:0;
+      padding-left:18px;
+      color:#24324a;
+      line-height:1.7;
+      font-size:14.5px;
+    }
+
+    /* ===== IMAGE BREAK ===== */
     .break{
       margin:8px 0 34px;
       border-radius:20px;
       overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
       box-shadow:0 18px 60px rgba(0,0,0,0.12);
+      background:#000;
+    }
+
+    .break img{
+      width:100%;
+      height:auto;
+    }
+
+    .break-caption{
+      padding:12px 16px;
+      background:rgba(0,0,0,0.55);
+      color:#fff;
+      font-size:13px;
+      letter-spacing:0.01em;
     }
 
     /* ===== FOOTER ===== */
     .footer{
-      background:var(--brand-blue);
-      color:#fff;
+      margin-top:30px;
+      background:#034EA2;
+      color:#ffffff;
     }
 
     .footer-inner{
       max-width:1100px;
       margin:0 auto;
-      padding:30px 18px;
+      padding:26px 18px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      align-items:center;
       text-align:center;
+    }
+
+    .footer small{
+      opacity:0.9;
+      font-size:13px;
     }
 
     .social{
       display:flex;
       justify-content:center;
-      gap:18px;
-      margin-bottom:14px;
+      gap:16px;
+      flex-wrap:wrap;
     }
 
     .icon-btn{
-      width:64px;
-      height:64px;
+      width:58px;
+      height:58px;
       border-radius:50%;
-      background:#034EA2;
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:0 10px 26px rgba(0,0,0,0.25);
-      transition:transform 0.2s ease;
+      transition:transform 0.18s ease, box-shadow 0.18s ease;
+      background:rgba(255,255,255,0.14);
+      border:1px solid rgba(255,255,255,0.22);
     }
 
-    .icon-btn:hover{transform:translateY(-3px)}
+    .icon-btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 16px 40px rgba(0,0,0,0.22);
+      background:rgba(255,255,255,0.18);
+    }
 
     .icon-btn img{
-      width:34px;
-      height:34px;
+      width:30px;
+      height:30px;
     }
 
-    small{opacity:0.9;font-size:13px}
-
-    @media(max-width:900px){
+    /* ===== MOBILE ===== */
+    @media (max-width: 900px){
       .grid{grid-template-columns:1fr}
+      .hero{text-align:center}
+      .hero p{margin:0 auto}
       .topbar-inner{justify-content:center}
       .pill{display:none}
     }
@@ -193,49 +266,108 @@
 </head>
 
 <body>
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="/">
-      <span class="pin">
-        <img src="/assets/icons/EE-Logo-Assets-Pin.jpg" alt="Experience Ecuador">
-      </span>
-      Experience Ecuador
-    </a>
-    <span class="pill">Curated travel experiences across Ecuador</span>
-  </div>
-</header>
-
-<main class="wrap">
-  <section class="hero">
-    <h1>About Experience Ecuador</h1>
-    <p>
-      Experience Ecuador is being built as a one-stop hub for travel ideas, regional highlights,
-      and curated journeys across the country.
-    </p>
-  </section>
-
-  <section class="break">
-    <img src="/assets/images/EE-About-02.jpg" alt="Ecuador landscape">
-  </section>
-</main>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="social">
-      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank"><img src="/assets/icons/EE-SociaIcon-Facebook.png"></a>
-      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-Instagram.png"></a>
-      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-TikTok.png"></a>
-      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-YouTube.png"></a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <span class="pin">
+          <!-- UPDATED ONLY: pin image -->
+          <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin logo">
+        </span>
+        <span>Experience Ecuador</span>
+      </a>
+      <span class="pill">Curated travel experiences across Ecuador</span>
     </div>
-    <small>© 2025 Experience Ecuador. All rights reserved.</small>
-  </div>
-</footer>
+  </header>
 
-<script>
-  document.addEventListener("contextmenu", e => e.preventDefault());
-  document.addEventListener("dragstart", e => e.preventDefault());
-</script>
+  <main class="wrap">
+    <section class="hero">
+      <h1>About Experience Ecuador</h1>
+      <p>
+        Experience Ecuador is being built as a one stop hub for travel ideas, local highlights, and curated journeys across the country.
+        From relaxation to adventure, culinary to cultural, the goal is simple: help travelers discover Ecuador with clarity and confidence.
+      </p>
+    </section>
 
+    <section class="grid">
+      <div class="card">
+        <h2>What we are building</h2>
+        <p>
+          A thoughtfully curated platform that helps you explore Ecuador by region and by experience.
+          We want to make it easy to discover what to do, where to stay, how to plan, and what is worth your time.
+          Over time, this grows into a community and a digital newsletter where trusted local partners can showcase what they offer.
+        </p>
+      </div>
+
+      <div class="stack">
+        <div class="mini">
+          <h3>Built for travelers like you</h3>
+          <ul>
+            <li>International visitors looking for guidance and planning</li>
+            <li>Domestic travelers seeking weekend getaways</li>
+            <li>Eco tourists, birders, nomads, and adventure lovers</li>
+            <li>Retreat guests, food lovers, and culture seekers</li>
+          </ul>
+        </div>
+
+        <div class="mini">
+          <h3>What to expect next</h3>
+          <ul>
+            <li>Regional hubs: Galapagos, Coast, Andes, Amazon</li>
+            <li>Experience categories: relaxation, adventure, holistic, culinary, cultural</li>
+            <li>Newsletter highlights and featured partners</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMAGE BREAK -->
+    <section class="break" aria-label="Ecuador inspiration image">
+      <img src="/assets/images/EE-About-02.jpg" alt="Ecuador landscape inspiration">
+      <div class="break-caption">A glimpse of Ecuador. More guides and regional highlights coming soon.</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="social">
+        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+        </a>
+        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+        </a>
+        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+        </a>
+      </div>
+
+      <small>© 2025 Experience Ecuador. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <!-- Basic deterrents (not foolproof) -->
+  <script>
+    // Disable right click
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    // Disable dragging images
+    document.addEventListener('dragstart', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+
+    // Disable common save shortcuts (Ctrl/Cmd+S, Ctrl/Cmd+P)
+    document.addEventListener('keydown', (e) => {
+      const key = (e.key || '').toLowerCase();
+      const isMac = navigator.platform.toUpperCase().includes('MAC');
+      const mod = isMac ? e.metaKey : e.ctrlKey;
+
+      if (mod && (key === 's' || key === 'p')) {
+        e.preventDefault();
+      }
+    });
+  </script>
 </body>
 </html>
