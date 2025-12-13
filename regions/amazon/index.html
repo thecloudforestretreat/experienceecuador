@@ -1,15 +1,492 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Amazon | Experience Ecuador</title>
-</head>
-<body>
-  <h1>The Amazon</h1>
-  <p>Rainforest lodges, wildlife encounters, indigenous culture, and immersive Amazon experiences.</p>
 
-  <p><a href="/regions/">Back to regions</a></p>
-  <p><a href="/">Back to home</a></p>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --cloud-white:#F5F7FA;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+      --light-gray:#E3E5E8;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:#f6f8fb;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    img{ user-select:none; -webkit-user-drag:none; }
+
+    /* ===== HEADER (LOCKED) ===== */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(255,255,255,0.75);
+      border-bottom:1px solid rgba(0,0,0,0.06);
+    }
+
+    .topbar-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      color:var(--brand-blue);
+      font-size:18px;
+      line-height:1;
+    }
+
+    .brand img{
+      width:28px;
+      height:28px;
+      object-fit:contain;
+    }
+
+    .pill{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.08);
+      color:var(--brand-blue);
+      font-weight:600;
+      font-size:13px;
+      white-space:nowrap;
+    }
+
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;
+      width:100%;
+      min-height:64vh;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      background:url("/assets/images/EE-Region-Amazon-hero-01.jpg") center / cover no-repeat;
+      color:#fff;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.14),
+        rgba(0,0,0,0.74)
+      );
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:1100px;
+      padding:54px 18px 34px;
+      text-align:left;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.38);
+      border:1px solid rgba(255,255,255,0.22);
+      font-weight:700;
+      letter-spacing:0.02em;
+      font-size:12.5px;
+      margin-bottom:14px;
+      backdrop-filter:blur(10px);
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      font-size:clamp(40px,5.4vw,72px);
+      line-height:1.03;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:70ch;
+      font-size:clamp(15px,2vw,18px);
+      line-height:1.65;
+      color:rgba(255,255,255,0.92);
+    }
+
+    /* ===== PAGE WRAP ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:36px 18px 0;
+    }
+
+    /* ===== SECTION / CARDS ===== */
+    .section{
+      margin-bottom:26px;
+    }
+
+    .section h2{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:24px;
+      color:var(--brand-blue);
+    }
+
+    .section p{
+      margin:0;
+      color:#2a2f36;
+      font-size:15.8px;
+      line-height:1.75;
+      max-width:82ch;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      align-items:start;
+      margin-top:18px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      padding:22px;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      color:#0f2f62;
+    }
+
+    .card ul{
+      margin:0;
+      padding-left:18px;
+      color:#24324a;
+      line-height:1.75;
+      font-size:14.8px;
+    }
+
+    .mini{
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.12);
+      border-radius:20px;
+      padding:20px;
+    }
+
+    .mini + .mini{ margin-top:16px; }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .tag{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.12);
+      color:#0f2f62;
+      font-weight:700;
+      font-size:13px;
+    }
+
+    /* ===== GALLERY PLACEHOLDER ===== */
+    .gallery{
+      margin-top:22px;
+      background:#fff;
+      border-radius:22px;
+      border:1px dashed rgba(3,78,162,0.35);
+      padding:18px;
+    }
+
+    .gallery .hint{
+      color:var(--slate);
+      font-size:14.5px;
+      line-height:1.7;
+      margin:0;
+    }
+
+    /* ===== CTA ===== */
+    .cta{
+      margin:28px 0 56px;
+      background:var(--brand-blue);
+      color:#fff;
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 22px 60px rgba(3,78,162,0.22);
+    }
+
+    .cta h3{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:20px;
+    }
+
+    .cta p{
+      margin:0;
+      color:rgba(255,255,255,0.92);
+      line-height:1.7;
+      font-size:15.5px;
+      max-width:85ch;
+    }
+
+    /* ===== FOOTER (LOCKED) ===== */
+    .footer{
+      background:var(--brand-blue);
+      color:#fff;
+      margin-top:30px;
+    }
+
+    .footer-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+      text-align:center;
+    }
+
+    .social{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .icon-btn{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:var(--brand-blue);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 14px 34px rgba(0,0,0,0.35);
+    }
+
+    .icon-btn img{
+      width:34px;
+      height:34px;
+    }
+
+    footer small{
+      font-size:13px;
+      opacity:.9;
+    }
+
+    /* ===== MOBILE ===== */
+    @media(max-width:900px){
+      .grid{ grid-template-columns:1fr; }
+      .pill{ display:none; }
+      .topbar-inner{ justify-content:center; }
+      .hero-inner{ text-align:center; }
+      .hero p{ margin:0 auto; }
+    }
+
+    @media(max-width:480px){
+      .hero{ min-height:60vh; }
+      .cta{ border-radius:20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+        <span>Experience Ecuador</span>
+      </a>
+      <span class="pill">Explore Ecuador by region</span>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Amazon hero image">
+    <div class="hero-inner">
+      <div class="kicker">Region Guide • Coming Soon</div>
+      <h1>The Amazon</h1>
+      <p>
+        Jungle rivers, wildlife encounters, and immersive eco experiences.
+        This hub is being built to help you explore Ecuador’s Amazon with trusted highlights and clear planning.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <main class="wrap">
+
+    <section class="section">
+      <h2>What makes the Amazon special</h2>
+      <p>
+        Ecuador’s Amazon offers an extraordinary window into biodiversity and nature-first travel.
+        From guided rainforest walks to river adventures and lodge stays, this region is about slowing down,
+        listening, learning, and experiencing a living ecosystem up close.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Signature highlights</h3>
+          <ul>
+            <li>Wildlife spotting with experienced local guides</li>
+            <li>River experiences: canoeing, boat rides, and jungle access routes</li>
+            <li>Eco-lodges and nature-forward stays</li>
+            <li>Night walks and soundscapes that feel otherworldly</li>
+          </ul>
+
+          <div class="pill-row" aria-label="Amazon experience tags">
+            <span class="tag">Eco</span>
+            <span class="tag">Wildlife</span>
+            <span class="tag">Adventure</span>
+            <span class="tag">Wellness</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="mini">
+            <h3>Best for</h3>
+            <ul>
+              <li>Eco-tourists and nature lovers</li>
+              <li>Wildlife and photography enthusiasts</li>
+              <li>Travelers seeking immersive, guided experiences</li>
+              <li>People who want a true off-the-grid feel</li>
+            </ul>
+          </div>
+
+          <div class="mini">
+            <h3>Trip styles we will cover</h3>
+            <ul>
+              <li>Lodge-based jungle itineraries</li>
+              <li>River-centered adventures</li>
+              <li>Family-friendly eco experiences</li>
+              <li>Comfort to luxury planning guidance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What to expect on this page next</h2>
+      <p>
+        This Amazon hub will evolve into a complete guide with curated destinations, eco-lodge recommendations,
+        experience categories, and planning tips designed for clarity and safety.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Planned sections</h3>
+          <ul>
+            <li>Entry points and how to plan access</li>
+            <li>Top lodge areas and what they are best for</li>
+            <li>Wildlife and activity highlights</li>
+            <li>Suggested trip lengths and itinerary templates</li>
+            <li>Seasonality, packing, and planning checklist</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Quick planning mindset</h3>
+          <ul>
+            <li>Choose a lodge or base area first, then build activities around it</li>
+            <li>Expect guided experiences, it is the best way to explore</li>
+            <li>Pack light but intentional for humidity and rain</li>
+            <li>Prioritize safety, guides, and reputable operators</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Gallery and highlights</h2>
+
+      <div class="gallery">
+        <p class="hint">
+          Gallery carousel will go here later once you choose the images.
+          We will build one clean carousel component and reuse it across all region pages for consistency and speed.
+        </p>
+      </div>
+    </section>
+
+    <section class="cta" aria-label="Newsletter future CTA">
+      <h3>Coming soon: curated Amazon updates</h3>
+      <p>
+        This region hub will expand into curated guides and a newsletter format where travelers discover experiences and trusted partners.
+        Next step: lodge areas, wildlife highlights, and experience categories, then a reusable gallery carousel.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="social">
+        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+        </a>
+        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+        </a>
+        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+        </a>
+      </div>
+
+      <small>© 2025 Experience Ecuador. All rights reserved.</small>
+    </div>
+  </footer>
+
 </body>
 </html>
