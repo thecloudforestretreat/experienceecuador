@@ -68,6 +68,7 @@
       color:var(--brand-blue);
       font-size:18px;
       line-height:1;
+      white-space:nowrap;
     }
 
     .brand img{
@@ -76,14 +77,88 @@
       object-fit:contain;
     }
 
-    .pill{
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,0.08);
-      color:var(--brand-blue);
-      font-weight:600;
-      font-size:13px;
+    /* ===== MENU ===== */
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-weight:700;
+      font-size:14px;
+      color:#1b2b4a;
       white-space:nowrap;
+    }
+
+    .nav a{
+      padding:8px 8px;
+      border-radius:10px;
+      transition:background 0.15s ease;
+    }
+
+    .nav a:hover{
+      background:rgba(3,78,162,0.08);
+    }
+
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+    }
+
+    .dropbtn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 8px;
+      border-radius:10px;
+      cursor:pointer;
+      user-select:none;
+      transition:background 0.15s ease;
+    }
+
+    .dropbtn:hover{
+      background:rgba(3,78,162,0.08);
+    }
+
+    .caret{
+      width:10px;
+      height:10px;
+      display:inline-block;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
+      transform:rotate(45deg);
+      margin-top:-2px;
+      opacity:0.7;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:42px;
+      right:0;
+      min-width:220px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:14px;
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
+      padding:8px;
+      display:none;
+      z-index:20;
+    }
+
+    .dropdown-menu a{
+      display:block;
+      padding:10px 10px;
+      border-radius:10px;
+      font-weight:700;
+      color:#0f2f62;
+    }
+
+    .dropdown-menu a:hover{
+      background:rgba(3,78,162,0.08);
+    }
+
+    .dropdown:focus-within .dropdown-menu,
+    .dropdown:hover .dropdown-menu{
+      display:block;
     }
 
     /* ===== HERO ===== */
@@ -187,10 +262,11 @@
       margin-top:18px;
     }
 
-    /* ✅ ONLY change for the first 3 boxes on this page */
+    /* ✅ centered card between the 2 right minis (matches About/Mission) */
     .grid.center-stack{
-      align-items:center; /* vertically center left card between the two right minis */
+      align-items:center;
     }
+
     .stack-right{
       display:flex;
       flex-direction:column;
@@ -228,11 +304,6 @@
       border-radius:20px;
       padding:20px;
     }
-
-    .mini + .mini{ margin-top:16px; }
-
-    /* when using stack-right, we don't need margin stacking */
-    .stack-right .mini + .mini{ margin-top:0; }
 
     .pill-row{
       display:flex;
@@ -312,6 +383,15 @@
       text-align:center;
     }
 
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.01em;
+      font-size:16px;
+      opacity:0.95;
+      margin-top:2px;
+    }
+
     .social{
       display:flex;
       gap:18px;
@@ -343,10 +423,19 @@
     /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
-      .pill{ display:none; }
-      .topbar-inner{ justify-content:center; }
+      .topbar-inner{ justify-content:space-between; }
       .hero-inner{ text-align:center; }
       .hero p{ margin:0 auto; }
+
+      /* menu wraps nicely */
+      .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+      .dropdown-menu{ right:0; left:auto; }
+    }
+
+    @media(max-width:620px){
+      .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
+      .nav{ justify-content:center; }
+      .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
     }
 
     @media(max-width:480px){
@@ -365,7 +454,27 @@
         <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
         <span>Experience Ecuador</span>
       </a>
-      <span class="pill">Explore Ecuador by region</span>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/mission">Mission</a>
+
+        <div class="dropdown">
+          <div class="dropbtn" tabindex="0" role="button" aria-haspopup="true" aria-label="Regions menu">
+            Regions <span class="caret" aria-hidden="true"></span>
+          </div>
+          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+            <a href="/regions" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos" role="menuitem">Galapagos</a>
+            <a href="/regions/coast" role="menuitem">Coast</a>
+            <a href="/regions/andes" role="menuitem">Andes</a>
+            <a href="/regions/amazon" role="menuitem">Amazon</a>
+          </div>
+        </div>
+
+        <a href="/contact">Contact</a>
+      </nav>
     </div>
   </header>
 
@@ -392,7 +501,6 @@
         how long to stay, and what kind of trip fits your style.
       </p>
 
-      <!-- ✅ ONLY this grid is adjusted to match About/Mission alignment -->
       <div class="grid center-stack">
         <div class="card">
           <h3>Signature highlights</h3>
@@ -490,6 +598,8 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
+      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
       <div class="social">
         <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
           <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
