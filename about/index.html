@@ -63,6 +63,7 @@
       font-weight:800;
       color:var(--brand-blue);
       font-size:18px;
+      white-space:nowrap;
     }
 
     .brand .pin{
@@ -77,14 +78,89 @@
       background:transparent;
     }
 
-    .pill{
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,0.08);
+    /* ===== NAV (NEW) ===== */
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-weight:600;
+      color:#162b55;
+    }
+
+    .nav a,
+    .nav button{
+      font:inherit;
+      color:inherit;
+      background:transparent;
+      border:0;
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      line-height:1;
+    }
+
+    .nav a:hover,
+    .nav button:hover{
+      background:rgba(3,78,162,.08);
       color:var(--brand-blue);
-      font-size:13px;
+    }
+
+    .nav a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,.08);
+    }
+
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+    }
+
+    .dropdown-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .caret{
+      width:10px;
+      height:10px;
+      display:inline-block;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
+      transform:rotate(45deg);
+      margin-top:-2px;
+      opacity:.85;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:44px;
+      right:0;
+      min-width:220px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:14px;
+      box-shadow:0 24px 70px rgba(0,0,0,.18);
+      padding:8px;
+      display:none;
+      z-index:50;
+    }
+
+    .dropdown-menu a{
+      display:block;
+      padding:10px 12px;
+      border-radius:10px;
+      color:#162b55;
       font-weight:600;
     }
+
+    .dropdown-menu a:hover{
+      background:rgba(3,78,162,.08);
+      color:var(--brand-blue);
+    }
+
+    .dropdown.open .dropdown-menu{display:block;}
 
     /* ===== PAGE ===== */
     .wrap{
@@ -180,16 +256,26 @@
       margin:0 auto;
       padding:28px 18px;
       text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+    }
+
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      opacity:.98;
     }
 
     .social{
       display:flex;
       justify-content:center;
       gap:18px;
-      margin-bottom:14px;
     }
 
-    /* 🔥 FINAL FIX HERE */
     .icon-btn{
       width:64px;
       height:64px;
@@ -210,8 +296,8 @@
 
     @media(max-width:900px){
       .grid{grid-template-columns:1fr}
-      .pill{display:none}
-      .topbar-inner{justify-content:center}
+      .topbar-inner{justify-content:space-between}
+      .nav{gap:8px;flex-wrap:wrap;justify-content:flex-end}
     }
   </style>
 </head>
@@ -226,7 +312,27 @@
       </span>
       <span>Experience Ecuador</span>
     </a>
-    <span class="pill">Curated travel experiences across Ecuador</span>
+
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="/">Home</a>
+      <a class="active" href="/about/">About</a>
+      <a href="/mission/">Mission</a>
+
+      <div class="dropdown" id="regionsDropdown">
+        <button class="dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false" id="regionsBtn">
+          Regions <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+          <a href="/regions/">All Regions</a>
+          <a href="/regions/galapagos/">Galapagos</a>
+          <a href="/regions/coast/">Coast</a>
+          <a href="/regions/andes/">Andes</a>
+          <a href="/regions/amazon/">Amazon</a>
+        </div>
+      </div>
+
+      <a href="/contact/">Contact</a>
+    </nav>
   </div>
 </header>
 
@@ -279,15 +385,37 @@
 
 <footer class="footer">
   <div class="footer-inner">
+    <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
     <div class="social">
       <a class="icon-btn" href="#"><img src="/assets/icons/EE-SociaIcon-Facebook.png" alt=""></a>
       <a class="icon-btn" href="#"><img src="/assets/icons/EE-SociaIcon-Instagram.png" alt=""></a>
       <a class="icon-btn" href="#"><img src="/assets/icons/EE-SociaIcon-TikTok.png" alt=""></a>
       <a class="icon-btn" href="#"><img src="/assets/icons/EE-SociaIcon-YouTube.png" alt=""></a>
     </div>
+
     <small>© 2025 Experience Ecuador. All rights reserved.</small>
   </div>
 </footer>
+
+<script>
+  // Regions dropdown (click + close on outside click)
+  const dd = document.getElementById('regionsDropdown');
+  const ddBtn = document.getElementById('regionsBtn');
+
+  ddBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const isOpen = dd.classList.toggle('open');
+    ddBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dd.contains(e.target)) {
+      dd.classList.remove('open');
+      ddBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>
 
 </body>
 </html>
