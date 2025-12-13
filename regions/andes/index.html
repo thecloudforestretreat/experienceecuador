@@ -20,8 +20,10 @@
   <style>
     :root{
       --brand-blue:#034EA2;
+      --cloud-white:#F5F7FA;
       --charcoal:#1F1F1F;
       --slate:#6E7B8B;
+      --light-gray:#E3E5E8;
     }
 
     *{box-sizing:border-box}
@@ -33,9 +35,10 @@
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block;user-select:none}
+    img{max-width:100%;display:block}
+    img{ user-select:none; -webkit-user-drag:none; }
 
-    /* ===== HEADER ===== */
+    /* ===== HEADER (LOCKED) ===== */
     .topbar{
       position:sticky;
       top:0;
@@ -52,6 +55,7 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
+      gap:16px;
     }
 
     .brand{
@@ -60,21 +64,32 @@
       gap:10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
+      letter-spacing:-0.02em;
       color:var(--brand-blue);
       font-size:18px;
+      line-height:1;
       white-space:nowrap;
     }
 
-    .brand img{ width:28px; height:28px; }
+    .brand img{
+      width:28px;
+      height:28px;
+      object-fit:contain;
+    }
 
+    /* ===== MENU (ADDED) ===== */
     .nav{
       display:flex;
       align-items:center;
       gap:18px;
       font-size:14px;
-      font-weight:600;
+      font-weight:700;
       color:#0f2f62;
+      white-space:nowrap;
     }
+
+    .nav a{ opacity:.95; }
+    .nav a:hover{ opacity:1; text-decoration:underline; text-underline-offset:4px; }
 
     .dropdown{
       position:relative;
@@ -94,6 +109,7 @@
       border-right:2px solid #0f2f62;
       border-bottom:2px solid #0f2f62;
       transform:rotate(45deg);
+      margin-top:-2px;
     }
 
     .dropdown-menu{
@@ -115,7 +131,7 @@
       display:block;
       padding:10px 12px;
       border-radius:12px;
-      font-weight:600;
+      font-weight:700;
       color:#0f2f62;
     }
 
@@ -123,67 +139,92 @@
 
     /* ===== HERO ===== */
     .hero{
+      position:relative;
+      width:100%;
       min-height:64vh;
       display:flex;
       align-items:flex-end;
-      background:url("/assets/images/EE-Region-Andes-hero-01.jpg") center/cover no-repeat;
+      justify-content:center;
+      background:url("/assets/images/EE-Region-Andes-hero-01.jpg") center / cover no-repeat;
       color:#fff;
-      position:relative;
     }
 
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(to bottom,rgba(0,0,0,.15),rgba(0,0,0,.72));
+      background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.12),
+        rgba(0,0,0,0.72)
+      );
     }
 
     .hero-inner{
       position:relative;
+      z-index:2;
+      width:100%;
       max-width:1100px;
-      margin:0 auto;
       padding:54px 18px 34px;
+      text-align:left;
     }
 
     .kicker{
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
       padding:8px 12px;
       border-radius:999px;
       background:rgba(3,78,162,0.38);
-      font-size:12.5px;
+      border:1px solid rgba(255,255,255,0.22);
       font-weight:700;
+      letter-spacing:0.02em;
+      font-size:12.5px;
       margin-bottom:14px;
+      backdrop-filter:blur(10px);
     }
 
     .hero h1{
-      font-family:Montserrat;
-      font-size:clamp(40px,5vw,72px);
       margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      font-size:clamp(40px,5.4vw,72px);
+      line-height:1.03;
     }
 
     .hero p{
+      margin:0;
       max-width:70ch;
       font-size:clamp(15px,2vw,18px);
       line-height:1.65;
+      color:rgba(255,255,255,0.92);
     }
 
-    /* ===== CONTENT ===== */
+    /* ===== PAGE WRAP ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
       padding:36px 18px 0;
     }
 
-    .section{ margin-bottom:26px; }
+    /* ===== SECTION / CARDS ===== */
+    .section{
+      margin-bottom:26px;
+    }
 
     .section h2{
-      font-family:Montserrat;
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
       font-size:24px;
       color:var(--brand-blue);
-      margin-bottom:10px;
     }
 
     .section p{
+      margin:0;
+      color:#2a2f36;
       font-size:15.8px;
       line-height:1.75;
       max-width:82ch;
@@ -194,31 +235,109 @@
       grid-template-columns:1.15fr 0.85fr;
       gap:22px;
       margin-top:18px;
+      align-items:start;
     }
 
-    /* ✅ key fix */
-    .grid.align-center{ align-items:center; }
+    /* ✅ IMPORTANT: Only used on the first content grid to center the left card */
+    .grid.align-center{
+      align-items:center;
+    }
 
     .card{
       background:#fff;
       border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
       padding:22px;
-      box-shadow:0 18px 55px rgba(3,78,162,.12);
     }
 
-    .card h3{ font-family:Montserrat; font-size:18px; }
+    .card h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      color:#0f2f62;
+    }
 
-    .card ul{ padding-left:18px; line-height:1.75; }
+    .card ul{
+      margin:0;
+      padding-left:18px;
+      color:#24324a;
+      line-height:1.75;
+      font-size:14.8px;
+    }
 
     .mini{
-      background:linear-gradient(180deg,rgba(3,78,162,.06),rgba(3,78,162,.02));
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.12);
       border-radius:20px;
       padding:20px;
     }
 
     .mini + .mini{ margin-top:16px; }
 
-    /* ===== FOOTER ===== */
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .tag{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.12);
+      color:#0f2f62;
+      font-weight:700;
+      font-size:13px;
+    }
+
+    /* ===== GALLERY PLACEHOLDER ===== */
+    .gallery{
+      margin-top:22px;
+      background:#fff;
+      border-radius:22px;
+      border:1px dashed rgba(3,78,162,0.35);
+      padding:18px;
+    }
+
+    .gallery .hint{
+      color:var(--slate);
+      font-size:14.5px;
+      line-height:1.7;
+      margin:0;
+    }
+
+    /* ===== CTA ===== */
+    .cta{
+      margin:28px 0 56px;
+      background:var(--brand-blue);
+      color:#fff;
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 22px 60px rgba(3,78,162,0.22);
+    }
+
+    .cta h3{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:20px;
+    }
+
+    .cta p{
+      margin:0;
+      color:rgba(255,255,255,0.92);
+      line-height:1.7;
+      font-size:15.5px;
+      max-width:85ch;
+    }
+
+    /* ===== FOOTER (LOCKED) ===== */
     .footer{
       background:var(--brand-blue);
       color:#fff;
@@ -227,22 +346,30 @@
 
     .footer-inner{
       max-width:1100px;
-      margin:auto;
+      margin:0 auto;
       padding:28px 18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
       text-align:center;
     }
 
+    /* ✅ tagline above icons */
     .footer-tagline{
-      font-family:Montserrat;
+      font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      margin-bottom:14px;
+      letter-spacing:-0.02em;
+      font-size:14px;
+      opacity:.95;
+      margin-top:2px;
     }
 
     .social{
       display:flex;
-      justify-content:center;
       gap:18px;
-      margin-bottom:14px;
+      flex-wrap:wrap;
+      justify-content:center;
     }
 
     .icon-btn{
@@ -253,110 +380,211 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:0 14px 34px rgba(0,0,0,.35);
+      box-shadow:0 14px 34px rgba(0,0,0,0.35);
     }
 
-    .icon-btn img{ width:34px; }
+    .icon-btn img{
+      width:34px;
+      height:34px;
+    }
 
+    footer small{
+      font-size:13px;
+      opacity:.9;
+    }
+
+    /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
       .nav{ display:none; }
-      .hero-inner{text-align:center}
+      .topbar-inner{ justify-content:center; }
+      .hero-inner{ text-align:center; }
+      .hero p{ margin:0 auto; }
+    }
+
+    @media(max-width:480px){
+      .hero{ min-height:60vh; }
+      .cta{ border-radius:20px; }
     }
   </style>
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="/">
-      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="">
-      Experience Ecuador
-    </a>
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+        <span>Experience Ecuador</span>
+      </a>
 
-    <nav class="nav">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/mission">Mission</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/mission">Mission</a>
 
-      <div class="dropdown">
-        <span>Regions</span><span class="caret"></span>
-        <div class="dropdown-menu">
-          <a href="/regions">All Regions</a>
-          <a href="/regions/galapagos">Galapagos</a>
-          <a href="/regions/coast">Coast</a>
-          <a class="active" href="/regions/andes">Andes</a>
-          <a href="/regions/amazon">Amazon</a>
-        </div>
-      </div>
+        <div class="dropdown" aria-label="Regions menu">
+          <span>Regions</span>
+          <span class="caret" aria-hidden="true"></span>
 
-      <a href="/contact">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="hero-inner">
-    <div class="kicker">Region Guide • Coming Soon</div>
-    <h1>The Andes</h1>
-    <p>High-altitude landscapes, volcano views, colonial cities, and rich cultural depth.</p>
-  </div>
-</section>
-
-<main class="wrap">
-  <section class="section">
-    <h2>What makes the Andes special</h2>
-    <p>Culture, scenery, and adventure packed into short distances.</p>
-
-    <div class="grid align-center">
-      <div class="card">
-        <h3>Signature highlights</h3>
-        <ul>
-          <li>Volcano landscapes and crater lakes</li>
-          <li>Colonial cities and artisan towns</li>
-          <li>Outdoor adventures and scenic drives</li>
-          <li>Markets, culture, and food</li>
-        </ul>
-      </div>
-
-      <div>
-        <div class="mini">
-          <h3>Best for</h3>
-          <ul>
-            <li>Culture lovers</li>
-            <li>Day-trip travelers</li>
-            <li>Nature + history</li>
-          </ul>
+          <div class="dropdown-menu" role="menu" aria-label="Regions dropdown">
+            <a href="/regions/">All Regions</a>
+            <a href="/regions/galapagos">Galapagos</a>
+            <a href="/regions/coast">Coast</a>
+            <a href="/regions/andes">Andes</a>
+            <a href="/regions/amazon">Amazon</a>
+          </div>
         </div>
 
-        <div class="mini">
-          <h3>Trip styles we will cover</h3>
-          <ul>
-            <li>City + countryside</li>
-            <li>Volcano routes</li>
-            <li>Wellness & slow travel</li>
-          </ul>
-        </div>
-      </div>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Andes hero image">
+    <div class="hero-inner">
+      <div class="kicker">Region Guide • Coming Soon</div>
+      <h1>The Andes</h1>
+      <p>
+        High-altitude landscapes, volcano views, colonial cities, artisan towns, and epic day trips.
+        This hub is being built to help you explore the Andes with curated highlights and practical planning.
+      </p>
     </div>
   </section>
-</main>
 
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+  <!-- CONTENT -->
+  <main class="wrap">
 
-    <div class="social">
-      <a class="icon-btn"><img src="/assets/icons/EE-SociaIcon-Facebook.png"></a>
-      <a class="icon-btn"><img src="/assets/icons/EE-SociaIcon-Instagram.png"></a>
-      <a class="icon-btn"><img src="/assets/icons/EE-SociaIcon-TikTok.png"></a>
-      <a class="icon-btn"><img src="/assets/icons/EE-SociaIcon-YouTube.png"></a>
+    <section class="section">
+      <h2>What makes the Andes special</h2>
+      <p>
+        Ecuador’s Andes offer dramatic scenery and rich culture packed into manageable travel distances.
+        One day you can explore a historic city, the next you can hike near volcanoes or relax in a mountain town.
+        This guide will help you find experiences that fit your pace, comfort level, and interests.
+      </p>
+
+      <!-- ✅ Only change here: align-center added -->
+      <div class="grid align-center">
+        <div class="card">
+          <h3>Signature highlights</h3>
+          <ul>
+            <li>Volcano landscapes, crater lakes, and panoramic viewpoints</li>
+            <li>Colonial cities, museums, and historic neighborhoods</li>
+            <li>Artisan markets, craft towns, and cultural traditions</li>
+            <li>Outdoor adventures: hikes, hot springs, and scenic drives</li>
+          </ul>
+
+          <div class="pill-row" aria-label="Andes experience tags">
+            <span class="tag">Culture</span>
+            <span class="tag">Nature</span>
+            <span class="tag">Adventure</span>
+            <span class="tag">Photography</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="mini">
+            <h3>Best for</h3>
+            <ul>
+              <li>Travelers who want a mix of culture and scenery</li>
+              <li>Day trips and itinerary-based exploration</li>
+              <li>Hikers and nature lovers</li>
+              <li>Food, history, and local markets</li>
+            </ul>
+          </div>
+
+          <div class="mini">
+            <h3>Trip styles we will cover</h3>
+            <ul>
+              <li>City + countryside combinations</li>
+              <li>Volcano routes and scenic day trips</li>
+              <li>Wellness: hot springs and slow travel</li>
+              <li>Luxury to budget-friendly planning guidance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What to expect on this page next</h2>
+      <p>
+        This Andes hub will evolve into a complete guide with curated destinations, experience categories,
+        and practical travel planning so you can build an unforgettable itinerary.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Planned sections</h3>
+          <ul>
+            <li>Key hubs and towns, with what each is best for</li>
+            <li>Top day trips: volcanoes, lakes, markets, and viewpoints</li>
+            <li>Experience map: culture, adventure, culinary, and wellness</li>
+            <li>Suggested trip lengths and itinerary templates</li>
+            <li>Seasonality, altitude tips, and planning checklist</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Quick planning mindset</h3>
+          <ul>
+            <li>Pick a base city or town, then build day trips outward</li>
+            <li>Plan for altitude and climate changes between stops</li>
+            <li>Mix cultural days with nature days for balance</li>
+            <li>Keep itineraries flexible, the Andes reward discovery</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Gallery and highlights</h2>
+
+      <div class="gallery">
+        <p class="hint">
+          Gallery carousel will go here later once you choose the images.
+          We will build one clean carousel component and reuse it across all region pages for consistency and speed.
+        </p>
+      </div>
+    </section>
+
+    <section class="cta" aria-label="Newsletter future CTA">
+      <h3>Coming soon: curated Andes updates</h3>
+      <p>
+        This region hub will expand into curated guides and a newsletter format where travelers discover experiences and trusted partners.
+        Next step: structured town profiles and experience categories, then a reusable gallery carousel.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+
+      <!-- ✅ Added line -->
+      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
+      <div class="social">
+        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+        </a>
+        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+        </a>
+        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+        </a>
+      </div>
+
+      <small>© 2025 Experience Ecuador. All rights reserved.</small>
     </div>
-
-    <small>© 2025 Experience Ecuador. All rights reserved.</small>
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>
