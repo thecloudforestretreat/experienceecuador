@@ -1,13 +1,348 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>About | Experience Ecuador</title>
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://experienceecuador.com/about/" />
+
+  <!-- SEO -->
+  <meta name="description" content="Experience Ecuador is a curated hub for travel, journeys, and experiences across Ecuador. Discover regions, culture, nature, wellness, food, and adventure." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Experience Ecuador" />
+  <meta property="og:title" content="About | Experience Ecuador" />
+  <meta property="og:description" content="A curated hub for travel, journeys, and experiences across Ecuador. Built to inspire discovery and support local communities." />
+  <meta property="og:url" content="https://experienceecuador.com/about/" />
+  <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-social-preview.jpg" />
+  <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-social-preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Experience Ecuador — curated travel experiences across Ecuador" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About | Experience Ecuador" />
+  <meta name="twitter:description" content="A curated hub for travel, journeys, and experiences across Ecuador. Built to inspire discovery and support local communities." />
+  <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-social-preview.jpg" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3EDLVGV2HD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3EDLVGV2HD');
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --cloud-white:#F5F7FA;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+      --line: rgba(31,31,31,0.12);
+      --card: rgba(245,247,250,0.70);
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--charcoal);
+      background:
+        radial-gradient(1200px 600px at 30% -10%, rgba(3,78,162,0.10), transparent 60%),
+        radial-gradient(1000px 500px at 90% 10%, rgba(255,201,20,0.10), transparent 55%),
+        #ffffff;
+    }
+
+    /* ====== LAYOUT ====== */
+    .wrap{
+      width: min(1040px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* ====== HEADER (NO NAV LINKS YET) ====== */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      text-decoration:none;
+      color: inherit;
+    }
+
+    .brand img{
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .brand-name{
+      font-family: Montserrat, Inter, sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-size: 16px;
+      line-height: 1.1;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(3,78,162,0.20);
+      background: rgba(3,78,162,0.06);
+      color: var(--brand-blue);
+      font-weight: 600;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--brand-blue);
+      box-shadow: 0 0 0 4px rgba(3,78,162,0.12);
+    }
+
+    /* ====== HERO ====== */
+    .hero{
+      padding: 56px 0 18px;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(3,78,162,0.08);
+      color: var(--brand-blue);
+      font-weight: 600;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    h1{
+      font-family: Montserrat, Inter, sans-serif;
+      font-weight: 800;
+      font-size: clamp(34px, 5vw, 52px);
+      letter-spacing: -0.04em;
+      margin: 0 0 12px;
+    }
+
+    .lead{
+      font-size: clamp(16px, 2.1vw, 18px);
+      color: rgba(31,31,31,0.80);
+      line-height: 1.65;
+      max-width: 72ch;
+      margin: 0 0 22px;
+    }
+
+    .meta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin: 0 0 26px;
+    }
+
+    .pill{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.65);
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: rgba(31,31,31,0.78);
+    }
+
+    /* ====== CONTENT GRID ====== */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      padding-bottom: 44px;
+    }
+
+    .card{
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card);
+      padding: 18px;
+    }
+
+    .card h2{
+      font-family: Montserrat, Inter, sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      margin: 0 0 10px;
+      color: var(--charcoal);
+    }
+
+    .card p{
+      margin: 0 0 12px;
+      line-height: 1.7;
+      color: rgba(31,31,31,0.82);
+    }
+
+    .list{
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(31,31,31,0.82);
+      line-height: 1.7;
+    }
+
+    .list li{
+      margin: 8px 0;
+    }
+
+    .highlight{
+      border-left: 4px solid rgba(3,78,162,0.40);
+      padding-left: 12px;
+      margin-top: 12px;
+      color: rgba(31,31,31,0.82);
+    }
+
+    /* ====== FOOTER (NO NAV LINKS YET) ====== */
+    footer{
+      border-top: 1px solid var(--line);
+      background: rgba(245,247,250,0.70);
+      padding: 22px 0;
+    }
+
+    .footer-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap: 10px;
+      color: rgba(31,31,31,0.70);
+      font-size: 13px;
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 860px){
+      .grid{
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>About</h1>
-  <p>Coming soon.</p>
-  <p><a href="/">Back to home</a></p>
+  <header>
+    <div class="wrap header-inner">
+      <a class="brand" href="/" aria-label="Experience Ecuador home">
+        <img src="/assets/logo-experience-ecuador-small.png" alt="Experience Ecuador logo">
+        <div class="brand-name">Experience Ecuador</div>
+      </a>
+      <div class="badge" aria-label="Site status">
+        <span class="dot"></span>
+        Building in progress
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="kicker">About Experience Ecuador</div>
+      <h1>A modern hub for travel across Ecuador</h1>
+      <p class="lead">
+        Experience Ecuador is being built as a one stop destination for curated journeys, regional guides, and
+        unforgettable experiences across the country. From the Galápagos to the Amazon, from coastal culture to the Andes,
+        this platform will help travelers discover Ecuador with confidence and curiosity.
+      </p>
+
+      <div class="meta-row">
+        <div class="pill">Warm, helpful, inspiring tone</div>
+        <div class="pill">Regions first structure</div>
+        <div class="pill">Newsletter and partner spotlight ready</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>What you will find here</h2>
+        <p>
+          This site is designed to showcase the best of Ecuador in a way that is easy to explore and easy to trust. As it grows,
+          you will see regional guides, curated experiences, and community driven recommendations.
+        </p>
+        <ul class="list">
+          <li>Region pages that highlight what to do, where to stay, and how to plan</li>
+          <li>Experience categories like relaxation, adventure, culinary, cultural, and holistic travel</li>
+          <li>Stories and guides that build confidence for international visitors</li>
+          <li>Partner spotlights for lodging, restaurants, and local operators</li>
+        </ul>
+
+        <p class="highlight">
+          Long term, Experience Ecuador will become a newsletter and media platform where trusted local businesses can reach a global audience.
+        </p>
+      </article>
+
+      <aside class="card">
+        <h2>How we curate</h2>
+        <p>
+          We are building with a simple promise: keep it helpful, keep it honest, and keep it beautiful.
+        </p>
+        <ul class="list">
+          <li>Clarity over hype</li>
+          <li>Quality over quantity</li>
+          <li>Local community support</li>
+          <li>Eco minded and culturally respectful travel</li>
+        </ul>
+
+        <p class="highlight">
+          Want to collaborate or be featured in the future newsletter? Use the Contact page once it is publicly linked.
+        </p>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>© <span id="year"></span> Experience Ecuador</div>
+      <div>Curated travel experiences across Ecuador</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
