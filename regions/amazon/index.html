@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Amazon | Experience Ecuador</title>
- 
+
   <!-- Favicons -->
   <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
   <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
@@ -68,6 +68,7 @@
       color:var(--brand-blue);
       font-size:18px;
       line-height:1;
+      white-space:nowrap;
     }
 
     .brand img{
@@ -76,14 +77,69 @@
       object-fit:contain;
     }
 
-    .pill{
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,0.08);
-      color:var(--brand-blue);
+    /* ===== NAV MENU ===== */
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
       font-weight:600;
-      font-size:13px;
-      white-space:nowrap;
+      font-size:14px;
+      color:#0f2f62;
+    }
+
+    .nav a{ opacity:.92; }
+    .nav a:hover{ opacity:1; }
+    .nav .active{ color:var(--brand-blue); opacity:1; }
+
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      cursor:pointer;
+      padding:8px 10px;
+      border-radius:999px;
+    }
+
+    .dropdown:hover{ background:rgba(3,78,162,0.07); }
+
+    .caret{
+      width:10px;
+      height:10px;
+      border-right:2px solid rgba(15,47,98,0.75);
+      border-bottom:2px solid rgba(15,47,98,0.75);
+      transform:rotate(45deg);
+      margin-top:-2px;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:44px;
+      right:0;
+      min-width:220px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:16px;
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
+      padding:8px;
+      display:none;
+      z-index:50;
+    }
+
+    .dropdown:hover .dropdown-menu{ display:block; }
+
+    .dropdown-menu a{
+      display:block;
+      padding:10px 12px;
+      border-radius:12px;
+      color:#0f2f62;
+      font-weight:600;
+      font-size:14px;
+    }
+
+    .dropdown-menu a:hover{
+      background:rgba(3,78,162,0.07);
+      color:var(--brand-blue);
     }
 
     /* ===== HERO ===== */
@@ -185,6 +241,11 @@
       gap:22px;
       align-items:start;
       margin-top:18px;
+    }
+
+    /* ✅ only used on the first section grid */
+    .grid.align-center{
+      align-items:center;
     }
 
     .card{
@@ -299,6 +360,15 @@
       text-align:center;
     }
 
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:rgba(255,255,255,0.96);
+      margin-top:2px;
+    }
+
     .social{
       display:flex;
       gap:18px;
@@ -330,10 +400,10 @@
     /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
-      .pill{ display:none; }
-      .topbar-inner{ justify-content:center; }
+      .topbar-inner{ justify-content:space-between; }
       .hero-inner{ text-align:center; }
       .hero p{ margin:0 auto; }
+      .nav{ display:none; } /* keep header clean on mobile for now */
     }
 
     @media(max-width:480px){
@@ -352,7 +422,26 @@
         <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
         <span>Experience Ecuador</span>
       </a>
-      <span class="pill">Explore Ecuador by region</span>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/mission">Mission</a>
+
+        <div class="dropdown" aria-label="Regions menu">
+          <span>Regions</span>
+          <span class="caret" aria-hidden="true"></span>
+          <div class="dropdown-menu" role="menu">
+            <a href="/regions">All Regions</a>
+            <a href="/regions/galapagos">Galapagos</a>
+            <a href="/regions/coast">Coast</a>
+            <a href="/regions/andes">Andes</a>
+            <a class="active" href="/regions/amazon">Amazon</a>
+          </div>
+        </div>
+
+        <a href="/contact">Contact</a>
+      </nav>
     </div>
   </header>
 
@@ -379,7 +468,8 @@
         listening, learning, and experiencing a living ecosystem up close.
       </p>
 
-      <div class="grid">
+      <!-- ✅ align-center added here ONLY -->
+      <div class="grid align-center">
         <div class="card">
           <h3>Signature highlights</h3>
           <ul>
@@ -476,6 +566,8 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
+      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
       <div class="social">
         <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
           <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
