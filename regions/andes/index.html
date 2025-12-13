@@ -77,7 +77,7 @@
       object-fit:contain;
     }
 
-    /* ===== MENU (ADDED) ===== */
+    /* ===== MENU (FIXED TO MATCH COAST) ===== */
     .nav{
       display:flex;
       align-items:center;
@@ -88,54 +88,81 @@
       white-space:nowrap;
     }
 
-    .nav a{ opacity:.95; }
-    .nav a:hover{ opacity:1; text-decoration:underline; text-underline-offset:4px; }
+    .nav a{
+      padding:8px 8px;
+      border-radius:10px;
+      transition:background 0.15s ease;
+      opacity:1;
+    }
+
+    .nav a:hover{
+      background:rgba(3,78,162,0.08);
+    }
 
     .dropdown{
       position:relative;
-      display:flex;
+      display:inline-flex;
       align-items:center;
-      gap:8px;
-      cursor:pointer;
-      padding:8px 10px;
-      border-radius:999px;
     }
 
-    .dropdown:hover{ background:rgba(3,78,162,0.07); }
+    .dropbtn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 8px;
+      border-radius:10px;
+      cursor:pointer;
+      user-select:none;
+      transition:background 0.15s ease;
+      outline:none;
+    }
+
+    .dropbtn:hover{
+      background:rgba(3,78,162,0.08);
+    }
 
     .caret{
       width:10px;
       height:10px;
-      border-right:2px solid #0f2f62;
-      border-bottom:2px solid #0f2f62;
+      display:inline-block;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
       transform:rotate(45deg);
       margin-top:-2px;
+      opacity:0.7;
     }
 
     .dropdown-menu{
       position:absolute;
-      top:44px;
+      top:42px;
       right:0;
+      min-width:220px;
       background:#fff;
-      border-radius:16px;
       border:1px solid rgba(0,0,0,0.08);
+      border-radius:14px;
       box-shadow:0 18px 55px rgba(3,78,162,0.16);
       padding:8px;
       display:none;
-      min-width:220px;
+      z-index:50; /* important */
     }
-
-    .dropdown:hover .dropdown-menu{ display:block; }
 
     .dropdown-menu a{
       display:block;
-      padding:10px 12px;
-      border-radius:12px;
+      padding:10px 10px;
+      border-radius:10px;
       font-weight:700;
       color:#0f2f62;
     }
 
-    .dropdown-menu a:hover{ background:rgba(3,78,162,0.07); }
+    .dropdown-menu a:hover{
+      background:rgba(3,78,162,0.08);
+    }
+
+    /* key fix: allow click/focus to keep menu open */
+    .dropdown:focus-within .dropdown-menu,
+    .dropdown:hover .dropdown-menu{
+      display:block;
+    }
 
     /* ===== HERO ===== */
     .hero{
@@ -238,7 +265,6 @@
       align-items:start;
     }
 
-    /* ✅ IMPORTANT: Only used on the first content grid to center the left card */
     .grid.align-center{
       align-items:center;
     }
@@ -355,7 +381,6 @@
       text-align:center;
     }
 
-    /* ✅ tagline above icons */
     .footer-tagline{
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
@@ -396,10 +421,19 @@
     /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
-      .nav{ display:none; }
-      .topbar-inner{ justify-content:center; }
+      .topbar-inner{ justify-content:space-between; }
       .hero-inner{ text-align:center; }
       .hero p{ margin:0 auto; }
+
+      /* keep nav visible and usable like Coast */
+      .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+      .dropdown-menu{ right:0; left:auto; }
+    }
+
+    @media(max-width:620px){
+      .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
+      .nav{ justify-content:center; }
+      .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
     }
 
     @media(max-width:480px){
@@ -424,16 +458,16 @@
         <a href="/about">About</a>
         <a href="/mission">Mission</a>
 
-        <div class="dropdown" aria-label="Regions menu">
-          <span>Regions</span>
-          <span class="caret" aria-hidden="true"></span>
-
-          <div class="dropdown-menu" role="menu" aria-label="Regions dropdown">
-            <a href="/regions/">All Regions</a>
-            <a href="/regions/galapagos">Galapagos</a>
-            <a href="/regions/coast">Coast</a>
-            <a href="/regions/andes">Andes</a>
-            <a href="/regions/amazon">Amazon</a>
+        <div class="dropdown">
+          <div class="dropbtn" tabindex="0" role="button" aria-haspopup="true" aria-label="Regions menu">
+            Regions <span class="caret" aria-hidden="true"></span>
+          </div>
+          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+            <a href="/regions" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos" role="menuitem">Galapagos</a>
+            <a href="/regions/coast" role="menuitem">Coast</a>
+            <a href="/regions/andes" role="menuitem">Andes</a>
+            <a href="/regions/amazon" role="menuitem">Amazon</a>
           </div>
         </div>
 
@@ -465,7 +499,6 @@
         This guide will help you find experiences that fit your pace, comfort level, and interests.
       </p>
 
-      <!-- ✅ Only change here: align-center added -->
       <div class="grid align-center">
         <div class="card">
           <h3>Signature highlights</h3>
@@ -563,8 +596,6 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
-
-      <!-- ✅ Added line -->
       <div class="footer-tagline">Curated travel experiences across Ecuador</div>
 
       <div class="social">
