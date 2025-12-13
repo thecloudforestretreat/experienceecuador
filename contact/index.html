@@ -86,14 +86,29 @@
 
     .grid{
       display:grid;
-      grid-template-columns:1fr;
+      grid-template-columns:1.05fr 0.95fr;
+      gap:22px;
       margin-top:22px;
+      align-items:start;
     }
+
     .card{
       background:#fff;
       padding:22px;
       border-radius:22px;
       box-shadow:0 18px 55px rgba(3,78,162,.12);
+    }
+
+    .image-card{
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:0 18px 55px rgba(0,0,0,.18);
+    }
+
+    .image-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
     .info-item{
@@ -171,6 +186,7 @@
     footer small{font-size:13px;opacity:.9}
 
     @media(max-width:900px){
+      .grid{grid-template-columns:1fr}
       .pill{display:none}
       .topbar-inner{justify-content:center}
     }
@@ -217,6 +233,10 @@
           Lodging • Restaurants • Tours • Excursions • Retreats • Cultural • Nature & Wildlife
         </div>
       </div>
+    </div>
+
+    <div class="image-card">
+      <img src="/assets/images/EE-contact-image-01.jpg" alt="Ecuador travel inspiration">
     </div>
   </section>
 </main>
