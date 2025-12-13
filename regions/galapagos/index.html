@@ -262,7 +262,6 @@
       margin-top:18px;
     }
 
-    /* ✅ centered card between the 2 right minis (matches About/Mission) */
     .grid.center-stack{
       align-items:center;
     }
@@ -323,19 +322,130 @@
       font-size:13px;
     }
 
-    /* ===== GALLERY PLACEHOLDER ===== */
+    /* ===== GALLERY CAROUSEL ===== */
     .gallery{
       margin-top:22px;
       background:#fff;
       border-radius:22px;
-      border:1px dashed rgba(3,78,162,0.35);
-      padding:18px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      padding:16px;
+      overflow:hidden;
     }
 
-    .gallery .hint{
+    .carousel{
+      position:relative;
+      border-radius:18px;
+      overflow:hidden;
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+    }
+
+    /* Consistent visual height across all region pages */
+    .carousel-viewport{
+      width:100%;
+      aspect-ratio: 16 / 9;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .carousel-track{
+      display:flex;
+      height:100%;
+      transform:translateX(0%);
+      transition:transform 350ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      height:100%;
+      position:relative;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(0,0,0,0.35);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index:5;
+      backdrop-filter:blur(10px);
+      transition:background 0.15s ease, transform 0.15s ease;
+    }
+
+    .carousel-btn:hover{
+      background:rgba(0,0,0,0.48);
+      transform:translateY(-50%) scale(1.02);
+    }
+
+    .carousel-btn:active{
+      transform:translateY(-50%) scale(0.98);
+    }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:inline-block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); margin-left:4px; }
+    .carousel-btn.next span{ transform:rotate(-45deg); margin-right:4px; }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      padding:12px 6px 4px;
+    }
+
+    .dot{
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.10);
+      cursor:pointer;
+      transition:transform 0.15s ease, background 0.15s ease;
+    }
+
+    .dot:hover{ transform:scale(1.12); }
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-caption{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:10px 6px 2px;
+      color:#274060;
+      font-size:13.5px;
+    }
+
+    .carousel-caption .hint{
       color:var(--slate);
-      font-size:14.5px;
-      line-height:1.7;
+      font-size:13.5px;
       margin:0;
     }
 
@@ -427,20 +537,23 @@
       .hero-inner{ text-align:center; }
       .hero p{ margin:0 auto; }
 
-      /* menu wraps nicely */
       .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
       .dropdown-menu{ right:0; left:auto; }
+
+      .carousel-btn{ width:40px; height:40px; }
     }
 
     @media(max-width:620px){
       .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
       .nav{ justify-content:center; }
       .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
+      .carousel-caption{ flex-direction:column; align-items:flex-start; }
     }
 
     @media(max-width:480px){
       .hero{ min-height:60vh; }
       .cta{ border-radius:20px; }
+      .carousel-viewport{ aspect-ratio: 4 / 3; }
     }
   </style>
 </head>
@@ -578,10 +691,56 @@
       <h2>Gallery and highlights</h2>
 
       <div class="gallery">
-        <p class="hint">
-          Gallery carousel will go here later once you choose the images.
-          We will build one clean carousel component and reuse it across all region pages for consistency and speed.
-        </p>
+        <div class="carousel" id="galapagosCarousel" aria-label="Galapagos photo carousel">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide">
+                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-1.jpg" alt="Galapagos highlight 1">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-2.jpg" alt="Galapagos highlight 2" loading="lazy">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-3.jpg" alt="Galapagos highlight 3" loading="lazy">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-4.jpg" alt="Galapagos highlight 4" loading="lazy">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-5.jpg" alt="Galapagos highlight 5" loading="lazy">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-6.jpg" alt="Galapagos highlight 6" loading="lazy">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-7.jpg" alt="Galapagos highlight 7" loading="lazy">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-8.jpg" alt="Galapagos highlight 8" loading="lazy">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-9.jpg" alt="Galapagos highlight 9" loading="lazy">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-10.jpg" alt="Galapagos highlight 10" loading="lazy">
+              </div>
+            </div>
+
+            <button class="carousel-btn prev" type="button" aria-label="Previous image">
+              <span aria-hidden="true"></span>
+            </button>
+            <button class="carousel-btn next" type="button" aria-label="Next image">
+              <span aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <div class="carousel-caption">
+            <p class="hint">Swipe on mobile, or use arrows. Dots jump to a highlight.</p>
+            <p class="hint" id="carouselCounter">1 / 10</p>
+          </div>
+
+          <div class="carousel-dots" role="tablist" aria-label="Carousel dots"></div>
+        </div>
       </div>
     </section>
 
@@ -618,6 +777,90 @@
       <small>© 2025 Experience Ecuador. All rights reserved.</small>
     </div>
   </footer>
+
+  <script>
+    (function(){
+      const root = document.getElementById("galapagosCarousel");
+      if(!root) return;
+
+      const track = root.querySelector(".carousel-track");
+      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+      const prevBtn = root.querySelector(".carousel-btn.prev");
+      const nextBtn = root.querySelector(".carousel-btn.next");
+      const dotsWrap = root.querySelector(".carousel-dots");
+      const counter = root.querySelector("#carouselCounter");
+
+      let index = 0;
+
+      function setIndex(next){
+        index = (next + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        updateDots();
+        updateCounter();
+      }
+
+      function updateCounter(){
+        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
+      }
+
+      function updateDots(){
+        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
+        dots.forEach((d,i) => d.classList.toggle("active", i === index));
+      }
+
+      function buildDots(){
+        dotsWrap.innerHTML = "";
+        slides.forEach((_, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "dot" + (i === 0 ? " active" : "");
+          b.setAttribute("aria-label", `Go to image ${i + 1}`);
+          b.addEventListener("click", () => setIndex(i));
+          dotsWrap.appendChild(b);
+        });
+      }
+
+      function next(){ setIndex(index + 1); }
+      function prev(){ setIndex(index - 1); }
+
+      prevBtn.addEventListener("click", prev);
+      nextBtn.addEventListener("click", next);
+
+      // Keyboard support when carousel is focused
+      root.addEventListener("keydown", (e) => {
+        if(e.key === "ArrowLeft") prev();
+        if(e.key === "ArrowRight") next();
+      });
+
+      // Swipe support
+      let startX = 0;
+      let isDown = false;
+
+      const viewport = root.querySelector(".carousel-viewport");
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+      });
+
+      viewport.addEventListener("pointerup", (e) => {
+        if(!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        const threshold = 40;
+        if(dx > threshold) prev();
+        if(dx < -threshold) next();
+      });
+
+      viewport.addEventListener("pointercancel", () => { isDown = false; });
+
+      // Init
+      root.tabIndex = 0;
+      buildDots();
+      updateCounter();
+      setIndex(0);
+    })();
+  </script>
 
 </body>
 </html>
