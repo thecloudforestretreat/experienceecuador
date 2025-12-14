@@ -42,7 +42,7 @@
     .topbar{
       position:sticky;
       top:0;
-      z-index:1000; /* FIX: keep header above everything */
+      z-index:1000; /* FIX: keep header clickable above carousel/hero */
       backdrop-filter:saturate(160%) blur(10px);
       background:rgba(255,255,255,0.75);
       border-bottom:1px solid rgba(0,0,0,0.06);
@@ -102,7 +102,7 @@
       position:relative;
       display:inline-flex;
       align-items:center;
-      z-index:1100; /* FIX: ensure dropdown is above page content */
+      z-index:1100; /* FIX */
     }
 
     .dropbtn{
@@ -143,7 +143,7 @@
       box-shadow:0 18px 55px rgba(3,78,162,0.16);
       padding:8px;
       display:none;
-      z-index:1200; /* FIX: above everything */
+      z-index:1200; /* FIX */
     }
 
     .dropdown-menu a{
@@ -353,7 +353,7 @@
     .carousel-slide{
       min-width:100%;
       position:relative;
-      aspect-ratio: 16 / 9; /* consistent shape */
+      aspect-ratio:16/9;
       background:#eef2f7;
     }
 
@@ -685,16 +685,16 @@
 
         <div class="carousel-viewport">
           <div class="carousel-track">
-            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-1.jpg" alt="Galapagos highlight 1"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-2.jpg" alt="Galapagos highlight 2"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-3.jpg" alt="Galapagos highlight 3"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-4.jpg" alt="Galapagos highlight 4"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-5.jpg" alt="Galapagos highlight 5"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-6.jpg" alt="Galapagos highlight 6"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-7.jpg" alt="Galapagos highlight 7"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-8.jpg" alt="Galapagos highlight 8"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-9.jpg" alt="Galapagos highlight 9"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-10.jpg" alt="Galapagos highlight 10"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-1.jpg" alt="Galapagos highlight 1"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-2.jpg" alt="Galapagos highlight 2"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-3.jpg" alt="Galapagos highlight 3"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-4.jpg" alt="Galapagos highlight 4"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-5.jpg" alt="Galapagos highlight 5"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-6.jpg" alt="Galapagos highlight 6"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-7.jpg" alt="Galapagos highlight 7"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-8.jpg" alt="Galapagos highlight 8"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-9.jpg" alt="Galapagos highlight 9"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-10.jpg" alt="Galapagos highlight 10"></div>
           </div>
         </div>
 
@@ -704,7 +704,7 @@
 
         <div class="carousel-ui">
           <div class="carousel-dots" aria-label="Carousel pagination"></div>
-          <div class="carousel-counter" id="carouselCounter">1 / 10</div>
+          <div class="carousel-counter" id="galapagosCarouselCounter">1 / 10</div>
         </div>
       </div>
     </section>
@@ -753,7 +753,7 @@
       const prevBtn = root.querySelector(".carousel-btn.prev");
       const nextBtn = root.querySelector(".carousel-btn.next");
       const dotsWrap = root.querySelector(".carousel-dots");
-      const counter = root.querySelector("#carouselCounter");
+      const counter = root.querySelector("#galapagosCarouselCounter");
 
       let index = 0;
 
@@ -795,13 +795,8 @@
         });
       }
 
-      function next(){
-        setIndex(index + 1);
-      }
-
-      function prev(){
-        setIndex(index - 1);
-      }
+      function next(){ setIndex(index + 1); }
+      function prev(){ setIndex(index - 1); }
 
       function startAutoplay(){
         if(!autoplayEnabled) return;
