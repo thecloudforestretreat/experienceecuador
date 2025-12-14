@@ -64,10 +64,9 @@
       color:var(--brand-blue);
       font-size:18px;
       white-space:nowrap;
-      letter-spacing:-0.02em;
     }
 
-    .brand img{width:28px;height:28px;object-fit:contain}
+    .brand img{width:28px;height:28px}
 
     /* ===== NAV ===== */
     .nav{
@@ -86,10 +85,9 @@
       background:transparent;
       border:0;
       color:inherit;
-      padding:8px 8px;
+      padding:8px 10px;
       border-radius:10px;
       cursor:pointer;
-      line-height:1;
     }
 
     .nav a:hover,
@@ -102,8 +100,11 @@
       background:rgba(3,78,162,0.08);
     }
 
-    /* Dropdown */
-    .dropdown{position:relative; display:inline-flex; align-items:center;}
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+    }
 
     .caret{
       width:10px;
@@ -155,7 +156,6 @@
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       font-size:clamp(36px,4.8vw,56px);
-      letter-spacing:-0.03em;
       margin:0 0 12px;
     }
 
@@ -167,19 +167,17 @@
       line-height:1.65;
     }
 
-    /* ===== PAGE ===== */
+    /* ===== GRID ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
       padding:0 18px 60px;
     }
 
-    /* ===== EXPERIENCE GRID ===== */
     .experiences-grid{
       display:grid;
-      grid-template-columns:repeat(2, 1fr);
+      grid-template-columns:repeat(2,1fr);
       gap:28px;
-      margin-top:10px;
     }
 
     .exp-card{
@@ -188,7 +186,7 @@
       overflow:hidden;
       border:1px solid rgba(0,0,0,0.06);
       box-shadow:0 18px 55px rgba(3,78,162,0.12);
-      transition:transform .2s ease, box-shadow .2s ease;
+      transition:.2s;
     }
 
     .exp-card:hover{
@@ -196,10 +194,7 @@
       box-shadow:0 28px 70px rgba(3,78,162,0.18);
     }
 
-    .exp-img{
-      height:250px;
-      background:#e9eef7;
-    }
+    .exp-img{height:250px}
 
     .exp-img img{
       width:100%;
@@ -208,7 +203,7 @@
     }
 
     .exp-body{
-      padding:22px 22px 24px;
+      padding:22px;
     }
 
     .exp-body h2{
@@ -217,15 +212,6 @@
       font-weight:800;
       font-size:22px;
       color:var(--brand-blue);
-      letter-spacing:-0.02em;
-    }
-
-    .exp-body p{
-      margin:0 0 16px;
-      color:#2a2f36;
-      line-height:1.65;
-      font-size:15.5px;
-      max-width:80ch;
     }
 
     .pill{
@@ -238,62 +224,17 @@
       font-size:14px;
     }
 
-    /* ===== FOOTER ===== */
-    .footer{
-      background:var(--brand-blue);
-      color:#fff;
-    }
-
-    .footer-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:28px 18px;
-      text-align:center;
-    }
-
-    .footer-tagline{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      margin-bottom:16px;
-    }
-
-    .social{
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      flex-wrap:wrap;
-      margin-bottom:12px;
-    }
-
-    .icon-btn{
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      background:var(--brand-blue);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:0 14px 34px rgba(0,0,0,0.35);
-    }
-
-    .icon-btn img{width:34px;height:34px}
-
-    footer small{font-size:13px;opacity:.9}
-
     /* ===== MOBILE ===== */
     @media(max-width:900px){
       .experiences-grid{grid-template-columns:1fr}
-      .nav{gap:8px;flex-wrap:wrap;justify-content:flex-end}
+      .nav{gap:8px;flex-wrap:wrap;justify-content:center}
     }
 
     @media(max-width:620px){
-      .topbar-inner{
-        flex-direction:column;
-        gap:10px;
-      }
+      .topbar-inner{flex-direction:column}
       .dropdown-menu{
-        right:auto;
         left:50%;
+        right:auto;
         transform:translateX(-50%);
       }
     }
@@ -305,7 +246,7 @@
 <header class="topbar">
   <div class="topbar-inner">
     <a class="brand" href="/">
-      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="">
       <span>Experience Ecuador</span>
     </a>
 
@@ -332,153 +273,3 @@
     </nav>
   </div>
 </header>
-
-<section class="hero">
-  <h1>Experiences</h1>
-  <p>
-    Explore Ecuador by the kind of trip you want. Each experience page highlights what it means in Ecuador,
-    where it fits best, and the types of places and partners worth building an itinerary around.
-  </p>
-</section>
-
-<main class="wrap">
-
-  <section class="experiences-grid" aria-label="Experiences grid">
-
-    <article class="exp-card">
-      <div class="exp-img">
-        <img src="/assets/images/EE-Experiences-adventure-01.jpg" alt="Adventure in Ecuador">
-      </div>
-      <div class="exp-body">
-        <h2>Adventure</h2>
-        <p>
-          Volcano routes, rivers, canopy tours, and high-energy experiences guided by locals across the Andes,
-          Amazon, Coast, and beyond.
-        </p>
-        <a class="pill" href="/experiences/adventure/">Explore Adventure</a>
-      </div>
-    </article>
-
-    <article class="exp-card">
-      <div class="exp-img">
-        <img src="/assets/images/EE-Experiences-Nature-01.jpg" alt="Nature in Ecuador">
-      </div>
-      <div class="exp-body">
-        <h2>Nature</h2>
-        <p>
-          Cloud forests, volcano viewpoints, rainforest lodges, coastal reserves, and protected ecosystems
-          packed into a small country.
-        </p>
-        <a class="pill" href="/experiences/nature/">Explore Nature</a>
-      </div>
-    </article>
-
-    <article class="exp-card">
-      <div class="exp-img">
-        <img src="/assets/images/EE-Experiences-wildlife-01.png" alt="Wildlife and birding in Ecuador">
-      </div>
-      <div class="exp-body">
-        <h2>Wildlife &amp; Birding</h2>
-        <p>
-          One of the best birding countries on Earth. From cloud forest hummingbirds to Amazon wildlife
-          and Galapagos icons.
-        </p>
-        <a class="pill" href="/experiences/wildlife-birding/">Explore Wildlife &amp; Birding</a>
-      </div>
-    </article>
-
-    <article class="exp-card">
-      <div class="exp-img">
-        <img src="/assets/images/EE-Experiences-Relaxation-01.jpg" alt="Relaxation in Ecuador">
-      </div>
-      <div class="exp-body">
-        <h2>Relaxation</h2>
-        <p>
-          Slow travel, peaceful lodges, hot springs, soft nature escapes, and downtime built into a well-paced itinerary.
-        </p>
-        <a class="pill" href="/experiences/relaxation/">Explore Relaxation</a>
-      </div>
-    </article>
-
-    <article class="exp-card">
-      <div class="exp-img">
-        <img src="/assets/images/EE-Experiences-Culinary-01.jpg" alt="Culinary experiences in Ecuador">
-      </div>
-      <div class="exp-body">
-        <h2>Culinary</h2>
-        <p>
-          Seafood on the Coast, Andean markets, cacao culture, and region-specific dishes that define how Ecuador tastes.
-        </p>
-        <a class="pill" href="/experiences/culinary/">Explore Culinary</a>
-      </div>
-    </article>
-
-    <article class="exp-card">
-      <div class="exp-img">
-        <img src="/assets/images/EE-Experiences-Culture-01.jpg" alt="Culture in Ecuador">
-      </div>
-      <div class="exp-body">
-        <h2>Culture</h2>
-        <p>
-          Indigenous heritage, historic cities, artisan markets, music, festivals, and local stories that make each region feel distinct.
-        </p>
-        <a class="pill" href="/experiences/culture/">Explore Culture</a>
-      </div>
-    </article>
-
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-tagline">Curated travel experiences across Ecuador</div>
-
-    <div class="social">
-      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
-      </a>
-      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
-      </a>
-      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
-      </a>
-      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
-      </a>
-    </div>
-
-    <small>© 2025 Experience Ecuador. All rights reserved.</small>
-  </div>
-</footer>
-
-<script>
-  (function(){
-    const dd = document.getElementById('regionsDropdown');
-    if(!dd) return;
-    const btn = dd.querySelector('.dropbtn');
-
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      dd.classList.toggle('open');
-      btn.setAttribute('aria-expanded', dd.classList.contains('open') ? 'true' : 'false');
-    });
-
-    document.addEventListener('click', () => {
-      dd.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-    });
-
-    document.addEventListener('keydown', e => {
-      if(e.key === 'Escape'){
-        dd.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-      }
-    });
-  })();
-</script>
-
-</body>
-</html>
