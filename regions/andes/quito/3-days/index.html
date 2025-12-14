@@ -1,1 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quito in 3 Days | Experience Ecuador</title>
 
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --slate:#6E7B8B;
+      --text:#1F1F1F;
+      --ink:#0f2f62;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:#f6f8fb;
+      color:var(--text);
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+
+    /* ===== HEADER (MATCH OTHER PAGES) ===== */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(255,255,255,.75);
+      border-bottom:1px solid rgba(0,0,0,.06);
+      overflow:visible;
+    }
+
+    .topbar-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      overflow:visible;
+    }
+
+    .brand{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+      white-space:nowrap;
+      font-size:18px;
+      line-height:1;
+    }
+
+    .brand img{width:28px;height:28px;object-fit:contain}
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-weight:700;
+      font-size:14px;
+      color:var(--ink);
+      white-space:nowrap;
+      overflow:visible;
+    }
+
+    .nav a,
+    .nav button{
+      font:inherit;
+      background:transparent;
+      border:0;
+      color:inherit;
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      line-height:1;
+    }
+
+    .nav a:hover,
+    .nav button:hover{
+      background:rgba(3,78,162,.08);
+    }
+
+    .nav a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,.08);
+    }
+
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      overflow:visible;
+      z-index:1100;
+    }
+
+    .dropbtn{
+      appearance:none;
+      border:0;
+      background:transparent;
+      font:inherit;
+      color:inherit;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
+    }
+
+    .caret{
+      width:10px;
+      height:10px;
+      display:inline-block;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
+      transform:rotate(45deg);
+      margin-top:-2px;
+      opacity:.7;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:42px;
+      right:0;
+      min-width:220px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:14px;
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
+      padding:8px;
+      display:none;
+      z-index:1200;
+    }
+
+    .dropdown-menu a{
+      display:block;
+      padding:10px 10px;
+      border-radius:10px;
+      font-weight:700;
+      color:var(--ink);
+    }
+
+    .dropdown-menu a:hover{
+      background:rgba(3,78,162,.08);
+    }
+
+    .dropdown-menu a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,.08);
+    }
+
+    .dropdown.open .dropdown-menu{display:block}
+
+    /* ===== CONTENT ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:40px 18px 56px;
+    }
+
+    h1{
+      font-family:Montserrat,Inter,sans-serif;
+      font-size:clamp(34px,4vw,54px);
+      color:var(--brand-blue);
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
+    }
+
+    .lede{
+      color:var(--slate);
+      line-height:1.65;
+      max-width:85ch;
+      margin:0;
+      font-size:16.8px;
+    }
+
+    .meta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .pill{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      font-weight:800;
+      color:var(--ink);
+      font-size:13px;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      margin-top:22px;
+      align-items:start;
+    }
+
+    .card{
+      background:#fff;
+      padding:22px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .card + .card{ margin-top:16px; }
+
+    .card h2{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      color:var(--ink);
+    }
+
+    .card p{
+      margin:0 0 14px;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:15.8px;
+      max-width:85ch;
+    }
+
+    .timeline{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .stop{
+      display:grid;
+      grid-template-columns:110px 1fr;
+      gap:12px;
+      padding:14px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(3,78,162,.04), rgba(3,78,162,.015));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .time{
+      font-weight:900;
+      color:var(--ink);
+      font-size:13px;
+      letter-spacing:.01em;
+    }
+
+    .stop-title{
+      font-weight:900;
+      color:var(--ink);
+      font-size:15.5px;
+      margin:0 0 6px;
+    }
+
+    .stop-text{
+      color:#1f2b3f;
+      line-height:1.65;
+      font-size:14.8px;
+      margin:0 0 10px;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .tag{
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(3,78,162,.08);
+      border:1px solid rgba(3,78,162,.14);
+      font-weight:800;
+      color:#162b55;
+      font-size:12.5px;
+    }
+
+    .note{
+      margin-top:14px;
+      padding:14px 14px;
+      border-radius:18px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      color:#1f2b3f;
+      font-weight:600;
+      line-height:1.6;
+      font-size:14.8px;
+    }
+
+    /* ===== RIGHT COLUMN ===== */
+    .side-stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .mini{
+      background:#fff;
+      padding:20px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .mini h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:var(--ink);
+    }
+
+    .mini p{
+      margin:0;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:14.8px;
+    }
+
+    .link-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .pill-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      font-weight:800;
+      color:var(--ink);
+    }
+
+    .pill-link:hover{ background:rgba(3,78,162,.08); }
+
+    .pill-link span{
+      opacity:.9;
+      font-weight:700;
+      color:#162b55;
+      font-size:13px;
+    }
+
+    .side-image{
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:0 18px 60px rgba(0,0,0,.14);
+      background:#eef2f7;
+    }
+
+    .side-image img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* ===== FOOTER (LOCKED) ===== */
+    .footer{
+      background:var(--brand-blue);
+      color:#fff;
+      margin-top:30px;
+    }
+
+    .footer-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+      text-align:center;
+    }
+
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      opacity:.98;
+    }
+
+    .social{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .icon-btn{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:var(--brand-blue);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 14px 34px rgba(0,0,0,.35);
+    }
+
+    .icon-btn img{width:34px;height:34px}
+    footer small{font-size:13px;opacity:.9}
+
+    /* ===== MOBILE ===== */
+    @media(max-width:980px){
+      .content-grid{grid-template-columns:1fr}
+      .stop{grid-template-columns:1fr}
+      .time{opacity:.9}
+    }
+
+    @media(max-width:900px){
+      .nav{gap:8px;flex-wrap:wrap;justify-content:flex-end}
+      .dropdown-menu{right:0;left:auto}
+    }
+
+    @media(max-width:620px){
+      .topbar-inner{flex-direction:column;align-items:center;gap:10px}
+      .nav{justify-content:center}
+      .dropdown-menu{right:auto;left:50%;transform:translateX(-50%)}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+        <span>Experience Ecuador</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/mission/">Mission</a>
+
+        <div class="dropdown" id="regionsDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
+            Regions <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+            <a href="/regions/" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+            <a href="/regions/coast/" role="menuitem">Coast</a>
+            <a href="/regions/andes/" role="menuitem">Andes</a>
+            <a href="/regions/amazon/" role="menuitem">Amazon</a>
+          </div>
+        </div>
+
+        <div class="dropdown" id="experiencesDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+            Experiences <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+            <a href="/experiences/" role="menuitem">All Experiences</a>
+            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+            <a href="/experiences/nature/" role="menuitem">Nature</a>
+            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+            <a href="/experiences/culture/" role="menuitem">Culture</a>
+          </div>
+        </div>
+
+        <a href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Quito in 3 Days</h1>
+    <p class="lede">
+      Three days gives you the best version of Quito.
+      You can explore the historic city, visit the equator, and add one full day trip around the Andes without feeling squeezed.
+    </p>
+
+    <div class="meta-row" aria-label="Trip summary">
+      <span class="pill">Best for: First time Ecuador arrivals</span>
+      <span class="pill">Pace: Comfortable</span>
+      <span class="pill">Includes: City + Equator + Day Trip</span>
+    </div>
+
+    <section class="content-grid" aria-label="Quito 3 day itinerary content">
+      <div>
+        <div class="card">
+          <h2>Day 1: Historic Quito and a city reset</h2>
+          <p>
+            Keep the first day gentle.
+            Quito sits at high altitude, so this day is about orientation, culture, and settling into the rhythm of the city.
+          </p>
+
+          <div class="timeline">
+            <div class="stop">
+              <div class="time">Morning</div>
+              <div>
+                <div class="stop-title">Old Town walk and plazas</div>
+                <p class="stop-text">
+                  Explore the historic center on foot.
+                  Choose a few highlights and give yourself time between stops to enjoy the streets, viewpoints, and atmosphere.
+                </p>
+                <div class="tags">
+                  <span class="tag">UNESCO</span>
+                  <span class="tag">Walkable</span>
+                  <span class="tag">Architecture</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="stop">
+              <div class="time">Midday</div>
+              <div>
+                <div class="stop-title">Lunch and rest</div>
+                <p class="stop-text">
+                  Sit down for lunch and take a break.
+                  Staying hydrated and pacing the day makes everything feel easier.
+                </p>
+                <div class="tags">
+                  <span class="tag">Altitude friendly</span>
+                  <span class="tag">Local food</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="stop">
+              <div class="time">Afternoon</div>
+              <div>
+                <div class="stop-title">Viewpoint and a relaxed neighborhood stroll</div>
+                <p class="stop-text">
+                  Add one major viewpoint for panoramic photos, then spend time in a lively district for cafes and walking.
+                </p>
+                <div class="tags">
+                  <span class="tag">Views</span>
+                  <span class="tag">Photography</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Day 2: The equator and north of Quito</h2>
+          <p>
+            Day two is your classic Quito excursion day.
+            Visit the equator area first, then return to Quito with enough time for an easy evening.
+          </p>
+
+          <div class="timeline">
+            <div class="stop">
+              <div class="time">Morning</div>
+              <div>
+                <div class="stop-title">Mitad del Mundo and equator area</div>
+                <p class="stop-text">
+                  Visit the monument and surrounding exhibits.
+                  Earlier timing helps avoid the busiest periods and gives you a smoother return to the city.
+                </p>
+                <div class="tags">
+                  <span class="tag">Equator</span>
+                  <span class="tag">Must see</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="stop">
+              <div class="time">Afternoon</div>
+              <div>
+                <div class="stop-title">Choose a flexible add on</div>
+                <p class="stop-text">
+                  After the equator, either return for a city museum and coffee, or add a short scenic stop on the way back.
+                </p>
+                <div class="tags">
+                  <span class="tag">Flexible</span>
+                  <span class="tag">Light add on</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="stop">
+              <div class="time">Evening</div>
+              <div>
+                <div class="stop-title">Dinner and an early night</div>
+                <p class="stop-text">
+                  Keep the evening simple.
+                  Three days works best when you save energy for the day trip tomorrow.
+                </p>
+                <div class="tags">
+                  <span class="tag">Easy pace</span>
+                  <span class="tag">Recharge</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Day 3: One full day trip around Quito</h2>
+          <p>
+            This is where a 3 day stay becomes worth it.
+            Pick one strong day trip and do it properly, without squeezing it between flights or rushed city time.
+          </p>
+
+          <div class="timeline">
+            <div class="stop">
+              <div class="time">Option A</div>
+              <div>
+                <div class="stop-title">Andean scenery and high altitude viewpoints</div>
+                <p class="stop-text">
+                  A strong choice if you want dramatic landscapes, viewpoints, and a sense of the Andes beyond the city.
+                </p>
+                <div class="tags">
+                  <span class="tag">Andes</span>
+                  <span class="tag">Scenic</span>
+                  <span class="tag">Full day</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="stop">
+              <div class="time">Option B</div>
+              <div>
+                <div class="stop-title">Nature reserve or cloud forest style experience</div>
+                <p class="stop-text">
+                  Best if you want greenery, trails, and wildlife energy.
+                  This is a good contrast after two urban focused days.
+                </p>
+                <div class="tags">
+                  <span class="tag">Nature</span>
+                  <span class="tag">Trails</span>
+                  <span class="tag">Fresh air</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="stop">
+              <div class="time">Option C</div>
+              <div>
+                <div class="stop-title">Culture and markets beyond the center</div>
+                <p class="stop-text">
+                  A great fit if you want crafts, markets, and local culture.
+                  It keeps the day active without feeling exhausting.
+                </p>
+                <div class="tags">
+                  <span class="tag">Culture</span>
+                  <span class="tag">Markets</span>
+                  <span class="tag">Local life</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="note">
+            Best rule: pick one main day trip and commit to it.
+            Three medium stops usually feels rushed, but one strong plan feels like a real Ecuador experience.
+          </div>
+        </div>
+      </div>
+
+      <aside class="side-stack" aria-label="Quito 3 day sidebar">
+        <div class="mini">
+          <h3>How to use this page</h3>
+          <p>
+            Start with the city first, then add range.
+            If you are arriving from sea level, give yourself a gentle day one and keep the full day trip on day three.
+          </p>
+
+          <div class="link-list" aria-label="Quito itinerary links">
+            <a class="pill-link" href="../">
+              Back to Quito <span>Overview</span>
+            </a>
+            <a class="pill-link" href="../1-day/">
+              Quito in 1 Day <span>Fast plan</span>
+            </a>
+            <a class="pill-link" href="../2-days/">
+              Quito in 2 Days <span>Balanced</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="side-image" aria-label="Quito 3 days image">
+          <img src="/assets/images/EE-Assets-22-Quito-3-days.jpg" alt="Quito 3 day itinerary highlights">
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
+      <div class="social" aria-label="Social media links">
+        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+        </a>
+        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+        </a>
+        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+        </a>
+      </div>
+
+      <small>© 2025 Experience Ecuador. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Unified dropdown handler (Regions + Experiences) - open one at a time, close on outside click / Esc
+    (function () {
+      const dropdowns = document.querySelectorAll('.dropdown');
+
+      function closeAll() {
+        dropdowns.forEach(dd => {
+          dd.classList.remove('open');
+          const btn = dd.querySelector('.dropbtn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      dropdowns.forEach(dd => {
+        const btn = dd.querySelector('.dropbtn');
+        const menu = dd.querySelector('.dropdown-menu');
+        if (!btn) return;
+
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isOpen = dd.classList.contains('open');
+          closeAll();
+          dd.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+        });
+
+        if (menu) {
+          menu.addEventListener('click', function (e) {
+            e.stopPropagation();
+          });
+        }
+      });
+
+      document.addEventListener('click', closeAll);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAll();
+      });
+    })();
+
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+  </script>
+</body>
+</html>
