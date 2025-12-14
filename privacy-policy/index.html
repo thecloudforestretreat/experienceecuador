@@ -1,1 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | Experience Ecuador</title>
 
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --slate:#6E7B8B;
+      --text:#1F1F1F;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:#f6f8fb;
+      color:var(--text);
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+
+    /* ===== HEADER (MATCH CONTACT) ===== */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(255,255,255,.75);
+      border-bottom:1px solid rgba(0,0,0,.06);
+      overflow:visible;
+    }
+
+    .topbar-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      overflow:visible;
+    }
+
+    .brand{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+      white-space:nowrap;
+      font-size:18px;
+      line-height:1;
+    }
+
+    .brand img{width:28px;height:28px;object-fit:contain}
+
+    /* NAV */
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-weight:700;
+      font-size:14px;
+      color:#0f2f62;
+      white-space:nowrap;
+      overflow:visible;
+    }
+
+    .nav a,
+    .nav button{
+      font:inherit;
+      background:transparent;
+      border:0;
+      color:inherit;
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      line-height:1;
+    }
+
+    .nav a:hover,
+    .nav button:hover{
+      background:rgba(3,78,162,.08);
+    }
+
+    /* Dropdown */
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      overflow:visible;
+      z-index:1100;
+    }
+
+    .dropbtn{
+      appearance:none;
+      border:0;
+      background:transparent;
+      font:inherit;
+      color:inherit;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
+    }
+
+    .caret{
+      width:10px;
+      height:10px;
+      display:inline-block;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
+      transform:rotate(45deg);
+      margin-top:-2px;
+      opacity:.7;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:42px;
+      right:0;
+      min-width:220px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:14px;
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
+      padding:8px;
+      display:none;
+      z-index:1200;
+    }
+
+    .dropdown-menu a{
+      display:block;
+      padding:10px 10px;
+      border-radius:10px;
+      font-weight:700;
+      color:#0f2f62;
+    }
+
+    .dropdown-menu a:hover{
+      background:rgba(3,78,162,0.08);
+    }
+
+    .dropdown.open .dropdown-menu{display:block}
+
+    /* ===== CONTENT ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:40px 18px 56px;
+    }
+
+    h1{
+      font-family:Montserrat,Inter,sans-serif;
+      font-size:clamp(34px,4vw,54px);
+      color:var(--brand-blue);
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
+    }
+
+    .lede{
+      color:var(--slate);
+      line-height:1.65;
+      max-width:82ch;
+      margin:0;
+      font-size:16.8px;
+    }
+
+    .meta{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
+      font-weight:800;
+      font-size:13px;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      margin-top:22px;
+      align-items:start;
+    }
+
+    .card{
+      background:#fff;
+      padding:22px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .card + .card{ margin-top:16px; }
+
+    .card h2{
+      margin:0 0 12px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      color:#0f2f62;
+    }
+
+    .card h3{
+      margin:18px 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:15.5px;
+      color:#0f2f62;
+    }
+
+    .card p{
+      margin:0 0 12px;
+      color:#1f2b3f;
+      line-height:1.75;
+      font-size:15.6px;
+      max-width:85ch;
+    }
+
+    .card p:last-child{ margin-bottom:0; }
+
+    .card ul{
+      margin:0 0 12px;
+      padding-left:18px;
+      color:#1f2b3f;
+      line-height:1.75;
+      font-size:15.4px;
+      max-width:85ch;
+    }
+
+    .card li{ margin:7px 0; }
+
+    .card a{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:800;
+      color:#162b55;
+    }
+
+    .side-stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .mini{
+      background:#fff;
+      padding:20px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .mini h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .mini p{
+      margin:0;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:14.8px;
+    }
+
+    .mini ul{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:#162b55;
+      font-weight:600;
+      line-height:1.55;
+      font-size:14.5px;
+    }
+
+    .mini ul li{ margin:6px 0; }
+
+    .callout{
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      border-radius:18px;
+      padding:14px;
+      margin-top:14px;
+    }
+
+    .callout strong{
+      display:block;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      color:#0f2f62;
+      margin-bottom:6px;
+    }
+
+    /* ===== FOOTER (LOCKED) ===== */
+    .footer{
+      background:var(--brand-blue);
+      color:#fff;
+      margin-top:30px;
+    }
+
+    .footer-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+      text-align:center;
+    }
+
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      opacity:.98;
+    }
+
+    .social{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .icon-btn{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:var(--brand-blue);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 14px 34px rgba(0,0,0,.35);
+    }
+
+    .icon-btn img{width:34px;height:34px}
+
+    footer small{font-size:13px;opacity:.9}
+
+    /* ===== MOBILE ===== */
+    @media(max-width:980px){
+      .content-grid{grid-template-columns:1fr}
+    }
+
+    @media(max-width:900px){
+      .nav{gap:8px;flex-wrap:wrap;justify-content:flex-end}
+      .dropdown-menu{right:0;left:auto}
+    }
+
+    @media(max-width:620px){
+      .topbar-inner{flex-direction:column;align-items:center;gap:10px}
+      .nav{justify-content:center}
+      .dropdown-menu{right:auto;left:50%;transform:translateX(-50%)}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+        <span>Experience Ecuador</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/mission/">Mission</a>
+
+        <div class="dropdown" id="regionsDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
+            Regions <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+            <a href="/regions/" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+            <a href="/regions/coast/" role="menuitem">Coast</a>
+            <a href="/regions/andes/" role="menuitem">Andes</a>
+            <a href="/regions/amazon/" role="menuitem">Amazon</a>
+          </div>
+        </div>
+
+        <div class="dropdown" id="experiencesDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+            Experiences <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+            <a href="/experiences/" role="menuitem">All Experiences</a>
+            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+            <a href="/experiences/nature/" role="menuitem">Nature</a>
+            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+            <a href="/experiences/culture/" role="menuitem">Culture</a>
+          </div>
+        </div>
+
+        <a href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Privacy Policy</h1>
+    <p class="lede">
+      This Privacy Policy explains how Experience Ecuador collects, uses, and protects information when you visit our website
+      or contact us. We aim to keep this simple and transparent.
+    </p>
+
+    <div class="meta" aria-label="Policy metadata">
+      <div class="pill">Effective date: January 1, 2025</div>
+      <div class="pill">Contact: <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a></div>
+    </div>
+
+    <section class="content-grid" aria-label="Privacy Policy content">
+      <div>
+        <div class="card">
+          <h2>Overview</h2>
+          <p>
+            Experience Ecuador is a curated travel discovery website. We do not sell your personal information.
+            We collect only what we need to operate the site and respond to messages.
+          </p>
+
+          <h3>Information we may collect</h3>
+          <ul>
+            <li><strong>Contact information you provide:</strong> such as your name, email address, and message when you contact us.</li>
+            <li><strong>Basic usage data:</strong> limited technical information that helps the site function, such as pages viewed and device or browser type.</li>
+            <li><strong>Cookies:</strong> small files used for basic functionality and analytics. You can control cookies in your browser settings.</li>
+          </ul>
+
+          <h3>How we use information</h3>
+          <ul>
+            <li>To respond to inquiries and partnership requests.</li>
+            <li>To maintain and improve site performance, content, and navigation.</li>
+            <li>To protect the site against abuse, spam, or security risks.</li>
+          </ul>
+
+          <h3>What we do not do</h3>
+          <ul>
+            <li>We do not sell your personal information.</li>
+            <li>We do not knowingly collect sensitive personal information.</li>
+            <li>We do not knowingly collect personal information from children.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Cookies and analytics</h2>
+          <p>
+            We may use cookies or similar technologies to help the website run smoothly and understand general traffic patterns.
+            These tools may collect information such as browser type, approximate location (city or region level), pages visited, and time on site.
+          </p>
+          <p>
+            You can disable cookies in your browser settings. Some site features may not function as intended if cookies are blocked.
+          </p>
+
+          <div class="callout" role="note" aria-label="Analytics note">
+            <strong>Note</strong>
+            If we add a newsletter signup or other features later, this policy will be updated to reflect that change.
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Sharing of information</h2>
+          <p>
+            We may share limited information only when necessary to operate the site and provide services.
+            Examples include hosting providers, analytics tools, and email services used to communicate with you.
+          </p>
+          <p>
+            We may also disclose information if required by law, to protect rights and safety, or to prevent fraud and abuse.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Data retention</h2>
+          <p>
+            We keep personal information only as long as needed for the purposes described in this policy,
+            such as responding to messages or maintaining site operations.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Your choices</h2>
+          <ul>
+            <li>You can contact us to request access, correction, or deletion of personal information you provided to us.</li>
+            <li>You can control cookies using your browser settings.</li>
+            <li>If we offer a newsletter in the future, you will be able to unsubscribe at any time.</li>
+          </ul>
+          <p>
+            To make a request, email <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Security</h2>
+          <p>
+            We use reasonable safeguards to protect information, but no method of transmission or storage is completely secure.
+            Please avoid sending sensitive information through the contact email.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>International visitors</h2>
+          <p>
+            If you access this site from outside the country where our servers are located, your information may be processed and stored across borders.
+            By using the site, you consent to this processing where permitted by law.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Changes to this policy</h2>
+          <p>
+            We may update this Privacy Policy as the site evolves. When we do, we will revise the effective date above.
+            Continued use of the site after updates means you accept the revised policy.
+          </p>
+        </div>
+      </div>
+
+      <aside class="side-stack" aria-label="Privacy Policy side content">
+        <div class="mini">
+          <h3>Quick summary</h3>
+          <p>
+            We collect minimal information to operate the site and respond to messages.
+            We do not sell personal information.
+          </p>
+          <ul>
+            <li>Contact info only when you send it</li>
+            <li>Basic analytics for improvement</li>
+            <li>Cookie control via your browser</li>
+          </ul>
+        </div>
+
+        <div class="mini">
+          <h3>Questions</h3>
+          <p>
+            If you have questions about privacy, email us.
+          </p>
+          <div class="callout" role="note" aria-label="Privacy contact">
+            <strong>Email</strong>
+            <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
+      <div class="social" aria-label="Social media links">
+        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+        </a>
+        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+        </a>
+        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+        </a>
+      </div>
+
+      <small>© 2025 Experience Ecuador. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Unified dropdown handler (Regions + Experiences) - open one at a time, close on outside click / Esc
+    (function () {
+      const dropdowns = document.querySelectorAll('.dropdown');
+
+      function closeAll() {
+        dropdowns.forEach(dd => {
+          dd.classList.remove('open');
+          const btn = dd.querySelector('.dropbtn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      dropdowns.forEach(dd => {
+        const btn = dd.querySelector('.dropbtn');
+        const menu = dd.querySelector('.dropdown-menu');
+        if (!btn) return;
+
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isOpen = dd.classList.contains('open');
+          closeAll();
+          dd.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+        });
+
+        if (menu) {
+          menu.addEventListener('click', function (e) {
+            e.stopPropagation();
+          });
+        }
+      });
+
+      document.addEventListener('click', closeAll);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAll();
+      });
+    })();
+
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+  </script>
+</body>
+</html>
