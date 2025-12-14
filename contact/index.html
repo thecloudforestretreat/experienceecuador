@@ -35,24 +35,26 @@
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
-    /* ===== HEADER (LOCKED) ===== */
+    /* ===== HEADER (MATCH REGIONS / ANDES) ===== */
     .topbar{
       position:sticky;
       top:0;
+      z-index:1000;
+      backdrop-filter:saturate(160%) blur(10px);
       background:rgba(255,255,255,.75);
-      backdrop-filter:blur(10px);
       border-bottom:1px solid rgba(0,0,0,.06);
-      z-index:10;
+      overflow:visible;
     }
 
     .topbar-inner{
       max-width:1100px;
-      margin:auto;
+      margin:0 auto;
       padding:14px 18px;
       display:flex;
       justify-content:space-between;
       align-items:center;
       gap:16px;
+      overflow:visible;
     }
 
     .brand{
@@ -64,6 +66,8 @@
       color:var(--brand-blue);
       letter-spacing:-0.02em;
       white-space:nowrap;
+      font-size:18px;
+      line-height:1;
     }
 
     .brand img{width:28px;height:28px;object-fit:contain}
@@ -73,26 +77,21 @@
       display:flex;
       align-items:center;
       gap:18px;
-      font-weight:600;
-      color:#162b55;
+      font-weight:700;
+      font-size:14px;
+      color:#0f2f62;
+      white-space:nowrap;
+      overflow:visible;
     }
 
-    .nav a,
-    .nav button{
-      font:inherit;
-      color:inherit;
-      background:transparent;
-      border:0;
-      padding:8px 10px;
+    .nav a{
+      padding:8px 8px;
       border-radius:10px;
-      cursor:pointer;
-      line-height:1;
+      transition:background .15s ease;
     }
 
-    .nav a:hover,
-    .nav button:hover{
+    .nav a:hover{
       background:rgba(3,78,162,.08);
-      color:var(--brand-blue);
     }
 
     .nav a.active{
@@ -105,12 +104,34 @@
       position:relative;
       display:inline-flex;
       align-items:center;
+      overflow:visible;
+      z-index:1100;
     }
 
-    .dropdown-btn{
+    .dropbtn{
+      appearance:none;
+      border:0;
+      background:transparent;
+      font:inherit;
+      color:inherit;
+
       display:inline-flex;
       align-items:center;
       gap:8px;
+      padding:8px 8px;
+      border-radius:10px;
+      cursor:pointer;
+      user-select:none;
+      transition:background .15s ease;
+    }
+
+    .dropbtn:hover{
+      background:rgba(3,78,162,.08);
+    }
+
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
     }
 
     .caret{
@@ -121,42 +142,41 @@
       border-bottom:2px solid currentColor;
       transform:rotate(45deg);
       margin-top:-2px;
-      opacity:.85;
+      opacity:.7;
     }
 
     .dropdown-menu{
       position:absolute;
-      top:44px;
+      top:42px;
       right:0;
       min-width:220px;
       background:#fff;
-      border:1px solid rgba(0,0,0,.08);
+      border:1px solid rgba(0,0,0,0.08);
       border-radius:14px;
-      box-shadow:0 24px 70px rgba(0,0,0,.18);
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
       padding:8px;
       display:none;
-      z-index:50;
+      z-index:1200;
     }
 
     .dropdown-menu a{
       display:block;
-      padding:10px 12px;
+      padding:10px 10px;
       border-radius:10px;
-      color:#162b55;
-      font-weight:600;
+      font-weight:700;
+      color:#0f2f62;
     }
 
     .dropdown-menu a:hover{
-      background:rgba(3,78,162,.08);
-      color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
     }
 
-    .dropdown.open .dropdown-menu{display:block;}
+    .dropdown.open .dropdown-menu{display:block}
 
     /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
-      margin:auto;
+      margin:0 auto;
       padding:40px 18px;
     }
 
@@ -173,6 +193,7 @@
       line-height:1.65;
       max-width:75ch;
       margin:0;
+      font-size:16.8px;
     }
 
     .content-grid{
@@ -206,6 +227,7 @@
       font-size:13px;
       margin-bottom:6px;
       color:#0f2f62;
+      letter-spacing:.01em;
     }
 
     .value{
@@ -219,6 +241,8 @@
       text-decoration:underline;
       text-underline-offset:3px;
       font-size:15px;
+      font-weight:600;
+      color:#162b55;
     }
 
     .copy-btn{
@@ -228,7 +252,7 @@
       background:#fff;
       color:#0f2f62;
       font-size:13px;
-      font-weight:600;
+      font-weight:700;
       cursor:pointer;
     }
 
@@ -238,7 +262,6 @@
       border-color:var(--brand-blue);
     }
 
-    /* Partnership two lines (as requested) */
     .partners-lines{
       display:flex;
       flex-direction:column;
@@ -249,12 +272,11 @@
       font-size:14.5px;
     }
 
-    /* Right image (FIXED: remove black outline look) */
     .side-image{
       border-radius:22px;
       overflow:hidden;
-      background:transparent;              /* ✅ was #000 */
-      border:1px solid rgba(0,0,0,.06);    /* keep consistent with cards */
+      background:transparent;
+      border:1px solid rgba(0,0,0,.06);
       box-shadow:0 18px 60px rgba(0,0,0,.14);
     }
 
@@ -273,7 +295,7 @@
 
     .footer-inner{
       max-width:1100px;
-      margin:auto;
+      margin:0 auto;
       padding:28px 18px;
       display:flex;
       flex-direction:column;
@@ -313,25 +335,19 @@
     footer small{font-size:13px;opacity:.9}
 
     /* ===== MOBILE ===== */
-    @media(max-width: 980px){
+    @media(max-width:980px){
       .content-grid{grid-template-columns:1fr}
     }
 
-    @media(max-width: 900px){
-      .topbar-inner{justify-content:space-between}
-      .nav{gap:8px}
-      .nav a, .nav button{padding:8px 8px}
+    @media(max-width:900px){
+      .nav{gap:8px;flex-wrap:wrap;justify-content:flex-end}
+      .dropdown-menu{right:0;left:auto}
     }
 
-    @media(max-width: 760px){
-      .nav{
-        flex-wrap:wrap;
-        justify-content:flex-end;
-      }
-      .dropdown-menu{
-        right:auto;
-        left:0;
-      }
+    @media(max-width:620px){
+      .topbar-inner{flex-direction:column;align-items:center;gap:10px}
+      .nav{justify-content:center}
+      .dropdown-menu{right:auto;left:50%;transform:translateX(-50%)}
     }
   </style>
 </head>
@@ -350,15 +366,15 @@
         <a href="/mission/">Mission</a>
 
         <div class="dropdown" id="regionsDropdown">
-          <button class="dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false" id="regionsBtn">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
             Regions <span class="caret" aria-hidden="true"></span>
           </button>
           <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
-            <a href="/regions/">All Regions</a>
-            <a href="/regions/galapagos/">Galapagos</a>
-            <a href="/regions/coast/">Coast</a>
-            <a href="/regions/andes/">Andes</a>
-            <a href="/regions/amazon/">Amazon</a>
+            <a href="/regions/" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+            <a href="/regions/coast/" role="menuitem">Coast</a>
+            <a href="/regions/andes/" role="menuitem">Andes</a>
+            <a href="/regions/amazon/" role="menuitem">Amazon</a>
           </div>
         </div>
 
@@ -428,40 +444,81 @@
   </footer>
 
   <script>
-    // Copy email button
-    const btn = document.getElementById('copyEmail');
-    btn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText('info@experienceecuador.com');
+    // Copy email button (safe fallback)
+    (function(){
+      const email = 'info@experienceecuador.com';
+      const btn = document.getElementById('copyEmail');
+      if(!btn) return;
+
+      function setCopied(){
         btn.textContent = 'Copied';
         btn.classList.add('copied');
         setTimeout(() => {
           btn.textContent = 'Copy';
           btn.classList.remove('copied');
         }, 2000);
-      } catch (e) {
-        // fallback: do nothing silently
       }
-    });
 
-    // Regions dropdown (click + close on outside click)
-    const dd = document.getElementById('regionsDropdown');
-    const ddBtn = document.getElementById('regionsBtn');
+      btn.addEventListener('click', async () => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(email);
+            setCopied();
+            return;
+          }
+          // Fallback
+          const ta = document.createElement('textarea');
+          ta.value = email;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          ta.style.top = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          setCopied();
+        } catch (e) {
+          // silent
+        }
+      });
+    })();
 
-    ddBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const isOpen = dd.classList.toggle('open');
-      ddBtn.setAttribute('aria-expanded', String(isOpen));
-    });
+    // Regions dropdown (click + close on outside click / Esc)
+    (function(){
+      const dd = document.getElementById('regionsDropdown');
+      if(!dd) return;
 
-    document.addEventListener('click', (e) => {
-      if (!dd.contains(e.target)) {
-        dd.classList.remove('open');
-        ddBtn.setAttribute('aria-expanded', 'false');
+      const btn = dd.querySelector('.dropbtn');
+      const menu = dd.querySelector('.dropdown-menu');
+
+      function setOpen(isOpen){
+        dd.classList.toggle('open', isOpen);
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       }
-    });
 
-    // Light deterrent: disable right-click on images (cannot fully prevent saving)
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        setOpen(!dd.classList.contains('open'));
+      });
+
+      if(menu){
+        menu.addEventListener('click', function(e){
+          e.stopPropagation();
+        });
+      }
+
+      document.addEventListener('click', function(){
+        setOpen(false);
+      });
+
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape') setOpen(false);
+      });
+    })();
+
+    // Light deterrent: disable right-click on images only
     document.addEventListener('contextmenu', (e) => {
       if (e.target && e.target.tagName === 'IMG') e.preventDefault();
     });
