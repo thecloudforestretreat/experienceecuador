@@ -42,11 +42,11 @@
     .topbar{
       position:sticky;
       top:0;
-      z-index:1000; /* strengthened */
+      z-index:1000;
       backdrop-filter:saturate(160%) blur(10px);
       background:rgba(255,255,255,0.75);
       border-bottom:1px solid rgba(0,0,0,0.06);
-      overflow:visible; /* important */
+      overflow:visible;
     }
 
     .topbar-inner{
@@ -57,7 +57,7 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      overflow:visible; /* important */
+      overflow:visible;
     }
 
     .brand{
@@ -79,7 +79,7 @@
       object-fit:contain;
     }
 
-    /* ===== MENU (MATCH ANDES FIX) ===== */
+    /* ===== MENU ===== */
     .nav{
       display:flex;
       align-items:center;
@@ -110,14 +110,12 @@
       z-index:1100;
     }
 
-    /* real button so it works on mobile + click */
     .dropbtn{
       appearance:none;
       border:0;
       background:transparent;
       font:inherit;
       color:inherit;
-
       display:inline-flex;
       align-items:center;
       gap:8px;
@@ -492,8 +490,8 @@
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       letter-spacing:-0.02em;
-      font-size:16px;
-      opacity:0.95;
+      font-size:14px;
+      opacity:.95;
       margin-top:2px;
     }
 
@@ -515,15 +513,9 @@
       box-shadow:0 14px 34px rgba(0,0,0,0.35);
     }
 
-    .icon-btn img{
-      width:34px;
-      height:34px;
-    }
+    .icon-btn img{ width:34px; height:34px; }
 
-    footer small{
-      font-size:13px;
-      opacity:.9;
-    }
+    footer small{ font-size:13px; opacity:.9; }
 
     /* ===== MOBILE ===== */
     @media(max-width:900px){
@@ -531,7 +523,6 @@
       .topbar-inner{ justify-content:space-between; }
       .hero-inner{ text-align:center; }
       .hero p{ margin:0 auto; }
-
       .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
       .dropdown-menu{ right:0; left:auto; }
     }
@@ -569,12 +560,13 @@
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
             Regions <span class="caret" aria-hidden="true"></span>
           </button>
+
           <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
             <a href="/regions" role="menuitem">All Regions</a>
             <a href="/regions/galapagos" role="menuitem">Galapagos</a>
             <a href="/regions/coast" role="menuitem">Coast</a>
             <a href="/regions/andes" role="menuitem">Andes</a>
-            <a href="/regions/amazon" role="menuitem">Amazon</a>
+            <a href="/regions/amazon" role="menuitem" aria-current="page">Amazon</a>
           </div>
         </div>
 
@@ -767,7 +759,6 @@
         setOpen(!dd.classList.contains('open'));
       });
 
-      // allow clicking inside menu without closing before navigation
       menu.addEventListener('click', function (e) {
         e.stopPropagation();
       });
@@ -795,7 +786,7 @@
 
       let index = 0;
 
-      const AUTOPLAY_MS = 5000; // auto-advance
+      const AUTOPLAY_MS = 5000;
       const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       let autoplayTimer = null;
       let autoplayEnabled = !prefersReducedMotion;
