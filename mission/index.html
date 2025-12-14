@@ -37,7 +37,7 @@
     img{max-width:100%;display:block}
     img{ user-select:none; -webkit-user-drag:none; }
 
-    /* ===== HEADER (MATCH ANDES/CONTACT) ===== */
+    /* ===== HEADER ===== */
     .topbar{
       position:sticky;
       top:0;
@@ -78,7 +78,7 @@
       object-fit:contain;
     }
 
-    /* ===== NAV (MATCH ANDES/CONTACT) ===== */
+    /* ===== NAV ===== */
     .nav{
       display:flex;
       align-items:center;
@@ -90,13 +90,20 @@
       overflow:visible;
     }
 
-    .nav a{
-      padding:8px 8px;
+    .nav a,
+    .nav button{
+      font:inherit;
+      background:transparent;
+      border:0;
+      color:inherit;
+      padding:8px 10px;
       border-radius:10px;
-      transition:background 0.15s ease;
+      cursor:pointer;
+      line-height:1;
     }
 
-    .nav a:hover{
+    .nav a:hover,
+    .nav button:hover{
       background:rgba(3,78,162,0.08);
     }
 
@@ -105,7 +112,7 @@
       color:var(--brand-blue);
     }
 
-    /* ===== DROPDOWN (MATCH ANDES/CONTACT) ===== */
+    /* ===== DROPDOWN ===== */
     .dropdown{
       position:relative;
       display:inline-flex;
@@ -115,24 +122,10 @@
     }
 
     .dropbtn{
-      appearance:none;
-      border:0;
-      background:transparent;
-      font:inherit;
-      color:inherit;
-
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding:8px 8px;
-      border-radius:10px;
-      cursor:pointer;
       user-select:none;
-      transition:background 0.15s ease;
-    }
-
-    .dropbtn:hover{
-      background:rgba(3,78,162,0.08);
     }
 
     .dropbtn:focus{
@@ -174,6 +167,11 @@
     }
 
     .dropdown-menu a:hover{
+      background:rgba(3,78,162,0.08);
+    }
+
+    .dropdown-menu a.active{
+      color:var(--brand-blue);
       background:rgba(3,78,162,0.08);
     }
 
@@ -267,7 +265,7 @@
       color:#24324a;
     }
 
-    /* ===== IMAGE BREAK (MATCH OTHER PAGES, NO BLACK BG) ===== */
+    /* ===== IMAGE BREAK ===== */
     .break{
       margin:18px 0 40px;
       border-radius:22px;
@@ -283,7 +281,7 @@
       display:block;
     }
 
-    /* ===== FOOTER (LOCKED) ===== */
+    /* ===== FOOTER ===== */
     .footer{
       background:var(--brand-blue);
       color:#fff;
@@ -331,7 +329,7 @@
 
     footer small{ font-size:13px; opacity:.9; }
 
-    /* ===== MOBILE (MATCH ANDES/CONTACT) ===== */
+    /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
       .topbar-inner{ justify-content:space-between; }
@@ -376,6 +374,22 @@
           </div>
         </div>
 
+        <div class="dropdown" id="experiencesDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+            Experiences <span class="caret" aria-hidden="true"></span>
+          </button>
+
+          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+            <a href="/experiences/" role="menuitem">All Experiences</a>
+            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+            <a href="/experiences/nature/" role="menuitem">Nature</a>
+            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+            <a href="/experiences/culture/" role="menuitem">Culture</a>
+          </div>
+        </div>
+
         <a href="/contact/">Contact</a>
       </nav>
     </div>
@@ -406,7 +420,7 @@
           <h3>How we curate</h3>
           <ul>
             <li>Region-first: Galapagos, Coast, Andes, Amazon</li>
-            <li>Experience-first: relaxation, adventure, holistic, culinary, cultural</li>
+            <li>Experience-first: relaxation, adventure, nature, culinary, culture</li>
             <li>Clarity-first: what it is, why it is worth it, and how to plan it</li>
           </ul>
         </div>
@@ -422,7 +436,6 @@
       </div>
     </section>
 
-    <!-- UPDATED IMAGE -->
     <section class="break" aria-label="Experience Ecuador mission image">
       <img src="/assets/images/EE-Mission-02.jpg" alt="Experience Ecuador mission inspiration">
     </section>
@@ -453,34 +466,42 @@
   </footer>
 
   <script>
-    // Regions dropdown (click + close on outside click / Esc) - same behavior as Andes
     (function () {
-      const dd = document.getElementById('regionsDropdown');
-      if (!dd) return;
+      const dropdowns = document.querySelectorAll('.dropdown');
 
-      const btn = dd.querySelector('.dropbtn');
-      const menu = dd.querySelector('.dropdown-menu');
-
-      function setOpen(isOpen) {
-        dd.classList.toggle('open', isOpen);
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      function closeAll() {
+        dropdowns.forEach(dd => {
+          dd.classList.remove('open');
+          const btn = dd.querySelector('.dropbtn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
       }
 
-      btn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        setOpen(!dd.classList.contains('open'));
+      dropdowns.forEach(dd => {
+        const btn = dd.querySelector('.dropbtn');
+        const menu = dd.querySelector('.dropdown-menu');
+        if (!btn) return;
+
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isOpen = dd.classList.contains('open');
+          closeAll();
+          dd.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+        });
+
+        if (menu) {
+          menu.addEventListener('click', function (e) {
+            e.stopPropagation();
+          });
+        }
       });
 
-      menu.addEventListener('click', function (e) {
-        e.stopPropagation();
-      });
-
-      document.addEventListener('click', function () {
-        setOpen(false);
-      });
-
+      document.addEventListener('click', closeAll);
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') setOpen(false);
+        if (e.key === 'Escape') closeAll();
       });
     })();
   </script>
