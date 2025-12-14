@@ -20,33 +20,29 @@
   <style>
     :root{
       --brand-blue:#034EA2;
-      --cloud-white:#F5F7FA;
-      --charcoal:#1F1F1F;
       --slate:#6E7B8B;
-      --light-gray:#E3E5E8;
+      --text:#1F1F1F;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--charcoal);
       background:#f6f8fb;
+      color:var(--text);
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-    img{ user-select:none; -webkit-user-drag:none; }
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
-    /* ===== HEADER (LOCKED) ===== */
+    /* ================= HEADER ================= */
     .topbar{
       position:sticky;
       top:0;
       z-index:1000;
       backdrop-filter:saturate(160%) blur(10px);
-      background:rgba(255,255,255,0.75);
-      border-bottom:1px solid rgba(0,0,0,0.06);
-      overflow:visible;
+      background:rgba(255,255,255,.75);
+      border-bottom:1px solid rgba(0,0,0,.06);
     }
 
     .topbar-inner{
@@ -54,60 +50,53 @@
       margin:0 auto;
       padding:14px 18px;
       display:flex;
-      align-items:center;
       justify-content:space-between;
+      align-items:center;
       gap:16px;
-      overflow:visible;
     }
 
     .brand{
       display:flex;
-      align-items:center;
       gap:10px;
+      align-items:center;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      letter-spacing:-0.02em;
       color:var(--brand-blue);
       font-size:18px;
-      line-height:1;
+      letter-spacing:-0.02em;
       white-space:nowrap;
     }
 
-    .brand img{
-      width:28px;
-      height:28px;
-      object-fit:contain;
-    }
+    .brand img{width:28px;height:28px}
 
-    /* ===== MENU ===== */
+    /* ================= NAV ================= */
     .nav{
       display:flex;
       align-items:center;
       gap:18px;
-      font-size:14px;
       font-weight:700;
+      font-size:14px;
       color:#0f2f62;
       white-space:nowrap;
-      overflow:visible;
     }
 
     .nav a{
-      padding:8px 8px;
+      padding:8px;
       border-radius:10px;
-      transition:background 0.15s ease;
-      opacity:1;
     }
 
     .nav a:hover{
-      background:rgba(3,78,162,0.08);
+      background:rgba(3,78,162,.08);
     }
 
+    .nav a.active{
+      background:rgba(3,78,162,.08);
+      color:var(--brand-blue);
+    }
+
+    /* ================= DROPDOWN ================= */
     .dropdown{
       position:relative;
-      display:inline-flex;
-      align-items:center;
-      overflow:visible;
-      z-index:1100;
     }
 
     .dropbtn{
@@ -116,35 +105,26 @@
       background:transparent;
       font:inherit;
       color:inherit;
-
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 8px;
+      padding:8px;
       border-radius:10px;
       cursor:pointer;
-      user-select:none;
-      transition:background 0.15s ease;
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
 
     .dropbtn:hover{
-      background:rgba(3,78,162,0.08);
-    }
-
-    .dropbtn:focus{
-      outline:2px solid rgba(3,78,162,0.35);
-      outline-offset:2px;
+      background:rgba(3,78,162,.08);
     }
 
     .caret{
       width:10px;
       height:10px;
-      display:inline-block;
       border-right:2px solid currentColor;
       border-bottom:2px solid currentColor;
       transform:rotate(45deg);
       margin-top:-2px;
-      opacity:0.7;
+      opacity:.7;
     }
 
     .dropdown-menu{
@@ -153,737 +133,175 @@
       right:0;
       min-width:220px;
       background:#fff;
-      border:1px solid rgba(0,0,0,0.08);
+      border:1px solid rgba(0,0,0,.08);
       border-radius:14px;
-      box-shadow:0 18px 55px rgba(3,78,162,0.16);
+      box-shadow:0 18px 55px rgba(3,78,162,.16);
       padding:8px;
       display:none;
-      z-index:1200;
+      z-index:2000;
     }
 
     .dropdown-menu a{
       display:block;
-      padding:10px 10px;
+      padding:10px;
       border-radius:10px;
       font-weight:700;
-      color:#0f2f62;
     }
 
     .dropdown-menu a:hover{
-      background:rgba(3,78,162,0.08);
+      background:rgba(3,78,162,.08);
     }
 
-    .dropdown.open .dropdown-menu{ display:block; }
+    .dropdown.open .dropdown-menu{
+      display:block;
+    }
 
-    /* ===== HERO ===== */
+    /* ================= HERO ================= */
     .hero{
-      position:relative;
-      width:100%;
       min-height:64vh;
+      background:url("/assets/images/EE-Region-Andes-hero-01.jpg") center/cover no-repeat;
+      position:relative;
+      color:#fff;
       display:flex;
       align-items:flex-end;
-      justify-content:center;
-      background:url("/assets/images/EE-Region-Andes-hero-01.jpg") center / cover no-repeat;
-      color:#fff;
     }
 
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.12),
-        rgba(0,0,0,0.72)
-      );
+      background:linear-gradient(to bottom,rgba(0,0,0,.15),rgba(0,0,0,.7));
     }
 
     .hero-inner{
       position:relative;
-      z-index:2;
-      width:100%;
       max-width:1100px;
-      padding:54px 18px 34px;
-      text-align:left;
-    }
-
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,0.38);
-      border:1px solid rgba(255,255,255,0.22);
-      font-weight:700;
-      letter-spacing:0.02em;
-      font-size:12.5px;
-      margin-bottom:14px;
-      backdrop-filter:blur(10px);
+      margin:0 auto;
+      padding:48px 18px;
     }
 
     .hero h1{
-      margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.03em;
-      font-size:clamp(40px,5.4vw,72px);
-      line-height:1.03;
+      font-size:clamp(40px,5vw,72px);
+      margin:0 0 12px;
     }
 
     .hero p{
-      margin:0;
       max-width:70ch;
-      font-size:clamp(15px,2vw,18px);
-      line-height:1.65;
-      color:rgba(255,255,255,0.92);
+      line-height:1.6;
+      opacity:.95;
     }
 
-    /* ===== PAGE WRAP ===== */
+    /* ================= CONTENT ================= */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:36px 18px 0;
+      padding:40px 18px;
     }
 
-    /* ===== SECTION / CARDS ===== */
-    .section{ margin-bottom:26px; }
-
-    .section h2{
-      margin:0 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:24px;
-      color:var(--brand-blue);
-    }
-
-    .section p{
-      margin:0;
-      color:#2a2f36;
-      font-size:15.8px;
-      line-height:1.75;
-      max-width:82ch;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:1.15fr 0.85fr;
-      gap:22px;
-      margin-top:18px;
-      align-items:start;
-    }
-
-    .grid.align-center{ align-items:center; }
-
-    .card{
-      background:#fff;
-      border-radius:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
-      padding:22px;
-    }
-
-    .card h3{
-      margin:0 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:18px;
-      color:#0f2f62;
-    }
-
-    .card ul{
-      margin:0;
-      padding-left:18px;
-      color:#24324a;
-      line-height:1.75;
-      font-size:14.8px;
-    }
-
-    .mini{
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      border:1px solid rgba(3,78,162,0.12);
-      border-radius:20px;
-      padding:20px;
-    }
-
-    .mini + .mini{ margin-top:16px; }
-
-    .pill-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:14px;
-    }
-
-    .tag{
-      display:inline-flex;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,0.08);
-      border:1px solid rgba(3,78,162,0.12);
-      color:#0f2f62;
-      font-weight:700;
-      font-size:13px;
-    }
-
-    /* ===== CAROUSEL (GALLERY) ===== */
-    .carousel{
-      margin-top:18px;
-      background:#fff;
-      border-radius:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.10);
-      overflow:hidden;
-      position:relative;
-      z-index:1;
-    }
-
-    .carousel-viewport{
-      overflow:hidden;
-      width:100%;
-      touch-action:pan-y;
-    }
-
-    .carousel-track{
-      display:flex;
-      width:100%;
-      transform:translateX(0);
-      transition:transform 450ms ease;
-      will-change:transform;
-    }
-
-    .carousel-slide{
-      min-width:100%;
-      position:relative;
-      aspect-ratio:16/9;
-      background:#eef2f7;
-    }
-
-    .carousel-slide img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .carousel-btn{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:44px;
-      height:44px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.35);
-      background:rgba(15,47,98,0.55);
-      backdrop-filter:blur(10px);
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:5;
-    }
-
-    .carousel-btn:hover{
-      background:rgba(15,47,98,0.70);
-    }
-
-    .carousel-btn.prev{ left:12px; }
-    .carousel-btn.next{ right:12px; }
-
-    .carousel-btn span{
-      display:block;
-      width:10px;
-      height:10px;
-      border-right:2px solid #fff;
-      border-bottom:2px solid #fff;
-      opacity:.95;
-    }
-
-    .carousel-btn.prev span{ transform:rotate(135deg); }
-    .carousel-btn.next span{ transform:rotate(-45deg); }
-
-    .carousel-ui{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:12px 14px;
-      border-top:1px solid rgba(0,0,0,0.06);
-      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
-    }
-
-    .carousel-dots{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-
-    .dot{
-      width:10px;
-      height:10px;
-      border-radius:999px;
-      border:1px solid rgba(3,78,162,0.25);
-      background:rgba(3,78,162,0.12);
-      cursor:pointer;
-      padding:0;
-    }
-
-    .dot.active{
-      background:rgba(3,78,162,0.85);
-      border-color:rgba(3,78,162,0.85);
-    }
-
-    .carousel-counter{
-      font-weight:700;
-      font-size:13px;
-      color:#0f2f62;
-      opacity:.9;
-      white-space:nowrap;
-    }
-
-    /* ===== CTA ===== */
-    .cta{
-      margin:28px 0 56px;
-      background:var(--brand-blue);
-      color:#fff;
-      border-radius:24px;
-      padding:22px;
-      box-shadow:0 22px 60px rgba(3,78,162,0.22);
-    }
-
-    .cta h3{
-      margin:0 0 8px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:20px;
-    }
-
-    .cta p{
-      margin:0;
-      color:rgba(255,255,255,0.92);
-      line-height:1.7;
-      font-size:15.5px;
-      max-width:85ch;
-    }
-
-    /* ===== FOOTER (LOCKED) ===== */
+    /* ================= FOOTER ================= */
     .footer{
       background:var(--brand-blue);
       color:#fff;
-      margin-top:30px;
-    }
-
-    .footer-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:28px 18px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:14px;
       text-align:center;
+      padding:28px 18px;
     }
 
-    .footer-tagline{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:14px;
-      opacity:.95;
-      margin-top:2px;
-    }
-
-    .social{
-      display:flex;
-      gap:18px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-
-    .icon-btn{
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      background:var(--brand-blue);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:0 14px 34px rgba(0,0,0,0.35);
-    }
-
-    .icon-btn img{ width:34px; height:34px; }
-
-    footer small{ font-size:13px; opacity:.9; }
-
-    /* ===== MOBILE ===== */
+    /* ================= MOBILE ================= */
     @media(max-width:900px){
-      .grid{ grid-template-columns:1fr; }
-      .topbar-inner{ justify-content:space-between; }
-      .hero-inner{ text-align:center; }
-      .hero p{ margin:0 auto; }
-      .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
-      .dropdown-menu{ right:0; left:auto; }
+      .nav{gap:10px;flex-wrap:wrap;justify-content:center}
     }
 
     @media(max-width:620px){
-      .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
-      .nav{ justify-content:center; }
-      .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
-    }
-
-    @media(max-width:480px){
-      .hero{ min-height:60vh; }
-      .cta{ border-radius:20px; }
-      .carousel-btn{ width:40px; height:40px; }
+      .topbar-inner{flex-direction:column;gap:10px}
+      .dropdown-menu{left:50%;right:auto;transform:translateX(-50%)}
+      .hero{text-align:center}
+      .hero p{margin:0 auto}
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="/">
-        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
-        <span>Experience Ecuador</span>
-      </a>
+<!-- HEADER -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/">
+      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+      <span>Experience Ecuador</span>
+    </a>
 
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/mission">Mission</a>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/mission">Mission</a>
 
-        <div class="dropdown" id="regionsDropdown">
-          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
-            Regions <span class="caret" aria-hidden="true"></span>
-          </button>
-
-          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
-            <a href="/regions" role="menuitem">All Regions</a>
-            <a href="/regions/galapagos" role="menuitem">Galapagos</a>
-            <a href="/regions/coast" role="menuitem">Coast</a>
-            <a href="/regions/andes" role="menuitem">Andes</a>
-            <a href="/regions/amazon" role="menuitem">Amazon</a>
-          </div>
-        </div>
-
-        <a href="/contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero" aria-label="Andes hero image">
-    <div class="hero-inner">
-      <div class="kicker">Region Guide • Coming Soon</div>
-      <h1>The Andes</h1>
-      <p>
-        High-altitude landscapes, volcano views, colonial cities, artisan towns, and epic day trips.
-        This hub is being built to help you explore the Andes with curated highlights and practical planning.
-      </p>
-    </div>
-  </section>
-
-  <!-- CONTENT -->
-  <main class="wrap">
-
-    <section class="section">
-      <h2>What makes the Andes special</h2>
-      <p>
-        Ecuador’s Andes offer dramatic scenery and rich culture packed into manageable travel distances.
-        One day you can explore a historic city, the next you can hike near volcanoes or relax in a mountain town.
-        This guide will help you find experiences that fit your pace, comfort level, and interests.
-      </p>
-
-      <div class="grid align-center">
-        <div class="card">
-          <h3>Signature highlights</h3>
-          <ul>
-            <li>Volcano landscapes, crater lakes, and panoramic viewpoints</li>
-            <li>Colonial cities, museums, and historic neighborhoods</li>
-            <li>Artisan markets, craft towns, and cultural traditions</li>
-            <li>Outdoor adventures: hikes, hot springs, and scenic drives</li>
-          </ul>
-
-          <div class="pill-row" aria-label="Andes experience tags">
-            <span class="tag">Culture</span>
-            <span class="tag">Nature</span>
-            <span class="tag">Adventure</span>
-            <span class="tag">Photography</span>
-          </div>
-        </div>
-
-        <div>
-          <div class="mini">
-            <h3>Best for</h3>
-            <ul>
-              <li>Travelers who want a mix of culture and scenery</li>
-              <li>Day trips and itinerary-based exploration</li>
-              <li>Hikers and nature lovers</li>
-              <li>Food, history, and local markets</li>
-            </ul>
-          </div>
-
-          <div class="mini">
-            <h3>Trip styles we will cover</h3>
-            <ul>
-              <li>City + countryside combinations</li>
-              <li>Volcano routes and scenic day trips</li>
-              <li>Wellness: hot springs and slow travel</li>
-              <li>Luxury to budget-friendly planning guidance</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>What to expect on this page next</h2>
-      <p>
-        This Andes hub will evolve into a complete guide with curated destinations, experience categories,
-        and practical travel planning so you can build an unforgettable itinerary.
-      </p>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Planned sections</h3>
-          <ul>
-            <li>Key hubs and towns, with what each is best for</li>
-            <li>Top day trips: volcanoes, lakes, markets, and viewpoints</li>
-            <li>Experience map: culture, adventure, culinary, and wellness</li>
-            <li>Suggested trip lengths and itinerary templates</li>
-            <li>Seasonality, altitude tips, and planning checklist</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Quick planning mindset</h3>
-          <ul>
-            <li>Pick a base city or town, then build day trips outward</li>
-            <li>Plan for altitude and climate changes between stops</li>
-            <li>Mix cultural days with nature days for balance</li>
-            <li>Keep itineraries flexible, the Andes reward discovery</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Gallery and highlights</h2>
-
-      <!-- CAROUSEL -->
-      <div id="andesCarousel" class="carousel" aria-label="Andes image gallery">
-        <button class="carousel-btn prev" type="button" aria-label="Previous image">
-          <span aria-hidden="true"></span>
+      <div class="dropdown" id="regionsDropdown">
+        <button class="dropbtn" type="button" aria-expanded="false">
+          Regions <span class="caret"></span>
         </button>
-
-        <div class="carousel-viewport">
-          <div class="carousel-track">
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-1.jpg" alt="Andes highlight 1"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-2.jpg" alt="Andes highlight 2"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-3.jpg" alt="Andes highlight 3"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-4.jpg" alt="Andes highlight 4"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-5.jpg" alt="Andes highlight 5"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-6.jpg" alt="Andes highlight 6"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-7.jpg" alt="Andes highlight 7"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-8.jpg" alt="Andes highlight 8"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-9.jpg" alt="Andes highlight 9"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-10.jpg" alt="Andes highlight 10"></div>
-          </div>
-        </div>
-
-        <button class="carousel-btn next" type="button" aria-label="Next image">
-          <span aria-hidden="true"></span>
-        </button>
-
-        <div class="carousel-ui">
-          <div class="carousel-dots" aria-label="Carousel pagination"></div>
-          <div class="carousel-counter" id="andesCarouselCounter">1 / 10</div>
+        <div class="dropdown-menu">
+          <a href="/regions">All Regions</a>
+          <a href="/regions/galapagos">Galapagos</a>
+          <a href="/regions/coast">Coast</a>
+          <a href="/regions/andes" class="active">Andes</a>
+          <a href="/regions/amazon">Amazon</a>
         </div>
       </div>
-    </section>
 
-    <section class="cta" aria-label="Newsletter future CTA">
-      <h3>Coming soon: curated Andes updates</h3>
-      <p>
-        This region hub will expand into curated guides and a newsletter format where travelers discover experiences and trusted partners.
-        Next step: structured town profiles and experience categories, then a reusable gallery carousel.
-      </p>
-    </section>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-  </main>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>The Andes</h1>
+    <p>
+      High-altitude landscapes, volcano views, colonial cities, and cultural heartlands.
+      This guide will evolve into a complete Andes travel hub.
+    </p>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+<!-- CONTENT -->
+<main class="wrap">
+  <p>
+    The Andes region is currently being expanded with curated experiences, town profiles,
+    and practical planning tools.
+  </p>
+</main>
 
-      <div class="social">
-        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
-        </a>
-        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
-        </a>
-        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
-        </a>
-        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
-        </a>
-      </div>
+<!-- FOOTER -->
+<footer class="footer">
+  <small>© 2025 Experience Ecuador. All rights reserved.</small>
+</footer>
 
-      <small>© 2025 Experience Ecuador. All rights reserved.</small>
-    </div>
-  </footer>
+<!-- DROPDOWN SCRIPT -->
+<script>
+  (function(){
+    const dd = document.getElementById('regionsDropdown');
+    if(!dd) return;
 
-  <script>
-    // Regions dropdown (click + close on outside click / Esc)
-    (function () {
-      const dd = document.getElementById('regionsDropdown');
-      if (!dd) return;
+    const btn = dd.querySelector('.dropbtn');
 
-      const btn = dd.querySelector('.dropbtn');
-      const menu = dd.querySelector('.dropdown-menu');
+    function toggle(open){
+      dd.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open);
+    }
 
-      function setOpen(isOpen) {
-        dd.classList.toggle('open', isOpen);
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggle(!dd.classList.contains('open'));
+    });
 
-      btn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        setOpen(!dd.classList.contains('open'));
-      });
-
-      menu.addEventListener('click', function (e) {
-        e.stopPropagation();
-      });
-
-      document.addEventListener('click', function () {
-        setOpen(false);
-      });
-
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') setOpen(false);
-      });
-    })();
-
-    // Andes carousel (click, dots, swipe, keyboard, autoplay w/ reduced motion respect)
-    (function(){
-      const root = document.getElementById("andesCarousel");
-      if(!root) return;
-
-      const track = root.querySelector(".carousel-track");
-      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
-      const prevBtn = root.querySelector(".carousel-btn.prev");
-      const nextBtn = root.querySelector(".carousel-btn.next");
-      const dotsWrap = root.querySelector(".carousel-dots");
-      const counter = root.querySelector("#andesCarouselCounter");
-
-      let index = 0;
-
-      const AUTOPLAY_MS = 5000;
-      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      let autoplayTimer = null;
-      let autoplayEnabled = !prefersReducedMotion;
-
-      function setIndex(next){
-        index = (next + slides.length) % slides.length;
-        track.style.transform = `translateX(-${index * 100}%)`;
-        updateDots();
-        updateCounter();
-      }
-
-      function updateCounter(){
-        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
-      }
-
-      function updateDots(){
-        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
-        dots.forEach((d,i) => d.classList.toggle("active", i === index));
-      }
-
-      function buildDots(){
-        dotsWrap.innerHTML = "";
-        slides.forEach((_, i) => {
-          const b = document.createElement("button");
-          b.type = "button";
-          b.className = "dot" + (i === 0 ? " active" : "");
-          b.setAttribute("aria-label", `Go to image ${i + 1}`);
-          b.addEventListener("click", () => {
-            setIndex(i);
-            stopAutoplay();
-          });
-          dotsWrap.appendChild(b);
-        });
-      }
-
-      function next(){ setIndex(index + 1); }
-      function prev(){ setIndex(index - 1); }
-
-      function startAutoplay(){
-        if(!autoplayEnabled) return;
-        stopAutoplay();
-        autoplayTimer = setInterval(next, AUTOPLAY_MS);
-      }
-
-      function stopAutoplay(){
-        if(autoplayTimer){
-          clearInterval(autoplayTimer);
-          autoplayTimer = null;
-        }
-      }
-
-      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
-      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
-
-      // Keyboard
-      root.addEventListener("keydown", (e) => {
-        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
-        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
-      });
-
-      // Swipe
-      let startX = 0;
-      let isDown = false;
-      const viewport = root.querySelector(".carousel-viewport");
-
-      viewport.addEventListener("pointerdown", (e) => {
-        isDown = true;
-        startX = e.clientX;
-        viewport.setPointerCapture(e.pointerId);
-      });
-
-      viewport.addEventListener("pointerup", (e) => {
-        if(!isDown) return;
-        isDown = false;
-        const dx = e.clientX - startX;
-        const threshold = 40;
-        if(dx > threshold){ prev(); stopAutoplay(); }
-        if(dx < -threshold){ next(); stopAutoplay(); }
-      });
-
-      viewport.addEventListener("pointercancel", () => { isDown = false; });
-
-      // Pause autoplay on hover/focus
-      root.addEventListener("mouseenter", stopAutoplay);
-      root.addEventListener("mouseleave", startAutoplay);
-      root.addEventListener("focusin", stopAutoplay);
-      root.addEventListener("focusout", startAutoplay);
-
-      // Init
-      root.tabIndex = 0;
-      buildDots();
-      updateCounter();
-      setIndex(0);
-      startAutoplay();
-    })();
-  </script>
+    document.addEventListener('click', () => toggle(false));
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape') toggle(false);
+    });
+  })();
+</script>
 
 </body>
 </html>
