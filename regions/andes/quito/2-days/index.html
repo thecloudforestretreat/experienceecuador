@@ -17,14 +17,447 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Uses same CSS + JS pattern as Quito 1 Day -->
-  <!-- (Intentionally identical structure for consistency & scaling) -->
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --slate:#6E7B8B;
+      --text:#1F1F1F;
+      --ink:#0f2f62;
+    }
 
-  <link rel="stylesheet" href="/assets/css/site-base.css">
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:#f6f8fb;
+      color:var(--text);
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+
+    /* ===== HEADER (MATCH OTHER PAGES) ===== */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(255,255,255,.75);
+      border-bottom:1px solid rgba(0,0,0,.06);
+      overflow:visible;
+    }
+
+    .topbar-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      overflow:visible;
+    }
+
+    .brand{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+      white-space:nowrap;
+      font-size:18px;
+      line-height:1;
+    }
+
+    .brand img{width:28px;height:28px;object-fit:contain}
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-weight:700;
+      font-size:14px;
+      color:var(--ink);
+      white-space:nowrap;
+      overflow:visible;
+    }
+
+    .nav a,
+    .nav button{
+      font:inherit;
+      background:transparent;
+      border:0;
+      color:inherit;
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      line-height:1;
+    }
+
+    .nav a:hover,
+    .nav button:hover{
+      background:rgba(3,78,162,.08);
+    }
+
+    .nav a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,.08);
+    }
+
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      overflow:visible;
+      z-index:1100;
+    }
+
+    .dropbtn{
+      appearance:none;
+      border:0;
+      background:transparent;
+      font:inherit;
+      color:inherit;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
+    }
+
+    .caret{
+      width:10px;
+      height:10px;
+      display:inline-block;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
+      transform:rotate(45deg);
+      margin-top:-2px;
+      opacity:.7;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:42px;
+      right:0;
+      min-width:220px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:14px;
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
+      padding:8px;
+      display:none;
+      z-index:1200;
+    }
+
+    .dropdown-menu a{
+      display:block;
+      padding:10px 10px;
+      border-radius:10px;
+      font-weight:700;
+      color:var(--ink);
+    }
+
+    .dropdown-menu a:hover{
+      background:rgba(3,78,162,.08);
+    }
+
+    .dropdown-menu a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,.08);
+    }
+
+    .dropdown.open .dropdown-menu{display:block}
+
+    /* ===== CONTENT ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:40px 18px 56px;
+    }
+
+    h1{
+      font-family:Montserrat,Inter,sans-serif;
+      font-size:clamp(34px,4vw,54px);
+      color:var(--brand-blue);
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
+    }
+
+    .lede{
+      color:var(--slate);
+      line-height:1.65;
+      max-width:85ch;
+      margin:0;
+      font-size:16.8px;
+    }
+
+    .meta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .pill{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      font-weight:800;
+      color:var(--ink);
+      font-size:13px;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      margin-top:22px;
+      align-items:start;
+    }
+
+    .card{
+      background:#fff;
+      padding:22px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .card + .card{ margin-top:16px; }
+
+    .card h2{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      color:var(--ink);
+    }
+
+    .card p{
+      margin:0 0 14px;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:15.8px;
+      max-width:85ch;
+    }
+
+    .timeline{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .stop{
+      display:grid;
+      grid-template-columns:110px 1fr;
+      gap:12px;
+      padding:14px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(3,78,162,.04), rgba(3,78,162,.015));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .time{
+      font-weight:900;
+      color:var(--ink);
+      font-size:13px;
+      letter-spacing:.01em;
+    }
+
+    .stop-title{
+      font-weight:900;
+      color:var(--ink);
+      font-size:15.5px;
+      margin:0 0 6px;
+    }
+
+    .stop-text{
+      color:#1f2b3f;
+      line-height:1.65;
+      font-size:14.8px;
+      margin:0 0 10px;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .tag{
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(3,78,162,.08);
+      border:1px solid rgba(3,78,162,.14);
+      font-weight:800;
+      color:#162b55;
+      font-size:12.5px;
+    }
+
+    .note{
+      margin-top:14px;
+      padding:14px 14px;
+      border-radius:18px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      color:#1f2b3f;
+      font-weight:600;
+      line-height:1.6;
+      font-size:14.8px;
+    }
+
+    /* ===== RIGHT COLUMN ===== */
+    .side-stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .mini{
+      background:#fff;
+      padding:20px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .mini h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:var(--ink);
+    }
+
+    .mini p{
+      margin:0;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:14.8px;
+    }
+
+    .link-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .pill-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      font-weight:800;
+      color:var(--ink);
+    }
+
+    .pill-link:hover{ background:rgba(3,78,162,.08); }
+
+    .pill-link span{
+      opacity:.9;
+      font-weight:700;
+      color:#162b55;
+      font-size:13px;
+    }
+
+    .side-image{
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:0 18px 60px rgba(0,0,0,.14);
+      background:#eef2f7;
+    }
+
+    .side-image img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* ===== FOOTER (LOCKED) ===== */
+    .footer{
+      background:var(--brand-blue);
+      color:#fff;
+      margin-top:30px;
+    }
+
+    .footer-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+      text-align:center;
+    }
+
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      opacity:.98;
+    }
+
+    .social{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .icon-btn{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:var(--brand-blue);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 14px 34px rgba(0,0,0,.35);
+    }
+
+    .icon-btn img{width:34px;height:34px}
+    footer small{font-size:13px;opacity:.9}
+
+    /* ===== MOBILE ===== */
+    @media(max-width:980px){
+      .content-grid{grid-template-columns:1fr}
+      .stop{grid-template-columns:1fr}
+      .time{opacity:.9}
+    }
+
+    @media(max-width:900px){
+      .nav{gap:8px;flex-wrap:wrap;justify-content:flex-end}
+      .dropdown-menu{right:0;left:auto}
+    }
+
+    @media(max-width:620px){
+      .topbar-inner{flex-direction:column;align-items:center;gap:10px}
+      .nav{justify-content:center}
+      .dropdown-menu{right:auto;left:50%;transform:translateX(-50%)}
+    }
+  </style>
 </head>
 
 <body>
-  <!-- ===== HEADER ===== -->
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="/">
@@ -37,31 +470,31 @@
         <a href="/about/">About</a>
         <a href="/mission/">Mission</a>
 
-        <div class="dropdown">
-          <button class="dropbtn" type="button">
-            Regions <span class="caret"></span>
+        <div class="dropdown" id="regionsDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
+            Regions <span class="caret" aria-hidden="true"></span>
           </button>
-          <div class="dropdown-menu">
-            <a href="/regions/">All Regions</a>
-            <a href="/regions/galapagos/">Galapagos</a>
-            <a href="/regions/coast/">Coast</a>
-            <a href="/regions/andes/">Andes</a>
-            <a href="/regions/amazon/">Amazon</a>
+          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+            <a href="/regions/" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+            <a href="/regions/coast/" role="menuitem">Coast</a>
+            <a href="/regions/andes/" role="menuitem">Andes</a>
+            <a href="/regions/amazon/" role="menuitem">Amazon</a>
           </div>
         </div>
 
-        <div class="dropdown">
-          <button class="dropbtn" type="button">
-            Experiences <span class="caret"></span>
+        <div class="dropdown" id="experiencesDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+            Experiences <span class="caret" aria-hidden="true"></span>
           </button>
-          <div class="dropdown-menu">
-            <a href="/experiences/">All Experiences</a>
-            <a href="/experiences/adventure/">Adventure</a>
-            <a href="/experiences/nature/">Nature</a>
-            <a href="/experiences/wildlife-birding/">Wildlife &amp; Birding</a>
-            <a href="/experiences/relaxation/">Relaxation</a>
-            <a href="/experiences/culinary/">Culinary</a>
-            <a href="/experiences/culture/">Culture</a>
+          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+            <a href="/experiences/" role="menuitem">All Experiences</a>
+            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+            <a href="/experiences/nature/" role="menuitem">Nature</a>
+            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+            <a href="/experiences/culture/" role="menuitem">Culture</a>
           </div>
         </div>
 
@@ -70,7 +503,6 @@
     </div>
   </header>
 
-  <!-- ===== CONTENT ===== -->
   <main class="wrap">
     <h1>Quito in 2 Days</h1>
     <p class="lede">
@@ -78,17 +510,16 @@
       You can explore the historic city properly, visit the equator, and still add a nearby nature or viewpoint experience without rushing.
     </p>
 
-    <div class="meta-row">
+    <div class="meta-row" aria-label="Trip summary">
       <span class="pill">Best for: Short city stays</span>
       <span class="pill">Pace: Balanced</span>
       <span class="pill">Includes: City + Equator</span>
     </div>
 
-    <section class="content-grid">
+    <section class="content-grid" aria-label="Quito 2 day itinerary content">
       <div>
-        <!-- DAY 1 -->
         <div class="card">
-          <h2>Day 1: Historic Quito & city viewpoints</h2>
+          <h2>Day 1: Historic Quito and city viewpoints</h2>
           <p>
             Your first day focuses on orientation, culture, and altitude adjustment.
             Keep things walkable and allow time to absorb the city instead of stacking stops.
@@ -97,12 +528,12 @@
           <div class="timeline">
             <div class="stop">
               <div class="time">Morning</div>
-              <div class="stop-body">
-                <div class="stop-title">Historic Center deep walk</div>
-                <div class="stop-text">
+              <div>
+                <div class="stop-title">Historic Center walk</div>
+                <p class="stop-text">
                   Walk the main plazas, streets, and viewpoints of Old Town.
                   Enter one or two churches at most and spend time outdoors between stops.
-                </div>
+                </p>
                 <div class="tags">
                   <span class="tag">UNESCO</span>
                   <span class="tag">Architecture</span>
@@ -113,12 +544,12 @@
 
             <div class="stop">
               <div class="time">Midday</div>
-              <div class="stop-body">
-                <div class="stop-title">Lunch + local neighborhood</div>
-                <div class="stop-text">
+              <div>
+                <div class="stop-title">Lunch and reset</div>
+                <p class="stop-text">
                   Choose lunch near Old Town or in a nearby modern district.
                   This is a good moment to rest, hydrate, and adjust to elevation.
-                </div>
+                </p>
                 <div class="tags">
                   <span class="tag">Local food</span>
                   <span class="tag">Altitude friendly</span>
@@ -128,12 +559,12 @@
 
             <div class="stop">
               <div class="time">Afternoon</div>
-              <div class="stop-body">
-                <div class="stop-title">City viewpoint experience</div>
-                <div class="stop-text">
-                  Ride or walk to a major viewpoint for panoramic city views.
+              <div>
+                <div class="stop-title">A major viewpoint</div>
+                <p class="stop-text">
+                  Head to a major viewpoint for panoramic city views.
                   Late afternoon light is ideal for photos without rushing.
-                </div>
+                </p>
                 <div class="tags">
                   <span class="tag">Views</span>
                   <span class="tag">Photography</span>
@@ -143,9 +574,8 @@
           </div>
         </div>
 
-        <!-- DAY 2 -->
         <div class="card">
-          <h2>Day 2: Equator + surroundings</h2>
+          <h2>Day 2: Equator and surroundings</h2>
           <p>
             Day two expands outward.
             You can visit the equator monument and still have time for a relaxed afternoon back in the city or nearby nature.
@@ -154,12 +584,12 @@
           <div class="timeline">
             <div class="stop">
               <div class="time">Morning</div>
-              <div class="stop-body">
+              <div>
                 <div class="stop-title">Mitad del Mundo or equator area</div>
-                <div class="stop-text">
+                <p class="stop-text">
                   Visit the equator monument and surrounding exhibits.
                   This is a classic Quito experience and easiest earlier in the day.
-                </div>
+                </p>
                 <div class="tags">
                   <span class="tag">Equator</span>
                   <span class="tag">Must see</span>
@@ -169,12 +599,12 @@
 
             <div class="stop">
               <div class="time">Afternoon</div>
-              <div class="stop-body">
+              <div>
                 <div class="stop-title">Choose: city return or nearby nature</div>
-                <div class="stop-text">
+                <p class="stop-text">
                   Either return to Quito for cafes and neighborhoods,
                   or add a short nearby nature stop such as a park, reserve, or scenic drive.
-                </div>
+                </p>
                 <div class="tags">
                   <span class="tag">Flexible</span>
                   <span class="tag">Nature option</span>
@@ -184,12 +614,12 @@
 
             <div class="stop">
               <div class="time">Evening</div>
-              <div class="stop-body">
-                <div class="stop-title">Relaxed dinner & walk</div>
-                <div class="stop-text">
-                  End your stay with a slow dinner and evening walk in a safe, lively district.
+              <div>
+                <div class="stop-title">Relaxed dinner and walk</div>
+                <p class="stop-text">
+                  End your stay with a slow dinner and an evening walk in a safe, lively district.
                   Quito evenings are best enjoyed unhurried.
-                </div>
+                </p>
                 <div class="tags">
                   <span class="tag">Evening</span>
                   <span class="tag">Dining</span>
@@ -205,8 +635,7 @@
         </div>
       </div>
 
-      <!-- RIGHT COLUMN -->
-      <aside class="side-stack">
+      <aside class="side-stack" aria-label="Quito 2 day sidebar">
         <div class="mini">
           <h3>Good to know</h3>
           <p>
@@ -214,7 +643,7 @@
             Group city activities together and plan excursions early in the day for the smoothest flow.
           </p>
 
-          <div class="link-list">
+          <div class="link-list" aria-label="Quito itinerary links">
             <a class="pill-link" href="../">
               Back to Quito <span>Overview</span>
             </a>
@@ -227,29 +656,81 @@
           </div>
         </div>
 
-        <div class="side-image">
+        <div class="side-image" aria-label="Quito 2 days image">
           <img src="/assets/images/EE-Assets-21-Quito-2-days.jpg" alt="Quito 2 day itinerary highlights">
         </div>
       </aside>
     </section>
   </main>
 
-  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-tagline">Curated travel experiences across Ecuador</div>
 
-      <div class="social">
-        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank"><img src="/assets/icons/EE-SociaIcon-Facebook.png" alt=""></a>
-        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-Instagram.png" alt=""></a>
-        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-TikTok.png" alt=""></a>
-        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-YouTube.png" alt=""></a>
+      <div class="social" aria-label="Social media links">
+        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+        </a>
+        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+        </a>
+        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+        </a>
       </div>
 
       <small>© 2025 Experience Ecuador. All rights reserved.</small>
     </div>
   </footer>
 
-  <script src="/assets/js/nav-dropdowns.js"></script>
+  <script>
+    // Unified dropdown handler (Regions + Experiences) - open one at a time, close on outside click / Esc
+    (function () {
+      const dropdowns = document.querySelectorAll('.dropdown');
+
+      function closeAll() {
+        dropdowns.forEach(dd => {
+          dd.classList.remove('open');
+          const btn = dd.querySelector('.dropbtn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      dropdowns.forEach(dd => {
+        const btn = dd.querySelector('.dropbtn');
+        const menu = dd.querySelector('.dropdown-menu');
+        if (!btn) return;
+
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isOpen = dd.classList.contains('open');
+          closeAll();
+          dd.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+        });
+
+        if (menu) {
+          menu.addEventListener('click', function (e) {
+            e.stopPropagation();
+          });
+        }
+      });
+
+      document.addEventListener('click', closeAll);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAll();
+      });
+    })();
+
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+  </script>
 </body>
 </html>
