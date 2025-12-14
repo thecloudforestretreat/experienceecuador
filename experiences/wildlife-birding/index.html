@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wildlife & Birding | Experience Ecuador</title>
+  <title>Wildlife &amp; Birding | Experience Ecuador</title>
 
   <!-- Favicons -->
   <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
@@ -43,6 +43,7 @@
       backdrop-filter:saturate(160%) blur(10px);
       background:rgba(255,255,255,0.75);
       border-bottom:1px solid rgba(0,0,0,0.06);
+      overflow:visible;
     }
 
     .topbar-inner{
@@ -53,6 +54,7 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
+      overflow:visible;
     }
 
     .brand{
@@ -64,11 +66,14 @@
       color:var(--brand-blue);
       font-size:18px;
       white-space:nowrap;
+      letter-spacing:-0.02em;
+      line-height:1;
     }
 
     .brand img{
       width:28px;
       height:28px;
+      object-fit:contain;
     }
 
     /* ===== NAV ===== */
@@ -80,6 +85,7 @@
       font-weight:700;
       color:#0f2f62;
       white-space:nowrap;
+      overflow:visible;
     }
 
     .nav a,
@@ -88,9 +94,10 @@
       background:transparent;
       border:0;
       color:inherit;
-      padding:8px 8px;
+      padding:8px 10px;
       border-radius:10px;
       cursor:pointer;
+      line-height:1;
     }
 
     .nav a:hover,
@@ -100,10 +107,29 @@
 
     .nav a.active{
       color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
     }
 
     /* Dropdown */
-    .dropdown{position:relative}
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      overflow:visible;
+      z-index:1100;
+    }
+
+    .dropbtn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
+    }
 
     .caret{
       width:10px;
@@ -111,7 +137,7 @@
       border-right:2px solid currentColor;
       border-bottom:2px solid currentColor;
       transform:rotate(45deg);
-      margin-left:6px;
+      margin-top:-2px;
       opacity:.7;
     }
 
@@ -136,9 +162,15 @@
       padding:10px;
       border-radius:10px;
       font-weight:700;
+      color:#0f2f62;
     }
 
     .dropdown-menu a:hover{
+      background:rgba(3,78,162,0.08);
+    }
+
+    .dropdown-menu a.active{
+      color:var(--brand-blue);
       background:rgba(3,78,162,0.08);
     }
 
@@ -186,9 +218,7 @@
       padding:0 18px 60px;
     }
 
-    .section{
-      margin-bottom:36px;
-    }
+    .section{margin-bottom:36px}
 
     .section h2{
       font-family:Montserrat,Inter,sans-serif;
@@ -203,6 +233,7 @@
       line-height:1.75;
       font-size:15.8px;
       color:#2a2f36;
+      margin:0;
     }
 
     .grid{
@@ -210,6 +241,7 @@
       grid-template-columns:1.15fr 0.85fr;
       gap:28px;
       margin-top:18px;
+      align-items:start;
     }
 
     .card{
@@ -308,32 +340,46 @@
       <span>Experience Ecuador</span>
     </a>
 
-    <nav class="nav">
+    <nav class="nav" aria-label="Primary navigation">
       <a href="/">Home</a>
       <a href="/about/">About</a>
       <a href="/mission/">Mission</a>
 
       <div class="dropdown" id="regionsDropdown">
-        <button class="dropbtn" type="button">
-          Regions <span class="caret"></span>
+        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
+          Regions <span class="caret" aria-hidden="true"></span>
         </button>
-        <div class="dropdown-menu">
-          <a href="/regions/">All Regions</a>
-          <a href="/regions/galapagos/">Galapagos</a>
-          <a href="/regions/coast/">Coast</a>
-          <a href="/regions/andes/">Andes</a>
-          <a href="/regions/amazon/">Amazon</a>
+        <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+          <a href="/regions/" role="menuitem">All Regions</a>
+          <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+          <a href="/regions/coast/" role="menuitem">Coast</a>
+          <a href="/regions/andes/" role="menuitem">Andes</a>
+          <a href="/regions/amazon/" role="menuitem">Amazon</a>
         </div>
       </div>
 
-      <a class="active" href="/experiences/wildlife-birding/">Wildlife & Birding</a>
+      <div class="dropdown" id="experiencesDropdown">
+        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+          Experiences <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+          <a href="/experiences/" role="menuitem">All Experiences</a>
+          <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+          <a href="/experiences/nature/" role="menuitem">Nature</a>
+          <a class="active" href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+          <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+          <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+          <a href="/experiences/culture/" role="menuitem">Culture</a>
+        </div>
+      </div>
+
       <a href="/contact/">Contact</a>
     </nav>
   </div>
 </header>
 
 <section class="hero">
-  <h1>Wildlife & Birding</h1>
+  <h1>Wildlife &amp; Birding</h1>
   <p>
     Ecuador is one of the most wildlife-rich countries on the planet.
     From hummingbirds and toucans to monkeys, frogs, and marine life,
@@ -399,10 +445,18 @@
     <div class="footer-tagline">Curated travel experiences across Ecuador</div>
 
     <div class="social">
-      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank"><img src="/assets/icons/EE-SociaIcon-Facebook.png"></a>
-      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-Instagram.png"></a>
-      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-TikTok.png"></a>
-      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-YouTube.png"></a>
+      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+      </a>
+      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+      </a>
+      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+      </a>
+      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+      </a>
     </div>
 
     <small>© 2025 Experience Ecuador. All rights reserved.</small>
@@ -410,20 +464,42 @@
 </footer>
 
 <script>
-  (function(){
-    const dd = document.getElementById('regionsDropdown');
-    if(!dd) return;
-    const btn = dd.querySelector('.dropbtn');
+  (function () {
+    const dropdowns = document.querySelectorAll('.dropdown');
 
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      dd.classList.toggle('open');
+    function closeAll() {
+      dropdowns.forEach(dd => {
+        dd.classList.remove('open');
+        const btn = dd.querySelector('.dropbtn');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    dropdowns.forEach(dd => {
+      const btn = dd.querySelector('.dropbtn');
+      const menu = dd.querySelector('.dropdown-menu');
+      if (!btn) return;
+
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const isOpen = dd.classList.contains('open');
+        closeAll();
+        dd.classList.toggle('open', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+      });
+
+      if (menu) {
+        menu.addEventListener('click', function (e) {
+          e.stopPropagation();
+        });
+      }
     });
 
-    document.addEventListener('click', () => dd.classList.remove('open'));
-    document.addEventListener('keydown', e => {
-      if(e.key === 'Escape') dd.classList.remove('open');
+    document.addEventListener('click', closeAll);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAll();
     });
   })();
 </script>
