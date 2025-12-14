@@ -1,112 +1,435 @@
-<main class="wrap">
-  <h1>The Andes</h1>
-  <p class="lede">
-    The Andean region is Ecuador’s cultural and geographic backbone.
-    From colonial cities and mountain viewpoints to markets, volcanoes, and highland towns,
-    this is where history, altitude, and daily life intersect.
-  </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Andes | Experience Ecuador</title>
 
-  <div class="meta-row">
-    <span class="pill">Region type: Highlands</span>
-    <span class="pill">Best for: Culture, cities, landscapes</span>
-    <span class="pill">Includes: Quito, Otavalo, Cotopaxi</span>
-  </div>
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
 
-  <section class="content-grid">
-    <!-- LEFT COLUMN -->
-    <div>
-      <div class="card">
-        <h2>What defines the Andes</h2>
-        <p>
-          Ecuador’s Andes stretch north to south through the heart of the country.
-          This region combines historic cities, indigenous traditions, dramatic volcanoes,
-          and some of the most scenic drives in South America.
-        </p>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-        <p>
-          Travelers often begin here due to international flights arriving in Quito,
-          making the Andes a natural starting point for short stays or longer itineraries.
-        </p>
-      </div>
+  <!-- Shared site styles (this is what your screenshot is missing) -->
+  <link rel="stylesheet" href="/assets/css/site-base.css">
 
-      <div class="card">
-        <h2>Popular bases & highlights</h2>
+  <!-- Andes-only additions: hero + carousel -->
+  <style>
+    /* Hero */
+    .hero{
+      margin-top:18px;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:0 18px 60px rgba(0,0,0,.14);
+      background:#eef2f7;
+    }
+    .hero img{ width:100%; height:auto; display:block; }
 
-        <div class="timeline">
-          <div class="stop">
-            <div class="time">Quito</div>
-            <div>
-              <div class="stop-title">Historic capital & travel hub</div>
-              <p class="stop-text">
-                A UNESCO-listed historic center, modern neighborhoods, viewpoints,
-                and easy access to the equator and nearby nature.
-              </p>
-              <div class="tags">
-                <span class="tag">UNESCO</span>
-                <span class="tag">City</span>
-                <span class="tag">Gateway</span>
-              </div>
-            </div>
-          </div>
+    .hero-overlay{
+      padding:18px 18px 0;
+    }
 
-          <div class="stop">
-            <div class="time">Otavalo</div>
-            <div>
-              <div class="stop-title">Markets & culture</div>
-              <p class="stop-text">
-                Known for indigenous markets, textiles, and surrounding lakes
-                and villages in the northern highlands.
-              </p>
-              <div class="tags">
-                <span class="tag">Culture</span>
-                <span class="tag">Markets</span>
-              </div>
-            </div>
-          </div>
+    /* Carousel */
+    .carousel-card{
+      margin-top:16px;
+    }
+    .carousel-wrap{
+      position:relative;
+      margin-top:12px;
+    }
 
-          <div class="stop">
-            <div class="time">Cotopaxi</div>
-            <div>
-              <div class="stop-title">Volcano & national park</div>
-              <p class="stop-text">
-                One of the world’s highest active volcanoes, offering hiking,
-                landscapes, and classic Andean scenery.
-              </p>
-              <div class="tags">
-                <span class="tag">Volcano</span>
-                <span class="tag">Nature</span>
-              </div>
-            </div>
+    .carousel{
+      display:flex;
+      gap:14px;
+      overflow:auto;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      padding:6px 4px 12px;
+    }
+    .carousel::-webkit-scrollbar{ height:10px; }
+    .carousel::-webkit-scrollbar-thumb{
+      background:rgba(3,78,162,.18);
+      border-radius:999px;
+    }
+
+    .slide{
+      scroll-snap-align:start;
+      flex:0 0 320px;
+      background:#fff;
+      border-radius:18px;
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:0 18px 55px rgba(3,78,162,.10);
+      overflow:hidden;
+    }
+
+    .slide-media{
+      height:170px;
+      background:linear-gradient(180deg, rgba(3,78,162,.06), rgba(3,78,162,.02));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+    .slide-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .slide-body{
+      padding:14px 14px 16px;
+    }
+    .slide-title{
+      margin:0 0 6px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+    .slide-text{
+      margin:0;
+      color:var(--slate, #6E7B8B);
+      line-height:1.6;
+      font-size:14.8px;
+    }
+
+    .slide-cta{
+      margin-top:10px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:800;
+      color:#0f2f62;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.12);
+      padding:10px 12px;
+      border-radius:14px;
+    }
+    .slide-cta:hover{ background:rgba(3,78,162,.09); }
+
+    .car-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,.08);
+      box-shadow:0 18px 55px rgba(3,78,162,.14);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index:5;
+      user-select:none;
+    }
+    .car-btn:hover{ background:rgba(3,78,162,.06); }
+    .car-btn.left{ left:-10px; }
+    .car-btn.right{ right:-10px; }
+
+    .car-arrow{
+      width:10px;
+      height:10px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
+      transform:rotate(135deg);
+      opacity:.8;
+      margin-left:2px;
+    }
+    .car-btn.right .car-arrow{
+      transform:rotate(-45deg);
+      margin-left:-2px;
+    }
+
+    .dots{
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      margin-top:8px;
+    }
+    .dot{
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:rgba(255,255,255,.0);
+      border:1px solid rgba(3,78,162,.35);
+      opacity:.9;
+    }
+    .dot.active{
+      background:rgba(3,78,162,.75);
+      border-color:rgba(3,78,162,.75);
+    }
+
+    @media(max-width:700px){
+      .slide{ flex-basis:86vw; }
+      .car-btn.left{ left:-6px; }
+      .car-btn.right{ right:-6px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+        <span>Experience Ecuador</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/mission/">Mission</a>
+
+        <div class="dropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false">
+            Regions <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+            <a href="/regions/" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+            <a href="/regions/coast/" role="menuitem">Coast</a>
+            <a class="active" href="/regions/andes/" role="menuitem">Andes</a>
+            <a href="/regions/amazon/" role="menuitem">Amazon</a>
           </div>
         </div>
-      </div>
+
+        <div class="dropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false">
+            Experiences <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+            <a href="/experiences/" role="menuitem">All Experiences</a>
+            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+            <a href="/experiences/nature/" role="menuitem">Nature</a>
+            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+            <a href="/experiences/culture/" role="menuitem">Culture</a>
+          </div>
+        </div>
+
+        <a href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== CONTENT ===== -->
+  <main class="wrap">
+    <h1>The Andes</h1>
+    <p class="lede">
+      The Andean region is Ecuador’s cultural and geographic backbone.
+      From colonial cities and mountain viewpoints to markets, volcanoes, and highland towns,
+      this is where history, altitude, and daily life intersect.
+    </p>
+
+    <div class="meta-row">
+      <span class="pill">Region type: Highlands</span>
+      <span class="pill">Best for: Culture, cities, landscapes</span>
+      <span class="pill">Includes: Quito, Otavalo, Cotopaxi</span>
     </div>
 
-    <!-- RIGHT COLUMN -->
-    <aside class="side-stack">
-      <div class="mini">
-        <h3>Planning tips</h3>
-        <p>
-          Altitude affects travelers differently.
-          Start slow, hydrate well, and group activities by area to reduce transit time.
-        </p>
+    <!-- HERO IMAGE (restored) -->
+    <div class="hero" aria-label="Andes hero image">
+      <!-- If you have a specific Andes hero asset, set it here -->
+      <img src="/assets/images/EE-Assets-18-Andes.jpg" alt="Ecuador Andes landscapes">
+    </div>
 
-        <div class="link-list">
-          <a class="pill-link" href="/regions/andes/quito/">
-            Quito itineraries <span>1–3 day plans</span>
-          </a>
-          <a class="pill-link" href="/experiences/culture/">
-            Cultural experiences <span>Andes focused</span>
-          </a>
-          <a class="pill-link" href="/experiences/nature/">
-            Nature experiences <span>Highlands</span>
-          </a>
+    <section class="content-grid" aria-label="Andes content">
+      <div>
+        <div class="card">
+          <h2>What defines the Andes</h2>
+          <div class="a">
+            <p>
+              Ecuador’s Andes stretch north to south through the heart of the country.
+              This region combines historic cities, indigenous traditions, dramatic volcanoes,
+              and some of the most scenic drives in South America.
+            </p>
+            <p>
+              Travelers often begin here due to international flights arriving in Quito,
+              making the Andes a natural starting point for short stays or longer itineraries.
+            </p>
+          </div>
+        </div>
+
+        <!-- CAROUSEL (restored) -->
+        <div class="card carousel-card">
+          <h2>Popular bases &amp; highlights</h2>
+          <p class="lede" style="margin-top:-2px;">
+            Start with Quito, then expand to markets, lakes, and volcano landscapes across the highlands.
+          </p>
+
+          <div class="carousel-wrap" aria-label="Andes highlights carousel">
+            <button class="car-btn left" type="button" aria-label="Previous" id="andesPrev">
+              <span class="car-arrow" aria-hidden="true"></span>
+            </button>
+
+            <div class="carousel" id="andesCarousel">
+              <a class="slide" href="/regions/andes/quito/">
+                <div class="slide-media">
+                  <img src="/assets/images/EE-Assets-19-Quito.jpg" alt="Quito">
+                </div>
+                <div class="slide-body">
+                  <h3 class="slide-title">Quito</h3>
+                  <p class="slide-text">
+                    Historic center, viewpoints, equator access, and the best hub for short Andes itineraries.
+                  </p>
+                  <span class="slide-cta">Explore Quito <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+
+              <a class="slide" href="#" onclick="return false;">
+                <div class="slide-media">
+                  <img src="/assets/images/EE-Assets-Andes-Otavalo.jpg" alt="Otavalo">
+                </div>
+                <div class="slide-body">
+                  <h3 class="slide-title">Otavalo</h3>
+                  <p class="slide-text">
+                    Famous markets, textiles, and nearby lakes and villages in the northern highlands.
+                  </p>
+                  <span class="slide-cta">Coming soon <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+
+              <a class="slide" href="#" onclick="return false;">
+                <div class="slide-media">
+                  <img src="/assets/images/EE-Assets-Andes-Cotopaxi.jpg" alt="Cotopaxi">
+                </div>
+                <div class="slide-body">
+                  <h3 class="slide-title">Cotopaxi</h3>
+                  <p class="slide-text">
+                    Volcano landscapes and classic Andean scenery. Ideal for a day trip or overnight.
+                  </p>
+                  <span class="slide-cta">Coming soon <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+            </div>
+
+            <button class="car-btn right" type="button" aria-label="Next" id="andesNext">
+              <span class="car-arrow" aria-hidden="true"></span>
+            </button>
+
+            <div class="dots" aria-label="Carousel dots" id="andesDots">
+              <span class="dot active"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="side-image">
-        <img src="/assets/images/EE-Assets-Andes-01.jpg" alt="Ecuador Andes mountains and city views">
+      <aside class="side-stack" aria-label="Andes sidebar">
+        <div class="mini">
+          <h3>Planning tips</h3>
+          <p>
+            Altitude affects travelers differently. Start slow, hydrate well, and group activities by area
+            to reduce transit time.
+          </p>
+
+          <div class="link-list" aria-label="Andes related links">
+            <a class="pill-link" href="/regions/andes/quito/">
+              Quito itineraries <span>1–3 day plans</span>
+            </a>
+            <a class="pill-link" href="/experiences/culture/">
+              Cultural experiences <span>Andes focused</span>
+            </a>
+            <a class="pill-link" href="/experiences/nature/">
+              Nature experiences <span>Highlands</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
+      <div class="social" aria-label="Social media links">
+        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+        </a>
+        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+        </a>
+        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+        </a>
       </div>
-    </aside>
-  </section>
-</main>
+
+      <small>© 2025 Experience Ecuador. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <!-- Shared dropdown behavior -->
+  <script src="/assets/js/nav-dropdowns.js"></script>
+
+  <!-- Andes carousel behavior -->
+  <script>
+    (function(){
+      const track = document.getElementById('andesCarousel');
+      const prev = document.getElementById('andesPrev');
+      const next = document.getElementById('andesNext');
+      const dotsWrap = document.getElementById('andesDots');
+      if(!track || !prev || !next) return;
+
+      const slides = Array.from(track.querySelectorAll('.slide'));
+      const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('.dot')) : [];
+
+      function slideWidth(){
+        const first = slides[0];
+        if(!first) return 320;
+        const rect = first.getBoundingClientRect();
+        return rect.width + 14; // gap
+      }
+
+      function setActiveDot(){
+        if(!dots.length) return;
+        const x = track.scrollLeft;
+        const w = slideWidth();
+        const idx = Math.max(0, Math.min(dots.length - 1, Math.round(x / w)));
+        dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+      }
+
+      prev.addEventListener('click', () => {
+        track.scrollBy({ left: -slideWidth(), behavior: 'smooth' });
+      });
+
+      next.addEventListener('click', () => {
+        track.scrollBy({ left: slideWidth(), behavior: 'smooth' });
+      });
+
+      track.addEventListener('scroll', () => {
+        window.requestAnimationFrame(setActiveDot);
+      });
+
+      // Click dots
+      dots.forEach((d, i) => {
+        d.style.cursor = 'pointer';
+        d.addEventListener('click', () => {
+          track.scrollTo({ left: i * slideWidth(), behavior: 'smooth' });
+        });
+      });
+
+      setActiveDot();
+    })();
+  </script>
+</body>
+</html>
