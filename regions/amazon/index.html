@@ -38,7 +38,7 @@
     img{max-width:100%;display:block}
     img{ user-select:none; -webkit-user-drag:none; }
 
-    /* ===== HEADER (LOCKED) ===== */
+    /* ===== HEADER (MATCH COAST) ===== */
     .topbar{
       position:sticky;
       top:0;
@@ -79,35 +79,47 @@
       object-fit:contain;
     }
 
-    /* ===== MENU ===== */
+    /* ===== MENU (MATCH COAST) ===== */
     .nav{
       display:flex;
       align-items:center;
       gap:18px;
-      font-size:14px;
       font-weight:700;
-      color:#0f2f62;
+      font-size:14px;
+      color:#1b2b4a;
       white-space:nowrap;
       overflow:visible;
     }
 
-    .nav a{
-      padding:8px 8px;
+    .nav a,
+    .nav button{
+      font:inherit;
+      background:transparent;
+      border:0;
+      color:inherit;
+      padding:8px 10px;
       border-radius:10px;
-      transition:background 0.15s ease;
-      opacity:1;
+      cursor:pointer;
+      line-height:1;
     }
 
-    .nav a:hover{
+    .nav a:hover,
+    .nav button:hover{
       background:rgba(3,78,162,0.08);
     }
 
+    .nav a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
+    }
+
+    /* ===== DROPDOWNS (MATCH COAST) ===== */
     .dropdown{
       position:relative;
       display:inline-flex;
       align-items:center;
-      overflow:visible;
       z-index:1100;
+      overflow:visible;
     }
 
     .dropbtn{
@@ -119,15 +131,7 @@
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding:8px 8px;
-      border-radius:10px;
-      cursor:pointer;
       user-select:none;
-      transition:background 0.15s ease;
-    }
-
-    .dropbtn:hover{
-      background:rgba(3,78,162,0.08);
     }
 
     .dropbtn:focus{
@@ -172,9 +176,14 @@
       background:rgba(3,78,162,0.08);
     }
 
+    .dropdown-menu a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
+    }
+
     .dropdown.open .dropdown-menu{ display:block; }
 
-    /* ===== HERO ===== */
+    /* ===== HERO (MATCH COAST) ===== */
     .hero{
       position:relative;
       width:100%;
@@ -383,9 +392,7 @@
       z-index:5;
     }
 
-    .carousel-btn:hover{
-      background:rgba(15,47,98,0.70);
-    }
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
 
     .carousel-btn.prev{ left:12px; }
     .carousel-btn.next{ right:12px; }
@@ -468,7 +475,7 @@
       max-width:85ch;
     }
 
-    /* ===== FOOTER (LOCKED) ===== */
+    /* ===== FOOTER (MATCH COAST) ===== */
     .footer{
       background:var(--brand-blue);
       color:#fff;
@@ -489,9 +496,9 @@
     .footer-tagline{
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:14px;
-      opacity:.95;
+      letter-spacing:-0.01em;
+      font-size:16px;
+      opacity:0.95;
       margin-top:2px;
     }
 
@@ -517,14 +524,14 @@
 
     footer small{ font-size:13px; opacity:.9; }
 
-    /* ===== MOBILE ===== */
+    /* ===== MOBILE (MATCH COAST) ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
       .topbar-inner{ justify-content:space-between; }
       .hero-inner{ text-align:center; }
       .hero p{ margin:0 auto; }
       .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
-      .dropdown-menu{ right:0; left:auto; }
+      .dropdown-menu{ right:0; left:auto; transform:none; }
     }
 
     @media(max-width:620px){
@@ -553,24 +560,38 @@
 
       <nav class="nav" aria-label="Primary navigation">
         <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/mission">Mission</a>
+        <a href="/about/">About</a>
+        <a href="/mission/">Mission</a>
 
         <div class="dropdown" id="regionsDropdown">
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
             Regions <span class="caret" aria-hidden="true"></span>
           </button>
-
           <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
-            <a href="/regions" role="menuitem">All Regions</a>
-            <a href="/regions/galapagos" role="menuitem">Galapagos</a>
-            <a href="/regions/coast" role="menuitem">Coast</a>
-            <a href="/regions/andes" role="menuitem">Andes</a>
-            <a href="/regions/amazon" role="menuitem" aria-current="page">Amazon</a>
+            <a href="/regions/" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+            <a href="/regions/coast/" role="menuitem">Coast</a>
+            <a href="/regions/andes/" role="menuitem">Andes</a>
+            <a class="active" href="/regions/amazon/" role="menuitem">Amazon</a>
           </div>
         </div>
 
-        <a href="/contact">Contact</a>
+        <div class="dropdown" id="experiencesDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+            Experiences <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+            <a href="/experiences/" role="menuitem">All Experiences</a>
+            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+            <a href="/experiences/nature/" role="menuitem">Nature</a>
+            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+            <a href="/experiences/culture/" role="menuitem">Culture</a>
+          </div>
+        </div>
+
+        <a href="/contact/">Contact</a>
       </nav>
     </div>
   </header>
@@ -741,38 +762,47 @@
   </footer>
 
   <script>
-    // Regions dropdown (click + close on outside click / Esc)
+    // Unified dropdown handler (Regions + Experiences) - open one at a time, close on outside click / Esc
     (function () {
-      const dd = document.getElementById('regionsDropdown');
-      if (!dd) return;
+      const dropdowns = document.querySelectorAll('.dropdown');
 
-      const btn = dd.querySelector('.dropbtn');
-      const menu = dd.querySelector('.dropdown-menu');
-
-      function setOpen(isOpen) {
-        dd.classList.toggle('open', isOpen);
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      function closeAll() {
+        dropdowns.forEach(dd => {
+          dd.classList.remove('open');
+          const btn = dd.querySelector('.dropbtn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
       }
 
-      btn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        setOpen(!dd.classList.contains('open'));
+      dropdowns.forEach(dd => {
+        const btn = dd.querySelector('.dropbtn');
+        const menu = dd.querySelector('.dropdown-menu');
+        if (!btn) return;
+
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isOpen = dd.classList.contains('open');
+          closeAll();
+          dd.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+        });
+
+        if (menu) {
+          menu.addEventListener('click', function (e) {
+            e.stopPropagation();
+          });
+        }
       });
 
-      menu.addEventListener('click', function (e) {
-        e.stopPropagation();
-      });
-
-      document.addEventListener('click', function () {
-        setOpen(false);
-      });
-
+      document.addEventListener('click', closeAll);
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') setOpen(false);
+        if (e.key === 'Escape') closeAll();
       });
     })();
 
-    // Amazon carousel (click, dots, swipe, keyboard, autoplay w/ reduced motion respect)
+    // Amazon carousel (same behavior as Coast)
     (function(){
       const root = document.getElementById("amazonCarousel");
       if(!root) return;
@@ -785,9 +815,9 @@
       const counter = root.querySelector("#amazonCarouselCounter");
 
       let index = 0;
-
       const AUTOPLAY_MS = 5000;
       const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
       let autoplayTimer = null;
       let autoplayEnabled = !prefersReducedMotion;
 
@@ -841,13 +871,11 @@
       if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
       if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
 
-      // Keyboard
       root.addEventListener("keydown", (e) => {
         if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
         if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
       });
 
-      // Swipe
       let startX = 0;
       let isDown = false;
       const viewport = root.querySelector(".carousel-viewport");
@@ -869,13 +897,11 @@
 
       viewport.addEventListener("pointercancel", () => { isDown = false; });
 
-      // Pause autoplay on hover/focus
       root.addEventListener("mouseenter", stopAutoplay);
       root.addEventListener("mouseleave", startAutoplay);
       root.addEventListener("focusin", stopAutoplay);
       root.addEventListener("focusout", startAutoplay);
 
-      // Init
       root.tabIndex = 0;
       buildDots();
       updateCounter();
