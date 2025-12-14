@@ -22,6 +22,7 @@
       --brand-blue:#034EA2;
       --charcoal:#1F1F1F;
       --slate:#6E7B8B;
+      --light-gray:#E3E5E8;
     }
 
     *{box-sizing:border-box}
@@ -33,16 +34,18 @@
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+    img{max-width:100%;display:block}
+    img{ user-select:none; -webkit-user-drag:none; }
 
-    /* ===== HEADER (LOCKED) ===== */
+    /* ===== HEADER (MATCH ANDES/CONTACT) ===== */
     .topbar{
       position:sticky;
       top:0;
       z-index:1000;
-      backdrop-filter:blur(10px);
-      background:rgba(255,255,255,0.85);
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(255,255,255,0.75);
       border-bottom:1px solid rgba(0,0,0,0.06);
+      overflow:visible;
     }
 
     .topbar-inner{
@@ -53,6 +56,7 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
+      overflow:visible;
     }
 
     .brand{
@@ -61,8 +65,10 @@
       gap:10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
+      letter-spacing:-0.02em;
       color:var(--brand-blue);
       font-size:18px;
+      line-height:1;
       white-space:nowrap;
     }
 
@@ -72,94 +78,106 @@
       object-fit:contain;
     }
 
-    /* ===== NAV ===== */
+    /* ===== NAV (MATCH ANDES/CONTACT) ===== */
     .nav{
       display:flex;
       align-items:center;
       gap:18px;
-      font-weight:600;
-      color:#1f2b3a;
+      font-size:14px;
+      font-weight:700;
+      color:#0f2f62;
+      white-space:nowrap;
+      overflow:visible;
     }
 
     .nav a{
-      padding:8px 6px;
+      padding:8px 8px;
       border-radius:10px;
-      white-space:nowrap;
+      transition:background 0.15s ease;
     }
 
     .nav a:hover{
       background:rgba(3,78,162,0.08);
-      color:var(--brand-blue);
     }
 
     .nav a.active{
-      color:var(--brand-blue);
       background:rgba(3,78,162,0.08);
+      color:var(--brand-blue);
     }
 
+    /* ===== DROPDOWN (MATCH ANDES/CONTACT) ===== */
     .dropdown{
       position:relative;
       display:inline-flex;
       align-items:center;
+      overflow:visible;
+      z-index:1100;
     }
 
     .dropbtn{
+      appearance:none;
+      border:0;
+      background:transparent;
+      font:inherit;
+      color:inherit;
+
       display:inline-flex;
       align-items:center;
-      gap:6px;
-      padding:8px 6px;
+      gap:8px;
+      padding:8px 8px;
       border-radius:10px;
       cursor:pointer;
       user-select:none;
-      background:transparent;
-      border:0;
-      font:inherit;
-      color:inherit;
+      transition:background 0.15s ease;
     }
 
     .dropbtn:hover{
       background:rgba(3,78,162,0.08);
-      color:var(--brand-blue);
+    }
+
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
     }
 
     .caret{
       width:10px;
       height:10px;
+      display:inline-block;
       border-right:2px solid currentColor;
       border-bottom:2px solid currentColor;
       transform:rotate(45deg);
       margin-top:-2px;
-      opacity:0.9;
+      opacity:0.7;
     }
 
-    .menu{
+    .dropdown-menu{
       position:absolute;
-      top:44px;
+      top:42px;
       right:0;
-      min-width:210px;
+      min-width:220px;
       background:#fff;
       border:1px solid rgba(0,0,0,0.08);
       border-radius:14px;
-      box-shadow:0 18px 55px rgba(0,0,0,0.14);
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
       padding:8px;
       display:none;
-      z-index:50;
+      z-index:1200;
     }
 
-    .menu a{
+    .dropdown-menu a{
       display:block;
-      padding:10px;
+      padding:10px 10px;
       border-radius:10px;
-      font-weight:600;
-      color:#1f2b3a;
+      font-weight:700;
+      color:#0f2f62;
     }
 
-    .menu a:hover{
+    .dropdown-menu a:hover{
       background:rgba(3,78,162,0.08);
-      color:var(--brand-blue);
     }
 
-    .dropdown.open .menu{display:block;}
+    .dropdown.open .dropdown-menu{ display:block; }
 
     /* ===== PAGE ===== */
     .wrap{
@@ -169,10 +187,12 @@
     }
 
     .hero h1{
-      font-family:Montserrat,Inter,sans-serif;
-      font-size:clamp(36px,4.5vw,56px);
-      font-weight:800;
       margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      font-size:clamp(36px,4.5vw,56px);
+      color:var(--brand-blue);
     }
 
     .hero p{
@@ -183,6 +203,7 @@
       margin:0;
     }
 
+    /* ===== CONTENT ===== */
     .grid{
       display:grid;
       grid-template-columns:1.15fr 0.85fr;
@@ -196,12 +217,30 @@
       border-radius:20px;
       padding:26px;
       box-shadow:0 20px 50px rgba(3,78,162,0.08);
+      border:1px solid rgba(0,0,0,0.06);
+    }
+
+    .card h2{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      margin:0 0 12px;
+      font-size:22px;
+      color:#0f2f62;
+      letter-spacing:-0.02em;
+    }
+
+    .card p{
+      line-height:1.75;
+      font-size:15.5px;
+      margin:0;
+      color:#2a2f36;
     }
 
     .stack{
       display:flex;
       flex-direction:column;
       gap:20px;
+      justify-content:center;
     }
 
     .mini{
@@ -211,7 +250,24 @@
       border:1px solid rgba(3,78,162,0.10);
     }
 
-    /* ===== IMAGE BREAK (MATCH OTHER PAGES) ===== */
+    .mini h3{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      margin:0 0 8px;
+      color:#0f2f62;
+      font-size:16px;
+      letter-spacing:-0.02em;
+    }
+
+    .mini ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.7;
+      font-size:14.5px;
+      color:#24324a;
+    }
+
+    /* ===== IMAGE BREAK (MATCH OTHER PAGES, NO BLACK BG) ===== */
     .break{
       margin:18px 0 40px;
       border-radius:22px;
@@ -227,25 +283,37 @@
       display:block;
     }
 
-    /* ===== FOOTER ===== */
+    /* ===== FOOTER (LOCKED) ===== */
     .footer{
       background:var(--brand-blue);
       color:#fff;
+      margin-top:30px;
     }
 
     .footer-inner{
       max-width:1100px;
       margin:0 auto;
       padding:28px 18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
       text-align:center;
+    }
+
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      opacity:.98;
     }
 
     .social{
       display:flex;
-      justify-content:center;
       gap:18px;
-      margin-bottom:14px;
       flex-wrap:wrap;
+      justify-content:center;
     }
 
     .icon-btn{
@@ -259,117 +327,163 @@
       box-shadow:0 14px 34px rgba(0,0,0,0.35);
     }
 
-    .icon-btn img{
-      width:34px;
-      height:34px;
+    .icon-btn img{ width:34px; height:34px; }
+
+    footer small{ font-size:13px; opacity:.9; }
+
+    /* ===== MOBILE (MATCH ANDES/CONTACT) ===== */
+    @media(max-width:900px){
+      .grid{ grid-template-columns:1fr; }
+      .topbar-inner{ justify-content:space-between; }
+      .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+      .dropdown-menu{ right:0; left:auto; }
     }
 
-    small{font-size:13px;opacity:0.9}
-
-    @media(max-width:900px){
-      .grid{grid-template-columns:1fr}
-      .nav{flex-wrap:wrap;justify-content:flex-end}
+    @media(max-width:620px){
+      .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
+      .nav{ justify-content:center; }
+      .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
     }
   </style>
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="/">
-      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
-      <span>Experience Ecuador</span>
-    </a>
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+        <span>Experience Ecuador</span>
+      </a>
 
-    <nav class="nav">
-      <a href="/">Home</a>
-      <a href="/about/">About</a>
-      <a class="active" href="/mission/">Mission</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a class="active" href="/mission/">Mission</a>
 
-      <div class="dropdown" id="regionsDropdown">
-        <button class="dropbtn" type="button" aria-expanded="false">
-          Regions <span class="caret"></span>
-        </button>
-        <div class="menu">
-          <a href="/regions/">All Regions</a>
-          <a href="/regions/galapagos/">Galapagos</a>
-          <a href="/regions/coast/">Coast</a>
-          <a href="/regions/andes/">Andes</a>
-          <a href="/regions/amazon/">Amazon</a>
+        <div class="dropdown" id="regionsDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
+            Regions <span class="caret" aria-hidden="true"></span>
+          </button>
+
+          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+            <a href="/regions/" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+            <a href="/regions/coast/" role="menuitem">Coast</a>
+            <a href="/regions/andes/" role="menuitem">Andes</a>
+            <a href="/regions/amazon/" role="menuitem">Amazon</a>
+          </div>
+        </div>
+
+        <a href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <main class="wrap">
+    <section class="hero">
+      <h1>Our Mission</h1>
+      <p>
+        Experience Ecuador exists to make Ecuador easier to explore, easier to understand, and easier to fall in love with.
+        We curate the best of each region and connect travelers with trusted places, experiences, and local insight.
+      </p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>What we stand for</h2>
+        <p>
+          We believe Ecuador deserves a modern travel hub that goes beyond random lists and paid hype.
+          Our mission is to build a clear, beautiful, and practical guide to the country, organized by region and by experience.
+          As the platform grows, it becomes a community and a newsletter where trusted local partners can showcase what they offer to an international audience.
+        </p>
+      </div>
+
+      <div class="stack">
+        <div class="mini">
+          <h3>How we curate</h3>
+          <ul>
+            <li>Region-first: Galapagos, Coast, Andes, Amazon</li>
+            <li>Experience-first: relaxation, adventure, holistic, culinary, cultural</li>
+            <li>Clarity-first: what it is, why it is worth it, and how to plan it</li>
+          </ul>
+        </div>
+
+        <div class="mini">
+          <h3>What success looks like</h3>
+          <ul>
+            <li>A trusted one-stop hub for all things Ecuador travel</li>
+            <li>A newsletter people look forward to reading</li>
+            <li>A platform partners proudly advertise on</li>
+          </ul>
         </div>
       </div>
+    </section>
 
-      <a href="/contact/">Contact</a>
-    </nav>
-  </div>
-</header>
+    <!-- UPDATED IMAGE -->
+    <section class="break" aria-label="Experience Ecuador mission image">
+      <img src="/assets/images/EE-Mission-02.jpg" alt="Experience Ecuador mission inspiration">
+    </section>
+  </main>
 
-<main class="wrap">
-  <section class="hero">
-    <h1>Our Mission</h1>
-    <p>
-      Experience Ecuador exists to make Ecuador easier to explore, easier to understand,
-      and easier to fall in love with.
-    </p>
-  </section>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
 
-  <section class="grid">
-    <div class="card">
-      <h2>What we stand for</h2>
-      <p>
-        We believe Ecuador deserves a modern travel hub built on clarity, trust, and regional depth.
-        Our goal is to connect travelers with meaningful experiences and trusted local partners.
-      </p>
-    </div>
-
-    <div class="stack">
-      <div class="mini">
-        <h3>How we curate</h3>
-        <ul>
-          <li>Region-first discovery</li>
-          <li>Experience-driven planning</li>
-          <li>Clear guidance and trusted insight</li>
-        </ul>
+      <div class="social">
+        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+        </a>
+        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+        </a>
+        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+        </a>
       </div>
+
+      <small>© 2025 Experience Ecuador. All rights reserved.</small>
     </div>
-  </section>
+  </footer>
 
-  <!-- UPDATED IMAGE -->
-  <section class="break">
-    <img src="/assets/images/EE-Mission-02.jpg" alt="Experience Ecuador mission">
-  </section>
-</main>
+  <script>
+    // Regions dropdown (click + close on outside click / Esc) - same behavior as Andes
+    (function () {
+      const dd = document.getElementById('regionsDropdown');
+      if (!dd) return;
 
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="social">
-      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank"><img src="/assets/icons/EE-SociaIcon-Facebook.png"></a>
-      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-Instagram.png"></a>
-      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-TikTok.png"></a>
-      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-YouTube.png"></a>
-    </div>
-    <small>© 2025 Experience Ecuador. All rights reserved.</small>
-  </div>
-</footer>
+      const btn = dd.querySelector('.dropbtn');
+      const menu = dd.querySelector('.dropdown-menu');
 
-<script>
-  (function(){
-    const dd = document.getElementById('regionsDropdown');
-    if(!dd) return;
-    const btn = dd.querySelector('.dropbtn');
+      function setOpen(isOpen) {
+        dd.classList.toggle('open', isOpen);
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
 
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      dd.classList.toggle('open');
-    });
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        setOpen(!dd.classList.contains('open'));
+      });
 
-    document.addEventListener('click', () => dd.classList.remove('open'));
-    document.addEventListener('keydown', e => {
-      if(e.key === 'Escape') dd.classList.remove('open');
-    });
-  })();
-</script>
+      menu.addEventListener('click', function (e) {
+        e.stopPropagation();
+      });
+
+      document.addEventListener('click', function () {
+        setOpen(false);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') setOpen(false);
+      });
+    })();
+  </script>
 
 </body>
 </html>
