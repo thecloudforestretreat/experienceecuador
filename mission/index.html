@@ -33,16 +33,17 @@
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
-    /* ===== HEADER (LOCKED) ===== */
+    /* ===== HEADER (MATCH ANDES / CONTACT) ===== */
     .topbar{
       position:sticky;
       top:0;
-      z-index:10;
-      backdrop-filter:blur(10px);
-      background:rgba(255,255,255,0.85);
+      z-index:1000;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(255,255,255,0.75);
       border-bottom:1px solid rgba(0,0,0,0.06);
+      overflow:visible;
     }
 
     .topbar-inner{
@@ -53,6 +54,7 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
+      overflow:visible;
     }
 
     .brand{
@@ -61,69 +63,79 @@
       gap:10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
+      letter-spacing:-0.02em;
       color:var(--brand-blue);
       font-size:18px;
-      white-space:nowrap;
-    }
-
-    .brand .pin{
-      width:28px;
-      height:28px;
-      flex:0 0 auto;
-    }
-
-    .brand .pin img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      background:transparent;
-    }
-
-    /* ===== NAV MENU ===== */
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      font-weight:600;
-      color:#1f2b3a;
-    }
-
-    .nav a{
-      padding:8px 6px;
-      border-radius:10px;
       line-height:1;
       white-space:nowrap;
     }
 
+    .brand img{
+      width:28px;
+      height:28px;
+      object-fit:contain;
+    }
+
+    /* ===== MENU ===== */
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-size:14px;
+      font-weight:700;
+      color:#0f2f62;
+      white-space:nowrap;
+      overflow:visible;
+    }
+
+    .nav a{
+      padding:8px 8px;
+      border-radius:10px;
+      transition:background 0.15s ease;
+      opacity:1;
+    }
+
     .nav a:hover{
       background:rgba(3,78,162,0.08);
-      color:var(--brand-blue);
     }
 
     .nav a.active{
       color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
     }
 
     .dropdown{
       position:relative;
       display:inline-flex;
       align-items:center;
-      gap:6px;
+      overflow:visible;
+      z-index:1100;
     }
 
     .dropbtn{
+      appearance:none;
+      border:0;
+      background:transparent;
+      font:inherit;
+      color:inherit;
+
       display:inline-flex;
       align-items:center;
-      gap:6px;
-      padding:8px 6px;
+      gap:8px;
+      padding:8px 8px;
       border-radius:10px;
       cursor:pointer;
       user-select:none;
+      transition:background 0.15s ease;
     }
 
     .dropbtn:hover{
       background:rgba(3,78,162,0.08);
-      color:var(--brand-blue);
+    }
+
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
     }
 
     .caret{
@@ -134,39 +146,36 @@
       border-bottom:2px solid currentColor;
       transform:rotate(45deg);
       margin-top:-2px;
-      opacity:0.9;
+      opacity:0.7;
     }
 
-    .menu{
+    .dropdown-menu{
       position:absolute;
-      top:44px;
+      top:42px;
       right:0;
-      min-width:210px;
+      min-width:220px;
       background:#fff;
       border:1px solid rgba(0,0,0,0.08);
       border-radius:14px;
-      box-shadow:0 18px 55px rgba(0,0,0,0.14);
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
       padding:8px;
       display:none;
-      z-index:50;
+      z-index:1200;
     }
 
-    .menu a{
+    .dropdown-menu a{
       display:block;
       padding:10px 10px;
       border-radius:10px;
-      font-weight:600;
-      color:#1f2b3a;
+      font-weight:700;
+      color:#0f2f62;
     }
 
-    .menu a:hover{
+    .dropdown-menu a:hover{
       background:rgba(3,78,162,0.08);
-      color:var(--brand-blue);
     }
 
-    .dropdown.open .menu{
-      display:block;
-    }
+    .dropdown.open .dropdown-menu{ display:block; }
 
     /* ===== PAGE ===== */
     .wrap{
@@ -180,6 +189,8 @@
       font-size:clamp(36px,4.5vw,56px);
       font-weight:800;
       margin:0 0 10px;
+      letter-spacing:-0.03em;
+      color:var(--brand-blue);
     }
 
     .hero p{
@@ -201,9 +212,10 @@
 
     .card{
       background:#fff;
-      border-radius:20px;
+      border-radius:22px;
       padding:26px;
-      box-shadow:0 20px 50px rgba(3,78,162,0.08);
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
     }
 
     .card h2{
@@ -211,6 +223,8 @@
       font-weight:800;
       margin:0 0 12px;
       font-size:22px;
+      color:#0f2f62;
+      letter-spacing:-0.02em;
     }
 
     .card p{
@@ -229,9 +243,9 @@
 
     .mini{
       background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      border-radius:18px;
+      border-radius:20px;
       padding:20px;
-      border:1px solid rgba(3,78,162,0.10);
+      border:1px solid rgba(3,78,162,0.12);
     }
 
     .mini h3{
@@ -240,6 +254,7 @@
       margin:0 0 8px;
       color:#0f2f62;
       font-size:16px;
+      letter-spacing:-0.01em;
     }
 
     .mini ul{
@@ -255,8 +270,9 @@
       margin:18px 0 40px;
       border-radius:22px;
       overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
       box-shadow:0 18px 60px rgba(0,0,0,0.14);
-      background:#000;
+      background:transparent;
     }
 
     .break img{
@@ -271,30 +287,34 @@
     .footer{
       background:var(--brand-blue);
       color:#fff;
+      margin-top:30px;
     }
 
     .footer-inner{
       max-width:1100px;
       margin:0 auto;
       padding:28px 18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
       text-align:center;
     }
 
     .footer-tagline{
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
+      letter-spacing:-0.02em;
       font-size:16px;
-      letter-spacing:-0.01em;
-      margin:0 0 16px;
-      color:#ffffff;
+      opacity:.98;
+      margin-top:2px;
     }
 
     .social{
       display:flex;
-      justify-content:center;
       gap:18px;
-      margin-bottom:14px;
       flex-wrap:wrap;
+      justify-content:center;
     }
 
     .icon-btn{
@@ -315,12 +335,20 @@
       user-select:none;
     }
 
-    small{font-size:13px;opacity:0.9}
+    footer small{font-size:13px;opacity:.9}
 
+    /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{grid-template-columns:1fr}
-      .nav{display:none}
-      .topbar-inner{justify-content:center}
+      .topbar-inner{justify-content:space-between}
+      .nav{gap:8px;flex-wrap:wrap;justify-content:flex-end}
+      .dropdown-menu{ right:0; left:auto; }
+    }
+
+    @media(max-width:620px){
+      .topbar-inner{flex-direction:column;align-items:center;gap:10px}
+      .nav{justify-content:center}
+      .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
     }
   </style>
 </head>
@@ -331,28 +359,26 @@
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="/">
-        <span class="pin">
-          <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador Pin">
-        </span>
+        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
         <span>Experience Ecuador</span>
       </a>
 
-      <nav class="nav" aria-label="Primary">
+      <nav class="nav" aria-label="Primary navigation">
         <a href="/">Home</a>
         <a href="/about/">About</a>
         <a class="active" href="/mission/">Mission</a>
 
         <div class="dropdown" id="regionsDropdown">
-          <div class="dropbtn" role="button" aria-haspopup="true" aria-expanded="false">
-            <span>Regions</span>
-            <span class="caret" aria-hidden="true"></span>
-          </div>
-          <div class="menu" role="menu" aria-label="Regions menu">
-            <a role="menuitem" href="/regions/">All Regions</a>
-            <a role="menuitem" href="/regions/galapagos/">Galapagos</a>
-            <a role="menuitem" href="/regions/coast/">Coast</a>
-            <a role="menuitem" href="/regions/andes/">Andes</a>
-            <a role="menuitem" href="/regions/amazon/">Amazon</a>
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
+            Regions <span class="caret" aria-hidden="true"></span>
+          </button>
+
+          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+            <a href="/regions/" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+            <a href="/regions/coast/" role="menuitem">Coast</a>
+            <a href="/regions/andes/" role="menuitem">Andes</a>
+            <a href="/regions/amazon/" role="menuitem">Amazon</a>
           </div>
         </div>
 
@@ -433,31 +459,36 @@
   </footer>
 
   <script>
+    // Regions dropdown (click + close on outside click / Esc) matching Andes
     (function () {
       const dd = document.getElementById('regionsDropdown');
       if (!dd) return;
 
       const btn = dd.querySelector('.dropbtn');
-      const setExpanded = (v) => btn && btn.setAttribute('aria-expanded', v ? 'true' : 'false');
+      const menu = dd.querySelector('.dropdown-menu');
 
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const isOpen = dd.classList.toggle('open');
-        setExpanded(isOpen);
+      function setOpen(isOpen) {
+        dd.classList.toggle('open', isOpen);
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        setOpen(!dd.classList.contains('open'));
       });
 
-      document.addEventListener('click', (e) => {
-        if (!dd.contains(e.target)) {
-          dd.classList.remove('open');
-          setExpanded(false);
-        }
+      if (menu) {
+        menu.addEventListener('click', function (e) {
+          e.stopPropagation();
+        });
+      }
+
+      document.addEventListener('click', function () {
+        setOpen(false);
       });
 
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          dd.classList.remove('open');
-          setExpanded(false);
-        }
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') setOpen(false);
       });
     })();
   </script>
