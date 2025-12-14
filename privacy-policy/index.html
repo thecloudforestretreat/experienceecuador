@@ -35,7 +35,7 @@
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
-    /* ===== HEADER (MATCH CONTACT) ===== */
+    /* ===== HEADER (MATCH REGIONS / CONTACT) ===== */
     .topbar{
       position:sticky;
       top:0;
@@ -97,7 +97,10 @@
     }
 
     .nav a:hover,
-    .nav button:hover{
+    .nav button:hover{ background:rgba(3,78,162,.08); }
+
+    .nav a.active{
+      color:var(--brand-blue);
       background:rgba(3,78,162,.08);
     }
 
@@ -160,7 +163,10 @@
       color:#0f2f62;
     }
 
-    .dropdown-menu a:hover{
+    .dropdown-menu a:hover{ background:rgba(3,78,162,0.08); }
+
+    .dropdown-menu a.active{
+      color:var(--brand-blue);
       background:rgba(3,78,162,0.08);
     }
 
@@ -184,30 +190,32 @@
     .lede{
       color:var(--slate);
       line-height:1.65;
-      max-width:82ch;
+      max-width:85ch;
       margin:0;
       font-size:16.8px;
     }
 
-    .meta{
-      margin-top:14px;
+    .meta-row{
+      margin-top:12px;
       display:flex;
       flex-wrap:wrap;
       gap:10px;
       align-items:center;
+      color:#162b55;
+      font-weight:700;
+      font-size:13.5px;
     }
 
     .pill{
       display:inline-flex;
-      gap:8px;
       align-items:center;
+      gap:8px;
       padding:8px 12px;
       border-radius:999px;
       background:rgba(3,78,162,.06);
       border:1px solid rgba(3,78,162,.14);
       color:#0f2f62;
       font-weight:800;
-      font-size:13px;
     }
 
     .content-grid{
@@ -229,7 +237,7 @@
     .card + .card{ margin-top:16px; }
 
     .card h2{
-      margin:0 0 12px;
+      margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       letter-spacing:-0.02em;
@@ -237,37 +245,28 @@
       color:#0f2f62;
     }
 
-    .card h3{
-      margin:18px 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:15.5px;
-      color:#0f2f62;
-    }
-
     .card p{
       margin:0 0 12px;
       color:#1f2b3f;
       line-height:1.75;
-      font-size:15.6px;
-      max-width:85ch;
+      font-size:15.5px;
+      max-width:80ch;
     }
 
     .card p:last-child{ margin-bottom:0; }
 
     .card ul{
-      margin:0 0 12px;
+      margin:10px 0 0;
       padding-left:18px;
-      color:#1f2b3f;
-      line-height:1.75;
-      font-size:15.4px;
-      max-width:85ch;
+      color:#162b55;
+      font-weight:600;
+      line-height:1.65;
+      font-size:14.8px;
     }
 
-    .card li{ margin:7px 0; }
+    .card ul li{ margin:8px 0; }
 
-    .card a{
+    .inline-link{
       text-decoration:underline;
       text-underline-offset:3px;
       font-weight:800;
@@ -304,31 +303,116 @@
       font-size:14.8px;
     }
 
-    .mini ul{
-      margin:10px 0 0;
-      padding-left:18px;
-      color:#162b55;
-      font-weight:600;
-      line-height:1.55;
-      font-size:14.5px;
+    .link-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
     }
 
-    .mini ul li{ margin:6px 0; }
-
-    .callout{
+    .pill-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
       background:rgba(3,78,162,.05);
       border:1px solid rgba(3,78,162,.12);
-      border-radius:18px;
-      padding:14px;
-      margin-top:14px;
+      font-weight:900;
+      color:#0f2f62;
     }
 
-    .callout strong{
-      display:block;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
+    .pill-link:hover{ background:rgba(3,78,162,.08); }
+
+    .pill-link span{
+      opacity:.9;
+      font-weight:700;
+      color:#162b55;
+      font-size:13px;
+    }
+
+    .email-row{
+      margin-top:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .email-link{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:900;
+      color:#162b55;
+      font-size:14.5px;
+      word-break:break-word;
+    }
+
+    .copy-icon-btn{
+      width:36px;
+      height:36px;
+      border-radius:12px;
+      border:1px solid rgba(3,78,162,.22);
+      background:#fff;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+      flex:0 0 auto;
+    }
+
+    .copy-icon-btn:hover{ background:rgba(3,78,162,.06); }
+    .copy-icon-btn:active{ transform:scale(0.98); }
+
+    .copy-icon-btn.copied{
+      background:rgba(3,78,162,.10);
+      border-color:rgba(3,78,162,.35);
+    }
+
+    .copy-ico{
+      width:18px;
+      height:18px;
+      fill:none;
+      stroke:#0f2f62;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .copy-toast{
+      display:none;
+      margin-top:10px;
+      width:fit-content;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,.08);
+      border:1px solid rgba(3,78,162,.18);
       color:#0f2f62;
-      margin-bottom:6px;
+      font-weight:900;
+      font-size:13px;
+    }
+    .copy-toast.show{ display:inline-flex; }
+
+    .policy-image{
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:0 18px 60px rgba(0,0,0,.14);
+      aspect-ratio:4 / 3;
+      background:#eef2f7;
+    }
+
+    .policy-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
     }
 
     /* ===== FOOTER (LOCKED) ===== */
@@ -376,7 +460,6 @@
     }
 
     .icon-btn img{width:34px;height:34px}
-
     footer small{font-size:13px;opacity:.9}
 
     /* ===== MOBILE ===== */
@@ -446,13 +529,12 @@
   <main class="wrap">
     <h1>Privacy Policy</h1>
     <p class="lede">
-      This Privacy Policy explains how Experience Ecuador collects, uses, and protects information when you visit our website
-      or contact us. We aim to keep this simple and transparent.
+      This Privacy Policy explains how Experience Ecuador collects, uses, and protects information when you use our website.
     </p>
 
-    <div class="meta" aria-label="Policy metadata">
-      <div class="pill">Effective date: January 1, 2025</div>
-      <div class="pill">Contact: <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a></div>
+    <div class="meta-row" aria-label="Policy metadata">
+      <span class="pill">Effective date: December 14, 2025</span>
+      <span class="pill">Contact: info@experienceecuador.com</span>
     </div>
 
     <section class="content-grid" aria-label="Privacy Policy content">
@@ -460,127 +542,127 @@
         <div class="card">
           <h2>Overview</h2>
           <p>
-            Experience Ecuador is a curated travel discovery website. We do not sell your personal information.
-            We collect only what we need to operate the site and respond to messages.
+            Experience Ecuador is an editorial travel guide. Our goal is to help travelers discover regions and experiences across Ecuador.
+            We collect minimal information and use it to operate the site, respond to messages, and improve content quality.
           </p>
+        </div>
 
-          <h3>Information we may collect</h3>
+        <div class="card">
+          <h2>Information we collect</h2>
+          <p><strong>Information you provide</strong></p>
           <ul>
-            <li><strong>Contact information you provide:</strong> such as your name, email address, and message when you contact us.</li>
-            <li><strong>Basic usage data:</strong> limited technical information that helps the site function, such as pages viewed and device or browser type.</li>
-            <li><strong>Cookies:</strong> small files used for basic functionality and analytics. You can control cookies in your browser settings.</li>
+            <li>Messages you send through email or our Contact page</li>
+            <li>Details you include in a partnership inquiry, such as business name, location, and website</li>
           </ul>
 
-          <h3>How we use information</h3>
+          <p style="margin-top:14px;"><strong>Information collected automatically</strong></p>
           <ul>
-            <li>To respond to inquiries and partnership requests.</li>
-            <li>To maintain and improve site performance, content, and navigation.</li>
-            <li>To protect the site against abuse, spam, or security risks.</li>
+            <li>Basic device and browser data used for security and performance</li>
+            <li>Approximate location inferred from IP address (city or region level), used for analytics</li>
+            <li>Pages viewed and interactions, used to understand what content is useful</li>
           </ul>
+        </div>
 
-          <h3>What we do not do</h3>
+        <div class="card">
+          <h2>How we use information</h2>
           <ul>
-            <li>We do not sell your personal information.</li>
-            <li>We do not knowingly collect sensitive personal information.</li>
-            <li>We do not knowingly collect personal information from children.</li>
+            <li>To respond to inquiries and partnership requests</li>
+            <li>To maintain and secure the website</li>
+            <li>To understand which pages perform well so we can improve guides</li>
+            <li>To measure general traffic trends and site usage</li>
           </ul>
+          <p style="margin-top:14px;">
+            We do not sell personal information.
+          </p>
         </div>
 
         <div class="card">
           <h2>Cookies and analytics</h2>
           <p>
-            We may use cookies or similar technologies to help the website run smoothly and understand general traffic patterns.
-            These tools may collect information such as browser type, approximate location (city or region level), pages visited, and time on site.
+            We may use cookies or similar technologies to keep the site reliable and measure performance.
+            Cookies may be used for basic analytics, security, and remembering simple preferences.
           </p>
           <p>
-            You can disable cookies in your browser settings. Some site features may not function as intended if cookies are blocked.
+            If you prefer, you can control cookies using your browser settings. Disabling cookies may impact certain site features.
           </p>
-
-          <div class="callout" role="note" aria-label="Analytics note">
-            <strong>Note</strong>
-            If we add a newsletter signup or other features later, this policy will be updated to reflect that change.
-          </div>
         </div>
 
         <div class="card">
           <h2>Sharing of information</h2>
           <p>
-            We may share limited information only when necessary to operate the site and provide services.
-            Examples include hosting providers, analytics tools, and email services used to communicate with you.
+            We may share information only in these limited cases:
           </p>
-          <p>
-            We may also disclose information if required by law, to protect rights and safety, or to prevent fraud and abuse.
+          <ul>
+            <li>Service providers that help operate the website (hosting, analytics, email tools)</li>
+            <li>Legal or safety reasons if required by law or to protect users and the site</li>
+          </ul>
+          <p style="margin-top:14px;">
+            We do not share personal information with third parties for advertising purposes.
           </p>
         </div>
 
         <div class="card">
           <h2>Data retention</h2>
           <p>
-            We keep personal information only as long as needed for the purposes described in this policy,
-            such as responding to messages or maintaining site operations.
+            We retain messages and inquiry details only as long as needed to respond, maintain records for partnerships, or meet legal requirements.
+            If you want us to delete a message thread or contact details, email us and we will follow up.
           </p>
         </div>
 
         <div class="card">
           <h2>Your choices</h2>
           <ul>
-            <li>You can contact us to request access, correction, or deletion of personal information you provided to us.</li>
-            <li>You can control cookies using your browser settings.</li>
-            <li>If we offer a newsletter in the future, you will be able to unsubscribe at any time.</li>
+            <li>You can contact us to request access, updates, or deletion of your message data</li>
+            <li>You can opt out of cookies through browser controls</li>
+            <li>You can choose not to share optional details when you contact us</li>
           </ul>
-          <p>
-            To make a request, email <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>.
-          </p>
         </div>
 
         <div class="card">
-          <h2>Security</h2>
+          <h2>Children’s privacy</h2>
           <p>
-            We use reasonable safeguards to protect information, but no method of transmission or storage is completely secure.
-            Please avoid sending sensitive information through the contact email.
-          </p>
-        </div>
-
-        <div class="card">
-          <h2>International visitors</h2>
-          <p>
-            If you access this site from outside the country where our servers are located, your information may be processed and stored across borders.
-            By using the site, you consent to this processing where permitted by law.
+            Experience Ecuador is not intended for children under 13. We do not knowingly collect personal information from children.
+            If you believe a child has provided information, contact us and we will delete it.
           </p>
         </div>
 
         <div class="card">
           <h2>Changes to this policy</h2>
           <p>
-            We may update this Privacy Policy as the site evolves. When we do, we will revise the effective date above.
-            Continued use of the site after updates means you accept the revised policy.
+            We may update this Privacy Policy as the site evolves. Updates will be posted on this page with a revised effective date.
           </p>
         </div>
       </div>
 
-      <aside class="side-stack" aria-label="Privacy Policy side content">
+      <aside class="side-stack" aria-label="Privacy side content">
         <div class="mini">
-          <h3>Quick summary</h3>
+          <h3>Need help or have a request</h3>
           <p>
-            We collect minimal information to operate the site and respond to messages.
-            We do not sell personal information.
+            For privacy questions, data requests, or corrections, email us and include a brief description of what you need.
           </p>
-          <ul>
-            <li>Contact info only when you send it</li>
-            <li>Basic analytics for improvement</li>
-            <li>Cookie control via your browser</li>
-          </ul>
+
+          <div class="link-list" aria-label="Privacy quick links">
+            <a class="pill-link" href="/contact/">
+              Contact page <span>Write us</span>
+            </a>
+
+            <div class="email-row" aria-label="Email row">
+              <a class="email-link" href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
+
+              <button class="copy-icon-btn" id="copyPrivacyEmail" type="button" aria-label="Copy email">
+                <svg class="copy-ico" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V9z"></path>
+                  <path d="M7 15H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="copy-toast" id="privacyCopyToast" role="status" aria-live="polite">Copied</div>
+          </div>
         </div>
 
-        <div class="mini">
-          <h3>Questions</h3>
-          <p>
-            If you have questions about privacy, email us.
-          </p>
-          <div class="callout" role="note" aria-label="Privacy contact">
-            <strong>Email</strong>
-            <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
-          </div>
+        <div class="policy-image" aria-label="Privacy policy image">
+          <img src="/assets/images/EE-Assets-privacy-policy-01.jpg" alt="Privacy policy graphic">
         </div>
       </aside>
     </section>
@@ -654,6 +736,44 @@
     document.addEventListener('contextmenu', (e) => {
       if (e.target && e.target.tagName === 'IMG') e.preventDefault();
     });
+
+    // Copy email icon button (Privacy Policy)
+    (function(){
+      const email = 'info@experienceecuador.com';
+      const btn = document.getElementById('copyPrivacyEmail');
+      const toast = document.getElementById('privacyCopyToast');
+      if(!btn) return;
+
+      function showCopied(){
+        btn.classList.add('copied');
+        if(toast) toast.classList.add('show');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          if(toast) toast.classList.remove('show');
+        }, 1600);
+      }
+
+      btn.addEventListener('click', async () => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(email);
+            showCopied();
+            return;
+          }
+          const ta = document.createElement('textarea');
+          ta.value = email;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          ta.style.top = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showCopied();
+        } catch (e) {}
+      });
+    })();
   </script>
 </body>
 </html>
