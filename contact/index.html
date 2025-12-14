@@ -199,6 +199,11 @@
       font-size:16.8px;
     }
 
+    .lede{
+      margin-top:0;
+      max-width:80ch;
+    }
+
     .content-grid{
       display:grid;
       grid-template-columns:1.15fr 0.85fr;
@@ -248,7 +253,7 @@
       color:#162b55;
     }
 
-    /* REPLACED: Copy button -> icon button used across other pages */
+    /* Copy icon button */
     .copy-icon-btn{
       width:36px;
       height:36px;
@@ -262,10 +267,8 @@
       transition:transform .12s ease, background .12s ease, border-color .12s ease;
       flex:0 0 auto;
     }
-
     .copy-icon-btn:hover{ background:rgba(3,78,162,.06); }
     .copy-icon-btn:active{ transform:scale(0.98); }
-
     .copy-icon-btn.copied{
       background:rgba(3,78,162,.10);
       border-color:rgba(3,78,162,.35);
@@ -298,11 +301,18 @@
     .partners-lines{
       display:flex;
       flex-direction:column;
-      gap:6px;
+      gap:8px;
       color:#162b55;
       font-weight:600;
-      line-height:1.35;
-      font-size:14.5px;
+      line-height:1.5;
+      font-size:14.7px;
+    }
+
+    .partners-lines .muted{
+      color:var(--slate);
+      font-weight:600;
+      font-size:13.8px;
+      line-height:1.6;
     }
 
     .side-stack{
@@ -364,27 +374,6 @@
       font-size:13px;
     }
 
-    .email-row{
-      margin-top:10px;
-      padding:12px 12px;
-      border-radius:16px;
-      background:rgba(3,78,162,.05);
-      border:1px solid rgba(3,78,162,.12);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-
-    .email-link{
-      text-decoration:underline;
-      text-underline-offset:3px;
-      font-weight:800;
-      color:#162b55;
-      font-size:14.5px;
-      word-break:break-word;
-    }
-
     .side-image{
       border-radius:22px;
       overflow:hidden;
@@ -399,7 +388,7 @@
       display:block;
     }
 
-    /* NEW: Footer links (FAQ / Policies) */
+    /* Footer links */
     .footer-links{
       display:flex;
       gap:14px;
@@ -532,47 +521,54 @@
 
   <main class="wrap">
     <h1>Contact</h1>
-    <p>
+    <p class="lede">
       Want to collaborate, feature an experience, or be part of our future newsletter and regional guides?
-      Experience Ecuador is being built as a one-stop hub for travel, culture, and discovery across the country.
+      Share a short note and we will route it to the right place.
     </p>
 
     <section class="content-grid" aria-label="Contact content">
       <div class="card">
         <p>
-          If you are a lodging, restaurant, tour operator, retreat, guide, or local business and want to be featured,
-          we are actively building partnerships across Ecuador.
+          Experience Ecuador is a curated travel hub built to make planning feel simple, clear, and inspiring.
+          If you represent a lodge, restaurant, tour operator, retreat, guide, or local business, we would love to hear from you.
         </p>
-
-        <div class="info-item">
-          <div class="label">Email</div>
-          <div class="value">
-            <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
-
-            <!-- UPDATED: icon copy button -->
-            <button class="copy-icon-btn" id="copyContactEmail" type="button" aria-label="Copy email">
-              <svg class="copy-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V9z"></path>
-                <path d="M7 15H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
-              </svg>
-            </button>
-          </div>
-
-          <!-- Optional toast like other pages -->
-          <div class="copy-toast" id="contactCopyToast" role="status" aria-live="polite">Copied</div>
-        </div>
 
         <div class="info-item">
           <div class="label">Partnership interests</div>
           <div class="partners-lines" aria-label="Partnership interests list">
-            <div>Lodging • Restaurants • Tours • Excursions</div>
-            <div>Retreats • Cultural • Nature &amp; Wildlife</div>
+            <div><strong>Lodging</strong> • boutique hotels, eco-lodges, haciendas, retreats</div>
+            <div><strong>Experiences</strong> • tours, excursions, guides, adventure operators</div>
+            <div><strong>Food</strong> • restaurants, culinary experiences, coffee and cacao</div>
+            <div class="muted">
+              Include your location, website, and the best contact person. If you have photos or a media kit, add a link.
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- UPDATED: Right column includes Related pages + image (so you actually see it) -->
       <aside class="side-stack" aria-label="Contact side content">
+        <!-- KEEP EMAIL ONLY ON RIGHT SIDE ABOVE IMAGE -->
+        <div class="mini">
+          <h3>Reach us</h3>
+          <p>
+            Send partnerships, features, and collaboration inquiries here.
+          </p>
+
+          <div class="link-list" aria-label="Email">
+            <div class="value" style="margin-top:10px;">
+              <a class="email-link" href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
+              <button class="copy-icon-btn" id="copyContactEmail" type="button" aria-label="Copy email">
+                <svg class="copy-ico" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V9z"></path>
+                  <path d="M7 15H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="copy-toast" id="contactCopyToast" role="status" aria-live="polite">Copied</div>
+          </div>
+        </div>
+
         <div class="mini">
           <h3>Related pages</h3>
           <p>
@@ -592,19 +588,6 @@
             <a class="pill-link" href="/terms-of-service/">
               Terms of Service <span>Service rules</span>
             </a>
-
-            <div class="email-row" aria-label="Email row">
-              <a class="email-link" href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
-
-              <button class="copy-icon-btn" id="copyContactEmailSide" type="button" aria-label="Copy email">
-                <svg class="copy-ico" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M9 9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V9z"></path>
-                  <path d="M7 15H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
-                </svg>
-              </button>
-            </div>
-
-            <div class="copy-toast" id="contactCopyToastSide" role="status" aria-live="polite">Copied</div>
           </div>
         </div>
 
@@ -634,7 +617,6 @@
         </a>
       </div>
 
-      <!-- Footer policy links (kept) -->
       <div class="footer-links" aria-label="Footer links">
         <a href="/faq/">FAQ</a>
         <a href="/privacy-policy/">Privacy Policy</a>
@@ -692,48 +674,42 @@
       if (e.target && e.target.tagName === 'IMG') e.preventDefault();
     });
 
-    // Copy email icon button (Contact) - supports both buttons if present
+    // Copy email icon button (single)
     (function(){
       const email = 'info@experienceecuador.com';
+      const btn = document.getElementById('copyContactEmail');
+      const toast = document.getElementById('contactCopyToast');
+      if(!btn) return;
 
-      function wireCopy(btnId, toastId){
-        const btn = document.getElementById(btnId);
-        const toast = document.getElementById(toastId);
-        if(!btn) return;
-
-        function showCopied(){
-          btn.classList.add('copied');
-          if(toast) toast.classList.add('show');
-          setTimeout(() => {
-            btn.classList.remove('copied');
-            if(toast) toast.classList.remove('show');
-          }, 1600);
-        }
-
-        btn.addEventListener('click', async () => {
-          try {
-            if (navigator.clipboard && window.isSecureContext) {
-              await navigator.clipboard.writeText(email);
-              showCopied();
-              return;
-            }
-            const ta = document.createElement('textarea');
-            ta.value = email;
-            ta.style.position = 'fixed';
-            ta.style.left = '-9999px';
-            ta.style.top = '0';
-            document.body.appendChild(ta);
-            ta.focus();
-            ta.select();
-            document.execCommand('copy');
-            document.body.removeChild(ta);
-            showCopied();
-          } catch (e) {}
-        });
+      function showCopied(){
+        btn.classList.add('copied');
+        if(toast) toast.classList.add('show');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          if(toast) toast.classList.remove('show');
+        }, 1600);
       }
 
-      wireCopy('copyContactEmail', 'contactCopyToast');
-      wireCopy('copyContactEmailSide', 'contactCopyToastSide');
+      btn.addEventListener('click', async () => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(email);
+            showCopied();
+            return;
+          }
+          const ta = document.createElement('textarea');
+          ta.value = email;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          ta.style.top = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showCopied();
+        } catch (e) {}
+      });
     })();
   </script>
 </body>
