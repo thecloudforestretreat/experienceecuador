@@ -42,10 +42,11 @@
     .topbar{
       position:sticky;
       top:0;
-      z-index:1000; /* FIX: keep header clickable above carousel/hero */
+      z-index:1000; /* keep header clickable above carousel/hero */
       backdrop-filter:saturate(160%) blur(10px);
       background:rgba(255,255,255,0.75);
       border-bottom:1px solid rgba(0,0,0,0.06);
+      overflow:visible; /* FIX for mobile dropdown */
     }
 
     .topbar-inner{
@@ -56,6 +57,7 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
+      overflow:visible; /* FIX for mobile dropdown */
     }
 
     .brand{
@@ -86,6 +88,7 @@
       font-size:14px;
       color:#1b2b4a;
       white-space:nowrap;
+      overflow:visible; /* FIX for mobile dropdown */
     }
 
     .nav a{
@@ -102,10 +105,18 @@
       position:relative;
       display:inline-flex;
       align-items:center;
-      z-index:1100; /* FIX */
+      z-index:1100;
+      overflow:visible; /* FIX for mobile dropdown */
     }
 
+    /* FIX: real button so tap works on mobile */
     .dropbtn{
+      appearance:none;
+      border:0;
+      background:transparent;
+      font:inherit;
+      color:inherit;
+
       display:inline-flex;
       align-items:center;
       gap:8px;
@@ -114,11 +125,15 @@
       cursor:pointer;
       user-select:none;
       transition:background 0.15s ease;
-      outline:none;
     }
 
     .dropbtn:hover{
       background:rgba(3,78,162,0.08);
+    }
+
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
     }
 
     .caret{
@@ -143,7 +158,7 @@
       box-shadow:0 18px 55px rgba(3,78,162,0.16);
       padding:8px;
       display:none;
-      z-index:1200; /* FIX */
+      z-index:1200;
     }
 
     .dropdown-menu a{
@@ -158,8 +173,8 @@
       background:rgba(3,78,162,0.08);
     }
 
-    .dropdown:focus-within .dropdown-menu,
-    .dropdown:hover .dropdown-menu{
+    /* FIX: click-controlled open state */
+    .dropdown.open .dropdown-menu{
       display:block;
     }
 
@@ -528,7 +543,7 @@
       .hero p{ margin:0 auto; }
 
       .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
-      .dropdown-menu{ right:0; left:auto; }
+      .dropdown-menu{ right:0; left:auto; transform:none; }
     }
 
     @media(max-width:620px){
@@ -560,10 +575,11 @@
         <a href="/about">About</a>
         <a href="/mission">Mission</a>
 
-        <div class="dropdown">
-          <div class="dropbtn" tabindex="0" role="button" aria-haspopup="true" aria-label="Regions menu">
+        <!-- FIXED Regions dropdown (click-based, mobile-safe) -->
+        <div class="dropdown" id="regionsDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
             Regions <span class="caret" aria-hidden="true"></span>
-          </div>
+          </button>
           <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
             <a href="/regions" role="menuitem">All Regions</a>
             <a href="/regions/galapagos" role="menuitem">Galapagos</a>
@@ -744,6 +760,39 @@
   </footer>
 
   <script>
+    /* Regions dropdown (mobile + desktop click support) */
+    (function () {
+      const dd = document.getElementById('regionsDropdown');
+      if (!dd) return;
+
+      const btn = dd.querySelector('.dropbtn');
+      const menu = dd.querySelector('.dropdown-menu');
+
+      function setOpen(isOpen) {
+        dd.classList.toggle('open', isOpen);
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        setOpen(!dd.classList.contains('open'));
+      });
+
+      menu.addEventListener('click', function (e) {
+        e.stopPropagation();
+      });
+
+      document.addEventListener('click', function () {
+        setOpen(false);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') setOpen(false);
+      });
+    })();
+
+    /* Coast carousel */
     (function(){
       const root = document.getElementById("coastCarousel");
       if(!root) return;
@@ -757,8 +806,7 @@
 
       let index = 0;
 
-      // Autoplay settings
-      const AUTOPLAY_MS = 5000; // 5 seconds
+      const AUTOPLAY_MS = 5000;
       const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       let autoplayTimer = null;
@@ -814,13 +862,11 @@
       if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
       if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
 
-      // Keyboard support
       root.addEventListener("keydown", (e) => {
         if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
         if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
       });
 
-      // Swipe support
       let startX = 0;
       let isDown = false;
 
@@ -842,13 +888,11 @@
 
       viewport.addEventListener("pointercancel", () => { isDown = false; });
 
-      // Pause autoplay on hover/focus
       root.addEventListener("mouseenter", stopAutoplay);
       root.addEventListener("mouseleave", startAutoplay);
       root.addEventListener("focusin", stopAutoplay);
       root.addEventListener("focusout", startAutoplay);
 
-      // Init
       root.tabIndex = 0;
       buildDots();
       updateCounter();
