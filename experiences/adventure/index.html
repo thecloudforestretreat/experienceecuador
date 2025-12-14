@@ -61,10 +61,10 @@
       gap:10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      letter-spacing:-0.02em;
       color:var(--brand-blue);
       font-size:18px;
       white-space:nowrap;
+      letter-spacing:-0.02em;
     }
 
     .brand img{width:28px;height:28px;object-fit:contain}
@@ -83,9 +83,9 @@
     .nav a,
     .nav button{
       font:inherit;
-      color:inherit;
       background:transparent;
       border:0;
+      color:inherit;
       padding:8px 8px;
       border-radius:10px;
       cursor:pointer;
@@ -103,11 +103,7 @@
     }
 
     /* Dropdown */
-    .dropdown{
-      position:relative;
-      display:inline-flex;
-      align-items:center;
-    }
+    .dropdown{position:relative; display:inline-flex; align-items:center;}
 
     .caret{
       width:10px;
@@ -115,6 +111,7 @@
       border-right:2px solid currentColor;
       border-bottom:2px solid currentColor;
       transform:rotate(45deg);
+      margin-left:6px;
       margin-top:-2px;
       opacity:.7;
     }
@@ -146,75 +143,64 @@
       background:rgba(3,78,162,0.08);
     }
 
-    /* ===== HERO ===== */
+    /* ===== HERO (TEXT) ===== */
     .hero{
-      position:relative;
-      min-height:64vh;
-      background:url("/assets/images/EE-Experiences-adventure-01.jpg") center / cover no-repeat;
-      display:flex;
-      align-items:flex-end;
-      color:#fff;
-    }
-
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.15),
-        rgba(0,0,0,0.75)
-      );
-    }
-
-    .hero-inner{
-      position:relative;
-      z-index:2;
-      max-width:1100px;
+      text-align:center;
+      padding:60px 18px 40px;
+      max-width:900px;
       margin:0 auto;
-      padding:54px 18px 34px;
     }
 
     .hero h1{
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
+      font-size:clamp(36px,4.8vw,56px);
       letter-spacing:-0.03em;
-      font-size:clamp(40px,5.4vw,72px);
-      margin:0 0 10px;
+      margin:0 0 12px;
     }
 
     .hero p{
-      max-width:75ch;
+      max-width:70ch;
+      margin:0 auto;
+      color:var(--slate);
       font-size:18px;
       line-height:1.65;
-      color:rgba(255,255,255,0.92);
-      margin:0;
+    }
+
+    /* ===== IMAGE (ROUNDED) ===== */
+    .hero-image{
+      max-width:1100px;
+      margin:0 auto 42px;
+      padding:0 18px;
+    }
+
+    .hero-image img{
+      width:100%;
+      border-radius:24px;
+      box-shadow:0 22px 60px rgba(0,0,0,0.18);
     }
 
     /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:40px 18px 0;
+      padding:0 18px 60px;
     }
 
-    .section{
-      margin-bottom:32px;
-    }
+    .section{margin-bottom:36px}
 
     .section h2{
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       font-size:24px;
-      letter-spacing:-0.02em;
-      color:var(--brand-blue);
       margin:0 0 10px;
+      color:var(--brand-blue);
     }
 
     .section p{
-      font-size:15.8px;
-      line-height:1.75;
       max-width:85ch;
+      line-height:1.75;
+      font-size:15.8px;
       color:#2a2f36;
       margin:0;
     }
@@ -222,8 +208,9 @@
     .grid{
       display:grid;
       grid-template-columns:1.15fr 0.85fr;
-      gap:22px;
+      gap:28px;
       margin-top:18px;
+      align-items:start;
     }
 
     .card{
@@ -234,51 +221,48 @@
       box-shadow:0 18px 55px rgba(3,78,162,0.12);
     }
 
-    .card h3{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:18px;
-      margin:0 0 10px;
-      color:#0f2f62;
-    }
-
     .card ul{
       margin:0;
       padding-left:18px;
-      font-size:14.8px;
       line-height:1.75;
+      font-size:14.8px;
       color:#24324a;
     }
+
+    .mini{
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border-radius:20px;
+      padding:20px;
+      border:1px solid rgba(3,78,162,0.12);
+    }
+
+    .mini + .mini{margin-top:16px}
 
     /* ===== FOOTER ===== */
     .footer{
       background:var(--brand-blue);
       color:#fff;
-      margin-top:40px;
     }
 
     .footer-inner{
       max-width:1100px;
       margin:0 auto;
       padding:28px 18px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:14px;
       text-align:center;
     }
 
     .footer-tagline{
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      font-size:14px;
-      letter-spacing:-0.02em;
+      margin-bottom:16px;
     }
 
     .social{
       display:flex;
+      justify-content:center;
       gap:18px;
       flex-wrap:wrap;
+      margin-bottom:12px;
     }
 
     .icon-btn{
@@ -303,9 +287,15 @@
     }
 
     @media(max-width:620px){
-      .topbar-inner{flex-direction:column;align-items:center;gap:10px}
-      .nav{justify-content:center}
-      .hero{min-height:58vh}
+      .topbar-inner{
+        flex-direction:column;
+        gap:10px;
+      }
+      .dropdown-menu{
+        right:auto;
+        left:50%;
+        transform:translateX(-50%);
+      }
     }
   </style>
 </head>
@@ -325,7 +315,7 @@
       <a href="/mission/">Mission</a>
 
       <div class="dropdown" id="regionsDropdown">
-        <button class="dropbtn" type="button">
+        <button class="dropbtn" type="button" aria-expanded="false">
           Regions <span class="caret"></span>
         </button>
         <div class="dropdown-menu">
@@ -344,44 +334,58 @@
 </header>
 
 <section class="hero">
-  <div class="hero-inner">
-    <h1>Adventure in Ecuador</h1>
-    <p>
-      Ecuador is built for adventure. Volcanoes, rivers, jungles, coastlines, and cloud forests
-      create endless opportunities for high energy experiences and unforgettable moments.
-    </p>
-  </div>
+  <h1>Adventure</h1>
+  <p>
+    Ecuador is built for adventure. Volcanoes, rivers, jungles, coastlines, and cloud forests
+    create endless opportunities for high energy experiences and unforgettable moments.
+  </p>
 </section>
+
+<div class="hero-image">
+  <img src="/assets/images/EE-Experiences-adventure-01.jpg" alt="Adventure in Ecuador">
+</div>
 
 <main class="wrap">
 
   <section class="section">
-    <h2>What defines adventure here</h2>
+    <h2>What this experience is about</h2>
     <p>
       Adventure in Ecuador is compact, diverse, and accessible. In a single trip you can hike near
-      active volcanoes, raft whitewater rivers, zipline through cloud forests, or explore remote terrain
-      with expert local guides.
+      volcanoes, raft whitewater rivers, zipline through cloud forests, or explore remote terrain
+      with expert local guides. The best part is how fast you can move between regions without losing days in transit.
     </p>
+  </section>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Popular adventure types</h3>
+  <section class="section grid">
+    <div class="card">
+      <h2>Signature activities</h2>
+      <ul>
+        <li>Hiking and volcano viewpoints</li>
+        <li>Rafting, canyoning, and river adventures</li>
+        <li>Ziplining and canopy tours</li>
+        <li>Mountain biking and trail riding</li>
+        <li>Surf and coastal adventure days</li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="mini">
+        <h2>Best for</h2>
         <ul>
-          <li>Hiking and volcano routes</li>
-          <li>Rafting and canyoning</li>
-          <li>Ziplining and canopy tours</li>
-          <li>Mountain biking and trail riding</li>
-          <li>Surfing and coastal adventures</li>
+          <li>Active travelers and outdoor explorers</li>
+          <li>Small groups, couples, and solo travelers</li>
+          <li>People who want variety in a short trip</li>
+          <li>Anyone who prefers guided experiences with local insight</li>
         </ul>
       </div>
 
-      <div class="card">
-        <h3>Best regions for adventure</h3>
+      <div class="mini">
+        <h2>Regions that shine</h2>
         <ul>
-          <li>The Andes for altitude and volcano experiences</li>
-          <li>The Amazon for jungle and river exploration</li>
-          <li>The Coast for surf and ocean-based adventure</li>
-          <li>Galapagos for controlled, nature-driven exploration</li>
+          <li>Andes: altitude, volcano routes, highland trails</li>
+          <li>Amazon: river journeys and jungle exploration</li>
+          <li>Coast: surf, ocean activities, beach adventures</li>
+          <li>Galapagos: controlled exploration and wildlife led adventure</li>
         </ul>
       </div>
     </div>
@@ -394,10 +398,18 @@
     <div class="footer-tagline">Curated travel experiences across Ecuador</div>
 
     <div class="social">
-      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank"><img src="/assets/icons/EE-SociaIcon-Facebook.png"></a>
-      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-Instagram.png"></a>
-      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-TikTok.png"></a>
-      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-YouTube.png"></a>
+      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+      </a>
+      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+      </a>
+      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+      </a>
+      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+      </a>
     </div>
 
     <small>© 2025 Experience Ecuador. All rights reserved.</small>
@@ -410,15 +422,23 @@
     if(!dd) return;
     const btn = dd.querySelector('.dropbtn');
 
-    btn.addEventListener('click', e => {
+    btn.addEventListener('click', function(e){
       e.preventDefault();
       e.stopPropagation();
       dd.classList.toggle('open');
+      btn.setAttribute('aria-expanded', dd.classList.contains('open') ? 'true' : 'false');
     });
 
-    document.addEventListener('click', () => dd.classList.remove('open'));
+    document.addEventListener('click', () => {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+
     document.addEventListener('keydown', e => {
-      if(e.key === 'Escape') dd.classList.remove('open');
+      if(e.key === 'Escape'){
+        dd.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
     });
   })();
 </script>
