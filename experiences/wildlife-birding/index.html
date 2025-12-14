@@ -1,1 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wildlife & Birding | Experience Ecuador</title>
 
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:#f6f8fb;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    /* ===== HEADER ===== */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(255,255,255,0.75);
+      border-bottom:1px solid rgba(0,0,0,0.06);
+    }
+
+    .topbar-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      color:var(--brand-blue);
+      font-size:18px;
+      white-space:nowrap;
+    }
+
+    .brand img{
+      width:28px;
+      height:28px;
+    }
+
+    /* ===== NAV ===== */
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-size:14px;
+      font-weight:700;
+      color:#0f2f62;
+      white-space:nowrap;
+    }
+
+    .nav a,
+    .nav button{
+      font:inherit;
+      background:transparent;
+      border:0;
+      color:inherit;
+      padding:8px 8px;
+      border-radius:10px;
+      cursor:pointer;
+    }
+
+    .nav a:hover,
+    .nav button:hover{
+      background:rgba(3,78,162,0.08);
+    }
+
+    .nav a.active{
+      color:var(--brand-blue);
+    }
+
+    /* Dropdown */
+    .dropdown{position:relative}
+
+    .caret{
+      width:10px;
+      height:10px;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
+      transform:rotate(45deg);
+      margin-left:6px;
+      opacity:.7;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:42px;
+      right:0;
+      min-width:220px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:14px;
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
+      padding:8px;
+      display:none;
+      z-index:1200;
+    }
+
+    .dropdown.open .dropdown-menu{display:block}
+
+    .dropdown-menu a{
+      display:block;
+      padding:10px;
+      border-radius:10px;
+      font-weight:700;
+    }
+
+    .dropdown-menu a:hover{
+      background:rgba(3,78,162,0.08);
+    }
+
+    /* ===== HERO ===== */
+    .hero{
+      text-align:center;
+      padding:60px 18px 40px;
+      max-width:900px;
+      margin:0 auto;
+    }
+
+    .hero h1{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:clamp(36px,4.8vw,56px);
+      letter-spacing:-0.03em;
+      margin:0 0 12px;
+    }
+
+    .hero p{
+      max-width:72ch;
+      margin:0 auto;
+      color:var(--slate);
+      font-size:18px;
+      line-height:1.65;
+    }
+
+    /* ===== IMAGE ===== */
+    .hero-image{
+      max-width:1100px;
+      margin:0 auto 42px;
+      padding:0 18px;
+    }
+
+    .hero-image img{
+      width:100%;
+      border-radius:24px;
+      box-shadow:0 22px 60px rgba(0,0,0,0.18);
+    }
+
+    /* ===== CONTENT ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 18px 60px;
+    }
+
+    .section{
+      margin-bottom:36px;
+    }
+
+    .section h2{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:24px;
+      margin:0 0 10px;
+      color:var(--brand-blue);
+    }
+
+    .section p{
+      max-width:85ch;
+      line-height:1.75;
+      font-size:15.8px;
+      color:#2a2f36;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:28px;
+      margin-top:18px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:22px;
+      padding:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+    }
+
+    .card ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.75;
+      font-size:14.8px;
+      color:#24324a;
+    }
+
+    .mini{
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border-radius:20px;
+      padding:20px;
+      border:1px solid rgba(3,78,162,0.12);
+    }
+
+    .mini + .mini{margin-top:16px}
+
+    /* ===== FOOTER ===== */
+    .footer{
+      background:var(--brand-blue);
+      color:#fff;
+    }
+
+    .footer-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px;
+      text-align:center;
+    }
+
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      margin-bottom:16px;
+    }
+
+    .social{
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+
+    .icon-btn{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:var(--brand-blue);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 14px 34px rgba(0,0,0,0.35);
+    }
+
+    .icon-btn img{width:34px;height:34px}
+
+    footer small{font-size:13px;opacity:.9}
+
+    /* ===== MOBILE ===== */
+    @media(max-width:900px){
+      .grid{grid-template-columns:1fr}
+      .nav{gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    }
+
+    @media(max-width:620px){
+      .topbar-inner{
+        flex-direction:column;
+        gap:10px;
+      }
+      .dropdown-menu{
+        right:auto;
+        left:50%;
+        transform:translateX(-50%);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/">
+      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+      <span>Experience Ecuador</span>
+    </a>
+
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/mission/">Mission</a>
+
+      <div class="dropdown" id="regionsDropdown">
+        <button class="dropbtn" type="button">
+          Regions <span class="caret"></span>
+        </button>
+        <div class="dropdown-menu">
+          <a href="/regions/">All Regions</a>
+          <a href="/regions/galapagos/">Galapagos</a>
+          <a href="/regions/coast/">Coast</a>
+          <a href="/regions/andes/">Andes</a>
+          <a href="/regions/amazon/">Amazon</a>
+        </div>
+      </div>
+
+      <a class="active" href="/experiences/wildlife-birding/">Wildlife & Birding</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Wildlife & Birding</h1>
+  <p>
+    Ecuador is one of the most wildlife-rich countries on the planet.
+    From hummingbirds and toucans to monkeys, frogs, and marine life,
+    wildlife encounters are possible in every region.
+  </p>
+</section>
+
+<div class="hero-image">
+  <img src="/assets/images/EE-Experiences-wildlife-01.png" alt="Wildlife and birding in Ecuador">
+</div>
+
+<main class="wrap">
+
+  <section class="section">
+    <h2>What this experience is about</h2>
+    <p>
+      Wildlife and birding in Ecuador are not limited to remote expeditions.
+      Short travel distances, expert local guides, and protected ecosystems make it one of the most accessible
+      destinations in the world for biodiversity-focused travel. Whether you are a casual observer or a serious birder,
+      Ecuador delivers exceptional encounters year-round.
+    </p>
+  </section>
+
+  <section class="section grid">
+    <div class="card">
+      <h2>Signature wildlife experiences</h2>
+      <ul>
+        <li>Birdwatching in cloud forests and reserves</li>
+        <li>Amazon rainforest wildlife and canopy exploration</li>
+        <li>Marine life encounters along the coast</li>
+        <li>Endemic species and guided nature walks</li>
+        <li>Photography-focused nature experiences</li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="mini">
+        <h2>Best for</h2>
+        <ul>
+          <li>Birders and wildlife enthusiasts</li>
+          <li>Nature photographers</li>
+          <li>Eco travelers and conservation-minded guests</li>
+          <li>Slow travel and immersive exploration</li>
+        </ul>
+      </div>
+
+      <div class="mini">
+        <h2>Regions that shine</h2>
+        <ul>
+          <li>Andes: cloud forests and endemic bird species</li>
+          <li>Amazon: jungle wildlife and biodiversity</li>
+          <li>Coast: marine ecosystems and coastal forests</li>
+          <li>Galapagos: iconic endemic species</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
+    <div class="social">
+      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank"><img src="/assets/icons/EE-SociaIcon-Facebook.png"></a>
+      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-Instagram.png"></a>
+      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-TikTok.png"></a>
+      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-YouTube.png"></a>
+    </div>
+
+    <small>© 2025 Experience Ecuador. All rights reserved.</small>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const dd = document.getElementById('regionsDropdown');
+    if(!dd) return;
+    const btn = dd.querySelector('.dropbtn');
+
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      dd.classList.toggle('open');
+    });
+
+    document.addEventListener('click', () => dd.classList.remove('open'));
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape') dd.classList.remove('open');
+    });
+  })();
+</script>
+
+</body>
+</html>
