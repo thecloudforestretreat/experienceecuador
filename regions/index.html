@@ -319,7 +319,7 @@
       .regions-grid{ grid-template-columns:1fr; }
       .topbar-inner{ justify-content:space-between; }
       .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
-      .dropdown-menu{ right:0; left:auto; }
+      .dropdown-menu{ right:0; left:auto; transform:none; }
     }
 
     @media(max-width:620px){
@@ -345,8 +345,9 @@
         <a href="/about/">About</a>
         <a href="/mission/">Mission</a>
 
-        <div class="dropdown open" id="regionsDropdown">
-          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="true" aria-label="Regions menu">
+        <!-- Regions dropdown -->
+        <div class="dropdown" id="regionsDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
             Regions <span class="caret" aria-hidden="true"></span>
           </button>
 
@@ -356,6 +357,23 @@
             <a href="/regions/coast/" role="menuitem">Coast</a>
             <a href="/regions/andes/" role="menuitem">Andes</a>
             <a href="/regions/amazon/" role="menuitem">Amazon</a>
+          </div>
+        </div>
+
+        <!-- Experiences dropdown -->
+        <div class="dropdown" id="experiencesDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+            Experiences <span class="caret" aria-hidden="true"></span>
+          </button>
+
+          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+            <a href="/experiences/" role="menuitem">All Experiences</a>
+            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+            <a href="/experiences/nature/" role="menuitem">Nature</a>
+            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+            <a href="/experiences/culture/" role="menuitem">Culture</a>
           </div>
         </div>
 
@@ -443,39 +461,42 @@
   </footer>
 
   <script>
-    // Regions dropdown (click + close on outside click / Esc) matching Andes
     (function () {
-      const dd = document.getElementById('regionsDropdown');
-      if (!dd) return;
+      const dropdowns = document.querySelectorAll('.dropdown');
 
-      const btn = dd.querySelector('.dropbtn');
-      const menu = dd.querySelector('.dropdown-menu');
-
-      function setOpen(isOpen) {
-        dd.classList.toggle('open', isOpen);
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      }
-
-      // Regions page should start CLOSED (same behavior as other pages)
-      setOpen(false);
-
-      btn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        setOpen(!dd.classList.contains('open'));
-      });
-
-      if (menu) {
-        menu.addEventListener('click', function (e) {
-          e.stopPropagation();
+      function closeAll() {
+        dropdowns.forEach(dd => {
+          dd.classList.remove('open');
+          const btn = dd.querySelector('.dropbtn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
         });
       }
 
-      document.addEventListener('click', function () {
-        setOpen(false);
+      dropdowns.forEach(dd => {
+        const btn = dd.querySelector('.dropbtn');
+        const menu = dd.querySelector('.dropdown-menu');
+        if (!btn) return;
+
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isOpen = dd.classList.contains('open');
+          closeAll();
+          dd.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+        });
+
+        if (menu) {
+          menu.addEventListener('click', function (e) {
+            e.stopPropagation();
+          });
+        }
       });
 
+      document.addEventListener('click', closeAll);
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') setOpen(false);
+        if (e.key === 'Escape') closeAll();
       });
     })();
   </script>
