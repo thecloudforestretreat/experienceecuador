@@ -43,7 +43,6 @@
       backdrop-filter:saturate(160%) blur(10px);
       background:rgba(255,255,255,0.75);
       border-bottom:1px solid rgba(0,0,0,0.06);
-      overflow:visible;
     }
 
     .topbar-inner{
@@ -54,7 +53,6 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      overflow:visible;
     }
 
     .brand{
@@ -63,11 +61,10 @@
       gap:10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      letter-spacing:-0.02em;
       color:var(--brand-blue);
       font-size:18px;
-      line-height:1;
       white-space:nowrap;
+      letter-spacing:-0.02em;
     }
 
     .brand img{width:28px;height:28px;object-fit:contain}
@@ -81,15 +78,14 @@
       font-weight:700;
       color:#0f2f62;
       white-space:nowrap;
-      overflow:visible;
     }
 
     .nav a,
     .nav button{
       font:inherit;
-      color:inherit;
       background:transparent;
       border:0;
+      color:inherit;
       padding:8px 8px;
       border-radius:10px;
       cursor:pointer;
@@ -107,33 +103,15 @@
     }
 
     /* Dropdown */
-    .dropdown{
-      position:relative;
-      display:inline-flex;
-      align-items:center;
-      overflow:visible;
-      z-index:1100;
-    }
-
-    .dropbtn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      user-select:none;
-    }
-
-    .dropbtn:focus{
-      outline:2px solid rgba(3,78,162,0.35);
-      outline-offset:2px;
-    }
+    .dropdown{position:relative; display:inline-flex; align-items:center;}
 
     .caret{
       width:10px;
       height:10px;
-      display:inline-block;
       border-right:2px solid currentColor;
       border-bottom:2px solid currentColor;
       transform:rotate(45deg);
+      margin-left:6px;
       margin-top:-2px;
       opacity:.7;
     }
@@ -152,147 +130,112 @@
       z-index:1200;
     }
 
+    .dropdown.open .dropdown-menu{display:block}
+
     .dropdown-menu a{
       display:block;
-      padding:10px 10px;
+      padding:10px;
       border-radius:10px;
       font-weight:700;
-      color:#0f2f62;
     }
 
     .dropdown-menu a:hover{
       background:rgba(3,78,162,0.08);
     }
 
-    .dropdown.open .dropdown-menu{display:block}
-
-    /* ===== PAGE ===== */
-    .wrap{
-      max-width:1100px;
-      margin:0 auto;
-      padding:44px 18px 0;
-    }
-
+    /* ===== HERO ===== */
     .hero{
       text-align:center;
-      margin-bottom:26px;
+      padding:60px 18px 40px;
+      max-width:900px;
+      margin:0 auto;
     }
 
     .hero h1{
-      margin:0 0 12px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
+      font-size:clamp(36px,4.8vw,56px);
       letter-spacing:-0.03em;
-      font-size:clamp(36px,4.5vw,56px);
-      color:var(--brand-blue);
+      margin:0 0 12px;
     }
 
     .hero p{
+      max-width:72ch;
       margin:0 auto;
-      max-width:75ch;
       color:var(--slate);
       font-size:18px;
       line-height:1.65;
     }
 
-    /* ===== GRID ===== */
-    .grid{
+    /* ===== PAGE ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 18px 60px;
+    }
+
+    /* ===== EXPERIENCE GRID ===== */
+    .experiences-grid{
       display:grid;
       grid-template-columns:repeat(2, 1fr);
       gap:28px;
-      margin:26px 0 60px;
+      margin-top:10px;
     }
 
-    .card{
+    .exp-card{
       background:#fff;
       border-radius:22px;
       overflow:hidden;
       border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 20px 55px rgba(3,78,162,0.12);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
       transition:transform .2s ease, box-shadow .2s ease;
     }
 
-    .card:hover{
+    .exp-card:hover{
       transform:translateY(-6px);
       box-shadow:0 28px 70px rgba(3,78,162,0.18);
     }
 
-    .card-media{
-      height:260px;
-      overflow:hidden;
-      background:#eef2f7;
+    .exp-img{
+      height:250px;
+      background:#e9eef7;
     }
 
-    .card-media img{
+    .exp-img img{
       width:100%;
       height:100%;
       object-fit:cover;
-      transition:transform .4s ease;
     }
 
-    .card:hover .card-media img{
-      transform:scale(1.05);
+    .exp-body{
+      padding:22px 22px 24px;
     }
 
-    .card-body{
-      padding:22px 22px 26px;
-    }
-
-    .card-body h2{
+    .exp-body h2{
       margin:0 0 8px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      letter-spacing:-0.02em;
       font-size:22px;
       color:var(--brand-blue);
+      letter-spacing:-0.02em;
     }
 
-    .card-body p{
-      margin:0 0 18px;
+    .exp-body p{
+      margin:0 0 16px;
       color:#2a2f36;
       line-height:1.65;
       font-size:15.5px;
-      max-width:70ch;
+      max-width:80ch;
     }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
+    .pill{
+      display:inline-block;
       padding:10px 18px;
       border-radius:999px;
       background:var(--brand-blue);
       color:#fff;
       font-weight:700;
       font-size:14px;
-      letter-spacing:.01em;
-      white-space:nowrap;
-    }
-
-    /* ===== CTA ===== */
-    .cta{
-      margin:0 0 56px;
-      background:var(--brand-blue);
-      color:#fff;
-      border-radius:24px;
-      padding:22px;
-      box-shadow:0 22px 60px rgba(3,78,162,0.22);
-    }
-
-    .cta h3{
-      margin:0 0 8px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:20px;
-    }
-
-    .cta p{
-      margin:0;
-      color:rgba(255,255,255,0.92);
-      line-height:1.7;
-      font-size:15.5px;
-      max-width:85ch;
     }
 
     /* ===== FOOTER ===== */
@@ -305,27 +248,21 @@
       max-width:1100px;
       margin:0 auto;
       padding:28px 18px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:14px;
       text-align:center;
     }
 
     .footer-tagline{
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:14px;
-      opacity:.95;
-      margin-top:2px;
+      margin-bottom:16px;
     }
 
     .social{
       display:flex;
+      justify-content:center;
       gap:18px;
       flex-wrap:wrap;
-      justify-content:center;
+      margin-bottom:12px;
     }
 
     .icon-btn{
@@ -345,15 +282,20 @@
 
     /* ===== MOBILE ===== */
     @media(max-width:900px){
-      .grid{grid-template-columns:1fr}
+      .experiences-grid{grid-template-columns:1fr}
       .nav{gap:8px;flex-wrap:wrap;justify-content:flex-end}
-      .dropdown-menu{right:0;left:auto}
     }
 
     @media(max-width:620px){
-      .topbar-inner{flex-direction:column;align-items:center;gap:10px}
-      .nav{justify-content:center}
-      .dropdown-menu{right:auto;left:50%;transform:translateX(-50%)}
+      .topbar-inner{
+        flex-direction:column;
+        gap:10px;
+      }
+      .dropdown-menu{
+        right:auto;
+        left:50%;
+        transform:translateX(-50%);
+      }
     }
   </style>
 </head>
@@ -367,22 +309,21 @@
       <span>Experience Ecuador</span>
     </a>
 
-    <nav class="nav" aria-label="Primary navigation">
+    <nav class="nav">
       <a href="/">Home</a>
       <a href="/about/">About</a>
       <a href="/mission/">Mission</a>
 
       <div class="dropdown" id="regionsDropdown">
-        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
-          Regions <span class="caret" aria-hidden="true"></span>
+        <button class="dropbtn" type="button" aria-expanded="false">
+          Regions <span class="caret"></span>
         </button>
-
-        <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
-          <a href="/regions/" role="menuitem">All Regions</a>
-          <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
-          <a href="/regions/coast/" role="menuitem">Coast</a>
-          <a href="/regions/andes/" role="menuitem">Andes</a>
-          <a href="/regions/amazon/" role="menuitem">Amazon</a>
+        <div class="dropdown-menu">
+          <a href="/regions/">All Regions</a>
+          <a href="/regions/galapagos/">Galapagos</a>
+          <a href="/regions/coast/">Coast</a>
+          <a href="/regions/andes/">Andes</a>
+          <a href="/regions/amazon/">Amazon</a>
         </div>
       </div>
 
@@ -392,103 +333,99 @@
   </div>
 </header>
 
+<section class="hero">
+  <h1>Experiences</h1>
+  <p>
+    Explore Ecuador by the kind of trip you want. Each experience page highlights what it means in Ecuador,
+    where it fits best, and the types of places and partners worth building an itinerary around.
+  </p>
+</section>
+
 <main class="wrap">
-  <section class="hero">
-    <h1>Explore Ecuador by Experience</h1>
-    <p>
-      Choose the type of trip you want, then explore the best matches across Ecuador.
-      These pages will evolve into curated guides, partner highlights, and planning tips.
-    </p>
-  </section>
 
-  <section class="grid" aria-label="Experience categories">
+  <section class="experiences-grid" aria-label="Experiences grid">
 
-    <article class="card">
-      <a href="/experiences/adventure/">
-        <div class="card-media">
-          <img src="assets/images/EE-Experiences-adventure-01.jpg" alt="Adventure in Ecuador">
-        </div>
-        <div class="card-body">
-          <h2>Adventure</h2>
-          <p>Hikes, volcano routes, rafting, canopy, and high energy experiences across Ecuador.</p>
-          <span class="btn">Explore Adventure</span>
-        </div>
-      </a>
+    <article class="exp-card">
+      <div class="exp-img">
+        <img src="/assets/images/EE-Experiences-adventure-01.jpg" alt="Adventure in Ecuador">
+      </div>
+      <div class="exp-body">
+        <h2>Adventure</h2>
+        <p>
+          Volcano routes, rivers, canopy tours, and high-energy experiences guided by locals across the Andes,
+          Amazon, Coast, and beyond.
+        </p>
+        <a class="pill" href="/experiences/adventure/">Explore Adventure</a>
+      </div>
     </article>
 
-    <article class="card">
-      <a href="/experiences/nature/">
-        <div class="card-media">
-          <img src="/assets/images/EE-Experiences-Nature-01.jpg" alt="Nature in Ecuador">
-        </div>
-        <div class="card-body">
-          <h2>Nature</h2>
-          <p>Cloud forests, waterfalls, reserves, and scenic day trips that keep you close to nature.</p>
-          <span class="btn">Explore Nature</span>
-        </div>
-      </a>
+    <article class="exp-card">
+      <div class="exp-img">
+        <img src="/assets/images/EE-Experiences-Nature-01.jpg" alt="Nature in Ecuador">
+      </div>
+      <div class="exp-body">
+        <h2>Nature</h2>
+        <p>
+          Cloud forests, volcano viewpoints, rainforest lodges, coastal reserves, and protected ecosystems
+          packed into a small country.
+        </p>
+        <a class="pill" href="/experiences/nature/">Explore Nature</a>
+      </div>
     </article>
 
-    <article class="card">
-      <a href="/experiences/wildlife/">
-        <div class="card-media">
-          <img src="/assets/images/EE-Experiences-wildlife-01.png" alt="Wildlife and birding in Ecuador">
-        </div>
-        <div class="card-body">
-          <h2>Wildlife and Birding</h2>
-          <p>Iconic wildlife encounters from the Galapagos to the Amazon and Andean cloud forests.</p>
-          <span class="btn">Explore Wildlife</span>
-        </div>
-      </a>
+    <article class="exp-card">
+      <div class="exp-img">
+        <img src="/assets/images/EE-Experiences-wildlife-01.png" alt="Wildlife and birding in Ecuador">
+      </div>
+      <div class="exp-body">
+        <h2>Wildlife &amp; Birding</h2>
+        <p>
+          One of the best birding countries on Earth. From cloud forest hummingbirds to Amazon wildlife
+          and Galapagos icons.
+        </p>
+        <a class="pill" href="/experiences/wildlife-birding/">Explore Wildlife &amp; Birding</a>
+      </div>
     </article>
 
-    <article class="card">
-      <a href="/experiences/relaxation/">
-        <div class="card-media">
-          <img src="/assets/images/EE-Experiences-Relaxation-01.jpg" alt="Relaxation in Ecuador">
-        </div>
-        <div class="card-body">
-          <h2>Relaxation</h2>
-          <p>Hot springs, slow travel, wellness retreats, and places built for rest and reset.</p>
-          <span class="btn">Explore Relaxation</span>
-        </div>
-      </a>
+    <article class="exp-card">
+      <div class="exp-img">
+        <img src="/assets/images/EE-Experiences-Relaxation-01.jpg" alt="Relaxation in Ecuador">
+      </div>
+      <div class="exp-body">
+        <h2>Relaxation</h2>
+        <p>
+          Slow travel, peaceful lodges, hot springs, soft nature escapes, and downtime built into a well-paced itinerary.
+        </p>
+        <a class="pill" href="/experiences/relaxation/">Explore Relaxation</a>
+      </div>
     </article>
 
-    <article class="card">
-      <a href="/experiences/culinary/">
-        <div class="card-media">
-          <img src="/assets/images/EE-Experiences-Culinary-01.jpg" alt="Culinary experiences in Ecuador">
-        </div>
-        <div class="card-body">
-          <h2>Culinary</h2>
-          <p>Regional flavors, markets, cacao, coffee, and food experiences worth traveling for.</p>
-          <span class="btn">Explore Culinary</span>
-        </div>
-      </a>
+    <article class="exp-card">
+      <div class="exp-img">
+        <img src="/assets/images/EE-Experiences-Culinary-01.jpg" alt="Culinary experiences in Ecuador">
+      </div>
+      <div class="exp-body">
+        <h2>Culinary</h2>
+        <p>
+          Seafood on the Coast, Andean markets, cacao culture, and region-specific dishes that define how Ecuador tastes.
+        </p>
+        <a class="pill" href="/experiences/culinary/">Explore Culinary</a>
+      </div>
     </article>
 
-    <article class="card">
-      <a href="/experiences/culture/">
-        <div class="card-media">
-          <img src="/assets/images/EE-Experiences-Culture-01.jpg" alt="Culture in Ecuador">
-        </div>
-        <div class="card-body">
-          <h2>Culture</h2>
-          <p>Markets, heritage towns, indigenous traditions, festivals, and meaningful local connection.</p>
-          <span class="btn">Explore Culture</span>
-        </div>
-      </a>
+    <article class="exp-card">
+      <div class="exp-img">
+        <img src="/assets/images/EE-Experiences-Culture-01.jpg" alt="Culture in Ecuador">
+      </div>
+      <div class="exp-body">
+        <h2>Culture</h2>
+        <p>
+          Indigenous heritage, historic cities, artisan markets, music, festivals, and local stories that make each region feel distinct.
+        </p>
+        <a class="pill" href="/experiences/culture/">Explore Culture</a>
+      </div>
     </article>
 
-  </section>
-
-  <section class="cta" aria-label="Experiences future CTA">
-    <h3>Coming next: guides you can plan from</h3>
-    <p>
-      Next we will add: suggested trip lengths, a planning checklist, and region matches for each experience.
-      Then we will connect partners and highlights into a newsletter-style format.
-    </p>
   </section>
 
 </main>
@@ -517,30 +454,28 @@
 </footer>
 
 <script>
-  // Regions dropdown (click + close on outside click / Esc)
-  (function () {
+  (function(){
     const dd = document.getElementById('regionsDropdown');
-    if (!dd) return;
-
+    if(!dd) return;
     const btn = dd.querySelector('.dropbtn');
 
-    function setOpen(isOpen) {
-      dd.classList.toggle('open', isOpen);
-      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    }
-
-    btn.addEventListener('click', function (e) {
+    btn.addEventListener('click', function(e){
       e.preventDefault();
       e.stopPropagation();
-      setOpen(!dd.classList.contains('open'));
+      dd.classList.toggle('open');
+      btn.setAttribute('aria-expanded', dd.classList.contains('open') ? 'true' : 'false');
     });
 
-    document.addEventListener('click', function () {
-      setOpen(false);
+    document.addEventListener('click', () => {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
     });
 
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') setOpen(false);
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape'){
+        dd.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
     });
   })();
 </script>
