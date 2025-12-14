@@ -33,9 +33,9 @@
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
-    /* ===== HEADER ===== */
+    /* ===== HEADER (MATCH REST) ===== */
     .topbar{
       position:sticky;
       top:0;
@@ -43,6 +43,7 @@
       backdrop-filter:saturate(160%) blur(10px);
       background:rgba(255,255,255,0.75);
       border-bottom:1px solid rgba(0,0,0,0.06);
+      overflow:visible;
     }
 
     .topbar-inner{
@@ -53,6 +54,7 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
+      overflow:visible;
     }
 
     .brand{
@@ -64,15 +66,17 @@
       letter-spacing:-0.02em;
       color:var(--brand-blue);
       font-size:18px;
+      line-height:1;
       white-space:nowrap;
     }
 
     .brand img{
       width:28px;
       height:28px;
+      object-fit:contain;
     }
 
-    /* ===== NAV ===== */
+    /* ===== NAV (MATCH REST) ===== */
     .nav{
       display:flex;
       align-items:center;
@@ -80,19 +84,31 @@
       font-size:14px;
       font-weight:700;
       color:#0f2f62;
+      white-space:nowrap;
+      overflow:visible;
     }
 
     .nav a{
       padding:8px 8px;
       border-radius:10px;
+      transition:background 0.15s ease;
     }
 
     .nav a:hover{
       background:rgba(3,78,162,0.08);
     }
 
+    .nav a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
+    }
+
     .dropdown{
       position:relative;
+      display:inline-flex;
+      align-items:center;
+      overflow:visible;
+      z-index:1100;
     }
 
     .dropbtn{
@@ -101,26 +117,35 @@
       background:transparent;
       font:inherit;
       color:inherit;
-      display:flex;
+
+      display:inline-flex;
       align-items:center;
       gap:8px;
       padding:8px 8px;
       border-radius:10px;
       cursor:pointer;
+      user-select:none;
+      transition:background 0.15s ease;
     }
 
     .dropbtn:hover{
       background:rgba(3,78,162,0.08);
     }
 
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
+    }
+
     .caret{
       width:10px;
       height:10px;
+      display:inline-block;
       border-right:2px solid currentColor;
       border-bottom:2px solid currentColor;
       transform:rotate(45deg);
       margin-top:-2px;
-      opacity:.7;
+      opacity:0.7;
     }
 
     .dropdown-menu{
@@ -137,18 +162,19 @@
       z-index:1200;
     }
 
-    .dropdown.open .dropdown-menu{display:block}
-
     .dropdown-menu a{
       display:block;
-      padding:10px;
+      padding:10px 10px;
       border-radius:10px;
       font-weight:700;
+      color:#0f2f62;
     }
 
     .dropdown-menu a:hover{
       background:rgba(3,78,162,0.08);
     }
+
+    .dropdown.open .dropdown-menu{ display:block; }
 
     /* ===== PAGE ===== */
     .wrap{
@@ -168,6 +194,7 @@
       font-weight:800;
       letter-spacing:-0.03em;
       font-size:clamp(36px,4.5vw,56px);
+      color:var(--brand-blue);
     }
 
     .hero p{
@@ -200,12 +227,20 @@
       box-shadow:0 28px 70px rgba(3,78,162,0.18);
     }
 
-    .region-image{height:260px}
+    .region-image{
+      height:260px;
+      overflow:hidden;
+    }
 
     .region-image img{
       width:100%;
       height:100%;
       object-fit:cover;
+      transition:transform .4s ease;
+    }
+
+    .region-card:hover .region-image img{
+      transform:scale(1.05);
     }
 
     .region-content{
@@ -216,6 +251,7 @@
       margin:0 0 8px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
+      letter-spacing:-0.02em;
       font-size:22px;
       color:var(--brand-blue);
     }
@@ -235,12 +271,14 @@
       color:#fff;
       font-weight:600;
       font-size:14px;
+      letter-spacing:.02em;
     }
 
     /* ===== FOOTER ===== */
     .footer{
       background:var(--brand-blue);
       color:#fff;
+      margin-top:30px;
     }
 
     .footer-inner{
@@ -257,164 +295,190 @@
     .social{
       display:flex;
       gap:18px;
+      flex-wrap:wrap;
+      justify-content:center;
     }
 
     .icon-btn{
-      width:60px;
-      height:60px;
+      width:64px;
+      height:64px;
       border-radius:50%;
       background:var(--brand-blue);
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:0 16px 40px rgba(0,0,0,0.28);
+      box-shadow:0 14px 34px rgba(0,0,0,0.35);
     }
 
-    .icon-btn img{width:32px;height:32px}
+    .icon-btn img{width:34px;height:34px}
 
     footer small{font-size:13px;opacity:.9}
 
-    /* ===== MOBILE ===== */
+    /* ===== MOBILE (MATCH REST) ===== */
     @media(max-width:900px){
-      .regions-grid{grid-template-columns:1fr}
+      .regions-grid{ grid-template-columns:1fr; }
+      .topbar-inner{ justify-content:space-between; }
+      .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+      .dropdown-menu{ right:0; left:auto; }
     }
 
     @media(max-width:620px){
-      .topbar-inner{
-        flex-direction:column;
-        gap:10px;
-      }
-      .dropdown-menu{
-        right:auto;
-        left:50%;
-        transform:translateX(-50%);
-      }
+      .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
+      .nav{ justify-content:center; }
+      .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
     }
   </style>
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="/">
-      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
-      <span>Experience Ecuador</span>
-    </a>
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+        <span>Experience Ecuador</span>
+      </a>
 
-    <nav class="nav">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/mission">Mission</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/mission/">Mission</a>
 
-      <div class="dropdown" id="regionsDropdown">
-        <button class="dropbtn" type="button" aria-expanded="false">
-          Regions <span class="caret"></span>
-        </button>
-        <div class="dropdown-menu">
-          <a href="/regions">All Regions</a>
-          <a href="/regions/galapagos">Galapagos</a>
-          <a href="/regions/coast">Coast</a>
-          <a href="/regions/andes">Andes</a>
-          <a href="/regions/amazon">Amazon</a>
+        <div class="dropdown open" id="regionsDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="true" aria-label="Regions menu">
+            Regions <span class="caret" aria-hidden="true"></span>
+          </button>
+
+          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+            <a class="active" href="/regions/" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+            <a href="/regions/coast/" role="menuitem">Coast</a>
+            <a href="/regions/andes/" role="menuitem">Andes</a>
+            <a href="/regions/amazon/" role="menuitem">Amazon</a>
+          </div>
         </div>
-      </div>
 
-      <a href="/contact">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<main class="wrap">
-  <section class="hero">
-    <h1>Explore Ecuador by Region</h1>
-    <p>
-      From pristine islands to highland volcanoes and deep rainforest,
-      Ecuador offers an incredible range of experiences in every region.
-    </p>
-  </section>
-
-  <section class="regions-grid">
-    <!-- Galapagos -->
-    <article class="region-card">
-      <div class="region-image">
-        <img src="/assets/images/EE-Region-Galapagos-02.jpg" alt="Galapagos Islands">
-      </div>
-      <div class="region-content">
-        <h2>Galapagos Islands</h2>
-        <p>Wildlife encounters, volcanic landscapes, and once-in-a-lifetime natural experiences.</p>
-        <a class="region-link" href="/regions/galapagos/">Explore Galapagos</a>
-      </div>
-    </article>
-
-    <!-- Coast -->
-    <article class="region-card">
-      <div class="region-image">
-        <img src="/assets/images/EE-Region-Coast-02.jpg" alt="Ecuadorean Coast">
-      </div>
-      <div class="region-content">
-        <h2>The Coast</h2>
-        <p>Beaches, surf towns, seafood culture, and laid-back coastal escapes.</p>
-        <a class="region-link" href="/regions/coast/">Explore the Coast</a>
-      </div>
-    </article>
-
-    <!-- Andes -->
-    <article class="region-card">
-      <div class="region-image">
-        <img src="/assets/images/EE-Region-Andes-02.jpg" alt="Ecuadorean Andes">
-      </div>
-      <div class="region-content">
-        <h2>The Andes</h2>
-        <p>High-altitude cities, volcanoes, markets, and rich cultural heritage.</p>
-        <a class="region-link" href="/regions/andes/">Explore the Andes</a>
-      </div>
-    </article>
-
-    <!-- Amazon -->
-    <article class="region-card">
-      <div class="region-image">
-        <img src="/assets/images/EE-Region-Amazon-02.jpg" alt="Ecuadorean Amazon">
-      </div>
-      <div class="region-content">
-        <h2>The Amazon</h2>
-        <p>Lush rainforest, wildlife, river journeys, and immersive eco experiences.</p>
-        <a class="region-link" href="/regions/amazon/">Explore the Amazon</a>
-      </div>
-    </article>
-  </section>
-</main>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="social">
-      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank"><img src="/assets/icons/EE-SociaIcon-Facebook.png"></a>
-      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-Instagram.png"></a>
-      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-TikTok.png"></a>
-      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank"><img src="/assets/icons/EE-SociaIcon-YouTube.png"></a>
+        <a href="/contact/">Contact</a>
+      </nav>
     </div>
-    <small>© 2025 Experience Ecuador. All rights reserved.</small>
-  </div>
-</footer>
+  </header>
 
-<script>
-  (function(){
-    const dd = document.getElementById('regionsDropdown');
-    if(!dd) return;
-    const btn = dd.querySelector('.dropbtn');
+  <!-- PAGE CONTENT -->
+  <main class="wrap">
+    <section class="hero">
+      <h1>Explore Ecuador by Region</h1>
+      <p>
+        From pristine islands to highland volcanoes and deep rainforest,
+        Ecuador offers an incredible range of experiences in every region.
+      </p>
+    </section>
 
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      dd.classList.toggle('open');
-    });
+    <section class="regions-grid">
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Galapagos-02.jpg" alt="Galapagos Islands">
+        </div>
+        <div class="region-content">
+          <h2>Galapagos Islands</h2>
+          <p>Wildlife encounters, volcanic landscapes, and once-in-a-lifetime natural experiences.</p>
+          <a class="region-link" href="/regions/galapagos/">Explore Galapagos</a>
+        </div>
+      </article>
 
-    document.addEventListener('click', () => dd.classList.remove('open'));
-    document.addEventListener('keydown', e => {
-      if(e.key === 'Escape') dd.classList.remove('open');
-    });
-  })();
-</script>
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Coast-02.jpg" alt="Ecuador Coast">
+        </div>
+        <div class="region-content">
+          <h2>The Coast</h2>
+          <p>Beaches, surf towns, seafood culture, and laid-back coastal escapes.</p>
+          <a class="region-link" href="/regions/coast/">Explore the Coast</a>
+        </div>
+      </article>
+
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Andes-02.jpg" alt="Ecuador Andes">
+        </div>
+        <div class="region-content">
+          <h2>The Andes</h2>
+          <p>High-altitude cities, volcanoes, markets, and rich cultural heritage.</p>
+          <a class="region-link" href="/regions/andes/">Explore the Andes</a>
+        </div>
+      </article>
+
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Amazon-02.jpg" alt="Ecuador Amazon">
+        </div>
+        <div class="region-content">
+          <h2>The Amazon</h2>
+          <p>Lush rainforest, wildlife, river journeys, and immersive eco experiences.</p>
+          <a class="region-link" href="/regions/amazon/">Explore the Amazon</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="social" aria-label="Social media links">
+        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+        </a>
+        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+        </a>
+        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+        </a>
+      </div>
+      <small>© 2025 Experience Ecuador. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Regions dropdown (click + close on outside click / Esc) matching Andes
+    (function () {
+      const dd = document.getElementById('regionsDropdown');
+      if (!dd) return;
+
+      const btn = dd.querySelector('.dropbtn');
+      const menu = dd.querySelector('.dropdown-menu');
+
+      function setOpen(isOpen) {
+        dd.classList.toggle('open', isOpen);
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+
+      // Regions page should start CLOSED (same behavior as other pages)
+      setOpen(false);
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        setOpen(!dd.classList.contains('open'));
+      });
+
+      if (menu) {
+        menu.addEventListener('click', function (e) {
+          e.stopPropagation();
+        });
+      }
+
+      document.addEventListener('click', function () {
+        setOpen(false);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') setOpen(false);
+      });
+    })();
+  </script>
 
 </body>
 </html>
