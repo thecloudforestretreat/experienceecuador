@@ -42,7 +42,7 @@
     .topbar{
       position:sticky;
       top:0;
-      z-index:10;
+      z-index:1000; /* FIX: keep header above everything */
       backdrop-filter:saturate(160%) blur(10px);
       background:rgba(255,255,255,0.75);
       border-bottom:1px solid rgba(0,0,0,0.06);
@@ -102,6 +102,7 @@
       position:relative;
       display:inline-flex;
       align-items:center;
+      z-index:1100; /* FIX: ensure dropdown is above page content */
     }
 
     .dropbtn{
@@ -113,6 +114,7 @@
       cursor:pointer;
       user-select:none;
       transition:background 0.15s ease;
+      outline:none;
     }
 
     .dropbtn:hover{
@@ -141,7 +143,7 @@
       box-shadow:0 18px 55px rgba(3,78,162,0.16);
       padding:8px;
       display:none;
-      z-index:20;
+      z-index:1200; /* FIX: above everything */
     }
 
     .dropdown-menu a{
@@ -322,44 +324,37 @@
       font-size:13px;
     }
 
-    /* ===== GALLERY CAROUSEL ===== */
-    .gallery{
-      margin-top:22px;
+    /* ===== CAROUSEL (GALLERY) ===== */
+    .carousel{
+      margin-top:18px;
       background:#fff;
       border-radius:22px;
       border:1px solid rgba(0,0,0,0.06);
       box-shadow:0 18px 55px rgba(3,78,162,0.10);
-      padding:16px;
       overflow:hidden;
-    }
-
-    .carousel{
       position:relative;
-      border-radius:18px;
-      overflow:hidden;
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      z-index:1;
     }
 
-    /* Consistent visual height across all region pages */
     .carousel-viewport{
-      width:100%;
-      aspect-ratio: 16 / 9;
       overflow:hidden;
-      position:relative;
+      width:100%;
+      touch-action:pan-y;
     }
 
     .carousel-track{
       display:flex;
-      height:100%;
-      transform:translateX(0%);
-      transition:transform 350ms ease;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
       will-change:transform;
     }
 
     .carousel-slide{
       min-width:100%;
-      height:100%;
       position:relative;
+      aspect-ratio: 16 / 9; /* consistent shape */
+      background:#eef2f7;
     }
 
     .carousel-slide img{
@@ -376,77 +371,72 @@
       height:44px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,0.35);
-      background:rgba(0,0,0,0.35);
-      color:#fff;
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
       display:flex;
       align-items:center;
       justify-content:center;
-      cursor:pointer;
       z-index:5;
-      backdrop-filter:blur(10px);
-      transition:background 0.15s ease, transform 0.15s ease;
     }
 
     .carousel-btn:hover{
-      background:rgba(0,0,0,0.48);
-      transform:translateY(-50%) scale(1.02);
-    }
-
-    .carousel-btn:active{
-      transform:translateY(-50%) scale(0.98);
+      background:rgba(15,47,98,0.70);
     }
 
     .carousel-btn.prev{ left:12px; }
     .carousel-btn.next{ right:12px; }
 
     .carousel-btn span{
-      display:inline-block;
+      display:block;
       width:10px;
       height:10px;
       border-right:2px solid #fff;
       border-bottom:2px solid #fff;
+      opacity:.95;
     }
 
-    .carousel-btn.prev span{ transform:rotate(135deg); margin-left:4px; }
-    .carousel-btn.next span{ transform:rotate(-45deg); margin-right:4px; }
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
 
     .carousel-dots{
       display:flex;
       gap:8px;
-      justify-content:center;
-      padding:12px 6px 4px;
+      flex-wrap:wrap;
+      align-items:center;
     }
 
     .dot{
-      width:8px;
-      height:8px;
+      width:10px;
+      height:10px;
       border-radius:999px;
       border:1px solid rgba(3,78,162,0.25);
-      background:rgba(3,78,162,0.10);
+      background:rgba(3,78,162,0.12);
       cursor:pointer;
-      transition:transform 0.15s ease, background 0.15s ease;
+      padding:0;
     }
 
-    .dot:hover{ transform:scale(1.12); }
     .dot.active{
       background:rgba(3,78,162,0.85);
       border-color:rgba(3,78,162,0.85);
     }
 
-    .carousel-caption{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:10px 6px 2px;
-      color:#274060;
-      font-size:13.5px;
-    }
-
-    .carousel-caption .hint{
-      color:var(--slate);
-      font-size:13.5px;
-      margin:0;
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
     }
 
     /* ===== CTA ===== */
@@ -539,21 +529,18 @@
 
       .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
       .dropdown-menu{ right:0; left:auto; }
-
-      .carousel-btn{ width:40px; height:40px; }
     }
 
     @media(max-width:620px){
       .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
       .nav{ justify-content:center; }
       .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
-      .carousel-caption{ flex-direction:column; align-items:flex-start; }
     }
 
     @media(max-width:480px){
       .hero{ min-height:60vh; }
       .cta{ border-radius:20px; }
-      .carousel-viewport{ aspect-ratio: 4 / 3; }
+      .carousel-btn{ width:40px; height:40px; }
     }
   </style>
 </head>
@@ -690,56 +677,34 @@
     <section class="section">
       <h2>Gallery and highlights</h2>
 
-      <div class="gallery">
-        <div class="carousel" id="galapagosCarousel" aria-label="Galapagos photo carousel">
-          <div class="carousel-viewport">
-            <div class="carousel-track">
-              <div class="carousel-slide">
-                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-1.jpg" alt="Galapagos highlight 1">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-2.jpg" alt="Galapagos highlight 2" loading="lazy">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-3.jpg" alt="Galapagos highlight 3" loading="lazy">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-4.jpg" alt="Galapagos highlight 4" loading="lazy">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-5.jpg" alt="Galapagos highlight 5" loading="lazy">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-6.jpg" alt="Galapagos highlight 6" loading="lazy">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-7.jpg" alt="Galapagos highlight 7" loading="lazy">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-8.jpg" alt="Galapagos highlight 8" loading="lazy">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-9.jpg" alt="Galapagos highlight 9" loading="lazy">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE%20-%20Carousel-%20Galapagos-10.jpg" alt="Galapagos highlight 10" loading="lazy">
-              </div>
-            </div>
+      <!-- CAROUSEL -->
+      <div id="galapagosCarousel" class="carousel" aria-label="Galapagos image gallery">
+        <button class="carousel-btn prev" type="button" aria-label="Previous image">
+          <span aria-hidden="true"></span>
+        </button>
 
-            <button class="carousel-btn prev" type="button" aria-label="Previous image">
-              <span aria-hidden="true"></span>
-            </button>
-            <button class="carousel-btn next" type="button" aria-label="Next image">
-              <span aria-hidden="true"></span>
-            </button>
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-1.jpg" alt="Galapagos highlight 1"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-2.jpg" alt="Galapagos highlight 2"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-3.jpg" alt="Galapagos highlight 3"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-4.jpg" alt="Galapagos highlight 4"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-5.jpg" alt="Galapagos highlight 5"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-6.jpg" alt="Galapagos highlight 6"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-7.jpg" alt="Galapagos highlight 7"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-8.jpg" alt="Galapagos highlight 8"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-9.jpg" alt="Galapagos highlight 9"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE%20-%20Carousel-%20Galapagos-10.jpg" alt="Galapagos highlight 10"></div>
           </div>
+        </div>
 
-          <div class="carousel-caption">
-            <p class="hint">Swipe on mobile, or use arrows. Dots jump to a highlight.</p>
-            <p class="hint" id="carouselCounter">1 / 10</p>
-          </div>
+        <button class="carousel-btn next" type="button" aria-label="Next image">
+          <span aria-hidden="true"></span>
+        </button>
 
-          <div class="carousel-dots" role="tablist" aria-label="Carousel dots"></div>
+        <div class="carousel-ui">
+          <div class="carousel-dots" aria-label="Carousel pagination"></div>
+          <div class="carousel-counter" id="carouselCounter">1 / 10</div>
         </div>
       </div>
     </section>
@@ -792,6 +757,13 @@
 
       let index = 0;
 
+      // Autoplay settings
+      const AUTOPLAY_MS = 5000; // 5 seconds
+      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      let autoplayTimer = null;
+      let autoplayEnabled = !prefersReducedMotion;
+
       function setIndex(next){
         index = (next + slides.length) % slides.length;
         track.style.transform = `translateX(-${index * 100}%)`;
@@ -815,21 +787,42 @@
           b.type = "button";
           b.className = "dot" + (i === 0 ? " active" : "");
           b.setAttribute("aria-label", `Go to image ${i + 1}`);
-          b.addEventListener("click", () => setIndex(i));
+          b.addEventListener("click", () => {
+            setIndex(i);
+            stopAutoplay();
+          });
           dotsWrap.appendChild(b);
         });
       }
 
-      function next(){ setIndex(index + 1); }
-      function prev(){ setIndex(index - 1); }
+      function next(){
+        setIndex(index + 1);
+      }
 
-      prevBtn.addEventListener("click", prev);
-      nextBtn.addEventListener("click", next);
+      function prev(){
+        setIndex(index - 1);
+      }
 
-      // Keyboard support when carousel is focused
+      function startAutoplay(){
+        if(!autoplayEnabled) return;
+        stopAutoplay();
+        autoplayTimer = setInterval(next, AUTOPLAY_MS);
+      }
+
+      function stopAutoplay(){
+        if(autoplayTimer){
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
+      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
+
+      // Keyboard support
       root.addEventListener("keydown", (e) => {
-        if(e.key === "ArrowLeft") prev();
-        if(e.key === "ArrowRight") next();
+        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
+        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
       });
 
       // Swipe support
@@ -848,17 +841,24 @@
         isDown = false;
         const dx = e.clientX - startX;
         const threshold = 40;
-        if(dx > threshold) prev();
-        if(dx < -threshold) next();
+        if(dx > threshold){ prev(); stopAutoplay(); }
+        if(dx < -threshold){ next(); stopAutoplay(); }
       });
 
       viewport.addEventListener("pointercancel", () => { isDown = false; });
+
+      // Pause autoplay on hover/focus
+      root.addEventListener("mouseenter", stopAutoplay);
+      root.addEventListener("mouseleave", startAutoplay);
+      root.addEventListener("focusin", stopAutoplay);
+      root.addEventListener("focusout", startAutoplay);
 
       // Init
       root.tabIndex = 0;
       buildDots();
       updateCounter();
       setIndex(0);
+      startAutoplay();
     })();
   </script>
 
