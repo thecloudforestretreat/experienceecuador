@@ -20,29 +20,33 @@
   <style>
     :root{
       --brand-blue:#034EA2;
+      --cloud-white:#F5F7FA;
+      --charcoal:#1F1F1F;
       --slate:#6E7B8B;
-      --text:#1F1F1F;
+      --light-gray:#E3E5E8;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
       background:#f6f8fb;
-      color:var(--text);
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+    img{max-width:100%;display:block}
+    img{ user-select:none; -webkit-user-drag:none; }
 
-    /* ================= HEADER ================= */
+    /* ===== HEADER (MATCH OTHER REGION PAGES) ===== */
     .topbar{
       position:sticky;
       top:0;
       z-index:1000;
       backdrop-filter:saturate(160%) blur(10px);
-      background:rgba(255,255,255,.75);
-      border-bottom:1px solid rgba(0,0,0,.06);
+      background:rgba(255,255,255,0.75);
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      overflow:visible;
     }
 
     .topbar-inner{
@@ -50,53 +54,72 @@
       margin:0 auto;
       padding:14px 18px;
       display:flex;
-      justify-content:space-between;
       align-items:center;
+      justify-content:space-between;
       gap:16px;
+      overflow:visible;
     }
 
     .brand{
       display:flex;
-      gap:10px;
       align-items:center;
+      gap:10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
+      letter-spacing:-0.02em;
       color:var(--brand-blue);
       font-size:18px;
-      letter-spacing:-0.02em;
+      line-height:1;
       white-space:nowrap;
     }
 
-    .brand img{width:28px;height:28px}
+    .brand img{
+      width:28px;
+      height:28px;
+      object-fit:contain;
+    }
 
-    /* ================= NAV ================= */
+    /* ===== MENU (MATCH COAST) ===== */
     .nav{
       display:flex;
       align-items:center;
       gap:18px;
       font-weight:700;
       font-size:14px;
-      color:#0f2f62;
+      color:#1b2b4a;
       white-space:nowrap;
+      overflow:visible;
     }
 
-    .nav a{
-      padding:8px;
+    .nav a,
+    .nav button{
+      font:inherit;
+      background:transparent;
+      border:0;
+      color:inherit;
+      padding:8px 10px;
       border-radius:10px;
+      cursor:pointer;
+      line-height:1;
     }
 
-    .nav a:hover{
-      background:rgba(3,78,162,.08);
+    .nav a:hover,
+    .nav button:hover{
+      background:rgba(3,78,162,0.08);
     }
 
     .nav a.active{
-      background:rgba(3,78,162,.08);
       color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
     }
 
-    /* ================= DROPDOWN ================= */
+    /* ===== DROPDOWNS (MATCH COAST) ===== */
     .dropdown{
       position:relative;
+      display:inline-flex;
+      align-items:center;
+      z-index:1100;
+      overflow:visible;
     }
 
     .dropbtn{
@@ -105,26 +128,26 @@
       background:transparent;
       font:inherit;
       color:inherit;
-      padding:8px;
-      border-radius:10px;
-      cursor:pointer;
-      display:flex;
+      display:inline-flex;
       align-items:center;
       gap:8px;
+      user-select:none;
     }
 
-    .dropbtn:hover{
-      background:rgba(3,78,162,.08);
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
     }
 
     .caret{
       width:10px;
       height:10px;
+      display:inline-block;
       border-right:2px solid currentColor;
       border-bottom:2px solid currentColor;
       transform:rotate(45deg);
       margin-top:-2px;
-      opacity:.7;
+      opacity:0.7;
     }
 
     .dropdown-menu{
@@ -133,175 +156,329 @@
       right:0;
       min-width:220px;
       background:#fff;
-      border:1px solid rgba(0,0,0,.08);
+      border:1px solid rgba(0,0,0,0.08);
       border-radius:14px;
-      box-shadow:0 18px 55px rgba(3,78,162,.16);
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
       padding:8px;
       display:none;
-      z-index:2000;
+      z-index:1200;
     }
 
     .dropdown-menu a{
       display:block;
-      padding:10px;
+      padding:10px 10px;
       border-radius:10px;
       font-weight:700;
+      color:#0f2f62;
     }
 
     .dropdown-menu a:hover{
-      background:rgba(3,78,162,.08);
+      background:rgba(3,78,162,0.08);
     }
 
-    .dropdown.open .dropdown-menu{
-      display:block;
+    .dropdown-menu a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
     }
 
-    /* ================= HERO ================= */
+    .dropdown.open .dropdown-menu{ display:block; }
+
+    /* ===== HERO (MATCH OTHER REGION PAGES) ===== */
     .hero{
-      min-height:64vh;
-      background:url("/assets/images/EE-Region-Andes-hero-01.jpg") center/cover no-repeat;
       position:relative;
-      color:#fff;
+      width:100%;
+      min-height:64vh;
       display:flex;
       align-items:flex-end;
+      justify-content:center;
+      background:url("/assets/images/EE-Region-Andes-hero-01.jpg") center / cover no-repeat;
+      color:#fff;
     }
 
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(to bottom,rgba(0,0,0,.15),rgba(0,0,0,.7));
+      background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.14),
+        rgba(0,0,0,0.74)
+      );
     }
 
     .hero-inner{
       position:relative;
+      z-index:2;
+      width:100%;
       max-width:1100px;
-      margin:0 auto;
-      padding:48px 18px;
+      padding:54px 18px 34px;
+      text-align:left;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.38);
+      border:1px solid rgba(255,255,255,0.22);
+      font-weight:700;
+      letter-spacing:0.02em;
+      font-size:12.5px;
+      margin-bottom:14px;
+      backdrop-filter:blur(10px);
     }
 
     .hero h1{
+      margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
-      font-size:clamp(40px,5vw,72px);
-      margin:0 0 12px;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      font-size:clamp(40px,5.4vw,72px);
+      line-height:1.03;
     }
 
     .hero p{
+      margin:0;
       max-width:70ch;
-      line-height:1.6;
-      opacity:.95;
+      font-size:clamp(15px,2vw,18px);
+      line-height:1.65;
+      color:rgba(255,255,255,0.92);
     }
 
-    /* ================= CONTENT ================= */
+    /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:40px 18px;
+      padding:36px 18px 0;
     }
 
-    /* ================= FOOTER ================= */
+    .section{ margin-bottom:26px; }
+
+    .section h2{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:24px;
+      color:var(--brand-blue);
+    }
+
+    .section p{
+      margin:0;
+      color:#2a2f36;
+      font-size:15.8px;
+      line-height:1.75;
+      max-width:82ch;
+    }
+
+    /* ===== FOOTER (MATCH OTHER REGION PAGES) ===== */
     .footer{
       background:var(--brand-blue);
       color:#fff;
-      text-align:center;
-      padding:28px 18px;
+      margin-top:30px;
     }
 
-    /* ================= MOBILE ================= */
+    .footer-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+      text-align:center;
+    }
+
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.01em;
+      font-size:16px;
+      opacity:0.95;
+      margin-top:2px;
+    }
+
+    .social{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .icon-btn{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:var(--brand-blue);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 14px 34px rgba(0,0,0,0.35);
+    }
+
+    .icon-btn img{ width:34px; height:34px; }
+
+    footer small{ font-size:13px; opacity:.9; }
+
+    /* ===== MOBILE (MATCH COAST) ===== */
     @media(max-width:900px){
-      .nav{gap:10px;flex-wrap:wrap;justify-content:center}
+      .topbar-inner{ justify-content:space-between; }
+      .hero-inner{ text-align:center; }
+      .hero p{ margin:0 auto; }
+      .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+      .dropdown-menu{ right:0; left:auto; transform:none; }
     }
 
     @media(max-width:620px){
-      .topbar-inner{flex-direction:column;gap:10px}
-      .dropdown-menu{left:50%;right:auto;transform:translateX(-50%)}
-      .hero{text-align:center}
-      .hero p{margin:0 auto}
+      .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
+      .nav{ justify-content:center; }
+      .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
+    }
+
+    @media(max-width:480px){
+      .hero{ min-height:60vh; }
     }
   </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="/">
-      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
-      <span>Experience Ecuador</span>
-    </a>
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+        <span>Experience Ecuador</span>
+      </a>
 
-    <nav class="nav">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/mission">Mission</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/mission/">Mission</a>
 
-      <div class="dropdown" id="regionsDropdown">
-        <button class="dropbtn" type="button" aria-expanded="false">
-          Regions <span class="caret"></span>
-        </button>
-        <div class="dropdown-menu">
-          <a href="/regions">All Regions</a>
-          <a href="/regions/galapagos">Galapagos</a>
-          <a href="/regions/coast">Coast</a>
-          <a href="/regions/andes" class="active">Andes</a>
-          <a href="/regions/amazon">Amazon</a>
+        <div class="dropdown" id="regionsDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
+            Regions <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+            <a href="/regions/" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+            <a href="/regions/coast/" role="menuitem">Coast</a>
+            <a class="active" href="/regions/andes/" role="menuitem">Andes</a>
+            <a href="/regions/amazon/" role="menuitem">Amazon</a>
+          </div>
         </div>
+
+        <div class="dropdown" id="experiencesDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+            Experiences <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+            <a href="/experiences/" role="menuitem">All Experiences</a>
+            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+            <a href="/experiences/nature/" role="menuitem">Nature</a>
+            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+            <a href="/experiences/culture/" role="menuitem">Culture</a>
+          </div>
+        </div>
+
+        <a href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Andes hero image">
+    <div class="hero-inner">
+      <div class="kicker">Region Guide • Coming Soon</div>
+      <h1>The Andes</h1>
+      <p>
+        High-altitude landscapes, volcano views, colonial cities, and cultural heartlands.
+        This hub is being built to help you explore Ecuador’s Andes with trusted highlights and clear planning.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <main class="wrap">
+    <section class="section">
+      <h2>Andes guide in progress</h2>
+      <p>
+        The Andes region page is currently being expanded with curated experiences, town profiles,
+        and practical planning tools.
+      </p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
+      <div class="social">
+        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+        </a>
+        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+        </a>
+        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+        </a>
       </div>
 
-      <a href="/contact">Contact</a>
-    </nav>
-  </div>
-</header>
+      <small>© 2025 Experience Ecuador. All rights reserved.</small>
+    </div>
+  </footer>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <h1>The Andes</h1>
-    <p>
-      High-altitude landscapes, volcano views, colonial cities, and cultural heartlands.
-      This guide will evolve into a complete Andes travel hub.
-    </p>
-  </div>
-</section>
+  <script>
+    // Unified dropdown handler (Regions + Experiences) - open one at a time, close on outside click / Esc
+    (function () {
+      const dropdowns = document.querySelectorAll('.dropdown');
 
-<!-- CONTENT -->
-<main class="wrap">
-  <p>
-    The Andes region is currently being expanded with curated experiences, town profiles,
-    and practical planning tools.
-  </p>
-</main>
+      function closeAll() {
+        dropdowns.forEach(dd => {
+          dd.classList.remove('open');
+          const btn = dd.querySelector('.dropbtn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+      }
 
-<!-- FOOTER -->
-<footer class="footer">
-  <small>© 2025 Experience Ecuador. All rights reserved.</small>
-</footer>
+      dropdowns.forEach(dd => {
+        const btn = dd.querySelector('.dropbtn');
+        const menu = dd.querySelector('.dropdown-menu');
+        if (!btn) return;
 
-<!-- DROPDOWN SCRIPT -->
-<script>
-  (function(){
-    const dd = document.getElementById('regionsDropdown');
-    if(!dd) return;
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
 
-    const btn = dd.querySelector('.dropbtn');
+          const isOpen = dd.classList.contains('open');
+          closeAll();
+          dd.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+        });
 
-    function toggle(open){
-      dd.classList.toggle('open', open);
-      btn.setAttribute('aria-expanded', open);
-    }
+        if (menu) {
+          menu.addEventListener('click', function (e) {
+            e.stopPropagation();
+          });
+        }
+      });
 
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggle(!dd.classList.contains('open'));
-    });
-
-    document.addEventListener('click', () => toggle(false));
-    document.addEventListener('keydown', e => {
-      if(e.key === 'Escape') toggle(false);
-    });
-  })();
-</script>
+      document.addEventListener('click', closeAll);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAll();
+      });
+    })();
+  </script>
 
 </body>
 </html>
