@@ -1,1 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms &amp; Conditions | Experience Ecuador</title>
 
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --slate:#6E7B8B;
+      --text:#1F1F1F;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:#f6f8fb;
+      color:var(--text);
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+
+    /* ===== HEADER (MATCH REGIONS / CONTACT) ===== */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(255,255,255,.75);
+      border-bottom:1px solid rgba(0,0,0,.06);
+      overflow:visible;
+    }
+
+    .topbar-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      overflow:visible;
+    }
+
+    .brand{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+      white-space:nowrap;
+      font-size:18px;
+      line-height:1;
+    }
+
+    .brand img{width:28px;height:28px;object-fit:contain}
+
+    /* NAV */
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-weight:700;
+      font-size:14px;
+      color:#0f2f62;
+      white-space:nowrap;
+      overflow:visible;
+    }
+
+    .nav a,
+    .nav button{
+      font:inherit;
+      background:transparent;
+      border:0;
+      color:inherit;
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      line-height:1;
+    }
+
+    .nav a:hover,
+    .nav button:hover{ background:rgba(3,78,162,.08); }
+
+    .nav a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,.08);
+    }
+
+    /* Dropdown */
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      overflow:visible;
+      z-index:1100;
+    }
+
+    .dropbtn{
+      appearance:none;
+      border:0;
+      background:transparent;
+      font:inherit;
+      color:inherit;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
+    }
+
+    .caret{
+      width:10px;
+      height:10px;
+      display:inline-block;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
+      transform:rotate(45deg);
+      margin-top:-2px;
+      opacity:.7;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:42px;
+      right:0;
+      min-width:220px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:14px;
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
+      padding:8px;
+      display:none;
+      z-index:1200;
+    }
+
+    .dropdown-menu a{
+      display:block;
+      padding:10px 10px;
+      border-radius:10px;
+      font-weight:700;
+      color:#0f2f62;
+    }
+
+    .dropdown-menu a:hover{ background:rgba(3,78,162,0.08); }
+
+    .dropdown-menu a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
+    }
+
+    .dropdown.open .dropdown-menu{display:block}
+
+    /* ===== CONTENT ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:40px 18px 56px;
+    }
+
+    h1{
+      font-family:Montserrat,Inter,sans-serif;
+      font-size:clamp(34px,4vw,54px);
+      color:var(--brand-blue);
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
+    }
+
+    .lede{
+      color:var(--slate);
+      line-height:1.65;
+      max-width:85ch;
+      margin:0;
+      font-size:16.8px;
+    }
+
+    .meta-row{
+      margin-top:12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      color:#162b55;
+      font-weight:700;
+      font-size:13.5px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
+      font-weight:800;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      margin-top:22px;
+      align-items:start;
+    }
+
+    .card{
+      background:#fff;
+      padding:22px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .card + .card{ margin-top:16px; }
+
+    .card h2{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      color:#0f2f62;
+    }
+
+    .card p{
+      margin:0 0 12px;
+      color:#1f2b3f;
+      line-height:1.75;
+      font-size:15.5px;
+      max-width:80ch;
+    }
+
+    .card p:last-child{ margin-bottom:0; }
+
+    .card ul{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:#162b55;
+      font-weight:600;
+      line-height:1.65;
+      font-size:14.8px;
+    }
+
+    .card ul li{ margin:8px 0; }
+
+    .inline-link{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:800;
+      color:#162b55;
+    }
+
+    .side-stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .mini{
+      background:#fff;
+      padding:20px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .mini h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .mini p{
+      margin:0;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:14.8px;
+    }
+
+    .link-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .pill-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      font-weight:900;
+      color:#0f2f62;
+    }
+
+    .pill-link:hover{ background:rgba(3,78,162,.08); }
+
+    .pill-link span{
+      opacity:.9;
+      font-weight:700;
+      color:#162b55;
+      font-size:13px;
+    }
+
+    .email-row{
+      margin-top:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .email-link{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:900;
+      color:#162b55;
+      font-size:14.5px;
+      word-break:break-word;
+    }
+
+    .copy-icon-btn{
+      width:36px;
+      height:36px;
+      border-radius:12px;
+      border:1px solid rgba(3,78,162,.22);
+      background:#fff;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+      flex:0 0 auto;
+    }
+
+    .copy-icon-btn:hover{ background:rgba(3,78,162,.06); }
+    .copy-icon-btn:active{ transform:scale(0.98); }
+
+    .copy-icon-btn.copied{
+      background:rgba(3,78,162,.10);
+      border-color:rgba(3,78,162,.35);
+    }
+
+    .copy-ico{
+      width:18px;
+      height:18px;
+      fill:none;
+      stroke:#0f2f62;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .copy-toast{
+      display:none;
+      margin-top:10px;
+      width:fit-content;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,.08);
+      border:1px solid rgba(3,78,162,.18);
+      color:#0f2f62;
+      font-weight:900;
+      font-size:13px;
+    }
+    .copy-toast.show{ display:inline-flex; }
+
+    .policy-image{
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:0 18px 60px rgba(0,0,0,.14);
+      aspect-ratio:4 / 3;
+      background:#eef2f7;
+    }
+
+    .policy-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* ===== FOOTER (LOCKED) ===== */
+    .footer{
+      background:var(--brand-blue);
+      color:#fff;
+      margin-top:30px;
+    }
+
+    .footer-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+      text-align:center;
+    }
+
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      opacity:.98;
+    }
+
+    .social{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .icon-btn{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:var(--brand-blue);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 14px 34px rgba(0,0,0,.35);
+    }
+
+    .icon-btn img{width:34px;height:34px}
+    footer small{font-size:13px;opacity:.9}
+
+    /* ===== MOBILE ===== */
+    @media(max-width:980px){
+      .content-grid{grid-template-columns:1fr}
+    }
+
+    @media(max-width:900px){
+      .nav{gap:8px;flex-wrap:wrap;justify-content:flex-end}
+      .dropdown-menu{right:0;left:auto}
+    }
+
+    @media(max-width:620px){
+      .topbar-inner{flex-direction:column;align-items:center;gap:10px}
+      .nav{justify-content:center}
+      .dropdown-menu{right:auto;left:50%;transform:translateX(-50%)}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+        <span>Experience Ecuador</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/mission/">Mission</a>
+
+        <div class="dropdown" id="regionsDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
+            Regions <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+            <a href="/regions/" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+            <a href="/regions/coast/" role="menuitem">Coast</a>
+            <a href="/regions/andes/" role="menuitem">Andes</a>
+            <a href="/regions/amazon/" role="menuitem">Amazon</a>
+          </div>
+        </div>
+
+        <div class="dropdown" id="experiencesDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+            Experiences <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+            <a href="/experiences/" role="menuitem">All Experiences</a>
+            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+            <a href="/experiences/nature/" role="menuitem">Nature</a>
+            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+            <a href="/experiences/culture/" role="menuitem">Culture</a>
+          </div>
+        </div>
+
+        <a href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Terms &amp; Conditions</h1>
+    <p class="lede">
+      These Terms &amp; Conditions govern your use of Experience Ecuador. By using this website, you agree to these terms.
+    </p>
+
+    <div class="meta-row" aria-label="Terms metadata">
+      <span class="pill">Effective date: December 14, 2025</span>
+      <span class="pill">Contact: info@experienceecuador.com</span>
+    </div>
+
+    <section class="content-grid" aria-label="Terms content">
+      <div>
+        <div class="card">
+          <h2>About the site</h2>
+          <p>
+            Experience Ecuador is an informational and editorial travel guide. We publish region and experience content to help travelers
+            discover Ecuador, plan with more clarity, and connect with trusted partners.
+          </p>
+          <p>
+            We do not guarantee that any specific listing, operator, pricing, availability, or itinerary detail will be current at all times.
+            Travel conditions can change quickly and you should always verify details directly with the provider.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Use of content</h2>
+          <ul>
+            <li>You may view, download, and print pages for personal, non-commercial use</li>
+            <li>You may not copy, republish, sell, or redistribute content without written permission</li>
+            <li>Logos, images, and brand assets belong to their respective owners and may be protected by copyright</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Partner listings and third-party links</h2>
+          <p>
+            The site may include links to third-party websites, services, or booking channels. We are not responsible for third-party content,
+            policies, pricing, or performance. Any interaction you have with a third party is between you and that party.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Accuracy and updates</h2>
+          <p>
+            We aim for clarity and accuracy, but information may be incomplete or become outdated. We may update, remove, or change content at any time
+            without notice as the site evolves.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Prohibited use</h2>
+          <ul>
+            <li>Attempting to harm, disrupt, or overload the site or its infrastructure</li>
+            <li>Scraping content at scale, reverse engineering, or automated extraction without permission</li>
+            <li>Using the site in any way that violates applicable laws or infringes rights</li>
+            <li>Submitting false information in partnership inquiries or communications</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Disclaimers</h2>
+          <p>
+            The site is provided “as is” and “as available” without warranties of any kind. Experience Ecuador does not provide legal, medical,
+            or safety advice. You are responsible for planning decisions, bookings, and travel safety.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Limitation of liability</h2>
+          <p>
+            To the maximum extent permitted by law, Experience Ecuador and its owners are not liable for any direct or indirect damages
+            resulting from your use of the website, reliance on content, or interactions with third-party providers.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Changes to these terms</h2>
+          <p>
+            We may update these Terms &amp; Conditions as the site grows. Any updates will be posted on this page with a revised effective date.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Contact</h2>
+          <p>
+            For questions about these terms, contact us at
+            <a class="inline-link" href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>.
+          </p>
+        </div>
+      </div>
+
+      <aside class="side-stack" aria-label="Terms side content">
+        <div class="mini">
+          <h3>Related pages</h3>
+          <p>
+            You may also want to review these pages for more details.
+          </p>
+          <div class="link-list" aria-label="Terms quick links">
+            <a class="pill-link" href="/privacy-policy/">
+              Privacy Policy <span>How we handle data</span>
+            </a>
+            <a class="pill-link" href="/faq/">
+              FAQ <span>Common questions</span>
+            </a>
+
+            <div class="email-row" aria-label="Email row">
+              <a class="email-link" href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
+
+              <button class="copy-icon-btn" id="copyTermsEmail" type="button" aria-label="Copy email">
+                <svg class="copy-ico" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V9z"></path>
+                  <path d="M7 15H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="copy-toast" id="termsCopyToast" role="status" aria-live="polite">Copied</div>
+          </div>
+        </div>
+
+        <div class="policy-image" aria-label="Terms image">
+          <img src="/assets/images/EE-Logo-Assets-17-Terms.jpg" alt="Terms and conditions graphic">
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
+      <div class="social" aria-label="Social media links">
+        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+        </a>
+        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+        </a>
+        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+        </a>
+      </div>
+
+      <small>© 2025 Experience Ecuador. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Unified dropdown handler (Regions + Experiences) - open one at a time, close on outside click / Esc
+    (function () {
+      const dropdowns = document.querySelectorAll('.dropdown');
+
+      function closeAll() {
+        dropdowns.forEach(dd => {
+          dd.classList.remove('open');
+          const btn = dd.querySelector('.dropbtn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      dropdowns.forEach(dd => {
+        const btn = dd.querySelector('.dropbtn');
+        const menu = dd.querySelector('.dropdown-menu');
+        if (!btn) return;
+
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isOpen = dd.classList.contains('open');
+          closeAll();
+          dd.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+        });
+
+        if (menu) {
+          menu.addEventListener('click', function (e) {
+            e.stopPropagation();
+          });
+        }
+      });
+
+      document.addEventListener('click', closeAll);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAll();
+      });
+    })();
+
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+
+    // Copy email icon button (Terms)
+    (function(){
+      const email = 'info@experienceecuador.com';
+      const btn = document.getElementById('copyTermsEmail');
+      const toast = document.getElementById('termsCopyToast');
+      if(!btn) return;
+
+      function showCopied(){
+        btn.classList.add('copied');
+        if(toast) toast.classList.add('show');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          if(toast) toast.classList.remove('show');
+        }, 1600);
+      }
+
+      btn.addEventListener('click', async () => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(email);
+            showCopied();
+            return;
+          }
+          const ta = document.createElement('textarea');
+          ta.value = email;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          ta.style.top = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showCopied();
+        } catch (e) {}
+      });
+    })();
+  </script>
+</body>
+</html>
