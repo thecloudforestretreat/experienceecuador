@@ -35,7 +35,7 @@
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
-    /* ===== HEADER (MATCH ANDES / MISSION / CONTACT) ===== */
+    /* ===== HEADER ===== */
     .topbar{
       position:sticky;
       top:0;
@@ -76,7 +76,7 @@
       object-fit:contain;
     }
 
-    /* ===== MENU ===== */
+    /* ===== NAV ===== */
     .nav{
       display:flex;
       align-items:center;
@@ -88,14 +88,20 @@
       overflow:visible;
     }
 
-    .nav a{
-      padding:8px 8px;
+    .nav a,
+    .nav button{
+      font:inherit;
+      background:transparent;
+      border:0;
+      color:inherit;
+      padding:8px 10px;
       border-radius:10px;
-      transition:background 0.15s ease;
-      opacity:1;
+      cursor:pointer;
+      line-height:1;
     }
 
-    .nav a:hover{
+    .nav a:hover,
+    .nav button:hover{
       background:rgba(3,78,162,0.08);
     }
 
@@ -104,6 +110,7 @@
       background:rgba(3,78,162,0.08);
     }
 
+    /* Dropdown */
     .dropdown{
       position:relative;
       display:inline-flex;
@@ -113,24 +120,10 @@
     }
 
     .dropbtn{
-      appearance:none;
-      border:0;
-      background:transparent;
-      font:inherit;
-      color:inherit;
-
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding:8px 8px;
-      border-radius:10px;
-      cursor:pointer;
       user-select:none;
-      transition:background 0.15s ease;
-    }
-
-    .dropbtn:hover{
-      background:rgba(3,78,162,0.08);
     }
 
     .dropbtn:focus{
@@ -163,9 +156,11 @@
       z-index:1200;
     }
 
+    .dropdown.open .dropdown-menu{display:block}
+
     .dropdown-menu a{
       display:block;
-      padding:10px 10px;
+      padding:10px;
       border-radius:10px;
       font-weight:700;
       color:#0f2f62;
@@ -175,7 +170,10 @@
       background:rgba(3,78,162,0.08);
     }
 
-    .dropdown.open .dropdown-menu{ display:block; }
+    .dropdown-menu a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
+    }
 
     /* ===== PAGE ===== */
     .wrap{
@@ -201,7 +199,6 @@
       margin:0;
     }
 
-    /* ===== GRID ===== */
     .grid{
       display:grid;
       grid-template-columns:1.15fr 0.85fr;
@@ -265,7 +262,6 @@
       color:#24324a;
     }
 
-    /* ===== IMAGE BREAK ===== */
     .break{
       margin:18px 0 40px;
       border-radius:22px;
@@ -283,7 +279,7 @@
       pointer-events:none;
     }
 
-    /* ===== FOOTER (MATCH LOCKED STYLE) ===== */
+    /* ===== FOOTER ===== */
     .footer{
       background:var(--brand-blue);
       color:#fff;
@@ -335,9 +331,7 @@
     /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
-      .topbar-inner{ justify-content:space-between; }
       .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
-      .dropdown-menu{ right:0; left:auto; }
     }
 
     @media(max-width:620px){
@@ -350,7 +344,6 @@
 
 <body>
 
-  <!-- HEADER -->
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="/">
@@ -367,7 +360,6 @@
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
             Regions <span class="caret" aria-hidden="true"></span>
           </button>
-
           <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
             <a href="/regions/" role="menuitem">All Regions</a>
             <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
@@ -377,12 +369,26 @@
           </div>
         </div>
 
+        <div class="dropdown" id="experiencesDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+            Experiences <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+            <a href="/experiences/" role="menuitem">All Experiences</a>
+            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+            <a href="/experiences/nature/" role="menuitem">Nature</a>
+            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+            <a href="/experiences/culture/" role="menuitem">Culture</a>
+          </div>
+        </div>
+
         <a href="/contact/">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- PAGE CONTENT -->
   <main class="wrap">
     <section class="hero">
       <h1>About Experience Ecuador</h1>
@@ -418,7 +424,7 @@
           <h3>What to expect next</h3>
           <ul>
             <li>Regional hubs: Galapagos, Coast, Andes, Amazon</li>
-            <li>Experience categories: relaxation, adventure, holistic, culinary, cultural</li>
+            <li>Experience categories: relaxation, adventure, nature, culinary, culture</li>
             <li>Newsletter highlights and featured partners</li>
           </ul>
         </div>
@@ -430,7 +436,6 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-tagline">Curated travel experiences across Ecuador</div>
@@ -455,36 +460,42 @@
   </footer>
 
   <script>
-    // Regions dropdown (click + close on outside click / Esc) matching Andes
     (function () {
-      const dd = document.getElementById('regionsDropdown');
-      if (!dd) return;
+      const dropdowns = document.querySelectorAll('.dropdown');
 
-      const btn = dd.querySelector('.dropbtn');
-      const menu = dd.querySelector('.dropdown-menu');
-
-      function setOpen(isOpen) {
-        dd.classList.toggle('open', isOpen);
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      }
-
-      btn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        setOpen(!dd.classList.contains('open'));
-      });
-
-      if (menu) {
-        menu.addEventListener('click', function (e) {
-          e.stopPropagation();
+      function closeAll() {
+        dropdowns.forEach(dd => {
+          dd.classList.remove('open');
+          const btn = dd.querySelector('.dropbtn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
         });
       }
 
-      document.addEventListener('click', function () {
-        setOpen(false);
+      dropdowns.forEach(dd => {
+        const btn = dd.querySelector('.dropbtn');
+        const menu = dd.querySelector('.dropdown-menu');
+        if (!btn) return;
+
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isOpen = dd.classList.contains('open');
+          closeAll();
+          dd.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+        });
+
+        if (menu) {
+          menu.addEventListener('click', function (e) {
+            e.stopPropagation();
+          });
+        }
       });
 
+      document.addEventListener('click', closeAll);
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') setOpen(false);
+        if (e.key === 'Escape') closeAll();
       });
     })();
   </script>
