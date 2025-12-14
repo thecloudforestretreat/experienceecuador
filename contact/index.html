@@ -121,7 +121,6 @@
       background:transparent;
       font:inherit;
       color:inherit;
-
       display:inline-flex;
       align-items:center;
       gap:8px;
@@ -249,22 +248,52 @@
       color:#162b55;
     }
 
-    .copy-btn{
-      padding:6px 12px;
-      border-radius:999px;
-      border:1px solid rgba(3,78,162,.25);
+    /* REPLACED: Copy button -> icon button used across other pages */
+    .copy-icon-btn{
+      width:36px;
+      height:36px;
+      border-radius:12px;
+      border:1px solid rgba(3,78,162,.22);
       background:#fff;
-      color:#0f2f62;
-      font-size:13px;
-      font-weight:700;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       cursor:pointer;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+      flex:0 0 auto;
     }
 
-    .copy-btn.copied{
-      background:var(--brand-blue);
-      color:#fff;
-      border-color:var(--brand-blue);
+    .copy-icon-btn:hover{ background:rgba(3,78,162,.06); }
+    .copy-icon-btn:active{ transform:scale(0.98); }
+
+    .copy-icon-btn.copied{
+      background:rgba(3,78,162,.10);
+      border-color:rgba(3,78,162,.35);
     }
+
+    .copy-ico{
+      width:18px;
+      height:18px;
+      fill:none;
+      stroke:#0f2f62;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .copy-toast{
+      display:none;
+      margin-top:10px;
+      width:fit-content;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,.08);
+      border:1px solid rgba(3,78,162,.18);
+      color:#0f2f62;
+      font-weight:800;
+      font-size:13px;
+    }
+    .copy-toast.show{ display:inline-flex; }
 
     .partners-lines{
       display:flex;
@@ -274,6 +303,86 @@
       font-weight:600;
       line-height:1.35;
       font-size:14.5px;
+    }
+
+    .side-stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .mini{
+      background:#fff;
+      padding:20px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .mini h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .mini p{
+      margin:0;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:14.8px;
+    }
+
+    .link-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .pill-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      font-weight:800;
+      color:#0f2f62;
+    }
+
+    .pill-link:hover{ background:rgba(3,78,162,.08); }
+
+    .pill-link span{
+      opacity:.9;
+      font-weight:700;
+      color:#162b55;
+      font-size:13px;
+    }
+
+    .email-row{
+      margin-top:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .email-link{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:800;
+      color:#162b55;
+      font-size:14.5px;
+      word-break:break-word;
     }
 
     .side-image{
@@ -439,8 +548,18 @@
           <div class="label">Email</div>
           <div class="value">
             <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
-            <button class="copy-btn" id="copyEmail" type="button">Copy</button>
+
+            <!-- UPDATED: icon copy button -->
+            <button class="copy-icon-btn" id="copyContactEmail" type="button" aria-label="Copy email">
+              <svg class="copy-ico" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V9z"></path>
+                <path d="M7 15H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
           </div>
+
+          <!-- Optional toast like other pages -->
+          <div class="copy-toast" id="contactCopyToast" role="status" aria-live="polite">Copied</div>
         </div>
 
         <div class="info-item">
@@ -452,8 +571,46 @@
         </div>
       </div>
 
-      <aside class="side-image" aria-label="Contact image">
-        <img src="/assets/images/EE-contact-image-02.jpg" alt="Ecuador travel collage">
+      <!-- UPDATED: Right column includes Related pages + image (so you actually see it) -->
+      <aside class="side-stack" aria-label="Contact side content">
+        <div class="mini">
+          <h3>Related pages</h3>
+          <p>
+            Helpful links for policies and site details.
+          </p>
+
+          <div class="link-list" aria-label="Related pages">
+            <a class="pill-link" href="/faq/">
+              FAQ <span>Common questions</span>
+            </a>
+            <a class="pill-link" href="/privacy-policy/">
+              Privacy Policy <span>How we handle data</span>
+            </a>
+            <a class="pill-link" href="/terms/">
+              Terms &amp; Conditions <span>General terms</span>
+            </a>
+            <a class="pill-link" href="/terms-of-service/">
+              Terms of Service <span>Service rules</span>
+            </a>
+
+            <div class="email-row" aria-label="Email row">
+              <a class="email-link" href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
+
+              <button class="copy-icon-btn" id="copyContactEmailSide" type="button" aria-label="Copy email">
+                <svg class="copy-ico" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V9z"></path>
+                  <path d="M7 15H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="copy-toast" id="contactCopyToastSide" role="status" aria-live="polite">Copied</div>
+          </div>
+        </div>
+
+        <div class="side-image" aria-label="Contact image">
+          <img src="/assets/images/EE-contact-image-02.jpg" alt="Ecuador travel collage">
+        </div>
       </aside>
     </section>
   </main>
@@ -477,7 +634,7 @@
         </a>
       </div>
 
-      <!-- NEW: footer policy links (not in menu) -->
+      <!-- Footer policy links (kept) -->
       <div class="footer-links" aria-label="Footer links">
         <a href="/faq/">FAQ</a>
         <a href="/privacy-policy/">Privacy Policy</a>
@@ -490,43 +647,6 @@
   </footer>
 
   <script>
-    // Copy email button (safe fallback)
-    (function(){
-      const email = 'info@experienceecuador.com';
-      const btn = document.getElementById('copyEmail');
-      if(!btn) return;
-
-      function setCopied(){
-        btn.textContent = 'Copied';
-        btn.classList.add('copied');
-        setTimeout(() => {
-          btn.textContent = 'Copy';
-          btn.classList.remove('copied');
-        }, 2000);
-      }
-
-      btn.addEventListener('click', async () => {
-        try {
-          if (navigator.clipboard && window.isSecureContext) {
-            await navigator.clipboard.writeText(email);
-            setCopied();
-            return;
-          }
-          const ta = document.createElement('textarea');
-          ta.value = email;
-          ta.style.position = 'fixed';
-          ta.style.left = '-9999px';
-          ta.style.top = '0';
-          document.body.appendChild(ta);
-          ta.focus();
-          ta.select();
-          document.execCommand('copy');
-          document.body.removeChild(ta);
-          setCopied();
-        } catch (e) {}
-      });
-    })();
-
     // Unified dropdown handler (Regions + Experiences) - open one at a time, close on outside click / Esc
     (function () {
       const dropdowns = document.querySelectorAll('.dropdown');
@@ -571,6 +691,50 @@
     document.addEventListener('contextmenu', (e) => {
       if (e.target && e.target.tagName === 'IMG') e.preventDefault();
     });
+
+    // Copy email icon button (Contact) - supports both buttons if present
+    (function(){
+      const email = 'info@experienceecuador.com';
+
+      function wireCopy(btnId, toastId){
+        const btn = document.getElementById(btnId);
+        const toast = document.getElementById(toastId);
+        if(!btn) return;
+
+        function showCopied(){
+          btn.classList.add('copied');
+          if(toast) toast.classList.add('show');
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            if(toast) toast.classList.remove('show');
+          }, 1600);
+        }
+
+        btn.addEventListener('click', async () => {
+          try {
+            if (navigator.clipboard && window.isSecureContext) {
+              await navigator.clipboard.writeText(email);
+              showCopied();
+              return;
+            }
+            const ta = document.createElement('textarea');
+            ta.value = email;
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            ta.style.top = '0';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showCopied();
+          } catch (e) {}
+        });
+      }
+
+      wireCopy('copyContactEmail', 'contactCopyToast');
+      wireCopy('copyContactEmailSide', 'contactCopyToastSide');
+    })();
   </script>
 </body>
 </html>
