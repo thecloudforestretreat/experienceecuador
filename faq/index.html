@@ -387,6 +387,120 @@
       font-size:13px;
     }
 
+    /* Contact button + email row */
+    .contact-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      width:100%;
+      padding:12px 12px;
+      border-radius:16px;
+      background:var(--brand-blue);
+      border:1px solid rgba(0,0,0,0.06);
+      color:#fff;
+      font-weight:900;
+      letter-spacing:-0.01em;
+      box-shadow:0 16px 40px rgba(3,78,162,.22);
+    }
+
+    .contact-btn:hover{ filter:brightness(1.02); }
+
+    .contact-btn .arrow{
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      transform:rotate(-45deg);
+      opacity:.95;
+      margin-top:1px;
+    }
+
+    .email-row{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .email-link{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:900;
+      color:#162b55;
+      font-size:14.5px;
+      word-break:break-word;
+    }
+
+    .copy-icon-btn{
+      width:36px;
+      height:36px;
+      border-radius:12px;
+      border:1px solid rgba(3,78,162,.22);
+      background:#fff;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+      flex:0 0 auto;
+    }
+
+    .copy-icon-btn:hover{ background:rgba(3,78,162,.06); }
+
+    .copy-icon-btn:active{ transform:scale(0.98); }
+
+    .copy-icon-btn.copied{
+      background:rgba(3,78,162,.10);
+      border-color:rgba(3,78,162,.35);
+    }
+
+    .copy-ico{
+      width:18px;
+      height:18px;
+      fill:none;
+      stroke:#0f2f62;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .copy-toast{
+      display:none;
+      margin-top:10px;
+      width:fit-content;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,.08);
+      border:1px solid rgba(3,78,162,.18);
+      color:#0f2f62;
+      font-weight:900;
+      font-size:13px;
+    }
+    .copy-toast.show{ display:inline-flex; }
+
+    /* FAQ side image */
+    .faq-side-image{
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:0 18px 60px rgba(0,0,0,.14);
+      aspect-ratio:4 / 3;
+      background:#eef2f7;
+    }
+
+    .faq-side-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
     /* ===== FOOTER (LOCKED) ===== */
     .footer{
       background:var(--brand-blue);
@@ -717,14 +831,29 @@
           <p>
             Partnerships, features, and collaboration inquiries.
           </p>
+
           <div class="link-list" aria-label="Quick links">
-            <a class="pill-link" href="/contact/">
-              Contact page <span>Write us</span>
+            <a class="contact-btn" href="/contact/">
+              Go to Contact <span class="arrow" aria-hidden="true"></span>
             </a>
-            <a class="pill-link" href="mailto:info@experienceecuador.com">
-              Email <span>info@experienceecuador.com</span>
-            </a>
+
+            <div class="email-row" aria-label="Email row">
+              <a class="email-link" href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
+
+              <button class="copy-icon-btn" id="copyFaqEmail" type="button" aria-label="Copy email">
+                <svg class="copy-ico" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V9z"></path>
+                  <path d="M7 15H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="copy-toast" id="faqCopyToast" role="status" aria-live="polite">Copied</div>
           </div>
+        </div>
+
+        <div class="faq-side-image" aria-label="FAQ image">
+          <img src="/assets/images/EE-Assets-FAQ-01.jpg" alt="Ecuador travel highlights">
         </div>
       </aside>
     </section>
@@ -811,6 +940,44 @@
             if(other !== d) other.open = false;
           });
         });
+      });
+    })();
+
+    // Copy email icon button for FAQ
+    (function(){
+      const email = 'info@experienceecuador.com';
+      const btn = document.getElementById('copyFaqEmail');
+      const toast = document.getElementById('faqCopyToast');
+      if(!btn) return;
+
+      function showCopied(){
+        btn.classList.add('copied');
+        if(toast) toast.classList.add('show');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          if(toast) toast.classList.remove('show');
+        }, 1600);
+      }
+
+      btn.addEventListener('click', async () => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(email);
+            showCopied();
+            return;
+          }
+          const ta = document.createElement('textarea');
+          ta.value = email;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          ta.style.top = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showCopied();
+        } catch (e) {}
       });
     })();
   </script>
