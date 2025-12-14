@@ -1,1 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ | Experience Ecuador</title>
 
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --slate:#6E7B8B;
+      --text:#1F1F1F;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:#f6f8fb;
+      color:var(--text);
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+
+    /* ===== HEADER (MATCH REGIONS / CONTACT) ===== */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(255,255,255,.75);
+      border-bottom:1px solid rgba(0,0,0,.06);
+      overflow:visible;
+    }
+
+    .topbar-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      overflow:visible;
+    }
+
+    .brand{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+      white-space:nowrap;
+      font-size:18px;
+      line-height:1;
+    }
+
+    .brand img{width:28px;height:28px;object-fit:contain}
+
+    /* NAV */
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-weight:700;
+      font-size:14px;
+      color:#0f2f62;
+      white-space:nowrap;
+      overflow:visible;
+    }
+
+    .nav a,
+    .nav button{
+      font:inherit;
+      background:transparent;
+      border:0;
+      color:inherit;
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      line-height:1;
+    }
+
+    .nav a:hover,
+    .nav button:hover{
+      background:rgba(3,78,162,.08);
+    }
+
+    .nav a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,.08);
+    }
+
+    /* Dropdown */
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      overflow:visible;
+      z-index:1100;
+    }
+
+    .dropbtn{
+      appearance:none;
+      border:0;
+      background:transparent;
+      font:inherit;
+      color:inherit;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
+    }
+
+    .caret{
+      width:10px;
+      height:10px;
+      display:inline-block;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
+      transform:rotate(45deg);
+      margin-top:-2px;
+      opacity:.7;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:42px;
+      right:0;
+      min-width:220px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:14px;
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
+      padding:8px;
+      display:none;
+      z-index:1200;
+    }
+
+    .dropdown-menu a{
+      display:block;
+      padding:10px 10px;
+      border-radius:10px;
+      font-weight:700;
+      color:#0f2f62;
+    }
+
+    .dropdown-menu a:hover{
+      background:rgba(3,78,162,0.08);
+    }
+
+    .dropdown-menu a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
+    }
+
+    .dropdown.open .dropdown-menu{display:block}
+
+    /* ===== CONTENT ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:40px 18px 56px;
+    }
+
+    h1{
+      font-family:Montserrat,Inter,sans-serif;
+      font-size:clamp(34px,4vw,54px);
+      color:var(--brand-blue);
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
+    }
+
+    .lede{
+      color:var(--slate);
+      line-height:1.65;
+      max-width:80ch;
+      margin:0;
+      font-size:16.8px;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      margin-top:22px;
+      align-items:start;
+    }
+
+    .card{
+      background:#fff;
+      padding:22px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .card + .card{ margin-top:16px; }
+
+    .card h2{
+      margin:0 0 12px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      color:#0f2f62;
+    }
+
+    /* FAQ accordion */
+    .faq{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    details{
+      background:linear-gradient(180deg, rgba(3,78,162,.04), rgba(3,78,162,.015));
+      border:1px solid rgba(3,78,162,.12);
+      border-radius:18px;
+      padding:14px 14px;
+      overflow:hidden;
+    }
+
+    summary{
+      list-style:none;
+      cursor:pointer;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      user-select:none;
+      font-weight:800;
+      color:#0f2f62;
+      line-height:1.35;
+    }
+
+    summary::-webkit-details-marker{display:none}
+
+    .q{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+
+    .q-badge{
+      flex:0 0 auto;
+      width:28px;
+      height:28px;
+      border-radius:10px;
+      background:rgba(3,78,162,.10);
+      border:1px solid rgba(3,78,162,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      color:var(--brand-blue);
+      font-size:13px;
+      line-height:1;
+      margin-top:1px;
+    }
+
+    .chev{
+      flex:0 0 auto;
+      width:12px;
+      height:12px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
+      transform:rotate(45deg);
+      margin-top:6px;
+      opacity:.7;
+      transition:transform .15s ease;
+    }
+
+    details[open] .chev{
+      transform:rotate(-135deg);
+      margin-top:10px;
+    }
+
+    .a{
+      margin-top:10px;
+      color:#1f2b3f;
+      line-height:1.7;
+      font-size:15.5px;
+      max-width:78ch;
+    }
+
+    .a p{ margin:0 0 10px; }
+    .a p:last-child{ margin-bottom:0; }
+
+    .a a{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:700;
+      color:#162b55;
+    }
+
+    .side-stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .mini{
+      background:#fff;
+      padding:20px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .mini h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .mini p{
+      margin:0;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:14.8px;
+    }
+
+    .mini ul{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:#162b55;
+      font-weight:600;
+      line-height:1.55;
+      font-size:14.5px;
+    }
+
+    .mini ul li{ margin:6px 0; }
+
+    .link-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .pill-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      font-weight:800;
+      color:#0f2f62;
+    }
+
+    .pill-link:hover{
+      background:rgba(3,78,162,.08);
+    }
+
+    .pill-link span{
+      opacity:.9;
+      font-weight:700;
+      color:#162b55;
+      font-size:13px;
+    }
+
+    /* ===== FOOTER (LOCKED) ===== */
+    .footer{
+      background:var(--brand-blue);
+      color:#fff;
+      margin-top:30px;
+    }
+
+    .footer-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+      text-align:center;
+    }
+
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      opacity:.98;
+    }
+
+    .social{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .icon-btn{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:var(--brand-blue);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 14px 34px rgba(0,0,0,.35);
+    }
+
+    .icon-btn img{width:34px;height:34px}
+
+    footer small{font-size:13px;opacity:.9}
+
+    /* ===== MOBILE ===== */
+    @media(max-width:980px){
+      .content-grid{grid-template-columns:1fr}
+    }
+
+    @media(max-width:900px){
+      .nav{gap:8px;flex-wrap:wrap;justify-content:flex-end}
+      .dropdown-menu{right:0;left:auto}
+    }
+
+    @media(max-width:620px){
+      .topbar-inner{flex-direction:column;align-items:center;gap:10px}
+      .nav{justify-content:center}
+      .dropdown-menu{right:auto;left:50%;transform:translateX(-50%)}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+        <span>Experience Ecuador</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/mission/">Mission</a>
+
+        <div class="dropdown" id="regionsDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
+            Regions <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+            <a href="/regions/" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+            <a href="/regions/coast/" role="menuitem">Coast</a>
+            <a href="/regions/andes/" role="menuitem">Andes</a>
+            <a href="/regions/amazon/" role="menuitem">Amazon</a>
+          </div>
+        </div>
+
+        <div class="dropdown" id="experiencesDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+            Experiences <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+            <a href="/experiences/" role="menuitem">All Experiences</a>
+            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+            <a href="/experiences/nature/" role="menuitem">Nature</a>
+            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+            <a href="/experiences/culture/" role="menuitem">Culture</a>
+          </div>
+        </div>
+
+        <a href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>FAQ</h1>
+    <p class="lede">
+      Experience Ecuador is built to make planning feel simple, clear, and inspiring.
+      Here are the most common questions about how the site works and what is coming next.
+    </p>
+
+    <section class="content-grid" aria-label="FAQ content">
+      <div>
+        <div class="card">
+          <h2>How Experience Ecuador works</h2>
+
+          <div class="faq" aria-label="Frequently asked questions">
+            <details>
+              <summary>
+                <span class="q">
+                  <span class="q-badge">Q</span>
+                  What is Experience Ecuador?
+                </span>
+                <span class="chev" aria-hidden="true"></span>
+              </summary>
+              <div class="a">
+                <p>
+                  Experience Ecuador is a curated travel hub focused on Ecuador.
+                  We organize destinations by region and experiences by category so travelers can discover what is worth doing,
+                  compare options, and plan with confidence.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                <span class="q">
+                  <span class="q-badge">Q</span>
+                  Are you a booking website?
+                </span>
+                <span class="chev" aria-hidden="true"></span>
+              </summary>
+              <div class="a">
+                <p>
+                  Not right now. We are building an editorial guide first.
+                  For the time being, Experience Ecuador helps you explore and shortlist experiences and stays,
+                  then connect with trusted operators or partners.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                <span class="q">
+                  <span class="q-badge">Q</span>
+                  How do you choose what gets featured?
+                </span>
+                <span class="chev" aria-hidden="true"></span>
+              </summary>
+              <div class="a">
+                <p>
+                  We prioritize quality, safety, clarity, and traveler fit.
+                  Over time, featured listings will be based on a mix of on-the-ground research, partner information,
+                  guest feedback, and consistency of the experience.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                <span class="q">
+                  <span class="q-badge">Q</span>
+                  What regions do you cover?
+                </span>
+                <span class="chev" aria-hidden="true"></span>
+              </summary>
+              <div class="a">
+                <p>
+                  We are building coverage across Ecuador’s major travel regions:
+                  Galapagos, Coast, Andes, and the Amazon. Each region page will evolve into a complete guide with
+                  stays, planning tips, and curated experiences.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                <span class="q">
+                  <span class="q-badge">Q</span>
+                  What kind of experiences will be included?
+                </span>
+                <span class="chev" aria-hidden="true"></span>
+              </summary>
+              <div class="a">
+                <p>
+                  Experiences are organized by category so it is easy to browse:
+                  Adventure, Nature, Wildlife and Birding, Relaxation, Culinary, and Culture.
+                  Each category will include recommended spots, practical notes, and what it is best for.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                <span class="q">
+                  <span class="q-badge">Q</span>
+                  Is the site content sponsored?
+                </span>
+                <span class="chev" aria-hidden="true"></span>
+              </summary>
+              <div class="a">
+                <p>
+                  Some future partner placements may be paid, but the goal stays the same: clarity and trust.
+                  If a listing is sponsored or promoted, we intend to label it clearly so travelers can decide with confidence.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                <span class="q">
+                  <span class="q-badge">Q</span>
+                  Do you sell or share my personal information?
+                </span>
+                <span class="chev" aria-hidden="true"></span>
+              </summary>
+              <div class="a">
+                <p>
+                  No. If you contact us or join a newsletter in the future, your information is used only to communicate with you.
+                  You can review details anytime on the Privacy Policy page once it is published.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                <span class="q">
+                  <span class="q-badge">Q</span>
+                  How can my lodge, tour, restaurant, or experience be featured?
+                </span>
+                <span class="chev" aria-hidden="true"></span>
+              </summary>
+              <div class="a">
+                <p>
+                  We are actively building partnerships across Ecuador.
+                  Send a short introduction and what you offer to
+                  <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
+                  and include your location, website, and best way to contact you.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                <span class="q">
+                  <span class="q-badge">Q</span>
+                  When will the guides and newsletter be available?
+                </span>
+                <span class="chev" aria-hidden="true"></span>
+              </summary>
+              <div class="a">
+                <p>
+                  We are publishing region and experience pages first, then expanding them into structured guides.
+                  The newsletter will follow once there is enough curated content to deliver real value each issue.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                <span class="q">
+                  <span class="q-badge">Q</span>
+                  Can you help plan a trip?
+                </span>
+                <span class="chev" aria-hidden="true"></span>
+              </summary>
+              <div class="a">
+                <p>
+                  Yes, in a lightweight way.
+                  If you share your dates, interests, and budget range, we can point you to the right region pages
+                  and trusted partner options as the site grows.
+                  Reach out via <a href="/contact/">Contact</a>.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Quick notes</h2>
+          <div class="a">
+            <p>
+              Experience Ecuador is an evolving guide. Content will expand over time as we publish structured region pages,
+              curated partner features, and practical planning checklists.
+            </p>
+            <p>
+              If you spot something that should be improved or updated, we would love to hear from you at
+              <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="side-stack" aria-label="FAQ side content">
+        <div class="mini">
+          <h3>What is coming next</h3>
+          <p>
+            We are turning each region and experience page into a complete planning resource.
+          </p>
+          <ul>
+            <li>Structured “Best for” and “How to plan” sections</li>
+            <li>Curated partner highlights and stays</li>
+            <li>Simple itinerary templates by trip length</li>
+            <li>Seasonality and packing guidance</li>
+          </ul>
+        </div>
+
+        <div class="mini">
+          <h3>Contact</h3>
+          <p>
+            Partnerships, features, and collaboration inquiries.
+          </p>
+          <div class="link-list" aria-label="Quick links">
+            <a class="pill-link" href="/contact/">
+              Contact page <span>Write us</span>
+            </a>
+            <a class="pill-link" href="mailto:info@experienceecuador.com">
+              Email <span>info@experienceecuador.com</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
+      <div class="social" aria-label="Social media links">
+        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+        </a>
+        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+        </a>
+        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+        </a>
+      </div>
+
+      <small>© 2025 Experience Ecuador. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Unified dropdown handler (Regions + Experiences) - open one at a time, close on outside click / Esc
+    (function () {
+      const dropdowns = document.querySelectorAll('.dropdown');
+
+      function closeAll() {
+        dropdowns.forEach(dd => {
+          dd.classList.remove('open');
+          const btn = dd.querySelector('.dropbtn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      dropdowns.forEach(dd => {
+        const btn = dd.querySelector('.dropbtn');
+        const menu = dd.querySelector('.dropdown-menu');
+        if (!btn) return;
+
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isOpen = dd.classList.contains('open');
+          closeAll();
+          dd.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+        });
+
+        if (menu) {
+          menu.addEventListener('click', function (e) {
+            e.stopPropagation();
+          });
+        }
+      });
+
+      document.addEventListener('click', closeAll);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAll();
+      });
+    })();
+
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+
+    // Optional: only allow one FAQ open at a time (keeps it clean)
+    (function(){
+      const all = Array.from(document.querySelectorAll('.faq details'));
+      if(!all.length) return;
+
+      all.forEach(d => {
+        d.addEventListener('toggle', () => {
+          if(!d.open) return;
+          all.forEach(other => {
+            if(other !== d) other.open = false;
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
