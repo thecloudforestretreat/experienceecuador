@@ -42,7 +42,7 @@
     .topbar{
       position:sticky;
       top:0;
-      z-index:10;
+      z-index:1000; /* FIX: keep header clickable above carousel/hero */
       backdrop-filter:saturate(160%) blur(10px);
       background:rgba(255,255,255,0.75);
       border-bottom:1px solid rgba(0,0,0,0.06);
@@ -102,6 +102,7 @@
       position:relative;
       display:inline-flex;
       align-items:center;
+      z-index:1100; /* FIX */
     }
 
     .dropbtn{
@@ -113,6 +114,7 @@
       cursor:pointer;
       user-select:none;
       transition:background 0.15s ease;
+      outline:none;
     }
 
     .dropbtn:hover{
@@ -141,7 +143,7 @@
       box-shadow:0 18px 55px rgba(3,78,162,0.16);
       padding:8px;
       display:none;
-      z-index:20;
+      z-index:1200; /* FIX */
     }
 
     .dropdown-menu a{
@@ -262,7 +264,6 @@
       margin-top:18px;
     }
 
-    /* ✅ centered card between the 2 right minis (matches About/Mission) */
     .grid.center-stack{
       align-items:center;
     }
@@ -323,20 +324,119 @@
       font-size:13px;
     }
 
-    /* ===== GALLERY PLACEHOLDER ===== */
-    .gallery{
-      margin-top:22px;
+    /* ===== CAROUSEL (GALLERY) ===== */
+    .carousel{
+      margin-top:18px;
       background:#fff;
       border-radius:22px;
-      border:1px dashed rgba(3,78,162,0.35);
-      padding:18px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
     }
 
-    .gallery .hint{
-      color:var(--slate);
-      font-size:14.5px;
-      line-height:1.7;
-      margin:0;
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
+
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{
+      background:rgba(15,47,98,0.70);
+    }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
     }
 
     /* ===== CTA ===== */
@@ -427,7 +527,6 @@
       .hero-inner{ text-align:center; }
       .hero p{ margin:0 auto; }
 
-      /* menu wraps nicely */
       .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
       .dropdown-menu{ right:0; left:auto; }
     }
@@ -441,6 +540,7 @@
     @media(max-width:480px){
       .hero{ min-height:60vh; }
       .cta{ border-radius:20px; }
+      .carousel-btn{ width:40px; height:40px; }
     }
   </style>
 </head>
@@ -577,11 +677,35 @@
     <section class="section">
       <h2>Gallery and highlights</h2>
 
-      <div class="gallery">
-        <p class="hint">
-          Gallery carousel will go here later once you choose the images.
-          We will build one clean carousel component and reuse it across all region pages for consistency and speed.
-        </p>
+      <!-- CAROUSEL -->
+      <div id="coastCarousel" class="carousel" aria-label="Coast image gallery">
+        <button class="carousel-btn prev" type="button" aria-label="Previous image">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-1.jpg" alt="Coast highlight 1"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-2.jpg" alt="Coast highlight 2"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-3.jpg" alt="Coast highlight 3"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-4.jpg" alt="Coast highlight 4"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-5.jpg" alt="Coast highlight 5"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-6.jpg" alt="Coast highlight 6"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-7.jpg" alt="Coast highlight 7"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-8.jpg" alt="Coast highlight 8"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-9.jpg" alt="Coast highlight 9"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-10.jpg" alt="Coast highlight 10"></div>
+          </div>
+        </div>
+
+        <button class="carousel-btn next" type="button" aria-label="Next image">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <div class="carousel-ui">
+          <div class="carousel-dots" aria-label="Carousel pagination"></div>
+          <div class="carousel-counter" id="coastCarouselCounter">1 / 10</div>
+        </div>
       </div>
     </section>
 
@@ -618,6 +742,120 @@
       <small>© 2025 Experience Ecuador. All rights reserved.</small>
     </div>
   </footer>
+
+  <script>
+    (function(){
+      const root = document.getElementById("coastCarousel");
+      if(!root) return;
+
+      const track = root.querySelector(".carousel-track");
+      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+      const prevBtn = root.querySelector(".carousel-btn.prev");
+      const nextBtn = root.querySelector(".carousel-btn.next");
+      const dotsWrap = root.querySelector(".carousel-dots");
+      const counter = root.querySelector("#coastCarouselCounter");
+
+      let index = 0;
+
+      // Autoplay settings
+      const AUTOPLAY_MS = 5000; // 5 seconds
+      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      let autoplayTimer = null;
+      let autoplayEnabled = !prefersReducedMotion;
+
+      function setIndex(next){
+        index = (next + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        updateDots();
+        updateCounter();
+      }
+
+      function updateCounter(){
+        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
+      }
+
+      function updateDots(){
+        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
+        dots.forEach((d,i) => d.classList.toggle("active", i === index));
+      }
+
+      function buildDots(){
+        dotsWrap.innerHTML = "";
+        slides.forEach((_, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "dot" + (i === 0 ? " active" : "");
+          b.setAttribute("aria-label", `Go to image ${i + 1}`);
+          b.addEventListener("click", () => {
+            setIndex(i);
+            stopAutoplay();
+          });
+          dotsWrap.appendChild(b);
+        });
+      }
+
+      function next(){ setIndex(index + 1); }
+      function prev(){ setIndex(index - 1); }
+
+      function startAutoplay(){
+        if(!autoplayEnabled) return;
+        stopAutoplay();
+        autoplayTimer = setInterval(next, AUTOPLAY_MS);
+      }
+
+      function stopAutoplay(){
+        if(autoplayTimer){
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
+      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
+
+      // Keyboard support
+      root.addEventListener("keydown", (e) => {
+        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
+        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
+      });
+
+      // Swipe support
+      let startX = 0;
+      let isDown = false;
+
+      const viewport = root.querySelector(".carousel-viewport");
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+      });
+
+      viewport.addEventListener("pointerup", (e) => {
+        if(!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        const threshold = 40;
+        if(dx > threshold){ prev(); stopAutoplay(); }
+        if(dx < -threshold){ next(); stopAutoplay(); }
+      });
+
+      viewport.addEventListener("pointercancel", () => { isDown = false; });
+
+      // Pause autoplay on hover/focus
+      root.addEventListener("mouseenter", stopAutoplay);
+      root.addEventListener("mouseleave", startAutoplay);
+      root.addEventListener("focusin", stopAutoplay);
+      root.addEventListener("focusout", startAutoplay);
+
+      // Init
+      root.tabIndex = 0;
+      buildDots();
+      updateCounter();
+      setIndex(0);
+      startAutoplay();
+    })();
+  </script>
 
 </body>
 </html>
