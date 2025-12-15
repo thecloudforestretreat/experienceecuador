@@ -226,8 +226,6 @@
       align-items:start;
     }
 
-    .span-all{ grid-column: 1 / -1; }
-
     .card{
       background:#fff;
       padding:22px;
@@ -443,7 +441,7 @@
       opacity:.85;
     }
 
-    /* ===== WEATHER CARD (MATCH QUITO/MINDO) ===== */
+    /* ===== WEATHER CARD (MATCH QUITO/MINDO STYLE) ===== */
     .wx-wrap{ padding:0; }
     .wx-inner{
       padding:20px;
@@ -653,7 +651,7 @@
     .mchip.good{ background:rgba(3,78,162,0.06); }
     .mchip.fair{ background:rgba(3,78,162,0.03); opacity:.95; }
 
-    /* ===== CAROUSEL ===== */
+    /* ===== CAROUSEL (MATCH BAÑOS) ===== */
     .carousel{
       margin-top:18px;
       background:#fff;
@@ -663,10 +661,6 @@
       overflow:hidden;
       position:relative;
       z-index:1;
-
-      /* LEFT ALIGN (MATCH OTHER LOCATION PAGES) */
-      margin-left:0;
-      margin-right:auto;
     }
 
     .carousel-viewport{
@@ -969,6 +963,33 @@
             Reach out via the <a class="inline-link" href="/contact/">Contact</a> page.
           </p>
         </div>
+
+        <!-- CAROUSEL (LEFT, BELOW PLANNING FLOW) -->
+        <div id="cuencaCarousel" class="carousel" aria-label="Cuenca image gallery">
+          <button class="carousel-btn prev" type="button" aria-label="Previous image">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-1.jpg" alt="Cuenca highlight 1"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-2.jpg" alt="Cuenca highlight 2"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-3.jpg" alt="Cuenca highlight 3"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-4.jpg" alt="Cuenca highlight 4"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-5.jpg" alt="Cuenca highlight 5"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-6.jpg" alt="Cuenca highlight 6"></div>
+            </div>
+          </div>
+
+          <button class="carousel-btn next" type="button" aria-label="Next image">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-ui">
+            <div class="carousel-dots" aria-label="Carousel pagination"></div>
+            <div class="carousel-counter" id="cuencaCarouselCounter">1 / 6</div>
+          </div>
+        </div>
       </div>
 
       <!-- RIGHT COLUMN -->
@@ -1000,11 +1021,12 @@
             <div class="wx-title">Current weather</div>
 
             <div class="wx-snap" aria-label="Weather snapshot">
-              <div class="wx-date" id="cuencaWxDate">MM/DD/YYYY</div>
+              <div class="wx-date" id="cuencaWxDate">--/--/----</div>
               <ul class="wx-metrics" aria-label="Weather metrics">
-                <li>Max: 19.0°C / 66.2°F</li>
-                <li>Min: 9.0°C / 48.2°F</li>
-                <li>Rain: 1 mm</li>
+                <li id="cuencaWxNow">Now: Loading…</li>
+                <li id="cuencaWxHi">High: --</li>
+                <li id="cuencaWxLo">Low: --</li>
+                <li id="cuencaWxRain">Rain: --</li>
               </ul>
             </div>
 
@@ -1013,70 +1035,7 @@
             <div class="wx-subtitle">7-day forecast</div>
             <p class="wx-subtext">High / low and rain for the week ahead.</p>
 
-            <div class="wx-grid" aria-label="7-day forecast grid">
-              <div class="wx-day">
-                <div class="wx-day-top">
-                  <div class="wx-dow">Mon</div><div class="wx-dt">Dec 15</div>
-                </div>
-                <div class="wx-hi">19.0°C / 66.2°F</div>
-                <div class="wx-lo">9.0°C / 48.2°F</div>
-                <div class="wx-rain"><span class="drop">☔</span> 1 mm</div>
-              </div>
-
-              <div class="wx-day">
-                <div class="wx-day-top">
-                  <div class="wx-dow">Tue</div><div class="wx-dt">Dec 16</div>
-                </div>
-                <div class="wx-hi">18.2°C / 64.8°F</div>
-                <div class="wx-lo">9.2°C / 48.6°F</div>
-                <div class="wx-rain"><span class="drop">☔</span> 2 mm</div>
-              </div>
-
-              <div class="wx-day">
-                <div class="wx-day-top">
-                  <div class="wx-dow">Wed</div><div class="wx-dt">Dec 17</div>
-                </div>
-                <div class="wx-hi">17.4°C / 63.3°F</div>
-                <div class="wx-lo">8.8°C / 47.8°F</div>
-                <div class="wx-rain"><span class="drop">☔</span> 3 mm</div>
-              </div>
-
-              <div class="wx-day">
-                <div class="wx-day-top">
-                  <div class="wx-dow">Thu</div><div class="wx-dt">Dec 18</div>
-                </div>
-                <div class="wx-hi">18.0°C / 64.4°F</div>
-                <div class="wx-lo">9.1°C / 48.4°F</div>
-                <div class="wx-rain"><span class="drop">☔</span> 1 mm</div>
-              </div>
-
-              <div class="wx-day">
-                <div class="wx-day-top">
-                  <div class="wx-dow">Fri</div><div class="wx-dt">Dec 19</div>
-                </div>
-                <div class="wx-hi">18.6°C / 65.5°F</div>
-                <div class="wx-lo">9.4°C / 48.9°F</div>
-                <div class="wx-rain"><span class="drop">☔</span> 1 mm</div>
-              </div>
-
-              <div class="wx-day">
-                <div class="wx-day-top">
-                  <div class="wx-dow">Sat</div><div class="wx-dt">Dec 20</div>
-                </div>
-                <div class="wx-hi">19.1°C / 66.4°F</div>
-                <div class="wx-lo">9.2°C / 48.6°F</div>
-                <div class="wx-rain"><span class="drop">☔</span> 0 mm</div>
-              </div>
-
-              <div class="wx-day">
-                <div class="wx-day-top">
-                  <div class="wx-dow">Sun</div><div class="wx-dt">Dec 21</div>
-                </div>
-                <div class="wx-hi">18.7°C / 65.7°F</div>
-                <div class="wx-lo">9.0°C / 48.2°F</div>
-                <div class="wx-rain"><span class="drop">☔</span> 0 mm</div>
-              </div>
-            </div>
+            <div class="wx-grid" id="cuencaWx7" aria-label="7-day forecast grid"></div>
 
             <div class="wx-months-title">Best months to visit</div>
             <p class="wx-subtext" style="margin-bottom:10px;">
@@ -1180,33 +1139,6 @@
           </div>
         </div>
       </aside>
-
-      <!-- CAROUSEL ONLY (NO INTRO CARD/TEXT ABOVE) -->
-      <div id="cuencaCarousel" class="carousel span-all" aria-label="Cuenca image gallery">
-        <button class="carousel-btn prev" type="button" aria-label="Previous image">
-          <span aria-hidden="true"></span>
-        </button>
-
-        <div class="carousel-viewport">
-          <div class="carousel-track">
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-1.jpg" alt="Cuenca highlight 1"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-2.jpg" alt="Cuenca highlight 2"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-3.jpg" alt="Cuenca highlight 3"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-4.jpg" alt="Cuenca highlight 4"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-5.jpg" alt="Cuenca highlight 5"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-6.jpg" alt="Cuenca highlight 6"></div>
-          </div>
-        </div>
-
-        <button class="carousel-btn next" type="button" aria-label="Next image">
-          <span aria-hidden="true"></span>
-        </button>
-
-        <div class="carousel-ui">
-          <div class="carousel-dots" aria-label="Carousel pagination"></div>
-          <div class="carousel-counter" id="cuencaCarouselCounter">1 / 6</div>
-        </div>
-      </div>
     </section>
   </main>
 
@@ -1274,18 +1206,7 @@
       });
     })();
 
-    // Set current date MM/DD/YYYY for weather snapshot (no live weather)
-    (function(){
-      const el = document.getElementById("cuencaWxDate");
-      if(!el) return;
-      const d = new Date();
-      const mm = String(d.getMonth() + 1).padStart(2, "0");
-      const dd = String(d.getDate()).padStart(2, "0");
-      const yyyy = d.getFullYear();
-      el.textContent = `${mm}/${dd}/${yyyy}`;
-    })();
-
-    /* Cuenca carousel (match Andes behavior) */
+    /* Cuenca carousel (match Baños behavior) */
     (function(){
       const root = document.getElementById("cuencaCarousel");
       if(!root) return;
@@ -1391,6 +1312,177 @@
       updateCounter();
       setIndex(0);
       startAutoplay();
+    })();
+
+    /* ===== WEATHER: Cuenca (current + 7-day) with Celsius + Fahrenheit =====
+       Uses Open-Meteo (no API key): https://open-meteo.com/
+       Cuenca (approx): lat -2.90, lon -79.00
+    */
+    (function(){
+      const dateEl = document.getElementById("cuencaWxDate");
+      const nowEl  = document.getElementById("cuencaWxNow");
+      const hiEl   = document.getElementById("cuencaWxHi");
+      const loEl   = document.getElementById("cuencaWxLo");
+      const rainEl = document.getElementById("cuencaWxRain");
+      const gridEl = document.getElementById("cuencaWx7");
+      if(!dateEl || !nowEl || !hiEl || !loEl || !rainEl || !gridEl) return;
+
+      const LAT = -2.900;
+      const LON = -79.004;
+
+      const cToF = (c) => (c * 9/5) + 32;
+
+      const codeText = (code) => {
+        const map = {
+          0:"Clear", 1:"Mostly clear", 2:"Partly cloudy", 3:"Overcast",
+          45:"Fog", 48:"Rime fog",
+          51:"Light drizzle", 53:"Drizzle", 55:"Heavy drizzle",
+          56:"Freezing drizzle", 57:"Freezing drizzle",
+          61:"Light rain", 63:"Rain", 65:"Heavy rain",
+          66:"Freezing rain", 67:"Freezing rain",
+          71:"Light snow", 73:"Snow", 75:"Heavy snow", 77:"Snow grains",
+          80:"Rain showers", 81:"Rain showers", 82:"Violent showers",
+          85:"Snow showers", 86:"Snow showers",
+          95:"Thunderstorm", 96:"Thunderstorm", 99:"Thunderstorm"
+        };
+        return map[code] || "Weather";
+      };
+
+      const dow = (iso) => {
+        const d = new Date(iso + "T00:00:00");
+        return d.toLocaleDateString("en-US", { weekday:"short" });
+      };
+
+      const dtLabel = (iso) => {
+        const d = new Date(iso + "T00:00:00");
+        return d.toLocaleDateString("en-US", { month:"short", day:"numeric" });
+      };
+
+      function fmtTempPair(cVal){
+        const c = Math.round(cVal);
+        const f = Math.round(cToF(cVal));
+        return `${c}°C / ${f}°F`;
+      }
+
+      function setFallback(){
+        const now = new Date();
+        dateEl.textContent = now.toLocaleDateString("en-US");
+        nowEl.textContent = "Now: Weather unavailable right now.";
+        hiEl.textContent = "High: --";
+        loEl.textContent = "Low: --";
+        rainEl.textContent = "Rain: --";
+        gridEl.innerHTML = "";
+      }
+
+      async function load(){
+        try{
+          const url =
+            "https://api.open-meteo.com/v1/forecast" +
+            `?latitude=${encodeURIComponent(LAT)}` +
+            `&longitude=${encodeURIComponent(LON)}` +
+            "&current=temperature_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m" +
+            "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum" +
+            "&timezone=auto";
+
+          const res = await fetch(url, { cache: "no-store" });
+          if(!res.ok) throw new Error("Weather fetch failed");
+          const data = await res.json();
+
+          const nowDate = new Date();
+          dateEl.textContent = nowDate.toLocaleDateString("en-US");
+
+          const c = data.current || {};
+          const tempC = (typeof c.temperature_2m === "number") ? c.temperature_2m : null;
+          const feelsC = (typeof c.apparent_temperature === "number") ? c.apparent_temperature : null;
+          const wind = (typeof c.wind_speed_10m === "number") ? Math.round(c.wind_speed_10m) : null;
+          const wtxt = codeText(c.weather_code);
+
+          const nowParts = [];
+          if(tempC !== null) nowParts.push(fmtTempPair(tempC));
+          if(feelsC !== null) nowParts.push(`Feels ${fmtTempPair(feelsC)}`);
+          nowParts.push(wtxt);
+          if(wind !== null) nowParts.push(`Wind ${wind} km/h`);
+
+          nowEl.textContent = `Now: ${nowParts.join(" · ")}`;
+
+          const daily = data.daily || {};
+          const times = daily.time || [];
+          const hi = daily.temperature_2m_max || [];
+          const lo = daily.temperature_2m_min || [];
+          const rain = daily.precipitation_sum || [];
+
+          if(times.length){
+            const hi0 = (typeof hi[0] === "number") ? hi[0] : null;
+            const lo0 = (typeof lo[0] === "number") ? lo[0] : null;
+            const r0  = (typeof rain[0] === "number") ? rain[0] : null;
+
+            hiEl.textContent = (hi0 !== null) ? `High: ${fmtTempPair(hi0)}` : "High: --";
+            loEl.textContent = (lo0 !== null) ? `Low: ${fmtTempPair(lo0)}` : "Low: --";
+            rainEl.textContent = (r0 !== null) ? `Rain: ${Math.round(r0)} mm` : "Rain: --";
+          }else{
+            hiEl.textContent = "High: --";
+            loEl.textContent = "Low: --";
+            rainEl.textContent = "Rain: --";
+          }
+
+          // 7-day grid
+          gridEl.innerHTML = "";
+          const n = Math.min(7, times.length);
+
+          for(let i=0;i<n;i++){
+            const iso = times[i];
+            const hiV = (typeof hi[i] === "number") ? hi[i] : null;
+            const loV = (typeof lo[i] === "number") ? lo[i] : null;
+            const rV  = (typeof rain[i] === "number") ? rain[i] : null;
+
+            const card = document.createElement("div");
+            card.className = "wx-day";
+
+            const top = document.createElement("div");
+            top.className = "wx-day-top";
+
+            const dowEl = document.createElement("div");
+            dowEl.className = "wx-dow";
+            dowEl.textContent = dow(iso);
+
+            const dtEl = document.createElement("div");
+            dtEl.className = "wx-dt";
+            dtEl.textContent = dtLabel(iso);
+
+            top.appendChild(dowEl);
+            top.appendChild(dtEl);
+
+            const hiD = document.createElement("div");
+            hiD.className = "wx-hi";
+            hiD.textContent = (hiV !== null) ? fmtTempPair(hiV) : "--";
+
+            const loD = document.createElement("div");
+            loD.className = "wx-lo";
+            loD.textContent = (loV !== null) ? fmtTempPair(loV) : "--";
+
+            const rainD = document.createElement("div");
+            rainD.className = "wx-rain";
+            const drop = document.createElement("span");
+            drop.className = "drop";
+            drop.textContent = "☔";
+            const rainTxt = document.createElement("span");
+            rainTxt.textContent = (rV !== null) ? `${Math.round(rV)} mm` : "--";
+            rainD.appendChild(drop);
+            rainD.appendChild(rainTxt);
+
+            card.appendChild(top);
+            card.appendChild(hiD);
+            card.appendChild(loD);
+            card.appendChild(rainD);
+
+            gridEl.appendChild(card);
+          }
+        }catch(err){
+          setFallback();
+        }
+      }
+
+      load();
     })();
 
     // Light deterrent: disable right-click on images only
