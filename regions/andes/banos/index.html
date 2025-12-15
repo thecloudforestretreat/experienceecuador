@@ -873,7 +873,8 @@
                 <div class="weather-title">Current weather</div>
                 <div class="weather-sub">Warm days and quick shifts. Rain can arrive fast in the afternoons.</div>
               </div>
-              <div class="weather-badge">Varies daily</div>
+              <!-- UPDATED: wired -->
+              <div class="weather-badge" id="banosWxCurrentBadge" aria-live="polite">Loading…</div>
             </div>
 
             <div class="weather-row" aria-label="7-day forecast">
@@ -881,7 +882,8 @@
                 <div class="weather-title">7-day forecast</div>
                 <div class="weather-sub">Use the forecast to pick your waterfall and viewpoint windows.</div>
               </div>
-              <div class="weather-badge">Check daily</div>
+              <!-- UPDATED: wired -->
+              <div class="weather-badge" id="banosWx7Badge" aria-live="polite">Loading…</div>
             </div>
 
             <div class="weather-row" aria-label="Best months to visit">
@@ -1113,6 +1115,104 @@
       updateCounter();
       setIndex(0);
       startAutoplay();
+    })();
+
+    /* Weather: Baños (current + 7-day) */
+    (function(){
+      const currentEl = document.getElementById("banosWxCurrentBadge");
+      const sevenEl = document.getElementById("banosWx7Badge");
+      if(!currentEl || !sevenEl) return;
+
+      // Baños de Agua Santa (Ecuador) - used for weather lookup
+      const LAT = -1.3967;
+      const LON = -78.4246;
+
+      function wcLabel(code){
+        const map = {
+          0:"Clear",
+          1:"Mostly clear", 2:"Partly cloudy", 3:"Cloudy",
+          45:"Fog", 48:"Rime fog",
+          51:"Light drizzle", 53:"Drizzle", 55:"Heavy drizzle",
+          56:"Freezing drizzle", 57:"Freezing drizzle",
+          61:"Light rain", 63:"Rain", 65:"Heavy rain",
+          66:"Freezing rain", 67:"Freezing rain",
+          71:"Light snow", 73:"Snow", 75:"Heavy snow",
+          77:"Snow grains",
+          80:"Rain showers", 81:"Rain showers", 82:"Violent showers",
+          85:"Snow showers", 86:"Snow showers",
+          95:"Thunderstorm", 96:"Thunderstorm", 99:"Thunderstorm"
+        };
+        return map[code] || "Weather";
+      }
+
+      function fmtTemp(x){
+        if(typeof x !== "number" || !isFinite(x)) return "--";
+        return Math.round(x) + "°C";
+      }
+
+      function safeNum(x){
+        const n = Number(x);
+        return isFinite(n) ? n : null;
+      }
+
+      async function load(){
+        try{
+          const url =
+            "https://api.open-meteo.com/v1/forecast" +
+            `?latitude=${encodeURIComponent(LAT)}` +
+            `&longitude=${encodeURIComponent(LON)}` +
+            "&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m" +
+            "&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max" +
+            "&forecast_days=7" +
+            "&timezone=auto";
+
+          const res = await fetch(url, { method:"GET" });
+          if(!res.ok) throw new Error("Weather request failed");
+
+          const data = await res.json();
+
+          const cur = data && data.current ? data.current : null;
+          const daily = data && data.daily ? data.daily : null;
+
+          // Current badge: "21°C · Cloudy"
+          if(cur){
+            const t = safeNum(cur.temperature_2m);
+            const code = safeNum(cur.weather_code);
+            const label = wcLabel(code);
+            currentEl.textContent = `${fmtTemp(t)} · ${label}`;
+          } else {
+            currentEl.textContent = "Unavailable";
+          }
+
+          // 7-day badge: "H 24°C / L 14°C · Rain 60%"
+          if(daily && Array.isArray(daily.temperature_2m_max) && Array.isArray(daily.temperature_2m_min)){
+            const highs = daily.temperature_2m_max.map(safeNum).filter(v => v !== null);
+            const lows = daily.temperature_2m_min.map(safeNum).filter(v => v !== null);
+
+            const hi = highs.length ? Math.max(...highs) : null;
+            const lo = lows.length ? Math.min(...lows) : null;
+
+            let badge = `H ${fmtTemp(hi)} / L ${fmtTemp(lo)}`;
+
+            if(Array.isArray(daily.precipitation_probability_max)){
+              const probs = daily.precipitation_probability_max.map(safeNum).filter(v => v !== null);
+              if(probs.length){
+                const p = Math.max(...probs);
+                badge += ` · Rain ${Math.round(p)}%`;
+              }
+            }
+
+            sevenEl.textContent = badge;
+          } else {
+            sevenEl.textContent = "Unavailable";
+          }
+        } catch (e){
+          currentEl.textContent = "Unavailable";
+          sevenEl.textContent = "Unavailable";
+        }
+      }
+
+      load();
     })();
 
     // Light deterrent: disable right-click on images only
