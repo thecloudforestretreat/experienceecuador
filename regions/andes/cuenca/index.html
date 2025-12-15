@@ -444,16 +444,16 @@
     }
 
     /* ===== WEATHER CARD (MATCH QUITO/MINDO) ===== */
-    .wx-card{
-      padding:18px 18px;
+    .wx-wrap{ padding:0; }
+    .wx-inner{
+      padding:20px;
       border-radius:22px;
-      background:#fff;
-      box-shadow:0 18px 55px rgba(3,78,162,.12);
-      border:1px solid rgba(0,0,0,.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.05), rgba(3,78,162,0.015));
+      border:1px solid rgba(3,78,162,0.10);
     }
 
     .wx-title{
-      margin:0 0 8px;
+      margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       letter-spacing:-0.02em;
@@ -461,92 +461,131 @@
       color:#0f2f62;
     }
 
-    .wx-now{
+    .wx-snap{
+      background:rgba(255,255,255,0.75);
+      border:1px solid rgba(3,78,162,0.12);
+      border-radius:18px;
+      padding:14px 14px;
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
-      gap:12px;
-      padding:14px 14px;
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
-      border:1px solid rgba(3,78,162,.12);
+      gap:14px;
     }
 
     .wx-date{
-      font-weight:900;
+      font-weight:800;
       color:#0f2f62;
-      letter-spacing:-0.01em;
-      font-size:13.2px;
+      font-size:13px;
       opacity:.95;
       white-space:nowrap;
-      margin-top:2px;
+      padding-top:2px;
     }
 
-    .wx-lines{
+    .wx-metrics{
       margin:0;
+      padding:0;
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      text-align:right;
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13.5px;
+    }
+
+    .wx-divider{
+      height:1px;
+      background:rgba(0,0,0,0.06);
+      margin:14px 0 12px;
+    }
+
+    .wx-subtitle{
+      margin:0 0 8px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:15px;
+      letter-spacing:-0.01em;
+    }
+
+    .wx-subtext{
+      margin:0 0 10px;
       color:#1f2b3f;
+      opacity:.9;
       line-height:1.55;
       font-size:13.8px;
-      opacity:.95;
-      text-align:right;
     }
 
-    .wx-grid7{
+    .wx-grid{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
       gap:10px;
-      margin-top:12px;
     }
 
     .wx-day{
+      background:#fff;
+      border:1px solid rgba(3,78,162,0.12);
       border-radius:16px;
       padding:10px 10px;
-      background:rgba(255,255,255,.9);
-      border:1px solid rgba(3,78,162,.14);
-      text-align:left;
+      box-shadow:0 10px 26px rgba(3,78,162,0.07);
     }
 
-    .wx-top{
+    .wx-day-top{
       display:flex;
-      align-items:baseline;
+      align-items:flex-start;
       justify-content:space-between;
       gap:8px;
+      margin-bottom:8px;
     }
 
     .wx-dow{
       font-weight:900;
       color:#0f2f62;
-      font-size:12.5px;
+      font-size:13.5px;
       letter-spacing:-0.01em;
     }
 
-    .wx-mmdd{
-      color:#162b55;
-      opacity:.75;
-      font-size:11.5px;
+    .wx-dt{
+      color:#1f2b3f;
+      opacity:.85;
+      font-weight:700;
+      font-size:12.5px;
+      white-space:nowrap;
     }
 
     .wx-hi{
-      margin-top:8px;
       font-weight:900;
       color:#0f2f62;
-      font-size:12.8px;
+      font-size:13.5px;
     }
 
     .wx-lo{
-      color:#162b55;
-      opacity:.8;
-      font-size:12.3px;
       margin-top:2px;
+      color:#1f2b3f;
+      opacity:.88;
+      font-weight:800;
+      font-size:12.8px;
     }
 
     .wx-rain{
-      margin-top:6px;
-      color:#162b55;
-      opacity:.85;
-      font-size:11.7px;
-      white-space:nowrap;
+      margin-top:8px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      color:#1f2b3f;
+      opacity:.9;
+      font-weight:800;
+      font-size:12.6px;
     }
+
+    .wx-rain .drop{ font-size:14px; line-height:1; }
+
+    /* 3 on top, 4 on next row */
+    .wx-grid .wx-day:nth-child(4){ grid-column:1 / span 1; }
+    .wx-grid .wx-day:nth-child(5){ grid-column:2 / span 1; }
+    .wx-grid .wx-day:nth-child(6){ grid-column:3 / span 1; }
+    .wx-grid .wx-day:nth-child(7){ grid-column:1 / span 1; }
+
     @media(max-width:520px){
       .wx-grid{ grid-template-columns:repeat(2, 1fr); }
       .wx-grid .wx-day:nth-child(n){ grid-column:auto; }
@@ -625,7 +664,7 @@
       position:relative;
       z-index:1;
 
-      /* LEFT ALIGN LIKE OTHER LOCATIONS */
+      /* LEFT ALIGN (MATCH OTHER LOCATION PAGES) */
       margin-left:0;
       margin-right:auto;
     }
@@ -1134,7 +1173,7 @@
             <a class="andes-tile" href="/regions/andes/choco-andino/" aria-label="Open Chocó Andino page">
               <div class="andes-left">
                 <div class="andes-title">Chocó Andino</div>
-              <div class="andes-sub">Biodiversity, forest reserves, birding, quiet nature routes.</div>
+                <div class="andes-sub">Biodiversity, forest reserves, birding, quiet nature routes.</div>
               </div>
               <div class="andes-arrow" aria-hidden="true"><span></span></div>
             </a>
@@ -1142,14 +1181,7 @@
         </div>
       </aside>
 
-      <!-- BOTTOM: CAROUSEL ONLY (NO STANDALONE IMAGE ABOVE) -->
-      <div class="card span-all">
-        <h2>Gallery and highlights</h2>
-        <p>
-          A quick visual tour of Cuenca’s architecture, street scenes, and southern highland mood.
-        </p>
-      </div>
-
+      <!-- CAROUSEL ONLY (NO INTRO CARD/TEXT ABOVE) -->
       <div id="cuencaCarousel" class="carousel span-all" aria-label="Cuenca image gallery">
         <button class="carousel-btn prev" type="button" aria-label="Previous image">
           <span aria-hidden="true"></span>
