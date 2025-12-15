@@ -226,10 +226,8 @@
       align-items:start;
     }
 
-    /* ✅ Carousel fix: allow sections inside the grid to span both columns (like Andes) */
-    .span-all{
-      grid-column: 1 / -1;
-    }
+    /* allow sections inside the grid to span both columns (like Andes) */
+    .span-all{ grid-column: 1 / -1; }
 
     .card{
       background:#fff;
@@ -391,7 +389,78 @@
       font-size:13px;
     }
 
-    /* ===== CAROUSEL (MATCH ANDES: FULL + UI + BUTTONS) ===== */
+    /* ===== MORE ANDES DESTINATIONS (NEW, MATCH QUITO) ===== */
+    .andes-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .andes-tile{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    .andes-tile:hover{
+      background:rgba(3,78,162,.07);
+      transform:translateY(-1px);
+    }
+
+    .andes-left{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
+    }
+
+    .andes-title{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:14.8px;
+      letter-spacing:-0.01em;
+      line-height:1.2;
+    }
+
+    .andes-sub{
+      color:#1f2b3f;
+      opacity:.9;
+      line-height:1.5;
+      font-size:13.4px;
+      max-width:60ch;
+    }
+
+    .andes-arrow{
+      flex:0 0 auto;
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,.18);
+      background:rgba(255,255,255,.75);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:2px;
+    }
+
+    .andes-arrow span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
+      transform:rotate(-45deg);
+      opacity:.85;
+    }
+
+    /* ===== CAROUSEL (LOCKED) ===== */
     .carousel{
       margin-top:18px;
       background:#fff;
@@ -724,6 +793,46 @@
               Contact <span>Questions and partnerships</span>
             </a>
           </div>
+
+          <!-- NEW: ANDES DESTINATIONS (matching Quito) -->
+          <h3 style="margin-top:16px;">More Andes destinations</h3>
+          <p style="margin-top:-4px;">
+            Pair Otavalo with a city stop, volcano landscapes, cloud forest, or waterfalls.
+          </p>
+
+          <div class="andes-grid" aria-label="Andes destination links">
+            <a class="andes-tile" href="/regions/andes/quito/" aria-label="Open Quito page">
+              <div class="andes-left">
+                <div class="andes-title">Quito</div>
+                <div class="andes-sub">Historic center, viewpoints, and easy day trips.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/regions/andes/mindo/" aria-label="Open Mindo page">
+              <div class="andes-left">
+                <div class="andes-title">Mindo</div>
+                <div class="andes-sub">Cloud forest, birding, waterfalls, relaxed nature days.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/regions/andes/cotopaxi/" aria-label="Open Cotopaxi page">
+              <div class="andes-left">
+                <div class="andes-title">Cotopaxi</div>
+                <div class="andes-sub">Volcano scenery, hikes, and páramo landscapes.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/regions/andes/banos/" aria-label="Open Baños page">
+              <div class="andes-left">
+                <div class="andes-title">Baños</div>
+                <div class="andes-sub">Waterfalls, viewpoints, and soft adventure energy.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+          </div>
         </div>
 
         <div class="policy-image" aria-label="Otavalo image">
@@ -731,7 +840,7 @@
         </div>
       </aside>
 
-      <!-- ✅ FULL-WIDTH GALLERY CARD (spans both columns like Andes) -->
+      <!-- FULL-WIDTH GALLERY CARD -->
       <div class="card span-all">
         <h2>Gallery and highlights</h2>
         <p>
@@ -739,7 +848,7 @@
         </p>
       </div>
 
-      <!-- ✅ FULL-WIDTH CAROUSEL (spans both columns like Andes) -->
+      <!-- FULL-WIDTH CAROUSEL -->
       <div id="otavaloCarousel" class="carousel span-all" aria-label="Otavalo image gallery">
         <button class="carousel-btn prev" type="button" aria-label="Previous image">
           <span aria-hidden="true"></span>
