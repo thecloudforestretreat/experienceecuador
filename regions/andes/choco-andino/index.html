@@ -226,8 +226,6 @@
       align-items:start;
     }
 
-    .span-all{ grid-column: 1 / -1; }
-
     .card{
       background:#fff;
       padding:22px;
@@ -319,22 +317,6 @@
       gap:16px;
     }
 
-    .policy-image{
-      border-radius:22px;
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,.06);
-      box-shadow:0 18px 60px rgba(0,0,0,.14);
-      aspect-ratio:4 / 3;
-      background:#eef2f7;
-    }
-
-    .policy-image img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
     .mini{
       background:#fff;
       padding:20px;
@@ -386,6 +368,80 @@
       font-weight:700;
       color:#162b55;
       font-size:13px;
+    }
+
+    /* ===== WEATHER (Quito-style wx-card) ===== */
+    .wx-card{
+      padding:18px 18px;
+      border-radius:22px;
+      background:#fff;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .wx-title{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .wx-now{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .wx-date{
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+      font-size:13.2px;
+      opacity:.95;
+      white-space:nowrap;
+      margin-top:2px;
+    }
+
+    .wx-lines{
+      margin:0;
+      color:#1f2b3f;
+      line-height:1.55;
+      font-size:13.8px;
+      opacity:.95;
+      text-align:right;
+    }
+
+    .months{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid rgba(0,0,0,.06);
+    }
+
+    .wx-sub{
+      margin:0 0 10px;
+      color:#1f2b3f;
+      opacity:.85;
+      font-size:13.5px;
+      line-height:1.5;
+    }
+
+    /* Choco override blocks */
+    .wx-varies{
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
+      font-weight:900;
+      font-size:13.6px;
+      line-height:1.5;
     }
 
     /* ===== MORE ANDES DESTINATIONS ===== */
@@ -459,7 +515,7 @@
       opacity:.85;
     }
 
-    /* ===== CAROUSEL ===== */
+    /* ===== CAROUSEL (LEFT COLUMN) ===== */
     .carousel{
       margin-top:18px;
       background:#fff;
@@ -772,6 +828,33 @@
             Reach out via the <a class="inline-link" href="/contact/">Contact</a> page.
           </p>
         </div>
+
+        <!-- CAROUSEL (LEFT, UNDER SIMPLE PLANNING FLOW) -->
+        <div id="chocoAndinoCarousel" class="carousel" aria-label="Chocó Andino image gallery">
+          <button class="carousel-btn prev" type="button" aria-label="Previous image">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-1.jpg" alt="Chocó Andino highlight 1"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-2.jpg" alt="Chocó Andino highlight 2"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-3.jpg" alt="Chocó Andino highlight 3"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-4.jpg" alt="Chocó Andino highlight 4"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-5.jpg" alt="Chocó Andino highlight 5"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-6.jpg" alt="Chocó Andino highlight 6"></div>
+            </div>
+          </div>
+
+          <button class="carousel-btn next" type="button" aria-label="Next image">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-ui">
+            <div class="carousel-dots" aria-label="Carousel pagination"></div>
+            <div class="carousel-counter" id="chocoAndinoCarouselCounter">1 / 6</div>
+          </div>
+        </div>
       </div>
 
       <!-- RIGHT COLUMN -->
@@ -794,9 +877,29 @@
               Contact <span>Questions and partnerships</span>
             </a>
           </div>
+        </div>
 
-          <h3 style="margin-top:16px;">More Andes destinations</h3>
-          <p style="margin-top:-4px;">
+        <!-- Weather card (Quito-style structure, but varies) -->
+        <div class="wx-card" aria-label="Weather and seasonality">
+          <div class="wx-title">Current weather</div>
+
+          <div class="wx-now">
+            <div class="wx-date">Varies</div>
+            <p class="wx-lines">Varies depending on location</p>
+          </div>
+
+          <div class="months" aria-label="Forecast and best months section">
+            <div class="wx-title" style="margin-top:0;">7-day forecast</div>
+            <div class="wx-varies">Varies depending on location</div>
+
+            <div class="wx-title" style="margin-top:14px;">Best months to visit</div>
+            <div class="wx-varies">Varies depending on location</div>
+          </div>
+        </div>
+
+        <div class="mini">
+          <h3>More Andes destinations</h3>
+          <p>
             Pair cloud forest nature with city time, markets, and volcano landscapes.
           </p>
 
@@ -842,46 +945,7 @@
             </a>
           </div>
         </div>
-
-        <div class="policy-image" aria-label="Chocó Andino image">
-          <img src="/assets/images/EE-Assets-ChocoAndino.jpg" alt="Chocó Andino de Pichincha cloud forest scenery">
-        </div>
       </aside>
-
-      <!-- FULL-WIDTH GALLERY CARD -->
-      <div class="card span-all">
-        <h2>Gallery and highlights</h2>
-        <p>
-          A quick visual tour of the Chocó Andino’s misty trails, cloud forest textures, and green valley scenery.
-        </p>
-      </div>
-
-      <!-- FULL-WIDTH CAROUSEL -->
-      <div id="chocoAndinoCarousel" class="carousel span-all" aria-label="Chocó Andino image gallery">
-        <button class="carousel-btn prev" type="button" aria-label="Previous image">
-          <span aria-hidden="true"></span>
-        </button>
-
-        <div class="carousel-viewport">
-          <div class="carousel-track">
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-1.jpg" alt="Chocó Andino highlight 1"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-2.jpg" alt="Chocó Andino highlight 2"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-3.jpg" alt="Chocó Andino highlight 3"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-4.jpg" alt="Chocó Andino highlight 4"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-5.jpg" alt="Chocó Andino highlight 5"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-6.jpg" alt="Chocó Andino highlight 6"></div>
-          </div>
-        </div>
-
-        <button class="carousel-btn next" type="button" aria-label="Next image">
-          <span aria-hidden="true"></span>
-        </button>
-
-        <div class="carousel-ui">
-          <div class="carousel-dots" aria-label="Carousel pagination"></div>
-          <div class="carousel-counter" id="chocoAndinoCarouselCounter">1 / 6</div>
-        </div>
-      </div>
     </section>
   </main>
 
