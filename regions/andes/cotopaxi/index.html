@@ -226,6 +226,11 @@
       align-items:start;
     }
 
+    /* ✅ Carousel fix: allow elements to span both columns (like Otavalo + Andes) */
+    .span-all{
+      grid-column: 1 / -1;
+    }
+
     .card{
       background:#fff;
       padding:22px;
@@ -254,6 +259,13 @@
     }
 
     .card p:last-child{ margin-bottom:0; }
+
+    .inline-link{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:800;
+      color:#162b55;
+    }
 
     .two-col{
       display:grid;
@@ -557,6 +569,11 @@
       .topbar-inner{flex-direction:column;align-items:center;gap:10px}
       .nav{justify-content:center}
       .dropdown-menu{right:auto;left:50%;transform:translateX(-50%)}
+      .carousel-slide{ aspect-ratio:16/9; }
+    }
+
+    @media(max-width:480px){
+      .carousel-btn{ width:40px; height:40px; }
     }
   </style>
 </head>
@@ -683,37 +700,6 @@
             Reach out via the <a class="inline-link" href="/contact/">Contact</a> page.
           </p>
         </div>
-
-        <div class="card">
-          <h2>Gallery and highlights</h2>
-
-          <!-- CAROUSEL -->
-          <div id="cotopaxiCarousel" class="carousel" aria-label="Cotopaxi image gallery">
-            <button class="carousel-btn prev" type="button" aria-label="Previous image">
-              <span aria-hidden="true"></span>
-            </button>
-
-            <div class="carousel-viewport">
-              <div class="carousel-track">
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-1.jpg" alt="Cotopaxi highlight 1"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-2.jpg" alt="Cotopaxi highlight 2"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-3.jpg" alt="Cotopaxi highlight 3"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-4.jpg" alt="Cotopaxi highlight 4"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-5.jpg" alt="Cotopaxi highlight 5"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-6.jpg" alt="Cotopaxi highlight 6"></div>
-              </div>
-            </div>
-
-            <button class="carousel-btn next" type="button" aria-label="Next image">
-              <span aria-hidden="true"></span>
-            </button>
-
-            <div class="carousel-ui">
-              <div class="carousel-dots" aria-label="Carousel pagination"></div>
-              <div class="carousel-counter" id="cotopaxiCarouselCounter">1 / 6</div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <aside class="side-stack" aria-label="Cotopaxi side content">
@@ -741,6 +727,41 @@
           <img src="/assets/images/EE-Assets-Cotopaxi.jpg" alt="Cotopaxi volcano and landscapes">
         </div>
       </aside>
+
+      <!-- ✅ FULL-WIDTH GALLERY CARD (spans both columns like Otavalo) -->
+      <div class="card span-all">
+        <h2>Gallery and highlights</h2>
+        <p>
+          A quick visual tour to help you choose what to prioritize.
+        </p>
+      </div>
+
+      <!-- ✅ FULL-WIDTH CAROUSEL (spans both columns like Otavalo) -->
+      <div id="cotopaxiCarousel" class="carousel span-all" aria-label="Cotopaxi image gallery">
+        <button class="carousel-btn prev" type="button" aria-label="Previous image">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-1.jpg" alt="Cotopaxi highlight 1"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-2.jpg" alt="Cotopaxi highlight 2"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-3.jpg" alt="Cotopaxi highlight 3"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-4.jpg" alt="Cotopaxi highlight 4"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-5.jpg" alt="Cotopaxi highlight 5"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-6.jpg" alt="Cotopaxi highlight 6"></div>
+          </div>
+        </div>
+
+        <button class="carousel-btn next" type="button" aria-label="Next image">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <div class="carousel-ui">
+          <div class="carousel-dots" aria-label="Carousel pagination"></div>
+          <div class="carousel-counter" id="cotopaxiCarouselCounter">1 / 6</div>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -808,7 +829,7 @@
       });
     })();
 
-    /* Cotopaxi carousel */
+    /* Cotopaxi carousel (match Otavalo behavior) */
     (function(){
       const root = document.getElementById("cotopaxiCarousel");
       if(!root) return;
