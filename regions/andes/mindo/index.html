@@ -370,6 +370,159 @@
       font-size:13px;
     }
 
+    /* ===== ITINERARY SELECTOR ===== */
+    .it-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .it-control{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-width:260px;
+      flex:0 0 auto;
+    }
+
+    .it-label{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:-0.01em;
+      opacity:.95;
+    }
+
+    .it-select{
+      width:100%;
+      appearance:none;
+      background:#fff;
+      border:1px solid rgba(3,78,162,.18);
+      border-radius:14px;
+      padding:12px 44px 12px 12px;
+      font-weight:800;
+      color:#0f2f62;
+      box-shadow:0 10px 30px rgba(3,78,162,.08);
+      cursor:pointer;
+      line-height:1.1;
+      background-image:
+        linear-gradient(45deg, transparent 50%, rgba(15,47,98,.9) 50%),
+        linear-gradient(135deg, rgba(15,47,98,.9) 50%, transparent 50%);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%;
+      background-size:6px 6px, 6px 6px;
+      background-repeat:no-repeat;
+    }
+
+    .it-select:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
+    }
+
+    .it-summary{
+      color:#1f2b3f;
+      line-height:1.65;
+      font-size:14.8px;
+      opacity:.95;
+      flex:1 1 320px;
+      max-width:70ch;
+      margin:0;
+    }
+
+    .it-plan{
+      margin-top:14px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .day-card{
+      border-radius:18px;
+      padding:14px 14px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .day-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+
+    .day-title{
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+      font-size:14.8px;
+      line-height:1.2;
+    }
+
+    .day-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
+      font-weight:900;
+      font-size:12.5px;
+      white-space:nowrap;
+    }
+
+    .slots{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .slot{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 10px;
+      border-radius:14px;
+      background:rgba(255,255,255,.85);
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .slot-time{
+      flex:0 0 auto;
+      min-width:88px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:12.8px;
+      opacity:.95;
+      padding-top:1px;
+      white-space:nowrap;
+    }
+
+    .slot-text{
+      margin:0;
+      color:#1f2b3f;
+      opacity:.95;
+      line-height:1.6;
+      font-size:13.8px;
+      max-width:78ch;
+    }
+
+    .it-note{
+      margin-top:12px;
+      padding-top:12px;
+      border-top:1px solid rgba(0,0,0,.06);
+      color:var(--slate);
+      font-size:13.8px;
+      line-height:1.65;
+    }
+
     /* ===== WEATHER (same as Quito) ===== */
     .wx-card{
       padding:18px 18px;
@@ -810,10 +963,12 @@
       .nav{justify-content:center}
       .dropdown-menu{right:auto;left:50%;transform:translateX(-50%)}
       .carousel-slide{ aspect-ratio:16/9; }
+      .it-control{ min-width: 100%; }
     }
 
     @media(max-width:480px){
       .carousel-btn{ width:40px; height:40px; }
+      .slot-time{ min-width:82px; }
     }
   </style>
 </head>
@@ -937,67 +1092,42 @@
             A great rhythm is: one strong “waterfall day,” one “birding morning,” and one “slow town day” for cafés and short walks.
           </p>
           <p>
-            Want a curated 2 to 4 night plan with the right birding spots, guides, and activity pacing?
+            Want a curated 1 to 4 night plan with the right birding spots, guides, and activity pacing?
             Reach out via the <a class="inline-link" href="/contact/">Contact</a> page.
           </p>
         </div>
 
-        <div class="card">
+        <!-- NEW: SINGLE ITINERARY SECTION WITH DROPDOWN -->
+        <div class="card" id="mindoItinerary">
           <h2>Choose your Mindo plan</h2>
-          <p>
-            Pick your base length, then mix in activities depending on weather and energy.
-            If you love birds, prioritize mornings. If you love waterfalls, plan one full “route day.”
-          </p>
 
-          <div class="itinerary-grid" aria-label="Mindo itinerary links">
-            <a class="it-card" href="./2-days/">
-              <div class="it-left">
-                <div class="it-title">Mindo in 2 Days</div>
-                <div class="it-sub">
-                  Ideal quick escape. One birding morning, one waterfall-focused day, plus flexible town time.
-                </div>
-                <div class="it-meta">
-                  <span class="it-pill">Quick getaway</span>
-                  <span class="it-pill">Nature focus</span>
-                  <span class="it-pill">Most efficient</span>
-                </div>
-              </div>
-              <span class="arrow" aria-hidden="true"></span>
-            </a>
+          <div class="it-head" aria-label="Itinerary chooser">
+            <div class="it-control">
+              <div class="it-label">Length of stay</div>
+              <select class="it-select" id="itDaysSelect" aria-label="Select number of days">
+                <option value="1">1 day</option>
+                <option value="2">2 days</option>
+                <option value="3">3 days</option>
+                <option value="4">4 days</option>
+              </select>
+            </div>
 
-            <a class="it-card" href="./3-days/">
-              <div class="it-left">
-                <div class="it-title">Mindo in 3 Days</div>
-                <div class="it-sub">
-                  More breathing room. Add a second birding morning or a soft-adventure activity without rushing.
-                </div>
-                <div class="it-meta">
-                  <span class="it-pill">Balanced</span>
-                  <span class="it-pill">More wildlife time</span>
-                  <span class="it-pill">Flexible</span>
-                </div>
-              </div>
-              <span class="arrow" aria-hidden="true"></span>
-            </a>
+            <p class="it-summary" id="itSummary">
+              A fast, high-impact day with one strong nature block plus easy town time. Ideal if you are based in Quito.
+            </p>
+          </div>
 
-            <a class="it-card" href="./4-days/">
-              <div class="it-left">
-                <div class="it-title">Mindo in 4 Days</div>
-                <div class="it-sub">
-                  The full slow trip. Multiple mornings in the forest, waterfalls, and relaxed afternoons in town.
-                </div>
-                <div class="it-meta">
-                  <span class="it-pill">Slow travel</span>
-                  <span class="it-pill">Best for birders</span>
-                  <span class="it-pill">Deep reset</span>
-                </div>
-              </div>
-              <span class="arrow" aria-hidden="true"></span>
-            </a>
+          <div class="it-plan" id="itPlan" aria-live="polite" aria-label="Tentative itinerary">
+            <!-- JS renders the selected itinerary here -->
+          </div>
+
+          <div class="it-note">
+            This is a tentative pacing guide. Weather in the cloud forest can shift quickly, so we recommend keeping afternoons flexible.
+            If you want this tailored to your exact dates and interests, use the <a class="inline-link" href="/contact/">Contact</a> page.
           </div>
         </div>
 
-        <!-- Carousel bottom (like Quito) -->
+        <!-- Carousel bottom (same as Mindo) -->
         <div id="mindoCarousel" class="carousel" aria-label="Mindo image gallery">
           <button class="carousel-btn prev" type="button" aria-label="Previous image">
             <span aria-hidden="true"></span>
@@ -1230,6 +1360,184 @@
     document.addEventListener('contextmenu', (e) => {
       if (e.target && e.target.tagName === 'IMG') e.preventDefault();
     });
+
+    /* ===== MINDO ITINERARY (1 page + dropdown) ===== */
+    (function(){
+      const selectEl = document.getElementById("itDaysSelect");
+      const planEl = document.getElementById("itPlan");
+      const summaryEl = document.getElementById("itSummary");
+      if(!selectEl || !planEl || !summaryEl) return;
+
+      const itineraries = {
+        1: {
+          summary: "A fast, high-impact day with one strong nature block plus easy town time. Ideal if you are based in Quito.",
+          days: [
+            {
+              title: "Day 1",
+              pill: "Highlights + easy pacing",
+              slots: [
+                { time: "Morning", text: "Arrive and start with a short cloud forest nature block. If you are bird-focused, prioritize a hummingbird garden or a guided early walk." },
+                { time: "Midday", text: "Lunch in town, then choose a simple activity based on weather: butterfly garden, chocolate experience, or a short viewpoint stop." },
+                { time: "Afternoon", text: "Waterfall option if skies cooperate, or keep it flexible with cafés and a relaxed stroll. Return to Quito if you are day-tripping." }
+              ]
+            }
+          ]
+        },
+        2: {
+          summary: "The most efficient short stay. One birding morning, one waterfall-focused day, plus relaxed town time.",
+          days: [
+            {
+              title: "Day 1",
+              pill: "Arrive + town and nature",
+              slots: [
+                { time: "Morning", text: "Arrive and settle in. Do a light nature block close to town so you stay flexible." },
+                { time: "Midday", text: "Lunch and a calm activity like chocolate, butterfly garden, or a hummingbird garden visit." },
+                { time: "Afternoon", text: "Optional short walk or viewpoint. Early night to be ready for an early morning." }
+              ]
+            },
+            {
+              title: "Day 2",
+              pill: "Waterfalls + scenic route",
+              slots: [
+                { time: "Early", text: "Start early while trails are quieter. Pick a waterfall route day if weather is stable." },
+                { time: "Midday", text: "Picnic or lunch stop, then continue with one more waterfall or a shorter forest trail." },
+                { time: "Afternoon", text: "Return to town. If you are leaving the same day, keep this block light and buffer time for travel." }
+              ]
+            }
+          ]
+        },
+        3: {
+          summary: "More breathing room. Add a second birding morning or a soft-adventure activity without rushing.",
+          days: [
+            {
+              title: "Day 1",
+              pill: "Arrival + easy activities",
+              slots: [
+                { time: "Morning", text: "Arrive, check in, and take a gentle start near town to match weather and energy." },
+                { time: "Midday", text: "Chocolate experience or butterfly garden, plus a café stop." },
+                { time: "Afternoon", text: "Short trail or viewpoint, then relax. Save the biggest activities for early mornings." }
+              ]
+            },
+            {
+              title: "Day 2",
+              pill: "Birding morning",
+              slots: [
+                { time: "Early", text: "Birding-focused morning. Consider a guide for higher species variety and better timing." },
+                { time: "Midday", text: "Lunch and rest. Mindo afternoons can be rainy, so keep this flexible." },
+                { time: "Afternoon", text: "Optional soft adventure like ziplining or tubing if conditions are good." }
+              ]
+            },
+            {
+              title: "Day 3",
+              pill: "Waterfalls + relaxed finish",
+              slots: [
+                { time: "Morning", text: "Waterfall route day, or swap with another birding morning depending on your priorities." },
+                { time: "Midday", text: "Lunch and a final scenic stop." },
+                { time: "Afternoon", text: "Slow town time and travel onward with buffer time." }
+              ]
+            }
+          ]
+        },
+        4: {
+          summary: "The full slow trip. Multiple mornings in the forest, waterfalls, and relaxed afternoons in town.",
+          days: [
+            {
+              title: "Day 1",
+              pill: "Arrive + settle in",
+              slots: [
+                { time: "Morning", text: "Arrive and keep it easy. Short nature activity close to town." },
+                { time: "Midday", text: "Chocolate, butterfly garden, or hummingbird garden, then lunch." },
+                { time: "Afternoon", text: "Relaxed town time. Save major hiking for mornings." }
+              ]
+            },
+            {
+              title: "Day 2",
+              pill: "Birding morning",
+              slots: [
+                { time: "Early", text: "Primary birding morning. Guided if you want the best variety and pacing." },
+                { time: "Midday", text: "Rest and café time. Flexible weather buffer." },
+                { time: "Afternoon", text: "Optional soft adventure or a short trail depending on conditions." }
+              ]
+            },
+            {
+              title: "Day 3",
+              pill: "Waterfalls day",
+              slots: [
+                { time: "Early", text: "Waterfalls route with the best chance of clear trails early." },
+                { time: "Midday", text: "Lunch stop and one additional short trail if energy is good." },
+                { time: "Afternoon", text: "Back to town for a relaxed evening." }
+              ]
+            },
+            {
+              title: "Day 4",
+              pill: "Choose your favorite repeat",
+              slots: [
+                { time: "Morning", text: "Pick your favorite repeat: another birding morning or a second, lighter waterfall set." },
+                { time: "Midday", text: "Final lunch, souvenir browsing, and slow town moments." },
+                { time: "Afternoon", text: "Depart with buffer time for travel." }
+              ]
+            }
+          ]
+        }
+      };
+
+      function getDaysFromUrl(){
+        try{
+          const u = new URL(window.location.href);
+          const v = u.searchParams.get("days");
+          const n = Number(v);
+          if([1,2,3,4].includes(n)) return n;
+        }catch(_){}
+        return null;
+      }
+
+      function setDaysInUrl(days){
+        try{
+          const u = new URL(window.location.href);
+          u.searchParams.set("days", String(days));
+          window.history.replaceState({}, "", u.toString());
+        }catch(_){}
+      }
+
+      function render(days){
+        const data = itineraries[days] || itineraries[2];
+        summaryEl.textContent = data.summary;
+
+        planEl.innerHTML = data.days.map((d) => {
+          const slotsHtml = d.slots.map(s => {
+            return `
+              <div class="slot">
+                <div class="slot-time">${s.time}</div>
+                <p class="slot-text">${s.text}</p>
+              </div>
+            `;
+          }).join("");
+
+          return `
+            <div class="day-card" aria-label="${d.title}">
+              <div class="day-top">
+                <div class="day-title">${d.title}</div>
+                <div class="day-pill">${d.pill}</div>
+              </div>
+              <div class="slots">
+                ${slotsHtml}
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      const initial = getDaysFromUrl() || 2;
+      selectEl.value = String(initial);
+      render(initial);
+
+      selectEl.addEventListener("change", () => {
+        const v = Number(selectEl.value);
+        const safe = [1,2,3,4].includes(v) ? v : 2;
+        render(safe);
+        setDaysInUrl(safe);
+      });
+    })();
 
     /* Mindo weather: date + (max/min/rain) + 7-day forecast (same as Quito) */
     (function(){
