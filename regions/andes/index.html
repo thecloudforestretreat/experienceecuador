@@ -791,7 +791,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" id="combineCard">
           <h3>How to combine these</h3>
           <ul>
             <li><strong>2–3 nights Quito</strong> as your base for arrival and city culture</li>
@@ -800,6 +800,15 @@
             <li><strong>2–4 nights Mindo</strong> for cloud forest and birding</li>
             <li><strong>1–2 nights Baños</strong> for waterfalls and adventure energy</li>
           </ul>
+
+          <!-- ✅ ADDED: Current Weather (only addition under this section) -->
+          <div class="pill-row" aria-label="Andes weather tags" style="margin-top:16px;">
+            <span class="tag">Current weather</span>
+          </div>
+
+          <div class="places-grid" id="andesWeatherGrid" aria-label="Andes current weather">
+            <!-- Populated by JS -->
+          </div>
         </div>
       </div>
     </section>
@@ -1020,6 +1029,139 @@
       updateCounter();
       setIndex(0);
       startAutoplay();
+    })();
+
+    /* ✅ Andes current weather (client-side, cached) */
+    (function(){
+      const grid = document.getElementById("andesWeatherGrid");
+      if(!grid) return;
+
+      const PLACES = [
+        { id: "quito", name: "Quito", lat: -0.1807, lon: -78.4678, href: "/regions/andes/quito/" },
+        { id: "mindo", name: "Mindo", lat: 0.05, lon: -78.776, href: "/regions/andes/mindo/" },
+        { id: "otavalo", name: "Otavalo", lat: 0.234, lon: -78.262, href: "/regions/andes/otavalo/" },
+        { id: "cotopaxi", name: "Cotopaxi", lat: -0.6808, lon: -78.4376, href: "/regions/andes/cotopaxi/" },
+        { id: "banos", name: "Baños", lat: -1.3964, lon: -78.4246, href: "/regions/andes/banos/" }
+      ];
+
+      const CACHE_KEY = "ee_andes_weather_v1";
+      const CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
+
+      function openMeteoUrl(lat, lon){
+        return `https://api.open-meteo.com/v1/forecast?latitude=${encodeURIComponent(lat)}&longitude=${encodeURIComponent(lon)}&current=temperature_2m,apparent_temperature,precipitation,cloud_cover,wind_speed_10m&daily=temperature_2m_min,temperature_2m_max,precipitation_sum&timezone=auto&forecast_days=7`;
+      }
+
+      function readCache(){
+        try{
+          const raw = localStorage.getItem(CACHE_KEY);
+          if(!raw) return null;
+          const parsed = JSON.parse(raw);
+          if(!parsed || !parsed.ts || !parsed.data) return null;
+          if(Date.now() - parsed.ts > CACHE_TTL_MS) return null;
+          return parsed.data;
+        }catch(e){
+          return null;
+        }
+      }
+
+      function writeCache(data){
+        try{
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+        }catch(e){}
+      }
+
+      function escapeHtml(str){
+        return String(str)
+          .replaceAll("&","&amp;")
+          .replaceAll("<","&lt;")
+          .replaceAll(">","&gt;")
+          .replaceAll('"',"&quot;")
+          .replaceAll("'","&#039;");
+      }
+
+      function renderLoading(){
+        grid.innerHTML = PLACES.map(p => `
+          <a class="place-tile" href="${p.href}" aria-label="Open ${escapeHtml(p.name)} page">
+            <div>
+              <p class="place-title">${escapeHtml(p.name)}</p>
+              <p class="place-meta">Loading weather…</p>
+            </div>
+            <div class="place-arrow" aria-hidden="true"><span></span></div>
+          </a>
+        `).join("");
+      }
+
+      function render(data){
+        grid.innerHTML = data.map(item => {
+          const href = item.href || "#";
+          if(!item.ok){
+            return `
+              <a class="place-tile" href="${href}" aria-label="Open ${escapeHtml(item.name)} page">
+                <div>
+                  <p class="place-title">${escapeHtml(item.name)}</p>
+                  <p class="place-meta">Weather unavailable right now.</p>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </a>
+            `;
+          }
+
+          const cur = item.raw && item.raw.current ? item.raw.current : null;
+          const daily = item.raw && item.raw.daily ? item.raw.daily : null;
+
+          const t = cur && typeof cur.temperature_2m === "number" ? Math.round(cur.temperature_2m) : null;
+          const wind = cur && typeof cur.wind_speed_10m === "number" ? Math.round(cur.wind_speed_10m) : null;
+
+          const min0 = daily && daily.temperature_2m_min && typeof daily.temperature_2m_min[0] === "number" ? Math.round(daily.temperature_2m_min[0]) : null;
+          const max0 = daily && daily.temperature_2m_max && typeof daily.temperature_2m_max[0] === "number" ? Math.round(daily.temperature_2m_max[0]) : null;
+
+          const metaParts = [];
+          if(t !== null) metaParts.push(`${t}°C`);
+          if(min0 !== null && max0 !== null) metaParts.push(`Today ${min0}–${max0}°`);
+          if(wind !== null) metaParts.push(`Wind ${wind}`);
+
+          const meta = metaParts.length ? metaParts.join(" · ") : "Current conditions available.";
+
+          return `
+            <a class="place-tile" href="${href}" aria-label="Open ${escapeHtml(item.name)} page">
+              <div>
+                <p class="place-title">${escapeHtml(item.name)}</p>
+                <p class="place-meta">${escapeHtml(meta)}</p>
+              </div>
+              <div class="place-arrow" aria-hidden="true"><span></span></div>
+            </a>
+          `;
+        }).join("");
+      }
+
+      async function fetchPlace(p){
+        const res = await fetch(openMeteoUrl(p.lat, p.lon), { method:"GET" });
+        const json = await res.json();
+        const ok = !json || !json.error;
+        return { ...p, ok, raw: json };
+      }
+
+      async function init(){
+        renderLoading();
+
+        const cached = readCache();
+        if(cached){
+          render(cached);
+          return;
+        }
+
+        const results = await Promise.allSettled(PLACES.map(fetchPlace));
+        const data = results.map((r, idx) => {
+          if(r.status === "fulfilled") return r.value;
+          const p = PLACES[idx];
+          return { ...p, ok:false, raw:null };
+        });
+
+        writeCache(data);
+        render(data);
+      }
+
+      init();
     })();
   </script>
 
