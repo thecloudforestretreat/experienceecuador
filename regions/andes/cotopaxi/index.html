@@ -226,7 +226,7 @@
       align-items:start;
     }
 
-    /* ✅ allow elements to span both columns */
+    /* allow sections inside the grid to span both columns */
     .span-all{ grid-column: 1 / -1; }
 
     .card{
@@ -389,7 +389,7 @@
       font-size:13px;
     }
 
-    /* ===== MORE ANDES DESTINATIONS (NEW) ===== */
+    /* ===== MORE ANDES DESTINATIONS (MATCH QUITO/OTAVALO) ===== */
     .andes-grid{
       display:grid;
       grid-template-columns:1fr;
@@ -460,7 +460,7 @@
       opacity:.85;
     }
 
-    /* ===== CAROUSEL (MATCH REGION PAGES) ===== */
+    /* ===== CAROUSEL (LOCKED) ===== */
     .carousel{
       margin-top:18px;
       background:#fff;
@@ -707,6 +707,7 @@
     </div>
 
     <section class="content-grid" aria-label="Cotopaxi content">
+      <!-- LEFT COLUMN -->
       <div>
         <div class="card">
           <h2>What Cotopaxi is best for</h2>
@@ -771,6 +772,7 @@
         </div>
       </div>
 
+      <!-- RIGHT COLUMN -->
       <aside class="side-stack" aria-label="Cotopaxi side content">
         <div class="mini">
           <h3>Best use of time</h3>
@@ -791,7 +793,7 @@
             </a>
           </div>
 
-          <!-- ✅ NEW: MORE ANDES DESTINATIONS (same structure you added on Mindo) -->
+          <!-- MATCH ANDES ORDER + IMAGE LIST YOU SPECIFIED -->
           <h3 style="margin-top:16px;">More Andes destinations</h3>
           <p style="margin-top:-4px;">
             Combine volcano landscapes with city time, cloud forest, and a market town.
@@ -806,18 +808,34 @@
               <div class="andes-arrow" aria-hidden="true"><span></span></div>
             </a>
 
-            <a class="andes-tile" href="/regions/andes/otavalo/" aria-label="Open Otavalo page">
+            <a class="andes-tile" href="/regions/andes/mindo/" aria-label="Open Mindo page">
               <div class="andes-left">
-                <div class="andes-title">Otavalo</div>
-                <div class="andes-sub">Indigenous markets, textiles, crafts, lake country.</div>
+                <div class="andes-title">Mindo</div>
+                <div class="andes-sub">Cloud forest, birding, waterfalls, relaxed nature days.</div>
               </div>
               <div class="andes-arrow" aria-hidden="true"><span></span></div>
             </a>
 
-            <a class="andes-tile" href="/regions/andes/mindo/" aria-label="Open Mindo page">
+            <a class="andes-tile" href="/regions/andes/cuenca/" aria-label="Open Cuenca page">
               <div class="andes-left">
-                <div class="andes-title">Mindo</div>
-                <div class="andes-sub">Cloud forest, waterfalls, and world-class birding.</div>
+                <div class="andes-title">Cuenca</div>
+                <div class="andes-sub">Architecture, riverside walks, and relaxed city rhythm.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/regions/andes/otavalo/" aria-label="Open Otavalo page">
+              <div class="andes-left">
+                <div class="andes-title">Otavalo</div>
+                <div class="andes-sub">Indigenous markets, textiles, crafts, and lake country.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/regions/andes/cotopaxi/" aria-label="Open Cotopaxi page">
+              <div class="andes-left">
+                <div class="andes-title">Cotopaxi</div>
+                <div class="andes-sub">Volcano scenery, hikes, and páramo landscapes.</div>
               </div>
               <div class="andes-arrow" aria-hidden="true"><span></span></div>
             </a>
@@ -829,9 +847,26 @@
               </div>
               <div class="andes-arrow" aria-hidden="true"><span></span></div>
             </a>
+
+            <a class="andes-tile" href="/regions/andes/papallacta/" aria-label="Open Papallacta page">
+              <div class="andes-left">
+                <div class="andes-title">Papallacta</div>
+                <div class="andes-sub">Hot springs, mountain air, and an easy reset day.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/regions/andes/choco-andino/" aria-label="Open Chocó Andino page">
+              <div class="andes-left">
+                <div class="andes-title">Chocó Andino</div>
+                <div class="andes-sub">Cloud forest edges, nature routes, and local communities.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
           </div>
         </div>
 
+        <!-- ✅ HEADER IMAGE LIKE ALL REGIONS PAGE (ABOVE LOCATION CARD CONTENT) -->
         <div class="policy-image" aria-label="Cotopaxi image">
           <img src="/assets/images/EE-Assets-Cotopaxi.jpg" alt="Cotopaxi volcano and landscapes">
         </div>
@@ -938,7 +973,7 @@
       });
     })();
 
-    /* Cotopaxi carousel */
+    /* Cotopaxi carousel (match Andes behavior) */
     (function(){
       const root = document.getElementById("cotopaxiCarousel");
       if(!root) return;
