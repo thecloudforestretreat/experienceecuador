@@ -370,17 +370,17 @@
       font-size:13px;
     }
 
-    /* ===== WEATHER CARD (RIGHT COLUMN) ===== */
-    .weather-card{
-      background:#fff;
-      padding:20px;
+    /* ===== WEATHER (same as Quito) ===== */
+    .wx-card{
+      padding:18px 18px;
       border-radius:22px;
+      background:#fff;
       box-shadow:0 18px 55px rgba(3,78,162,.12);
       border:1px solid rgba(0,0,0,.06);
     }
 
-    .weather-card h3{
-      margin:0 0 10px;
+    .wx-title{
+      margin:0 0 8px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       letter-spacing:-0.02em;
@@ -388,34 +388,176 @@
       color:#0f2f62;
     }
 
-    .weather-sections{
+    .wx-now{
       display:flex;
-      flex-direction:column;
-      gap:10px;
-      margin-top:10px;
-    }
-
-    .weather-row{
-      padding:12px 12px;
-      border-radius:16px;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      border-radius:18px;
       background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
       border:1px solid rgba(3,78,162,.12);
     }
 
-    .weather-row h4{
-      margin:0 0 6px;
-      font-size:14.2px;
+    .wx-date{
       font-weight:900;
       color:#0f2f62;
       letter-spacing:-0.01em;
+      font-size:13.2px;
+      opacity:.95;
+      white-space:nowrap;
+      margin-top:2px;
     }
 
-    .weather-row p{
+    .wx-lines{
       margin:0;
       color:#1f2b3f;
-      opacity:.92;
-      line-height:1.6;
-      font-size:14.2px;
+      line-height:1.55;
+      font-size:13.8px;
+      opacity:.95;
+      text-align:right;
+    }
+
+    .wx-grid7{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .wx-day{
+      border-radius:16px;
+      padding:10px 10px;
+      background:rgba(255,255,255,.9);
+      border:1px solid rgba(3,78,162,.14);
+      text-align:left;
+    }
+
+    .wx-top{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:8px;
+    }
+
+    .wx-dow{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:12.5px;
+      letter-spacing:-0.01em;
+    }
+
+    .wx-mmdd{
+      color:#162b55;
+      opacity:.75;
+      font-size:11.5px;
+    }
+
+    .wx-hi{
+      margin-top:8px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:12.8px;
+    }
+
+    .wx-lo{
+      color:#162b55;
+      opacity:.8;
+      font-size:12.3px;
+      margin-top:2px;
+    }
+
+    .wx-rain{
+      margin-top:6px;
+      color:#162b55;
+      opacity:.85;
+      font-size:11.7px;
+      white-space:nowrap;
+    }
+
+    @media(max-width:980px){
+      .wx-grid7{ grid-template-columns:repeat(2, 1fr); }
+    }
+
+    .months{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid rgba(0,0,0,.06);
+    }
+
+    .wx-sub{
+      margin:0 0 10px;
+      color:#1f2b3f;
+      opacity:.85;
+      font-size:13.5px;
+      line-height:1.5;
+    }
+
+    .legend{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+      align-items:center;
+    }
+
+    .legend-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:12.8px;
+      font-weight:800;
+      color:#162b55;
+      opacity:.9;
+    }
+
+    .swatch{
+      width:14px;
+      height:14px;
+      border-radius:6px;
+      border:1px solid rgba(3,78,162,.22);
+      background:rgba(3,78,162,.06);
+    }
+
+    .swatch.best{ background:rgba(3,78,162,.14); border-color:rgba(3,78,162,.32); }
+    .swatch.good{ background:rgba(3,78,162,.09); border-color:rgba(3,78,162,.22); }
+    .swatch.fair{ background:rgba(3,78,162,.04); border-color:rgba(3,78,162,.18); opacity:.85; }
+
+    .month-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .month-chip{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,.14);
+      background:rgba(3,78,162,.06);
+      color:#0f2f62;
+      font-weight:900;
+      font-size:12.4px;
+      min-width:46px;
+    }
+
+    .month-chip.best{
+      background:rgba(3,78,162,.14);
+      border-color:rgba(3,78,162,.32);
+    }
+
+    .month-chip.good{
+      background:rgba(3,78,162,.09);
+      border-color:rgba(3,78,162,.22);
+    }
+
+    .month-chip.fair{
+      background:rgba(3,78,162,.04);
+      border-color:rgba(3,78,162,.18);
+      opacity:.85;
     }
 
     /* ===== MORE ANDES DESTINATIONS ===== */
@@ -850,24 +992,44 @@
           </div>
         </div>
 
-        <!-- SINGLE WEATHER CARD (RIGHT) -->
-        <div class="weather-card" aria-label="Papallacta weather">
-          <h3>Weather</h3>
+        <!-- Weather card (same behavior as Quito) -->
+        <div class="wx-card" aria-label="Weather and seasonality">
+          <div class="wx-title">Current weather</div>
 
-          <div class="weather-sections">
-            <div class="weather-row">
-              <h4>Current weather</h4>
-              <p>Coming soon.</p>
+          <div class="wx-now">
+            <div class="wx-date" id="papallactaWxDate">--/--/----</div>
+            <p class="wx-lines" id="papallactaWxLines">Loading…</p>
+          </div>
+
+          <div class="months" aria-label="Forecast and best months section">
+            <div class="wx-title" style="margin-top:0;">7-day forecast</div>
+            <div class="wx-sub">High / low and rain for the week ahead.</div>
+            <div class="wx-grid7" id="papallactaWx7" aria-label="Papallacta 7-day forecast grid"></div>
+
+            <div class="wx-title" style="margin-top:14px;">Best months to visit</div>
+            <div class="wx-sub" style="margin-bottom:8px;">
+              Based on typically drier skies and comfort for high-altitude soaking.
             </div>
 
-            <div class="weather-row">
-              <h4>7-day forecast</h4>
-              <p>Coming soon.</p>
+            <div class="legend" aria-label="Best months legend">
+              <div class="legend-item"><span class="swatch best" aria-hidden="true"></span>Best</div>
+              <div class="legend-item"><span class="swatch good" aria-hidden="true"></span>Good</div>
+              <div class="legend-item"><span class="swatch fair" aria-hidden="true"></span>Fair</div>
             </div>
 
-            <div class="weather-row">
-              <h4>Best months to visit</h4>
-              <p>Coming soon.</p>
+            <div class="month-row" aria-label="12-month seasonality chips">
+              <span class="month-chip fair" aria-label="January">Jan</span>
+              <span class="month-chip fair" aria-label="February">Feb</span>
+              <span class="month-chip fair" aria-label="March">Mar</span>
+              <span class="month-chip fair" aria-label="April">Apr</span>
+              <span class="month-chip fair" aria-label="May">May</span>
+              <span class="month-chip good" aria-label="June good month">Jun</span>
+              <span class="month-chip best" aria-label="July best month">Jul</span>
+              <span class="month-chip best" aria-label="August best month">Aug</span>
+              <span class="month-chip good" aria-label="September good month">Sep</span>
+              <span class="month-chip fair" aria-label="October">Oct</span>
+              <span class="month-chip fair" aria-label="November">Nov</span>
+              <span class="month-chip fair" aria-label="December">Dec</span>
             </div>
           </div>
         </div>
@@ -1094,6 +1256,165 @@
       updateCounter();
       setIndex(0);
       startAutoplay();
+    })();
+
+    /* Papallacta weather (current + 7-day) */
+    (function(){
+      const dateEl = document.getElementById("papallactaWxDate");
+      const linesEl = document.getElementById("papallactaWxLines");
+      const gridEl = document.getElementById("papallactaWx7");
+      if(!dateEl || !linesEl || !gridEl) return;
+
+      // Papallacta, Ecuador (approx.)
+      const LAT = -0.37;
+      const LON = -78.15;
+
+      const wxCodeMap = {
+        0:"Clear",
+        1:"Mainly clear",
+        2:"Partly cloudy",
+        3:"Overcast",
+        45:"Fog",
+        48:"Rime fog",
+        51:"Light drizzle",
+        53:"Drizzle",
+        55:"Heavy drizzle",
+        56:"Freezing drizzle",
+        57:"Freezing drizzle",
+        61:"Light rain",
+        63:"Rain",
+        65:"Heavy rain",
+        66:"Freezing rain",
+        67:"Freezing rain",
+        71:"Light snow",
+        73:"Snow",
+        75:"Heavy snow",
+        77:"Snow grains",
+        80:"Rain showers",
+        81:"Rain showers",
+        82:"Violent showers",
+        85:"Snow showers",
+        86:"Snow showers",
+        95:"Thunderstorm",
+        96:"Thunderstorm + hail",
+        99:"Thunderstorm + hail"
+      };
+
+      function fmtDateMMDDYYYY(d){
+        const mm = String(d.getMonth()+1).padStart(2,"0");
+        const dd = String(d.getDate()).padStart(2,"0");
+        const yy = d.getFullYear();
+        return `${mm}/${dd}/${yy}`;
+      }
+
+      function fmtMMDD(iso){
+        const d = new Date(iso + "T00:00:00");
+        const mm = String(d.getMonth()+1).padStart(2,"0");
+        const dd = String(d.getDate()).padStart(2,"0");
+        return `${mm}/${dd}`;
+      }
+
+      function dowShort(iso){
+        const d = new Date(iso + "T00:00:00");
+        return d.toLocaleDateString("en-US",{ weekday:"short" });
+      }
+
+      function cToF(c){
+        return Math.round((c * 9/5) + 32);
+      }
+
+      function safeText(s){ return (s == null ? "" : String(s)); }
+
+      async function load(){
+        try{
+          const url =
+            "https://api.open-meteo.com/v1/forecast" +
+            `?latitude=${encodeURIComponent(LAT)}` +
+            `&longitude=${encodeURIComponent(LON)}` +
+            "&timezone=auto" +
+            "&current_weather=true" +
+            "&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max";
+
+          const res = await fetch(url);
+          if(!res.ok) throw new Error("Weather fetch failed");
+          const data = await res.json();
+
+          // Current
+          const now = data.current_weather || {};
+          const nowTempC = now.temperature;
+          const nowWind = now.windspeed;
+          const nowCode = now.weathercode;
+          const nowDesc = wxCodeMap[nowCode] || "Conditions";
+
+          dateEl.textContent = fmtDateMMDDYYYY(new Date());
+
+          const parts = [];
+          if(typeof nowTempC === "number") parts.push(`${cToF(nowTempC)}°F`);
+          parts.push(nowDesc);
+          if(typeof nowWind === "number") parts.push(`Wind ${Math.round(nowWind)} km/h`);
+
+          linesEl.textContent = parts.filter(Boolean).join(" • ");
+
+          // 7-day
+          const daily = data.daily || {};
+          const days = daily.time || [];
+          const tmax = daily.temperature_2m_max || [];
+          const tmin = daily.temperature_2m_min || [];
+          const pmax = daily.precipitation_probability_max || [];
+
+          gridEl.innerHTML = "";
+          const count = Math.min(7, days.length);
+
+          for(let i=0; i<count; i++){
+            const dayIso = days[i];
+            const hiC = tmax[i];
+            const loC = tmin[i];
+            const rain = pmax[i];
+
+            const card = document.createElement("div");
+            card.className = "wx-day";
+
+            const top = document.createElement("div");
+            top.className = "wx-top";
+
+            const dow = document.createElement("div");
+            dow.className = "wx-dow";
+            dow.textContent = dowShort(dayIso);
+
+            const mmdd = document.createElement("div");
+            mmdd.className = "wx-mmdd";
+            mmdd.textContent = fmtMMDD(dayIso);
+
+            top.appendChild(dow);
+            top.appendChild(mmdd);
+
+            const hi = document.createElement("div");
+            hi.className = "wx-hi";
+            hi.textContent = (typeof hiC === "number") ? `High ${cToF(hiC)}°F` : "High --";
+
+            const lo = document.createElement("div");
+            lo.className = "wx-lo";
+            lo.textContent = (typeof loC === "number") ? `Low ${cToF(loC)}°F` : "Low --";
+
+            const rainEl = document.createElement("div");
+            rainEl.className = "wx-rain";
+            rainEl.textContent = (typeof rain === "number") ? `Rain ${Math.round(rain)}%` : "Rain --";
+
+            card.appendChild(top);
+            card.appendChild(hi);
+            card.appendChild(lo);
+            card.appendChild(rainEl);
+
+            gridEl.appendChild(card);
+          }
+        }catch(e){
+          dateEl.textContent = "--/--/----";
+          linesEl.textContent = "Weather unavailable right now.";
+          gridEl.innerHTML = "";
+        }
+      }
+
+      load();
     })();
 
     // Light deterrent: disable right-click on images only
