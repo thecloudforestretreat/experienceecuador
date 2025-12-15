@@ -218,6 +218,7 @@
       font-weight:800;
     }
 
+    /* LOCKED GRID */
     .content-grid{
       display:grid;
       grid-template-columns:1.15fr 0.85fr;
@@ -226,6 +227,7 @@
       align-items:start;
     }
 
+    /* LOCKED CARD */
     .card{
       background:#fff;
       padding:22px;
@@ -262,6 +264,7 @@
       color:#162b55;
     }
 
+    /* OPTIONAL EXTRAS (allowed as separate cards) */
     .two-col{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -311,12 +314,14 @@
       font-size:12.8px;
     }
 
+    /* LOCKED RIGHT STACK */
     .side-stack{
       display:flex;
       flex-direction:column;
       gap:16px;
     }
 
+    /* LOCKED MINI */
     .mini{
       background:#fff;
       padding:20px;
@@ -370,7 +375,7 @@
       font-size:13px;
     }
 
-    /* ===== MORE ANDES DESTINATIONS (MATCH OTHER PAGES) ===== */
+    /* ===== MORE ANDES DESTINATIONS (LOCKED) ===== */
     .andes-grid{
       display:grid;
       grid-template-columns:1fr;
@@ -441,13 +446,22 @@
       opacity:.85;
     }
 
-    /* ===== WEATHER CARD (MATCH QUITO/MINDO STYLE) ===== */
-    .wx-wrap{ padding:0; }
+    /* ===== WEATHER CARD (STANDARDIZED AS wx-card) ===== */
+    .wx-card{
+      background:#fff;
+      padding:0;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+      overflow:hidden;
+    }
+
     .wx-inner{
       padding:20px;
       border-radius:22px;
       background:linear-gradient(180deg, rgba(3,78,162,0.05), rgba(3,78,162,0.015));
       border:1px solid rgba(3,78,162,0.10);
+      margin:0;
     }
 
     .wx-title{
@@ -651,7 +665,7 @@
     .mchip.good{ background:rgba(3,78,162,0.06); }
     .mchip.fair{ background:rgba(3,78,162,0.03); opacity:.95; }
 
-    /* ===== CAROUSEL (MATCH BAÑOS) ===== */
+    /* ===== CAROUSEL (LOCKED) ===== */
     .carousel{
       margin-top:18px;
       background:#fff;
@@ -900,44 +914,41 @@
     <section class="content-grid" aria-label="Cuenca content">
       <!-- LEFT COLUMN -->
       <div>
+        <!-- STANDARDIZED BLOCK 1 (LOCKED STRUCTURE): What... -->
         <div class="card">
           <h2>What Cuenca is best for</h2>
           <p>
-            Cuenca is built for slow discovery.
-            Think morning walks through historic streets, museum stops, café breaks, and a full afternoon that is still unhurried.
+            Cuenca is built for slow discovery with historic streets, museums, cafés, and markets.
             It is also a strong base for nearby highland day trips.
           </p>
+        </div>
 
-          <div class="two-col" aria-label="Cuenca highlights">
+        <!-- EXTRA (ALLOWED): Details moved OUT of the standardized card -->
+        <div class="card" aria-label="Cuenca highlights and details">
+          <h2>Highlights</h2>
+          <p>
+            If you have time, mix city walks with one day trip. Cuenca rewards a relaxed pace.
+          </p>
+
+          <div class="two-col" aria-label="Cuenca highlights grid">
             <div class="mini-card">
               <h3>Historic center and architecture</h3>
-              <p>
-                Classic plazas, churches, and photogenic streets.
-                Perfect for easy walking days and city views.
-              </p>
+              <p>Classic plazas, churches, and photogenic streets for easy walking days.</p>
             </div>
 
             <div class="mini-card">
               <h3>Markets and artisan craft</h3>
-              <p>
-                Local markets, handmade goods, and regional specialties.
-                Great for souvenirs that feel authentic.
-              </p>
+              <p>Local markets, handmade goods, and regional specialties for authentic souvenirs.</p>
             </div>
 
             <div class="mini-card">
               <h3>Food and café culture</h3>
-              <p>
-                A strong restaurant scene with cozy cafés and a relaxed pace.
-                Easy to build a day around food moments.
-              </p>
+              <p>A strong restaurant scene with cozy cafés and an unhurried rhythm.</p>
             </div>
 
             <div class="mini-card">
               <h3>Day trips and scenery</h3>
-              <p>
-                Use Cuenca as a base for short drives, viewpoints, and highland landscapes nearby.
-              </p>
+              <p>Short drives, viewpoints, and highland landscapes nearby.</p>
             </div>
           </div>
 
@@ -951,20 +962,17 @@
           </div>
         </div>
 
+        <!-- STANDARDIZED BLOCK 2 (LOCKED STRUCTURE): Quick planning notes -->
         <div class="card">
-          <h2>Simple planning flow</h2>
+          <h2>Quick planning notes</h2>
           <p>
-            Plan Cuenca like a walkable loop.
-            Pick one landmark anchor each morning, then leave the rest open for markets, cafés, and small discoveries.
-            Add one day trip if you have 3 to 4 nights.
-          </p>
-          <p>
-            Want a curated Cuenca plan with the right walking routes, food stops, and day trip pacing?
-            Reach out via the <a class="inline-link" href="/contact/">Contact</a> page.
+            Plan Cuenca as a walkable loop. Pick one landmark anchor each morning, then leave room for markets and cafés.
+            If you have 3 to 4 nights, add one day trip. For help, reach out via the
+            <a class="inline-link" href="/contact/">Contact</a> page.
           </p>
         </div>
 
-        <!-- CAROUSEL (LEFT, BELOW PLANNING FLOW) -->
+        <!-- CAROUSEL (LEFT, BELOW QUICK PLANNING NOTES) -->
         <div id="cuencaCarousel" class="carousel" aria-label="Cuenca image gallery">
           <button class="carousel-btn prev" type="button" aria-label="Previous image">
             <span aria-hidden="true"></span>
@@ -994,12 +1002,12 @@
 
       <!-- RIGHT COLUMN -->
       <aside class="side-stack" aria-label="Cuenca side content">
-        <!-- Card 1: Best use of time -->
+        <!-- STANDARDIZED MINI: Good for short stays -->
         <div class="mini">
-          <h3>Best use of time</h3>
+          <h3>Good for short stays</h3>
           <p>
-            Cuenca is at its best when you do not rush.
-            Prioritize one strong walking route per day, then let cafés, markets, and neighborhood streets fill the gaps naturally.
+            Cuenca works beautifully for 2 to 4 nights. Focus on one strong walking route per day, then let cafés, markets,
+            and neighborhoods fill the gaps naturally.
           </p>
 
           <div class="link-list" aria-label="Quick links">
@@ -1015,8 +1023,8 @@
           </div>
         </div>
 
-        <!-- Card 2: Weather + forecast + best months -->
-        <div class="mini wx-wrap" aria-label="Cuenca weather">
+        <!-- STANDARDIZED wx-card: Current weather + 7-day + Best months -->
+        <div class="wx-card" aria-label="Cuenca weather">
           <div class="wx-inner">
             <div class="wx-title">Current weather</div>
 
@@ -1065,7 +1073,7 @@
           </div>
         </div>
 
-        <!-- Card 3: More Andes destinations -->
+        <!-- STANDARDIZED MINI: More Andes destinations -->
         <div class="mini" aria-label="More Andes destinations">
           <h3>More Andes destinations</h3>
           <p style="margin-top:-4px;">
