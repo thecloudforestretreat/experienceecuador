@@ -226,6 +226,11 @@
       align-items:start;
     }
 
+    /* ✅ Carousel fix: allow sections inside the grid to span both columns (like Andes) */
+    .span-all{
+      grid-column: 1 / -1;
+    }
+
     .card{
       background:#fff;
       padding:22px;
@@ -412,7 +417,6 @@
       will-change:transform;
     }
 
-    /* Taller than 16/9 to feel bigger on destination pages */
     .carousel-slide{
       min-width:100%;
       position:relative;
@@ -635,6 +639,7 @@
     </div>
 
     <section class="content-grid" aria-label="Otavalo content">
+      <!-- LEFT COLUMN -->
       <div>
         <div class="card">
           <h2>What Otavalo is best for</h2>
@@ -697,43 +702,9 @@
             <a class="inline-link" href="/contact/">Contact</a> page.
           </p>
         </div>
-
-        <!-- Keep a small title card, but make the carousel full-width below -->
-        <div class="card">
-          <h2>Gallery and highlights</h2>
-          <p>
-            A quick visual tour to help you choose what to prioritize.
-          </p>
-        </div>
-
-        <!-- CAROUSEL (FULL WIDTH IN LEFT COLUMN) -->
-        <div id="otavaloCarousel" class="carousel" aria-label="Otavalo image gallery">
-          <button class="carousel-btn prev" type="button" aria-label="Previous image">
-            <span aria-hidden="true"></span>
-          </button>
-
-          <div class="carousel-viewport">
-            <div class="carousel-track">
-              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-1.jpg" alt="Otavalo highlight 1"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-2.jpg" alt="Otavalo highlight 2"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-3.jpg" alt="Otavalo highlight 3"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-4.jpg" alt="Otavalo highlight 4"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-5.jpg" alt="Otavalo highlight 5"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-6.jpg" alt="Otavalo highlight 6"></div>
-            </div>
-          </div>
-
-          <button class="carousel-btn next" type="button" aria-label="Next image">
-            <span aria-hidden="true"></span>
-          </button>
-
-          <div class="carousel-ui">
-            <div class="carousel-dots" aria-label="Carousel pagination"></div>
-            <div class="carousel-counter" id="otavaloCarouselCounter">1 / 6</div>
-          </div>
-        </div>
       </div>
 
+      <!-- RIGHT COLUMN -->
       <aside class="side-stack" aria-label="Otavalo side content">
         <div class="mini">
           <h3>Best use of time</h3>
@@ -759,6 +730,41 @@
           <img src="/assets/images/EE-Assets-24-Otavalo.jpg" alt="Otavalo highlights">
         </div>
       </aside>
+
+      <!-- ✅ FULL-WIDTH GALLERY CARD (spans both columns like Andes) -->
+      <div class="card span-all">
+        <h2>Gallery and highlights</h2>
+        <p>
+          A quick visual tour to help you choose what to prioritize.
+        </p>
+      </div>
+
+      <!-- ✅ FULL-WIDTH CAROUSEL (spans both columns like Andes) -->
+      <div id="otavaloCarousel" class="carousel span-all" aria-label="Otavalo image gallery">
+        <button class="carousel-btn prev" type="button" aria-label="Previous image">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-1.jpg" alt="Otavalo highlight 1"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-2.jpg" alt="Otavalo highlight 2"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-3.jpg" alt="Otavalo highlight 3"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-4.jpg" alt="Otavalo highlight 4"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-5.jpg" alt="Otavalo highlight 5"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-6.jpg" alt="Otavalo highlight 6"></div>
+          </div>
+        </div>
+
+        <button class="carousel-btn next" type="button" aria-label="Next image">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <div class="carousel-ui">
+          <div class="carousel-dots" aria-label="Carousel pagination"></div>
+          <div class="carousel-counter" id="otavaloCarouselCounter">1 / 6</div>
+        </div>
+      </div>
     </section>
   </main>
 
