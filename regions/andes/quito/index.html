@@ -394,22 +394,6 @@
       gap:16px;
     }
 
-    .policy-image{
-      border-radius:22px;
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,.06);
-      box-shadow:0 18px 60px rgba(0,0,0,.14);
-      aspect-ratio:4 / 3;
-      background:#eef2f7;
-    }
-
-    .policy-image img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
     .mini{
       background:#fff;
       padding:20px;
@@ -532,6 +516,118 @@
       border-bottom:2px solid #0f2f62;
       transform:rotate(-45deg);
       opacity:.85;
+    }
+
+    /* ===== CAROUSEL (MATCH ANDES REGION STYLE) ===== */
+    .carousel{
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
+
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
+
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
     }
 
     /* ===== FOOTER (LOCKED) ===== */
@@ -753,169 +849,4 @@
             </div>
 
             <div class="mini-card">
-              <h3>Food and markets</h3>
-              <p>
-                Local flavors, cafes, and markets that make Quito feel alive beyond the checklist stops.
-              </p>
-            </div>
-          </div>
-
-          <div class="chips" aria-label="Quito theme chips">
-            <span class="chip">Culture</span>
-            <span class="chip">Architecture</span>
-            <span class="chip">Museums</span>
-            <span class="chip">Viewpoints</span>
-            <span class="chip">Markets</span>
-            <span class="chip">Day trips</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h2>Quick planning notes</h2>
-          <p>
-            Quito is at high altitude. Plan a slower first morning if you are arriving from sea level, drink water,
-            and keep your first day flexible. Most visitors enjoy Quito most when they mix a few “must see” stops with time to wander.
-          </p>
-          <p>
-            Want help picking the right plan or building a simple route for your dates?
-            Send us a note on the <a class="inline-link" href="/contact/">Contact</a> page.
-          </p>
-        </div>
-      </div>
-
-      <aside class="side-stack" aria-label="Quito side content">
-        <div class="mini">
-          <h3>Good for short stays</h3>
-          <p>
-            If you have limited time in Ecuador, Quito gives you a strong mix of culture, viewpoints, and quick access to nature.
-            Start with 1 day if you are in transit. Choose 2 or 3 days if you want a day trip and a slower pace.
-          </p>
-
-          <div class="link-list" aria-label="Quito quick links">
-            <a class="pill-link" href="/regions/andes/">
-              Back to Andes <span>Region page</span>
-            </a>
-            <a class="pill-link" href="/contact/">
-              Contact <span>Questions and partnerships</span>
-            </a>
-          </div>
-
-          <!-- NEW: ANDES DESTINATIONS -->
-          <h3 style="margin-top:16px;">More Andes destinations</h3>
-          <p style="margin-top:-4px;">
-            Continue your route with markets, volcano landscapes, cloud forest, or waterfalls.
-          </p>
-
-          <div class="andes-grid" aria-label="Andes destination links">
-            <a class="andes-tile" href="/regions/andes/mindo/" aria-label="Open Mindo page">
-              <div class="andes-left">
-                <div class="andes-title">Mindo</div>
-                <div class="andes-sub">Cloud forest, birding, waterfalls, relaxed nature days.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/andes/otavalo/" aria-label="Open Otavalo page">
-              <div class="andes-left">
-                <div class="andes-title">Otavalo</div>
-                <div class="andes-sub">Markets, textiles, lakes, northern highland culture.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/andes/cotopaxi/" aria-label="Open Cotopaxi page">
-              <div class="andes-left">
-                <div class="andes-title">Cotopaxi</div>
-                <div class="andes-sub">Volcano scenery, hikes, and páramo landscapes.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/andes/banos/" aria-label="Open Baños page">
-              <div class="andes-left">
-                <div class="andes-title">Baños</div>
-                <div class="andes-sub">Waterfalls, viewpoints, and soft adventure energy.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-          </div>
-        </div>
-
-        <div class="policy-image" aria-label="Quito image">
-          <img src="/assets/images/EE-Assets-19-Quito.jpg" alt="Quito highlights and skyline">
-        </div>
-      </aside>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
-
-      <div class="social" aria-label="Social media links">
-        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
-        </a>
-        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
-        </a>
-        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
-        </a>
-        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
-        </a>
-      </div>
-
-      <small>© 2025 Experience Ecuador. All rights reserved.</small>
-    </div>
-  </footer>
-
-  <script>
-    // Unified dropdown handler (Regions + Experiences) - open one at a time, close on outside click / Esc
-    (function () {
-      const dropdowns = document.querySelectorAll('.dropdown');
-
-      function closeAll() {
-        dropdowns.forEach(dd => {
-          dd.classList.remove('open');
-          const btn = dd.querySelector('.dropbtn');
-          if (btn) btn.setAttribute('aria-expanded', 'false');
-        });
-      }
-
-      dropdowns.forEach(dd => {
-        const btn = dd.querySelector('.dropbtn');
-        const menu = dd.querySelector('.dropdown-menu');
-        if (!btn) return;
-
-        btn.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-
-          const isOpen = dd.classList.contains('open');
-          closeAll();
-          dd.classList.toggle('open', !isOpen);
-          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
-        });
-
-        if (menu) {
-          menu.addEventListener('click', function (e) {
-            e.stopPropagation();
-          });
-        }
-      });
-
-      document.addEventListener('click', closeAll);
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeAll();
-      });
-    })();
-
-    // Light deterrent: disable right-click on images only
-    document.addEventListener('contextmenu', (e) => {
-      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
-    });
-  </script>
-</body>
-</html>
+              <h3 contando.
