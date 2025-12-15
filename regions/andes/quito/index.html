@@ -536,14 +536,6 @@
       color:#0f2f62;
     }
 
-    .wx-sub{
-      margin:0 0 12px;
-      color:#1f2b3f;
-      opacity:.85;
-      font-size:13.5px;
-      line-height:1.5;
-    }
-
     .wx-now{
       display:flex;
       align-items:flex-start;
@@ -555,13 +547,14 @@
       border:1px solid rgba(3,78,162,.12);
     }
 
-    .wx-temp{
+    .wx-date{
       font-weight:900;
       color:#0f2f62;
-      letter-spacing:-0.02em;
-      font-size:30px;
-      line-height:1;
+      letter-spacing:-0.01em;
+      font-size:13.2px;
+      opacity:.95;
       white-space:nowrap;
+      margin-top:2px;
     }
 
     .wx-lines{
@@ -640,6 +633,14 @@
       margin-top:14px;
       padding-top:14px;
       border-top:1px solid rgba(0,0,0,.06);
+    }
+
+    .wx-sub{
+      margin:0 0 10px;
+      color:#1f2b3f;
+      opacity:.85;
+      font-size:13.5px;
+      line-height:1.5;
     }
 
     .legend{
@@ -938,7 +939,6 @@
   </header>
 
   <main class="wrap">
-    <!-- keep this text at the top (as requested) -->
     <h1>Quito</h1>
     <p class="lede">
       Quito is Ecuador’s main travel hub and one of the most rewarding short-stay cities in South America.
@@ -952,7 +952,6 @@
     </div>
 
     <section class="content-grid" aria-label="Quito content">
-      <!-- LEFT COLUMN: What -> Notes -> Plan -->
       <div>
         <div class="card">
           <h2>What Quito is best for</h2>
@@ -1071,7 +1070,6 @@
           </div>
         </div>
 
-        <!-- Carousel at bottom (as requested) -->
         <div id="quitoCarousel" class="carousel" aria-label="Quito image gallery">
           <button class="carousel-btn prev" type="button" aria-label="Previous image">
             <span aria-hidden="true"></span>
@@ -1099,7 +1097,6 @@
         </div>
       </div>
 
-      <!-- RIGHT COLUMN: Good -> Weather Card -> Andes Destinations Card -->
       <aside class="side-stack" aria-label="Quito side content">
         <div class="mini">
           <h3>Good for short stays</h3>
@@ -1118,19 +1115,17 @@
           </div>
         </div>
 
-        <!-- Separate card: Current weather + 7-day (3+4) + months + legend -->
         <div class="wx-card" aria-label="Weather and seasonality">
           <div class="wx-title">Current weather</div>
-          <div class="wx-sub">Live snapshot for Quito (updates automatically).</div>
 
           <div class="wx-now">
-            <div class="wx-temp" id="quitoWxTemp">--°</div>
+            <div class="wx-date" id="quitoWxDate">--/--/----</div>
             <p class="wx-lines" id="quitoWxLines">Loading…</p>
           </div>
 
           <div class="months" aria-label="Forecast and best months section">
             <div class="wx-title" style="margin-top:0;">7-day forecast</div>
-            <div class="wx-sub" style="margin-bottom:10px;">High / low and rain for the week ahead.</div>
+            <div class="wx-sub">High / low and rain for the week ahead.</div>
             <div class="wx-grid7" id="quitoWx7" aria-label="Quito 7-day forecast grid"></div>
 
             <div class="wx-title" style="margin-top:14px;">Best months to visit</div>
@@ -1161,14 +1156,18 @@
           </div>
         </div>
 
-        <!-- Separate card: More Andes destinations -->
         <div class="mini" aria-label="More Andes destinations card">
           <h3>More Andes destinations</h3>
-          <p style="margin-top:-2px;">
-            Continue your route with markets, volcano landscapes, cloud forest, or waterfalls.
-          </p>
 
           <div class="andes-grid" aria-label="Andes destination links">
+            <a class="andes-tile" href="/regions/andes/quito/" aria-label="Open Quito page">
+              <div class="andes-left">
+                <div class="andes-title">Quito</div>
+                <div class="andes-sub">Culture, viewpoints, and quick day trips from the capital.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
             <a class="andes-tile" href="/regions/andes/mindo/" aria-label="Open Mindo page">
               <div class="andes-left">
                 <div class="andes-title">Mindo</div>
@@ -1197,6 +1196,30 @@
               <div class="andes-left">
                 <div class="andes-title">Baños</div>
                 <div class="andes-sub">Waterfalls, viewpoints, and soft adventure energy.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/regions/andes/cuenca/" aria-label="Open Cuenca page">
+              <div class="andes-left">
+                <div class="andes-title">Cuenca</div>
+                <div class="andes-sub">Colonial charm, riverside walks, and local craft culture.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/regions/andes/papallacta/" aria-label="Open Papallacta page">
+              <div class="andes-left">
+                <div class="andes-title">Papallacta</div>
+                <div class="andes-sub">Hot springs, páramo views, and relaxing mountain air.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/regions/andes/choco-andino/" aria-label="Open Chocó Andino page">
+              <div class="andes-left">
+                <div class="andes-title">Chocó Andino</div>
+                <div class="andes-sub">Biodiversity, cloud forest landscapes, and nature routes.</div>
               </div>
               <div class="andes-arrow" aria-hidden="true"><span></span></div>
             </a>
@@ -1230,7 +1253,7 @@
   </footer>
 
   <script>
-    // Unified dropdown handler (Regions + Experiences) - open one at a time, close on outside click / Esc
+    // Unified dropdown handler (Regions + Experiences)
     (function () {
       const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -1275,16 +1298,16 @@
       if (e.target && e.target.tagName === 'IMG') e.preventDefault();
     });
 
-    /* Quito weather (current + 7-day) */
+    /* Quito weather: date + (max/min/rain) + 7-day forecast */
     (function(){
-      const tempEl = document.getElementById("quitoWxTemp");
+      const dateEl = document.getElementById("quitoWxDate");
       const linesEl = document.getElementById("quitoWxLines");
       const grid7 = document.getElementById("quitoWx7");
-      if(!tempEl || !linesEl || !grid7) return;
+      if(!dateEl || !linesEl || !grid7) return;
 
       const PLACE = { name:"Quito", lat:-0.1807, lon:-78.4678 };
 
-      const CACHE_KEY = "ee_quito_weather_v2";
+      const CACHE_KEY = "ee_quito_weather_v3";
       const CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes
 
       function cToF(c){ return (c * 9/5) + 32; }
@@ -1304,6 +1327,14 @@
         return d.toLocaleDateString(undefined, { month:"short", day:"numeric" });
       }
 
+      function fmtMMDDYYYY(dateStr){
+        const d = new Date(dateStr + "T00:00:00");
+        const mm = String(d.getMonth() + 1).padStart(2, "0");
+        const dd = String(d.getDate()).padStart(2, "0");
+        const yy = d.getFullYear();
+        return `${mm}/${dd}/${yy}`;
+      }
+
       function readCache(){
         try{
           const raw = localStorage.getItem(CACHE_KEY);
@@ -1320,23 +1351,19 @@
       }
 
       function render(d){
-        const cur = d && d.current ? d.current : null;
         const daily = d && d.daily ? d.daily : null;
 
-        const curTemp = cur && typeof cur.temperature_2m === "number" ? cur.temperature_2m : null;
-        const wind = cur && typeof cur.wind_speed_10m === "number" ? cur.wind_speed_10m : null;
-
+        const t0 = daily && Array.isArray(daily.time) ? daily.time[0] : null;
         const todayMax = daily && daily.temperature_2m_max && typeof daily.temperature_2m_max[0] === "number" ? daily.temperature_2m_max[0] : null;
         const todayMin = daily && daily.temperature_2m_min && typeof daily.temperature_2m_min[0] === "number" ? daily.temperature_2m_min[0] : null;
         const todayRain = daily && daily.precipitation_sum && typeof daily.precipitation_sum[0] === "number" ? daily.precipitation_sum[0] : null;
 
-        tempEl.textContent = curTemp !== null ? (Math.round(curTemp) + "°") : "--°";
+        dateEl.textContent = t0 ? fmtMMDDYYYY(t0) : "--/--/----";
 
         const lines = [];
         if(todayMax !== null) lines.push(`Max: ${fmtTemp(todayMax)}`);
         if(todayMin !== null) lines.push(`Min: ${fmtTemp(todayMin)}`);
         if(todayRain !== null) lines.push(`Rain: ${Math.round(todayRain * 10)/10} mm`);
-        if(wind !== null) lines.push(`Wind: ${Math.round(wind)} km/h`);
         linesEl.innerHTML = lines.length ? lines.join("<br>") : "Weather data unavailable right now.";
 
         const times = daily && Array.isArray(daily.time) ? daily.time : [];
