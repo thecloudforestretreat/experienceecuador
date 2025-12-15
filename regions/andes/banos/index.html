@@ -226,9 +226,6 @@
       align-items:start;
     }
 
-    /* ✅ allow elements to span both columns */
-    .span-all{ grid-column: 1 / -1; }
-
     .card{
       background:#fff;
       padding:22px;
@@ -320,22 +317,6 @@
       gap:16px;
     }
 
-    .policy-image{
-      border-radius:22px;
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,.06);
-      box-shadow:0 18px 60px rgba(0,0,0,.14);
-      aspect-ratio:4 / 3;
-      background:#eef2f7;
-    }
-
-    .policy-image img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
     .mini{
       background:#fff;
       padding:20px;
@@ -389,7 +370,67 @@
       font-size:13px;
     }
 
-    /* ===== MORE ANDES DESTINATIONS (NEW) ===== */
+    /* ===== WEATHER CARD ===== */
+    .weather-grid{
+      display:grid;
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .weather-row{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(3,78,162,.04), rgba(3,78,162,.015));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .weather-left{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
+    }
+
+    .weather-title{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:14.6px;
+      letter-spacing:-0.01em;
+      line-height:1.2;
+    }
+
+    .weather-sub{
+      color:#1f2b3f;
+      opacity:.9;
+      font-size:13.4px;
+      line-height:1.45;
+      max-width:60ch;
+    }
+
+    .weather-badge{
+      flex:0 0 auto;
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.8);
+      border:1px solid rgba(3,78,162,.18);
+      font-weight:900;
+      color:#0f2f62;
+      font-size:12.8px;
+      white-space:nowrap;
+    }
+
+    .weather-note{
+      margin-top:10px;
+      color:var(--slate);
+      font-size:13.6px;
+      line-height:1.55;
+    }
+
+    /* ===== MORE ANDES DESTINATIONS ===== */
     .andes-grid{
       display:grid;
       grid-template-columns:1fr;
@@ -707,6 +748,7 @@
     </div>
 
     <section class="content-grid" aria-label="Baños content">
+      <!-- LEFT COLUMN -->
       <div>
         <div class="card">
           <h2>What Baños is best for</h2>
@@ -770,8 +812,36 @@
             Reach out via the <a class="inline-link" href="/contact/">Contact</a> page.
           </p>
         </div>
+
+        <!-- CAROUSEL (LEFT, BELOW PLANNING FLOW) -->
+        <div id="banosCarousel" class="carousel" aria-label="Baños image gallery">
+          <button class="carousel-btn prev" type="button" aria-label="Previous image">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Banos-1.jpg" alt="Baños highlight 1"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Banos-2.jpg" alt="Baños highlight 2"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Banos-3.jpg" alt="Baños highlight 3"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Banos-4.jpg" alt="Baños highlight 4"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Banos-5.jpg" alt="Baños highlight 5"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Banos-6.jpg" alt="Baños highlight 6"></div>
+            </div>
+          </div>
+
+          <button class="carousel-btn next" type="button" aria-label="Next image">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-ui">
+            <div class="carousel-dots" aria-label="Carousel pagination"></div>
+            <div class="carousel-counter" id="banosCarouselCounter">1 / 6</div>
+          </div>
+        </div>
       </div>
 
+      <!-- RIGHT COLUMN -->
       <aside class="side-stack" aria-label="Baños side content">
         <div class="mini">
           <h3>Best use of time</h3>
@@ -791,10 +861,47 @@
               Contact <span>Questions and partnerships</span>
             </a>
           </div>
+        </div>
 
-          <!-- ✅ NEW: MORE ANDES DESTINATIONS (same addition as Cotopaxi) -->
-          <h3 style="margin-top:16px;">More Andes destinations</h3>
-          <p style="margin-top:-4px;">
+        <!-- WEATHER CARD (CURRENT + 7-DAY + BEST MONTHS) -->
+        <div class="mini" aria-label="Weather in Baños">
+          <h3>Weather</h3>
+
+          <div class="weather-grid" aria-label="Weather summary">
+            <div class="weather-row" aria-label="Current weather">
+              <div class="weather-left">
+                <div class="weather-title">Current weather</div>
+                <div class="weather-sub">Warm days and quick shifts. Rain can arrive fast in the afternoons.</div>
+              </div>
+              <div class="weather-badge">Varies daily</div>
+            </div>
+
+            <div class="weather-row" aria-label="7-day forecast">
+              <div class="weather-left">
+                <div class="weather-title">7-day forecast</div>
+                <div class="weather-sub">Use the forecast to pick your waterfall and viewpoint windows.</div>
+              </div>
+              <div class="weather-badge">Check daily</div>
+            </div>
+
+            <div class="weather-row" aria-label="Best months to visit">
+              <div class="weather-left">
+                <div class="weather-title">Best months to visit</div>
+                <div class="weather-sub">Clearer mornings and more predictable plans tend to make trips easier.</div>
+              </div>
+              <div class="weather-badge">Seasonal</div>
+            </div>
+          </div>
+
+          <p class="weather-note">
+            Note: mountain weather changes quickly. Pack a light rain layer even on sunny days.
+          </p>
+        </div>
+
+        <!-- MORE ANDES DESTINATIONS (RIGHT, AFTER WEATHER) -->
+        <div class="mini">
+          <h3>More Andes destinations</h3>
+          <p>
             Pair Baños with a capital city base, volcano landscapes, and a market town.
           </p>
 
@@ -832,46 +939,7 @@
             </a>
           </div>
         </div>
-
-        <div class="policy-image" aria-label="Baños image">
-          <img src="/assets/images/EE-Assets-Banos.jpg" alt="Baños, Ecuador scenic view and surroundings">
-        </div>
       </aside>
-
-      <!-- FULL-WIDTH GALLERY CARD -->
-      <div class="card span-all">
-        <h2>Gallery and highlights</h2>
-        <p>
-          A quick visual tour to set expectations and inspire your route planning.
-        </p>
-      </div>
-
-      <!-- FULL-WIDTH CAROUSEL -->
-      <div id="banosCarousel" class="carousel span-all" aria-label="Baños image gallery">
-        <button class="carousel-btn prev" type="button" aria-label="Previous image">
-          <span aria-hidden="true"></span>
-        </button>
-
-        <div class="carousel-viewport">
-          <div class="carousel-track">
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Banos-1.jpg" alt="Baños highlight 1"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Banos-2.jpg" alt="Baños highlight 2"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Banos-3.jpg" alt="Baños highlight 3"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Banos-4.jpg" alt="Baños highlight 4"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Banos-5.jpg" alt="Baños highlight 5"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Banos-6.jpg" alt="Baños highlight 6"></div>
-          </div>
-        </div>
-
-        <button class="carousel-btn next" type="button" aria-label="Next image">
-          <span aria-hidden="true"></span>
-        </button>
-
-        <div class="carousel-ui">
-          <div class="carousel-dots" aria-label="Carousel pagination"></div>
-          <div class="carousel-counter" id="banosCarouselCounter">1 / 6</div>
-        </div>
-      </div>
     </section>
   </main>
 
