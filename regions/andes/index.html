@@ -781,6 +781,15 @@
               </div>
               <div class="place-arrow" aria-hidden="true"><span></span></div>
             </a>
+
+            <!-- ✅ ADDED: CUENCA -->
+            <a class="place-tile" href="/regions/andes/cuenca/" aria-label="Open Cuenca page">
+              <div>
+                <p class="place-title">Cuenca</p>
+                <p class="place-meta">Colonial charm, riverside walks, and artisan neighborhoods.</p>
+              </div>
+              <div class="place-arrow" aria-hidden="true"><span></span></div>
+            </a>
           </div>
 
           <div class="pill-row" aria-label="Andes place tags">
@@ -799,12 +808,13 @@
             <li><strong>1 day Cotopaxi</strong> for volcano views and short hikes</li>
             <li><strong>2–4 nights Mindo</strong> for cloud forest and birding</li>
             <li><strong>1–2 nights Baños</strong> for waterfalls and adventure energy</li>
+            <li><strong>2–3 nights Cuenca</strong> for colonial streets, food, and relaxed city days</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- NEW: CURRENT WEATHER SECTION (separate from "How to combine these") -->
+    <!-- CURRENT WEATHER SECTION -->
     <section class="section" aria-label="Current Weather">
       <h2>Current Weather</h2>
       <p>
@@ -950,10 +960,13 @@
         { id:"mindo", name:"Mindo", lat:0.05, lon:-78.776, href:"/regions/andes/mindo/" },
         { id:"otavalo", name:"Otavalo", lat:0.234, lon:-78.262, href:"/regions/andes/otavalo/" },
         { id:"cotopaxi", name:"Cotopaxi", lat:-0.6808, lon:-78.4376, href:"/regions/andes/cotopaxi/" },
-        { id:"banos", name:"Baños", lat:-1.3964, lon:-78.4246, href:"/regions/andes/banos/" }
+        { id:"banos", name:"Baños", lat:-1.3964, lon:-78.4246, href:"/regions/andes/banos/" },
+
+        /* ✅ ADDED: CUENCA WEATHER */
+        { id:"cuenca", name:"Cuenca", lat:-2.9001, lon:-79.0059, href:"/regions/andes/cuenca/" }
       ];
 
-      const CACHE_KEY = "ee_andes_weather_v1";
+      const CACHE_KEY = "ee_andes_weather_v2"; /* bumped to avoid stale cache missing Cuenca */
       const CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes
 
       function escapeHtml(s){
@@ -1053,8 +1066,6 @@
           const res = await fetch(url, { headers: { "accept": "application/json" } });
           const json = await res.json();
 
-          // Expecting your Worker response:
-          // { ok:true, source:"open-meteo", data:{...} } or { ok:true, source:"open-meteo", data:{ error:true, reason:"..." } }
           const d = json && json.data ? json.data : null;
 
           if(!d || d.error){
