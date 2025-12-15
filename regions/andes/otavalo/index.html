@@ -226,7 +226,6 @@
       align-items:start;
     }
 
-    /* allow sections inside the grid to span both columns (like Andes) */
     .span-all{ grid-column: 1 / -1; }
 
     .card{
@@ -320,22 +319,6 @@
       gap:16px;
     }
 
-    .policy-image{
-      border-radius:22px;
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,.06);
-      box-shadow:0 18px 60px rgba(0,0,0,.14);
-      aspect-ratio:4 / 3;
-      background:#eef2f7;
-    }
-
-    .policy-image img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
     .mini{
       background:#fff;
       padding:20px;
@@ -389,7 +372,7 @@
       font-size:13px;
     }
 
-    /* ===== MORE ANDES DESTINATIONS (NEW, MATCH QUITO) ===== */
+    /* ===== MORE ANDES DESTINATIONS (MATCH QUITO) ===== */
     .andes-grid{
       display:grid;
       grid-template-columns:1fr;
@@ -459,6 +442,214 @@
       transform:rotate(-45deg);
       opacity:.85;
     }
+
+    /* ===== WEATHER CARD (MATCH QUITO/MINDO) ===== */
+    .wx-wrap{ padding:0; }
+    .wx-inner{
+      padding:20px;
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(3,78,162,0.05), rgba(3,78,162,0.015));
+      border:1px solid rgba(3,78,162,0.10);
+    }
+
+    .wx-title{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .wx-snap{
+      background:rgba(255,255,255,0.75);
+      border:1px solid rgba(3,78,162,0.12);
+      border-radius:18px;
+      padding:14px 14px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    .wx-date{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      opacity:.95;
+      white-space:nowrap;
+      padding-top:2px;
+    }
+
+    .wx-metrics{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      text-align:right;
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13.5px;
+    }
+
+    .wx-divider{
+      height:1px;
+      background:rgba(0,0,0,0.06);
+      margin:14px 0 12px;
+    }
+
+    .wx-subtitle{
+      margin:0 0 8px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:15px;
+      letter-spacing:-0.01em;
+    }
+
+    .wx-subtext{
+      margin:0 0 10px;
+      color:#1f2b3f;
+      opacity:.9;
+      line-height:1.55;
+      font-size:13.8px;
+    }
+
+    .wx-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+    }
+
+    .wx-day{
+      background:#fff;
+      border:1px solid rgba(3,78,162,0.12);
+      border-radius:16px;
+      padding:10px 10px;
+      box-shadow:0 10px 26px rgba(3,78,162,0.07);
+    }
+
+    .wx-day-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:8px;
+      margin-bottom:8px;
+    }
+
+    .wx-dow{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:13.5px;
+      letter-spacing:-0.01em;
+    }
+
+    .wx-dt{
+      color:#1f2b3f;
+      opacity:.85;
+      font-weight:700;
+      font-size:12.5px;
+      white-space:nowrap;
+    }
+
+    .wx-hi{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:13.5px;
+    }
+
+    .wx-lo{
+      margin-top:2px;
+      color:#1f2b3f;
+      opacity:.88;
+      font-weight:800;
+      font-size:12.8px;
+    }
+
+    .wx-rain{
+      margin-top:8px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      color:#1f2b3f;
+      opacity:.9;
+      font-weight:800;
+      font-size:12.6px;
+    }
+
+    .wx-rain .drop{ font-size:14px; line-height:1; }
+
+    .wx-grid .wx-day:nth-child(4){ grid-column:1 / span 1; }
+    .wx-grid .wx-day:nth-child(5){ grid-column:2 / span 1; }
+    .wx-grid .wx-day:nth-child(6){ grid-column:3 / span 1; }
+    .wx-grid .wx-day:nth-child(7){ grid-column:1 / span 1; }
+
+    @media(max-width:520px){
+      .wx-grid{ grid-template-columns:repeat(2, 1fr); }
+      .wx-grid .wx-day:nth-child(n){ grid-column:auto; }
+    }
+
+    .wx-months-title{
+      margin:14px 0 6px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:15px;
+      letter-spacing:-0.01em;
+    }
+
+    .wx-legend{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin:0 0 10px;
+      color:#1f2b3f;
+      opacity:.9;
+      font-weight:800;
+      font-size:12.8px;
+    }
+
+    .leg{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+    }
+
+    .dotleg{
+      width:10px;height:10px;border-radius:999px;border:1px solid rgba(3,78,162,0.18);
+      background:rgba(3,78,162,0.08);
+      display:inline-block;
+    }
+
+    .dotleg.best{ background:rgba(3,78,162,0.85); border-color:rgba(3,78,162,0.85); }
+    .dotleg.good{ background:rgba(3,78,162,0.28); border-color:rgba(3,78,162,0.28); }
+    .dotleg.fair{ background:rgba(3,78,162,0.10); border-color:rgba(3,78,162,0.22); }
+
+    .month-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:6px;
+    }
+
+    .mchip{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 11px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.16);
+      font-weight:900;
+      font-size:12.8px;
+      color:#0f2f62;
+      background:#fff;
+      min-width:44px;
+    }
+
+    .mchip.best{ background:rgba(3,78,162,0.12); border-color:rgba(3,78,162,0.40); }
+    .mchip.good{ background:rgba(3,78,162,0.06); }
+    .mchip.fair{ background:rgba(3,78,162,0.03); opacity:.95; }
 
     /* ===== CAROUSEL (LOCKED) ===== */
     .carousel{
@@ -775,6 +966,7 @@
 
       <!-- RIGHT COLUMN -->
       <aside class="side-stack" aria-label="Otavalo side content">
+        <!-- Card 1: Best use of time -->
         <div class="mini">
           <h3>Best use of time</h3>
           <p>
@@ -793,9 +985,123 @@
               Contact <span>Questions and partnerships</span>
             </a>
           </div>
+        </div>
 
-          <!-- NEW: ANDES DESTINATIONS (matching Quito) -->
-          <h3 style="margin-top:16px;">More Andes destinations</h3>
+        <!-- Card 2: Weather + forecast + best months (NEW) -->
+        <div class="mini wx-wrap" aria-label="Otavalo weather">
+          <div class="wx-inner">
+            <div class="wx-title">Current weather</div>
+
+            <div class="wx-snap" aria-label="Weather snapshot">
+              <div class="wx-date" id="otavaloWxDate">MM/DD/YYYY</div>
+              <ul class="wx-metrics" aria-label="Weather metrics">
+                <li>Max: 18.0°C / 64.4°F</li>
+                <li>Min: 7.0°C / 44.6°F</li>
+                <li>Rain: 2 mm</li>
+              </ul>
+            </div>
+
+            <div class="wx-divider" role="separator"></div>
+
+            <div class="wx-subtitle">7-day forecast</div>
+            <p class="wx-subtext">High / low and rain for the week ahead.</p>
+
+            <div class="wx-grid" aria-label="7-day forecast grid">
+              <div class="wx-day">
+                <div class="wx-day-top">
+                  <div class="wx-dow">Mon</div><div class="wx-dt">Dec 15</div>
+                </div>
+                <div class="wx-hi">18.0°C / 64.4°F</div>
+                <div class="wx-lo">7.0°C / 44.6°F</div>
+                <div class="wx-rain"><span class="drop">☔</span> 2 mm</div>
+              </div>
+
+              <div class="wx-day">
+                <div class="wx-day-top">
+                  <div class="wx-dow">Tue</div><div class="wx-dt">Dec 16</div>
+                </div>
+                <div class="wx-hi">17.2°C / 63.0°F</div>
+                <div class="wx-lo">7.4°C / 45.3°F</div>
+                <div class="wx-rain"><span class="drop">☔</span> 3 mm</div>
+              </div>
+
+              <div class="wx-day">
+                <div class="wx-day-top">
+                  <div class="wx-dow">Wed</div><div class="wx-dt">Dec 17</div>
+                </div>
+                <div class="wx-hi">16.6°C / 61.9°F</div>
+                <div class="wx-lo">7.1°C / 44.8°F</div>
+                <div class="wx-rain"><span class="drop">☔</span> 4 mm</div>
+              </div>
+
+              <div class="wx-day">
+                <div class="wx-day-top">
+                  <div class="wx-dow">Thu</div><div class="wx-dt">Dec 18</div>
+                </div>
+                <div class="wx-hi">17.1°C / 62.8°F</div>
+                <div class="wx-lo">7.3°C / 45.1°F</div>
+                <div class="wx-rain"><span class="drop">☔</span> 2 mm</div>
+              </div>
+
+              <div class="wx-day">
+                <div class="wx-day-top">
+                  <div class="wx-dow">Fri</div><div class="wx-dt">Dec 19</div>
+                </div>
+                <div class="wx-hi">17.6°C / 63.7°F</div>
+                <div class="wx-lo">7.6°C / 45.7°F</div>
+                <div class="wx-rain"><span class="drop">☔</span> 2 mm</div>
+              </div>
+
+              <div class="wx-day">
+                <div class="wx-day-top">
+                  <div class="wx-dow">Sat</div><div class="wx-dt">Dec 20</div>
+                </div>
+                <div class="wx-hi">18.0°C / 64.4°F</div>
+                <div class="wx-lo">7.3°C / 45.1°F</div>
+                <div class="wx-rain"><span class="drop">☔</span> 1 mm</div>
+              </div>
+
+              <div class="wx-day">
+                <div class="wx-day-top">
+                  <div class="wx-dow">Sun</div><div class="wx-dt">Dec 21</div>
+                </div>
+                <div class="wx-hi">17.8°C / 64.0°F</div>
+                <div class="wx-lo">7.2°C / 45.0°F</div>
+                <div class="wx-rain"><span class="drop">☔</span> 1 mm</div>
+              </div>
+            </div>
+
+            <div class="wx-months-title">Best months to visit</div>
+            <p class="wx-subtext" style="margin-bottom:10px;">
+              Based on typically drier skies and comfort for markets and day trips.
+            </p>
+
+            <div class="wx-legend" aria-label="Month legend">
+              <span class="leg"><span class="dotleg best" aria-hidden="true"></span> Best</span>
+              <span class="leg"><span class="dotleg good" aria-hidden="true"></span> Good</span>
+              <span class="leg"><span class="dotleg fair" aria-hidden="true"></span> Fair</span>
+            </div>
+
+            <div class="month-row" aria-label="Month chips">
+              <span class="mchip good">Jan</span>
+              <span class="mchip good">Feb</span>
+              <span class="mchip good">Mar</span>
+              <span class="mchip fair">Apr</span>
+              <span class="mchip fair">May</span>
+              <span class="mchip best">Jun</span>
+              <span class="mchip best">Jul</span>
+              <span class="mchip best">Aug</span>
+              <span class="mchip best">Sep</span>
+              <span class="mchip best">Oct</span>
+              <span class="mchip good">Nov</span>
+              <span class="mchip good">Dec</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: More Andes destinations (moved out of Best use of time) -->
+        <div class="mini" aria-label="More Andes destinations">
+          <h3>More Andes destinations</h3>
           <p style="margin-top:-4px;">
             Pair Otavalo with a city stop, volcano landscapes, cloud forest, or waterfalls.
           </p>
@@ -817,6 +1123,14 @@
               <div class="andes-arrow" aria-hidden="true"><span></span></div>
             </a>
 
+            <a class="andes-tile" href="/regions/andes/otavalo/" aria-label="Otavalo page (current)" style="cursor:default;opacity:.92;" aria-current="page">
+              <div class="andes-left">
+                <div class="andes-title">Otavalo</div>
+                <div class="andes-sub">Markets, textiles, lakes, northern highland culture.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true" style="opacity:.35;"><span></span></div>
+            </a>
+
             <a class="andes-tile" href="/regions/andes/cotopaxi/" aria-label="Open Cotopaxi page">
               <div class="andes-left">
                 <div class="andes-title">Cotopaxi</div>
@@ -832,11 +1146,31 @@
               </div>
               <div class="andes-arrow" aria-hidden="true"><span></span></div>
             </a>
-          </div>
-        </div>
 
-        <div class="policy-image" aria-label="Otavalo image">
-          <img src="/assets/images/EE-Assets-24-Otavalo.jpg" alt="Otavalo highlights">
+            <a class="andes-tile" href="/regions/andes/cuenca/" aria-label="Open Cuenca page">
+              <div class="andes-left">
+                <div class="andes-title">Cuenca</div>
+                <div class="andes-sub">Colonial streets, artisan culture, relaxed city rhythm.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/regions/andes/papallacta/" aria-label="Open Papallacta page">
+              <div class="andes-left">
+                <div class="andes-title">Papallacta</div>
+                <div class="andes-sub">Hot springs, high altitude views, easy reset days.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/regions/andes/choco-andino/" aria-label="Open Chocó Andino page">
+              <div class="andes-left">
+                <div class="andes-title">Chocó Andino</div>
+                <div class="andes-sub">Biodiversity, forest reserves, birding, quiet nature routes.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+          </div>
         </div>
       </aside>
 
@@ -848,7 +1182,7 @@
         </p>
       </div>
 
-      <!-- FULL-WIDTH CAROUSEL -->
+      <!-- FULL-WIDTH CAROUSEL (no standalone image above it) -->
       <div id="otavaloCarousel" class="carousel span-all" aria-label="Otavalo image gallery">
         <button class="carousel-btn prev" type="button" aria-label="Previous image">
           <span aria-hidden="true"></span>
@@ -939,6 +1273,17 @@
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeAll();
       });
+    })();
+
+    // Set current date MM/DD/YYYY for weather snapshot (no live weather)
+    (function(){
+      const el = document.getElementById("otavaloWxDate");
+      if(!el) return;
+      const d = new Date();
+      const mm = String(d.getMonth() + 1).padStart(2, "0");
+      const dd = String(d.getDate()).padStart(2, "0");
+      const yyyy = d.getFullYear();
+      el.textContent = `${mm}/${dd}/${yyyy}`;
     })();
 
     /* Otavalo carousel (match Andes behavior) */
