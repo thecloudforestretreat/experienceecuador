@@ -255,6 +255,13 @@
 
     .card p:last-child{ margin-bottom:0; }
 
+    .inline-link{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:800;
+      color:#162b55;
+    }
+
     .two-col{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -379,29 +386,119 @@
       font-size:13px;
     }
 
-/* ===== CAROUSEL (BIGGER, MATCH ANDES FEEL) ===== */
-.carousel{
-  margin-top:22px;              /* slightly more breathing room */
-  background:#fff;
-  border-radius:22px;
-  border:1px solid rgba(0,0,0,0.06);
-  box-shadow:0 18px 55px rgba(3,78,162,0.10);
-  overflow:hidden;
-  position:relative;
-  z-index:1;
-}
+    /* ===== CAROUSEL (MATCH ANDES: FULL + UI + BUTTONS) ===== */
+    .carousel{
+      margin-top:18px;
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
 
-/* Make the gallery feel larger on destination pages */
-.carousel-slide{
-  min-width:100%;
-  position:relative;
-  aspect-ratio:16/8;            /* was 16/9, slightly taller = visually bigger */
-  background:#eef2f7;
-}
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
 
-@media(max-width:620px){
-  .carousel-slide{ aspect-ratio:16/9; } /* keep standard ratio on mobile */
-}
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    /* Taller than 16/9 to feel bigger on destination pages */
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/8;
+      background:#eef2f7;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
+    }
 
     /* ===== FOOTER (LOCKED) ===== */
     .footer{
@@ -468,6 +565,11 @@
       .topbar-inner{flex-direction:column;align-items:center;gap:10px}
       .nav{justify-content:center}
       .dropdown-menu{right:auto;left:50%;transform:translateX(-50%)}
+      .carousel-slide{ aspect-ratio:16/9; }
+    }
+
+    @media(max-width:480px){
+      .carousel-btn{ width:40px; height:40px; }
     }
   </style>
 </head>
@@ -596,34 +698,38 @@
           </p>
         </div>
 
+        <!-- Keep a small title card, but make the carousel full-width below -->
         <div class="card">
           <h2>Gallery and highlights</h2>
+          <p>
+            A quick visual tour to help you choose what to prioritize.
+          </p>
+        </div>
 
-          <!-- CAROUSEL -->
-          <div id="otavaloCarousel" class="carousel" aria-label="Otavalo image gallery">
-            <button class="carousel-btn prev" type="button" aria-label="Previous image">
-              <span aria-hidden="true"></span>
-            </button>
+        <!-- CAROUSEL (FULL WIDTH IN LEFT COLUMN) -->
+        <div id="otavaloCarousel" class="carousel" aria-label="Otavalo image gallery">
+          <button class="carousel-btn prev" type="button" aria-label="Previous image">
+            <span aria-hidden="true"></span>
+          </button>
 
-            <div class="carousel-viewport">
-              <div class="carousel-track">
-                <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-1.jpg" alt="Otavalo highlight 1"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-2.jpg" alt="Otavalo highlight 2"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-3.jpg" alt="Otavalo highlight 3"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-4.jpg" alt="Otavalo highlight 4"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-5.jpg" alt="Otavalo highlight 5"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-6.jpg" alt="Otavalo highlight 6"></div>
-              </div>
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-1.jpg" alt="Otavalo highlight 1"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-2.jpg" alt="Otavalo highlight 2"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-3.jpg" alt="Otavalo highlight 3"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-4.jpg" alt="Otavalo highlight 4"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-5.jpg" alt="Otavalo highlight 5"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-6.jpg" alt="Otavalo highlight 6"></div>
             </div>
+          </div>
 
-            <button class="carousel-btn next" type="button" aria-label="Next image">
-              <span aria-hidden="true"></span>
-            </button>
+          <button class="carousel-btn next" type="button" aria-label="Next image">
+            <span aria-hidden="true"></span>
+          </button>
 
-            <div class="carousel-ui">
-              <div class="carousel-dots" aria-label="Carousel pagination"></div>
-              <div class="carousel-counter" id="otavaloCarouselCounter">1 / 6</div>
-            </div>
+          <div class="carousel-ui">
+            <div class="carousel-dots" aria-label="Carousel pagination"></div>
+            <div class="carousel-counter" id="otavaloCarouselCounter">1 / 6</div>
           </div>
         </div>
       </div>
@@ -720,7 +826,7 @@
       });
     })();
 
-    /* Otavalo carousel (same behavior as Coast/Andes) */
+    /* Otavalo carousel (match Andes behavior) */
     (function(){
       const root = document.getElementById("otavaloCarousel");
       if(!root) return;
