@@ -22,6 +22,13 @@
       --brand-blue:#034EA2;
       --charcoal:#1F1F1F;
       --slate:#6E7B8B;
+
+      --card:#ffffff;
+      --border:rgba(0,0,0,0.06);
+      --shadow:0 18px 55px rgba(3,78,162,0.12);
+
+      --chipBg: rgba(3,78,162,0.10);
+      --chipText:#0f2f62;
     }
 
     *{box-sizing:border-box}
@@ -70,11 +77,7 @@
       line-height:1;
     }
 
-    .brand img{
-      width:28px;
-      height:28px;
-      object-fit:contain;
-    }
+    .brand img{width:28px;height:28px;object-fit:contain}
 
     /* ===== NAV ===== */
     .nav{
@@ -165,9 +168,7 @@
       color:#0f2f62;
     }
 
-    .dropdown-menu a:hover{
-      background:rgba(3,78,162,0.08);
-    }
+    .dropdown-menu a:hover{ background:rgba(3,78,162,0.08); }
 
     .dropdown-menu a.active{
       color:var(--brand-blue);
@@ -241,6 +242,7 @@
       grid-template-columns:1.15fr 0.85fr;
       gap:28px;
       margin-top:18px;
+      align-items:start;
     }
 
     .card{
@@ -248,7 +250,7 @@
       border-radius:22px;
       padding:22px;
       border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      box-shadow:var(--shadow);
     }
 
     .card ul{
@@ -267,6 +269,346 @@
     }
 
     .mini + .mini{margin-top:16px}
+
+    /* ===== RELAXATION SELECTOR (SAME SYSTEM) ===== */
+    .selector{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .selector-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      padding:22px;
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+    }
+
+    .selector-copy h3{
+      margin:0 0 6px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:20px;
+      color:#0f2f62;
+    }
+
+    .selector-copy p{
+      margin:0;
+      color:#24324a;
+      opacity:0.92;
+      line-height:1.65;
+      font-size:14.8px;
+      max-width:70ch;
+    }
+
+    .selector-controls{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .selector-controls label{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+    }
+
+    .selector-controls select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-weight:700;
+      padding:11px 42px 11px 12px;
+      border-radius:14px;
+      font-size:14px;
+      cursor:pointer;
+      outline:none;
+      min-width:260px;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      background-image:
+        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
+        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%,
+        0 0;
+      background-size:6px 6px, 6px 6px, 100% 100%;
+      background-repeat:no-repeat;
+    }
+
+    .selector-controls select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .selector-body{ padding:22px; }
+
+    .recs-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:16px;
+    }
+
+    .rec{
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.06);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 16px 45px rgba(0,0,0,0.08);
+      transition:transform .2s ease, box-shadow .2s ease;
+      min-height:182px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .rec:hover{
+      transform:translateY(-5px);
+      box-shadow:0 24px 60px rgba(0,0,0,0.12);
+    }
+
+    .rec h4{
+      margin:0;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .rec p{
+      margin:0;
+      color:#2a2f36;
+      line-height:1.6;
+      font-size:14px;
+      opacity:0.95;
+      flex:1;
+    }
+
+    .chips{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      background:var(--chipBg);
+      color:var(--chipText);
+      font-weight:800;
+      font-size:12.5px;
+      letter-spacing:0.01em;
+      border:1px solid rgba(3,78,162,0.16);
+      transition:transform .15s ease, background .15s ease;
+    }
+
+    .chip:hover{
+      transform:translateY(-1px);
+      background:rgba(3,78,162,0.14);
+    }
+
+    .meta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:-2px;
+    }
+
+    .badge{
+      font-size:12px;
+      font-weight:800;
+      color:#0f2f62;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.14);
+      padding:6px 8px;
+      border-radius:999px;
+      line-height:1;
+    }
+
+    .rec-actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:4px;
+    }
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:900;
+      font-size:13px;
+      background:var(--brand-blue);
+      color:#fff;
+      border:0;
+      cursor:pointer;
+      min-width:120px;
+    }
+
+    .cta:hover{ filter:brightness(0.95); }
+
+    .hint{
+      font-size:12.5px;
+      color:#24324a;
+      opacity:0.85;
+      font-weight:700;
+    }
+
+    /* ===== CAROUSEL (GALLERY) - PLACEHOLDERS ===== */
+    .carousel{
+      margin-top:40px;
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
+
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
+
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .ph{
+      width:100%;
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:18px;
+      color:#0f2f62;
+      font-weight:900;
+      letter-spacing:-0.02em;
+      background:linear-gradient(180deg, rgba(3,78,162,0.08), rgba(3,78,162,0.02));
+    }
+    .ph small{
+      display:block;
+      margin-top:8px;
+      font-weight:800;
+      opacity:0.85;
+      letter-spacing:0.01em;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
+      flex:1;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
+    }
 
     /* ===== FOOTER ===== */
     .footer{
@@ -313,6 +655,10 @@
     /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{grid-template-columns:1fr}
+      .recs-grid{grid-template-columns:1fr}
+      .selector-top{flex-direction:column; align-items:flex-start;}
+      .selector-controls{justify-content:flex-start;}
+      .selector-controls select{min-width:260px; width:100%;}
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
     }
 
@@ -323,6 +669,11 @@
         left:50%;
         transform:translateX(-50%);
       }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .rec { transition:none !important; }
+      .carousel-track{ transition:none !important; }
     }
   </style>
 </head>
@@ -391,11 +742,40 @@
   <section class="section">
     <h2>What this experience is about</h2>
     <p>
-      Relaxation in Ecuador can look very different depending on your style.
-      You can unplug in a cloud forest lodge, soak in hot springs after a volcano day trip,
-      stay by the beach with fresh seafood nearby, or choose a scenic mountain base for quiet mornings and short excursions.
+      Relaxation in Ecuador can look very different depending on your style. You can unplug in a cloud forest lodge, soak in hot springs
+      after a volcano day trip, stay by the beach with fresh seafood nearby, or choose a scenic mountain base for quiet mornings and short excursions.
       This hub will evolve into curated stays, slow itineraries, and trusted partner highlights.
     </p>
+  </section>
+
+  <!-- Relaxation Selector -->
+  <section class="section selector" aria-label="Relaxation selector">
+    <div class="selector-top">
+      <div class="selector-copy">
+        <h3>Pick your relaxation style</h3>
+        <p>
+          Choose the kind of reset you want and we’ll show three strong starting points — each linked to the best region to build from.
+          (You can refine these as you expand your location pages.)
+        </p>
+      </div>
+
+      <div class="selector-controls">
+        <label for="ee_relax_focus">Style</label>
+        <select id="ee_relax_focus" name="ee_relax_focus" aria-label="Select relaxation style">
+          <option value="hot_springs" selected>Hot springs + spa reset</option>
+          <option value="beach">Beach calm (sunsets + ocean air)</option>
+          <option value="forest">Quiet lodge (cloud forest slow days)</option>
+          <option value="islands">Island ease (light exploring, big views)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="selector-body">
+      <div class="recs-grid" id="ee_relax_recs" aria-live="polite"></div>
+      <div style="margin-top:12px;">
+        <span class="hint" id="ee_relax_hint">Tip: Hot springs pair well with a scenic Andes base and short day trips.</span>
+      </div>
+    </div>
   </section>
 
   <section class="section grid">
@@ -433,6 +813,36 @@
     </div>
   </section>
 
+  <!-- Bottom Carousel (placeholders) -->
+  <section class="carousel" aria-label="Relaxation gallery carousel">
+    <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
+      <span aria-hidden="true"></span>
+    </button>
+    <button class="carousel-btn next" type="button" aria-label="Next slide" id="ee_car_next">
+      <span aria-hidden="true"></span>
+    </button>
+
+    <div class="carousel-viewport" id="ee_car_viewport">
+      <div class="carousel-track" id="ee_car_track">
+        <div class="carousel-slide"><div class="ph">Relaxation carousel placeholder 1<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Relaxation carousel placeholder 2<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Relaxation carousel placeholder 3<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Relaxation carousel placeholder 4<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Relaxation carousel placeholder 5<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Relaxation carousel placeholder 6<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Relaxation carousel placeholder 7<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Relaxation carousel placeholder 8<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Relaxation carousel placeholder 9<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Relaxation carousel placeholder 10<small>Add image later</small></div></div>
+      </div>
+    </div>
+
+    <div class="carousel-ui">
+      <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
+      <div class="carousel-counter" id="ee_car_counter">1 / 10</div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="footer">
@@ -440,10 +850,18 @@
     <div class="footer-tagline">Curated travel experiences across Ecuador</div>
 
     <div class="social">
-      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener"><img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook"></a>
-      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener"><img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram"></a>
-      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener"><img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok"></a>
-      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener"><img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube"></a>
+      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+      </a>
+      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+      </a>
+      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+      </a>
+      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+      </a>
     </div>
 
     <small>© 2025 Experience Ecuador. All rights reserved.</small>
@@ -451,6 +869,7 @@
 </footer>
 
 <script>
+  /* ===== Dropdown behavior (site standard) ===== */
   (function () {
     const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -488,6 +907,289 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeAll();
     });
+  })();
+
+  /* ===== Relaxation Selector (3 recommendations) ===== */
+  (function(){
+    const focusEl = document.getElementById("ee_relax_focus");
+    const recsEl = document.getElementById("ee_relax_recs");
+    const hintEl = document.getElementById("ee_relax_hint");
+
+    const data = {
+      hot_springs: {
+        hint: "Hot springs are best with an Andes base — easy day trips, cool air, and proper reset vibes.",
+        recs: [
+          {
+            title: "Hot springs soak + quiet evening",
+            desc: "A simple reset day with a long soak, good food, and an early night for a true recharge.",
+            badges: ["Easy", "Half day–Full day"],
+            chips: [
+              { label: "Best in: Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "Explore Andes",
+            ctaHref: "/regions/andes/"
+          },
+          {
+            title: "Scenic town base + spa-style comfort",
+            desc: "Stay somewhere walkable and calm, then add one slow activity per day (max).",
+            badges: ["Easy", "Multi-day"],
+            chips: [
+              { label: "Best in: Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "Explore Andes",
+            ctaHref: "/regions/andes/"
+          },
+          {
+            title: "Volcano viewpoint day + soak recovery",
+            desc: "Light exploring earlier, then a restorative soak after. Great balance without over-planning.",
+            badges: ["Moderate", "Full day"],
+            chips: [
+              { label: "Best in: Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "Explore Andes",
+            ctaHref: "/regions/andes/"
+          }
+        ]
+      },
+
+      beach: {
+        hint: "Beach calm works best with fewer moves — pick one coastal base and let the days stay simple.",
+        recs: [
+          {
+            title: "Oceanfront downtime + sunset routine",
+            desc: "Swim, nap, walk, repeat. Add one easy outing, otherwise keep it clean and quiet.",
+            badges: ["Easy", "Multi-day"],
+            chips: [
+              { label: "Best in: Coast", href: "/regions/coast/" }
+            ],
+            ctaLabel: "Explore Coast",
+            ctaHref: "/regions/coast/"
+          },
+          {
+            title: "Seafood-first slow days",
+            desc: "Relaxation with good food: fresh seafood, cafés, and evenings that feel unhurried.",
+            badges: ["Easy", "Multi-day"],
+            chips: [
+              { label: "Best in: Coast", href: "/regions/coast/" }
+            ],
+            ctaLabel: "Explore Coast",
+            ctaHref: "/regions/coast/"
+          },
+          {
+            title: "Nature reserve + beach balance",
+            desc: "A short reserve walk in the morning, then beach rest. Perfect for light activity people.",
+            badges: ["Easy", "Half day–Full day"],
+            chips: [
+              { label: "Best in: Coast", href: "/regions/coast/" }
+            ],
+            ctaLabel: "Explore Coast",
+            ctaHref: "/regions/coast/"
+          }
+        ]
+      },
+
+      forest: {
+        hint: "A cloud forest lodge is the ultimate unplug — quiet mornings, cool air, and nature all around.",
+        recs: [
+          {
+            title: "Cloud forest lodge reset (no schedule)",
+            desc: "Pick a beautiful lodge, do short walks, and let the forest be the main activity.",
+            badges: ["Easy", "Multi-day"],
+            chips: [
+              { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
+              { label: "Explore Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "View Mindo",
+            ctaHref: "/regions/andes/mindo/"
+          },
+          {
+            title: "Waterfall day + long quiet evenings",
+            desc: "One small adventure per day (waterfall or viewpoint), then rest hard after.",
+            badges: ["Easy", "Full day"],
+            chips: [
+              { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" }
+            ],
+            ctaLabel: "View Mindo",
+            ctaHref: "/regions/andes/mindo/"
+          },
+          {
+            title: "Birdsong mornings + slow coffee pace",
+            desc: "Wake up early for the sounds, then return to pure comfort. Great for burnout recovery.",
+            badges: ["Easy", "Multi-day"],
+            chips: [
+              { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" }
+            ],
+            ctaLabel: "View Mindo",
+            ctaHref: "/regions/andes/mindo/"
+          }
+        ]
+      },
+
+      islands: {
+        hint: "Island ease is about pacing — short excursions, long afternoons, and zero rush.",
+        recs: [
+          {
+            title: "Calm island days (light exploring)",
+            desc: "Plan one simple outing, then keep afternoons free for views, naps, and easy walks.",
+            badges: ["Easy", "Multi-day"],
+            chips: [
+              { label: "Best in: Galapagos", href: "/regions/galapagos/" }
+            ],
+            ctaLabel: "Explore Galapagos",
+            ctaHref: "/regions/galapagos/"
+          },
+          {
+            title: "Iconic landscapes without the hustle",
+            desc: "Choose comfort and keep logistics minimal. You still get the wow factor, without overdoing it.",
+            badges: ["Easy", "Multi-day"],
+            chips: [
+              { label: "Best in: Galapagos", href: "/regions/galapagos/" }
+            ],
+            ctaLabel: "Explore Galapagos",
+            ctaHref: "/regions/galapagos/"
+          },
+          {
+            title: "Coast alternative (island vibe, easier)",
+            desc: "If you want a softer version of island life, the Coast can deliver calm days with less complexity.",
+            badges: ["Easy", "Multi-day"],
+            chips: [
+              { label: "Best in: Coast", href: "/regions/coast/" }
+            ],
+            ctaLabel: "Explore Coast",
+            ctaHref: "/regions/coast/"
+          }
+        ]
+      }
+    };
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function render(key){
+      const block = data[key] || data.hot_springs;
+      if (hintEl) hintEl.textContent = block.hint || "";
+
+      const html = block.recs.map((r) => {
+        const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
+        const chips = (r.chips || []).map(c => `
+          <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
+        `).join("");
+
+        return `
+          <article class="rec">
+            <div class="meta">${badges}</div>
+            <h4>${escapeHtml(r.title)}</h4>
+            <p>${escapeHtml(r.desc)}</p>
+
+            <div class="chips">${chips}</div>
+
+            <div class="rec-actions">
+              <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
+              <span class="hint">Best-fit starting point</span>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      recsEl.innerHTML = html;
+    }
+
+    render(focusEl ? focusEl.value : "hot_springs");
+
+    if (focusEl) {
+      focusEl.addEventListener("change", function(){
+        render(this.value);
+      });
+    }
+  })();
+
+  /* ===== Carousel (placeholders) ===== */
+  (function(){
+    const track = document.getElementById("ee_car_track");
+    const viewport = document.getElementById("ee_car_viewport");
+    const prevBtn = document.getElementById("ee_car_prev");
+    const nextBtn = document.getElementById("ee_car_next");
+    const dotsWrap = document.getElementById("ee_car_dots");
+    const counter = document.getElementById("ee_car_counter");
+
+    if (!track || !viewport) return;
+
+    const slides = Array.from(track.children);
+    const total = slides.length;
+    let index = 0;
+    let startX = 0;
+    let currentX = 0;
+    let dragging = false;
+
+    function setCounter(){
+      if (!counter) return;
+      counter.textContent = `${index + 1} / ${total}`;
+    }
+
+    function setDots(){
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = "";
+      for (let i = 0; i < total; i++){
+        const b = document.createElement("button");
+        b.className = "dot" + (i === index ? " active" : "");
+        b.type = "button";
+        b.setAttribute("aria-label", `Go to slide ${i + 1}`);
+        b.addEventListener("click", () => goTo(i));
+        dotsWrap.appendChild(b);
+      }
+    }
+
+    function update(){
+      track.style.transform = `translateX(${-index * 100}%)`;
+      setCounter();
+      setDots();
+    }
+
+    function goTo(i){
+      index = (i + total) % total;
+      update();
+    }
+
+    function next(){ goTo(index + 1); }
+    function prev(){ goTo(index - 1); }
+
+    if (nextBtn) nextBtn.addEventListener("click", next);
+    if (prevBtn) prevBtn.addEventListener("click", prev);
+
+    viewport.addEventListener("touchstart", (e) => {
+      if (e.touches.length !== 1) return;
+      dragging = true;
+      startX = e.touches[0].clientX;
+      currentX = startX;
+    }, { passive:true });
+
+    viewport.addEventListener("touchmove", (e) => {
+      if (!dragging || e.touches.length !== 1) return;
+      currentX = e.touches[0].clientX;
+    }, { passive:true });
+
+    viewport.addEventListener("touchend", () => {
+      if (!dragging) return;
+      const dx = currentX - startX;
+      dragging = false;
+      if (Math.abs(dx) > 45){
+        if (dx < 0) next();
+        else prev();
+      }
+    });
+
+    viewport.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    });
+
+    update();
   })();
 </script>
 
