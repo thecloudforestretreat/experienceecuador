@@ -70,11 +70,7 @@
       white-space:nowrap;
     }
 
-    .brand img{
-      width:28px;
-      height:28px;
-      object-fit:contain;
-    }
+    .brand img{ width:28px; height:28px; object-fit:contain; }
 
     /* ===== NAV ===== */
     .nav{
@@ -101,9 +97,7 @@
     }
 
     .nav a:hover,
-    .nav button:hover{
-      background:rgba(3,78,162,0.08);
-    }
+    .nav button:hover{ background:rgba(3,78,162,0.08); }
 
     .nav a.active{
       color:var(--brand-blue);
@@ -166,9 +160,7 @@
       color:#0f2f62;
     }
 
-    .dropdown-menu a:hover{
-      background:rgba(3,78,162,0.08);
-    }
+    .dropdown-menu a:hover{ background:rgba(3,78,162,0.08); }
 
     .dropdown-menu a.active{
       color:var(--brand-blue);
@@ -279,11 +271,7 @@
       pointer-events:none;
     }
 
-    /* ===== FOOTER (FIXED LAYOUT) =====
-       We’ll make the footer a bit taller and use 2 rows:
-       Row 1: left signup + centered tagline + right socials
-       Row 2: copyright centered
-    */
+    /* ===== FOOTER ===== */
     .footer{
       background:var(--brand-blue);
       color:#fff;
@@ -296,18 +284,30 @@
       padding:22px 18px 18px;
     }
 
+    /* Row 1: left signup | centered text | right socials */
     .footer-top{
       display:grid;
       grid-template-columns: 1fr auto 1fr;
       align-items:center;
       gap:18px;
-      min-height:82px; /* gives breathing room so nothing collides */
+      min-height:92px;
     }
 
-    /* ----- Signup (left) ----- */
+    /* LEFT: signup */
     .ee-signup{
       justify-self:start;
       width:min(520px, 100%);
+    }
+
+    .ee-signup-title{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:15.5px;
+      line-height:1.2;
+      opacity:0.98;
+      text-align:left;
     }
 
     .ee-signup-form{
@@ -317,14 +317,21 @@
       align-items:flex-start;
     }
 
-    /* make First/Last smaller, email a bit larger */
-    .ee-fields{
+    /* Order requested:
+       Row A: First + Last
+       Row B: Email + Sign up
+    */
+    .ee-row{
       width:100%;
-      display:grid;
-      grid-template-columns: 150px 150px 220px;
+      display:flex;
       gap:10px;
       align-items:center;
+      justify-content:flex-start;
+      flex-wrap:nowrap;
     }
+
+    .ee-row .w-sm{ width:150px; }
+    .ee-row .w-md{ width:260px; }
 
     .ee-signup-form input{
       border:1px solid rgba(255,255,255,0.38);
@@ -334,7 +341,7 @@
       padding:8px 10px;
       font-size:13.25px;
       outline:none;
-      height:34px; /* slightly smaller */
+      height:34px;
     }
 
     .ee-signup-form input::placeholder{
@@ -363,21 +370,24 @@
 
     .ee-hp{ display:none !important; }
 
-    /* ----- Center tagline (exactly centered) ----- */
-    .footer-tagline{
+    /* CENTER: tagline (centered in footer) */
+    .footer-center{
       justify-self:center;
       text-align:center;
+    }
+
+    .footer-tagline{
+      margin:0;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       letter-spacing:-0.02em;
       font-size:16px;
       opacity:0.98;
-      margin:0;
       line-height:1.25;
       max-width:48ch;
     }
 
-    /* ----- Socials (right, smaller + horizontal) ----- */
+    /* RIGHT: socials (already good) */
     .social{
       justify-self:end;
       display:flex;
@@ -389,8 +399,8 @@
     }
 
     .icon-btn{
-      width:56px;   /* smaller */
-      height:56px;  /* smaller */
+      width:56px;
+      height:56px;
       border-radius:50%;
       background:var(--brand-blue);
       display:flex;
@@ -405,12 +415,9 @@
       box-shadow:0 18px 44px rgba(0,0,0,0.40);
     }
 
-    .icon-btn img{
-      width:30px; /* smaller */
-      height:30px;
-    }
+    .icon-btn img{ width:30px; height:30px; }
 
-    /* ----- Bottom row: copyright centered ----- */
+    /* Row 2: copyright centered in footer */
     .footer-bottom{
       margin-top:10px;
       text-align:center;
@@ -436,7 +443,17 @@
 
       .ee-signup{ width:100%; }
       .ee-signup-form{ align-items:stretch; }
-      .ee-fields{ grid-template-columns:1fr; }
+      .ee-signup-title{ text-align:left; }
+
+      .ee-row{
+        flex-wrap:wrap;
+      }
+
+      .ee-row .w-sm,
+      .ee-row .w-md{
+        width:100%;
+      }
+
       .social{ justify-self:center; flex-wrap:wrap; }
     }
 
@@ -549,6 +566,8 @@
 
         <!-- LEFT: Newsletter -->
         <section class="ee-signup" aria-label="Newsletter signup">
+          <div class="ee-signup-title">Get insider access to Ecuador experiences</div>
+
           <form
             class="ee-signup-form"
             action="YOUR_WEB_APP_URL_HERE"
@@ -556,24 +575,34 @@
             target="ee_signup_iframe"
             autocomplete="on"
           >
-            <div class="ee-fields">
-              <input name="first_name" type="text" placeholder="First name" />
-              <input name="last_name" type="text" placeholder="Last name" />
-              <input name="email" type="email" placeholder="Email address" required />
+            <!-- Row A: First + Last -->
+            <div class="ee-row">
+              <input class="w-sm" name="first_name" type="text" placeholder="First name" />
+              <input class="w-sm" name="last_name" type="text" placeholder="Last name" />
             </div>
 
+            <!-- Row B: Email + Sign up -->
+            <div class="ee-row">
+              <input class="w-md" name="email" type="email" placeholder="Email address" required />
+              <button type="submit">Sign up</button>
+            </div>
+
+            <!-- Honeypot field -->
             <input class="ee-hp" name="company" type="text" tabindex="-1" autocomplete="off" />
+
+            <!-- Source page -->
             <input name="source_page" type="hidden" id="ee_source_page" value="" />
 
-            <button type="submit">Sign up</button>
             <div class="ee-signup-status" id="ee_signup_status" role="status" aria-live="polite"></div>
           </form>
 
           <iframe name="ee_signup_iframe" style="display:none;"></iframe>
         </section>
 
-        <!-- CENTER: Tagline -->
-        <p class="footer-tagline">Curated travel experiences across Ecuador</p>
+        <!-- CENTER: Tagline (centered in footer) -->
+        <div class="footer-center">
+          <p class="footer-tagline">Curated travel experiences across Ecuador</p>
+        </div>
 
         <!-- RIGHT: Socials -->
         <div class="social" aria-label="Social links">
