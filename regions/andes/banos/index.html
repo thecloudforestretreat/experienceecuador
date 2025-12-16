@@ -1276,145 +1276,150 @@
       startAutoplay();
     })();
 
-    /* ===== WEATHER: Baños (current + 7-day) =====
-       Uses Open-Meteo (no API key): https://open-meteo.com/
-       Baños, Tungurahua (approx): lat -1.396, lon -78.424
-    */
-    (function(){
-      const dateEl = document.getElementById("banosWxDate");
-      const linesEl = document.getElementById("banosWxLines");
-      const gridEl = document.getElementById("banosWx7");
-      if(!dateEl || !linesEl || !gridEl) return;
+/* ===== WEATHER: Baños (current + 7-day) =====
+   Uses Open-Meteo (no API key): https://open-meteo.com/
+   Baños, Tungurahua (approx): lat -1.396, lon -78.424
+*/
+(function(){
+  const dateEl = document.getElementById("banosWxDate");
+  const linesEl = document.getElementById("banosWxLines");
+  const gridEl = document.getElementById("banosWx7");
+  if(!dateEl || !linesEl || !gridEl) return;
 
-      const LAT = -1.396;
-      const LON = -78.424;
+  const LAT = -1.396;
+  const LON = -78.424;
 
-      const codeText = (code) => {
-        const map = {
-          0:"Clear", 1:"Mostly clear", 2:"Partly cloudy", 3:"Overcast",
-          45:"Fog", 48:"Rime fog",
-          51:"Light drizzle", 53:"Drizzle", 55:"Heavy drizzle",
-          56:"Freezing drizzle", 57:"Freezing drizzle",
-          61:"Light rain", 63:"Rain", 65:"Heavy rain",
-          66:"Freezing rain", 67:"Freezing rain",
-          71:"Light snow", 73:"Snow", 75:"Heavy snow", 77:"Snow grains",
-          80:"Rain showers", 81:"Rain showers", 82:"Violent showers",
-          85:"Snow showers", 86:"Snow showers",
-          95:"Thunderstorm", 96:"Thunderstorm", 99:"Thunderstorm"
-        };
-        return map[code] || "Weather";
-      };
+  const cToF = (c) => Math.round((c * 9/5) + 32);
 
-      const mmdd = (iso) => {
-        // iso: YYYY-MM-DD
-        const parts = iso.split("-");
-        if(parts.length !== 3) return iso;
-        return `${parts[1]}/${parts[2]}`;
-      };
+  const codeText = (code) => {
+    const map = {
+      0:"Clear", 1:"Mostly clear", 2:"Partly cloudy", 3:"Overcast",
+      45:"Fog", 48:"Rime fog",
+      51:"Light drizzle", 53:"Drizzle", 55:"Heavy drizzle",
+      56:"Freezing drizzle", 57:"Freezing drizzle",
+      61:"Light rain", 63:"Rain", 65:"Heavy rain",
+      66:"Freezing rain", 67:"Freezing rain",
+      71:"Light snow", 73:"Snow", 75:"Heavy snow", 77:"Snow grains",
+      80:"Rain showers", 81:"Rain showers", 82:"Violent showers",
+      85:"Snow showers", 86:"Snow showers",
+      95:"Thunderstorm", 96:"Thunderstorm", 99:"Thunderstorm"
+    };
+    return map[code] || "Weather";
+  };
 
-      const dow = (iso) => {
-        const d = new Date(iso + "T00:00:00");
-        return d.toLocaleDateString("en-US", { weekday:"short" });
-      };
+  const mmdd = (iso) => {
+    const parts = iso.split("-");
+    if(parts.length !== 3) return iso;
+    return `${parts[1]}/${parts[2]}`;
+  };
 
-      function setFallback(){
-        const now = new Date();
-        dateEl.textContent = now.toLocaleDateString("en-US");
-        linesEl.textContent = "Weather unavailable right now.";
-        gridEl.innerHTML = "";
+  const dow = (iso) => {
+    const d = new Date(iso + "T00:00:00");
+    return d.toLocaleDateString("en-US", { weekday:"short" });
+  };
+
+  function setFallback(){
+    const now = new Date();
+    dateEl.textContent = now.toLocaleDateString("en-US");
+    linesEl.textContent = "Weather unavailable right now.";
+    gridEl.innerHTML = "";
+  }
+
+  async function load(){
+    try{
+      const url =
+        "https://api.open-meteo.com/v1/forecast" +
+        `?latitude=${encodeURIComponent(LAT)}` +
+        `&longitude=${encodeURIComponent(LON)}` +
+        "&current=temperature_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m" +
+        "&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max" +
+        "&timezone=auto";
+
+      const res = await fetch(url, { cache: "no-store" });
+      if(!res.ok) throw new Error("Weather fetch failed");
+      const data = await res.json();
+
+      // Current
+      const nowDate = new Date();
+      dateEl.textContent = nowDate.toLocaleDateString("en-US");
+
+      const c = data.current || {};
+      const tempC = (typeof c.temperature_2m === "number") ? Math.round(c.temperature_2m) : null;
+      const feelsC = (typeof c.apparent_temperature === "number") ? Math.round(c.apparent_temperature) : null;
+      const wind = (typeof c.wind_speed_10m === "number") ? Math.round(c.wind_speed_10m) : null;
+      const wtxt = codeText(c.weather_code);
+
+      const parts = [];
+      if(tempC !== null) parts.push(`${tempC}°C / ${cToF(tempC)}°F`);
+      if(feelsC !== null) parts.push(`Feels ${feelsC}°C / ${cToF(feelsC)}°F`);
+      parts.push(wtxt);
+      if(wind !== null) parts.push(`Wind ${wind} km/h`);
+
+      linesEl.textContent = parts.join(" · ");
+
+      // 7-day
+      const daily = data.daily || {};
+      const times = daily.time || [];
+      const hiC = daily.temperature_2m_max || [];
+      const loC = daily.temperature_2m_min || [];
+      const pop = daily.precipitation_probability_max || [];
+
+      const n = Math.min(7, times.length);
+      gridEl.innerHTML = "";
+
+      for(let i=0;i<n;i++){
+        const t = times[i];
+        const hiCv = (typeof hiC[i] === "number") ? Math.round(hiC[i]) : null;
+        const loCv = (typeof loC[i] === "number") ? Math.round(loC[i]) : null;
+        const popV = (typeof pop[i] === "number") ? Math.round(pop[i]) : null;
+
+        const card = document.createElement("div");
+        card.className = "wx-day";
+
+        const top = document.createElement("div");
+        top.className = "wx-top";
+
+        const dowEl = document.createElement("div");
+        dowEl.className = "wx-dow";
+        dowEl.textContent = dow(t);
+
+        const mmddEl = document.createElement("div");
+        mmddEl.className = "wx-mmdd";
+        mmddEl.textContent = mmdd(t);
+
+        top.appendChild(dowEl);
+        top.appendChild(mmddEl);
+
+        const hiEl = document.createElement("div");
+        hiEl.className = "wx-hi";
+        hiEl.textContent = (hiCv !== null)
+          ? `High ${hiCv}°C / ${cToF(hiCv)}°F`
+          : "High --";
+
+        const loEl = document.createElement("div");
+        loEl.className = "wx-lo";
+        loEl.textContent = (loCv !== null)
+          ? `Low ${loCv}°C / ${cToF(loCv)}°F`
+          : "Low --";
+
+        const rainEl = document.createElement("div");
+        rainEl.className = "wx-rain";
+        rainEl.textContent = (popV !== null) ? `Rain ${popV}%` : "Rain --";
+
+        card.appendChild(top);
+        card.appendChild(hiEl);
+        card.appendChild(loEl);
+        card.appendChild(rainEl);
+
+        gridEl.appendChild(card);
       }
+    }catch(err){
+      setFallback();
+    }
+  }
 
-      async function load(){
-        try{
-          const url =
-            "https://api.open-meteo.com/v1/forecast" +
-            `?latitude=${encodeURIComponent(LAT)}` +
-            `&longitude=${encodeURIComponent(LON)}` +
-            "&current=temperature_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m" +
-            "&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max" +
-            "&timezone=auto";
-
-          const res = await fetch(url, { cache: "no-store" });
-          if(!res.ok) throw new Error("Weather fetch failed");
-          const data = await res.json();
-
-          // Current
-          const nowDate = new Date();
-          dateEl.textContent = nowDate.toLocaleDateString("en-US");
-
-          const c = data.current || {};
-          const temp = (typeof c.temperature_2m === "number") ? Math.round(c.temperature_2m) : null;
-          const feels = (typeof c.apparent_temperature === "number") ? Math.round(c.apparent_temperature) : null;
-          const wind = (typeof c.wind_speed_10m === "number") ? Math.round(c.wind_speed_10m) : null;
-          const wtxt = codeText(c.weather_code);
-
-          const parts = [];
-          if(temp !== null) parts.push(`${temp}°C`);
-          if(feels !== null) parts.push(`Feels ${feels}°C`);
-          parts.push(wtxt);
-          if(wind !== null) parts.push(`Wind ${wind} km/h`);
-
-          linesEl.textContent = parts.join(" · ");
-
-          // 7-day
-          const daily = data.daily || {};
-          const times = daily.time || [];
-          const hi = daily.temperature_2m_max || [];
-          const lo = daily.temperature_2m_min || [];
-          const pop = daily.precipitation_probability_max || [];
-
-          const n = Math.min(7, times.length);
-          gridEl.innerHTML = "";
-
-          for(let i=0;i<n;i++){
-            const t = times[i];
-            const hiV = (typeof hi[i] === "number") ? Math.round(hi[i]) : null;
-            const loV = (typeof lo[i] === "number") ? Math.round(lo[i]) : null;
-            const popV = (typeof pop[i] === "number") ? Math.round(pop[i]) : null;
-
-            const card = document.createElement("div");
-            card.className = "wx-day";
-
-            const top = document.createElement("div");
-            top.className = "wx-top";
-
-            const dowEl = document.createElement("div");
-            dowEl.className = "wx-dow";
-            dowEl.textContent = dow(t);
-
-            const mmddEl = document.createElement("div");
-            mmddEl.className = "wx-mmdd";
-            mmddEl.textContent = mmdd(t);
-
-            top.appendChild(dowEl);
-            top.appendChild(mmddEl);
-
-            const hiEl = document.createElement("div");
-            hiEl.className = "wx-hi";
-            hiEl.textContent = (hiV !== null) ? `High ${hiV}°C` : "High --";
-
-            const loEl = document.createElement("div");
-            loEl.className = "wx-lo";
-            loEl.textContent = (loV !== null) ? `Low ${loV}°C` : "Low --";
-
-            const rainEl = document.createElement("div");
-            rainEl.className = "wx-rain";
-            rainEl.textContent = (popV !== null) ? `Rain ${popV}%` : "Rain --";
-
-            card.appendChild(top);
-            card.appendChild(hiEl);
-            card.appendChild(loEl);
-            card.appendChild(rainEl);
-
-            gridEl.appendChild(card);
-          }
-        }catch(err){
-          setFallback();
-        }
-      }
-
-      load();
-    })();
+  load();
+})();
 
     // Light deterrent: disable right-click on images only
     document.addEventListener('contextmenu', (e) => {
