@@ -289,12 +289,15 @@
     .footer-inner{
       max-width:1100px;
       margin:0 auto;
-      padding:28px 18px;
-      display:flex;
-      flex-direction:column;
+      padding:26px 18px;
+    }
+
+    /* 3-column footer: left / center / right */
+    .footer-row{
+      display:grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items:center;
-      gap:14px;
-      text-align:center;
+      gap:16px;
     }
 
     .footer-tagline{
@@ -303,7 +306,9 @@
       letter-spacing:-0.02em;
       font-size:16px;
       opacity:.98;
-      margin-top:2px;
+      margin:0;
+      justify-self:start;
+      white-space:nowrap;
     }
 
     .social{
@@ -311,6 +316,7 @@
       gap:18px;
       flex-wrap:wrap;
       justify-content:center;
+      justify-self:center;
     }
 
     .icon-btn{
@@ -326,18 +332,107 @@
 
     .icon-btn img{width:34px;height:34px}
 
+    /* Newsletter (right aligned) */
+    .ee-signup{
+      justify-self:end;
+      width:min(460px, 100%);
+    }
+
+    .ee-signup-copy{
+      display:none; /* keep footer clean */
+    }
+
+    .ee-signup-form{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:flex-end;
+    }
+
+    .ee-fields{
+      width:100%;
+      display:grid;
+      grid-template-columns: 1fr 1fr 1.4fr;
+      gap:10px;
+    }
+
+    .ee-signup-form input{
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.14);
+      color:#fff;
+      border-radius:14px;
+      padding:12px 12px;
+      font-size:14.5px;
+      outline:none;
+    }
+
+    .ee-signup-form input::placeholder{ color: rgba(255,255,255,0.85); }
+
+    .ee-signup-form button{
+      border:0;
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:800;
+      cursor:pointer;
+      color:#0f2f62;
+      background:#fff;
+      font-size:14.5px;
+      align-self:flex-end;
+      white-space:nowrap;
+    }
+
+    .ee-signup-status{
+      font-size:13.5px;
+      opacity:0.95;
+      min-height:18px;
+      text-align:right;
+      width:100%;
+    }
+
+    .ee-hp{ display:none !important; }
+
+    .footer-bottom{
+      margin-top:14px;
+      text-align:center;
+    }
+
     footer small{font-size:13px;opacity:.9}
 
     /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
       .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+
+      .footer-row{
+        grid-template-columns:1fr;
+        justify-items:center;
+        text-align:center;
+      }
+      .footer-tagline{
+        justify-self:center;
+        white-space:normal;
+      }
+      .ee-signup{
+        justify-self:center;
+        width:min(560px, 100%);
+      }
+      .ee-signup-form{
+        align-items:stretch;
+      }
+      .ee-signup-form button{
+        align-self:stretch;
+      }
+      .ee-signup-status{
+        text-align:center;
+      }
     }
 
     @media(max-width:620px){
       .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
       .nav{ justify-content:center; }
       .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
+
+      .ee-fields{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -438,24 +533,57 @@
 
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
 
-      <div class="social">
-        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
-        </a>
-        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
-        </a>
-        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
-        </a>
-        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
-        </a>
+      <div class="footer-row">
+        <!-- Left -->
+        <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
+        <!-- Middle -->
+        <div class="social" aria-label="Social links">
+          <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+            <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+          </a>
+          <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+            <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+          </a>
+          <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+            <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+          </a>
+          <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+            <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+          </a>
+        </div>
+
+        <!-- Right: Newsletter -->
+        <section class="ee-signup" aria-label="Newsletter signup">
+          <form
+            class="ee-signup-form"
+            action="https://script.google.com/macros/s/AKfycbw-BhL_3ImqpIwX4DuXVoQCDKKkiQ_CcOipP0wyCUdljAX0F9YkmfToCb6YbHGW0SQoxA/exec"
+            method="post"
+            target="ee_signup_iframe"
+            autocomplete="on"
+          >
+            <div class="ee-fields">
+              <input name="first_name" type="text" placeholder="First name" />
+              <input name="last_name" type="text" placeholder="Last name" />
+              <input name="email" type="email" placeholder="Email address" required />
+            </div>
+
+            <input class="ee-hp" name="company" type="text" tabindex="-1" autocomplete="off" />
+            <input name="source_page" type="hidden" id="ee_source_page" value="" />
+
+            <button type="submit">Sign up</button>
+            <div class="ee-signup-status" id="ee_signup_status" role="status" aria-live="polite"></div>
+          </form>
+
+          <iframe name="ee_signup_iframe" style="display:none;"></iframe>
+        </section>
       </div>
 
-      <small>© 2025 Experience Ecuador. All rights reserved.</small>
+      <div class="footer-bottom">
+        <small>© 2025 Experience Ecuador. All rights reserved.</small>
+      </div>
+
     </div>
   </footer>
 
@@ -498,6 +626,25 @@
         if (e.key === 'Escape') closeAll();
       });
     })();
+
+    // Fill source_page automatically
+    (function(){
+      var src = window.location.pathname || "/";
+      var el = document.getElementById("ee_source_page");
+      if (el) el.value = src;
+    })();
+
+    // Listen for Apps Script response (postMessage)
+    window.addEventListener("message", function(e){
+      if (!e || !e.data || e.data.type !== "EE_SIGNUP") return;
+
+      var box = document.getElementById("ee_signup_status");
+      if (!box) return;
+
+      if (e.data.status === "success") box.textContent = e.data.message || "Thanks. You are subscribed.";
+      else if (e.data.status === "already") box.textContent = e.data.message || "You are already subscribed.";
+      else box.textContent = e.data.message || "Something went wrong. Please try again.";
+    });
   </script>
 
 </body>
