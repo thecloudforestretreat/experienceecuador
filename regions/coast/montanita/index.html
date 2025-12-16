@@ -560,7 +560,7 @@
       opacity:.85;
     }
 
-    /* ===== MORE ANDES DESTINATIONS ===== */
+    /* ===== MORE ANDES DESTINATIONS (structure/classes locked for tiles) ===== */
     .andes-grid{
       display:grid;
       grid-template-columns:1fr;
@@ -839,7 +839,7 @@
             <a href="/regions/" role="menuitem">All Regions</a>
             <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
             <a href="/regions/coast/" role="menuitem">Coast</a>
-            <a class="active" href="/regions/andes/" role="menuitem">Andes</a>
+            <a href="/regions/andes/" role="menuitem">Andes</a>
             <a href="/regions/amazon/" role="menuitem">Amazon</a>
           </div>
         </div>
@@ -981,8 +981,8 @@
           </p>
 
           <div class="link-list" aria-label="Quick links">
-            <a class="pill-link" href="/regions/andes/">
-              Back to Andes <span>Region page</span>
+            <a class="pill-link" href="/regions/coast/">
+              Back to Coast <span>Region page</span>
             </a>
             <a class="pill-link" href="/regions/andes/quito/">
               Quito <span>Main hub</span>
@@ -1036,64 +1036,17 @@
         </div>
 
         <div class="mini">
-          <h3>More Andes destinations</h3>
+          <h3>More Coast destinations</h3>
           <p>
-            Build an Ecuador route with city time, cloud forest nature, and volcano landscapes.
+            Build a Coast route with beach towns, warm sunsets, and easy day trips along the Pacific.
           </p>
 
-          <div class="andes-grid" aria-label="Andes destination links">
-            <a class="andes-tile" href="/regions/andes/quito/" aria-label="Open Quito page">
+          <!-- Keep the same tile markup/classes; replace links as you add coast locations -->
+          <div class="andes-grid" aria-label="Coast destination links">
+            <a class="andes-tile" href="/regions/coast/" aria-label="Open Coast region page">
               <div class="andes-left">
-                <div class="andes-title">Quito</div>
-                <div class="andes-sub">Historic center, viewpoints, and easy day trips.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/andes/mindo/" aria-label="Open Mindo page">
-              <div class="andes-left">
-                <div class="andes-title">Mindo</div>
-                <div class="andes-sub">Cloud forest, birding, waterfalls, and relaxed nature days.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/andes/cuenca/" aria-label="Open Cuenca page">
-              <div class="andes-left">
-                <div class="andes-title">Cuenca</div>
-                <div class="andes-sub">Architecture, riverside walks, and relaxed city rhythm.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/andes/otavalo/" aria-label="Open Otavalo page">
-              <div class="andes-left">
-                <div class="andes-title">Otavalo</div>
-                <div class="andes-sub">Indigenous markets, textiles, crafts, and lake country.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/andes/cotopaxi/" aria-label="Open Cotopaxi page">
-              <div class="andes-left">
-                <div class="andes-title">Cotopaxi</div>
-                <div class="andes-sub">Volcano scenery, hikes, and páramo landscapes.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/andes/banos/" aria-label="Open Baños page">
-              <div class="andes-left">
-                <div class="andes-title">Baños</div>
-                <div class="andes-sub">Waterfalls, viewpoints, and soft adventure energy.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/andes/choco-andino/" aria-label="Open Chocó Andino page">
-              <div class="andes-left">
-                <div class="andes-title">Chocó Andino</div>
-                <div class="andes-sub">Cloud forest edges, nature routes, and local communities.</div>
+                <div class="andes-title">Coast</div>
+                <div class="andes-sub">Explore all Coast destinations and trip ideas.</div>
               </div>
               <div class="andes-arrow" aria-hidden="true"><span></span></div>
             </a>
@@ -1345,11 +1298,6 @@
         }catch(e){}
       }
 
-      // Expected API response (robust handling):
-      // - Either:
-      //   A) { current:{ tmax, tmin, rain }, daily:[{ date, tmax, tmin, rain }] , units:{ temp:"C"|"F" } }
-      // - Or:
-      //   B) Open-Meteo-like: { daily:{ time:[], temperature_2m_max:[], temperature_2m_min:[], precipitation_probability_max:[] }, units:{ temperature:"C"|"F" } }
       function normalize(api){
         const unitsTemp =
           (api && api.units && (api.units.temp || api.units.temperature)) ||
@@ -1359,9 +1307,8 @@
         const isC =
           (typeof unitsTemp === "string" && unitsTemp.toUpperCase().includes("C")) ? true :
           (typeof unitsTemp === "string" && unitsTemp.toUpperCase().includes("F")) ? false :
-          true; // default to C if unknown
+          true;
 
-        // Format A
         if(api && api.current && Array.isArray(api.daily)){
           const current = api.current || {};
           const dailyArr = api.daily || [];
@@ -1381,7 +1328,6 @@
           };
         }
 
-        // Format B (Open-Meteo-like daily)
         const daily = (api && api.daily) ? api.daily : {};
         const days = daily.time || [];
         const tmax = daily.temperature_2m_max || [];
@@ -1391,7 +1337,6 @@
         return {
           isC,
           current: {
-            // If API doesn't provide current max/min, fall back to today's daily max/min
             tmax: (typeof tmax[0] === "number" ? tmax[0] : null),
             tmin: (typeof tmin[0] === "number" ? tmin[0] : null),
             rain: (typeof rain[0] === "number" ? rain[0] : null)
@@ -1512,4 +1457,4 @@
     });
   </script>
 </body>
-            </html>
+</html>
