@@ -538,6 +538,43 @@
       white-space:nowrap;
     }
 
+    /* ===== YOUTUBE EMBEDS (NEW) ===== */
+    .yt-embed{
+      position:relative;
+      width:100%;
+      aspect-ratio:16/9;
+      border-radius:18px;
+      overflow:hidden;
+      background:#eef2f7;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 14px 42px rgba(3,78,162,0.10);
+    }
+
+    .yt-embed iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    .featured-split{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+
+    .featured-split .places-grid{ margin-top:0; }
+
+    .expect-head{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+      align-items:start;
+      margin-bottom:18px;
+    }
+
     /* ===== CTA ===== */
     .cta{
       margin:28px 0 56px;
@@ -622,6 +659,19 @@
       .hero p{ margin:0 auto; }
       .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
       .dropdown-menu{ right:0; left:auto; transform:none; }
+      .expect-head{ margin-bottom:14px; }
+    }
+
+    @media(min-width:900px){
+      .featured-split{
+        grid-template-columns:1fr 0.92fr;
+        align-items:start;
+      }
+      .expect-head{
+        grid-template-columns:1.15fr 0.85fr;
+        gap:22px;
+        align-items:start;
+      }
     }
 
     @media(max-width:620px){
@@ -751,7 +801,7 @@
       </div>
     </section>
 
-    <!-- NEW: GALAPAGOS DESTINATIONS (TILES) -->
+    <!-- GALAPAGOS DESTINATIONS (TILES) -->
     <section class="section">
       <h2>Galapagos destinations</h2>
       <p>
@@ -763,65 +813,80 @@
         <div class="card">
           <h3>Featured islands</h3>
 
-          <div class="places-grid" aria-label="Galapagos destination tiles">
-            <a class="place-tile" href="/regions/galapagos/santa-cruz-island/" aria-label="Open Santa Cruz page">
-              <div class="place-img">
-                <img src="/assets/images/EE-Assets-SantaCruzIsland.jpg" alt="Santa Cruz Island">
-              </div>
-              <div class="place-body">
-                <div>
-                  <div class="place-title">Santa Cruz</div>
-                  <div class="place-meta">Main hub for arrivals, day tours, tortoises, and easy planning.</div>
-                </div>
-                <div class="place-arrow" aria-hidden="true"><span></span></div>
-              </div>
-            </a>
+          <div class="featured-split" aria-label="Featured islands and video">
+            <div>
+              <div class="places-grid" aria-label="Galapagos destination tiles">
+                <a class="place-tile" href="/regions/galapagos/santa-cruz-island/" aria-label="Open Santa Cruz page">
+                  <div class="place-img">
+                    <img src="/assets/images/EE-Assets-SantaCruzIsland.jpg" alt="Santa Cruz Island">
+                  </div>
+                  <div class="place-body">
+                    <div>
+                      <div class="place-title">Santa Cruz</div>
+                      <div class="place-meta">Main hub for arrivals, day tours, tortoises, and easy planning.</div>
+                    </div>
+                    <div class="place-arrow" aria-hidden="true"><span></span></div>
+                  </div>
+                </a>
 
-            <a class="place-tile" href="/regions/galapagos/san-cristobal-island/" aria-label="Open San Cristóbal page">
-              <div class="place-img">
-                <img src="/assets/images/EE-Assets-43-SanCristobalIsland.jpg" alt="San Cristóbal Island">
-              </div>
-              <div class="place-body">
-                <div>
-                  <div class="place-title">San Cristóbal</div>
-                  <div class="place-meta">Sea lions, iconic snorkel sites, and a calmer island rhythm.</div>
-                </div>
-                <div class="place-arrow" aria-hidden="true"><span></span></div>
-              </div>
-            </a>
+                <a class="place-tile" href="/regions/galapagos/san-cristobal-island/" aria-label="Open San Cristóbal page">
+                  <div class="place-img">
+                    <img src="/assets/images/EE-Assets-43-SanCristobalIsland.jpg" alt="San Cristóbal Island">
+                  </div>
+                  <div class="place-body">
+                    <div>
+                      <div class="place-title">San Cristóbal</div>
+                      <div class="place-meta">Sea lions, iconic snorkel sites, and a calmer island rhythm.</div>
+                    </div>
+                    <div class="place-arrow" aria-hidden="true"><span></span></div>
+                  </div>
+                </a>
 
-            <a class="place-tile" href="/regions/galapagos/isabela-island/" aria-label="Open Isabela page">
-              <div class="place-img">
-                <img src="/assets/images/EE-Assets-44-IsabelaIsland.jpg" alt="Isabela Island">
-              </div>
-              <div class="place-body">
-                <div>
-                  <div class="place-title">Isabela</div>
-                  <div class="place-meta">Volcano landscapes, wildlife variety, and a more remote feel.</div>
-                </div>
-                <div class="place-arrow" aria-hidden="true"><span></span></div>
-              </div>
-            </a>
+                <a class="place-tile" href="/regions/galapagos/isabela-island/" aria-label="Open Isabela page">
+                  <div class="place-img">
+                    <img src="/assets/images/EE-Assets-44-IsabelaIsland.jpg" alt="Isabela Island">
+                  </div>
+                  <div class="place-body">
+                    <div>
+                      <div class="place-title">Isabela</div>
+                      <div class="place-meta">Volcano landscapes, wildlife variety, and a more remote feel.</div>
+                    </div>
+                    <div class="place-arrow" aria-hidden="true"><span></span></div>
+                  </div>
+                </a>
 
-            <a class="place-tile" href="/regions/galapagos/floreana-island/" aria-label="Open Floreana page">
-              <div class="place-img">
-                <img src="/assets/images/EE-Assets-45-FloreanaIsland.jpg" alt="Floreana Island">
+                <a class="place-tile" href="/regions/galapagos/floreana-island/" aria-label="Open Floreana page">
+                  <div class="place-img">
+                    <img src="/assets/images/EE-Assets-45-FloreanaIsland.jpg" alt="Floreana Island">
+                  </div>
+                  <div class="place-body">
+                    <div>
+                      <div class="place-title">Floreana</div>
+                      <div class="place-meta">Historic stories and classic day-trip stops for depth and variety.</div>
+                    </div>
+                    <div class="place-arrow" aria-hidden="true"><span></span></div>
+                  </div>
+                </a>
               </div>
-              <div class="place-body">
-                <div>
-                  <div class="place-title">Floreana</div>
-                  <div class="place-meta">Historic stories and classic day-trip stops for depth and variety.</div>
-                </div>
-                <div class="place-arrow" aria-hidden="true"><span></span></div>
-              </div>
-            </a>
-          </div>
 
-          <div class="pill-row" aria-label="Galapagos destination tags">
-            <span class="tag">Island hubs</span>
-            <span class="tag">Wildlife</span>
-            <span class="tag">Snorkeling</span>
-            <span class="tag">Day tours</span>
+              <div class="pill-row" aria-label="Galapagos destination tags">
+                <span class="tag">Island hubs</span>
+                <span class="tag">Wildlife</span>
+                <span class="tag">Snorkeling</span>
+                <span class="tag">Day tours</span>
+              </div>
+            </div>
+
+            <!-- NEW: video to the right of the last two tiles (desktop), and to the right column in this featured split -->
+            <div class="yt-embed" aria-label="National Geographic Galapagos video">
+              <iframe
+                src="https://www.youtube.com/embed/6UqiDs-_1A8"
+                title="The Galapagos Islands Are a Pristine Paradise | National Geographic"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+            </div>
           </div>
         </div>
 
@@ -833,16 +898,42 @@
             <li>Mix guided day tours with downtime so the trip stays relaxed</li>
             <li>Keep logistics simple: fewer island moves, better experience</li>
           </ul>
+
+          <!-- NEW: embed video under "How to use this hub" -->
+          <div class="yt-embed" style="margin-top:12px;" aria-label="Galapagos video under How to use this hub">
+            <iframe
+              src="https://www.youtube.com/embed/6UqiDs-_1A8"
+              title="The Galapagos Islands Are a Pristine Paradise | National Geographic"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <h2>What to expect on this page next</h2>
-      <p>
-        We are building this region hub into a complete guide that includes practical planning, curated experiences,
-        trusted stays, and a gallery of highlights.
-      </p>
+      <!-- NEW: video above/right of this section header -->
+      <div class="expect-head" aria-label="What to expect header and video">
+        <div>
+          <h2>What to expect on this page next</h2>
+          <p>
+            We are building this region hub into a complete guide that includes practical planning, curated experiences,
+            trusted stays, and a gallery of highlights.
+          </p>
+        </div>
+
+        <div class="yt-embed" aria-label="Galapagos video next to What to expect section">
+          <iframe
+            src="https://www.youtube.com/embed/6UqiDs-_1A8"
+            title="The Galapagos Islands Are a Pristine Paradise | National Geographic"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
 
       <div class="grid">
         <div class="card">
