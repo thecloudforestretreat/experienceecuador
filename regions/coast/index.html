@@ -339,6 +339,23 @@
       font-size:13px;
     }
 
+    /* ✅ VIDEO EMBED (matches Andes pattern) */
+    .video-embed{
+      margin-top:16px;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 14px 42px rgba(3,78,162,0.10);
+      background:#000;
+    }
+    .video-embed iframe{
+      width:100%;
+      aspect-ratio:16/9;
+      height:auto;
+      display:block;
+      border:0;
+    }
+
     /* ===== PLACES GRID (IMAGE HEADER TILES) ===== */
     .places-grid{
       display:grid;
@@ -853,9 +870,15 @@
             <li>Keep transfers realistic, the Coast rewards slow travel</li>
           </ul>
 
-          <!-- ADDED: YouTube embed section under "How to use this hub" on the right side -->
-          <div style="margin-top:16px;">
-            <iframe width="1181" height="664" src="https://www.youtube.com/embed/v7Mp2QC_AsQ" title="Ecuador: Ruta del Sol (varias playas)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <!-- ✅ Added: YouTube embed section under "How to use this hub" -->
+          <div class="video-embed" aria-label="Coast video">
+            <iframe
+              src="https://www.youtube.com/embed/v7Mp2QC_AsQ"
+              title="Ecuador: Ruta del Sol (varias playas)"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
           </div>
         </div>
       </div>
