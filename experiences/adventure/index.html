@@ -22,6 +22,14 @@
       --brand-blue:#034EA2;
       --charcoal:#1F1F1F;
       --slate:#6E7B8B;
+
+      --card:#ffffff;
+      --border:rgba(0,0,0,0.06);
+      --shadow:0 18px 55px rgba(3,78,162,0.12);
+      --shadowHover:0 28px 70px rgba(3,78,162,0.18);
+
+      --chipBg: rgba(3,78,162,0.10);
+      --chipText:#0f2f62;
     }
 
     *{box-sizing:border-box}
@@ -241,11 +249,11 @@
     }
 
     .card{
-      background:#fff;
+      background:var(--card);
       border-radius:22px;
       padding:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
     }
 
     .card ul{
@@ -267,150 +275,209 @@
 
     /* ===== ADVENTURE LEVEL SELECTOR ===== */
     .selector{
-      margin-top:18px;
       background:#fff;
-      border-radius:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.10);
-      padding:18px;
-    }
-
-    .selector-inner{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:14px;
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
 
     .selector-top{
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
+      gap:16px;
+      padding:22px;
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
     }
 
-    .selector-copy h2{
+    .selector-copy h3{
+      margin:0 0 6px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      font-size:22px;
-      margin:0 0 6px;
-      color:#0f2f62;
       letter-spacing:-0.02em;
+      font-size:20px;
+      color:#0f2f62;
     }
 
     .selector-copy p{
       margin:0;
-      color:var(--slate);
-      font-size:15.5px;
-      line-height:1.7;
-      max-width:75ch;
+      color:#24324a;
+      opacity:0.92;
+      line-height:1.65;
+      font-size:14.8px;
+      max-width:70ch;
     }
 
     .selector-controls{
       display:flex;
-      gap:10px;
       align-items:center;
+      gap:10px;
       flex-wrap:wrap;
+      justify-content:flex-end;
     }
 
-    .selector-label{
+    .selector-controls label{
       font-weight:800;
       color:#0f2f62;
-      font-size:13.5px;
-      opacity:.95;
+      font-size:13px;
+      letter-spacing:0.02em;
     }
 
-    .selector select{
+    .selector-controls select{
       appearance:none;
       -webkit-appearance:none;
       -moz-appearance:none;
-      border:1px solid rgba(3,78,162,0.18);
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
       color:#0f2f62;
-      font-weight:800;
+      font-weight:700;
+      padding:11px 42px 11px 12px;
       border-radius:14px;
-      padding:12px 42px 12px 14px;
-      font-size:14.5px;
+      font-size:14px;
       cursor:pointer;
       outline:none;
-      position:relative;
+      min-width:260px;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      background-image:
+        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
+        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%,
+        0 0;
+      background-size:6px 6px, 6px 6px, 100% 100%;
+      background-repeat:no-repeat;
     }
 
-    .selector .select-wrap{
-      position:relative;
-      display:inline-flex;
-      align-items:center;
+    .selector-controls select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
     }
 
-    .selector .select-wrap:after{
-      content:"";
-      position:absolute;
-      right:16px;
-      width:10px;
-      height:10px;
-      border-right:2px solid #0f2f62;
-      border-bottom:2px solid #0f2f62;
-      transform:rotate(45deg);
-      opacity:.7;
-      pointer-events:none;
+    .selector-body{
+      padding:22px;
     }
 
-    .choices{
+    .recs-grid{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
-      gap:14px;
+      gap:16px;
     }
 
-    .choice{
-      border-radius:18px;
+    .rec{
+      background:#fff;
       border:1px solid rgba(0,0,0,0.06);
-      background:linear-gradient(180deg, rgba(3,78,162,0.05), rgba(255,255,255,0.0));
+      border-radius:18px;
       padding:16px;
+      box-shadow:0 16px 45px rgba(0,0,0,0.08);
+      transition:transform .2s ease, box-shadow .2s ease;
+      min-height:178px;
       display:flex;
       flex-direction:column;
       gap:10px;
-      min-height:142px;
     }
 
-    .choice h3{
+    .rec:hover{
+      transform:translateY(-5px);
+      box-shadow:0 24px 60px rgba(0,0,0,0.12);
+    }
+
+    .rec h4{
       margin:0;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
+      letter-spacing:-0.02em;
       font-size:16px;
-      letter-spacing:-0.01em;
       color:#0f2f62;
     }
 
-    .choice p{
+    .rec p{
       margin:0;
       color:#2a2f36;
-      font-size:14.6px;
-      line-height:1.65;
-      opacity:.95;
+      line-height:1.6;
+      font-size:14px;
+      opacity:0.95;
+      flex:1;
     }
 
-    .choice a{
+    .chips{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      background:var(--chipBg);
+      color:var(--chipText);
+      font-weight:800;
+      font-size:12.5px;
+      letter-spacing:0.01em;
+      border:1px solid rgba(3,78,162,0.16);
+      transition:transform .15s ease, background .15s ease;
+    }
+
+    .chip:hover{
+      transform:translateY(-1px);
+      background:rgba(3,78,162,0.14);
+    }
+
+    .meta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:-2px;
+    }
+
+    .badge{
+      font-size:12px;
+      font-weight:800;
+      color:#0f2f62;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.14);
+      padding:6px 8px;
+      border-radius:999px;
+      line-height:1;
+    }
+
+    .rec-actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:4px;
+    }
+
+    .cta{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      align-self:flex-start;
-      margin-top:auto;
-      padding:10px 14px;
-      border-radius:999px;
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:900;
+      font-size:13px;
       background:var(--brand-blue);
       color:#fff;
-      font-weight:800;
-      font-size:13.5px;
-      white-space:nowrap;
+      border:0;
+      cursor:pointer;
+      min-width:120px;
     }
 
-    .choice a:hover{ filter:brightness(1.06); }
+    .cta:hover{ filter:brightness(0.95); }
 
     .hint{
-      font-size:13px;
-      color:#0f2f62;
-      opacity:.75;
-      margin-top:2px;
+      font-size:12.5px;
+      color:#24324a;
+      opacity:0.85;
+      font-weight:700;
     }
 
     /* ===== CAROUSEL (GALLERY) ===== */
@@ -568,12 +635,14 @@
 
     footer small{font-size:13px;opacity:.9}
 
-    /* ===== MOBILE (MATCH EXPERIENCES PAGE) ===== */
+    /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{grid-template-columns:1fr}
-      .choices{ grid-template-columns:1fr; }
+      .recs-grid{grid-template-columns:1fr}
+      .selector-top{flex-direction:column; align-items:flex-start;}
+      .selector-controls{justify-content:flex-start;}
+      .selector-controls select{min-width:260px; width:100%;}
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
-      .selector-top{ align-items:flex-start; }
     }
 
     @media(max-width:620px){
@@ -583,6 +652,10 @@
         right:auto;
         transform:translateX(-50%);
       }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .rec, .exp-card, .carousel-track { transition:none !important; }
     }
   </style>
 </head>
@@ -637,8 +710,8 @@
 <section class="hero">
   <h1>Adventure</h1>
   <p>
-    Ecuador is a high-variety adventure country in a small footprint. In one trip you can chase volcano views,
-    ride jungle rivers, explore the cloud forest canopy, and finish at the Pacific — with minimal travel time between regions.
+    Ecuador is built for adventure — volcanoes, rivers, coastlines, and cloud forests all within a few hours of each other.
+    Use the selector below to match your energy level with the best-fit adventures and regions.
   </p>
 </section>
 
@@ -649,25 +722,54 @@
 <main class="wrap">
 
   <section class="section">
-    <h2>What adventure means here</h2>
+    <h2>What this experience is about</h2>
     <p>
-      “Adventure” in Ecuador ranges from beginner-friendly day trips to serious high-altitude objectives.
-      The biggest advantage is access: you can base in a city like Quito and reach multiple adventure zones quickly.
-      Expect dramatic scenery, fast weather changes in the Andes, and a strong culture of local guiding for safety and logistics.
+      Adventure in Ecuador is compact, diverse, and surprisingly accessible. You can combine high-altitude volcano routes,
+      cloud forest canopy days, whitewater rivers, and coastal adventure into a single itinerary without losing days in transit.
+      Whether you want something easy and scenic or full-throttle challenge, the country makes it simple to build an “active trip”
+      that still feels balanced.
     </p>
+  </section>
+
+  <!-- Adventure Level Selector -->
+  <section class="section selector" aria-label="Adventure level selector">
+    <div class="selector-top">
+      <div class="selector-copy">
+        <h3>Pick your adventure level</h3>
+        <p>
+          Choose your pace and we’ll show three strong starting points — each with the best region to explore it.
+          (You can adjust later as you add more location pages and partners.)
+        </p>
+      </div>
+
+      <div class="selector-controls">
+        <label for="ee_level">Adventure level</label>
+        <select id="ee_level" name="ee_level" aria-label="Select adventure level">
+          <option value="beginner">Beginner (easy + scenic)</option>
+          <option value="intermediate" selected>Intermediate (active days)</option>
+          <option value="advanced">Advanced (big days)</option>
+          <option value="thrill">Thrill Seeker (bucket-list)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="selector-body">
+      <div class="recs-grid" id="ee_recs" aria-live="polite"></div>
+      <div style="margin-top:12px;">
+        <span class="hint" id="ee_hint">Tip: Start with Intermediate — then dial up or down.</span>
+      </div>
+    </div>
   </section>
 
   <section class="section grid">
     <div class="card">
       <h2>Signature activities</h2>
       <ul>
-        <li>Volcano hikes and crater viewpoints</li>
-        <li>High-altitude trekking and glacial routes (with guides)</li>
-        <li>Whitewater rafting and river adventures</li>
-        <li>Ziplining and canopy tours in cloud forest</li>
-        <li>Canyoning / waterfalls and natural slide routes (where available)</li>
-        <li>Surf and ocean adventure days along the Coast</li>
-        <li>Wild terrain by 4x4, horseback, or bike depending on region</li>
+        <li>Volcano hikes, ridgelines, and high-altitude viewpoints</li>
+        <li>Rafting, canyoning, and river adventure days</li>
+        <li>Ziplining and canopy tours in cloud forest terrain</li>
+        <li>Trail rides, mountain biking, and off-road excursions</li>
+        <li>Coastal surf days and ocean-forward adventures</li>
       </ul>
     </div>
 
@@ -675,84 +777,80 @@
       <div class="mini">
         <h2>Best for</h2>
         <ul>
-          <li>Travelers who want variety (mountains + jungle + coast)</li>
-          <li>Couples, small groups, and solo travelers</li>
-          <li>People who prefer guided days with local insight</li>
-          <li>Anyone building an itinerary around “do” not “see”</li>
+          <li>Active travelers who like “do something every day” itineraries</li>
+          <li>Couples and small groups who want variety in a short trip</li>
+          <li>People who prefer local guides for safety + efficiency</li>
+          <li>Travelers who want to combine multiple regions without hassle</li>
         </ul>
       </div>
 
       <div class="mini">
-        <h2>Planning notes</h2>
+        <h2>Regions that shine</h2>
         <ul>
-          <li>Altitude matters: schedule acclimation days for Andes objectives</li>
-          <li>Layering is key: mornings can be cold, afternoons warm, rain possible</li>
-          <li>Guides are worth it for safety, permits, timing, and local logistics</li>
-          <li>Mix intensity: pair big days with recovery (hot springs / slow travel)</li>
+          <li>Andes: volcano routes, altitude trails, adventure hubs</li>
+          <li>Amazon: river + jungle exploration with guide support</li>
+          <li>Coast: surf, ocean activities, beach adventure days</li>
+          <li>Galapagos: controlled exploration and iconic wildlife</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- Adventure Level Selector -->
-  <section class="section">
-    <div class="selector" aria-label="Adventure level selector">
-      <div class="selector-inner">
-        <div class="selector-top">
-          <div class="selector-copy">
-            <h2>Choose your adventure level</h2>
-            <p>Select a level to see three strong starting points. Each suggestion links to the region page so you can keep planning.</p>
-            <div class="hint">Tip: Start lower on day 1–2 if you’re arriving at altitude.</div>
-          </div>
-
-          <div class="selector-controls">
-            <div class="selector-label">Adventure level</div>
-            <div class="select-wrap">
-              <select id="eeAdventureLevel" aria-label="Select adventure level">
-                <option value="beginner">Beginner</option>
-                <option value="intermediate">Intermediate</option>
-                <option value="advanced">Advanced</option>
-                <option value="thrill">Thrill Seeker</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="choices" id="eeAdventureChoices" aria-live="polite"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Carousel (Gallery) -->
+  <!-- Bottom Carousel (Regions-style) -->
   <section class="section" aria-label="Adventure gallery">
     <div class="carousel" id="adventureCarousel">
-      <button class="carousel-btn prev" type="button" aria-label="Previous slide"><span aria-hidden="true"></span></button>
-      <button class="carousel-btn next" type="button" aria-label="Next slide"><span aria-hidden="true"></span></button>
+      <button class="carousel-btn prev" type="button" aria-label="Previous slide">
+        <span aria-hidden="true"></span>
+      </button>
+      <button class="carousel-btn next" type="button" aria-label="Next slide">
+        <span aria-hidden="true"></span>
+      </button>
 
-      <div class="carousel-viewport">
-        <div class="carousel-track">
-          <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Adventure-1.jpg" alt="Adventure gallery image 1"></div>
-          <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Adventure-2.jpg" alt="Adventure gallery image 2"></div>
-          <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Adventure-3.jpg" alt="Adventure gallery image 3"></div>
-          <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Adventure-4.jpg" alt="Adventure gallery image 4"></div>
-          <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Adventure-5.jpg" alt="Adventure gallery image 5"></div>
-          <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Adventure-6.jpg" alt="Adventure gallery image 6"></div>
-          <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Adventure-7.jpg" alt="Adventure gallery image 7"></div>
-          <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Adventure-8.jpg" alt="Adventure gallery image 8"></div>
-          <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Adventure-9.jpg" alt="Adventure gallery image 9"></div>
-          <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Adventure-10.jpg" alt="Adventure gallery image 10"></div>
+      <div class="carousel-viewport" aria-label="Carousel viewport">
+        <div class="carousel-track" aria-label="Carousel track">
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Adventure-1.jpg" alt="Adventure gallery image 1">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Adventure-2.jpg" alt="Adventure gallery image 2">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Adventure-3.jpg" alt="Adventure gallery image 3">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Adventure-4.jpg" alt="Adventure gallery image 4">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Adventure-5.jpg" alt="Adventure gallery image 5">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Adventure-6.jpg" alt="Adventure gallery image 6">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Adventure-7.jpg" alt="Adventure gallery image 7">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Adventure-8.jpg" alt="Adventure gallery image 8">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Adventure-9.jpg" alt="Adventure gallery image 9">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Adventure-10.jpg" alt="Adventure gallery image 10">
+          </div>
         </div>
       </div>
 
-      <div class="carousel-ui">
-        <div class="carousel-dots" aria-label="Slide dots"></div>
-        <div class="carousel-counter" aria-label="Slide counter">1 / 10</div>
+      <div class="carousel-ui" aria-label="Carousel controls">
+        <div class="carousel-dots" id="adventureDots" aria-label="Carousel dots"></div>
+        <div class="carousel-counter" id="adventureCounter" aria-label="Carousel counter">1 / 10</div>
       </div>
     </div>
   </section>
 
 </main>
 
+<!-- Footer placeholder (you said we will finalize later) -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-tagline">Curated travel experiences across Ecuador</div>
@@ -777,7 +875,7 @@
 </footer>
 
 <script>
-  // Dropdowns (unchanged)
+  /* ===== Dropdown behavior (site standard) ===== */
   (function () {
     const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -817,100 +915,215 @@
     });
   })();
 
-  // Adventure Level Selector (unchanged)
+  /* ===== Adventure Level Selector (3 recommendations) ===== */
   (function(){
+    const levelEl = document.getElementById("ee_level");
+    const recsEl = document.getElementById("ee_recs");
+    const hintEl = document.getElementById("ee_hint");
+
     const data = {
-      beginner: [
-        {
-          title: "Cloud forest zipline + canopy walk",
-          desc: "A low-stress intro to Ecuador adventure with huge views and minimal technical demand.",
-          href: "/regions/andes/mindo/"
-        },
-        {
-          title: "Easy volcanic viewpoint hikes",
-          desc: "Short trails and crater viewpoints with the option to turn back early if altitude hits.",
-          href: "/regions/andes/quito/"
-        },
-        {
-          title: "Beach + beginner surf day",
-          desc: "Warm water, mellow sessions, and a fun first surf experience on the Coast.",
-          href: "/regions/coast/montanita/"
-        }
-      ],
-      intermediate: [
-        {
-          title: "Canyoning + waterfall routes",
-          desc: "Full-body adventure days with guides, rappels (where offered), and big nature payoffs.",
-          href: "/regions/andes/banos/"
-        },
-        {
-          title: "Whitewater rafting day trip",
-          desc: "Classic river days with professional operators, good for active travelers.",
-          href: "/regions/amazon/tena/"
-        },
-        {
-          title: "Volcano hiking day",
-          desc: "Longer trails and bigger elevation gain for travelers ready to work for the views.",
-          href: "/regions/andes/cotopaxi/"
-        }
-      ],
-      advanced: [
-        {
-          title: "High-altitude volcano ascent prep",
-          desc: "Serious altitude days that reward acclimation and good weather timing.",
-          href: "/regions/andes/cotopaxi/"
-        },
-        {
-          title: "Amazon multi-day river + lodge itinerary",
-          desc: "Deeper jungle immersion with early starts, long days, and big biodiversity.",
-          href: "/regions/amazon/yasuni national park/"
-        },
-        {
-          title: "Coastal route days (multi-stop adventure)",
-          desc: "String together surf, hikes, and beach towns with longer drive days and variety.",
-          href: "/regions/coast/la ruta del sol/"
-        }
-      ],
-      thrill: [
-        {
-          title: "Cotopaxi climbing (with certified guides)",
-          desc: "A bucket-list high-altitude objective. Requires acclimation, gear, and the right conditions.",
-          href: "/regions/andes/cotopaxi/"
-        },
-        {
-          title: "Galapagos diving / scuba days",
-          desc: "Big water, big wildlife — for confident divers looking for iconic marine encounters.",
-          href: "/regions/galapagos/santa cruz/"
-        },
-        {
-          title: "Volcano trek + summit attempt",
-          desc: "Choose a demanding route with proper support — the Andes can be intense and unforgettable.",
-          href: "/regions/andes/quito/"
-        }
-      ]
+      beginner: {
+        hint: "Beginner = scenic + low commitment. Perfect if you want adventure without feeling “extreme.”",
+        recs: [
+          {
+            title: "Waterfalls + easy cloud forest trails",
+            desc: "Short hikes, viewpoints, and lush jungle scenery — a perfect intro day that still feels like Ecuador.",
+            badges: ["Beginner", "Half day–Full day"],
+            chips: [
+              { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
+              { label: "Explore Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "View Mindo",
+            ctaHref: "/regions/andes/mindo/"
+          },
+          {
+            title: "Hot springs + light canyon walks",
+            desc: "Relaxation meets adventure — warm pools, easy trails, and optional add-ons if you want more.",
+            badges: ["Beginner", "Half day–Full day"],
+            chips: [
+              { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
+              { label: "Explore Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "View Baños",
+            ctaHref: "/regions/andes/banos/"
+          },
+          {
+            title: "First surf lesson + beach adventure day",
+            desc: "A fun, beginner-friendly way to add energy to your itinerary without needing advanced skills.",
+            badges: ["Beginner", "Full day"],
+            chips: [
+              { label: "Best in: Coast", href: "/regions/coast/" }
+            ],
+            ctaLabel: "Explore Coast",
+            ctaHref: "/regions/coast/"
+          }
+        ]
+      },
+
+      intermediate: {
+        hint: "Intermediate = active days. You’ll do more, move more, and still keep the trip balanced.",
+        recs: [
+          {
+            title: "Cotopaxi day hike (refugio + viewpoints)",
+            desc: "One of the best “big day” adventures — high-altitude landscapes without committing to a summit climb.",
+            badges: ["Intermediate", "Full day"],
+            chips: [
+              { label: "Best in: Andes (Cotopaxi)", href: "/regions/andes/cotopaxi/" },
+              { label: "Explore Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "View Cotopaxi",
+            ctaHref: "/regions/andes/cotopaxi/"
+          },
+          {
+            title: "Rafting day (class depends on river)",
+            desc: "A classic Ecuador adventure — rivers range from fun + splashy to serious, depending on the route.",
+            badges: ["Intermediate", "Half day–Full day"],
+            chips: [
+              { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
+              { label: "Explore Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "View Baños",
+            ctaHref: "/regions/andes/banos/"
+          },
+          {
+            title: "Canopy zipline + cloud forest combo",
+            desc: "A high-energy day with iconic scenery — zipline circuits paired with trails, waterfalls, and viewpoints.",
+            badges: ["Intermediate", "Full day"],
+            chips: [
+              { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
+              { label: "Explore Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "View Mindo",
+            ctaHref: "/regions/andes/mindo/"
+          }
+        ]
+      },
+
+      advanced: {
+        hint: "Advanced = demanding days. Expect long routes, altitude, and more technical effort.",
+        recs: [
+          {
+            title: "High-altitude ridgelines + long volcanic routes",
+            desc: "Longer hikes at altitude where weather and pacing matter — the Andes is the playground here.",
+            badges: ["Advanced", "Full day"],
+            chips: [
+              { label: "Best in: Andes (Quito area)", href: "/regions/andes/quito/" },
+              { label: "Explore Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "View Quito",
+            ctaHref: "/regions/andes/quito/"
+          },
+          {
+            title: "Serious canyoning routes",
+            desc: "Bigger rappels, faster water, and higher intensity lines — best done with experienced guides.",
+            badges: ["Advanced", "Half day–Full day"],
+            chips: [
+              { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
+              { label: "Explore Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "View Baños",
+            ctaHref: "/regions/andes/banos/"
+          },
+          {
+            title: "Remote jungle days (long boat + trekking)",
+            desc: "Multi-hour river travel, humid trails, and longer days — rewarding, but physically demanding.",
+            badges: ["Advanced", "Multi-day"],
+            chips: [
+              { label: "Best in: Amazon", href: "/regions/amazon/" }
+            ],
+            ctaLabel: "Explore Amazon",
+            ctaHref: "/regions/amazon/"
+          }
+        ]
+      },
+
+      thrill: {
+        hint: "Thrill Seeker = bucket-list intensity. These are the “tell everyone about it” days.",
+        recs: [
+          {
+            title: "Cotopaxi summit climb",
+            desc: "A true mountaineering objective — altitude, glacier conditions, and a serious achievement.",
+            badges: ["Thrill Seeker", "Overnight"],
+            chips: [
+              { label: "Best in: Andes (Cotopaxi)", href: "/regions/andes/cotopaxi/" },
+              { label: "Explore Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "View Cotopaxi",
+            ctaHref: "/regions/andes/cotopaxi/"
+          },
+          {
+            title: "Galapagos dive trips (iconic marine life)",
+            desc: "World-class diving with big wildlife moments — plan around conditions and permitted sites.",
+            badges: ["Thrill Seeker", "Multi-day"],
+            chips: [
+              { label: "Best in: Galapagos", href: "/regions/galapagos/" }
+            ],
+            ctaLabel: "Explore Galapagos",
+            ctaHref: "/regions/galapagos/"
+          },
+          {
+            title: "High-intensity rafting or extreme canyoning day",
+            desc: "If you want adrenaline on water — choose routes that match your skills and conditions.",
+            badges: ["Thrill Seeker", "Full day"],
+            chips: [
+              { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
+              { label: "Explore Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "View Baños",
+            ctaHref: "/regions/andes/banos/"
+          }
+        ]
+      }
     };
 
-    const levelEl = document.getElementById("eeAdventureLevel");
-    const choicesEl = document.getElementById("eeAdventureChoices");
-
-    function render(level){
-      const items = data[level] || [];
-      choicesEl.innerHTML = items.map(item => `
-        <div class="choice">
-          <h3>${item.title}</h3>
-          <p>${item.desc}</p>
-          <a href="${item.href}">Explore the region</a>
-        </div>
-      `).join("");
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
     }
 
+    function render(levelKey){
+      const block = data[levelKey] || data.intermediate;
+      if (hintEl) hintEl.textContent = block.hint || "";
+
+      const html = block.recs.map((r) => {
+        const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
+        const chips = (r.chips || []).map(c => `
+          <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
+        `).join("");
+
+        return `
+          <article class="rec">
+            <div class="meta">${badges}</div>
+            <h4>${escapeHtml(r.title)}</h4>
+            <p>${escapeHtml(r.desc)}</p>
+
+            <div class="chips">${chips}</div>
+
+            <div class="rec-actions">
+              <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
+              <span class="hint">Best-fit starting point</span>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      recsEl.innerHTML = html;
+    }
+
+    render(levelEl ? levelEl.value : "intermediate");
+
     if (levelEl) {
-      render(levelEl.value);
-      levelEl.addEventListener("change", () => render(levelEl.value));
+      levelEl.addEventListener("change", function(){
+        render(this.value);
+      });
     }
   })();
 
-  // Carousel (updated to match your regions pages)
+  /* ===== Carousel (Regions-style) ===== */
   (function(){
     const root = document.getElementById("adventureCarousel");
     if (!root) return;
@@ -919,82 +1132,89 @@
     const slides = Array.from(root.querySelectorAll(".carousel-slide"));
     const prevBtn = root.querySelector(".carousel-btn.prev");
     const nextBtn = root.querySelector(".carousel-btn.next");
-    const dotsWrap = root.querySelector(".carousel-dots");
-    const counter = root.querySelector(".carousel-counter");
+    const dotsWrap = document.getElementById("adventureDots");
+    const counter = document.getElementById("adventureCounter");
 
     let index = 0;
     const total = slides.length;
 
     // Build dots
-    dotsWrap.innerHTML = "";
-    const dots = slides.map((_, i) => {
-      const b = document.createElement("button");
-      b.type = "button";
-      b.className = "dot" + (i === 0 ? " active" : "");
-      b.setAttribute("aria-label", `Go to slide ${i + 1}`);
-      b.addEventListener("click", () => go(i));
-      dotsWrap.appendChild(b);
-      return b;
-    });
+    const dots = [];
+    if (dotsWrap) {
+      dotsWrap.innerHTML = "";
+      for (let i = 0; i < total; i++){
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "dot" + (i === 0 ? " active" : "");
+        b.setAttribute("aria-label", `Go to slide ${i+1}`);
+        b.addEventListener("click", () => goTo(i));
+        dotsWrap.appendChild(b);
+        dots.push(b);
+      }
+    }
 
-    function update(){
-      track.style.transform = `translateX(-${index * 100}%)`;
-      dots.forEach((d, i) => d.classList.toggle("active", i === index));
+    function updateUI(){
+      const x = -index * 100;
+      track.style.transform = `translateX(${x}%)`;
+
       if (counter) counter.textContent = `${index + 1} / ${total}`;
+
+      dots.forEach((d, i) => {
+        if (i === index) d.classList.add("active");
+        else d.classList.remove("active");
+      });
     }
 
-    function go(i){
-      index = (i + total) % total;
-      update();
+    function clamp(i){
+      if (i < 0) return total - 1;
+      if (i >= total) return 0;
+      return i;
     }
 
-    function next(){ go(index + 1); }
-    function prev(){ go(index - 1); }
+    function goTo(i){
+      index = clamp(i);
+      updateUI();
+    }
+
+    function next(){ goTo(index + 1); }
+    function prev(){ goTo(index - 1); }
 
     if (nextBtn) nextBtn.addEventListener("click", next);
     if (prevBtn) prevBtn.addEventListener("click", prev);
 
-    // Keyboard support when carousel is focused
-    root.setAttribute("tabindex", "0");
+    // Keyboard support (when focused within carousel)
     root.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") next();
       if (e.key === "ArrowLeft") prev();
     });
 
-    // Swipe support
-    const viewport = root.querySelector(".carousel-viewport");
+    // Touch swipe (simple)
     let startX = 0;
-    let dx = 0;
     let isDown = false;
 
-    function onDown(clientX){
-      isDown = true;
-      startX = clientX;
-      dx = 0;
-    }
-    function onMove(clientX){
-      if (!isDown) return;
-      dx = clientX - startX;
-    }
-    function onUp(){
-      if (!isDown) return;
-      isDown = false;
-      if (Math.abs(dx) > 40) {
-        if (dx < 0) next();
-        else prev();
-      }
-      dx = 0;
+    const viewport = root.querySelector(".carousel-viewport");
+    if (viewport) {
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+      });
+
+      viewport.addEventListener("pointerup", (e) => {
+        if (!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        if (Math.abs(dx) > 45) {
+          if (dx < 0) next();
+          else prev();
+        }
+      });
+
+      viewport.addEventListener("pointercancel", () => { isDown = false; });
+      viewport.addEventListener("pointerleave", () => { isDown = false; });
     }
 
-    if (viewport){
-      viewport.addEventListener("pointerdown", (e) => onDown(e.clientX));
-      viewport.addEventListener("pointermove", (e) => onMove(e.clientX));
-      viewport.addEventListener("pointerup", onUp);
-      viewport.addEventListener("pointercancel", onUp);
-      viewport.addEventListener("pointerleave", onUp);
-    }
-
-    update();
+    updateUI();
   })();
 </script>
 
