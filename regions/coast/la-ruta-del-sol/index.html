@@ -358,7 +358,7 @@
 
     /* ===== CAROUSEL (GALLERY) ===== */
     .carousel{
-      margin-top:18px;
+      margin-top:0;
       background:#fff;
       border-radius:22px;
       border:1px solid rgba(0,0,0,0.06);
@@ -469,12 +469,12 @@
       white-space:nowrap;
     }
 
-    /* ===== BEACH STOPS GRID (IMAGE HEADER TILES) ===== */
-    .places-grid{
+    /* ===== BEACH STOPS GRID (4 ACROSS) ===== */
+    .places-grid-4{
       display:grid;
-      grid-template-columns:repeat(2, 1fr);
+      grid-template-columns:repeat(4, 1fr);
       gap:12px;
-      margin-top:10px;
+      margin-top:12px;
     }
 
     .place-tile{
@@ -555,8 +555,7 @@
       opacity:.9;
     }
 
-    /* ===== MAP EMBED (MATCH CAROUSEL WIDTH) ===== */
-    .map-card{ margin-top:18px; }
+    /* ===== MAP CARD (RIGHT OF CAROUSEL) ===== */
     .map-embed{
       margin-top:14px;
       border-radius:18px;
@@ -649,6 +648,10 @@
     footer small{ font-size:13px; opacity:.9; }
 
     /* ===== MOBILE ===== */
+    @media(max-width:1000px){
+      .places-grid-4{ grid-template-columns:repeat(2, 1fr); }
+    }
+
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
       .topbar-inner{ justify-content:space-between; }
@@ -656,7 +659,8 @@
       .hero p{ margin:0 auto; }
       .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
       .dropdown-menu{ right:0; left:auto; transform:none; }
-      .places-grid{ grid-template-columns:1fr; }
+      .places-grid-4{ grid-template-columns:1fr; }
+      .carousel{ margin-top:18px; }
     }
 
     @media(max-width:620px){
@@ -784,7 +788,6 @@
       </div>
     </section>
 
-    <!-- SIMPLE PLANNING FLOW (NOW CONTAINS: LOCATIONS -> MAP -> CAROUSEL) -->
     <section class="section">
       <h2>Simple planning flow</h2>
       <p>
@@ -792,151 +795,148 @@
         Choose two bases, add a few beach stops between them, and protect your sunset time.
       </p>
 
+      <!-- Row 1: Start with your vibe (left) + Build the route in 4 steps (right) -->
       <div class="grid">
-        <!-- LEFT COLUMN: LOCATIONS -> MAP -> CAROUSEL -->
+        <div class="card">
+          <h3>Start with your vibe</h3>
+          <ul>
+            <li>Chill and quiet beaches</li>
+            <li>Surf town energy and nightlife</li>
+            <li>Food focused coastal route</li>
+            <li>Nature and boat day trips</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Build the route in 4 steps</h3>
+          <ul>
+            <li>Pick a Santa Elena base</li>
+            <li>Pick a Manabí base</li>
+            <li>Add 2 to 4 beach stops between bases</li>
+            <li>Keep drive days light and plan for sunset blocks</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Full width: Beaches and towns (4 across) under the two cards -->
+      <div class="card" style="margin-top:16px;">
+        <h3>Beaches and towns you can stop at</h3>
+        <p style="margin:0; color:#2a2f36; font-size:15.8px; line-height:1.75; max-width:82ch;">
+          Use these as building blocks. Start with one or two base towns, then add short stops that match your vibe.
+        </p>
+
+        <div class="places-grid-4" aria-label="Beach stop tiles">
+          <!-- Row 1: Salinas, La Libertad, Ballenita, Montanita -->
+          <a class="place-tile" href="/regions/coast/salinas/" aria-label="Open Salinas page">
+            <div class="place-img">
+              <img src="/assets/images/EE-Assets-Salinas.jpg" alt="Salinas coast image">
+            </div>
+            <div class="place-body">
+              <div>
+                <div class="place-title">Salinas</div>
+                <div class="place-meta">Classic beach base, boardwalk energy, easy starting point.</div>
+              </div>
+              <div class="place-arrow" aria-hidden="true"><span></span></div>
+            </div>
+          </a>
+
+          <a class="place-tile" href="/regions/coast/la-ruta-del-sol/" aria-label="Open La Libertad">
+            <div class="place-img">
+              <img src="/assets/images/EE-Assets-LaLibertad.jpg" alt="La Libertad coast image">
+            </div>
+            <div class="place-body">
+              <div>
+                <div class="place-title">La Libertad</div>
+                <div class="place-meta">Local markets, real Coast life, quick add-on near Salinas.</div>
+              </div>
+              <div class="place-arrow" aria-hidden="true"><span></span></div>
+            </div>
+          </a>
+
+          <a class="place-tile" href="/regions/coast/la-ruta-del-sol/" aria-label="Open Ballenita">
+            <div class="place-img">
+              <img src="/assets/images/EE-Assets-Ballenita.jpg" alt="Ballenita coast image">
+            </div>
+            <div class="place-body">
+              <div>
+                <div class="place-title">Ballenita</div>
+                <div class="place-meta">Simple beach reset with a quieter pace and sunset time.</div>
+              </div>
+              <div class="place-arrow" aria-hidden="true"><span></span></div>
+            </div>
+          </a>
+
+          <a class="place-tile" href="/regions/coast/montanita/" aria-label="Open Montañita page">
+            <div class="place-img">
+              <img src="/assets/images/EE-Assets-Montanita.jpg" alt="Montañita coast image">
+            </div>
+            <div class="place-body">
+              <div>
+                <div class="place-title">Montañita</div>
+                <div class="place-meta">Surf culture, nightlife, fast energy with nearby calm beaches.</div>
+              </div>
+              <div class="place-arrow" aria-hidden="true"><span></span></div>
+            </div>
+          </a>
+
+          <!-- Row 2: Olon, Puerto Cayo, Ayampe, Puerto Lopez -->
+          <a class="place-tile" href="/regions/coast/la-ruta-del-sol/" aria-label="Open Olón">
+            <div class="place-img">
+              <img src="/assets/images/EE-Assets-Olon.jpg" alt="Olón coast image">
+            </div>
+            <div class="place-body">
+              <div>
+                <div class="place-title">Olón</div>
+                <div class="place-meta">Quieter beach base, long walks, relaxed stays.</div>
+              </div>
+              <div class="place-arrow" aria-hidden="true"><span></span></div>
+            </div>
+          </a>
+
+          <a class="place-tile" href="/regions/coast/la-ruta-del-sol/" aria-label="Open Puerto Cayo">
+            <div class="place-img">
+              <img src="/assets/images/EE-Assets-PuertoCayo.jpg" alt="Puerto Cayo coast image">
+            </div>
+            <div class="place-body">
+              <div>
+                <div class="place-title">Puerto Cayo</div>
+                <div class="place-meta">Beach village feel, easy stop between bigger bases.</div>
+              </div>
+              <div class="place-arrow" aria-hidden="true"><span></span></div>
+            </div>
+          </a>
+
+          <a class="place-tile" href="/regions/coast/la-ruta-del-sol/" aria-label="Open Ayampe">
+            <div class="place-img">
+              <img src="/assets/images/EE-Assets-Ayampe.jpg" alt="Ayampe coast image">
+            </div>
+            <div class="place-body">
+              <div>
+                <div class="place-title">Ayampe</div>
+                <div class="place-meta">Calm beach vibe, nature feel, slow mornings.</div>
+              </div>
+              <div class="place-arrow" aria-hidden="true"><span></span></div>
+            </div>
+          </a>
+
+          <a class="place-tile" href="/regions/coast/puerto-lopez/" aria-label="Open Puerto López page">
+            <div class="place-img">
+              <img src="/assets/images/EE-Assets-PuertoLopez.jpg" alt="Puerto López coast image">
+            </div>
+            <div class="place-body">
+              <div>
+                <div class="place-title">Puerto López</div>
+                <div class="place-meta">Nature anchor, boat day trips, calmer coastal base.</div>
+              </div>
+              <div class="place-arrow" aria-hidden="true"><span></span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Row: Carousel left, Map right -->
+      <div class="grid" style="margin-top:16px;">
         <div>
-          <div class="card">
-            <h3>Start with your vibe</h3>
-            <ul>
-              <li>Chill and quiet beaches</li>
-              <li>Surf town energy and nightlife</li>
-              <li>Food focused coastal route</li>
-              <li>Nature and boat day trips</li>
-            </ul>
-          </div>
-
-          <div class="card" style="margin-top:16px;">
-            <h3>Beaches and towns you can stop at</h3>
-            <p style="margin:0; color:#2a2f36; font-size:15.8px; line-height:1.75; max-width:82ch;">
-              Use these as building blocks. Start with one or two base towns, then add short stops that match your vibe.
-            </p>
-
-            <div class="places-grid" aria-label="Beach stop tiles" style="margin-top:14px;">
-              <a class="place-tile" href="/regions/coast/salinas/" aria-label="Open Salinas page">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-Salinas.jpg" alt="Salinas coast image">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">Salinas</div>
-                    <div class="place-meta">Classic beach base, boardwalk energy, easy starting point.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
-              </a>
-
-              <a class="place-tile" href="/regions/coast/la-ruta-del-sol/" aria-label="Open La Ruta del Sol page">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-LaLibertad.jpg" alt="La Libertad coast image">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">La Libertad</div>
-                    <div class="place-meta">Local markets, real Coast life, quick add-on near Salinas.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
-              </a>
-
-              <a class="place-tile" href="/regions/coast/la-ruta-del-sol/" aria-label="Open La Ruta del Sol page">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-Ballenita.jpg" alt="Ballenita coast image">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">Ballenita</div>
-                    <div class="place-meta">Simple beach reset with a quieter pace and sunset time.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
-              </a>
-
-              <a class="place-tile" href="/regions/coast/montanita/" aria-label="Open Montañita page">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-Montanita.jpg" alt="Montañita coast image">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">Montañita</div>
-                    <div class="place-meta">Surf culture, nightlife, fast energy with nearby calm beaches.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
-              </a>
-
-              <a class="place-tile" href="/regions/coast/la-ruta-del-sol/" aria-label="Open La Ruta del Sol page">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-Olon.jpg" alt="Olón coast image">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">Olón</div>
-                    <div class="place-meta">Quieter beach base, long walks, relaxed stays.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
-              </a>
-
-              <a class="place-tile" href="/regions/coast/la-ruta-del-sol/" aria-label="Open La Ruta del Sol page">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-PuertoCayo.jpg" alt="Puerto Cayo coast image">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">Puerto Cayo</div>
-                    <div class="place-meta">Beach village feel, easy stop between bigger bases.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
-              </a>
-
-              <a class="place-tile" href="/regions/coast/la-ruta-del-sol/" aria-label="Open La Ruta del Sol page">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-Ayampe.jpg" alt="Ayampe coast image">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">Ayampe</div>
-                    <div class="place-meta">Calm beach vibe, nature feel, slow mornings.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
-              </a>
-
-              <a class="place-tile" href="/regions/coast/puerto-lopez/" aria-label="Open Puerto López page">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-PuertoLopez.jpg" alt="Puerto López coast image">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">Puerto López</div>
-                    <div class="place-meta">Nature anchor, boat day trips, calmer coastal base.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="card map-card" aria-label="Typical route map">
-            <h3>Typical route map</h3>
-            <p style="margin:0; color:#2a2f36; font-size:15.8px; line-height:1.75; max-width:82ch;">
-              Use this as a reference for the usual coastal path and the most common stops.
-              Zoom in for towns, beaches, and short detours.
-            </p>
-
-            <div class="map-embed">
-              <iframe
-                title="La Ruta del Sol map"
-                src="https://www.google.com/maps/d/embed?mid=1glMWm8YI7ZvM9wYrfPB8i-mB3-rdpRw&ehbc=2E312F"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                allowfullscreen>
-              </iframe>
-            </div>
-          </div>
-
-          <!-- CAROUSEL (NOW UNDER MAP) -->
           <div id="rutaDelSolCarousel" class="carousel" aria-label="La Ruta del Sol image gallery">
             <button class="carousel-btn prev" type="button" aria-label="Previous image">
               <span aria-hidden="true"></span>
@@ -964,15 +964,21 @@
           </div>
         </div>
 
-        <!-- RIGHT COLUMN: BUILD STEPS -->
-        <div class="card">
-          <h3>Build the route in 4 steps</h3>
-          <ul>
-            <li>Pick a Santa Elena base</li>
-            <li>Pick a Manabí base</li>
-            <li>Add 2 to 4 beach stops between bases</li>
-            <li>Keep drive days light and plan for sunset blocks</li>
-          </ul>
+        <div class="card" aria-label="Typical route map">
+          <h3>Typical route map</h3>
+          <p style="margin:0; color:#2a2f36; font-size:15.8px; line-height:1.75; max-width:82ch;">
+            Use this as a reference for the usual coastal path and the most common stops. Zoom in for towns, beaches, and short detours.
+          </p>
+
+          <div class="map-embed">
+            <iframe
+              title="La Ruta del Sol map"
+              src="https://www.google.com/maps/d/embed?mid=1glMWm8YI7ZvM9wYrfPB8i-mB3-rdpRw&ehbc=2E312F"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen>
+            </iframe>
+          </div>
         </div>
       </div>
     </section>
