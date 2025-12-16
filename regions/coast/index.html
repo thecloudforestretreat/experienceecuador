@@ -751,7 +751,7 @@
       </div>
     </section>
 
-    <!-- NEW: COAST DESTINATIONS WITH IMAGE HEADER TILES -->
+    <!-- UPDATED: COAST DESTINATIONS + ROUTE FEATURE -->
     <section class="section">
       <h2>Coast destinations</h2>
       <p>
@@ -764,6 +764,7 @@
           <h3>Featured places</h3>
 
           <div class="places-grid" aria-label="Coast destination tiles">
+            <!-- 1) Guayaquil -->
             <a class="place-tile" href="/regions/coast/guayaquil/" aria-label="Open Guayaquil page">
               <div class="place-img">
                 <img src="/assets/images/EE-Assets-Guayaquil.jpg" alt="Guayaquil">
@@ -777,6 +778,21 @@
               </div>
             </a>
 
+            <!-- 2) Salinas -->
+            <a class="place-tile" href="/regions/coast/salinas/" aria-label="Open Salinas page">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-Salinas.jpg" alt="Salinas">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Salinas</div>
+                  <div class="place-meta">Classic beach city with boardwalk walks, sunsets, and easy peninsula day trips.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+
+            <!-- 3) Montañita -->
             <a class="place-tile" href="/regions/coast/montanita/" aria-label="Open Montañita page">
               <div class="place-img">
                 <img src="/assets/images/EE-Assets-Montanita.jpg" alt="Montañita">
@@ -789,13 +805,42 @@
                 <div class="place-arrow" aria-hidden="true"><span></span></div>
               </div>
             </a>
+
+            <!-- 4) Puerto López -->
+            <a class="place-tile" href="/regions/coast/puerto-lopez/" aria-label="Open Puerto López page">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-PuertoLopez.jpg" alt="Puerto López">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Puerto López</div>
+                  <div class="place-meta">Relaxed coastal base for nature, boat days, and Isla de la Plata access.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
           </div>
 
-          <div class="pill-row" aria-label="Coast destination tags">
-            <span class="tag">City hub</span>
-            <span class="tag">Surf town</span>
+          <!-- Below the 4 locations: La Ruta del Sol -->
+          <div class="pill-row" style="margin-top:16px;" aria-label="Coast route feature">
+            <span class="tag">Road trip</span>
             <span class="tag">Beaches</span>
-            <span class="tag">Food</span>
+            <span class="tag">Sunsets</span>
+          </div>
+
+          <div style="margin-top:14px;">
+            <a class="place-tile" href="/regions/coast/la-ruta-del-sol/" aria-label="Open La Ruta del Sol feature page">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-LaRutaDelSol.jpg" alt="La Ruta del Sol">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">La Ruta del Sol</div>
+                  <div class="place-meta">Ecuador’s iconic coastal road trip. Beach hops, seafood stops, and golden-hour drives.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
           </div>
         </div>
 
@@ -1059,6 +1104,11 @@
       setIndex(0);
       startAutoplay();
     })();
+
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
   </script>
 
 </body>
