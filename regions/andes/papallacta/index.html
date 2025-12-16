@@ -1276,164 +1276,166 @@
       startAutoplay();
     })();
 
-    /* Papallacta weather (current + 7-day) */
-    (function(){
-      const dateEl = document.getElementById("papallactaWxDate");
-      const linesEl = document.getElementById("papallactaWxLines");
-      const gridEl = document.getElementById("papallactaWx7");
-      if(!dateEl || !linesEl || !gridEl) return;
+   /* Papallacta weather (current + 7-day) */
+(function(){
+  const dateEl = document.getElementById("papallactaWxDate");
+  const linesEl = document.getElementById("papallactaWxLines");
+  const gridEl = document.getElementById("papallactaWx7");
+  if(!dateEl || !linesEl || !gridEl) return;
 
-      // Papallacta, Ecuador (approx.)
-      const LAT = -0.37;
-      const LON = -78.15;
+  // Papallacta, Ecuador (approx.)
+  const LAT = -0.37;
+  const LON = -78.15;
 
-      const wxCodeMap = {
-        0:"Clear",
-        1:"Mainly clear",
-        2:"Partly cloudy",
-        3:"Overcast",
-        45:"Fog",
-        48:"Rime fog",
-        51:"Light drizzle",
-        53:"Drizzle",
-        55:"Heavy drizzle",
-        56:"Freezing drizzle",
-        57:"Freezing drizzle",
-        61:"Light rain",
-        63:"Rain",
-        65:"Heavy rain",
-        66:"Freezing rain",
-        67:"Freezing rain",
-        71:"Light snow",
-        73:"Snow",
-        75:"Heavy snow",
-        77:"Snow grains",
-        80:"Rain showers",
-        81:"Rain showers",
-        82:"Violent showers",
-        85:"Snow showers",
-        86:"Snow showers",
-        95:"Thunderstorm",
-        96:"Thunderstorm + hail",
-        99:"Thunderstorm + hail"
-      };
+  const wxCodeMap = {
+    0:"Clear",
+    1:"Mainly clear",
+    2:"Partly cloudy",
+    3:"Overcast",
+    45:"Fog",
+    48:"Rime fog",
+    51:"Light drizzle",
+    53:"Drizzle",
+    55:"Heavy drizzle",
+    56:"Freezing drizzle",
+    57:"Freezing drizzle",
+    61:"Light rain",
+    63:"Rain",
+    65:"Heavy rain",
+    66:"Freezing rain",
+    67:"Freezing rain",
+    71:"Light snow",
+    73:"Snow",
+    75:"Heavy snow",
+    77:"Snow grains",
+    80:"Rain showers",
+    81:"Rain showers",
+    82:"Violent showers",
+    85:"Snow showers",
+    86:"Snow showers",
+    95:"Thunderstorm",
+    96:"Thunderstorm + hail",
+    99:"Thunderstorm + hail"
+  };
 
-      function fmtDateMMDDYYYY(d){
-        const mm = String(d.getMonth()+1).padStart(2,"0");
-        const dd = String(d.getDate()).padStart(2,"0");
-        const yy = d.getFullYear();
-        return `${mm}/${dd}/${yy}`;
+  function fmtDateMMDDYYYY(d){
+    const mm = String(d.getMonth()+1).padStart(2,"0");
+    const dd = String(d.getDate()).padStart(2,"0");
+    const yy = d.getFullYear();
+    return `${mm}/${dd}/${yy}`;
+  }
+
+  function fmtMMDD(iso){
+    const d = new Date(iso + "T00:00:00");
+    const mm = String(d.getMonth()+1).padStart(2,"0");
+    const dd = String(d.getDate()).padStart(2,"0");
+    return `${mm}/${dd}`;
+  }
+
+  function dowShort(iso){
+    const d = new Date(iso + "T00:00:00");
+    return d.toLocaleDateString("en-US",{ weekday:"short" });
+  }
+
+  function cToF(c){
+    return Math.round((c * 9/5) + 32);
+  }
+
+  async function load(){
+    try{
+      const url =
+        "https://api.open-meteo.com/v1/forecast" +
+        `?latitude=${encodeURIComponent(LAT)}` +
+        `&longitude=${encodeURIComponent(LON)}` +
+        "&timezone=auto" +
+        "&current_weather=true" +
+        "&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max";
+
+      const res = await fetch(url);
+      if(!res.ok) throw new Error("Weather fetch failed");
+      const data = await res.json();
+
+      // Current
+      const now = data.current_weather || {};
+      const nowTempC = now.temperature;
+      const nowWind = now.windspeed;
+      const nowCode = now.weathercode;
+      const nowDesc = wxCodeMap[nowCode] || "Conditions";
+
+      dateEl.textContent = fmtDateMMDDYYYY(new Date());
+
+      const parts = [];
+      if(typeof nowTempC === "number") parts.push(`${Math.round(nowTempC)}°C / ${cToF(nowTempC)}°F`);
+      parts.push(nowDesc);
+      if(typeof nowWind === "number") parts.push(`Wind ${Math.round(nowWind)} km/h`);
+
+      linesEl.textContent = parts.filter(Boolean).join(" • ");
+
+      // 7-day
+      const daily = data.daily || {};
+      const days = daily.time || [];
+      const tmax = daily.temperature_2m_max || [];
+      const tmin = daily.temperature_2m_min || [];
+      const pmax = daily.precipitation_probability_max || [];
+
+      gridEl.innerHTML = "";
+      const count = Math.min(7, days.length);
+
+      for(let i=0; i<count; i++){
+        const dayIso = days[i];
+        const hiC = tmax[i];
+        const loC = tmin[i];
+        const rain = pmax[i];
+
+        const card = document.createElement("div");
+        card.className = "wx-day";
+
+        const top = document.createElement("div");
+        top.className = "wx-top";
+
+        const dow = document.createElement("div");
+        dow.className = "wx-dow";
+        dow.textContent = dowShort(dayIso);
+
+        const mmdd = document.createElement("div");
+        mmdd.className = "wx-mmdd";
+        mmdd.textContent = fmtMMDD(dayIso);
+
+        top.appendChild(dow);
+        top.appendChild(mmdd);
+
+        const hi = document.createElement("div");
+        hi.className = "wx-hi";
+        hi.textContent = (typeof hiC === "number")
+          ? `High ${Math.round(hiC)}°C / ${cToF(hiC)}°F`
+          : "High --";
+
+        const lo = document.createElement("div");
+        lo.className = "wx-lo";
+        lo.textContent = (typeof loC === "number")
+          ? `Low ${Math.round(loC)}°C / ${cToF(loC)}°F`
+          : "Low --";
+
+        const rainEl = document.createElement("div");
+        rainEl.className = "wx-rain";
+        rainEl.textContent = (typeof rain === "number") ? `Rain ${Math.round(rain)}%` : "Rain --";
+
+        card.appendChild(top);
+        card.appendChild(hi);
+        card.appendChild(lo);
+        card.appendChild(rainEl);
+
+        gridEl.appendChild(card);
       }
+    }catch(e){
+      dateEl.textContent = "--/--/----";
+      linesEl.textContent = "Weather unavailable right now.";
+      gridEl.innerHTML = "";
+    }
+  }
 
-      function fmtMMDD(iso){
-        const d = new Date(iso + "T00:00:00");
-        const mm = String(d.getMonth()+1).padStart(2,"0");
-        const dd = String(d.getDate()).padStart(2,"0");
-        return `${mm}/${dd}`;
-      }
-
-      function dowShort(iso){
-        const d = new Date(iso + "T00:00:00");
-        return d.toLocaleDateString("en-US",{ weekday:"short" });
-      }
-
-      function cToF(c){
-        return Math.round((c * 9/5) + 32);
-      }
-
-      function safeText(s){ return (s == null ? "" : String(s)); }
-
-      async function load(){
-        try{
-          const url =
-            "https://api.open-meteo.com/v1/forecast" +
-            `?latitude=${encodeURIComponent(LAT)}` +
-            `&longitude=${encodeURIComponent(LON)}` +
-            "&timezone=auto" +
-            "&current_weather=true" +
-            "&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max";
-
-          const res = await fetch(url);
-          if(!res.ok) throw new Error("Weather fetch failed");
-          const data = await res.json();
-
-          // Current
-          const now = data.current_weather || {};
-          const nowTempC = now.temperature;
-          const nowWind = now.windspeed;
-          const nowCode = now.weathercode;
-          const nowDesc = wxCodeMap[nowCode] || "Conditions";
-
-          dateEl.textContent = fmtDateMMDDYYYY(new Date());
-
-          const parts = [];
-          if(typeof nowTempC === "number") parts.push(`${cToF(nowTempC)}°F`);
-          parts.push(nowDesc);
-          if(typeof nowWind === "number") parts.push(`Wind ${Math.round(nowWind)} km/h`);
-
-          linesEl.textContent = parts.filter(Boolean).join(" • ");
-
-          // 7-day
-          const daily = data.daily || {};
-          const days = daily.time || [];
-          const tmax = daily.temperature_2m_max || [];
-          const tmin = daily.temperature_2m_min || [];
-          const pmax = daily.precipitation_probability_max || [];
-
-          gridEl.innerHTML = "";
-          const count = Math.min(7, days.length);
-
-          for(let i=0; i<count; i++){
-            const dayIso = days[i];
-            const hiC = tmax[i];
-            const loC = tmin[i];
-            const rain = pmax[i];
-
-            const card = document.createElement("div");
-            card.className = "wx-day";
-
-            const top = document.createElement("div");
-            top.className = "wx-top";
-
-            const dow = document.createElement("div");
-            dow.className = "wx-dow";
-            dow.textContent = dowShort(dayIso);
-
-            const mmdd = document.createElement("div");
-            mmdd.className = "wx-mmdd";
-            mmdd.textContent = fmtMMDD(dayIso);
-
-            top.appendChild(dow);
-            top.appendChild(mmdd);
-
-            const hi = document.createElement("div");
-            hi.className = "wx-hi";
-            hi.textContent = (typeof hiC === "number") ? `High ${cToF(hiC)}°F` : "High --";
-
-            const lo = document.createElement("div");
-            lo.className = "wx-lo";
-            lo.textContent = (typeof loC === "number") ? `Low ${cToF(loC)}°F` : "Low --";
-
-            const rainEl = document.createElement("div");
-            rainEl.className = "wx-rain";
-            rainEl.textContent = (typeof rain === "number") ? `Rain ${Math.round(rain)}%` : "Rain --";
-
-            card.appendChild(top);
-            card.appendChild(hi);
-            card.appendChild(lo);
-            card.appendChild(rainEl);
-
-            gridEl.appendChild(card);
-          }
-        }catch(e){
-          dateEl.textContent = "--/--/----";
-          linesEl.textContent = "Weather unavailable right now.";
-          gridEl.innerHTML = "";
-        }
-      }
-
-      load();
-    })();
+  load();
+})();
 
     // Light deterrent: disable right-click on images only
     document.addEventListener('contextmenu', (e) => {
