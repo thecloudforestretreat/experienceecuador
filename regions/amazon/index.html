@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Amazon | Experience Ecuador</title>
+  <title>Amazon (Oriente) | Experience Ecuador</title>
 
   <!-- Favicons -->
   <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
@@ -38,7 +38,7 @@
     img{max-width:100%;display:block}
     img{ user-select:none; -webkit-user-drag:none; }
 
-    /* ===== HEADER (MATCH COAST) ===== */
+    /* ===== HEADER (LOCKED) ===== */
     .topbar{
       position:sticky;
       top:0;
@@ -79,7 +79,7 @@
       object-fit:contain;
     }
 
-    /* ===== MENU (MATCH COAST) ===== */
+    /* ===== MENU ===== */
     .nav{
       display:flex;
       align-items:center;
@@ -113,7 +113,6 @@
       background:rgba(3,78,162,0.08);
     }
 
-    /* ===== DROPDOWNS (MATCH COAST) ===== */
     .dropdown{
       position:relative;
       display:inline-flex;
@@ -183,7 +182,7 @@
 
     .dropdown.open .dropdown-menu{ display:block; }
 
-    /* ===== HERO (MATCH COAST) ===== */
+    /* ===== HERO ===== */
     .hero{
       position:relative;
       width:100%;
@@ -202,7 +201,7 @@
       background:linear-gradient(
         to bottom,
         rgba(0,0,0,0.14),
-        rgba(0,0,0,0.74)
+        rgba(0,0,0,0.72)
       );
     }
 
@@ -278,11 +277,17 @@
       display:grid;
       grid-template-columns:1.15fr 0.85fr;
       gap:22px;
-      margin-top:18px;
       align-items:start;
+      margin-top:18px;
     }
 
-    .grid.align-center{ align-items:center; }
+    .grid.center-stack{ align-items:center; }
+
+    .stack-right{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
 
     .card{
       background:#fff;
@@ -316,8 +321,6 @@
       padding:20px;
     }
 
-    .mini + .mini{ margin-top:16px; }
-
     .pill-row{
       display:flex;
       flex-wrap:wrap;
@@ -334,6 +337,92 @@
       color:#0f2f62;
       font-weight:700;
       font-size:13px;
+    }
+
+    /* ===== PLACES GRID (IMAGE HEADER TILES) ===== */
+    .places-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .place-tile{
+      display:block;
+      padding:0;
+      border-radius:18px;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid rgba(3,78,162,0.12);
+      box-shadow:0 14px 42px rgba(3,78,162,0.10);
+      transition:transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .place-tile:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 55px rgba(3,78,162,0.14);
+    }
+
+    .place-img{
+      width:100%;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .place-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .place-body{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      background:linear-gradient(180deg, rgba(3,78,162,0.035), rgba(3,78,162,0.012));
+    }
+
+    .place-title{
+      margin:0;
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+      font-size:15px;
+      line-height:1.2;
+    }
+
+    .place-meta{
+      margin:6px 0 0;
+      color:#1f2b3f;
+      opacity:.9;
+      line-height:1.5;
+      font-size:13.6px;
+      max-width:34ch;
+    }
+
+    .place-arrow{
+      flex:0 0 auto;
+      width:36px;
+      height:36px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.18);
+      background:rgba(255,255,255,0.75);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:2px;
+    }
+
+    .place-arrow span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
+      transform:rotate(-45deg);
+      opacity:.9;
     }
 
     /* ===== CAROUSEL (GALLERY) ===== */
@@ -475,7 +564,7 @@
       max-width:85ch;
     }
 
-    /* ===== FOOTER (MATCH COAST) ===== */
+    /* ===== FOOTER (LOCKED) ===== */
     .footer{
       background:var(--brand-blue);
       color:#fff;
@@ -524,9 +613,10 @@
 
     footer small{ font-size:13px; opacity:.9; }
 
-    /* ===== MOBILE (MATCH COAST) ===== */
+    /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
+      .places-grid{ grid-template-columns:1fr; }
       .topbar-inner{ justify-content:space-between; }
       .hero-inner{ text-align:center; }
       .hero p{ margin:0 auto; }
@@ -600,10 +690,10 @@
   <section class="hero" aria-label="Amazon hero image">
     <div class="hero-inner">
       <div class="kicker">Region Guide • Coming Soon</div>
-      <h1>The Amazon</h1>
+      <h1>Amazon (Oriente)</h1>
       <p>
-        Jungle rivers, wildlife encounters, and immersive eco experiences.
-        This hub is being built to help you explore Ecuador’s Amazon with trusted highlights and clear planning.
+        Ecuador’s rainforest region is about gateways and lodge-based experiences, not big cities.
+        This hub will help you choose the right entry point, reserve, and trip style for your time and comfort level.
       </p>
     </div>
   </section>
@@ -614,49 +704,134 @@
     <section class="section">
       <h2>What makes the Amazon special</h2>
       <p>
-        Ecuador’s Amazon offers an extraordinary window into biodiversity and nature-first travel.
-        From guided rainforest walks to river adventures and lodge stays, this region is about slowing down,
-        listening, learning, and experiencing a living ecosystem up close.
+        The Amazon is immersive. Days revolve around rivers, trails, canoe trips, wildlife, and guided experiences.
+        The key decision is not “which town,” but “how deep do you want to go” and “how many days do you have.”
       </p>
 
-      <div class="grid align-center">
+      <div class="grid center-stack">
         <div class="card">
           <h3>Signature highlights</h3>
           <ul>
-            <li>Wildlife spotting with experienced local guides</li>
-            <li>River experiences: canoeing, boat rides, and jungle access routes</li>
-            <li>Eco-lodges and nature-forward stays</li>
-            <li>Night walks and soundscapes that feel otherworldly</li>
+            <li>Guided jungle walks, canoe rides, and night wildlife excursions</li>
+            <li>River towns as gateways to rainforest lodges and reserves</li>
+            <li>Wildlife sightings: monkeys, caimans, birds, frogs, and more</li>
+            <li>Deep biodiversity in protected areas and indigenous territories</li>
           </ul>
 
           <div class="pill-row" aria-label="Amazon experience tags">
-            <span class="tag">Eco</span>
+            <span class="tag">Rainforest</span>
             <span class="tag">Wildlife</span>
-            <span class="tag">Adventure</span>
-            <span class="tag">Wellness</span>
+            <span class="tag">Lodges</span>
+            <span class="tag">Guided</span>
           </div>
         </div>
 
-        <div>
+        <div class="stack-right">
           <div class="mini">
             <h3>Best for</h3>
             <ul>
-              <li>Eco-tourists and nature lovers</li>
-              <li>Wildlife and photography enthusiasts</li>
-              <li>Travelers seeking immersive, guided experiences</li>
-              <li>People who want a true off-the-grid feel</li>
+              <li>First-time Amazon travelers (short gateway stays)</li>
+              <li>Nature lovers and wildlife-focused trips</li>
+              <li>Adventure: rafting, river days, jungle hikes</li>
+              <li>Longer immersive lodge-based journeys</li>
             </ul>
           </div>
 
           <div class="mini">
             <h3>Trip styles we will cover</h3>
             <ul>
-              <li>Lodge-based jungle itineraries</li>
-              <li>River-centered adventures</li>
-              <li>Family-friendly eco experiences</li>
-              <li>Comfort to luxury planning guidance</li>
+              <li>2–4 day Amazon intro trips</li>
+              <li>Multi-day lodge-based adventures</li>
+              <li>Family-friendly experiences and easy logistics</li>
+              <li>Photography and wildlife-heavy itineraries</li>
             </ul>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AMAZON DESTINATIONS (TILES) -->
+    <section class="section">
+      <h2>Amazon gateways and reserves</h2>
+      <p>
+        These four locations give you a strong foundation: two easy gateways from Quito, plus two iconic protected areas.
+        Each destination page will include planning notes, a gallery carousel, and the same unified weather card used across location pages.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Featured locations</h3>
+
+          <div class="places-grid" aria-label="Amazon destination tiles">
+            <a class="place-tile" href="/regions/amazon/tena/" aria-label="Open Tena page">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-Tena.jpg" alt="Tena">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Tena</div>
+                  <div class="place-meta">Main gateway from Quito. Rafting capital and easy jungle access.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+
+            <a class="place-tile" href="/regions/amazon/misahualli/" aria-label="Open Misahuallí page">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-Misahualli.jpg" alt="Misahuallí">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Misahuallí</div>
+                  <div class="place-meta">Small river town vibe, wildlife centers, relaxed Amazon intro.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+
+            <a class="place-tile" href="/regions/amazon/yasuni/" aria-label="Open Yasuní National Park page">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-Yasuni.jpg" alt="Yasuní National Park">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Yasuní National Park</div>
+                  <div class="place-meta">Deep Amazon, extreme biodiversity, experience-led lodge trips.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+
+            <a class="place-tile" href="/regions/amazon/cuyabeno/" aria-label="Open Cuyabeno Wildlife Reserve page">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-Cuyabeno.jpg" alt="Cuyabeno Wildlife Reserve">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Cuyabeno Wildlife Reserve</div>
+                  <div class="place-meta">Lagoon system, canoe exploration, excellent wildlife sightings.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+          </div>
+
+          <div class="pill-row" aria-label="Amazon destination tags">
+            <span class="tag">Gateway towns</span>
+            <span class="tag">Protected areas</span>
+            <span class="tag">Guided lodges</span>
+            <span class="tag">Wildlife</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>How to use this hub</h3>
+          <ul>
+            <li>If you have 2–4 days: start with Tena or Misahuallí for easy access</li>
+            <li>If you want deep immersion: choose Yasuní or Cuyabeno as your anchor</li>
+            <li>Expect guided schedules, early mornings, and nature-led pacing</li>
+            <li>Pack for humidity, rain, and muddy trails</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -664,29 +839,29 @@
     <section class="section">
       <h2>What to expect on this page next</h2>
       <p>
-        This Amazon hub will evolve into a complete guide with curated destinations, eco-lodge recommendations,
-        experience categories, and planning tips designed for clarity and safety.
+        We are building this region hub into a complete guide with lodge planning, trip length templates,
+        and clear decision-making for first-time vs deep Amazon travel.
       </p>
 
       <div class="grid">
         <div class="card">
           <h3>Planned sections</h3>
           <ul>
-            <li>Entry points and how to plan access</li>
-            <li>Top lodge areas and what they are best for</li>
-            <li>Wildlife and activity highlights</li>
-            <li>Suggested trip lengths and itinerary templates</li>
-            <li>Seasonality, packing, and planning checklist</li>
+            <li>How to choose: gateway stay vs lodge-based trip</li>
+            <li>Top experiences: canoeing, night walks, wildlife, culture</li>
+            <li>Suggested trip lengths (2–4 days vs 5–8 days)</li>
+            <li>Seasonality, costs, and packing checklist</li>
+            <li>Trusted partners and curated lodge recommendations</li>
           </ul>
         </div>
 
         <div class="card">
           <h3>Quick planning mindset</h3>
           <ul>
-            <li>Choose a lodge or base area first, then build activities around it</li>
-            <li>Expect guided experiences, it is the best way to explore</li>
-            <li>Pack light but intentional for humidity and rain</li>
-            <li>Prioritize safety, guides, and reputable operators</li>
+            <li>Choose depth first, then choose your entry point</li>
+            <li>Longer stays improve wildlife and immersion</li>
+            <li>Guided trips are the best way to experience the jungle safely</li>
+            <li>Keep expectations realistic, nature is unpredictable and that is the point</li>
           </ul>
         </div>
       </div>
@@ -730,8 +905,8 @@
     <section class="cta" aria-label="Newsletter future CTA">
       <h3>Coming soon: curated Amazon updates</h3>
       <p>
-        This region hub will expand into curated guides and a newsletter format where travelers discover experiences and trusted partners.
-        Next step: lodge areas, wildlife highlights, and experience categories, then a reusable gallery carousel.
+        This region hub will evolve into curated guides and a newsletter format where travelers discover experiences and trusted partners.
+        Next step: lodge decision guides, sample itineraries, and a reusable gallery carousel for each location page.
       </p>
     </section>
 
@@ -802,7 +977,7 @@
       });
     })();
 
-    // Amazon carousel (same behavior as Coast)
+    /* Amazon carousel */
     (function(){
       const root = document.getElementById("amazonCarousel");
       if(!root) return;
@@ -815,6 +990,7 @@
       const counter = root.querySelector("#amazonCarouselCounter");
 
       let index = 0;
+
       const AUTOPLAY_MS = 5000;
       const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -878,8 +1054,8 @@
 
       let startX = 0;
       let isDown = false;
-      const viewport = root.querySelector(".carousel-viewport");
 
+      const viewport = root.querySelector(".carousel-viewport");
       viewport.addEventListener("pointerdown", (e) => {
         isDown = true;
         startX = e.clientX;
