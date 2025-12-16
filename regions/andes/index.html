@@ -421,7 +421,7 @@
       width:10px;
       height:10px;
       border-right:2px solid #0f2f62;
-      border-bottom:2px solid #0f2f62;
+      border-bottom:2px solid #0f2b62;
       transform:rotate(-45deg);
       opacity:.9;
     }
@@ -635,6 +635,25 @@
       .hero{ min-height:60vh; }
       .cta{ border-radius:20px; }
       .carousel-btn{ width:40px; height:40px; }
+    }
+
+    /* === Added only for YouTube embed responsiveness (no layout changes elsewhere) === */
+    .video-embed{
+      margin-top:14px;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 14px 42px rgba(3,78,162,0.10);
+      background:#000;
+      position:relative;
+      aspect-ratio:16/9;
+    }
+    .video-embed iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
     }
   </style>
 </head>
@@ -899,6 +918,17 @@
             <li><strong>Half day Papallacta</strong> for hot springs and a quick reset</li>
             <li><strong>Chocó Andino</strong> as a nearby nature add on from Quito</li>
           </ul>
+
+          <!-- ✅ Added: YouTube embed section under "How to combine these" -->
+          <div class="video-embed" aria-label="Andes video">
+            <iframe
+              src="https://www.youtube.com/embed/LDqW-FBML0o"
+              title="MIDDLEMOST ANDES OF ECUADOR"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
         </div>
       </div>
     </section>
