@@ -287,18 +287,13 @@
 
     .selector-top{
       display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
+      flex-direction:column;
+      align-items:stretch;
+      justify-content:flex-start;
       gap:16px;
       padding:22px;
       border-bottom:1px solid rgba(0,0,0,0.06);
       background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      flex-direction:column;
-      align-items:stretch;
-    }
-
-    .selector-copy{
-      width:100%;
     }
 
     .selector-copy h3{
@@ -320,20 +315,12 @@
     }
 
     .selector-controls{
-      display:flex;
-      align-items:flex-end;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      align-self:flex-end;
-      flex-direction:column;
-    }
-
-    .control-row{
-      display:flex;
+      display:grid;
+      grid-template-columns:auto 260px;
+      gap:10px 12px;
+      justify-content:end;
       align-items:center;
-      gap:10px;
-      justify-content:flex-end;
+      align-self:flex-end;
     }
 
     .selector-controls label{
@@ -341,6 +328,8 @@
       color:#0f2f62;
       font-size:13px;
       letter-spacing:0.02em;
+      justify-self:end;
+      white-space:nowrap;
     }
 
     .selector-controls select{
@@ -356,7 +345,7 @@
       font-size:14px;
       cursor:pointer;
       outline:none;
-      min-width:280px;
+      width:260px;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
       background-image:
         linear-gradient(45deg, transparent 50%, #0f2f62 50%),
@@ -495,7 +484,7 @@
       font-weight:700;
     }
 
-    /* ===== CAROUSEL (GALLERY) - PLACEHOLDERS ===== */
+    /* ===== CAROUSEL (GALLERY) ===== */
     .carousel{
       margin-top:40px;
       background:#fff;
@@ -656,10 +645,15 @@
     @media(max-width:900px){
       .grid{grid-template-columns:1fr}
       .recs-grid{grid-template-columns:1fr}
-      .selector-top{flex-direction:column; align-items:flex-start;}
-      .selector-controls{justify-content:flex-start; align-self:stretch; align-items:flex-start;}
-      .control-row{width:100%; justify-content:flex-start;}
-      .selector-controls select{min-width:260px; width:100%;}
+      .selector-controls{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        justify-content:flex-start;
+        width:100%;
+      }
+      .selector-controls label{width:100%; justify-self:auto;}
+      .selector-controls select{width:100%; min-width:260px;}
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
     }
 
@@ -675,9 +669,7 @@
     @media (prefers-reduced-motion: reduce){
       .rec { transition:none !important; }
       .carousel-track{ transition:none !important; }
-    combined.
-
-Return ONLY the full updated HTML page as complete drop-in code. No explanations.
+    }
   </style>
 </head>
 
@@ -754,27 +746,23 @@ Return ONLY the full updated HTML page as complete drop-in code. No explanations
   <section class="section selector" aria-label="Culture selector">
     <div class="selector-top">
       <div class="selector-controls">
-        <div class="control-row">
-          <label for="ee_exp_nav">Experiences</label>
-          <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Navigate to an experience">
-            <option value="/experiences/adventure/">Adventure</option>
-            <option value="/experiences/nature/">Nature</option>
-            <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
-            <option value="/experiences/relaxation/">Relaxation</option>
-            <option value="/experiences/culinary/">Culinary</option>
-            <option value="/experiences/culture/" selected>Culture</option>
-          </select>
-        </div>
+        <label for="ee_exp_nav">Experiences</label>
+        <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Navigate to an experience">
+          <option value="/experiences/adventure/">Adventure</option>
+          <option value="/experiences/nature/">Nature</option>
+          <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
+          <option value="/experiences/relaxation/">Relaxation</option>
+          <option value="/experiences/culinary/">Culinary</option>
+          <option value="/experiences/culture/" selected>Culture</option>
+        </select>
 
-        <div class="control-row">
-          <label for="ee_cult_focus">Focus</label>
-          <select id="ee_cult_focus" name="ee_cult_focus" aria-label="Select culture focus">
-            <option value="markets" selected>Markets + artisan towns</option>
-            <option value="history">Historic cities + architecture</option>
-            <option value="communities">Indigenous communities + crafts</option>
-            <option value="festivals">Festivals + local traditions</option>
-          </select>
-        </div>
+        <label for="ee_cult_focus">Focus</label>
+        <select id="ee_cult_focus" name="ee_cult_focus" aria-label="Select culture focus">
+          <option value="markets" selected>Markets + artisan towns</option>
+          <option value="history">Historic cities + architecture</option>
+          <option value="communities">Indigenous communities + crafts</option>
+          <option value="festivals">Festivals + local traditions</option>
+        </select>
       </div>
 
       <div class="selector-copy">
