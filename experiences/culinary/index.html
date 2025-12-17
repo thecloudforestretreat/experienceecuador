@@ -1139,8 +1139,12 @@
 
   /* ===== Carousel (placeholders) ===== */
   (function(){
-    const track = document.getElementById("ee_car_track");
-    const viewport = document.getElementById("ee_car_viewport");
+    const carousel = document.querySelector("section.carousel");
+    if (!carousel) return;
+
+    const viewport = carousel.querySelector(".carousel-viewport");
+    const track = carousel.querySelector(".carousel-track");
+
     const prevBtn = document.getElementById("ee_car_prev");
     const nextBtn = document.getElementById("ee_car_next");
     const dotsWrap = document.getElementById("ee_car_dots");
@@ -1148,53 +1152,83 @@
 
     if (!track || !viewport) return;
 
-    const slides = Array.from(track.children);
+    const slides = Array.from(track.children).filter(el => el.classList.contains("carousel-slide"));
     const total = slides.length;
+    if (total === 0) return;
+
     let index = 0;
+    let timer = null;
+
     let startX = 0;
     let currentX = 0;
     let dragging = false;
+
+    const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     function setCounter(){
       if (!counter) return;
       counter.textContent = `${index + 1} / ${total}`;
     }
 
-    function setDots(){
+    let dots = [];
+    function buildDots(){
       if (!dotsWrap) return;
       dotsWrap.innerHTML = "";
+      dots = [];
       for (let i = 0; i < total; i++){
         const b = document.createElement("button");
         b.className = "dot" + (i === index ? " active" : "");
         b.type = "button";
         b.setAttribute("aria-label", `Go to slide ${i + 1}`);
-        b.addEventListener("click", () => goTo(i));
+        b.addEventListener("click", () => goTo(i, true));
         dotsWrap.appendChild(b);
+        dots.push(b);
       }
     }
 
-    function update(){
+    function render(){
       track.style.transform = `translateX(${-index * 100}%)`;
       setCounter();
-      setDots();
+      if (dots.length){
+        dots.forEach((d, i) => d.classList.toggle("active", i === index));
+      }
     }
 
-    function goTo(i){
+    function goTo(i, userAction){
       index = (i + total) % total;
-      update();
+      render();
+      if (userAction) restart();
     }
 
-    function next(){ goTo(index + 1); }
-    function prev(){ goTo(index - 1); }
+    function next(userAction){ goTo(index + 1, userAction); }
+    function prev(userAction){ goTo(index - 1, userAction); }
 
-    if (nextBtn) nextBtn.addEventListener("click", next);
-    if (prevBtn) prevBtn.addEventListener("click", prev);
+    function start(){
+      if (reduceMotion) return;
+      stop();
+      timer = setInterval(() => next(false), 4200);
+    }
 
+    function stop(){
+      if (timer) clearInterval(timer);
+      timer = null;
+    }
+
+    function restart(){
+      stop();
+      start();
+    }
+
+    if (nextBtn) nextBtn.addEventListener("click", () => next(true));
+    if (prevBtn) prevBtn.addEventListener("click", () => prev(true));
+
+    // Touch swipe
     viewport.addEventListener("touchstart", (e) => {
       if (e.touches.length !== 1) return;
       dragging = true;
       startX = e.touches[0].clientX;
       currentX = startX;
+      stop();
     }, { passive:true });
 
     viewport.addEventListener("touchmove", (e) => {
@@ -1207,17 +1241,23 @@
       const dx = currentX - startX;
       dragging = false;
       if (Math.abs(dx) > 45){
-        if (dx < 0) next();
-        else prev();
+        if (dx < 0) next(true);
+        else prev(true);
+      } else {
+        start();
       }
     });
 
-    viewport.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") next();
-      if (e.key === "ArrowLeft") prev();
-    });
+    // Pause on hover/focus (same behavior as your other pages)
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", start);
+    carousel.addEventListener("focusin", stop);
+    carousel.addEventListener("focusout", start);
 
-    update();
+    // Dots + init
+    buildDots();
+    render();
+    start();
   })();
 </script>
 
