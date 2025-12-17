@@ -178,48 +178,71 @@
       background:rgba(3,78,162,0.08);
     }
 
-    /* ===== HERO (TEXT) ===== */
+    /* ===== HERO ===== */
     .hero{
-      text-align:center;
-      padding:60px 18px 40px;
-      max-width:900px;
-      margin:0 auto;
+      position:relative;
+      width:100%;
+      min-height:64vh;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      background:url("/assets/images/EE-Experiences-Nature-01.jpg") center / cover no-repeat;
+      color:#fff;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.70));
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:1100px;
+      padding:54px 18px 34px;
+      text-align:left;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.38);
+      border:1px solid rgba(255,255,255,0.22);
+      font-weight:700;
+      letter-spacing:0.02em;
+      font-size:12.5px;
+      margin-bottom:14px;
+      backdrop-filter:blur(10px);
     }
 
     .hero h1{
+      margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      font-size:clamp(36px,4.8vw,56px);
       letter-spacing:-0.03em;
-      margin:0 0 12px;
+      font-size:clamp(40px,5.4vw,72px);
+      line-height:1.03;
     }
 
     .hero p{
-      max-width:70ch;
-      margin:0 auto;
-      color:var(--slate);
-      font-size:18px;
+      margin:0;
+      max-width:68ch;
+      font-size:clamp(15px,2vw,18px);
       line-height:1.65;
-    }
-
-    /* ===== IMAGE (ROUNDED) ===== */
-    .hero-image{
-      max-width:1100px;
-      margin:0 auto 42px;
-      padding:0 18px;
-    }
-
-    .hero-image img{
-      width:100%;
-      border-radius:24px;
-      box-shadow:0 22px 60px rgba(0,0,0,0.18);
+      color:rgba(255,255,255,0.92);
     }
 
     /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:0 18px 60px;
+      padding:36px 18px 60px;
     }
 
     .section{margin-bottom:36px}
@@ -645,6 +668,9 @@
       .grid{grid-template-columns:1fr}
       .recs-grid{grid-template-columns:1fr}
 
+      .hero-inner{ text-align:center; }
+      .hero p{ margin:0 auto; }
+
       /* Keep labels above selects on mobile (matches culinary/culture) */
       .selector-controls{
         display:flex;
@@ -722,17 +748,13 @@
   </div>
 </header>
 
-<section class="hero">
-  <h1>Nature</h1>
-  <p>
-    Ecuador is small, but the natural variety is massive: cloud forests, volcanoes, rainforest rivers, beaches, and islands.
-    Use the selector below to match your pace with the best-fit nature experiences and regions.
-  </p>
+<section class="hero" aria-label="Nature page hero">
+  <div class="hero-inner">
+    <div class="kicker">Experiences • Nature</div>
+    <h1>Nature</h1>
+    <p>Ecuador’s natural variety is massive: volcanoes, cloud forests, rainforest rivers, beaches, and islands. Choose your pace below and start with the best-fit regions.</p>
+  </div>
 </section>
-
-<div class="hero-image">
-  <img src="/assets/images/EE-Experiences-Nature-01.jpg" alt="Nature in Ecuador">
-</div>
 
 <main class="wrap">
 
