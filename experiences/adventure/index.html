@@ -357,9 +357,7 @@
       border-color:rgba(3,78,162,0.45);
     }
 
-    .selector-body{
-      padding:22px;
-    }
+    .selector-body{ padding:22px; }
 
     .recs-grid{
       display:grid;
@@ -480,9 +478,9 @@
       font-weight:700;
     }
 
-    /* ===== CAROUSEL (GALLERY) ===== */
+    /* ===== CAROUSEL (GALLERY) - REGIONS STYLE (MATCH NATURE) ===== */
     .carousel{
-      margin-top:18px;
+      margin-top:40px;
       background:#fff;
       border-radius:22px;
       border:1px solid rgba(0,0,0,0.06);
@@ -496,6 +494,7 @@
       overflow:hidden;
       width:100%;
       touch-action:pan-y;
+      outline:none;
     }
 
     .carousel-track{
@@ -568,6 +567,8 @@
       gap:8px;
       flex-wrap:wrap;
       align-items:center;
+      justify-content:center;
+      flex:1;
     }
 
     .dot{
@@ -655,7 +656,8 @@
     }
 
     @media (prefers-reduced-motion: reduce){
-      .rec, .exp-card, .carousel-track { transition:none !important; }
+      .rec { transition:none !important; }
+      .carousel-track{ transition:none !important; }
     }
   </style>
 </head>
@@ -796,55 +798,53 @@
     </div>
   </section>
 
-  <!-- Bottom Carousel (Regions-style) -->
-  <section class="section" aria-label="Adventure gallery">
-    <div class="carousel" id="adventureCarousel">
-      <button class="carousel-btn prev" type="button" aria-label="Previous slide">
-        <span aria-hidden="true"></span>
-      </button>
-      <button class="carousel-btn next" type="button" aria-label="Next slide">
-        <span aria-hidden="true"></span>
-      </button>
+  <!-- Bottom Carousel (MATCH NATURE IDs + SCRIPT) -->
+  <section class="carousel" aria-label="Adventure gallery carousel">
+    <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
+      <span aria-hidden="true"></span>
+    </button>
+    <button class="carousel-btn next" type="button" aria-label="Next slide" id="ee_car_next">
+      <span aria-hidden="true"></span>
+    </button>
 
-      <div class="carousel-viewport" aria-label="Carousel viewport">
-        <div class="carousel-track" aria-label="Carousel track">
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Adventure-1.jpg" alt="Adventure gallery image 1">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Adventure-2.jpg" alt="Adventure gallery image 2">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Adventure-3.jpg" alt="Adventure gallery image 3">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Adventure-4.jpg" alt="Adventure gallery image 4">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Adventure-5.jpg" alt="Adventure gallery image 5">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Adventure-6.jpg" alt="Adventure gallery image 6">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Adventure-7.jpg" alt="Adventure gallery image 7">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Adventure-8.jpg" alt="Adventure gallery image 8">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Adventure-9.jpg" alt="Adventure gallery image 9">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Adventure-10.jpg" alt="Adventure gallery image 10">
-          </div>
+    <div class="carousel-viewport" id="ee_car_viewport" aria-label="Carousel viewport" tabindex="0">
+      <div class="carousel-track" id="ee_car_track" aria-label="Carousel track">
+        <div class="carousel-slide">
+          <img src="/assets/images/EE-Carousel-Adventure-1.jpg" alt="Adventure gallery image 1">
+        </div>
+        <div class="carousel-slide">
+          <img src="/assets/images/EE-Carousel-Adventure-2.jpg" alt="Adventure gallery image 2">
+        </div>
+        <div class="carousel-slide">
+          <img src="/assets/images/EE-Carousel-Adventure-3.jpg" alt="Adventure gallery image 3">
+        </div>
+        <div class="carousel-slide">
+          <img src="/assets/images/EE-Carousel-Adventure-4.jpg" alt="Adventure gallery image 4">
+        </div>
+        <div class="carousel-slide">
+          <img src="/assets/images/EE-Carousel-Adventure-5.jpg" alt="Adventure gallery image 5">
+        </div>
+        <div class="carousel-slide">
+          <img src="/assets/images/EE-Carousel-Adventure-6.jpg" alt="Adventure gallery image 6">
+        </div>
+        <div class="carousel-slide">
+          <img src="/assets/images/EE-Carousel-Adventure-7.jpg" alt="Adventure gallery image 7">
+        </div>
+        <div class="carousel-slide">
+          <img src="/assets/images/EE-Carousel-Adventure-8.jpg" alt="Adventure gallery image 8">
+        </div>
+        <div class="carousel-slide">
+          <img src="/assets/images/EE-Carousel-Adventure-9.jpg" alt="Adventure gallery image 9">
+        </div>
+        <div class="carousel-slide">
+          <img src="/assets/images/EE-Carousel-Adventure-10.jpg" alt="Adventure gallery image 10">
         </div>
       </div>
+    </div>
 
-      <div class="carousel-ui" aria-label="Carousel controls">
-        <div class="carousel-dots" id="adventureDots" aria-label="Carousel dots"></div>
-        <div class="carousel-counter" id="adventureCounter" aria-label="Carousel counter">1 / 10</div>
-      </div>
+    <div class="carousel-ui">
+      <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
+      <div class="carousel-counter" id="ee_car_counter">1 / 10</div>
     </div>
   </section>
 
@@ -1123,57 +1123,51 @@
     }
   })();
 
-  /* ===== Carousel (Regions-style) ===== */
+  /* ===== Carousel (regions-style) - MATCH NATURE ===== */
   (function(){
-    const root = document.getElementById("adventureCarousel");
-    if (!root) return;
+    const track = document.getElementById("ee_car_track");
+    const viewport = document.getElementById("ee_car_viewport");
+    const prevBtn = document.getElementById("ee_car_prev");
+    const nextBtn = document.getElementById("ee_car_next");
+    const dotsWrap = document.getElementById("ee_car_dots");
+    const counter = document.getElementById("ee_car_counter");
 
-    const track = root.querySelector(".carousel-track");
-    const slides = Array.from(root.querySelectorAll(".carousel-slide"));
-    const prevBtn = root.querySelector(".carousel-btn.prev");
-    const nextBtn = root.querySelector(".carousel-btn.next");
-    const dotsWrap = document.getElementById("adventureDots");
-    const counter = document.getElementById("adventureCounter");
+    if (!track || !viewport) return;
 
-    let index = 0;
+    const slides = Array.from(track.children);
     const total = slides.length;
+    let index = 0;
+    let startX = 0;
+    let currentX = 0;
+    let dragging = false;
 
-    // Build dots
-    const dots = [];
-    if (dotsWrap) {
+    function setCounter(){
+      if (!counter) return;
+      counter.textContent = `${index + 1} / ${total}`;
+    }
+
+    function setDots(){
+      if (!dotsWrap) return;
       dotsWrap.innerHTML = "";
       for (let i = 0; i < total; i++){
         const b = document.createElement("button");
+        b.className = "dot" + (i === index ? " active" : "");
         b.type = "button";
-        b.className = "dot" + (i === 0 ? " active" : "");
-        b.setAttribute("aria-label", `Go to slide ${i+1}`);
+        b.setAttribute("aria-label", `Go to slide ${i + 1}`);
         b.addEventListener("click", () => goTo(i));
         dotsWrap.appendChild(b);
-        dots.push(b);
       }
     }
 
-    function updateUI(){
-      const x = -index * 100;
-      track.style.transform = `translateX(${x}%)`;
-
-      if (counter) counter.textContent = `${index + 1} / ${total}`;
-
-      dots.forEach((d, i) => {
-        if (i === index) d.classList.add("active");
-        else d.classList.remove("active");
-      });
-    }
-
-    function clamp(i){
-      if (i < 0) return total - 1;
-      if (i >= total) return 0;
-      return i;
+    function update(){
+      track.style.transform = `translateX(${-index * 100}%)`;
+      setCounter();
+      setDots();
     }
 
     function goTo(i){
-      index = clamp(i);
-      updateUI();
+      index = (i + total) % total;
+      update();
     }
 
     function next(){ goTo(index + 1); }
@@ -1182,39 +1176,36 @@
     if (nextBtn) nextBtn.addEventListener("click", next);
     if (prevBtn) prevBtn.addEventListener("click", prev);
 
-    // Keyboard support (when focused within carousel)
-    root.addEventListener("keydown", (e) => {
+    // Touch swipe
+    viewport.addEventListener("touchstart", (e) => {
+      if (e.touches.length !== 1) return;
+      dragging = true;
+      startX = e.touches[0].clientX;
+      currentX = startX;
+    }, { passive:true });
+
+    viewport.addEventListener("touchmove", (e) => {
+      if (!dragging || e.touches.length !== 1) return;
+      currentX = e.touches[0].clientX;
+    }, { passive:true });
+
+    viewport.addEventListener("touchend", () => {
+      if (!dragging) return;
+      const dx = currentX - startX;
+      dragging = false;
+      if (Math.abs(dx) > 45){
+        if (dx < 0) next();
+        else prev();
+      }
+    });
+
+    // Keyboard (viewport has tabindex="0")
+    viewport.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") next();
       if (e.key === "ArrowLeft") prev();
     });
 
-    // Touch swipe (simple)
-    let startX = 0;
-    let isDown = false;
-
-    const viewport = root.querySelector(".carousel-viewport");
-    if (viewport) {
-      viewport.addEventListener("pointerdown", (e) => {
-        isDown = true;
-        startX = e.clientX;
-        viewport.setPointerCapture(e.pointerId);
-      });
-
-      viewport.addEventListener("pointerup", (e) => {
-        if (!isDown) return;
-        isDown = false;
-        const dx = e.clientX - startX;
-        if (Math.abs(dx) > 45) {
-          if (dx < 0) next();
-          else prev();
-        }
-      });
-
-      viewport.addEventListener("pointercancel", () => { isDown = false; });
-      viewport.addEventListener("pointerleave", () => { isDown = false; });
-    }
-
-    updateUI();
+    update();
   })();
 </script>
 
