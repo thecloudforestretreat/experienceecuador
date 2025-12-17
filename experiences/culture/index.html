@@ -22,6 +22,13 @@
       --brand-blue:#034EA2;
       --charcoal:#1F1F1F;
       --slate:#6E7B8B;
+
+      --card:#ffffff;
+      --border:rgba(0,0,0,0.06);
+      --shadow:0 18px 55px rgba(3,78,162,0.12);
+
+      --chipBg: rgba(3,78,162,0.10);
+      --chipText:#0f2f62;
     }
 
     *{box-sizing:border-box}
@@ -241,6 +248,7 @@
       grid-template-columns:1.15fr 0.85fr;
       gap:28px;
       margin-top:18px;
+      align-items:start;
     }
 
     .card{
@@ -248,7 +256,7 @@
       border-radius:22px;
       padding:22px;
       border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      box-shadow:var(--shadow);
     }
 
     .card ul{
@@ -267,6 +275,346 @@
     }
 
     .mini + .mini{margin-top:16px}
+
+    /* ===== CULTURE SELECTOR ===== */
+    .selector{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .selector-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      padding:22px;
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+    }
+
+    .selector-copy h3{
+      margin:0 0 6px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:20px;
+      color:#0f2f62;
+    }
+
+    .selector-copy p{
+      margin:0;
+      color:#24324a;
+      opacity:0.92;
+      line-height:1.65;
+      font-size:14.8px;
+      max-width:70ch;
+    }
+
+    .selector-controls{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .selector-controls label{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+    }
+
+    .selector-controls select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-weight:700;
+      padding:11px 42px 11px 12px;
+      border-radius:14px;
+      font-size:14px;
+      cursor:pointer;
+      outline:none;
+      min-width:280px;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      background-image:
+        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
+        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%,
+        0 0;
+      background-size:6px 6px, 6px 6px, 100% 100%;
+      background-repeat:no-repeat;
+    }
+
+    .selector-controls select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .selector-body{ padding:22px; }
+
+    .recs-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:16px;
+    }
+
+    .rec{
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.06);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 16px 45px rgba(0,0,0,0.08);
+      transition:transform .2s ease, box-shadow .2s ease;
+      min-height:192px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .rec:hover{
+      transform:translateY(-5px);
+      box-shadow:0 24px 60px rgba(0,0,0,0.12);
+    }
+
+    .rec h4{
+      margin:0;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .rec p{
+      margin:0;
+      color:#2a2f36;
+      line-height:1.6;
+      font-size:14px;
+      opacity:0.95;
+      flex:1;
+    }
+
+    .chips{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      background:var(--chipBg);
+      color:var(--chipText);
+      font-weight:800;
+      font-size:12.5px;
+      letter-spacing:0.01em;
+      border:1px solid rgba(3,78,162,0.16);
+      transition:transform .15s ease, background .15s ease;
+    }
+
+    .chip:hover{
+      transform:translateY(-1px);
+      background:rgba(3,78,162,0.14);
+    }
+
+    .meta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:-2px;
+    }
+
+    .badge{
+      font-size:12px;
+      font-weight:800;
+      color:#0f2f62;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.14);
+      padding:6px 8px;
+      border-radius:999px;
+      line-height:1;
+    }
+
+    .rec-actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:4px;
+    }
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:900;
+      font-size:13px;
+      background:var(--brand-blue);
+      color:#fff;
+      border:0;
+      cursor:pointer;
+      min-width:120px;
+    }
+
+    .cta:hover{ filter:brightness(0.95); }
+
+    .hint{
+      font-size:12.5px;
+      color:#24324a;
+      opacity:0.85;
+      font-weight:700;
+    }
+
+    /* ===== CAROUSEL (GALLERY) - PLACEHOLDERS ===== */
+    .carousel{
+      margin-top:40px;
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
+
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
+
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .ph{
+      width:100%;
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:18px;
+      color:#0f2f62;
+      font-weight:900;
+      letter-spacing:-0.02em;
+      background:linear-gradient(180deg, rgba(3,78,162,0.08), rgba(3,78,162,0.02));
+    }
+    .ph small{
+      display:block;
+      margin-top:8px;
+      font-weight:800;
+      opacity:0.85;
+      letter-spacing:0.01em;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
+      flex:1;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
+    }
 
     /* ===== FOOTER ===== */
     .footer{
@@ -313,6 +661,10 @@
     /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{grid-template-columns:1fr}
+      .recs-grid{grid-template-columns:1fr}
+      .selector-top{flex-direction:column; align-items:flex-start;}
+      .selector-controls{justify-content:flex-start;}
+      .selector-controls select{min-width:260px; width:100%;}
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
     }
 
@@ -323,6 +675,11 @@
         left:50%;
         transform:translateX(-50%);
       }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .rec { transition:none !important; }
+      .carousel-track{ transition:none !important; }
     }
   </style>
 </head>
@@ -377,8 +734,7 @@
 <section class="hero">
   <h1>Culture</h1>
   <p>
-    Ecuador’s culture is shaped by indigenous traditions, colonial history,
-    regional identity, and daily life that still feels deeply connected to place.
+    Ecuador’s culture is shaped by indigenous traditions, colonial history, regional identity, and daily life that still feels deeply connected to place.
     Cultural travel here is about understanding how people live, celebrate, and preserve heritage.
   </p>
 </section>
@@ -392,10 +748,39 @@
   <section class="section">
     <h2>What this experience is about</h2>
     <p>
-      Cultural experiences in Ecuador range from markets and festivals
-      to artisan communities, historic towns, music, and everyday traditions.
+      Cultural experiences in Ecuador range from markets and festivals to artisan communities, historic towns, music, and everyday traditions.
       This category focuses on meaningful encounters rather than surface-level sightseeing.
     </p>
+  </section>
+
+  <!-- Culture Selector -->
+  <section class="section selector" aria-label="Culture selector">
+    <div class="selector-top">
+      <div class="selector-copy">
+        <h3>Pick your culture focus</h3>
+        <p>
+          Choose what you want to experience and we’ll show three strong starting points — plus the best region to build from.
+          Keep it practical and let the local rhythm guide the day.
+        </p>
+      </div>
+
+      <div class="selector-controls">
+        <label for="ee_cult_focus">Focus</label>
+        <select id="ee_cult_focus" name="ee_cult_focus" aria-label="Select culture focus">
+          <option value="markets" selected>Markets + artisan towns</option>
+          <option value="history">Historic cities + architecture</option>
+          <option value="communities">Indigenous communities + crafts</option>
+          <option value="festivals">Festivals + local traditions</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="selector-body">
+      <div class="recs-grid" id="ee_cult_recs" aria-live="polite"></div>
+      <div style="margin-top:12px;">
+        <span class="hint" id="ee_cult_hint">Tip: Start with a market. It’s the easiest way to feel a region fast.</span>
+      </div>
+    </div>
   </section>
 
   <section class="section grid">
@@ -433,6 +818,36 @@
     </div>
   </section>
 
+  <!-- Bottom Carousel (placeholders) -->
+  <section class="carousel" aria-label="Culture gallery carousel">
+    <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
+      <span aria-hidden="true"></span>
+    </button>
+    <button class="carousel-btn next" type="button" aria-label="Next slide" id="ee_car_next">
+      <span aria-hidden="true"></span>
+    </button>
+
+    <div class="carousel-viewport" id="ee_car_viewport">
+      <div class="carousel-track" id="ee_car_track">
+        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 1<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 2<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 3<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 4<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 5<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 6<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 7<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 8<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 9<small>Add image later</small></div></div>
+        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 10<small>Add image later</small></div></div>
+      </div>
+    </div>
+
+    <div class="carousel-ui">
+      <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
+      <div class="carousel-counter" id="ee_car_counter">1 / 10</div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="footer">
@@ -451,6 +866,7 @@
 </footer>
 
 <script>
+  /* ===== Dropdown behavior (site standard) ===== */
   (function () {
     const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -488,6 +904,290 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeAll();
     });
+  })();
+
+  /* ===== Culture Selector ===== */
+  (function(){
+    const focusEl = document.getElementById("ee_cult_focus");
+    const recsEl = document.getElementById("ee_cult_recs");
+    const hintEl = document.getElementById("ee_cult_hint");
+
+    const data = {
+      markets: {
+        hint: "Markets and artisan towns are the easiest entry point. Go early and keep the pace slow.",
+        recs: [
+          {
+            title: "Market morning + artisan browsing",
+            desc: "Start with a traditional market, then visit nearby artisan shops for textiles, ceramics, and small crafts.",
+            badges: ["Easy", "Half day"],
+            chips: [
+              { label: "Best in: Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "Explore Andes",
+            ctaHref: "/regions/andes/"
+          },
+          {
+            title: "Hands-on workshop (short + local)",
+            desc: "A small craft lesson or demonstration that keeps the focus on people and process, not souvenirs.",
+            badges: ["Easy", "2–3 hours"],
+            chips: [
+              { label: "Best in: Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "Explore Andes",
+            ctaHref: "/regions/andes/"
+          },
+          {
+            title: "Food + culture stroll (simple loop)",
+            desc: "Pair one local dish with a short walk through historic streets and daily-life neighborhoods.",
+            badges: ["Easy", "2–4 hours"],
+            chips: [
+              { label: "Good match: Andes", href: "/regions/andes/" },
+              { label: "Also: Coast", href: "/regions/coast/" }
+            ],
+            ctaLabel: "Explore Regions",
+            ctaHref: "/regions/"
+          }
+        ]
+      },
+
+      history: {
+        hint: "Historic cities are best done in layers: one neighborhood, one museum, one café. No rushing.",
+        recs: [
+          {
+            title: "Colonial city walk (one district)",
+            desc: "Choose one historic area and explore slowly with stops for viewpoints, plazas, and architecture details.",
+            badges: ["Easy", "2–4 hours"],
+            chips: [
+              { label: "Best in: Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "Explore Andes",
+            ctaHref: "/regions/andes/"
+          },
+          {
+            title: "Museum + café reset",
+            desc: "A simple culture day: one museum, then downtime. Works well on travel days.",
+            badges: ["Easy", "Half day"],
+            chips: [
+              { label: "Best in: Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "Explore Andes",
+            ctaHref: "/regions/andes/"
+          },
+          {
+            title: "Heritage town base + short excursions",
+            desc: "Stay in a scenic town and take short cultural outings without turning the day into a checklist.",
+            badges: ["Easy", "Full day"],
+            chips: [
+              { label: "Best in: Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "Explore Andes",
+            ctaHref: "/regions/andes/"
+          }
+        ]
+      },
+
+      communities: {
+        hint: "For community visits, prioritize respect and context. A good guide makes all the difference.",
+        recs: [
+          {
+            title: "Community visit + craft context",
+            desc: "Learn the story behind weaving, carving, or painting and how it connects to identity and daily life.",
+            badges: ["Moderate", "Half day"],
+            chips: [
+              { label: "Best in: Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "Explore Andes",
+            ctaHref: "/regions/andes/"
+          },
+          {
+            title: "Cultural exchange day (slow pace)",
+            desc: "A slower day focused on conversation, small demonstrations, and shared meals when available.",
+            badges: ["Moderate", "Full day"],
+            chips: [
+              { label: "Best in: Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "Explore Andes",
+            ctaHref: "/regions/andes/"
+          },
+          {
+            title: "Amazon community life (when appropriate)",
+            desc: "A deeper cultural angle built around local knowledge, river life, and sustainable traditions.",
+            badges: ["Moderate", "Full day"],
+            chips: [
+              { label: "Best in: Amazon", href: "/regions/amazon/" }
+            ],
+            ctaLabel: "Explore Amazon",
+            ctaHref: "/regions/amazon/"
+          }
+        ]
+      },
+
+      festivals: {
+        hint: "Festivals are seasonal. If there’s no festival, choose music + daily traditions instead.",
+        recs: [
+          {
+            title: "Festival day plan (light + flexible)",
+            desc: "Arrive early, keep expectations open, and focus on one or two key moments rather than everything.",
+            badges: ["Easy", "Half day–Full day"],
+            chips: [
+              { label: "Best in: Andes", href: "/regions/andes/" },
+              { label: "Also: Coast", href: "/regions/coast/" }
+            ],
+            ctaLabel: "Explore Regions",
+            ctaHref: "/regions/"
+          },
+          {
+            title: "Music, dance, and evening culture",
+            desc: "If timing aligns, build an evening around local music, small performances, and community energy.",
+            badges: ["Easy", "Evening"],
+            chips: [
+              { label: "Good match: Coast", href: "/regions/coast/" }
+            ],
+            ctaLabel: "Explore Coast",
+            ctaHref: "/regions/coast/"
+          },
+          {
+            title: "Traditions day (markets + rituals)",
+            desc: "A non-festival alternative that still feels cultural: markets, crafts, and local daily rhythms.",
+            badges: ["Easy", "Half day"],
+            chips: [
+              { label: "Best in: Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "Explore Andes",
+            ctaHref: "/regions/andes/"
+          }
+        ]
+      }
+    };
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function render(key){
+      const block = data[key] || data.markets;
+      if (hintEl) hintEl.textContent = block.hint || "";
+
+      const html = block.recs.map((r) => {
+        const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
+        const chips = (r.chips || []).map(c => `
+          <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
+        `).join("");
+
+        return `
+          <article class="rec">
+            <div class="meta">${badges}</div>
+            <h4>${escapeHtml(r.title)}</h4>
+            <p>${escapeHtml(r.desc)}</p>
+
+            <div class="chips">${chips}</div>
+
+            <div class="rec-actions">
+              <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
+              <span class="hint">Best-fit starting point</span>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      recsEl.innerHTML = html;
+    }
+
+    render(focusEl ? focusEl.value : "markets");
+
+    if (focusEl) {
+      focusEl.addEventListener("change", function(){
+        render(this.value);
+      });
+    }
+  })();
+
+  /* ===== Carousel (placeholders) ===== */
+  (function(){
+    const track = document.getElementById("ee_car_track");
+    const viewport = document.getElementById("ee_car_viewport");
+    const prevBtn = document.getElementById("ee_car_prev");
+    const nextBtn = document.getElementById("ee_car_next");
+    const dotsWrap = document.getElementById("ee_car_dots");
+    const counter = document.getElementById("ee_car_counter");
+
+    if (!track || !viewport) return;
+
+    const slides = Array.from(track.children);
+    const total = slides.length;
+    let index = 0;
+    let startX = 0;
+    let currentX = 0;
+    let dragging = false;
+
+    function setCounter(){
+      if (!counter) return;
+      counter.textContent = `${index + 1} / ${total}`;
+    }
+
+    function setDots(){
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = "";
+      for (let i = 0; i < total; i++){
+        const b = document.createElement("button");
+        b.className = "dot" + (i === index ? " active" : "");
+        b.type = "button";
+        b.setAttribute("aria-label", `Go to slide ${i + 1}`);
+        b.addEventListener("click", () => goTo(i));
+        dotsWrap.appendChild(b);
+      }
+    }
+
+    function update(){
+      track.style.transform = `translateX(${-index * 100}%)`;
+      setCounter();
+      setDots();
+    }
+
+    function goTo(i){
+      index = (i + total) % total;
+      update();
+    }
+
+    function next(){ goTo(index + 1); }
+    function prev(){ goTo(index - 1); }
+
+    if (nextBtn) nextBtn.addEventListener("click", next);
+    if (prevBtn) prevBtn.addEventListener("click", prev);
+
+    viewport.addEventListener("touchstart", (e) => {
+      if (e.touches.length !== 1) return;
+      dragging = true;
+      startX = e.touches[0].clientX;
+      currentX = startX;
+    }, { passive:true });
+
+    viewport.addEventListener("touchmove", (e) => {
+      if (!dragging || e.touches.length !== 1) return;
+      currentX = e.touches[0].clientX;
+    }, { passive:true });
+
+    viewport.addEventListener("touchend", () => {
+      if (!dragging) return;
+      const dx = currentX - startX;
+      dragging = false;
+      if (Math.abs(dx) > 45){
+        if (dx < 0) next();
+        else prev();
+      }
+    });
+
+    viewport.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    });
+
+    update();
   })();
 </script>
 
