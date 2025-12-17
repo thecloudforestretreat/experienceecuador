@@ -70,11 +70,7 @@
       line-height:1;
     }
 
-    .brand img{
-      width:28px;
-      height:28px;
-      object-fit:contain;
-    }
+    .brand img{width:28px;height:28px;object-fit:contain}
 
     /* ===== NAV ===== */
     .nav{
@@ -165,51 +161,74 @@
       color:#0f2f62;
     }
 
-    .dropdown-menu a:hover{
-      background:rgba(3,78,162,0.08);
-    }
-
+    .dropdown-menu a:hover{background:rgba(3,78,162,0.08)}
     .dropdown-menu a.active{
       color:var(--brand-blue);
       background:rgba(3,78,162,0.08);
     }
 
-    /* ===== HERO ===== */
+    /* ===== HERO (image behind title) ===== */
     .hero{
-      text-align:center;
-      padding:60px 18px 40px;
-      max-width:900px;
+      position:relative;
+      max-width:1100px;
       margin:0 auto;
+      padding:22px 18px 12px;
     }
 
-    .hero h1{
+    .hero-banner{
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 22px 60px rgba(0,0,0,0.18);
+      min-height:320px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)),
+        url("/assets/images/EE-Experiences-MustEats-Hero.jpg") center/cover no-repeat;
+    }
+
+    /* Placeholder note: swap the image path above when ready */
+
+    .hero-content{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:flex-end;
+      padding:22px;
+    }
+
+    .hero-title{
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      font-size:clamp(36px,4.8vw,56px);
+      font-size:clamp(34px,4.6vw,54px);
       letter-spacing:-0.03em;
-      margin:0 0 12px;
+      color:#fff;
+      margin:0;
+      line-height:1.05;
+      text-shadow:0 10px 30px rgba(0,0,0,0.35);
     }
 
-    .hero p{
-      max-width:74ch;
-      margin:0 auto;
-      color:var(--slate);
-      font-size:18px;
-      line-height:1.65;
+    .hero-actions{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
     }
 
-    /* ===== IMAGE (STANDARD HERO IMAGE BLOCK) ===== */
-    .hero-image{
-      max-width:1100px;
-      margin:0 auto 42px;
-      padding:0 18px;
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.25);
+      color:#fff;
+      background:rgba(255,255,255,0.12);
+      font-weight:800;
+      font-size:14px;
+      backdrop-filter:saturate(140%) blur(10px);
     }
 
-    .hero-image img{
-      width:100%;
-      border-radius:24px;
-      box-shadow:0 22px 60px rgba(0,0,0,0.18);
-    }
+    .btn:hover{background:rgba(255,255,255,0.18)}
 
     /* ===== CONTENT ===== */
     .wrap{
@@ -218,25 +237,6 @@
       padding:0 18px 60px;
     }
 
-    .section{margin-bottom:36px}
-
-    .section h2{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:24px;
-      margin:0 0 10px;
-      color:var(--brand-blue);
-    }
-
-    .section p{
-      max-width:85ch;
-      line-height:1.75;
-      font-size:15.8px;
-      color:#2a2f36;
-      margin:0;
-    }
-
-    /* ===== LOCKED LAYOUT: content-grid ===== */
     .content-grid{
       display:grid;
       grid-template-columns:1.15fr 0.85fr;
@@ -253,12 +253,21 @@
       box-shadow:0 18px 55px rgba(3,78,162,0.12);
     }
 
-    .card ul{
+    .card h2{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:22px;
+      margin:0 0 10px;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+    }
+
+    .card p{
       margin:0;
-      padding-left:18px;
       line-height:1.75;
-      font-size:14.8px;
-      color:#24324a;
+      font-size:15.8px;
+      color:#2a2f36;
+      max-width:85ch;
     }
 
     .mini{
@@ -270,171 +279,206 @@
 
     .mini + .mini{margin-top:16px}
 
-    .mini ul{
-      margin:0;
-      padding-left:18px;
-      line-height:1.75;
-      font-size:14.8px;
-      color:#24324a;
-    }
-
-    /* ===== Back button (extra content allowed outside locked blocks) ===== */
-    .back-row{
-      display:flex;
-      justify-content:flex-start;
-      margin:6px 0 10px;
-    }
-
-    .back-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 12px;
-      border-radius:12px;
+    .mini h3{
+      font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      font-size:14px;
+      margin:0 0 8px;
       color:#0f2f62;
-      background:rgba(3,78,162,0.08);
-      border:1px solid rgba(3,78,162,0.14);
+      letter-spacing:-0.02em;
+      font-size:18px;
     }
 
-    .back-btn:hover{background:rgba(3,78,162,0.12)}
-    .back-btn .arrow{font-size:16px;line-height:1}
+    .mini p{
+      margin:0 0 12px;
+      color:#24324a;
+      opacity:.95;
+      line-height:1.6;
+      font-size:14.6px;
+    }
 
-    /* ===== Carousel (auto-rotating, click arrows, swipe) ===== */
+    /* ===== MORE EXPERIENCES (tiles locked structure/classes) ===== */
+    .andes-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .andes-tile{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    .andes-tile:hover{
+      background:rgba(3,78,162,.07);
+      transform:translateY(-1px);
+    }
+
+    .andes-left{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
+    }
+
+    .andes-title{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:14.8px;
+      letter-spacing:-0.01em;
+      line-height:1.2;
+    }
+
+    .andes-sub{
+      color:#1f2b3f;
+      opacity:.9;
+      line-height:1.5;
+      font-size:13.4px;
+      max-width:60ch;
+    }
+
+    .andes-arrow{
+      flex:0 0 auto;
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,.18);
+      background:rgba(255,255,255,.75);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:2px;
+    }
+
+    .andes-arrow span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
+      transform:rotate(-45deg);
+      opacity:.85;
+    }
+
+    /* ===== MUST EATS GRID ===== */
+    .section-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:24px;
+      margin:0 0 14px;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+    }
+
+    .must-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:18px;
+    }
+
+    /* ===== CAROUSEL (simple, auto-rotate + buttons) ===== */
     .carousel{
-      margin-top:16px;
       position:relative;
       border-radius:18px;
       overflow:hidden;
       border:1px solid rgba(0,0,0,0.06);
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      height:220px;
+      box-shadow:0 14px 34px rgba(3,78,162,0.10);
+      background:#fff;
+      margin-top:14px;
     }
 
-    .carousel .track{
-      height:100%;
+    .carousel-track{
       display:flex;
-      transition:transform 500ms ease;
+      transition:transform .45s ease;
       will-change:transform;
     }
 
-    .carousel .slide{
+    .carousel-slide{
       min-width:100%;
-      height:100%;
-      position:relative;
+      aspect-ratio: 16 / 10;
       display:flex;
       align-items:center;
       justify-content:center;
-    }
-
-    .carousel img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
-    .carousel .ph{
-      width:100%;
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      background:linear-gradient(180deg, rgba(3,78,162,0.10), rgba(3,78,162,0.02));
+      color:#0f2f62;
+      font-weight:900;
+      letter-spacing:-0.01em;
+      font-size:14px;
       padding:14px;
       text-align:center;
-      color:#0f2f62;
-      font-weight:800;
-      font-family:Montserrat,Inter,sans-serif;
-      letter-spacing:-0.01em;
-      background:
-        linear-gradient(180deg, rgba(3,78,162,0.10), rgba(3,78,162,0.03)),
-        repeating-linear-gradient(45deg, rgba(3,78,162,0.14), rgba(3,78,162,0.14) 10px, rgba(255,255,255,0.0) 10px, rgba(255,255,255,0.0) 20px);
     }
 
-    .carousel .caption{
-      position:absolute;
-      left:12px;
-      right:12px;
-      bottom:12px;
-      padding:10px 12px;
-      border-radius:14px;
-      background:rgba(255,255,255,0.88);
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 12px 32px rgba(0,0,0,0.12);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      font-weight:800;
-      color:#0f2f62;
-      font-size:14px;
+    .carousel-slide span{
+      display:inline-block;
+      max-width:46ch;
+      line-height:1.4;
+      opacity:.95;
     }
 
-    .carousel .caption .hint{
-      font-weight:700;
-      color:var(--slate);
-      font-size:12.8px;
-      white-space:nowrap;
-    }
-
-    .carousel button{
+    .carousel-btn{
       position:absolute;
       top:50%;
       transform:translateY(-50%);
-      width:44px;
-      height:44px;
-      border-radius:50%;
-      border:1px solid rgba(0,0,0,0.10);
-      background:rgba(255,255,255,0.92);
-      box-shadow:0 14px 34px rgba(0,0,0,0.18);
-      cursor:pointer;
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(0,0,0,0.25);
+      backdrop-filter:saturate(140%) blur(8px);
+      color:#fff;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:18px;
-      font-weight:900;
-      color:#0f2f62;
+      cursor:pointer;
+      z-index:5;
     }
 
-    .carousel button:hover{background:#fff}
-    .carousel .prev{left:10px}
-    .carousel .next{right:10px}
+    .carousel-btn:hover{background:rgba(0,0,0,0.32)}
+    .carousel-btn.prev{left:10px}
+    .carousel-btn.next{right:10px}
 
-    /* ===== Region grid (four cards) ===== */
-    .regions-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:18px;
-      margin-top:18px;
+    .chev{
+      width:10px;height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+    .prev .chev{transform:rotate(135deg)}
+    .next .chev{transform:rotate(-45deg)}
+
+    .carousel-dots{
+      position:absolute;
+      bottom:10px;
+      left:0;
+      right:0;
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      z-index:6;
+      padding:0 12px;
     }
 
-    .region-card h3{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:20px;
-      margin:0 0 12px;
-      color:var(--brand-blue);
-      letter-spacing:-0.01em;
+    .dot{
+      width:8px;height:8px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.55);
+      border:1px solid rgba(0,0,0,0.10);
+      cursor:pointer;
     }
-
-    .note{
-      margin-top:14px;
-      padding:14px 14px;
-      border-radius:16px;
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      border:1px solid rgba(3,78,162,0.12);
-      color:#24324a;
-      font-size:13.8px;
-      line-height:1.6;
-    }
-
-    .note b{font-weight:800}
+    .dot.active{background:#fff}
 
     /* ===== FOOTER ===== */
     .footer{
       background:var(--brand-blue);
       color:#fff;
+      margin-top:54px;
     }
 
     .footer-inner{
@@ -470,14 +514,14 @@
     }
 
     .icon-btn img{width:34px;height:34px}
-
     footer small{font-size:13px;opacity:.9}
 
     /* ===== MOBILE ===== */
     @media(max-width:900px){
       .content-grid{grid-template-columns:1fr}
-      .regions-grid{grid-template-columns:1fr}
+      .must-grid{grid-template-columns:1fr}
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
+      .hero-banner{min-height:290px}
     }
 
     @media(max-width:620px){
@@ -487,7 +531,7 @@
         left:50%;
         transform:translateX(-50%);
       }
-      .carousel{height:200px}
+      .hero-content{padding:16px}
     }
   </style>
 </head>
@@ -539,278 +583,239 @@
   </div>
 </header>
 
-<section class="hero">
-  <h1>Must Eats</h1>
-  <p>
-    Ecuador’s regions are close on a map, but they taste completely different.
-    The Andes brings hearty comfort food built for cool mountain mornings.
-    The Coast is bold, citrusy, and seafood-forward.
-    The Amazon leans into native ingredients and traditional preparation.
-    The Galapagos keeps it simple with island flavors and fresh catch.
-    Try one must-eat in each region and you will feel how geography, climate, and culture shape every bite.
-  </p>
+<!-- HERO with image behind title -->
+<section class="hero" aria-label="Must Eats hero">
+  <div class="hero-banner" role="img" aria-label="Must Eats hero image placeholder">
+    <div class="hero-content">
+      <div>
+        <h1 class="hero-title">Must Eats</h1>
+        <div class="hero-actions" aria-label="Hero actions">
+          <a class="btn" href="/experiences/" aria-label="Back to Experiences">← Back to Experiences</a>
+          <a class="btn" href="/experiences/culinary/" aria-label="Back to Culinary">Culinary</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<div class="hero-image">
-  <!-- HERO IMAGE PLACEHOLDER: replace src with your hero image path -->
-  <img src="/assets/images/EE-Experiences-Culinary-MustEats-Hero-PLACEHOLDER.jpg" alt="Ecuador must-eats hero image">
-</div>
-
 <main class="wrap">
-
-  <!-- Extra content allowed outside locked blocks -->
-  <div class="back-row">
-    <a class="back-btn" href="/experiences/"><span class="arrow">←</span> Back to Experiences</a>
-  </div>
-
-  <!-- STANDARDIZED GRID (kept to the locked 1.15 / 0.85 layout) -->
-  <section class="section content-grid">
-    <div>
-      <div class="card">
-        <h2>What this page is best for</h2>
-        <p>
-          If you want the fastest way to understand Ecuador, eat by region.
-          You will notice the same building blocks show up across the country, like plantain, potatoes, corn, fresh herbs,
-          and citrus, but each ecosystem transforms them into something totally different.
-          Use this page to pick a region, choose one must-eat, and build the rest of your day around it.
-        </p>
-      </div>
-
-      <div class="card" style="margin-top:16px;">
-        <h2>Simple planning flow</h2>
-        <p>
-          1) Pick a region you are visiting.
-          2) Choose one dish as your anchor.
-          3) Add a second bite that contrasts it, like soup vs roasted, or citrus vs smoky.
-          4) Save the final decision for when you see the menu and the catch of the day.
-          In the future, each dish will include where to try it and featured spots you can book or visit.
-        </p>
-
-        <!-- STANDARDIZED CAROUSEL BLOCK (kept directly under the planning card) -->
-        <div class="carousel" data-carousel="page-intro" aria-label="Must Eats highlights carousel">
-          <div class="track">
-            <div class="slide">
-              <div class="ph">Carousel image placeholder 1<br>Andes comfort</div>
-              <div class="caption"><span>Andes comfort</span><span class="hint">auto-rotates</span></div>
-            </div>
-            <div class="slide">
-              <div class="ph">Carousel image placeholder 2<br>Coast citrus and seafood</div>
-              <div class="caption"><span>Coast citrus and seafood</span><span class="hint">click arrows</span></div>
-            </div>
-            <div class="slide">
-              <div class="ph">Carousel image placeholder 3<br>Amazon tradition</div>
-              <div class="caption"><span>Amazon tradition</span><span class="hint">swipe on mobile</span></div>
-            </div>
-            <div class="slide">
-              <div class="ph">Carousel image placeholder 4<br>Galapagos fresh catch</div>
-              <div class="caption"><span>Galapagos fresh catch</span><span class="hint">tap to explore</span></div>
-            </div>
-          </div>
-          <button class="prev" type="button" aria-label="Previous slide">‹</button>
-          <button class="next" type="button" aria-label="Next slide">›</button>
-        </div>
-      </div>
+  <!-- Top grid: left info box + right experiences tiles -->
+  <section class="content-grid" aria-label="Intro and more experiences">
+    <div class="card">
+      <h2>How Ecuador’s regions taste different</h2>
+      <p>
+        Ecuador is small, but the food changes fast. The Andes lean into comfort and tradition, built around potatoes,
+        pork, and hearty sauces. The Coast is bright and ocean-forward with citrus, plantain, and seafood that shows up
+        everywhere. The Amazon brings smoky, herbal flavors and ingredients you rarely see outside the rainforest.
+        In the Galapagos, simplicity wins: fresh fish, island-style sides, and whatever the ocean delivered that day.
+        Pick a region, try at least one dish, and you’ll understand the local culture instantly.
+      </p>
     </div>
 
-    <div>
-      <div class="mini">
-        <h2>Best use of time</h2>
-        <ul>
-          <li>Short on time: pick one dish per region and commit</li>
-          <li>Food-first day: do market or street food first, then sit-down meal</li>
-          <li>Group travel: split dishes and share so everyone compares flavors</li>
-          <li>Ask locals: what is the one dish they would serve a first-timer</li>
-        </ul>
-      </div>
+    <div class="mini">
+      <h3>More Experiences</h3>
+      <p>Explore the other experience styles and build your trip around what you love most.</p>
 
-      <!-- OTHER EXPERIENCES (standardized mini block on the right) -->
-      <div class="mini">
-        <h2>Other experiences</h2>
-        <ul>
-          <li><a href="/experiences/adventure/">Adventure</a></li>
-          <li><a href="/experiences/nature/">Nature</a></li>
-          <li><a href="/experiences/wildlife-birding/">Wildlife &amp; Birding</a></li>
-          <li><a href="/experiences/relaxation/">Relaxation</a></li>
-          <li><a href="/experiences/culinary/">Culinary</a></li>
-          <li><a href="/experiences/culture/">Culture</a></li>
-        </ul>
+      <div class="andes-grid" aria-label="Experience links">
+        <a class="andes-tile" href="/experiences/adventure/" aria-label="Open Adventure page">
+          <div class="andes-left">
+            <div class="andes-title">Adventure</div>
+            <div class="andes-sub">Big days, big views, and outdoor adrenaline across Ecuador.</div>
+          </div>
+          <div class="andes-arrow" aria-hidden="true"><span></span></div>
+        </a>
+
+        <a class="andes-tile" href="/experiences/nature/" aria-label="Open Nature page">
+          <div class="andes-left">
+            <div class="andes-title">Nature</div>
+            <div class="andes-sub">Cloud forests, waterfalls, volcano routes, and wild landscapes.</div>
+          </div>
+          <div class="andes-arrow" aria-hidden="true"><span></span></div>
+        </a>
+
+        <a class="andes-tile" href="/experiences/wildlife-birding/" aria-label="Open Wildlife & Birding page">
+          <div class="andes-left">
+            <div class="andes-title">Wildlife &amp; Birding</div>
+            <div class="andes-sub">Iconic species, expert guides, and easy access to biodiversity.</div>
+          </div>
+          <div class="andes-arrow" aria-hidden="true"><span></span></div>
+        </a>
+
+        <a class="andes-tile" href="/experiences/relaxation/" aria-label="Open Relaxation page">
+          <div class="andes-left">
+            <div class="andes-title">Relaxation</div>
+            <div class="andes-sub">Hot springs, beach resets, and quiet stays with comfort.</div>
+          </div>
+          <div class="andes-arrow" aria-hidden="true"><span></span></div>
+        </a>
+
+        <a class="andes-tile" href="/experiences/culture/" aria-label="Open Culture page">
+          <div class="andes-left">
+            <div class="andes-title">Culture</div>
+            <div class="andes-sub">Markets, heritage towns, festivals, and everyday traditions.</div>
+          </div>
+          <div class="andes-arrow" aria-hidden="true"><span></span></div>
+        </a>
+
+        <a class="andes-tile" href="/experiences/" aria-label="Open All Experiences page">
+          <div class="andes-left">
+            <div class="andes-title">All Experiences</div>
+            <div class="andes-sub">Browse the full set and choose your trip style.</div>
+          </div>
+          <div class="andes-arrow" aria-hidden="true"><span></span></div>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Four region cards with carousels (kept outside the standardized blocks) -->
-  <section class="section">
-    <h2>Top must eats by region</h2>
-    <p>
-      Each region has its own logic.
-      The Andes leans warm and filling.
-      The Coast leans bright and ocean-driven.
-      The Amazon leans smoky, wrapped, and ingredient-forward.
-      The Galapagos leans simple and fresh.
-      Try the same ingredient across regions and you will see how Ecuador’s geography changes everything.
-    </p>
+  <!-- Top must eats by region -->
+  <section style="margin-top:34px" aria-label="Top must eats by region">
+    <h2 class="section-title">Top must eats by region</h2>
 
-    <div class="regions-grid">
-
-      <div class="card region-card">
-        <h3>Andes</h3>
+    <div class="must-grid">
+      <!-- ANDES -->
+      <div class="card" aria-label="Andes must eats">
+        <h2>Andes</h2>
+        <p>Comfort-forward food built for high elevation: warm soups, pork specialties, and classic sides.</p>
 
         <div class="carousel" data-carousel="andes" aria-label="Andes dishes carousel">
-          <div class="track">
-            <div class="slide">
-              <div class="ph">Andes dish image 1<br>Locro de papa</div>
-              <div class="caption"><span>Locro de papa</span><span class="hint">auto-rotates</span></div>
-            </div>
-            <div class="slide">
-              <div class="ph">Andes dish image 2<br>Fritada + llapingachos</div>
-              <div class="caption"><span>Fritada + llapingachos</span><span class="hint">click arrows</span></div>
-            </div>
-            <div class="slide">
-              <div class="ph">Andes dish image 3<br>Hornado</div>
-              <div class="caption"><span>Hornado</span><span class="hint">swipe on mobile</span></div>
-            </div>
+          <button class="carousel-btn prev" type="button" aria-label="Previous slide"><span class="chev" aria-hidden="true"></span></button>
+          <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
+
+          <div class="carousel-track">
+            <div class="carousel-slide"><span>Locro de papa image placeholder</span></div>
+            <div class="carousel-slide"><span>Fritada + llapingachos image placeholder</span></div>
+            <div class="carousel-slide"><span>Hornado image placeholder</span></div>
           </div>
-          <button class="prev" type="button" aria-label="Previous slide">‹</button>
-          <button class="next" type="button" aria-label="Next slide">›</button>
+
+          <div class="carousel-dots" aria-label="Carousel dots"></div>
         </div>
 
-        <ul>
-          <li>Locro de papa</li>
-          <li>Fritada + llapingachos</li>
-          <li>Hornado</li>
-        </ul>
-
-        <div class="note"><b>Coming soon:</b> where to try it, recommended towns, and featured local spots.</div>
+        <p style="margin-top:14px">
+          <strong>Must-try:</strong> Locro de papa · Fritada + llapingachos · Hornado
+        </p>
       </div>
 
-      <div class="card region-card">
-        <h3>Coast</h3>
+      <!-- COAST -->
+      <div class="card" aria-label="Coast must eats">
+        <h2>Coast</h2>
+        <p>Bright, citrusy, and seafood-heavy with plantain everywhere. Perfect for quick, flavorful meals.</p>
 
         <div class="carousel" data-carousel="coast" aria-label="Coast dishes carousel">
-          <div class="track">
-            <div class="slide">
-              <div class="ph">Coast dish image 1<br>Ceviche ecuatoriano</div>
-              <div class="caption"><span>Ceviche ecuatoriano</span><span class="hint">auto-rotates</span></div>
-            </div>
-            <div class="slide">
-              <div class="ph">Coast dish image 2<br>Encebollado</div>
-              <div class="caption"><span>Encebollado</span><span class="hint">click arrows</span></div>
-            </div>
-            <div class="slide">
-              <div class="ph">Coast dish image 3<br>Bolón de verde</div>
-              <div class="caption"><span>Bolón de verde</span><span class="hint">swipe on mobile</span></div>
-            </div>
+          <button class="carousel-btn prev" type="button" aria-label="Previous slide"><span class="chev" aria-hidden="true"></span></button>
+          <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
+
+          <div class="carousel-track">
+            <div class="carousel-slide"><span>Ceviche ecuatoriano image placeholder</span></div>
+            <div class="carousel-slide"><span>Encebollado image placeholder</span></div>
+            <div class="carousel-slide"><span>Bolón de verde image placeholder</span></div>
           </div>
-          <button class="prev" type="button" aria-label="Previous slide">‹</button>
-          <button class="next" type="button" aria-label="Next slide">›</button>
+
+          <div class="carousel-dots" aria-label="Carousel dots"></div>
         </div>
 
-        <ul>
-          <li>Ceviche ecuatoriano</li>
-          <li>Encebollado</li>
-          <li>Bolón de verde</li>
-        </ul>
-
-        <div class="note"><b>Coming soon:</b> where to try it, best towns for each dish, and featured local spots.</div>
+        <p style="margin-top:14px">
+          <strong>Must-try:</strong> Ceviche ecuatoriano · Encebollado · Bolón de verde
+        </p>
       </div>
 
-      <div class="card region-card">
-        <h3>Amazon</h3>
+      <!-- AMAZON -->
+      <div class="card" aria-label="Amazon must eats">
+        <h2>Amazon</h2>
+        <p>Smoky, herbal, and rainforest-rooted. Dishes feel close to the forest and the river.</p>
 
         <div class="carousel" data-carousel="amazon" aria-label="Amazon dishes carousel">
-          <div class="track">
-            <div class="slide">
-              <div class="ph">Amazon dish image 1<br>Maito</div>
-              <div class="caption"><span>Maito</span><span class="hint">auto-rotates</span></div>
-            </div>
-            <div class="slide">
-              <div class="ph">Amazon dish image 2<br>Guayusa tea</div>
-              <div class="caption"><span>Guayusa tea</span><span class="hint">click arrows</span></div>
-            </div>
-            <div class="slide">
-              <div class="ph">Amazon dish image 3<br>Chocolate &amp; cacao drinks</div>
-              <div class="caption"><span>Chocolate &amp; cacao drinks</span><span class="hint">swipe on mobile</span></div>
-            </div>
+          <button class="carousel-btn prev" type="button" aria-label="Previous slide"><span class="chev" aria-hidden="true"></span></button>
+          <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
+
+          <div class="carousel-track">
+            <div class="carousel-slide"><span>Maito image placeholder</span></div>
+            <div class="carousel-slide"><span>Guayusa tea image placeholder</span></div>
+            <div class="carousel-slide"><span>Chocolate + cacao drinks image placeholder</span></div>
           </div>
-          <button class="prev" type="button" aria-label="Previous slide">‹</button>
-          <button class="next" type="button" aria-label="Next slide">›</button>
+
+          <div class="carousel-dots" aria-label="Carousel dots"></div>
         </div>
 
-        <ul>
-          <li>Maito</li>
-          <li>Guayusa tea</li>
-          <li>Chocolate and cacao drinks</li>
-        </ul>
-
-        <div class="note"><b>Coming soon:</b> where to try it, recommended lodges, and community-led experiences.</div>
+        <p style="margin-top:14px">
+          <strong>Must-try:</strong> Maito · Guayusa tea · Chocolate and cacao drinks
+        </p>
       </div>
 
-      <div class="card region-card">
-        <h3>Galapagos</h3>
+      <!-- GALAPAGOS -->
+      <div class="card" aria-label="Galapagos must eats">
+        <h2>Galapagos</h2>
+        <p>Island simplicity with a seafood focus. Fresh fish, classic sides, and ocean-first flavor.</p>
 
         <div class="carousel" data-carousel="galapagos" aria-label="Galapagos dishes carousel">
-          <div class="track">
-            <div class="slide">
-              <div class="ph">Galapagos dish image 1<br>Arroz marinero</div>
-              <div class="caption"><span>Arroz marinero</span><span class="hint">auto-rotates</span></div>
-            </div>
-            <div class="slide">
-              <div class="ph">Galapagos dish image 2<br>Fresh catch of the day</div>
-              <div class="caption"><span>Fresh catch of the day</span><span class="hint">click arrows</span></div>
-            </div>
-            <div class="slide">
-              <div class="ph">Galapagos dish image 3<br>Patacones</div>
-              <div class="caption"><span>Patacones</span><span class="hint">swipe on mobile</span></div>
-            </div>
+          <button class="carousel-btn prev" type="button" aria-label="Previous slide"><span class="chev" aria-hidden="true"></span></button>
+          <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
+
+          <div class="carousel-track">
+            <div class="carousel-slide"><span>Arroz marinero image placeholder</span></div>
+            <div class="carousel-slide"><span>Fresh catch of the day image placeholder</span></div>
+            <div class="carousel-slide"><span>Patacones image placeholder</span></div>
           </div>
-          <button class="prev" type="button" aria-label="Previous slide">‹</button>
-          <button class="next" type="button" aria-label="Next slide">›</button>
+
+          <div class="carousel-dots" aria-label="Carousel dots"></div>
         </div>
 
-        <ul>
-          <li>Arroz marinero</li>
-          <li>Fresh catch of the day</li>
-          <li>Patacones</li>
-        </ul>
-
-        <div class="note"><b>Coming soon:</b> where to try it, best islands for each dish, and featured local spots.</div>
+        <p style="margin-top:14px">
+          <strong>Must-try:</strong> Arroz marinero · Fresh catch of the day · Patacones
+        </p>
       </div>
-
     </div>
   </section>
 
-  <!-- Feeling brave (now includes a carousel above the bites) -->
-  <section class="section">
-    <h2>Feeling brave</h2>
-    <p>
-      These are traditional foods that can be polarizing, but they are deeply rooted in place.
-      If you try them, do it with context, respect, and a great local recommendation.
-      This section will later include where to try it and trusted preparation styles.
-    </p>
+  <!-- Feeling brave (same size as region cards) -->
+  <section style="margin-top:34px" aria-label="Feeling brave section">
+    <h2 class="section-title">Feeling brave</h2>
 
-    <div class="card">
-      <div class="carousel" data-carousel="brave" aria-label="Feeling brave carousel">
-        <div class="track">
-          <div class="slide">
-            <div class="ph">Challenge dish image 1<br>Cuy asado</div>
-            <div class="caption"><span>Cuy asado</span><span class="hint">auto-rotates</span></div>
+    <div class="must-grid">
+      <div class="card" aria-label="Challenge bites">
+        <h2>Challenge bites</h2>
+        <p>
+          These are classic “try it once” foods you’ll see in Ecuador. If you want a story, order one and lean in.
+          In the future, this section can include “where to try it” and trusted spots.
+        </p>
+
+        <div class="carousel" data-carousel="brave" aria-label="Feeling brave carousel">
+          <button class="carousel-btn prev" type="button" aria-label="Previous slide"><span class="chev" aria-hidden="true"></span></button>
+          <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
+
+          <div class="carousel-track">
+            <div class="carousel-slide"><span>Cuy asado image placeholder</span></div>
+            <div class="carousel-slide"><span>Chontacuro image placeholder</span></div>
           </div>
-          <div class="slide">
-            <div class="ph">Challenge dish image 2<br>Chontacuro</div>
-            <div class="caption"><span>Chontacuro</span><span class="hint">click arrows</span></div>
-          </div>
+
+          <div class="carousel-dots" aria-label="Carousel dots"></div>
         </div>
-        <button class="prev" type="button" aria-label="Previous slide">‹</button>
-        <button class="next" type="button" aria-label="Next slide">›</button>
+
+        <p style="margin-top:14px">
+          <strong>Must-try:</strong> Cuy asado · Chontacuro
+        </p>
       </div>
 
-      <h2 style="margin-top:16px;">Must-try challenge bites</h2>
-      <ul>
-        <li>Cuy asado</li>
-        <li>Chontacuro</li>
-      </ul>
+      <!-- empty card placeholder to keep same grid rhythm on desktop (optional) -->
+      <div class="card" aria-label="Coming soon">
+        <h2>Where to try it (coming soon)</h2>
+        <p>
+          This space is reserved for curated recommendations: neighborhoods, markets, restaurants, and
+          “best version of the dish” picks by region.
+        </p>
+        <div class="carousel" data-carousel="comingsoon" aria-label="Where to try it carousel placeholder">
+          <button class="carousel-btn prev" type="button" aria-label="Previous slide"><span class="chev" aria-hidden="true"></span></button>
+          <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
 
-      <div class="note"><b>Coming soon:</b> best places to try it, trusted guides, and recommended preparation styles.</div>
+          <div class="carousel-track">
+            <div class="carousel-slide"><span>Market photo placeholder</span></div>
+            <div class="carousel-slide"><span>Restaurant photo placeholder</span></div>
+            <div class="carousel-slide"><span>Street food photo placeholder</span></div>
+          </div>
+
+          <div class="carousel-dots" aria-label="Carousel dots"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -840,7 +845,7 @@
 </footer>
 
 <script>
-  // ===== Dropdowns (same behavior as your other pages) =====
+  // Dropdowns (same behavior as your other pages)
   (function () {
     const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -880,79 +885,78 @@
     });
   })();
 
-  // ===== Auto-rotating carousels (click arrows or swipe) =====
+  // Carousels: auto-rotate + prev/next + dots
   (function () {
-    const INTERVAL_MS = 4200;
+    const carousels = document.querySelectorAll('.carousel');
 
     function setupCarousel(root) {
-      const track = root.querySelector('.track');
-      const slides = Array.from(root.querySelectorAll('.slide'));
-      const prevBtn = root.querySelector('.prev');
-      const nextBtn = root.querySelector('.next');
+      const track = root.querySelector('.carousel-track');
+      const slides = Array.from(root.querySelectorAll('.carousel-slide'));
+      const prevBtn = root.querySelector('.carousel-btn.prev');
+      const nextBtn = root.querySelector('.carousel-btn.next');
+      const dotsWrap = root.querySelector('.carousel-dots');
 
-      if (!track || slides.length === 0) return;
+      if (!track || slides.length === 0 || !prevBtn || !nextBtn || !dotsWrap) return;
 
       let index = 0;
       let timer = null;
 
+      // build dots
+      dotsWrap.innerHTML = '';
+      const dots = slides.map((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'dot' + (i === 0 ? ' active' : '');
+        d.type = 'button';
+        d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        d.addEventListener('click', () => goTo(i, true));
+        dotsWrap.appendChild(d);
+        return d;
+      });
+
       function render() {
-        track.style.transform = `translateX(-${index * 100}%)`;
+        track.style.transform = 'translateX(' + (-index * 100) + '%)';
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
       }
 
-      function goNext() {
-        index = (index + 1) % slides.length;
+      function goTo(i, userAction) {
+        index = (i + slides.length) % slides.length;
         render();
+        if (userAction) restart();
       }
 
-      function goPrev() {
-        index = (index - 1 + slides.length) % slides.length;
-        render();
-      }
+      function next(userAction){ goTo(index + 1, userAction); }
+      function prev(userAction){ goTo(index - 1, userAction); }
 
       function start() {
         stop();
-        timer = window.setInterval(goNext, INTERVAL_MS);
+        timer = setInterval(() => next(false), 4200);
       }
 
       function stop() {
-        if (timer) window.clearInterval(timer);
+        if (timer) clearInterval(timer);
         timer = null;
       }
 
-      if (nextBtn) nextBtn.addEventListener('click', () => { stop(); goNext(); start(); });
-      if (prevBtn) prevBtn.addEventListener('click', () => { stop(); goPrev(); start(); });
+      function restart() {
+        stop();
+        start();
+      }
 
+      nextBtn.addEventListener('click', () => next(true));
+      prevBtn.addEventListener('click', () => prev(true));
+
+      // pause on hover / focus
       root.addEventListener('mouseenter', stop);
       root.addEventListener('mouseleave', start);
       root.addEventListener('focusin', stop);
       root.addEventListener('focusout', start);
 
-      let startX = 0;
-      let dx = 0;
-      root.addEventListener('touchstart', (e) => {
-        if (!e.touches || e.touches.length !== 1) return;
-        startX = e.touches[0].clientX;
-        dx = 0;
-        stop();
-      }, { passive:true });
-
-      root.addEventListener('touchmove', (e) => {
-        if (!e.touches || e.touches.length !== 1) return;
-        dx = e.touches[0].clientX - startX;
-      }, { passive:true });
-
-      root.addEventListener('touchend', () => {
-        const THRESH = 40;
-        if (dx > THRESH) goPrev();
-        else if (dx < -THRESH) goNext();
-        start();
-      });
-
+      // init
       render();
       start();
     }
 
-    document.querySelectorAll('.carousel').forEach(setupCarousel);
+    carousels.forEach(setupCarousel);
   })();
 </script>
 
