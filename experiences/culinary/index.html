@@ -761,12 +761,23 @@
       <div class="selector-copy">
         <h3>Pick your food focus</h3>
         <p>
-          Choose what you want to taste and we’ll show three strong starting points — plus the best region to build from.
+          Choose what you want to taste and we’ll show three strong starting points plus the best region to build from.
           Keep it simple and let the meals do the travel planning.
         </p>
       </div>
 
       <div class="selector-controls">
+        <!-- Universal Experiences quick nav (new) -->
+        <label for="ee_exp_nav">Experiences</label>
+        <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Navigate to an experience">
+          <option value="/experiences/adventure/">Adventure</option>
+          <option value="/experiences/nature/">Nature</option>
+          <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
+          <option value="/experiences/relaxation/">Relaxation</option>
+          <option value="/experiences/culinary/" selected>Culinary</option>
+          <option value="/experiences/culture/">Culture</option>
+        </select>
+
         <label for="ee_cul_focus">Focus</label>
         <select id="ee_cul_focus" name="ee_cul_focus" aria-label="Select culinary focus">
           <option value="markets" selected>Markets + local classics</option>
@@ -786,15 +797,26 @@
   </section>
 
   <section class="section grid">
-    <div class="card">
-      <h2>Signature culinary experiences</h2>
-      <ul>
-        <li>Coastal seafood and ceviche culture</li>
-        <li>Highland markets and traditional dishes</li>
-        <li>Amazon ingredients and indigenous food traditions</li>
-        <li>Coffee, cacao, and chocolate experiences</li>
-        <li>Local kitchens, bakeries, and family-run restaurants</li>
-      </ul>
+    <div>
+      <div class="card">
+        <h2>Signature culinary experiences</h2>
+        <ul>
+          <li>Coastal seafood and ceviche culture</li>
+          <li>Highland markets and traditional dishes</li>
+          <li>Amazon ingredients and indigenous food traditions</li>
+          <li>Coffee, cacao, and chocolate experiences</li>
+          <li>Local kitchens, bakeries, and family-run restaurants</li>
+        </ul>
+      </div>
+
+      <!-- Must Eats intro (new) -->
+      <div class="card" style="margin-top:16px;">
+        <h2>Must Eats</h2>
+        <p style="margin:0 0 12px; color:#24324a; line-height:1.7; font-size:14.8px;">
+          Want the short list? Jump into our Must Eats page for the dishes, snacks, and local favorites worth planning around.
+        </p>
+        <a class="cta" href="/experiences/culinary/must-eats/">Explore Must Eats</a>
+      </div>
     </div>
 
     <div>
@@ -933,6 +955,19 @@
     document.addEventListener('click', closeAll);
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeAll();
+    });
+  })();
+
+  /* ===== Experiences selector quick nav (universal) ===== */
+  (function(){
+    const expNav = document.getElementById("ee_exp_nav");
+    if (!expNav) return;
+
+    expNav.addEventListener("change", function(){
+      const url = String(this.value || "").trim();
+      if (!url) return;
+      if (url === window.location.pathname || url === window.location.pathname + "/") return;
+      window.location.href = url;
     });
   })();
 
@@ -1222,7 +1257,6 @@
     if (nextBtn) nextBtn.addEventListener("click", () => next(true));
     if (prevBtn) prevBtn.addEventListener("click", () => prev(true));
 
-    // Touch swipe
     viewport.addEventListener("touchstart", (e) => {
       if (e.touches.length !== 1) return;
       dragging = true;
@@ -1248,13 +1282,11 @@
       }
     });
 
-    // Pause on hover/focus (same behavior as your other pages)
     carousel.addEventListener("mouseenter", stop);
     carousel.addEventListener("mouseleave", start);
     carousel.addEventListener("focusin", stop);
     carousel.addEventListener("focusout", start);
 
-    // Dots + init
     buildDots();
     render();
     start();
