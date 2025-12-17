@@ -284,9 +284,10 @@
 
     .selector-top{
       display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:16px;
+      flex-direction:column;
+      align-items:stretch;
+      justify-content:flex-start;
+      gap:14px;
       padding:22px;
       border-bottom:1px solid rgba(0,0,0,0.06);
       background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
@@ -312,10 +313,20 @@
 
     .selector-controls{
       display:flex;
-      align-items:center;
+      flex-direction:column;
+      align-items:flex-end;
       gap:10px;
       flex-wrap:wrap;
       justify-content:flex-end;
+      align-self:flex-end;
+    }
+
+    .control-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      justify-content:flex-end;
+      flex-wrap:wrap;
     }
 
     .selector-controls label{
@@ -641,7 +652,8 @@
       .grid{grid-template-columns:1fr}
       .recs-grid{grid-template-columns:1fr}
       .selector-top{flex-direction:column; align-items:flex-start;}
-      .selector-controls{justify-content:flex-start;}
+      .selector-controls{justify-content:flex-start; align-items:flex-start; align-self:stretch;}
+      .control-row{justify-content:flex-start;}
       .selector-controls select{min-width:260px; width:100%;}
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
     }
@@ -736,22 +748,37 @@
   <!-- Adventure Level Selector -->
   <section class="section selector" aria-label="Adventure level selector">
     <div class="selector-top">
+      <div class="selector-controls">
+        <div class="control-row">
+          <label for="ee_exp_nav">Experiences</label>
+          <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Select experience">
+            <option value="/experiences/">All Experiences</option>
+            <option value="/experiences/adventure/" selected>Adventure</option>
+            <option value="/experiences/nature/">Nature</option>
+            <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
+            <option value="/experiences/relaxation/">Relaxation</option>
+            <option value="/experiences/culinary/">Culinary</option>
+            <option value="/experiences/culture/">Culture</option>
+          </select>
+        </div>
+
+        <div class="control-row">
+          <label for="ee_level">Focus</label>
+          <select id="ee_level" name="ee_level" aria-label="Select focus">
+            <option value="beginner">Beginner (easy + scenic)</option>
+            <option value="intermediate" selected>Intermediate (active days)</option>
+            <option value="advanced">Advanced (big days)</option>
+            <option value="thrill">Thrill Seeker (bucket-list)</option>
+          </select>
+        </div>
+      </div>
+
       <div class="selector-copy">
         <h3>Pick your adventure level</h3>
         <p>
           Choose your pace and we’ll show three strong starting points — each with the best region to explore it.
           (You can adjust later as you add more location pages and partners.)
         </p>
-      </div>
-
-      <div class="selector-controls">
-        <label for="ee_level">Adventure level</label>
-        <select id="ee_level" name="ee_level" aria-label="Select adventure level">
-          <option value="beginner">Beginner (easy + scenic)</option>
-          <option value="intermediate" selected>Intermediate (active days)</option>
-          <option value="advanced">Advanced (big days)</option>
-          <option value="thrill">Thrill Seeker (bucket-list)</option>
-        </select>
       </div>
     </div>
 
@@ -912,6 +939,16 @@
     document.addEventListener('click', closeAll);
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeAll();
+    });
+  })();
+
+  /* ===== Experiences dropdown (auto-navigate) ===== */
+  (function(){
+    const expEl = document.getElementById("ee_exp_nav");
+    if (!expEl) return;
+    expEl.addEventListener("change", function(){
+      const url = this.value;
+      if (url) window.location.href = url;
     });
   })();
 
