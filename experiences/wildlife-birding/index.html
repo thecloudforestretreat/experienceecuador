@@ -273,7 +273,7 @@
 
     .mini + .mini{margin-top:16px}
 
-    /* ===== WILDLIFE SELECTOR (SAME SYSTEM AS ADVENTURE/NATURE) ===== */
+    /* ===== SELECTOR (SAME SYSTEM AS ADVENTURE) ===== */
     .selector{
       background:#fff;
       border:1px solid var(--border);
@@ -411,6 +411,7 @@
     .chip{
       display:inline-flex;
       align-items:center;
+      gap:8px;
       padding:8px 10px;
       border-radius:999px;
       background:var(--chipBg);
@@ -477,9 +478,9 @@
       font-weight:700;
     }
 
-    /* ===== CAROUSEL (GALLERY) - PLACEHOLDERS ===== */
+    /* ===== CAROUSEL (REGIONS-STYLE, SAME AS ADVENTURE) ===== */
     .carousel{
-      margin-top:40px;
+      margin-top:18px;
       background:#fff;
       border-radius:22px;
       border:1px solid rgba(0,0,0,0.06);
@@ -514,27 +515,6 @@
       width:100%;
       height:100%;
       object-fit:cover;
-    }
-
-    .ph{
-      width:100%;
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:18px;
-      color:#0f2f62;
-      font-weight:900;
-      letter-spacing:-0.02em;
-      background:linear-gradient(180deg, rgba(3,78,162,0.08), rgba(3,78,162,0.02));
-    }
-    .ph small{
-      display:block;
-      margin-top:8px;
-      font-weight:800;
-      opacity:0.85;
-      letter-spacing:0.01em;
     }
 
     .carousel-btn{
@@ -586,8 +566,6 @@
       gap:8px;
       flex-wrap:wrap;
       align-items:center;
-      justify-content:center;
-      flex:1;
     }
 
     .dot{
@@ -675,8 +653,7 @@
     }
 
     @media (prefers-reduced-motion: reduce){
-      .rec { transition:none !important; }
-      .carousel-track{ transition:none !important; }
+      .rec, .carousel-track { transition:none !important; }
     }
   </style>
 </head>
@@ -757,7 +734,7 @@
       <div class="selector-copy">
         <h3>Pick your wildlife focus</h3>
         <p>
-          Choose what you want to prioritize and we’ll show three strong starting points — each linked to the best region to build from.
+          Choose what you want to prioritize and we’ll show three strong starting points, each linked to the best region to build from.
           (You can refine these as you expand your location pages.)
         </p>
       </div>
@@ -776,7 +753,7 @@
     <div class="selector-body">
       <div class="recs-grid" id="ee_wildlife_recs" aria-live="polite"></div>
       <div style="margin-top:12px;">
-        <span class="hint" id="ee_wildlife_hint">Tip: Birding-first is the most popular choice — pair it with a cloud forest base.</span>
+        <span class="hint" id="ee_wildlife_hint">Tip: Birding-first is the most popular choice. Pair it with a cloud forest base.</span>
       </div>
     </div>
   </section>
@@ -816,16 +793,17 @@
     </div>
   </section>
 
-  <!-- Bottom Carousel (placeholders) -->
-  <section class="carousel" aria-label="Wildlife and birding gallery carousel">
-    <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
-      <span aria-hidden="true"></span>
-    </button>
-    <button class="carousel-btn next" type="button" aria-label="Next slide" id="ee_car_next">
-      <span aria-hidden="true"></span>
-    </button>
+  <!-- Bottom Carousel (Regions-style) -->
+  <section class="section" aria-label="Wildlife and birding gallery">
+    <div class="carousel" id="wildlifeCarousel">
+      <button class="carousel-btn prev" type="button" aria-label="Previous slide">
+        <span aria-hidden="true"></span>
+      </button>
+      <button class="carousel-btn next" type="button" aria-label="Next slide">
+        <span aria-hidden="true"></span>
+      </button>
 
-          <div class="carousel-viewport" aria-label="Carousel viewport">
+      <div class="carousel-viewport" aria-label="Carousel viewport">
         <div class="carousel-track" aria-label="Carousel track">
           <div class="carousel-slide">
             <img src="/assets/images/EE-Carousel-Wildlife-1.jpg" alt="Wildlife gallery image 1">
@@ -860,9 +838,10 @@
         </div>
       </div>
 
-    <div class="carousel-ui">
-      <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
-      <div class="carousel-counter" id="ee_car_counter">1 / 10</div>
+      <div class="carousel-ui" aria-label="Carousel controls">
+        <div class="carousel-dots" id="wildlifeDots" aria-label="Carousel dots"></div>
+        <div class="carousel-counter" id="wildlifeCounter" aria-label="Carousel counter">1 / 10</div>
+      </div>
     </div>
   </section>
 
@@ -940,12 +919,12 @@
 
     const data = {
       casual: {
-        hint: "Casual encounters are easiest with a cloud forest base — lots of sightings with minimal logistics.",
+        hint: "Casual encounters are easiest with a cloud forest base. Lots of sightings with minimal logistics.",
         recs: [
           {
             title: "Hummingbird gardens + easy reserve walks",
             desc: "Short trails, frequent sightings, and a great intro to Ecuador’s biodiversity without going remote.",
-            badges: ["Easy", "Half day–Full day"],
+            badges: ["Easy", "Half day to full day"],
             chips: [
               { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
               { label: "Explore Andes", href: "/regions/andes/" }
@@ -955,7 +934,7 @@
           },
           {
             title: "Guided nature walk for endemic species",
-            desc: "A guide helps you find what you’d miss on your own — ideal for first-time wildlife travelers.",
+            desc: "A guide helps you find what you’d miss on your own. Ideal for first-time wildlife travelers.",
             badges: ["Easy", "Half day"],
             chips: [
               { label: "Best in: Andes", href: "/regions/andes/" }
@@ -965,7 +944,7 @@
           },
           {
             title: "Coastal reserve day with wildlife surprises",
-            desc: "Combine beach time with nature — mangroves, coastal forests, and frequent bird activity.",
+            desc: "Combine beach time with nature. Mangroves, coastal forests, and frequent bird activity.",
             badges: ["Easy", "Full day"],
             chips: [
               { label: "Best in: Coast", href: "/regions/coast/" }
@@ -977,7 +956,7 @@
       },
 
       birding: {
-        hint: "Birding-first trips work best with local guides and dawn starts — cloud forests are the sweet spot.",
+        hint: "Birding-first trips work best with local guides and dawn starts. Cloud forests are the sweet spot.",
         recs: [
           {
             title: "Cloud forest birding (target species mornings)",
@@ -992,7 +971,7 @@
           },
           {
             title: "Endemic-focused routes (Andes hotspots)",
-            desc: "Build your trip around endemic birds and elevation bands for maximum variety.",
+            desc: "Build your trip around endemics and elevation bands for maximum variety.",
             badges: ["Birding-first", "Full day"],
             chips: [
               { label: "Best in: Andes", href: "/regions/andes/" }
@@ -1002,8 +981,8 @@
           },
           {
             title: "Photography-friendly birding stops",
-            desc: "Well-known feeders, good angles, and consistent sightings — great for content and close-ups.",
-            badges: ["Birding-first", "Half day–Full day"],
+            desc: "Well-known feeders, good angles, and consistent sightings. Great for close-ups.",
+            badges: ["Birding-first", "Half day to full day"],
             chips: [
               { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" }
             ],
@@ -1014,7 +993,7 @@
       },
 
       amazon: {
-        hint: "Amazon wildlife is immersive — plan for multi-day stays to increase sightings and reduce transit stress.",
+        hint: "Amazon wildlife is immersive. Plan for multi-day stays to increase sightings and reduce transit stress.",
         recs: [
           {
             title: "Rainforest lodge base + guided wildlife walks",
@@ -1028,8 +1007,8 @@
           },
           {
             title: "Canopy and river systems (big biodiversity)",
-            desc: "Wildlife hotspots happen at ecosystem edges — river corridors and canopy zones are key.",
-            badges: ["Immersive", "Full day–Multi-day"],
+            desc: "Wildlife hotspots happen at ecosystem edges. River corridors and canopy zones are key.",
+            badges: ["Immersive", "Full day to multi-day"],
             chips: [
               { label: "Best in: Amazon", href: "/regions/amazon/" }
             ],
@@ -1038,7 +1017,7 @@
           },
           {
             title: "Night walks + amphibians and insects",
-            desc: "Some of Ecuador’s most memorable wildlife appears after dark — guides make it safe and rewarding.",
+            desc: "Some of Ecuador’s most memorable wildlife appears after dark. Guides make it safe and rewarding.",
             badges: ["Immersive", "Night"],
             chips: [
               { label: "Best in: Amazon", href: "/regions/amazon/" }
@@ -1050,11 +1029,11 @@
       },
 
       marine: {
-        hint: "Marine life depends on sites and timing — islands and protected coastal areas deliver the best encounters.",
+        hint: "Marine life depends on sites and timing. Islands and protected coastal areas deliver the best encounters.",
         recs: [
           {
             title: "Galapagos endemic wildlife (iconic encounters)",
-            desc: "The world’s most famous wildlife destination — plan routes carefully for maximum variety.",
+            desc: "The world’s most famous wildlife destination. Plan routes carefully for maximum variety.",
             badges: ["Iconic", "Multi-day"],
             chips: [
               { label: "Best in: Galapagos", href: "/regions/galapagos/" }
@@ -1074,8 +1053,8 @@
           },
           {
             title: "Mangroves + coastal bird activity",
-            desc: "Great for birders who also want coastal ecosystems — calmer water and consistent sightings.",
-            badges: ["Marine", "Half day–Full day"],
+            desc: "Great for birders who also want coastal ecosystems. Calmer water and consistent sightings.",
+            badges: ["Marine", "Half day to full day"],
             chips: [
               { label: "Best in: Coast", href: "/regions/coast/" }
             ],
@@ -1099,7 +1078,7 @@
       const block = data[key] || data.birding;
       if (hintEl) hintEl.textContent = block.hint || "";
 
-      const html = block.recs.map((r) => {
+      const html = (block.recs || []).map((r) => {
         const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
         const chips = (r.chips || []).map(c => `
           <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
@@ -1133,51 +1112,56 @@
     }
   })();
 
-  /* ===== Carousel (placeholders) ===== */
+  /* ===== Carousel (Regions-style, same as Adventure) ===== */
   (function(){
-    const track = document.getElementById("ee_car_track");
-    const viewport = document.getElementById("ee_car_viewport");
-    const prevBtn = document.getElementById("ee_car_prev");
-    const nextBtn = document.getElementById("ee_car_next");
-    const dotsWrap = document.getElementById("ee_car_dots");
-    const counter = document.getElementById("ee_car_counter");
+    const root = document.getElementById("wildlifeCarousel");
+    if (!root) return;
 
-    if (!track || !viewport) return;
+    const track = root.querySelector(".carousel-track");
+    const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+    const prevBtn = root.querySelector(".carousel-btn.prev");
+    const nextBtn = root.querySelector(".carousel-btn.next");
+    const dotsWrap = document.getElementById("wildlifeDots");
+    const counter = document.getElementById("wildlifeCounter");
 
-    const slides = Array.from(track.children);
-    const total = slides.length;
     let index = 0;
-    let startX = 0;
-    let currentX = 0;
-    let dragging = false;
+    const total = slides.length;
 
-    function setCounter(){
-      if (!counter) return;
-      counter.textContent = `${index + 1} / ${total}`;
-    }
-
-    function setDots(){
-      if (!dotsWrap) return;
+    const dots = [];
+    if (dotsWrap) {
       dotsWrap.innerHTML = "";
       for (let i = 0; i < total; i++){
         const b = document.createElement("button");
-        b.className = "dot" + (i === index ? " active" : "");
         b.type = "button";
-        b.setAttribute("aria-label", `Go to slide ${i + 1}`);
+        b.className = "dot" + (i === 0 ? " active" : "");
+        b.setAttribute("aria-label", `Go to slide ${i+1}`);
         b.addEventListener("click", () => goTo(i));
         dotsWrap.appendChild(b);
+        dots.push(b);
       }
     }
 
-    function update(){
-      track.style.transform = `translateX(${-index * 100}%)`;
-      setCounter();
-      setDots();
+    function updateUI(){
+      const x = -index * 100;
+      track.style.transform = `translateX(${x}%)`;
+
+      if (counter) counter.textContent = `${index + 1} / ${total}`;
+
+      dots.forEach((d, i) => {
+        if (i === index) d.classList.add("active");
+        else d.classList.remove("active");
+      });
+    }
+
+    function clamp(i){
+      if (i < 0) return total - 1;
+      if (i >= total) return 0;
+      return i;
     }
 
     function goTo(i){
-      index = (i + total) % total;
-      update();
+      index = clamp(i);
+      updateUI();
     }
 
     function next(){ goTo(index + 1); }
@@ -1186,34 +1170,37 @@
     if (nextBtn) nextBtn.addEventListener("click", next);
     if (prevBtn) prevBtn.addEventListener("click", prev);
 
-    viewport.addEventListener("touchstart", (e) => {
-      if (e.touches.length !== 1) return;
-      dragging = true;
-      startX = e.touches[0].clientX;
-      currentX = startX;
-    }, { passive:true });
-
-    viewport.addEventListener("touchmove", (e) => {
-      if (!dragging || e.touches.length !== 1) return;
-      currentX = e.touches[0].clientX;
-    }, { passive:true });
-
-    viewport.addEventListener("touchend", () => {
-      if (!dragging) return;
-      const dx = currentX - startX;
-      dragging = false;
-      if (Math.abs(dx) > 45){
-        if (dx < 0) next();
-        else prev();
-      }
-    });
-
-    viewport.addEventListener("keydown", (e) => {
+    root.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") next();
       if (e.key === "ArrowLeft") prev();
     });
 
-    update();
+    let startX = 0;
+    let isDown = false;
+
+    const viewport = root.querySelector(".carousel-viewport");
+    if (viewport) {
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+      });
+
+      viewport.addEventListener("pointerup", (e) => {
+        if (!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        if (Math.abs(dx) > 45) {
+          if (dx < 0) next();
+          else prev();
+        }
+      });
+
+      viewport.addEventListener("pointercancel", () => { isDown = false; });
+      viewport.addEventListener("pointerleave", () => { isDown = false; });
+    }
+
+    updateUI();
   })();
 </script>
 
