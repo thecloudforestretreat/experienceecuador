@@ -27,6 +27,9 @@
       --border:rgba(0,0,0,0.06);
       --shadow:0 18px 55px rgba(3,78,162,0.12);
       --shadowHover:0 28px 70px rgba(3,78,162,0.18);
+
+      --chipBg: rgba(3,78,162,0.10);
+      --chipText:#0f2f62;
     }
 
     *{box-sizing:border-box}
@@ -99,24 +102,58 @@
     .nav button:hover{ background:rgba(3,78,162,0.08); }
     .nav a.active{ color:var(--brand-blue); background:rgba(3,78,162,0.08); }
 
-    .dropdown{ position:relative; display:inline-flex; align-items:center; overflow:visible; z-index:1100; }
-    .dropbtn{ display:inline-flex; align-items:center; gap:8px; user-select:none; }
-    .dropbtn:focus{ outline:2px solid rgba(3,78,162,0.35); outline-offset:2px; }
+    /* Dropdown */
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      overflow:visible;
+      z-index:1100;
+    }
+    .dropbtn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
+    }
     .caret{
-      width:10px;height:10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;
-      transform:rotate(45deg);margin-top:-2px;opacity:.7;
+      width:10px;
+      height:10px;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
+      transform:rotate(45deg);
+      margin-top:-2px;
+      opacity:.7;
     }
     .dropdown-menu{
-      position:absolute; top:42px; right:0; min-width:220px;
-      background:#fff; border:1px solid rgba(0,0,0,0.08);
-      border-radius:14px; box-shadow:0 18px 55px rgba(3,78,162,0.16);
-      padding:8px; display:none; z-index:1200;
+      position:absolute;
+      top:42px;
+      right:0;
+      min-width:220px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:14px;
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
+      padding:8px;
+      display:none;
+      z-index:1200;
     }
     .dropdown.open .dropdown-menu{display:block}
     .dropdown-menu a{
-      display:block; padding:10px; border-radius:10px; font-weight:700; color:#0f2f62;
+      display:block;
+      padding:10px;
+      border-radius:10px;
+      font-weight:700;
+      color:#0f2f62;
     }
-    .dropdown-menu a.active{ color:var(--brand-blue); background:rgba(3,78,162,0.08); }
+    .dropdown-menu a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
+    }
     .dropdown-menu a:hover{ background:rgba(3,78,162,0.08); }
 
     /* ===== HERO ===== */
@@ -141,6 +178,7 @@
       line-height:1.65;
     }
 
+    /* ===== IMAGE ===== */
     .hero-image{
       max-width:1100px;
       margin:0 auto 42px;
@@ -152,7 +190,7 @@
       box-shadow:0 22px 60px rgba(0,0,0,0.18);
     }
 
-    /* ===== LAYOUT ===== */
+    /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
@@ -174,7 +212,7 @@
       margin:0;
     }
 
-    /* ===== SELECTOR (FIXED SIZING) ===== */
+    /* ===== SELECTOR (MATCH WILDLIFE) ===== */
     .selector{
       background:#fff;
       border:1px solid var(--border);
@@ -186,11 +224,16 @@
     .selector-top{
       display:grid;
       grid-template-columns:1fr auto;
+      grid-template-rows:auto auto;
+      align-items:start;
       gap:16px;
       padding:22px;
       border-bottom:1px solid rgba(0,0,0,0.06);
       background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      align-items:start;
+    }
+
+    .selector-copy{
+      grid-column:1 / -1;
     }
 
     .selector-copy h3{
@@ -210,31 +253,29 @@
       max-width:70ch;
     }
 
-    /* Desktop: top-right control block (not oversized) */
     .selector-controls{
+      grid-column:2;
       justify-self:end;
       display:grid;
-      grid-template-columns:120px 320px; /* fixed label col + fixed dropdown width */
+      grid-template-columns:auto 260px;
       column-gap:12px;
       row-gap:10px;
       align-items:center;
     }
+
     .selector-controls label{
       font-weight:800;
       color:#0f2f62;
       font-size:13px;
       letter-spacing:0.02em;
-      width:120px;
       text-align:left;
       white-space:nowrap;
     }
+
     .selector-controls select{
       appearance:none;
       -webkit-appearance:none;
       -moz-appearance:none;
-      width:320px;               /* the main fix */
-      min-width:320px;
-      max-width:320px;
       border:1px solid rgba(3,78,162,0.22);
       background:#fff;
       color:#0f2f62;
@@ -244,6 +285,8 @@
       font-size:14px;
       cursor:pointer;
       outline:none;
+      width:260px;
+      min-width:260px;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
       background-image:
         linear-gradient(45deg, transparent 50%, #0f2f62 50%),
@@ -255,8 +298,8 @@
         0 0;
       background-size:6px 6px, 6px 6px, 100% 100%;
       background-repeat:no-repeat;
-      justify-self:end;          /* keep right-aligned */
     }
+
     .selector-controls select:focus{
       box-shadow:0 0 0 4px rgba(3,78,162,0.16);
       border-color:rgba(3,78,162,0.45);
@@ -269,6 +312,7 @@
       grid-template-columns:repeat(3, 1fr);
       gap:16px;
     }
+
     .rec{
       background:#fff;
       border:1px solid rgba(0,0,0,0.06);
@@ -281,7 +325,10 @@
       flex-direction:column;
       gap:10px;
     }
-    .rec:hover{ transform:translateY(-5px); box-shadow:0 24px 60px rgba(0,0,0,0.12); }
+    .rec:hover{
+      transform:translateY(-5px);
+      box-shadow:0 24px 60px rgba(0,0,0,0.12);
+    }
     .rec h4{
       margin:0;
       font-family:Montserrat,Inter,sans-serif;
@@ -298,7 +345,13 @@
       opacity:0.95;
       flex:1;
     }
-    .meta{ display:flex; gap:8px; flex-wrap:wrap; }
+
+    .meta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:-2px;
+    }
     .badge{
       font-size:12px;
       font-weight:800;
@@ -309,6 +362,15 @@
       border-radius:999px;
       line-height:1;
     }
+
+    .rec-actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:4px;
+    }
+
     .cta{
       display:inline-flex;
       align-items:center;
@@ -324,51 +386,63 @@
       min-width:120px;
     }
     .cta:hover{ filter:brightness(0.95); }
-    .hint{ font-size:12.5px; color:#24324a; opacity:0.85; font-weight:700; }
+
+    .hint{
+      font-size:12.5px;
+      color:#24324a;
+      opacity:0.85;
+      font-weight:700;
+    }
 
     /* ===== FOOTER ===== */
     .footer{ background:var(--brand-blue); color:#fff; }
     .footer-inner{
-      max-width:1100px; margin:0 auto; padding:28px 18px; text-align:center;
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px;
+      text-align:center;
     }
-    .footer-tagline{ font-family:Montserrat,Inter,sans-serif; font-weight:800; margin-bottom:16px; }
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      margin-bottom:16px;
+    }
     .social{
-      display:flex; justify-content:center; gap:18px; flex-wrap:wrap; margin-bottom:12px;
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
     }
     .icon-btn{
-      width:64px; height:64px; border-radius:50%;
+      width:64px;
+      height:64px;
+      border-radius:50%;
       background:var(--brand-blue);
-      display:flex; align-items:center; justify-content:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       box-shadow:0 14px 34px rgba(0,0,0,0.35);
     }
     .icon-btn img{width:34px;height:34px}
     footer small{font-size:13px;opacity:.9}
 
-    /* ===== MOBILE ===== */
+    /* ===== MOBILE (MATCH WILDLIFE) ===== */
     @media(max-width:900px){
       .recs-grid{grid-template-columns:1fr}
-      .selector-top{ grid-template-columns:1fr; }
-
-      /* Mobile: label above dropdown */
+      .selector-top{grid-template-columns:1fr;}
       .selector-controls{
+        grid-column:1;
         justify-self:start;
         grid-template-columns:1fr;
         row-gap:10px;
+        column-gap:0;
         width:100%;
       }
-      .selector-controls label{
-        width:auto;
-        margin-top:2px;
-      }
-      .selector-controls select{
-        width:100%;
-        min-width:0;
-        max-width:none;
-        justify-self:start;
-      }
-
+      .selector-controls select{width:100%; min-width:0;}
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
     }
+
     @media(max-width:620px){
       .topbar-inner{flex-direction:column;gap:10px}
       .dropdown-menu{
@@ -449,15 +523,11 @@
     </p>
   </section>
 
+  <!-- Relaxation Selector -->
   <section class="section selector" aria-label="Relaxation selector">
     <div class="selector-top">
-      <div class="selector-copy">
-        <h3>Pick your relaxation focus</h3>
-        <p>
-          Choose your vibe and we’ll show three strong starting points. Each recommendation links to the best region to build from.
-        </p>
-      </div>
 
+      <!-- Controls FIRST, top-right (matches Wildlife) -->
       <div class="selector-controls">
         <label for="ee_exp_nav">Experiences</label>
         <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Select experience">
@@ -476,6 +546,14 @@
           <option value="coastal_chill">Coastal slow travel</option>
           <option value="quiet_city">Quiet city reset</option>
         </select>
+      </div>
+
+      <!-- Copy spans full width below (matches Wildlife) -->
+      <div class="selector-copy">
+        <h3>Pick your relaxation focus</h3>
+        <p>
+          Choose your vibe and we’ll show three strong starting points. Each recommendation links to the best region to build from.
+        </p>
       </div>
     </div>
 
@@ -617,20 +695,23 @@
       const block = data[key] || data.hot_springs;
       if (hintEl) hintEl.textContent = block.hint || "";
 
-      recsEl.innerHTML = (block.recs || []).map((r) => {
+      const html = (block.recs || []).map((r) => {
         const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
         return `
           <article class="rec">
             <div class="meta">${badges}</div>
             <h4>${escapeHtml(r.title)}</h4>
             <p>${escapeHtml(r.desc)}</p>
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px;">
+
+            <div class="rec-actions">
               <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
               <span class="hint">Best-fit starting point</span>
             </div>
           </article>
         `;
       }).join("");
+
+      recsEl.innerHTML = html;
     }
 
     render(focusEl ? focusEl.value : "hot_springs");
