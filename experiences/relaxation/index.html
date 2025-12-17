@@ -281,8 +281,8 @@
 
     .selector-top{
       display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
+      flex-direction:column;
+      align-items:stretch;
       gap:16px;
       padding:22px;
       border-bottom:1px solid rgba(0,0,0,0.06);
@@ -309,21 +309,30 @@
 
     .selector-controls{
       display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:flex-end;
+      width:100%;
+    }
+
+    .control-row{
+      display:flex;
       align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
+      gap:12px;
       justify-content:flex-end;
     }
 
-    .selector-controls label{
+    .control-row label{
       font-weight:800;
       color:#0f2f62;
       font-size:13px;
       letter-spacing:0.02em;
-      text-align:left; /* FIX: align label column so Experiences/Focus line up */
+      width:110px;
+      text-align:left;
+      white-space:nowrap;
     }
 
-    .selector-controls select{
+    .control-row select{
       appearance:none;
       -webkit-appearance:none;
       -moz-appearance:none;
@@ -336,7 +345,7 @@
       font-size:14px;
       cursor:pointer;
       outline:none;
-      min-width:260px;
+      width:520px;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
       background-image:
         linear-gradient(45deg, transparent 50%, #0f2f62 50%),
@@ -350,7 +359,7 @@
       background-repeat:no-repeat;
     }
 
-    .selector-controls select:focus{
+    .control-row select:focus{
       box-shadow:0 0 0 4px rgba(3,78,162,0.16);
       border-color:rgba(3,78,162,0.45);
     }
@@ -657,9 +666,20 @@
     @media(max-width:900px){
       .grid{grid-template-columns:1fr}
       .recs-grid{grid-template-columns:1fr}
-      .selector-top{flex-direction:column; align-items:flex-start;}
-      .selector-controls{justify-content:flex-start;}
-      .selector-controls select{min-width:260px; width:100%;}
+      .selector-controls{align-items:stretch;}
+      .control-row{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+        width:100%;
+      }
+      .control-row label{
+        width:auto;
+      }
+      .control-row select{
+        width:100%;
+        min-width:260px;
+      }
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
     }
 
@@ -752,22 +772,37 @@
   <!-- Relaxation Selector -->
   <section class="section selector" aria-label="Relaxation selector">
     <div class="selector-top">
+
+      <div class="selector-controls" aria-label="Experience selector controls">
+        <div class="control-row">
+          <label for="ee_exp_nav">Experiences</label>
+          <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Select experience">
+            <option value="/experiences/adventure/">Adventure</option>
+            <option value="/experiences/nature/">Nature</option>
+            <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
+            <option value="/experiences/relaxation/" selected>Relaxation</option>
+            <option value="/experiences/culinary/">Culinary</option>
+            <option value="/experiences/culture/">Culture</option>
+          </select>
+        </div>
+
+        <div class="control-row">
+          <label for="ee_relax_focus">Focus</label>
+          <select id="ee_relax_focus" name="ee_relax_focus" aria-label="Select relaxation style">
+            <option value="hot_springs" selected>Hot springs + spa reset</option>
+            <option value="beach">Beach calm (sunsets + ocean air)</option>
+            <option value="forest">Quiet lodge (cloud forest slow days)</option>
+            <option value="islands">Island ease (light exploring, big views)</option>
+          </select>
+        </div>
+      </div>
+
       <div class="selector-copy">
         <h3>Pick your relaxation style</h3>
         <p>
           Choose the kind of reset you want and we’ll show three strong starting points — each linked to the best region to build from.
           (You can refine these as you expand your location pages.)
         </p>
-      </div>
-
-      <div class="selector-controls">
-        <label for="ee_relax_focus">Focus</label>
-        <select id="ee_relax_focus" name="ee_relax_focus" aria-label="Select relaxation style">
-          <option value="hot_springs" selected>Hot springs + spa reset</option>
-          <option value="beach">Beach calm (sunsets + ocean air)</option>
-          <option value="forest">Quiet lodge (cloud forest slow days)</option>
-          <option value="islands">Island ease (light exploring, big views)</option>
-        </select>
       </div>
     </div>
 
@@ -927,6 +962,17 @@
     document.addEventListener('click', closeAll);
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeAll();
+    });
+  })();
+
+  /* ===== Experiences dropdown (auto-navigate) ===== */
+  (function(){
+    const expNav = document.getElementById("ee_exp_nav");
+    if (!expNav) return;
+
+    expNav.addEventListener("change", function(){
+      const href = this.value;
+      if (href && typeof href === "string") window.location.href = href;
     });
   })();
 
