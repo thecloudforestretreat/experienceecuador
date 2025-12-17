@@ -280,18 +280,14 @@
     }
 
     .selector-top{
-      display:grid;
-      grid-template-columns: 1fr auto;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
       gap:16px;
       padding:22px;
       border-bottom:1px solid rgba(0,0,0,0.06);
       background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      align-items:start;
-    }
-
-    .selector-copy{
-      grid-column:1 / -1;
-      grid-row:2;
+      flex-direction:column;
     }
 
     .selector-copy h3{
@@ -313,22 +309,21 @@
     }
 
     .selector-controls{
-      grid-column:2;
-      grid-row:1;
       display:flex;
       flex-direction:column;
-      align-items:flex-end;
-      gap:10px;
-      flex-wrap:nowrap;
+      align-items:flex-start;
+      gap:14px;
+      flex-wrap:wrap;
       justify-content:flex-start;
+      width:100%;
     }
 
     .control-row{
       display:flex;
-      align-items:center;
+      flex-direction:column;
+      align-items:flex-start;
       gap:10px;
       width:100%;
-      justify-content:flex-end;
     }
 
     .selector-controls label{
@@ -336,7 +331,6 @@
       color:#0f2f62;
       font-size:13px;
       letter-spacing:0.02em;
-      white-space:nowrap;
     }
 
     .selector-controls select{
@@ -353,7 +347,6 @@
       cursor:pointer;
       outline:none;
       min-width:260px;
-      width:260px;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
       background-image:
         linear-gradient(45deg, transparent 50%, #0f2f62 50%),
@@ -365,6 +358,8 @@
         0 0;
       background-size:6px 6px, 6px 6px, 100% 100%;
       background-repeat:no-repeat;
+      width:520px;
+      max-width:100%;
     }
 
     .selector-controls select:focus{
@@ -674,11 +669,9 @@
     @media(max-width:900px){
       .grid{grid-template-columns:1fr}
       .recs-grid{grid-template-columns:1fr}
-      .selector-top{grid-template-columns:1fr; }
-      .selector-controls{grid-column:1; grid-row:1; align-items:flex-start; width:100%;}
-      .control-row{justify-content:flex-start; width:100%;}
+      .selector-top{flex-direction:column; align-items:flex-start;}
+      .selector-controls{justify-content:flex-start;}
       .selector-controls select{min-width:260px; width:100%;}
-      .selector-copy{grid-column:1; grid-row:2;}
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
     }
 
@@ -771,7 +764,8 @@
   <!-- Relaxation Selector -->
   <section class="section selector" aria-label="Relaxation selector">
     <div class="selector-top">
-      <div class="selector-controls" aria-label="Selector controls">
+
+      <div class="selector-controls">
         <div class="control-row">
           <label for="ee_exp_nav">Experiences</label>
           <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Select experience">
@@ -856,7 +850,7 @@
       <span aria-hidden="true"></span>
     </button>
 
-      <div class="carousel-viewport" aria-label="Carousel viewport" id="ee_car_viewport" tabindex="0">
+      <div class="carousel-viewport" aria-label="Carousel viewport" id="ee_car_viewport">
         <div class="carousel-track" aria-label="Carousel track" id="ee_car_track">
           <div class="carousel-slide">
             <img src="/assets/images/EE-Carousel-Relaxation-1.jpg" alt="Relaxation gallery image 1">
@@ -963,14 +957,14 @@
     });
   })();
 
-  /* ===== Experiences selector (auto-navigate) ===== */
+  /* ===== Experiences selector nav (auto-navigate) ===== */
   (function(){
-    const expEl = document.getElementById("ee_exp_nav");
-    if (!expEl) return;
+    const expNav = document.getElementById("ee_exp_nav");
+    if (!expNav) return;
 
-    expEl.addEventListener("change", function(){
-      const v = this.value;
-      if (v) window.location.href = v;
+    expNav.addEventListener("change", function(){
+      const url = this.value;
+      if (url) window.location.href = url;
     });
   })();
 
