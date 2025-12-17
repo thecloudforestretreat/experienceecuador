@@ -293,6 +293,12 @@
       padding:22px;
       border-bottom:1px solid rgba(0,0,0,0.06);
       background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      flex-direction:column;
+      align-items:stretch;
+    }
+
+    .selector-copy{
+      width:100%;
     }
 
     .selector-copy h3{
@@ -315,9 +321,18 @@
 
     .selector-controls{
       display:flex;
-      align-items:center;
+      align-items:flex-end;
       gap:10px;
       flex-wrap:wrap;
+      justify-content:flex-end;
+      align-self:flex-end;
+      flex-direction:column;
+    }
+
+    .control-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
       justify-content:flex-end;
     }
 
@@ -519,27 +534,6 @@
       object-fit:cover;
     }
 
-    .ph{
-      width:100%;
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:18px;
-      color:#0f2f62;
-      font-weight:900;
-      letter-spacing:-0.02em;
-      background:linear-gradient(180deg, rgba(3,78,162,0.08), rgba(3,78,162,0.02));
-    }
-    .ph small{
-      display:block;
-      margin-top:8px;
-      font-weight:800;
-      opacity:0.85;
-      letter-spacing:0.01em;
-    }
-
     .carousel-btn{
       position:absolute;
       top:50%;
@@ -663,7 +657,8 @@
       .grid{grid-template-columns:1fr}
       .recs-grid{grid-template-columns:1fr}
       .selector-top{flex-direction:column; align-items:flex-start;}
-      .selector-controls{justify-content:flex-start;}
+      .selector-controls{justify-content:flex-start; align-self:stretch; align-items:flex-start;}
+      .control-row{width:100%; justify-content:flex-start;}
       .selector-controls select{min-width:260px; width:100%;}
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
     }
@@ -680,7 +675,9 @@
     @media (prefers-reduced-motion: reduce){
       .rec { transition:none !important; }
       .carousel-track{ transition:none !important; }
-    }
+    combined.
+
+Return ONLY the full updated HTML page as complete drop-in code. No explanations.
   </style>
 </head>
 
@@ -756,22 +753,36 @@
   <!-- Culture Selector -->
   <section class="section selector" aria-label="Culture selector">
     <div class="selector-top">
+      <div class="selector-controls">
+        <div class="control-row">
+          <label for="ee_exp_nav">Experiences</label>
+          <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Navigate to an experience">
+            <option value="/experiences/adventure/">Adventure</option>
+            <option value="/experiences/nature/">Nature</option>
+            <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
+            <option value="/experiences/relaxation/">Relaxation</option>
+            <option value="/experiences/culinary/">Culinary</option>
+            <option value="/experiences/culture/" selected>Culture</option>
+          </select>
+        </div>
+
+        <div class="control-row">
+          <label for="ee_cult_focus">Focus</label>
+          <select id="ee_cult_focus" name="ee_cult_focus" aria-label="Select culture focus">
+            <option value="markets" selected>Markets + artisan towns</option>
+            <option value="history">Historic cities + architecture</option>
+            <option value="communities">Indigenous communities + crafts</option>
+            <option value="festivals">Festivals + local traditions</option>
+          </select>
+        </div>
+      </div>
+
       <div class="selector-copy">
         <h3>Pick your culture focus</h3>
         <p>
           Choose what you want to experience and we’ll show three strong starting points — plus the best region to build from.
           Keep it practical and let the local rhythm guide the day.
         </p>
-      </div>
-
-      <div class="selector-controls">
-        <label for="ee_cult_focus">Focus</label>
-        <select id="ee_cult_focus" name="ee_cult_focus" aria-label="Select culture focus">
-          <option value="markets" selected>Markets + artisan towns</option>
-          <option value="history">Historic cities + architecture</option>
-          <option value="communities">Indigenous communities + crafts</option>
-          <option value="festivals">Festivals + local traditions</option>
-        </select>
       </div>
     </div>
 
@@ -818,7 +829,7 @@
     </div>
   </section>
 
-  <!-- Bottom Carousel (placeholders) -->
+  <!-- Bottom Carousel -->
   <section class="carousel" aria-label="Culture gallery carousel">
     <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
       <span aria-hidden="true"></span>
@@ -829,22 +840,27 @@
 
     <div class="carousel-viewport" id="ee_car_viewport">
       <div class="carousel-track" id="ee_car_track">
-        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 1<small>Add image later</small></div></div>
-        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 2<small>Add image later</small></div></div>
-        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 3<small>Add image later</small></div></div>
-        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 4<small>Add image later</small></div></div>
-        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 5<small>Add image later</small></div></div>
-        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 6<small>Add image later</small></div></div>
-        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 7<small>Add image later</small></div></div>
-        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 8<small>Add image later</small></div></div>
-        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 9<small>Add image later</small></div></div>
-        <div class="carousel-slide"><div class="ph">Culture carousel placeholder 10<small>Add image later</small></div></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-1.jpg" alt="Culture gallery image 1"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-2.jpg" alt="Culture gallery image 2"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-3.jpg" alt="Culture gallery image 3"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-4.jpg" alt="Culture gallery image 4"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-5.jpg" alt="Culture gallery image 5"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-6.jpg" alt="Culture gallery image 6"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-7.jpg" alt="Culture gallery image 7"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-8.jpg" alt="Culture gallery image 8"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-9.jpg" alt="Culture gallery image 9"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-10.jpg" alt="Culture gallery image 10"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-11.jpg" alt="Culture gallery image 11"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-12.jpg" alt="Culture gallery image 12"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-13.jpg" alt="Culture gallery image 13"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-14.jpg" alt="Culture gallery image 14"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-15.jpg" alt="Culture gallery image 15"></div>
       </div>
     </div>
 
     <div class="carousel-ui">
       <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
-      <div class="carousel-counter" id="ee_car_counter">1 / 10</div>
+      <div class="carousel-counter" id="ee_car_counter">1 / 15</div>
     </div>
   </section>
 
@@ -903,6 +919,19 @@
     document.addEventListener('click', closeAll);
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeAll();
+    });
+  })();
+
+  /* ===== Experiences selector quick nav (universal) ===== */
+  (function(){
+    const expNav = document.getElementById("ee_exp_nav");
+    if (!expNav) return;
+
+    expNav.addEventListener("change", function(){
+      const url = String(this.value || "").trim();
+      if (!url) return;
+      if (url === window.location.pathname || url === window.location.pathname + "/") return;
+      window.location.href = url;
     });
   })();
 
@@ -1107,7 +1136,7 @@
     }
   })();
 
-  /* ===== Carousel (placeholders) ===== */
+  /* ===== Carousel ===== */
   (function(){
     const track = document.getElementById("ee_car_track");
     const viewport = document.getElementById("ee_car_viewport");
