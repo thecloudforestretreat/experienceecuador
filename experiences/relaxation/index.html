@@ -394,6 +394,121 @@
       font-weight:700;
     }
 
+    /* ===== CAROUSEL (MATCH CULTURE) ===== */
+    .carousel{
+      margin-top:40px;
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
+
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
+
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
+      flex:1;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
+    }
+
     /* ===== FOOTER ===== */
     .footer{ background:var(--brand-blue); color:#fff; }
     .footer-inner{
@@ -450,6 +565,11 @@
         right:auto;
         transform:translateX(-50%);
       }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .rec { transition:none !important; }
+      .carousel-track{ transition:none !important; }
     }
   </style>
 </head>
@@ -562,6 +682,29 @@
       <div style="margin-top:12px;">
         <span class="hint" id="ee_relax_hint">Tip: Hot springs are the fastest way to feel the reset.</span>
       </div>
+    </div>
+  </section>
+
+  <!-- Bottom Carousel (same format as Culture) -->
+  <section class="carousel" aria-label="Relaxation gallery carousel">
+    <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
+      <span aria-hidden="true"></span>
+    </button>
+    <button class="carousel-btn next" type="button" aria-label="Next slide" id="ee_car_next">
+      <span aria-hidden="true"></span>
+    </button>
+
+    <div class="carousel-viewport" id="ee_car_viewport">
+      <div class="carousel-track" id="ee_car_track">
+        <div class="carousel-slide">
+          <img src="/assets/images/EE-Carousel-Relaxation-1.jpg" alt="Relaxation gallery image 1">
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-ui">
+      <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
+      <div class="carousel-counter" id="ee_car_counter">1 / 1</div>
     </div>
   </section>
 
@@ -721,6 +864,93 @@
         render(this.value);
       });
     }
+  })();
+
+  /* ===== Carousel (same JS as Culture) ===== */
+  (function(){
+    const track = document.getElementById("ee_car_track");
+    const viewport = document.getElementById("ee_car_viewport");
+    const prevBtn = document.getElementById("ee_car_prev");
+    const nextBtn = document.getElementById("ee_car_next");
+    const dotsWrap = document.getElementById("ee_car_dots");
+    const counter = document.getElementById("ee_car_counter");
+
+    if (!track || !viewport) return;
+
+    const slides = Array.from(track.children);
+    const total = slides.length;
+    let index = 0;
+    let startX = 0;
+    let currentX = 0;
+    let dragging = false;
+
+    function setCounter(){
+      if (!counter) return;
+      counter.textContent = `${index + 1} / ${total}`;
+    }
+
+    function setDots(){
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = "";
+      for (let i = 0; i < total; i++){
+        const b = document.createElement("button");
+        b.className = "dot" + (i === index ? " active" : "");
+        b.type = "button";
+        b.setAttribute("aria-label", `Go to slide ${i + 1}`);
+        b.addEventListener("click", () => goTo(i));
+        dotsWrap.appendChild(b);
+      }
+    }
+
+    function update(){
+      track.style.transform = `translateX(${-index * 100}%)`;
+      setCounter();
+      setDots();
+      if (prevBtn) prevBtn.style.display = total > 1 ? "" : "none";
+      if (nextBtn) nextBtn.style.display = total > 1 ? "" : "none";
+    }
+
+    function goTo(i){
+      index = (i + total) % total;
+      update();
+    }
+
+    function next(){ goTo(index + 1); }
+    function prev(){ goTo(index - 1); }
+
+    if (nextBtn) nextBtn.addEventListener("click", next);
+    if (prevBtn) prevBtn.addEventListener("click", prev);
+
+    viewport.addEventListener("touchstart", (e) => {
+      if (total <= 1) return;
+      if (e.touches.length !== 1) return;
+      dragging = true;
+      startX = e.touches[0].clientX;
+      currentX = startX;
+    }, { passive:true });
+
+    viewport.addEventListener("touchmove", (e) => {
+      if (!dragging || e.touches.length !== 1) return;
+      currentX = e.touches[0].clientX;
+    }, { passive:true });
+
+    viewport.addEventListener("touchend", () => {
+      if (!dragging) return;
+      const dx = currentX - startX;
+      dragging = false;
+      if (Math.abs(dx) > 45){
+        if (dx < 0) next();
+        else prev();
+      }
+    });
+
+    viewport.addEventListener("keydown", (e) => {
+      if (total <= 1) return;
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    });
+
+    update();
   })();
 </script>
 
