@@ -186,8 +186,6 @@
         url("/assets/images/EE-Assets-17-Hero-Culinary.jpg") center/cover no-repeat;
     }
 
-    /* Placeholder note: swap the image path above when ready */
-
     .hero-content{
       position:absolute;
       inset:0;
@@ -400,26 +398,37 @@
       will-change:transform;
     }
 
+    /* UPDATED: slides can now display real images */
     .carousel-slide{
       min-width:100%;
       aspect-ratio: 16 / 10;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      position:relative;
       background:linear-gradient(180deg, rgba(3,78,162,0.10), rgba(3,78,162,0.02));
-      color:#0f2f62;
-      font-weight:900;
-      letter-spacing:-0.01em;
-      font-size:14px;
-      padding:14px;
-      text-align:center;
     }
 
-    .carousel-slide span{
-      display:inline-block;
-      max-width:46ch;
-      line-height:1.4;
-      opacity:.95;
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .slide-caption{
+      position:absolute;
+      left:12px;
+      right:12px;
+      bottom:12px;
+      padding:10px 12px;
+      border-radius:14px;
+      background:rgba(0,0,0,0.35);
+      backdrop-filter:saturate(140%) blur(8px);
+      border:1px solid rgba(255,255,255,0.18);
+      color:#fff;
+      font-weight:900;
+      letter-spacing:-0.01em;
+      line-height:1.25;
+      font-size:14px;
+      text-shadow:0 10px 30px rgba(0,0,0,0.35);
     }
 
     .carousel-btn{
@@ -583,7 +592,6 @@
   </div>
 </header>
 
-<!-- HERO with image behind title -->
 <section class="hero" aria-label="Must Eats hero">
   <div class="hero-banner" role="img" aria-label="Must Eats hero image placeholder">
     <div class="hero-content">
@@ -599,7 +607,6 @@
 </section>
 
 <main class="wrap">
-  <!-- Top grid: left info box + right experiences tiles -->
   <section class="content-grid" aria-label="Intro and more experiences">
     <div class="card">
       <h2>How Ecuador’s regions taste different</h2>
@@ -668,12 +675,11 @@
     </div>
   </section>
 
-  <!-- Top must eats by region -->
   <section style="margin-top:34px" aria-label="Top must eats by region">
     <h2 class="section-title">Top must eats by region</h2>
 
     <div class="must-grid">
-      <!-- ANDES -->
+      <!-- ANDES (UPDATED IMAGES) -->
       <div class="card" aria-label="Andes must eats">
         <h2>Andes</h2>
         <p>Comfort-forward food built for high elevation: warm soups, pork specialties, and classic sides.</p>
@@ -683,9 +689,20 @@
           <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
 
           <div class="carousel-track">
-            <div class="assets/images/EE-Assets-Culinary-Must-Eats-Locro.jpg"><span>Locro de papa image placeholder</span></div>
-            <div class="assets/images/EE-Assets-Culinary-Must-Eats-Fritada.jpg"><span>Fritada + llapingachos image placeholder</span></div>
-            <div class="assets/images/EE-Assets-Culinary-Must-Eats-Hornado.jpg"><span>Hornado image placeholder</span></div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Locro.jpg" alt="Locro de papa">
+              <div class="slide-caption">Locro de papa</div>
+            </div>
+
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Fritada.jpg" alt="Fritada with llapingachos">
+              <div class="slide-caption">Fritada + llapingachos</div>
+            </div>
+
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Hornado.jpg" alt="Hornado">
+              <div class="slide-caption">Hornado</div>
+            </div>
           </div>
 
           <div class="carousel-dots" aria-label="Carousel dots"></div>
@@ -706,9 +723,9 @@
           <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
 
           <div class="carousel-track">
-            <div class="carousel-slide"><span>Ceviche ecuatoriano image placeholder</span></div>
-            <div class="carousel-slide"><span>Encebollado image placeholder</span></div>
-            <div class="carousel-slide"><span>Bolón de verde image placeholder</span></div>
+            <div class="carousel-slide"><div class="slide-caption">Ceviche ecuatoriano image placeholder</div></div>
+            <div class="carousel-slide"><div class="slide-caption">Encebollado image placeholder</div></div>
+            <div class="carousel-slide"><div class="slide-caption">Bolón de verde image placeholder</div></div>
           </div>
 
           <div class="carousel-dots" aria-label="Carousel dots"></div>
@@ -729,9 +746,9 @@
           <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
 
           <div class="carousel-track">
-            <div class="carousel-slide"><span>Maito image placeholder</span></div>
-            <div class="carousel-slide"><span>Guayusa tea image placeholder</span></div>
-            <div class="carousel-slide"><span>Chocolate + cacao drinks image placeholder</span></div>
+            <div class="carousel-slide"><div class="slide-caption">Maito image placeholder</div></div>
+            <div class="carousel-slide"><div class="slide-caption">Guayusa tea image placeholder</div></div>
+            <div class="carousel-slide"><div class="slide-caption">Chocolate + cacao drinks image placeholder</div></div>
           </div>
 
           <div class="carousel-dots" aria-label="Carousel dots"></div>
@@ -752,9 +769,9 @@
           <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
 
           <div class="carousel-track">
-            <div class="carousel-slide"><span>Arroz marinero image placeholder</span></div>
-            <div class="carousel-slide"><span>Fresh catch of the day image placeholder</span></div>
-            <div class="carousel-slide"><span>Patacones image placeholder</span></div>
+            <div class="carousel-slide"><div class="slide-caption">Arroz marinero image placeholder</div></div>
+            <div class="carousel-slide"><div class="slide-caption">Fresh catch of the day image placeholder</div></div>
+            <div class="carousel-slide"><div class="slide-caption">Patacones image placeholder</div></div>
           </div>
 
           <div class="carousel-dots" aria-label="Carousel dots"></div>
@@ -767,7 +784,6 @@
     </div>
   </section>
 
-  <!-- Feeling brave (same size as region cards) -->
   <section style="margin-top:34px" aria-label="Feeling brave section">
     <h2 class="section-title">Feeling brave</h2>
 
@@ -784,8 +800,8 @@
           <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
 
           <div class="carousel-track">
-            <div class="carousel-slide"><span>Cuy asado image placeholder</span></div>
-            <div class="carousel-slide"><span>Chontacuro image placeholder</span></div>
+            <div class="carousel-slide"><div class="slide-caption">Cuy asado image placeholder</div></div>
+            <div class="carousel-slide"><div class="slide-caption">Chontacuro image placeholder</div></div>
           </div>
 
           <div class="carousel-dots" aria-label="Carousel dots"></div>
@@ -796,7 +812,6 @@
         </p>
       </div>
 
-      <!-- empty card placeholder to keep same grid rhythm on desktop (optional) -->
       <div class="card" aria-label="Coming soon">
         <h2>Where to try it (coming soon)</h2>
         <p>
@@ -808,9 +823,9 @@
           <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
 
           <div class="carousel-track">
-            <div class="carousel-slide"><span>Market photo placeholder</span></div>
-            <div class="carousel-slide"><span>Restaurant photo placeholder</span></div>
-            <div class="carousel-slide"><span>Street food photo placeholder</span></div>
+            <div class="carousel-slide"><div class="slide-caption">Market photo placeholder</div></div>
+            <div class="carousel-slide"><div class="slide-caption">Restaurant photo placeholder</div></div>
+            <div class="carousel-slide"><div class="slide-caption">Street food photo placeholder</div></div>
           </div>
 
           <div class="carousel-dots" aria-label="Carousel dots"></div>
@@ -845,7 +860,6 @@
 </footer>
 
 <script>
-  // Dropdowns (same behavior as your other pages)
   (function () {
     const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -885,7 +899,6 @@
     });
   })();
 
-  // Carousels: auto-rotate + prev/next + dots
   (function () {
     const carousels = document.querySelectorAll('.carousel');
 
@@ -901,7 +914,6 @@
       let index = 0;
       let timer = null;
 
-      // build dots
       dotsWrap.innerHTML = '';
       const dots = slides.map((_, i) => {
         const d = document.createElement('button');
@@ -945,13 +957,11 @@
       nextBtn.addEventListener('click', () => next(true));
       prevBtn.addEventListener('click', () => prev(true));
 
-      // pause on hover / focus
       root.addEventListener('mouseenter', stop);
       root.addEventListener('mouseleave', start);
       root.addEventListener('focusin', stop);
       root.addEventListener('focusout', start);
 
-      // init
       render();
       start();
     }
