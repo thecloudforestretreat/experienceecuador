@@ -313,12 +313,14 @@
       max-width:70ch;
     }
 
+    /* UPDATED ONLY: align Experiences + Focus on one row, same widths */
     .selector-controls{
-      display:flex;
+      display:grid;
+      grid-template-columns:auto 260px auto 260px;
+      gap:10px 10px;
       align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
+      justify-content:end;
+      justify-items:start;
     }
 
     .selector-controls label{
@@ -341,7 +343,8 @@
       font-size:14px;
       cursor:pointer;
       outline:none;
-      min-width:260px;
+      min-width:0;
+      width:260px;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
       background-image:
         linear-gradient(45deg, transparent 50%, #0f2f62 50%),
@@ -663,7 +666,7 @@
       .grid{grid-template-columns:1fr}
       .recs-grid{grid-template-columns:1fr}
       .selector-top{flex-direction:column; align-items:flex-start;}
-      .selector-controls{justify-content:flex-start;}
+      .selector-controls{display:flex; justify-content:flex-start;}
       .selector-controls select{min-width:260px; width:100%;}
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
     }
@@ -1253,9 +1256,6 @@
       stop();
       start();
     }
-
-    if (nextBtn) nextBtn.addEventListener("click", () => next(true));
-    if (prevBtn) prevBtn.addEventListener("click", () => prev(true));
 
     viewport.addEventListener("touchstart", (e) => {
       if (e.touches.length !== 1) return;
