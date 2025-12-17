@@ -156,45 +156,66 @@
     }
     .dropdown-menu a:hover{ background:rgba(3,78,162,0.08); }
 
-    /* ===== HERO ===== */
+    /* ===== HERO (GALAPAGOS PATTERN) ===== */
     .hero{
-      text-align:center;
-      padding:60px 18px 40px;
-      max-width:900px;
-      margin:0 auto;
+      position:relative;
+      width:100%;
+      min-height:64vh;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      background:url("/assets/images/EE-Assets-52-Hero-Experiences-Relaxation.png") center / cover no-repeat;
+      color:#fff;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.70));
+    }
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:1100px;
+      padding:54px 18px 34px;
+      text-align:left;
+    }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.38);
+      border:1px solid rgba(255,255,255,0.22);
+      font-weight:700;
+      letter-spacing:0.02em;
+      font-size:12.5px;
+      margin-bottom:14px;
+      backdrop-filter:blur(10px);
     }
     .hero h1{
+      margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      font-size:clamp(36px,4.8vw,56px);
       letter-spacing:-0.03em;
-      margin:0 0 12px;
+      font-size:clamp(40px,5.4vw,72px);
+      line-height:1.03;
     }
     .hero p{
-      max-width:72ch;
-      margin:0 auto;
-      color:var(--slate);
-      font-size:18px;
+      margin:0;
+      max-width:68ch;
+      font-size:clamp(15px,2vw,18px);
       line-height:1.65;
-    }
-
-    /* ===== IMAGE ===== */
-    .hero-image{
-      max-width:1100px;
-      margin:0 auto 42px;
-      padding:0 18px;
-    }
-    .hero-image img{
-      width:100%;
-      border-radius:24px;
-      box-shadow:0 22px 60px rgba(0,0,0,0.18);
+      color:rgba(255,255,255,0.92);
     }
 
     /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:0 18px 60px;
+      padding:36px 18px 60px;
     }
     .section{margin-bottom:36px}
     .section h2{
@@ -542,8 +563,11 @@
     .icon-btn img{width:34px;height:34px}
     footer small{font-size:13px;opacity:.9}
 
-    /* ===== MOBILE (MATCH WILDLIFE) ===== */
+    /* ===== MOBILE (MATCH GALAPAGOS HERO + WILDLIFE) ===== */
     @media(max-width:900px){
+      .hero-inner{ text-align:center; }
+      .hero p{ margin:0 auto; }
+
       .recs-grid{grid-template-columns:1fr}
       .selector-top{grid-template-columns:1fr;}
       .selector-controls{
@@ -621,17 +645,15 @@
   </div>
 </header>
 
-<section class="hero">
-  <h1>Relaxation</h1>
-  <p>
-    Slow mornings, scenic stays, hot springs, easy day trips, and quiet moments that still feel distinctly Ecuador.
-    Use the selector below to match your relaxation style to the best starting points.
-  </p>
+<section class="hero" aria-label="Relaxation page hero">
+  <div class="hero-inner">
+    <div class="kicker">Experiences</div>
+    <h1>Relaxation</h1>
+    <p>
+      Slow mornings, scenic stays, hot springs, easy day trips, and quiet moments that still feel distinctly Ecuador.
+    </p>
+  </div>
 </section>
-
-<div class="hero-image">
-  <img src="/assets/images/EE-Assets-52-Hero-Experiences-Relaxation.png" alt="Relaxation in Ecuador">
-</div>
 
 <main class="wrap">
 
