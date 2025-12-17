@@ -273,7 +273,7 @@
 
     .mini + .mini{margin-top:16px}
 
-    /* ===== NATURE SELECTOR (SAME SYSTEM AS ADVENTURE) ===== */
+    /* ===== NATURE SELECTOR (UPDATED TO MATCH CULTURE MOBILE) ===== */
     .selector{
       background:#fff;
       border:1px solid var(--border);
@@ -284,8 +284,9 @@
 
     .selector-top{
       display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
+      flex-direction:column;
+      align-items:stretch;
+      justify-content:flex-start;
       gap:16px;
       padding:22px;
       border-bottom:1px solid rgba(0,0,0,0.06);
@@ -310,12 +311,14 @@
       max-width:70ch;
     }
 
+    /* IMPORTANT: this grid makes labels sit above selects on mobile, consistent with culinary/culture */
     .selector-controls{
-      display:flex;
+      display:grid;
+      grid-template-columns:auto 260px;
+      gap:10px 12px;
+      justify-content:end;
       align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
+      align-self:flex-end;
     }
 
     .selector-controls label{
@@ -323,6 +326,8 @@
       color:#0f2f62;
       font-size:13px;
       letter-spacing:0.02em;
+      justify-self:end;
+      white-space:nowrap;
     }
 
     .selector-controls select{
@@ -338,7 +343,7 @@
       font-size:14px;
       cursor:pointer;
       outline:none;
-      min-width:260px;
+      width:260px;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
       background-image:
         linear-gradient(45deg, transparent 50%, #0f2f62 50%),
@@ -478,7 +483,7 @@
       font-weight:700;
     }
 
-    /* ===== CAROUSEL (GALLERY) - REGIONS STYLE ===== */
+    /* ===== CAROUSEL (GALLERY) - FIXED HOOKUP ===== */
     .carousel{
       margin-top:40px;
       background:#fff;
@@ -515,29 +520,6 @@
       width:100%;
       height:100%;
       object-fit:cover;
-    }
-
-    /* Placeholder content for now (no images yet) */
-    .ph{
-      width:100%;
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:18px;
-      color:#0f2f62;
-      font-weight:900;
-      letter-spacing:-0.02em;
-      background:
-        linear-gradient(180deg, rgba(3,78,162,0.08), rgba(3,78,162,0.02));
-    }
-    .ph small{
-      display:block;
-      margin-top:8px;
-      font-weight:800;
-      opacity:0.85;
-      letter-spacing:0.01em;
     }
 
     .carousel-btn{
@@ -662,9 +644,18 @@
     @media(max-width:900px){
       .grid{grid-template-columns:1fr}
       .recs-grid{grid-template-columns:1fr}
-      .selector-top{flex-direction:column; align-items:flex-start;}
-      .selector-controls{justify-content:flex-start;}
-      .selector-controls select{min-width:260px; width:100%;}
+
+      /* Keep labels above selects on mobile (matches culinary/culture) */
+      .selector-controls{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        justify-content:flex-start;
+        width:100%;
+      }
+      .selector-controls label{width:100%; justify-self:auto;}
+      .selector-controls select{width:100%; min-width:260px;}
+
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
     }
 
@@ -734,7 +725,7 @@
 <section class="hero">
   <h1>Nature</h1>
   <p>
-    Ecuador is small, but the natural variety is massive — cloud forests, volcanoes, rainforest rivers, beaches, and islands.
+    Ecuador is small, but the natural variety is massive: cloud forests, volcanoes, rainforest rivers, beaches, and islands.
     Use the selector below to match your pace with the best-fit nature experiences and regions.
   </p>
 </section>
@@ -757,15 +748,18 @@
   <!-- Nature Pace Selector -->
   <section class="section selector" aria-label="Nature pace selector">
     <div class="selector-top">
-      <div class="selector-copy">
-        <h3>Pick your nature pace</h3>
-        <p>
-          Choose the style of nature you want and we’ll show three strong starting points — each linked to the best region to build from.
-          (You can refine these as you expand your location pages.)
-        </p>
-      </div>
-
+      <!-- UPDATED: controls first (so mobile stacks label above select like culinary/culture) -->
       <div class="selector-controls">
+        <label for="ee_exp_nav">Experiences</label>
+        <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Navigate to an experience">
+          <option value="/experiences/adventure/">Adventure</option>
+          <option value="/experiences/nature/" selected>Nature</option>
+          <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
+          <option value="/experiences/relaxation/">Relaxation</option>
+          <option value="/experiences/culinary/">Culinary</option>
+          <option value="/experiences/culture/">Culture</option>
+        </select>
+
         <label for="ee_nature_pace">Nature pace</label>
         <select id="ee_nature_pace" name="ee_nature_pace" aria-label="Select nature pace">
           <option value="easy">Easy + scenic (slow nature)</option>
@@ -773,6 +767,14 @@
           <option value="immersive">Immersive ecosystems (deep nature)</option>
           <option value="iconic">Iconic landscapes (must-see)</option>
         </select>
+      </div>
+
+      <div class="selector-copy">
+        <h3>Pick your nature pace</h3>
+        <p>
+          Choose the style of nature you want and we’ll show three strong starting points — each linked to the best region to build from.
+          (You can refine these as you expand your location pages.)
+        </p>
       </div>
     </div>
 
@@ -819,8 +821,8 @@
     </div>
   </section>
 
-  <!-- Bottom Carousel (placeholders) -->
-  <section class="carousel" aria-label="Culinary gallery carousel">
+  <!-- Bottom Carousel -->
+  <section class="carousel" aria-label="Nature gallery carousel">
     <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
       <span aria-hidden="true"></span>
     </button>
@@ -828,40 +830,21 @@
       <span aria-hidden="true"></span>
     </button>
 
-      <div class="carousel-viewport" aria-label="Carousel viewport">
-        <div class="carousel-track" aria-label="Carousel track">
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Nature-1.jpg" alt="Nature gallery image 1">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Nature-2.jpg" alt="Nature gallery image 2">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Nature-3.jpg" alt="Nature gallery image 3">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Nature-4.jpg" alt="Nature gallery image 4">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Nature-5.jpg" alt="Nature gallery image 5">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Nature-6.jpg" alt="Nature gallery image 6">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Nature-7.jpg" alt="Nature gallery image 7">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Nature-8.jpg" alt="Nature gallery image 8">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Nature-9.jpg" alt="Nature gallery image 9">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/images/EE-Carousel-Nature-10.jpg" alt="Nature gallery image 10">
-          </div>
-        </div>
+    <!-- FIXED: add required ids so JS can hook up -->
+    <div class="carousel-viewport" id="ee_car_viewport" aria-label="Carousel viewport">
+      <div class="carousel-track" id="ee_car_track" aria-label="Carousel track">
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-1.jpg" alt="Nature gallery image 1"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-2.jpg" alt="Nature gallery image 2"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-3.jpg" alt="Nature gallery image 3"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-4.jpg" alt="Nature gallery image 4"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-5.jpg" alt="Nature gallery image 5"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-6.jpg" alt="Nature gallery image 6"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-7.jpg" alt="Nature gallery image 7"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-8.jpg" alt="Nature gallery image 8"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-9.jpg" alt="Nature gallery image 9"></div>
+        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-10.jpg" alt="Nature gallery image 10"></div>
       </div>
+    </div>
 
     <div class="carousel-ui">
       <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
@@ -871,7 +854,6 @@
 
 </main>
 
-<!-- Footer placeholder (you said we will finalize later) -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-tagline">Curated travel experiences across Ecuador</div>
@@ -933,6 +915,19 @@
     document.addEventListener('click', closeAll);
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeAll();
+    });
+  })();
+
+  /* ===== Experiences selector quick nav (universal) ===== */
+  (function(){
+    const expNav = document.getElementById("ee_exp_nav");
+    if (!expNav) return;
+
+    expNav.addEventListener("change", function(){
+      const url = String(this.value || "").trim();
+      if (!url) return;
+      if (url === window.location.pathname || url === window.location.pathname + "/") return;
+      window.location.href = url;
     });
   })();
 
@@ -1058,7 +1053,7 @@
       },
 
       iconic: {
-        hint: "Iconic landscapes = the “must-see Ecuador nature” list: volcanoes, islands, and unforgettable scenery.",
+        hint: "Iconic landscapes = the must-see Ecuador nature list: volcanoes, islands, and unforgettable scenery.",
         recs: [
           {
             title: "Volcano viewpoints + big sky landscapes",
@@ -1143,7 +1138,7 @@
     }
   })();
 
-  /* ===== Carousel (regions-style) ===== */
+  /* ===== Carousel (fixed hookup) ===== */
   (function(){
     const track = document.getElementById("ee_car_track");
     const viewport = document.getElementById("ee_car_viewport");
@@ -1196,7 +1191,6 @@
     if (nextBtn) nextBtn.addEventListener("click", next);
     if (prevBtn) prevBtn.addEventListener("click", prev);
 
-    // Touch swipe (simple)
     viewport.addEventListener("touchstart", (e) => {
       if (e.touches.length !== 1) return;
       dragging = true;
@@ -1219,13 +1213,14 @@
       }
     });
 
-    // Keyboard
+    // Make viewport focusable for arrow keys
+    viewport.tabIndex = 0;
+
     viewport.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") next();
       if (e.key === "ArrowLeft") prev();
     });
 
-    // Init
     update();
   })();
 </script>
