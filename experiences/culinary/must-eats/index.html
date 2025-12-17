@@ -106,7 +106,7 @@
       background:rgba(3,78,162,0.08);
     }
 
-    /* Dropdown */
+    /* Dropdown (nav) */
     .dropdown{
       position:relative;
       display:inline-flex;
@@ -205,29 +205,6 @@
       text-shadow:0 10px 30px rgba(0,0,0,0.35);
     }
 
-    .hero-actions{
-      margin-top:14px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:10px 14px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.25);
-      color:#fff;
-      background:rgba(255,255,255,0.12);
-      font-weight:800;
-      font-size:14px;
-      backdrop-filter:saturate(140%) blur(10px);
-    }
-
-    .btn:hover{background:rgba(255,255,255,0.18)}
-
     /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
@@ -294,6 +271,96 @@
       font-size:14.6px;
     }
 
+    /* ===== SELECTOR CARD (Experiences only) ===== */
+    .selector-card{
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      overflow:hidden;
+    }
+
+    .selector-top{
+      padding:18px 18px 0;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:12px;
+      align-items:start;
+    }
+
+    /* Experiences-only control, matches the other pages' control sizing */
+    .selector-controls{
+      grid-column:2;
+      grid-row:1;
+      justify-self:end;
+
+      display:grid;
+      grid-template-columns:auto 260px;
+      gap:10px 10px;
+      align-items:center;
+    }
+
+    .selector-controls label{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+      text-align:left;
+    }
+
+    .selector-controls select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-weight:700;
+      padding:11px 42px 11px 12px;
+      border-radius:14px;
+      font-size:14px;
+      cursor:pointer;
+      outline:none;
+      min-width:0;
+      width:260px;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      background-image:
+        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
+        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%,
+        0 0;
+      background-size:6px 6px, 6px 6px, 100% 100%;
+      background-repeat:no-repeat;
+    }
+
+    .selector-controls select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .selector-body{ padding:22px; }
+
+    @media(max-width:900px){
+      .selector-top{
+        grid-template-columns:1fr;
+      }
+      .selector-controls{
+        grid-column:1;
+        justify-self:stretch;
+        grid-template-columns:1fr;
+      }
+      .selector-controls label{
+        margin-top:8px;
+      }
+      .selector-controls select{
+        width:100%;
+        min-width:0;
+      }
+    }
+
     /* ===== MUST EATS GRID ===== */
     .section-title{
       font-family:Montserrat,Inter,sans-serif;
@@ -327,7 +394,6 @@
       will-change:transform;
     }
 
-    /* UPDATED: slides can now display real images */
     .carousel-slide{
       min-width:100%;
       aspect-ratio: 16 / 10;
@@ -501,7 +567,7 @@
         </div>
       </div>
 
-      <!-- Experiences dropdown added (no Focus dropdown) -->
+      <!-- Experiences dropdown (nav) -->
       <div class="dropdown" id="experiencesDropdown">
         <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
           Experiences <span class="caret" aria-hidden="true"></span>
@@ -527,36 +593,52 @@
     <div class="hero-content">
       <div>
         <h1 class="hero-title">Must Eats</h1>
-        <div class="hero-actions" aria-label="Hero actions">
-          <a class="btn" href="/experiences/" aria-label="Back to Experiences">← Back to Experiences</a>
-          <a class="btn" href="/experiences/culinary/" aria-label="Back to Culinary">Culinary</a>
-        </div>
+        <!-- Removed the two hero buttons -->
       </div>
     </div>
   </div>
 </section>
 
 <main class="wrap">
-  <section class="content-grid" aria-label="Intro and more experiences">
-    <div class="card">
-      <h2>How Ecuador’s regions taste different</h2>
-      <p>
-        Ecuador is small, but the food changes fast. The Andes lean into comfort and tradition, built around potatoes,
-        pork, and hearty sauces. The Coast is bright and ocean-forward with citrus, plantain, and seafood that shows up
-        everywhere. The Amazon brings smoky, herbal flavors and ingredients you rarely see outside the rainforest.
-        In the Galapagos, simplicity wins: fresh fish, island-style sides, and whatever the ocean delivered that day.
-        Pick a region, try at least one dish, and you’ll understand the local culture instantly.
-      </p>
+
+  <!-- Experiences selector (dropdown like the other pages) -->
+  <section class="selector-card" aria-label="Experiences selector" style="margin-top:18px;">
+    <div class="selector-top">
+      <div></div>
+
+      <div class="selector-controls" aria-label="Selector controls">
+        <label for="experienceSelect">Experiences</label>
+        <select id="experienceSelect" name="experience">
+          <option value="/experiences/">All Experiences</option>
+          <option value="/experiences/adventure/">Adventure</option>
+          <option value="/experiences/nature/">Nature</option>
+          <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
+          <option value="/experiences/relaxation/">Relaxation</option>
+          <option value="/experiences/culinary/" selected>Culinary</option>
+          <option value="/experiences/culture/">Culture</option>
+        </select>
+      </div>
     </div>
 
-    <!-- More Experiences section removed -->
+    <div class="selector-body">
+      <div class="card" style="box-shadow:none;border:0;padding:0;background:transparent;">
+        <h2 style="margin-bottom:10px;">How Ecuador’s regions taste different</h2>
+        <p>
+          Ecuador is small, but the food changes fast. The Andes lean into comfort and tradition, built around potatoes,
+          pork, and hearty sauces. The Coast is bright and ocean-forward with citrus, plantain, and seafood that shows up
+          everywhere. The Amazon brings smoky, herbal flavors and ingredients you rarely see outside the rainforest.
+          In the Galapagos, simplicity wins: fresh fish, island-style sides, and whatever the ocean delivered that day.
+          Pick a region, try at least one dish, and you’ll understand the local culture instantly.
+        </p>
+      </div>
+    </div>
   </section>
 
   <section style="margin-top:34px" aria-label="Top must eats by region">
     <h2 class="section-title">Top must eats by region</h2>
 
     <div class="must-grid">
-      <!-- ANDES (UPDATED IMAGES) -->
+      <!-- ANDES -->
       <div class="card" aria-label="Andes must eats">
         <h2>Andes</h2>
         <p>Comfort-forward food built for high elevation: warm soups, pork specialties, and classic sides.</p>
@@ -604,12 +686,12 @@
               <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Ceviche.jpg" alt="Ceviche Ecuatoriano">
               <div class="slide-caption">Ceviche ecuatoriano</div>
             </div>
-            
+
             <div class="carousel-slide">
               <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Encebollado.jpg" alt="Encebollado">
               <div class="slide-caption">Encebollado</div>
             </div>
-            
+
             <div class="carousel-slide">
               <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Bolon.jpg" alt="Bolón de verde">
               <div class="slide-caption">Bolón de verde</div>
@@ -638,12 +720,12 @@
               <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Maito.jpg" alt="Maito">
               <div class="slide-caption">Maito</div>
             </div>
-            
+
             <div class="carousel-slide">
               <img src="/assets/images/EE-Assets-Culinary-Must-Eats-GuayusaTea.jpg" alt="Guayusa tea">
               <div class="slide-caption">Guayusa tea</div>
             </div>
-            
+
             <div class="carousel-slide">
               <img src="/assets/images/EE-Assets-Culinary-Must-Eats-CacaoCafe.jpg" alt="Chocolate + cacao drinks">
               <div class="slide-caption">Chocolate + cacao drinks</div>
@@ -672,12 +754,12 @@
               <img src="/assets/images/EE-Assets-Culinary-Must-Eats-ArrozMarinero.jpg" alt="Arroz marinero">
               <div class="slide-caption">Arroz marinero</div>
             </div>
-            
+
             <div class="carousel-slide">
               <img src="/assets/images/EE-Assets-Culinary-Must-Eats-FreshCatch.jpg" alt="Fresh catch of the day">
               <div class="slide-caption">Fresh catch of the day</div>
             </div>
-            
+
             <div class="carousel-slide">
               <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Patacones.jpg" alt="Patacones">
               <div class="slide-caption">Patacones</div>
@@ -714,7 +796,7 @@
               <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Cuy.jpg" alt="Cuy asado">
               <div class="slide-caption">Cuy asado</div>
             </div>
-            
+
             <div class="carousel-slide">
               <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Chontacuro.jpg" alt="Chontacuro">
               <div class="slide-caption">Chontacuro</div>
@@ -744,12 +826,12 @@
               <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Market.jpg" alt="Market">
               <div class="slide-caption">Market photo placeholder</div>
             </div>
-            
+
             <div class="carousel-slide">
               <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Restaurant.jpg" alt="Restaurant">
               <div class="slide-caption">Restaurant photo placeholder</div>
             </div>
-            
+
             <div class="carousel-slide">
               <img src="/assets/images/EE-Assets-Culinary-Must-Eats-StreetFood.jpg" alt="Street food">
               <div class="slide-caption">Street food photo placeholder</div>
@@ -895,6 +977,16 @@
     }
 
     carousels.forEach(setupCarousel);
+  })();
+
+  (function(){
+    const experienceSelect = document.getElementById('experienceSelect');
+    if (!experienceSelect) return;
+
+    experienceSelect.addEventListener('change', function(){
+      const url = this.value;
+      if (url) window.location.href = url;
+    });
   })();
 </script>
 
