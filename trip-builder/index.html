@@ -238,11 +238,23 @@
       letter-spacing:-0.02em;
     }
 
-    /* ===== BUILDER CARD ===== */
-    .builder{
+    /* ===== BUILDER + FLIGHTS LAYOUT (75% / 25%) ===== */
+    .builder-layout{
       margin-top:18px;
+      display:grid;
+      grid-template-columns: 3fr 1fr; /* ~75% / 25% */
+      gap:14px;
+      align-items:stretch; /* equal height columns */
     }
 
+    .builder-card,
+    .flights-card{
+      height:100%;
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* ===== BUILDER CARD ===== */
     .builder-top{
       display:flex;
       align-items:flex-start;
@@ -299,7 +311,13 @@
       border-color:rgba(3,78,162,0.45);
     }
 
-    .pill-row{ margin-top:14px; display:flex; flex-wrap:wrap; gap:10px; }
+    .pill-row{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
     .pill{
       border:1px solid rgba(3,78,162,0.16);
       background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
@@ -310,11 +328,45 @@
       font-size:13px;
       cursor:pointer;
       user-select:none;
+      max-width:100%;
     }
+
     .pill[aria-pressed="true"]{
       background:rgba(3,78,162,0.12);
       border-color:rgba(3,78,162,0.28);
       box-shadow:0 12px 26px rgba(3,78,162,0.10);
+    }
+
+    /* Experiences: 2 rows, 3 per row (desktop) */
+    .pill-row.experiences-grid{
+      display:grid;
+      grid-template-columns:repeat(3, max-content);
+      gap:10px 12px;
+      align-items:start;
+      justify-content:start;
+    }
+
+    /* Region hint wrapping */
+    .region-hint{
+      margin-top:10px;
+      color:#24324a;
+      opacity:.95;
+      font-size:14.6px;
+      line-height:1.55;
+      white-space:normal;
+      overflow-wrap:anywhere;
+      word-break:break-word;
+      max-width:100%;
+    }
+
+    /* Tip moved under Pick regions, smaller */
+    .regions-tip{
+      margin-top:8px;
+      color:#24324a;
+      opacity:.95;
+      font-size:13.2px;
+      line-height:1.45;
+      max-width:90ch;
     }
 
     .actions{
@@ -335,41 +387,19 @@
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
       letter-spacing:-0.01em;
     }
+
     .btn.primary{
       background:var(--brand-blue);
       color:#fff;
       border-color:rgba(3,78,162,0.35);
     }
+
     .btn:disabled{
       opacity:.6;
       cursor:not-allowed;
     }
 
-    /* ===== ITINERARY OUTPUT ===== */
-    .itinerary{
-      margin-top:22px;
-    }
-
-    /* Header row: title (left) + flights box (right) */
-    .itinerary-head{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-
-    .flights-mini{
-      margin-top:2px;
-      margin-left:auto;
-      width:min(360px, 100%);
-      background:#fff;
-      border:1px solid rgba(0,0,0,0.06);
-      border-radius:18px;
-      padding:14px;
-      box-shadow:0 14px 34px rgba(3,78,162,0.10);
-    }
-
+    /* ===== FLIGHTS BOX (RIGHT) ===== */
     .mini-title{
       font-weight:900;
       color:#0f2f62;
@@ -424,7 +454,7 @@
     }
 
     .mini-hint{
-      margin-top:10px;
+      margin-top:12px;
       color:#24324a;
       opacity:.95;
       font-size:13.6px;
@@ -436,6 +466,11 @@
       font-weight:900;
       text-decoration:underline;
       text-underline-offset:3px;
+    }
+
+    /* ===== ITINERARY OUTPUT ===== */
+    .itinerary{
+      margin-top:16px; /* clean, no big gap now */
     }
 
     .day-card{
@@ -479,6 +514,7 @@
       background:linear-gradient(180deg, rgba(3,78,162,0.05), rgba(3,78,162,0.02));
       border:1px solid rgba(3,78,162,0.12);
     }
+
     .slot h4{
       margin:0 0 6px;
       font-weight:900;
@@ -487,11 +523,13 @@
       letter-spacing:0.02em;
       text-transform:uppercase;
     }
+
     .slot .title{
       font-weight:900;
       color:#0f2f62;
       margin:0 0 4px;
     }
+
     .slot .meta{
       color:#24324a;
       opacity:.95;
@@ -553,12 +591,24 @@
     @media(max-width:900px){
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
       .hero-banner{min-height:290px}
+
+      .builder-layout{
+        grid-template-columns:1fr;
+      }
+
       .controls-grid{ grid-template-columns:1fr; }
       .controls-grid select{ width:100%; }
-      .itinerary-head{ flex-direction:column; align-items:stretch; }
-      .flights-mini{ width:100%; }
+
       .mini-grid{ grid-template-columns:1fr; }
       .mini-actions{ justify-content:flex-start; }
+
+      .pill-row.experiences-grid{
+        grid-template-columns:repeat(2, 1fr);
+      }
+      .pill-row.experiences-grid .pill{
+        width:100%;
+        text-align:center;
+      }
     }
 
     @media(max-width:620px){
@@ -569,6 +619,10 @@
         transform:translateX(-50%);
       }
       .hero-content{padding:16px}
+
+      .pill-row.experiences-grid{
+        grid-template-columns:1fr;
+      }
     }
   </style>
 </head>
@@ -632,79 +686,83 @@
 
 <main class="wrap">
 
-  <section class="card builder" aria-label="Trip builder wizard">
-    <h2 style="margin-bottom:10px;">Build a custom Ecuador itinerary</h2>
-    <p>
-      Choose your trip length, regions, and experiences. Then generate a suggested itinerary you can customize.
-      This version is rules-based and runs entirely in your browser.
-    </p>
+  <!-- 75% builder + 25% flights, same height -->
+  <section class="builder-layout" aria-label="Trip builder and flights">
+    <!-- LEFT: Builder (75%) -->
+    <section class="card builder-card" aria-label="Trip builder wizard">
+      <h2 style="margin-bottom:10px;">Build a custom Ecuador itinerary</h2>
+      <p>
+        Choose your trip length, regions, and experiences. Then generate a suggested itinerary you can customize.
+        This version is rules-based and runs entirely in your browser.
+      </p>
 
-    <div class="builder-top" style="margin-top:14px;">
-      <div class="controls-grid" aria-label="Builder controls">
-        <label for="daysSelect">Number of days</label>
-        <select id="daysSelect"></select>
+      <div class="builder-top" style="margin-top:14px;">
+        <div class="controls-grid" aria-label="Builder controls">
+          <label for="daysSelect">Number of days</label>
+          <select id="daysSelect"></select>
+        </div>
       </div>
 
-      <div class="hint" style="max-width:54ch;margin-top:4px;">
-        Tip: If you select multiple regions, the tool will automatically split days and add lighter “transfer-friendly” pacing.
+      <div style="margin-top:16px;">
+        <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick regions</div>
+
+        <!-- Tip moved here + smaller -->
+        <div class="regions-tip">
+          Tip: If you select multiple regions, the tool will automatically split days and add lighter “transfer-friendly” pacing.
+        </div>
+
+        <div class="pill-row" id="regionsPills" aria-label="Region selection"></div>
+        <div class="region-hint" id="regionHint"></div>
       </div>
-    </div>
 
-    <div style="margin-top:16px;">
-      <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick regions</div>
-      <div class="pill-row" id="regionsPills" aria-label="Region selection"></div>
-      <p class="hint" id="regionHint"></p>
-    </div>
+      <div style="margin-top:18px;">
+        <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick experiences</div>
+        <div class="pill-row experiences-grid" id="experiencesPills" aria-label="Experience selection"></div>
+      </div>
 
-    <div style="margin-top:18px;">
-      <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick experiences</div>
-      <div class="pill-row" id="experiencesPills" aria-label="Experience selection"></div>
-    </div>
+      <div class="actions">
+        <button class="btn primary" id="generateBtn" type="button" disabled>Generate itinerary</button>
+        <button class="btn" id="resetBtn" type="button">Reset</button>
+      </div>
+    </section>
 
-    <div class="actions">
-      <button class="btn primary" id="generateBtn" type="button" disabled>Generate itinerary</button>
-      <button class="btn" id="resetBtn" type="button">Reset</button>
-    </div>
+    <!-- RIGHT: Flights (25%) -->
+    <aside class="card flights-card" aria-label="Flights">
+      <p class="mini-title">Flights</p>
+
+      <div class="mini-grid">
+        <label for="flightFrom">From</label>
+        <input id="flightFrom" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
+
+        <label for="flightTo">To</label>
+        <select id="flightTo" aria-label="Destination airport">
+          <option value="UIO">Quito (UIO)</option>
+          <option value="GYE">Guayaquil (GYE)</option>
+          <option value="GPS">Galapagos (GPS)</option>
+          <option value="CUE">Cuenca (CUE)</option>
+        </select>
+
+        <label for="flightDepart">Depart</label>
+        <input id="flightDepart" type="date">
+
+        <label for="flightReturn">Return</label>
+        <input id="flightReturn" type="date">
+      </div>
+
+      <div class="mini-actions">
+        <button class="btn primary" id="flightSearchBtn" type="button">Search flights</button>
+      </div>
+
+      <div class="mini-hint">
+        When flights and itinerary are confirmed, check out local safe transportation:
+        <a class="mini-link" href="/transportation/">Transportation</a>
+      </div>
+    </aside>
   </section>
 
+  <!-- Itinerary sits cleanly underneath (no flights here) -->
   <section class="itinerary" aria-label="Generated itinerary">
-    <div class="itinerary-head">
-      <h2 class="section-title" style="margin-top:26px;">Your suggested itinerary</h2>
-
-      <!-- Flights mini section (right-aligned) -->
-      <aside class="flights-mini" aria-label="Flights search">
-        <p class="mini-title">Flights</p>
-
-        <div class="mini-grid">
-          <label for="flightFrom">From</label>
-          <input id="flightFrom" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
-
-          <label for="flightTo">To</label>
-          <select id="flightTo" aria-label="Destination airport">
-            <option value="UIO">Quito (UIO)</option>
-            <option value="GYE">Guayaquil (GYE)</option>
-            <option value="GPS">Galapagos (GPS)</option>
-            <option value="CUE">Cuenca (CUE)</option>
-          </select>
-
-          <label for="flightDepart">Depart</label>
-          <input id="flightDepart" type="date">
-
-          <label for="flightReturn">Return</label>
-          <input id="flightReturn" type="date">
-        </div>
-
-        <div class="mini-actions">
-          <button class="btn primary" id="flightSearchBtn" type="button">Search flights</button>
-        </div>
-
-        <div class="mini-hint">
-          When flights and itinerary are confirmed, check out local safe transportation:
-          <a class="mini-link" href="/transportation/">Transportation</a>
-        </div>
-      </aside>
-    </div>
-
+    <h2 class="section-title" style="margin-top:26px;">Your suggested itinerary</h2>
     <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate itinerary.”</div>
   </section>
 
@@ -866,8 +924,21 @@
 
   function renderExperiencePills() {
     els.experiencesPills.innerHTML = "";
-    DATA.experiences.experiences.forEach(x => {
-      els.experiencesPills.appendChild(createPill(x, "experience"));
+
+    // Force the exact 2-row / 3-column order you requested.
+    const desiredOrder = ["adventure","nature","wildlife-birding","relaxation","culinary","culture"];
+    const map = new Map((DATA.experiences.experiences || []).map(x => [x.id, x]));
+
+    desiredOrder.forEach(id => {
+      const item = map.get(id);
+      if (item) els.experiencesPills.appendChild(createPill(item, "experience"));
+    });
+
+    // If experiences.json ever adds more, append them after (keeps your first 6 fixed)
+    (DATA.experiences.experiences || []).forEach(x => {
+      if (!desiredOrder.includes(x.id)) {
+        els.experiencesPills.appendChild(createPill(x, "experience"));
+      }
     });
   }
 
@@ -935,7 +1006,6 @@
         id: `${block.id}__part_${i+1}_of_${parts}`,
         title: `${block.title} (Part ${i+1} of ${parts})`,
         duration_hours: Math.round(per * 10) / 10
-        // notes are NOT modified here. We explain splits at render time (Option A).
       });
     }
     return out;
@@ -1234,13 +1304,10 @@
   };
 
   function syncDefaultFlightToFromRegions(){
-    // If user selected only one region -> set airport for that region.
-    // If multiple regions -> keep current selection unless empty; otherwise prefer first selected region.
     const selected = Array.from(state.selectedRegionIds);
     if (!selected.length) return;
 
     const airport = REGION_TO_AIRPORT[selected[0]] || "UIO";
-    // Only auto-set if user hasn't manually changed OR if current is blank
     if (!els.flightTo.dataset.userSet || els.flightTo.dataset.userSet === "false") {
       els.flightTo.value = airport;
     }
@@ -1252,22 +1319,16 @@
 
   function normalizeAirportCode(v){
     const s = String(v || "").trim().toUpperCase();
-    // allow "JFK" or "JFK, US" etc -> keep first token letters
     const m = s.match(/[A-Z]{3}/);
     return m ? m[0] : "";
   }
 
   function buildGoogleFlightsUrl({ from, to, depart, ret }){
-    // Use query parsing (reliable + simple)
-    // Examples:
-    // "Flights to UIO from JFK on 2026-01-15 return 2026-01-22"
     let q = `Flights to ${to}`;
     if (from) q += ` from ${from}`;
     if (depart) q += ` on ${depart}`;
     if (ret) q += ` return ${ret}`;
-
-    const url = "https://www.google.com/travel/flights?q=" + encodeURIComponent(q);
-    return url;
+    return "https://www.google.com/travel/flights?q=" + encodeURIComponent(q);
   }
 
   function openFlights(){
