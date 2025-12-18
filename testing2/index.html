@@ -379,6 +379,7 @@
       border:1px solid rgba(3,78,162,0.22);
       background:#fff;
       color:#0f2f62;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; /* 3) enforce consistent font */
       font-weight:900;
       padding:12px 14px;
       border-radius:16px;
@@ -404,7 +405,7 @@
       font-weight:800;
       font-size:22px;
       margin:0 0 10px;
-      color:var(--brand-blue);
+      color:var(--brand-blue); /* 5) Flights title brand blue */
       letter-spacing:-0.02em;
       text-transform:none;
     }
@@ -416,6 +417,7 @@
       align-items:center;
       width:100%;
       max-width:100%;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; /* 3) consistent font */
     }
 
     .mini-grid > *{ min-width:0; }
@@ -427,6 +429,7 @@
       letter-spacing:0.02em;
       white-space:nowrap;
       text-align:left;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; /* 3) consistent font */
     }
 
     .mini-grid input,
@@ -438,6 +441,7 @@
       border:1px solid rgba(3,78,162,0.22);
       background:#fff;
       color:#0f2f62;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; /* 3) consistent font */
       font-weight:700;
       padding:10px 12px;
       border-radius:14px;
@@ -465,7 +469,7 @@
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      justify-content:flex-end;
+      justify-content:flex-end; /* default desktop alignment */
     }
 
     .mini-hint{
@@ -474,6 +478,7 @@
       opacity:.95;
       font-size:13.6px;
       line-height:1.45;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; /* 3) consistent font */
     }
 
     .mini-link{
@@ -481,6 +486,7 @@
       font-weight:900;
       text-decoration:underline;
       text-underline-offset:3px;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; /* 3) consistent font */
     }
 
     /* ===== ITINERARY OUTPUT ===== */
@@ -500,6 +506,9 @@
     }
 
     .itinerary-shell .hint{ margin-top:0; }
+
+    /* 2) make itinerary title sit in its own box on mobile by keeping .itinerary-shell as the itinerary box,
+          and moving Flights (mobile) OUTSIDE of .itinerary-shell via layout below (see markup) */
 
     .day-card{
       border-radius:18px;
@@ -632,14 +641,14 @@
         display:block !important;
         width:100%;
         max-width:100%;
-        margin:10px 0 14px;
+        margin:12px 0 14px; /* sits between builder and itinerary */
       }
 
       .controls-grid{ grid-template-columns:1fr; }
       .controls-grid select{ width:100%; }
 
       .mini-grid{ grid-template-columns:1fr; }
-      .mini-actions{ justify-content:flex-start; }
+      .mini-actions{ justify-content:flex-start; } /* mobile unchanged */
 
       .itinerary-shell{
         padding:18px;
@@ -655,13 +664,16 @@
         text-align:center;
       }
 
-      /* Mobile: regions try to stay in one row */
+      /* 1) Regions: keep in one row, but ensure Amazon never looks cut off by:
+            - slightly smaller gap
+            - small side padding
+            - a little extra right padding so last pill breathes */
       #regionsPills{
         flex-wrap:nowrap;
         overflow-x:auto;
         -webkit-overflow-scrolling:touch;
-        gap:10px;
-        padding-bottom:4px;
+        gap:6px;                 /* reduce spacing between buttons */
+        padding:0 6px 6px 6px;   /* give edge padding so Amazon isn't clipped */
       }
       #regionsPills .pill{
         flex:0 0 auto;
@@ -671,6 +683,13 @@
       #regionsPills::-webkit-scrollbar-thumb{
         background:rgba(3,78,162,0.22);
         border-radius:999px;
+      }
+    }
+
+    @media(min-width:901px){
+      /* 4) Center the Search flights button on desktop */
+      .flights-card .mini-actions{
+        justify-content:center;
       }
     }
 
@@ -817,42 +836,42 @@
     </aside>
   </section>
 
+  <!-- 2) Flights on mobile is now its OWN card ABOVE the itinerary box -->
+  <aside class="card flights-card" id="flightsMobile" aria-label="Flights (mobile)" style="display:none;">
+    <p class="mini-title">Flights</p>
+
+    <div class="mini-grid">
+      <label for="flightFromMobile">From</label>
+      <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
+
+      <label for="flightToMobile">To</label>
+      <select id="flightToMobile" aria-label="Destination airport">
+        <option value="UIO">Quito (UIO)</option>
+        <option value="GYE">Guayaquil (GYE)</option>
+        <option value="GPS">Galapagos (GPS)</option>
+        <option value="CUE">Cuenca (CUE)</option>
+      </select>
+
+      <label for="flightDepartMobile">Depart</label>
+      <input id="flightDepartMobile" type="date">
+
+      <label for="flightReturnMobile">Return</label>
+      <input id="flightReturnMobile" type="date">
+    </div>
+
+    <div class="mini-actions">
+      <button class="btn primary" id="flightSearchBtnMobile" type="button">Search flights</button>
+    </div>
+
+    <div class="mini-hint">
+      When flights and itinerary are confirmed, check out local safe transportation:
+      <a class="mini-link" href="/transportation/">Transportation</a>
+    </div>
+  </aside>
+
   <section class="itinerary" aria-label="Generated itinerary">
     <div class="itinerary-shell" aria-label="Itinerary output container">
       <h2 class="section-title" style="margin:0 0 12px;">Your suggested itinerary</h2>
-
-      <aside class="card flights-card" id="flightsMobile" aria-label="Flights (mobile)" style="display:none;">
-        <p class="mini-title">Flights</p>
-
-        <div class="mini-grid">
-          <label for="flightFromMobile">From</label>
-          <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
-
-          <label for="flightToMobile">To</label>
-          <select id="flightToMobile" aria-label="Destination airport">
-            <option value="UIO">Quito (UIO)</option>
-            <option value="GYE">Guayaquil (GYE)</option>
-            <option value="GPS">Galapagos (GPS)</option>
-            <option value="CUE">Cuenca (CUE)</option>
-          </select>
-
-          <label for="flightDepartMobile">Depart</label>
-          <input id="flightDepartMobile" type="date">
-
-          <label for="flightReturnMobile">Return</label>
-          <input id="flightReturnMobile" type="date">
-        </div>
-
-        <div class="mini-actions">
-          <button class="btn primary" id="flightSearchBtnMobile" type="button">Search flights</button>
-        </div>
-
-        <div class="mini-hint">
-          When flights and itinerary are confirmed, check out local safe transportation:
-          <a class="mini-link" href="/transportation/">Transportation</a>
-        </div>
-      </aside>
-
       <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate itinerary.”</div>
     </div>
   </section>
@@ -1308,7 +1327,7 @@
           region_id: chunk.region_id,
           is_transfer_friendly: isTransferDay,
           blocks: dayPlan.blocks,
-          optional_add_on: dayPlan.optionalAddOn,
+          optional_add_on: dayPlan.optional_add_on,
           remaining_hours: dayPlan.remaining_hours
         });
 
