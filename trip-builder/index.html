@@ -1,1 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trip Builder | Experience Ecuador</title>
 
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+      --soft:#f6f8fb;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:var(--soft);
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    /* ===== HEADER ===== */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(255,255,255,0.75);
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      overflow:visible;
+    }
+
+    .topbar-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      overflow:visible;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      color:var(--brand-blue);
+      font-size:18px;
+      white-space:nowrap;
+      letter-spacing:-0.02em;
+      line-height:1;
+    }
+
+    .brand img{width:28px;height:28px;object-fit:contain}
+
+    /* ===== NAV ===== */
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-size:14px;
+      font-weight:700;
+      color:#0f2f62;
+      white-space:nowrap;
+      overflow:visible;
+    }
+
+    .nav a,
+    .nav button{
+      font:inherit;
+      background:transparent;
+      border:0;
+      color:inherit;
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      line-height:1;
+    }
+
+    .nav a:hover,
+    .nav button:hover{
+      background:rgba(3,78,162,0.08);
+    }
+
+    /* Dropdown (nav) */
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      overflow:visible;
+      z-index:1100;
+    }
+
+    .dropbtn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
+    }
+
+    .caret{
+      width:10px;
+      height:10px;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
+      transform:rotate(45deg);
+      margin-top:-2px;
+      opacity:.7;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:42px;
+      right:0;
+      min-width:220px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:14px;
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
+      padding:8px;
+      display:none;
+      z-index:1200;
+    }
+
+    .dropdown.open .dropdown-menu{display:block}
+
+    .dropdown-menu a{
+      display:block;
+      padding:10px;
+      border-radius:10px;
+      font-weight:700;
+      color:#0f2f62;
+    }
+
+    .dropdown-menu a:hover{background:rgba(3,78,162,0.08)}
+
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;
+      max-width:1100px;
+      margin:0 auto;
+      padding:22px 18px 12px;
+    }
+
+    .hero-banner{
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 22px 60px rgba(0,0,0,0.18);
+      min-height:320px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)),
+        url("/assets/images/EE-Assets-21-Andes.jpg") center/cover no-repeat;
+    }
+
+    .hero-content{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:flex-end;
+      padding:22px;
+    }
+
+    .hero-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:clamp(34px,4.6vw,54px);
+      letter-spacing:-0.03em;
+      color:#fff;
+      margin:0;
+      line-height:1.05;
+      text-shadow:0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    /* ===== WRAP ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 18px 60px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:22px;
+      padding:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+    }
+
+    .card h2{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:22px;
+      margin:0 0 10px;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+    }
+
+    .card p{
+      margin:0;
+      line-height:1.75;
+      font-size:15.8px;
+      color:#2a2f36;
+      max-width:90ch;
+    }
+
+    .section-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:24px;
+      margin:0 0 14px;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+    }
+
+    /* ===== BUILDER CARD ===== */
+    .builder{
+      margin-top:18px;
+    }
+
+    .builder-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .controls-grid{
+      display:grid;
+      grid-template-columns:auto 260px;
+      gap:10px 12px;
+      align-items:center;
+    }
+
+    .controls-grid label{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+      text-align:left;
+    }
+
+    .controls-grid select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-weight:700;
+      padding:11px 42px 11px 12px;
+      border-radius:14px;
+      font-size:14px;
+      cursor:pointer;
+      outline:none;
+      min-width:0;
+      width:260px;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      background-image:
+        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
+        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%,
+        0 0;
+      background-size:6px 6px, 6px 6px, 100% 100%;
+      background-repeat:no-repeat;
+    }
+
+    .controls-grid select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .pill-row{ margin-top:14px; display:flex; flex-wrap:wrap; gap:10px; }
+    .pill{
+      border:1px solid rgba(3,78,162,0.16);
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      color:#0f2f62;
+      padding:10px 12px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .pill[aria-pressed="true"]{
+      background:rgba(3,78,162,0.12);
+      border-color:rgba(3,78,162,0.28);
+      box-shadow:0 12px 26px rgba(3,78,162,0.10);
+    }
+
+    .actions{
+      margin-top:18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-weight:900;
+      padding:12px 14px;
+      border-radius:16px;
+      cursor:pointer;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      letter-spacing:-0.01em;
+    }
+    .btn.primary{
+      background:var(--brand-blue);
+      color:#fff;
+      border-color:rgba(3,78,162,0.35);
+    }
+    .btn:disabled{
+      opacity:.6;
+      cursor:not-allowed;
+    }
+
+    /* ===== ITINERARY OUTPUT ===== */
+    .itinerary{
+      margin-top:22px;
+    }
+
+    .day-card{
+      border-radius:18px;
+      border:1px solid rgba(0,0,0,0.06);
+      background:#fff;
+      padding:16px;
+      box-shadow:0 14px 34px rgba(3,78,162,0.10);
+    }
+    .day-card + .day-card{ margin-top:12px; }
+
+    .day-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      margin:0 0 8px;
+      color:#0f2f62;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .tag{
+      font-size:12px;
+      font-weight:900;
+      color:#0f2f62;
+      background:rgba(3,78,162,0.10);
+      border:1px solid rgba(3,78,162,0.18);
+      padding:6px 10px;
+      border-radius:999px;
+      white-space:nowrap;
+    }
+
+    .slot{
+      margin-top:10px;
+      padding:12px;
+      border-radius:14px;
+      background:linear-gradient(180deg, rgba(3,78,162,0.05), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.12);
+    }
+    .slot h4{
+      margin:0 0 6px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+    }
+    .slot .title{
+      font-weight:900;
+      color:#0f2f62;
+      margin:0 0 4px;
+    }
+    .slot .meta{
+      color:#24324a;
+      opacity:.95;
+      font-size:14px;
+      line-height:1.55;
+      margin:0;
+    }
+
+    .hint{
+      margin-top:10px;
+      color:#24324a;
+      opacity:.95;
+      font-size:14.6px;
+      line-height:1.6;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer{
+      background:var(--brand-blue);
+      color:#fff;
+      margin-top:54px;
+    }
+
+    .footer-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px;
+      text-align:center;
+    }
+
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      margin-bottom:16px;
+    }
+
+    .social{
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+
+    .icon-btn{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:var(--brand-blue);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 14px 34px rgba(0,0,0,0.35);
+    }
+
+    .icon-btn img{width:34px;height:34px}
+    footer small{font-size:13px;opacity:.9}
+
+    @media(max-width:900px){
+      .nav{gap:8px;flex-wrap:wrap;justify-content:center}
+      .hero-banner{min-height:290px}
+      .controls-grid{ grid-template-columns:1fr; }
+      .controls-grid select{ width:100%; }
+    }
+
+    @media(max-width:620px){
+      .topbar-inner{flex-direction:column;gap:10px}
+      .dropdown-menu{
+        right:auto;
+        left:50%;
+        transform:translateX(-50%);
+      }
+      .hero-content{padding:16px}
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/">
+      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+      <span>Experience Ecuador</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/mission/">Mission</a>
+
+      <div class="dropdown" id="regionsDropdown">
+        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
+          Regions <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+          <a href="/regions/" role="menuitem">All Regions</a>
+          <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+          <a href="/regions/coast/" role="menuitem">Coast</a>
+          <a href="/regions/andes/" role="menuitem">Andes</a>
+          <a href="/regions/amazon/" role="menuitem">Amazon</a>
+        </div>
+      </div>
+
+      <div class="dropdown" id="experiencesDropdown">
+        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+          Experiences <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+          <a href="/experiences/" role="menuitem">All Experiences</a>
+          <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+          <a href="/experiences/nature/" role="menuitem">Nature</a>
+          <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+          <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+          <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+          <a href="/experiences/culture/" role="menuitem">Culture</a>
+        </div>
+      </div>
+
+      <a href="/contact/">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" aria-label="Trip Builder hero">
+  <div class="hero-banner" role="img" aria-label="Trip Builder hero image placeholder">
+    <div class="hero-content">
+      <div>
+        <h1 class="hero-title">Trip Builder</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <section class="card builder" aria-label="Trip builder wizard">
+    <h2 style="margin-bottom:10px;">Build a custom Ecuador itinerary</h2>
+    <p>
+      Choose your trip length, regions, and experiences. Then generate a suggested itinerary you can customize.
+      This version is rules-based and runs entirely in your browser.
+    </p>
+
+    <div class="builder-top" style="margin-top:14px;">
+      <div class="controls-grid" aria-label="Builder controls">
+        <label for="daysSelect">Number of days</label>
+        <select id="daysSelect"></select>
+      </div>
+
+      <div class="hint" style="max-width:54ch;margin-top:4px;">
+        Tip: If you select multiple regions, the tool will automatically split days and add lighter “transfer-friendly” pacing.
+      </div>
+    </div>
+
+    <div style="margin-top:16px;">
+      <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick regions</div>
+      <div class="pill-row" id="regionsPills" aria-label="Region selection"></div>
+      <p class="hint" id="regionHint"></p>
+    </div>
+
+    <div style="margin-top:18px;">
+      <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick experiences</div>
+      <div class="pill-row" id="experiencesPills" aria-label="Experience selection"></div>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" id="generateBtn" type="button" disabled>Generate itinerary</button>
+      <button class="btn" id="resetBtn" type="button">Reset</button>
+    </div>
+  </section>
+
+  <section class="itinerary" aria-label="Generated itinerary">
+    <h2 class="section-title" style="margin-top:26px;">Your suggested itinerary</h2>
+    <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate itinerary.”</div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
+    <div class="social">
+      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+      </a>
+      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+      </a>
+      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+      </a>
+      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+      </a>
+    </div>
+
+    <small>© 2025 Experience Ecuador. All rights reserved.</small>
+  </div>
+</footer>
+
+<script>
+  // ===== NAV DROPDOWNS =====
+  (function () {
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    function closeAll() {
+      dropdowns.forEach(dd => {
+        dd.classList.remove('open');
+        const btn = dd.querySelector('.dropbtn');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    dropdowns.forEach(dd => {
+      const btn = dd.querySelector('.dropbtn');
+      const menu = dd.querySelector('.dropdown-menu');
+      if (!btn) return;
+
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const isOpen = dd.classList.contains('open');
+        closeAll();
+        dd.classList.toggle('open', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+      });
+
+      if (menu) menu.addEventListener('click', e => e.stopPropagation());
+    });
+
+    document.addEventListener('click', closeAll);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAll();
+    });
+  })();
+
+  // ===== TRIP BUILDER =====
+  const DATA = {
+    regions: null,
+    experiences: null,
+    blocks: null
+  };
+
+  const state = {
+    days: 5,
+    selectedRegionIds: new Set(),
+    selectedExperienceIds: new Set()
+  };
+
+  const els = {
+    daysSelect: document.getElementById('daysSelect'),
+    regionsPills: document.getElementById('regionsPills'),
+    experiencesPills: document.getElementById('experiencesPills'),
+    generateBtn: document.getElementById('generateBtn'),
+    resetBtn: document.getElementById('resetBtn'),
+    output: document.getElementById('output'),
+    regionHint: document.getElementById('regionHint')
+  };
+
+  function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+  function pickRandom(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+
+  function normalizePace(dayIndex, totalDays) {
+    // Trips 7+ days: auto-insert lighter pace every 3rd day
+    if (totalDays >= 7 && (dayIndex + 1) % 3 === 0) return "easy";
+    return "any";
+  }
+
+  function daysPerRegion(totalDays, regionIdsInOrder){
+    const n = regionIdsInOrder.length;
+    if (n === 0) return [];
+    const base = Math.floor(totalDays / n);
+    let extra = totalDays % n;
+
+    return regionIdsInOrder.map((rid, idx) => {
+      const add = extra > 0 ? 1 : 0;
+      if (extra > 0) extra--;
+      return { region_id: rid, days: base + add, order: idx };
+    }).filter(x => x.days > 0);
+  }
+
+  function renderDaysOptions() {
+    els.daysSelect.innerHTML = "";
+    for (let d = 1; d <= 21; d++) {
+      const opt = document.createElement('option');
+      opt.value = String(d);
+      opt.textContent = String(d);
+      if (d === state.days) opt.selected = true;
+      els.daysSelect.appendChild(opt);
+    }
+  }
+
+  function createPill({ id, name }, type) {
+    const b = document.createElement('button');
+    b.type = "button";
+    b.className = "pill";
+    b.textContent = name;
+    b.setAttribute('data-id', id);
+    b.setAttribute('aria-pressed', 'false');
+
+    b.addEventListener('click', () => {
+      const set = type === "region" ? state.selectedRegionIds : state.selectedExperienceIds;
+      if (set.has(id)) set.delete(id);
+      else set.add(id);
+
+      b.setAttribute('aria-pressed', set.has(id) ? 'true' : 'false');
+      updateHints();
+      updateGenerateState();
+    });
+
+    return b;
+  }
+
+  function renderRegionPills() {
+    els.regionsPills.innerHTML = "";
+    DATA.regions.regions.forEach(r => {
+      els.regionsPills.appendChild(createPill(r, "region"));
+    });
+  }
+
+  function renderExperiencePills() {
+    els.experiencesPills.innerHTML = "";
+    DATA.experiences.experiences.forEach(x => {
+      els.experiencesPills.appendChild(createPill(x, "experience"));
+    });
+  }
+
+  function updateHints() {
+    if (!DATA.regions) return;
+    const selected = Array.from(state.selectedRegionIds);
+    if (selected.length === 0) {
+      els.regionHint.textContent = "Select at least one region. You can choose multiple regions for a multi-stop trip.";
+      return;
+    }
+
+    const regionMap = new Map(DATA.regions.regions.map(r => [r.id, r]));
+    const lines = selected.map(rid => {
+      const r = regionMap.get(rid);
+      const locs = (r && r.locations) ? r.locations.map(l => l.name).slice(0, 4) : [];
+      const suffix = locs.length ? ` (locations: ${locs.join(", ")}${(r.locations.length > 4 ? ", ..." : "")})` : "";
+      return `${r ? r.name : rid}${suffix}`;
+    });
+
+    els.regionHint.textContent = "Selected: " + lines.join(" · ");
+  }
+
+  function updateGenerateState() {
+    const ok = state.selectedRegionIds.size > 0 && state.selectedExperienceIds.size > 0;
+    els.generateBtn.disabled = !ok;
+  }
+
+  function regionName(id){
+    const r = DATA.regions.regions.find(x => x.id === id);
+    return r ? r.name : id;
+  }
+
+  function locationName(regionId, locationId){
+    const r = DATA.regions.regions.find(x => x.id === regionId);
+    if (!r) return "";
+    const l = (r.locations || []).find(x => x.id === locationId);
+    return l ? l.name : "";
+  }
+
+  function experienceName(id){
+    const x = DATA.experiences.experiences.find(e => e.id === id);
+    return x ? x.name : id;
+  }
+
+  function blockMatches(block, regionId, selectedExperienceIds, pacePreference) {
+    if (block.region_id !== regionId) return false;
+    const hasAnyExp = (block.experiences || []).some(e => selectedExperienceIds.has(e));
+    if (!hasAnyExp) return false;
+
+    if (pacePreference !== "any") {
+      // prefer easy on those days but do not hard-block
+      // handled in scoring below
+    }
+    return true;
+  }
+
+  function scoreBlock(block, selectedExperienceIds, pacePreference, usedIds) {
+    let score = 0;
+
+    // avoid repeats
+    if (usedIds.has(block.id)) return -999;
+
+    // matching multiple selected experiences = better
+    const overlap = (block.experiences || []).filter(e => selectedExperienceIds.has(e)).length;
+    score += overlap * 3;
+
+    // pace preference
+    if (pacePreference !== "any") {
+      if (block.pace === pacePreference) score += 2;
+      if (pacePreference === "easy" && block.pace === "moderate") score += 1;
+    }
+
+    // time of day balance: keep it to morning + afternoon
+    if (block.time_of_day === "morning" || block.time_of_day === "afternoon") score += 1;
+
+    // mild boost if has a location_id (feels more concrete)
+    if (block.location_id) score += 1;
+
+    return score;
+  }
+
+  function pickBestBlock(candidates, selectedExperienceIds, pacePreference, usedIds) {
+    const scored = candidates
+      .map(b => ({ b, s: scoreBlock(b, selectedExperienceIds, pacePreference, usedIds) }))
+      .filter(x => x.s > -500)
+      .sort((a, b) => b.s - a.s);
+
+    if (scored.length === 0) return null;
+
+    // take top 5 and pick one randomly for variety
+    const top = scored.slice(0, Math.min(5, scored.length)).map(x => x.b);
+    return pickRandom(top);
+  }
+
+  function generateItinerary() {
+    const totalDays = clamp(Number(state.days), 1, 21);
+    const regionIds = Array.from(state.selectedRegionIds); // order matters by selection time
+    const expIds = state.selectedExperienceIds;
+
+    const plan = [];
+    const allocation = daysPerRegion(totalDays, regionIds);
+    const usedBlockIds = new Set();
+
+    let dayCounter = 0;
+
+    allocation.forEach((chunk, chunkIndex) => {
+      for (let d = 0; d < chunk.days; d++) {
+        const pacePref = normalizePace(dayCounter, totalDays);
+
+        const allForRegion = DATA.blocks.blocks.filter(b => blockMatches(b, chunk.region_id, expIds, pacePref));
+        const morningCandidates = allForRegion.filter(b => b.time_of_day === "morning");
+        const afternoonCandidates = allForRegion.filter(b => b.time_of_day === "afternoon");
+
+        // first day of a new region: try to keep afternoon easy
+        const firstDayInRegion = (d === 0 && chunkIndex > 0);
+
+        const morning = pickBestBlock(morningCandidates.length ? morningCandidates : allForRegion, expIds, pacePref, usedBlockIds);
+        if (morning) usedBlockIds.add(morning.id);
+
+        const aftPace = firstDayInRegion ? "easy" : pacePref;
+        const afternoon = pickBestBlock(afternoonCandidates.length ? afternoonCandidates : allForRegion, expIds, aftPace, usedBlockIds);
+        if (afternoon) usedBlockIds.add(afternoon.id);
+
+        plan.push({
+          day: dayCounter + 1,
+          region_id: chunk.region_id,
+          is_transfer_friendly: firstDayInRegion,
+          morning,
+          afternoon
+        });
+
+        dayCounter++;
+      }
+    });
+
+    return plan;
+  }
+
+  function renderItinerary(plan) {
+    if (!plan || plan.length === 0) {
+      els.output.innerHTML = "<div class='hint'>No itinerary generated. Make sure you selected regions and experiences.</div>";
+      return;
+    }
+
+    const wrap = document.createElement('div');
+
+    plan.forEach(d => {
+      const card = document.createElement('div');
+      card.className = "day-card";
+
+      const title = document.createElement('div');
+      title.className = "day-title";
+      title.innerHTML = `
+        <span>Day ${d.day}: ${regionName(d.region_id)}</span>
+        <span class="tag">${d.is_transfer_friendly ? "Transfer-friendly pace" : "Suggested day plan"}</span>
+      `;
+      card.appendChild(title);
+
+      const morning = d.morning ? renderSlot("Morning", d.morning, d.region_id) : renderEmptySlot("Morning", "Add a local activity block for this region.");
+      const afternoon = d.afternoon ? renderSlot("Afternoon", d.afternoon, d.region_id) : renderEmptySlot("Afternoon", "Add a local activity block for this region.");
+
+      card.appendChild(morning);
+      card.appendChild(afternoon);
+
+      wrap.appendChild(card);
+    });
+
+    els.output.innerHTML = "";
+    els.output.appendChild(wrap);
+  }
+
+  function renderSlot(label, block, regionId){
+    const div = document.createElement('div');
+    div.className = "slot";
+
+    const loc = block.location_id ? locationName(regionId, block.location_id) : "";
+    const exp = (block.experiences || []).map(experienceName).slice(0, 3).join(" · ");
+    const dur = block.duration_hours ? `${block.duration_hours}h` : "";
+    const metaLine = [loc, exp, dur].filter(Boolean).join(" • ");
+
+    div.innerHTML = `
+      <h4>${label}</h4>
+      <div class="title">${block.title}</div>
+      <p class="meta">${block.summary}${metaLine ? "<br><span style='opacity:.9'>" + metaLine + "</span>" : ""}</p>
+      ${block.notes ? "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Note:</strong> " + block.notes + "</p>" : ""}
+    `;
+    return div;
+  }
+
+  function renderEmptySlot(label, text){
+    const div = document.createElement('div');
+    div.className = "slot";
+    div.innerHTML = `
+      <h4>${label}</h4>
+      <p class="meta">${text}</p>
+    `;
+    return div;
+  }
+
+  async function loadJSON(path){
+    const res = await fetch(path, { cache: "no-store" });
+    if (!res.ok) throw new Error("Failed to load " + path);
+    return await res.json();
+  }
+
+  async function init() {
+    renderDaysOptions();
+
+    try {
+      const [regions, experiences, blocks] = await Promise.all([
+        loadJSON("/assets/data/regions.json"),
+        loadJSON("/assets/data/experiences.json"),
+        loadJSON("/assets/data/itinerary_blocks.json")
+      ]);
+
+      DATA.regions = regions;
+      DATA.experiences = experiences;
+      DATA.blocks = blocks;
+
+      renderRegionPills();
+      renderExperiencePills();
+      updateHints();
+      updateGenerateState();
+
+      els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
+    } catch (e) {
+      els.output.innerHTML = "<div class='hint'><strong>Data load error:</strong> " + (e.message || e) + "</div>";
+    }
+  }
+
+  els.daysSelect.addEventListener('change', () => {
+    state.days = Number(els.daysSelect.value);
+  });
+
+  els.generateBtn.addEventListener('click', () => {
+    const plan = generateItinerary();
+    renderItinerary(plan);
+  });
+
+  els.resetBtn.addEventListener('click', () => {
+    state.days = 5;
+    state.selectedRegionIds.clear();
+    state.selectedExperienceIds.clear();
+
+    // reset UI pills
+    document.querySelectorAll('.pill').forEach(p => p.setAttribute('aria-pressed', 'false'));
+
+    // reset days select
+    els.daysSelect.value = "5";
+
+    updateHints();
+    updateGenerateState();
+    els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
+  });
+
+  init();
+</script>
+
+</body>
+</html>
