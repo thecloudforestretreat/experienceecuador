@@ -350,6 +350,94 @@
       margin-top:22px;
     }
 
+    /* Header row: title (left) + flights box (right) */
+    .itinerary-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .flights-mini{
+      margin-top:2px;
+      margin-left:auto;
+      width:min(360px, 100%);
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.06);
+      border-radius:18px;
+      padding:14px;
+      box-shadow:0 14px 34px rgba(3,78,162,0.10);
+    }
+
+    .mini-title{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+      margin:0 0 10px;
+    }
+
+    .mini-grid{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:10px 10px;
+      align-items:center;
+    }
+
+    .mini-grid label{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+      white-space:nowrap;
+      text-align:left;
+    }
+
+    .mini-grid input,
+    .mini-grid select{
+      width:100%;
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-weight:700;
+      padding:10px 12px;
+      border-radius:14px;
+      font-size:14px;
+      outline:none;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+    }
+
+    .mini-grid input:focus,
+    .mini-grid select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .mini-actions{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .mini-hint{
+      margin-top:10px;
+      color:#24324a;
+      opacity:.95;
+      font-size:13.6px;
+      line-height:1.45;
+    }
+
+    .mini-link{
+      color:#0f2f62;
+      font-weight:900;
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+
     .day-card{
       border-radius:18px;
       border:1px solid rgba(0,0,0,0.06);
@@ -467,6 +555,10 @@
       .hero-banner{min-height:290px}
       .controls-grid{ grid-template-columns:1fr; }
       .controls-grid select{ width:100%; }
+      .itinerary-head{ flex-direction:column; align-items:stretch; }
+      .flights-mini{ width:100%; }
+      .mini-grid{ grid-template-columns:1fr; }
+      .mini-actions{ justify-content:flex-start; }
     }
 
     @media(max-width:620px){
@@ -576,7 +668,43 @@
   </section>
 
   <section class="itinerary" aria-label="Generated itinerary">
-    <h2 class="section-title" style="margin-top:26px;">Your suggested itinerary</h2>
+    <div class="itinerary-head">
+      <h2 class="section-title" style="margin-top:26px;">Your suggested itinerary</h2>
+
+      <!-- Flights mini section (right-aligned) -->
+      <aside class="flights-mini" aria-label="Flights search">
+        <p class="mini-title">Flights</p>
+
+        <div class="mini-grid">
+          <label for="flightFrom">From</label>
+          <input id="flightFrom" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
+
+          <label for="flightTo">To</label>
+          <select id="flightTo" aria-label="Destination airport">
+            <option value="UIO">Quito (UIO)</option>
+            <option value="GYE">Guayaquil (GYE)</option>
+            <option value="GPS">Galapagos (GPS)</option>
+            <option value="CUE">Cuenca (CUE)</option>
+          </select>
+
+          <label for="flightDepart">Depart</label>
+          <input id="flightDepart" type="date">
+
+          <label for="flightReturn">Return</label>
+          <input id="flightReturn" type="date">
+        </div>
+
+        <div class="mini-actions">
+          <button class="btn primary" id="flightSearchBtn" type="button">Search flights</button>
+        </div>
+
+        <div class="mini-hint">
+          When flights and itinerary are confirmed, check out local safe transportation:
+          <a class="mini-link" href="/transportation/">Transportation</a>
+        </div>
+      </aside>
+    </div>
+
     <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate itinerary.”</div>
   </section>
 
@@ -662,7 +790,14 @@
     generateBtn: document.getElementById('generateBtn'),
     resetBtn: document.getElementById('resetBtn'),
     output: document.getElementById('output'),
-    regionHint: document.getElementById('regionHint')
+    regionHint: document.getElementById('regionHint'),
+
+    // Flights
+    flightFrom: document.getElementById('flightFrom'),
+    flightTo: document.getElementById('flightTo'),
+    flightDepart: document.getElementById('flightDepart'),
+    flightReturn: document.getElementById('flightReturn'),
+    flightSearchBtn: document.getElementById('flightSearchBtn')
   };
 
   const DAY_CAPACITY_HOURS = 8;
@@ -716,6 +851,7 @@
       b.setAttribute('aria-pressed', set.has(id) ? 'true' : 'false');
       updateHints();
       updateGenerateState();
+      syncDefaultFlightToFromRegions();
     });
 
     return b;
@@ -1089,6 +1225,66 @@
     return div;
   }
 
+  // ===== FLIGHTS (Option 1) =====
+  const REGION_TO_AIRPORT = {
+    andes: "UIO",
+    coast: "GYE",
+    amazon: "UIO",
+    galapagos: "GPS"
+  };
+
+  function syncDefaultFlightToFromRegions(){
+    // If user selected only one region -> set airport for that region.
+    // If multiple regions -> keep current selection unless empty; otherwise prefer first selected region.
+    const selected = Array.from(state.selectedRegionIds);
+    if (!selected.length) return;
+
+    const airport = REGION_TO_AIRPORT[selected[0]] || "UIO";
+    // Only auto-set if user hasn't manually changed OR if current is blank
+    if (!els.flightTo.dataset.userSet || els.flightTo.dataset.userSet === "false") {
+      els.flightTo.value = airport;
+    }
+  }
+
+  els.flightTo.addEventListener('change', () => {
+    els.flightTo.dataset.userSet = "true";
+  });
+
+  function normalizeAirportCode(v){
+    const s = String(v || "").trim().toUpperCase();
+    // allow "JFK" or "JFK, US" etc -> keep first token letters
+    const m = s.match(/[A-Z]{3}/);
+    return m ? m[0] : "";
+  }
+
+  function buildGoogleFlightsUrl({ from, to, depart, ret }){
+    // Use query parsing (reliable + simple)
+    // Examples:
+    // "Flights to UIO from JFK on 2026-01-15 return 2026-01-22"
+    let q = `Flights to ${to}`;
+    if (from) q += ` from ${from}`;
+    if (depart) q += ` on ${depart}`;
+    if (ret) q += ` return ${ret}`;
+
+    const url = "https://www.google.com/travel/flights?q=" + encodeURIComponent(q);
+    return url;
+  }
+
+  function openFlights(){
+    const from = normalizeAirportCode(els.flightFrom.value);
+    const to = String(els.flightTo.value || "").trim().toUpperCase();
+    const depart = String(els.flightDepart.value || "").trim();
+    const ret = String(els.flightReturn.value || "").trim();
+
+    if (!to) return;
+
+    const url = buildGoogleFlightsUrl({ from, to, depart, ret });
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  els.flightSearchBtn.addEventListener('click', openFlights);
+
+  // ===== LOAD JSON =====
   async function loadJSON(path){
     const res = await fetch(path, { cache: "no-store" });
     if (!res.ok) throw new Error("Failed to load " + path);
@@ -1113,6 +1309,7 @@
       renderExperiencePills();
       updateHints();
       updateGenerateState();
+      syncDefaultFlightToFromRegions();
 
       els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
     } catch (e) {
@@ -1136,6 +1333,13 @@
 
     document.querySelectorAll('.pill').forEach(p => p.setAttribute('aria-pressed', 'false'));
     els.daysSelect.value = "5";
+
+    // reset flights
+    els.flightFrom.value = "";
+    els.flightDepart.value = "";
+    els.flightReturn.value = "";
+    els.flightTo.dataset.userSet = "false";
+    els.flightTo.value = "UIO";
 
     updateHints();
     updateGenerateState();
