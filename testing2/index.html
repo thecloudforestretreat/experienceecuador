@@ -403,9 +403,9 @@
     .mini-title{
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      font-size:22px;
-      margin:0 0 10px;
-      color:var(--brand-blue);
+      font-size:24px; /* match "Your suggested itinerary" */
+      margin:0 0 12px;
+      color:var(--brand-blue); /* #034EA2 */
       letter-spacing:-0.02em;
       text-transform:none;
     }
@@ -448,6 +448,8 @@
       font-size:14px;
       outline:none;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      height:44px;            /* keep From, To, Depart, Return same dimensions */
+      line-height:22px;
     }
 
     .mini-grid input[type="date"]{
@@ -456,6 +458,7 @@
       width:100%;
       max-width:100%;
       min-width:0;
+      height:44px;            /* ensure date controls match */
     }
 
     .mini-grid input:focus,
@@ -638,7 +641,7 @@
         display:block !important;
         width:100%;
         max-width:100%;
-        margin:14px 0 0; /* now sits BELOW itinerary and above footer */
+        margin:14px 0 0;
       }
 
       .controls-grid{ grid-template-columns:1fr; }
@@ -660,22 +663,17 @@
         text-align:center;
       }
 
-      /* 1) Regions: reduce gap 1px more so Amazon isn't cut off (mobile only) */
+      /* Regions pills: full width across, 4 columns, aligned with Experiences container */
       #regionsPills{
-        flex-wrap:nowrap;
-        overflow-x:auto;
-        -webkit-overflow-scrolling:touch;
-        gap:5px;                 /* was 6px */
-        padding:0 6px 6px 6px;
+        display:grid;
+        grid-template-columns:repeat(4, 1fr);
+        gap:10px;
+        margin-top:14px;
       }
       #regionsPills .pill{
-        flex:0 0 auto;
+        width:100%;
+        text-align:center;
         white-space:nowrap;
-      }
-      #regionsPills::-webkit-scrollbar{ height:6px; }
-      #regionsPills::-webkit-scrollbar-thumb{
-        background:rgba(3,78,162,0.22);
-        border-radius:999px;
       }
     }
 
@@ -695,6 +693,16 @@
       .hero-content{padding:16px}
 
       .pill-row.experiences-grid{ grid-template-columns:1fr; }
+
+      /* Keep regions in one row on small screens too */
+      #regionsPills{
+        grid-template-columns:repeat(4, 1fr);
+        gap:8px;
+      }
+      #regionsPills .pill{
+        padding:10px 8px;
+        font-size:12.5px;
+      }
     }
   </style>
 </head>
@@ -828,7 +836,6 @@
     </aside>
   </section>
 
-  <!-- 2) & 3) On mobile: itinerary comes first, then Flights right above footer -->
   <section class="itinerary" aria-label="Generated itinerary">
     <div class="itinerary-shell" aria-label="Itinerary output container">
       <h2 class="section-title" style="margin:0 0 12px;">Your suggested itinerary</h2>
