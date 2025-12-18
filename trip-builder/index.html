@@ -210,6 +210,7 @@
       padding:22px;
       border:1px solid rgba(0,0,0,0.06);
       box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      min-width:0; /* helps prevent overflow in grids */
     }
 
     .card h2{
@@ -242,7 +243,7 @@
     .builder-layout{
       margin-top:18px;
       display:grid;
-      grid-template-columns: 3fr 1fr; /* ~75% / 25% */
+      grid-template-columns: 3fr 1fr;
       gap:14px;
       align-items:stretch;
     }
@@ -252,6 +253,7 @@
       height:100%;
       display:flex;
       flex-direction:column;
+      min-width:0;
     }
 
     /* ===== BUILDER CARD ===== */
@@ -337,7 +339,6 @@
       box-shadow:0 12px 26px rgba(3,78,162,0.10);
     }
 
-    /* Experiences: 2 rows, 3 per row (desktop) */
     .pill-row.experiences-grid{
       display:grid;
       grid-template-columns:repeat(3, max-content);
@@ -346,7 +347,6 @@
       justify-content:start;
     }
 
-    /* Region hint wrapping */
     .region-hint{
       margin-top:10px;
       color:#24324a;
@@ -359,7 +359,6 @@
       max-width:100%;
     }
 
-    /* Tip under Pick regions + smaller */
     .regions-tip{
       margin-top:8px;
       color:#24324a;
@@ -418,6 +417,9 @@
       max-width:100%;
     }
 
+    /* Critical overflow fix: allow grid children to shrink */
+    .mini-grid > *{ min-width:0; }
+
     .mini-grid label{
       font-weight:800;
       color:#0f2f62;
@@ -427,9 +429,9 @@
       text-align:left;
     }
 
-    /* Key fix: prevent date inputs from overflowing the card on mobile */
     .mini-grid input,
     .mini-grid select{
+      display:block;
       width:100%;
       max-width:100%;
       min-width:0;
@@ -444,7 +446,10 @@
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
     }
 
+    /* Helps some mobile browsers that give date inputs an intrinsic min width */
     .mini-grid input[type="date"]{
+      -webkit-appearance:none;
+      appearance:none;
       width:100%;
       max-width:100%;
       min-width:0;
@@ -484,7 +489,7 @@
       margin-top:16px;
     }
 
-    /* New: padded placeholder container for itinerary area (desktop + mobile) */
+    /* Padded placeholder container for itinerary area (desktop + mobile) */
     .itinerary-shell{
       margin-top:12px;
       background:#fff;
@@ -492,12 +497,12 @@
       padding:22px;
       border:1px solid rgba(0,0,0,0.06);
       box-shadow:0 18px 55px rgba(3,78,162,0.12);
-      min-height:140px; /* keeps a minimal padded placeholder even before build */
+      min-height:140px;
+      min-width:0;
     }
 
-    .itinerary-shell .hint{
-      margin-top:0; /* since container provides padding */
-    }
+    /* Ensure output content doesn't add extra top spacing inside the shell */
+    .itinerary-shell .hint{ margin-top:0; }
 
     .day-card{
       border-radius:18px;
@@ -614,7 +619,7 @@
     .icon-btn img{width:34px;height:34px}
     footer small{font-size:13px;opacity:.9}
 
-    /* ===== MOBILE: move flights under "Your suggested itinerary" ===== */
+    /* ===== MOBILE: move flights under itinerary ===== */
     @media(max-width:900px){
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
       .hero-banner{min-height:290px}
@@ -624,23 +629,21 @@
         gap:14px;
       }
 
-      #flightsDesktop{
-        display:none !important;
-      }
+      #flightsDesktop{ display:none !important; }
 
       #flightsMobile{
         display:block !important;
+        width:100%;
+        max-width:100%;
         margin:10px 0 14px;
       }
 
       .controls-grid{ grid-template-columns:1fr; }
       .controls-grid select{ width:100%; }
 
-      /* Keep labels above inputs; ensure inputs don't exceed card width */
       .mini-grid{ grid-template-columns:1fr; }
       .mini-actions{ justify-content:flex-start; }
 
-      /* New: make itinerary placeholder padding slightly tighter on mobile */
       .itinerary-shell{
         padding:18px;
         min-height:130px;
@@ -664,9 +667,7 @@
       }
       .hero-content{padding:16px}
 
-      .pill-row.experiences-grid{
-        grid-template-columns:1fr;
-      }
+      .pill-row.experiences-grid{ grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -730,9 +731,7 @@
 
 <main class="wrap">
 
-  <!-- 75% builder + 25% flights (desktop) -->
   <section class="builder-layout" aria-label="Trip builder and flights">
-    <!-- LEFT: Builder -->
     <section class="card builder-card" aria-label="Trip builder wizard">
       <h2 style="margin-bottom:10px;">Build a custom Ecuador itinerary</h2>
       <p>
@@ -751,7 +750,7 @@
         <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick regions</div>
 
         <div class="regions-tip">
-          Tip: If you select multiple regions, the tool will automatically split days and add lighter “transfer-friendly” pacing.
+          Tip: If you select multiple regions, the tool will automatically split days and add lighter transfer-friendly pacing.
         </div>
 
         <div class="pill-row" id="regionsPills" aria-label="Region selection"></div>
@@ -769,7 +768,6 @@
       </div>
     </section>
 
-    <!-- RIGHT: Flights (desktop only) -->
     <aside class="card flights-card" id="flightsDesktop" aria-label="Flights (desktop)">
       <p class="mini-title">Flights</p>
 
@@ -803,13 +801,11 @@
     </aside>
   </section>
 
-  <!-- Itinerary -->
   <section class="itinerary" aria-label="Generated itinerary">
     <h2 class="section-title" style="margin-top:26px;">Your suggested itinerary</h2>
 
-    <!-- New: padded placeholder container (always present) -->
+    <!-- Padded placeholder container always present (desktop + mobile) -->
     <div class="itinerary-shell" aria-label="Itinerary output container">
-      <!-- Flights (mobile only) -->
       <aside class="card flights-card" id="flightsMobile" aria-label="Flights (mobile)" style="display:none;">
         <p class="mini-title">Flights</p>
 
@@ -842,7 +838,6 @@
         </div>
       </aside>
 
-      <!-- Output always lives inside padded container now -->
       <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate itinerary.”</div>
     </div>
   </section>
@@ -910,11 +905,7 @@
   })();
 
   // ===== TRIP BUILDER =====
-  const DATA = {
-    regions: null,
-    experiences: null,
-    blocks: null
-  };
+  const DATA = { regions: null, experiences: null, blocks: null };
 
   const state = {
     days: 5,
@@ -932,7 +923,6 @@
     regionHint: document.getElementById('regionHint')
   };
 
-  // Flights: desktop + mobile elements
   const flightEls = {
     desktop: {
       from: document.getElementById('flightFromDesktop'),
@@ -950,10 +940,11 @@
     }
   };
 
-  // Sync values between desktop/mobile flights inputs so user can switch responsively
   function syncFlights(fromSet){
     const d = flightEls.desktop;
     const m = flightEls.mobile;
+
+    if (!m.from || !m.to || !m.depart || !m.ret) return;
 
     if (fromSet === "desktop") {
       m.from.value = d.from.value;
@@ -970,14 +961,13 @@
     }
   }
 
-  // Mark user-set destination on both selects
   function setUserSetAll(val){
     flightEls.desktop.to.dataset.userSet = val;
-    flightEls.mobile.to.dataset.userSet = val;
+    if (flightEls.mobile.to) flightEls.mobile.to.dataset.userSet = val;
   }
 
   flightEls.desktop.to.addEventListener('change', () => setUserSetAll("true"));
-  flightEls.mobile.to.addEventListener('change', () => setUserSetAll("true"));
+  if (flightEls.mobile.to) flightEls.mobile.to.addEventListener('change', () => setUserSetAll("true"));
 
   ["input","change"].forEach(evt => {
     flightEls.desktop.from.addEventListener(evt, () => syncFlights("desktop"));
@@ -985,10 +975,10 @@
     flightEls.desktop.depart.addEventListener(evt, () => syncFlights("desktop"));
     flightEls.desktop.ret.addEventListener(evt, () => syncFlights("desktop"));
 
-    flightEls.mobile.from.addEventListener(evt, () => syncFlights("mobile"));
-    flightEls.mobile.to.addEventListener(evt, () => syncFlights("mobile"));
-    flightEls.mobile.depart.addEventListener(evt, () => syncFlights("mobile"));
-    flightEls.mobile.ret.addEventListener(evt, () => syncFlights("mobile"));
+    if (flightEls.mobile.from) flightEls.mobile.from.addEventListener(evt, () => syncFlights("mobile"));
+    if (flightEls.mobile.to) flightEls.mobile.to.addEventListener(evt, () => syncFlights("mobile"));
+    if (flightEls.mobile.depart) flightEls.mobile.depart.addEventListener(evt, () => syncFlights("mobile"));
+    if (flightEls.mobile.ret) flightEls.mobile.ret.addEventListener(evt, () => syncFlights("mobile"));
   });
 
   const DAY_CAPACITY_HOURS = 8;
@@ -1161,7 +1151,6 @@
     }
 
     if (TIME_ORDER.includes(block.time_of_day)) score += 1;
-
     if (block.location_id) score += 1;
 
     const dur = safeNumber(block.duration_hours, 0);
@@ -1199,7 +1188,6 @@
         .sort((a,b) => b.s - a.s);
 
       if (!scored.length) return null;
-
       const top = scored.slice(0, Math.min(6, scored.length)).map(x => x.b);
       return pickRandom(top);
     }
@@ -1386,7 +1374,7 @@
     const partLabel = isSplitPart ? extractPartLabelFromTitleOrId(block) : "";
 
     const splitExplain = isSplitPart
-      ? `This experience spans multiple days. “${partLabel}” indicates one day within a longer lodge-based stay.`
+      ? `This experience spans multiple days. "${partLabel}" indicates one day within a longer lodge-based stay.`
       : "";
 
     const noteHtml = (() => {
@@ -1443,11 +1431,11 @@
     const d = flightEls.desktop;
     const m = flightEls.mobile;
 
-    const userSet = (d.to.dataset.userSet || m.to.dataset.userSet || "false");
+    const userSet = (d.to.dataset.userSet || (m.to ? m.to.dataset.userSet : "false") || "false");
 
     if (userSet === "false") {
       d.to.value = airport;
-      m.to.value = airport;
+      if (m.to) m.to.value = airport;
     }
   }
 
@@ -1467,6 +1455,8 @@
 
   function openFlightsFrom(setName){
     const s = flightEls[setName];
+    if (!s || !s.to) return;
+
     const from = normalizeAirportCode(s.from.value);
     const to = String(s.to.value || "").trim().toUpperCase();
     const depart = String(s.depart.value || "").trim();
@@ -1478,7 +1468,7 @@
   }
 
   flightEls.desktop.btn.addEventListener('click', () => openFlightsFrom("desktop"));
-  flightEls.mobile.btn.addEventListener('click', () => openFlightsFrom("mobile"));
+  if (flightEls.mobile.btn) flightEls.mobile.btn.addEventListener('click', () => openFlightsFrom("mobile"));
 
   // ===== LOAD JSON =====
   async function loadJSON(path){
@@ -1506,13 +1496,11 @@
       updateHints();
       updateGenerateState();
 
-      // default flights setup
       setUserSetAll("false");
       flightEls.desktop.to.value = "UIO";
-      flightEls.mobile.to.value = "UIO";
+      if (flightEls.mobile.to) flightEls.mobile.to.value = "UIO";
       syncDefaultFlightToFromRegions();
 
-      // keep both sets in sync initially
       syncFlights("desktop");
 
       els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
@@ -1538,18 +1526,17 @@
     document.querySelectorAll('.pill').forEach(p => p.setAttribute('aria-pressed', 'false'));
     els.daysSelect.value = "5";
 
-    // reset flights (both)
     flightEls.desktop.from.value = "";
     flightEls.desktop.depart.value = "";
     flightEls.desktop.ret.value = "";
 
-    flightEls.mobile.from.value = "";
-    flightEls.mobile.depart.value = "";
-    flightEls.mobile.ret.value = "";
+    if (flightEls.mobile.from) flightEls.mobile.from.value = "";
+    if (flightEls.mobile.depart) flightEls.mobile.depart.value = "";
+    if (flightEls.mobile.ret) flightEls.mobile.ret.value = "";
 
     setUserSetAll("false");
     flightEls.desktop.to.value = "UIO";
-    flightEls.mobile.to.value = "UIO";
+    if (flightEls.mobile.to) flightEls.mobile.to.value = "UIO";
 
     updateHints();
     updateGenerateState();
