@@ -210,7 +210,7 @@
       padding:22px;
       border:1px solid rgba(0,0,0,0.06);
       box-shadow:0 18px 55px rgba(3,78,162,0.12);
-      min-width:0; /* helps prevent overflow in grids */
+      min-width:0;
     }
 
     .card h2{
@@ -379,6 +379,7 @@
       border:1px solid rgba(3,78,162,0.22);
       background:#fff;
       color:#0f2f62;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       font-weight:900;
       padding:12px 14px;
       border-radius:16px;
@@ -400,12 +401,13 @@
 
     /* ===== FLIGHTS BOX ===== */
     .mini-title{
-      font-weight:900;
-      color:#0f2f62;
-      font-size:13px;
-      letter-spacing:0.02em;
-      text-transform:uppercase;
-      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:24px; /* match "Your suggested itinerary" */
+      margin:0 0 12px;
+      color:var(--brand-blue); /* #034EA2 */
+      letter-spacing:-0.02em;
+      text-transform:none;
     }
 
     .mini-grid{
@@ -415,9 +417,9 @@
       align-items:center;
       width:100%;
       max-width:100%;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
 
-    /* Critical overflow fix: allow grid children to shrink */
     .mini-grid > *{ min-width:0; }
 
     .mini-grid label{
@@ -427,6 +429,7 @@
       letter-spacing:0.02em;
       white-space:nowrap;
       text-align:left;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
 
     .mini-grid input,
@@ -438,21 +441,24 @@
       border:1px solid rgba(3,78,162,0.22);
       background:#fff;
       color:#0f2f62;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       font-weight:700;
       padding:10px 12px;
       border-radius:14px;
       font-size:14px;
       outline:none;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      height:44px;            /* keep From, To, Depart, Return same dimensions */
+      line-height:22px;
     }
 
-    /* Helps some mobile browsers that give date inputs an intrinsic min width */
     .mini-grid input[type="date"]{
       -webkit-appearance:none;
       appearance:none;
       width:100%;
       max-width:100%;
       min-width:0;
+      height:44px;            /* ensure date controls match */
     }
 
     .mini-grid input:focus,
@@ -475,6 +481,7 @@
       opacity:.95;
       font-size:13.6px;
       line-height:1.45;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
 
     .mini-link{
@@ -482,6 +489,7 @@
       font-weight:900;
       text-decoration:underline;
       text-underline-offset:3px;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
 
     /* ===== ITINERARY OUTPUT ===== */
@@ -489,7 +497,6 @@
       margin-top:16px;
     }
 
-    /* Padded placeholder container for itinerary area (desktop + mobile) */
     .itinerary-shell{
       margin-top:12px;
       background:#fff;
@@ -501,7 +508,6 @@
       min-width:0;
     }
 
-    /* Ensure output content doesn't add extra top spacing inside the shell */
     .itinerary-shell .hint{ margin-top:0; }
 
     .day-card{
@@ -619,7 +625,7 @@
     .icon-btn img{width:34px;height:34px}
     footer small{font-size:13px;opacity:.9}
 
-    /* ===== MOBILE: move flights under itinerary ===== */
+    /* ===== MOBILE: stack layout + reorder sections via markup (itinerary above flights) ===== */
     @media(max-width:900px){
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
       .hero-banner{min-height:290px}
@@ -635,7 +641,7 @@
         display:block !important;
         width:100%;
         max-width:100%;
-        margin:10px 0 14px;
+        margin:14px 0 0;
       }
 
       .controls-grid{ grid-template-columns:1fr; }
@@ -656,6 +662,25 @@
         width:100%;
         text-align:center;
       }
+
+      /* Regions pills: full width across, 4 columns, aligned with Experiences container */
+      #regionsPills{
+        display:grid;
+        grid-template-columns:repeat(4, 1fr);
+        gap:10px;
+        margin-top:14px;
+      }
+      #regionsPills .pill{
+        width:100%;
+        text-align:center;
+        white-space:nowrap;
+      }
+    }
+
+    @media(min-width:901px){
+      .flights-card .mini-actions{
+        justify-content:center;
+      }
     }
 
     @media(max-width:620px){
@@ -668,6 +693,16 @@
       .hero-content{padding:16px}
 
       .pill-row.experiences-grid{ grid-template-columns:1fr; }
+
+      /* Keep regions in one row on small screens too */
+      #regionsPills{
+        grid-template-columns:repeat(4, 1fr);
+        gap:8px;
+      }
+      #regionsPills .pill{
+        padding:10px 8px;
+        font-size:12.5px;
+      }
     }
   </style>
 </head>
@@ -802,45 +837,43 @@
   </section>
 
   <section class="itinerary" aria-label="Generated itinerary">
-    <h2 class="section-title" style="margin-top:26px;">Your suggested itinerary</h2>
-
-    <!-- Padded placeholder container always present (desktop + mobile) -->
     <div class="itinerary-shell" aria-label="Itinerary output container">
-      <aside class="card flights-card" id="flightsMobile" aria-label="Flights (mobile)" style="display:none;">
-        <p class="mini-title">Flights</p>
-
-        <div class="mini-grid">
-          <label for="flightFromMobile">From</label>
-          <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
-
-          <label for="flightToMobile">To</label>
-          <select id="flightToMobile" aria-label="Destination airport">
-            <option value="UIO">Quito (UIO)</option>
-            <option value="GYE">Guayaquil (GYE)</option>
-            <option value="GPS">Galapagos (GPS)</option>
-            <option value="CUE">Cuenca (CUE)</option>
-          </select>
-
-          <label for="flightDepartMobile">Depart</label>
-          <input id="flightDepartMobile" type="date">
-
-          <label for="flightReturnMobile">Return</label>
-          <input id="flightReturnMobile" type="date">
-        </div>
-
-        <div class="mini-actions">
-          <button class="btn primary" id="flightSearchBtnMobile" type="button">Search flights</button>
-        </div>
-
-        <div class="mini-hint">
-          When flights and itinerary are confirmed, check out local safe transportation:
-          <a class="mini-link" href="/transportation/">Transportation</a>
-        </div>
-      </aside>
-
+      <h2 class="section-title" style="margin:0 0 12px;">Your suggested itinerary</h2>
       <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate itinerary.”</div>
     </div>
   </section>
+
+  <aside class="card flights-card" id="flightsMobile" aria-label="Flights (mobile)" style="display:none;">
+    <p class="mini-title">Flights</p>
+
+    <div class="mini-grid">
+      <label for="flightFromMobile">From</label>
+      <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
+
+      <label for="flightToMobile">To</label>
+      <select id="flightToMobile" aria-label="Destination airport">
+        <option value="UIO">Quito (UIO)</option>
+        <option value="GYE">Guayaquil (GYE)</option>
+        <option value="GPS">Galapagos (GPS)</option>
+        <option value="CUE">Cuenca (CUE)</option>
+      </select>
+
+      <label for="flightDepartMobile">Depart</label>
+      <input id="flightDepartMobile" type="date">
+
+      <label for="flightReturnMobile">Return</label>
+      <input id="flightReturnMobile" type="date">
+    </div>
+
+    <div class="mini-actions">
+      <button class="btn primary" id="flightSearchBtnMobile" type="button">Search flights</button>
+    </div>
+
+    <div class="mini-hint">
+      When flights and itinerary are confirmed, check out local safe transportation:
+      <a class="mini-link" href="/transportation/">Transportation</a>
+    </div>
+  </aside>
 
 </main>
 
@@ -1040,8 +1073,19 @@
 
   function renderRegionPills() {
     els.regionsPills.innerHTML = "";
-    DATA.regions.regions.forEach(r => {
-      els.regionsPills.appendChild(createPill(r, "region"));
+
+    const desiredRegionOrder = ["galapagos","coast","andes","amazon"];
+    const map = new Map((DATA.regions.regions || []).map(r => [r.id, r]));
+
+    desiredRegionOrder.forEach(id => {
+      const item = map.get(id);
+      if (item) els.regionsPills.appendChild(createPill(item, "region"));
+    });
+
+    (DATA.regions.regions || []).forEach(r => {
+      if (!desiredRegionOrder.includes(r.id)) {
+        els.regionsPills.appendChild(createPill(r, "region"));
+      }
     });
   }
 
@@ -1065,14 +1109,18 @@
 
   function updateHints() {
     if (!DATA.regions) return;
-    const selected = Array.from(state.selectedRegionIds);
-    if (selected.length === 0) {
-      els.regionHint.textContent = "Select at least one region. You can choose multiple regions for a multi-stop trip.";
+
+    const selectedRegions = Array.from(state.selectedRegionIds);
+    const selectedExperiences = Array.from(state.selectedExperienceIds);
+
+    if (selectedRegions.length === 0 || selectedExperiences.length === 0) {
+      els.regionHint.textContent =
+        "Select at least one region and one experience. You can choose multiple regions and multiple experiences for a multi-stop trip.";
       return;
     }
 
     const regionMap = new Map(DATA.regions.regions.map(r => [r.id, r]));
-    const lines = selected.map(rid => {
+    const lines = selectedRegions.map(rid => {
       const r = regionMap.get(rid);
       const locs = (r && r.locations) ? r.locations.map(l => l.name).slice(0, 4) : [];
       const suffix = locs.length ? ` (locations: ${locs.join(", ")}${(r.locations.length > 4 ? ", ..." : "")})` : "";
@@ -1276,7 +1324,7 @@
           region_id: chunk.region_id,
           is_transfer_friendly: isTransferDay,
           blocks: dayPlan.blocks,
-          optional_add_on: dayPlan.optionalAddOn,
+          optional_add_on: dayPlan.optional_add_on,
           remaining_hours: dayPlan.remaining_hours
         });
 
