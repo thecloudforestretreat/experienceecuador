@@ -414,6 +414,8 @@
       grid-template-columns:auto 1fr;
       gap:10px 10px;
       align-items:center;
+      width:100%;
+      max-width:100%;
     }
 
     .mini-grid label{
@@ -425,9 +427,12 @@
       text-align:left;
     }
 
+    /* Key fix: prevent date inputs from overflowing the card on mobile */
     .mini-grid input,
     .mini-grid select{
       width:100%;
+      max-width:100%;
+      min-width:0;
       border:1px solid rgba(3,78,162,0.22);
       background:#fff;
       color:#0f2f62;
@@ -437,6 +442,12 @@
       font-size:14px;
       outline:none;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
+    }
+
+    .mini-grid input[type="date"]{
+      width:100%;
+      max-width:100%;
+      min-width:0;
     }
 
     .mini-grid input:focus,
@@ -471,6 +482,21 @@
     /* ===== ITINERARY OUTPUT ===== */
     .itinerary{
       margin-top:16px;
+    }
+
+    /* New: padded placeholder container for itinerary area (desktop + mobile) */
+    .itinerary-shell{
+      margin-top:12px;
+      background:#fff;
+      border-radius:22px;
+      padding:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      min-height:140px; /* keeps a minimal padded placeholder even before build */
+    }
+
+    .itinerary-shell .hint{
+      margin-top:0; /* since container provides padding */
     }
 
     .day-card{
@@ -593,18 +619,15 @@
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
       .hero-banner{min-height:290px}
 
-      /* builder becomes single column only; flights will NOT live here on mobile */
       .builder-layout{
         grid-template-columns:1fr;
         gap:14px;
       }
 
-      /* hide the desktop flights box (the one next to builder) */
       #flightsDesktop{
         display:none !important;
       }
 
-      /* show the mobile flights box under itinerary title */
       #flightsMobile{
         display:block !important;
         margin:10px 0 14px;
@@ -613,8 +636,15 @@
       .controls-grid{ grid-template-columns:1fr; }
       .controls-grid select{ width:100%; }
 
+      /* Keep labels above inputs; ensure inputs don't exceed card width */
       .mini-grid{ grid-template-columns:1fr; }
       .mini-actions{ justify-content:flex-start; }
+
+      /* New: make itinerary placeholder padding slightly tighter on mobile */
+      .itinerary-shell{
+        padding:18px;
+        min-height:130px;
+      }
 
       .pill-row.experiences-grid{
         grid-template-columns:repeat(2, 1fr);
@@ -777,40 +807,44 @@
   <section class="itinerary" aria-label="Generated itinerary">
     <h2 class="section-title" style="margin-top:26px;">Your suggested itinerary</h2>
 
-    <!-- Flights (mobile only) -->
-    <aside class="card flights-card" id="flightsMobile" aria-label="Flights (mobile)" style="display:none;">
-      <p class="mini-title">Flights</p>
+    <!-- New: padded placeholder container (always present) -->
+    <div class="itinerary-shell" aria-label="Itinerary output container">
+      <!-- Flights (mobile only) -->
+      <aside class="card flights-card" id="flightsMobile" aria-label="Flights (mobile)" style="display:none;">
+        <p class="mini-title">Flights</p>
 
-      <div class="mini-grid">
-        <label for="flightFromMobile">From</label>
-        <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
+        <div class="mini-grid">
+          <label for="flightFromMobile">From</label>
+          <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
 
-        <label for="flightToMobile">To</label>
-        <select id="flightToMobile" aria-label="Destination airport">
-          <option value="UIO">Quito (UIO)</option>
-          <option value="GYE">Guayaquil (GYE)</option>
-          <option value="GPS">Galapagos (GPS)</option>
-          <option value="CUE">Cuenca (CUE)</option>
-        </select>
+          <label for="flightToMobile">To</label>
+          <select id="flightToMobile" aria-label="Destination airport">
+            <option value="UIO">Quito (UIO)</option>
+            <option value="GYE">Guayaquil (GYE)</option>
+            <option value="GPS">Galapagos (GPS)</option>
+            <option value="CUE">Cuenca (CUE)</option>
+          </select>
 
-        <label for="flightDepartMobile">Depart</label>
-        <input id="flightDepartMobile" type="date">
+          <label for="flightDepartMobile">Depart</label>
+          <input id="flightDepartMobile" type="date">
 
-        <label for="flightReturnMobile">Return</label>
-        <input id="flightReturnMobile" type="date">
-      </div>
+          <label for="flightReturnMobile">Return</label>
+          <input id="flightReturnMobile" type="date">
+        </div>
 
-      <div class="mini-actions">
-        <button class="btn primary" id="flightSearchBtnMobile" type="button">Search flights</button>
-      </div>
+        <div class="mini-actions">
+          <button class="btn primary" id="flightSearchBtnMobile" type="button">Search flights</button>
+        </div>
 
-      <div class="mini-hint">
-        When flights and itinerary are confirmed, check out local safe transportation:
-        <a class="mini-link" href="/transportation/">Transportation</a>
-      </div>
-    </aside>
+        <div class="mini-hint">
+          When flights and itinerary are confirmed, check out local safe transportation:
+          <a class="mini-link" href="/transportation/">Transportation</a>
+        </div>
+      </aside>
 
-    <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate itinerary.”</div>
+      <!-- Output always lives inside padded container now -->
+      <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate itinerary.”</div>
+    </div>
   </section>
 
 </main>
@@ -1399,12 +1433,6 @@
     amazon: "UIO",
     galapagos: "GPS"
   };
-
-  function getActiveFlightsSet(){
-    // If desktop flights are hidden, use mobile values; otherwise desktop
-    const desktopVisible = window.getComputedStyle(document.getElementById('flightsDesktop')).display !== "none";
-    return desktopVisible ? "desktop" : "mobile";
-  }
 
   function syncDefaultFlightToFromRegions(){
     const selected = Array.from(state.selectedRegionIds);
