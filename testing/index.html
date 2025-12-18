@@ -1,1 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wildlife &amp; Birding | Experience Ecuador</title>
 
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+
+      --card:#ffffff;
+      --border:rgba(0,0,0,0.06);
+      --shadow:0 18px 55px rgba(3,78,162,0.12);
+      --shadowHover:0 28px 70px rgba(3,78,162,0.18);
+
+      --chipBg: rgba(3,78,162,0.10);
+      --chipText:#0f2f62;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:#f6f8fb;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    /* ===== HEADER ===== */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(255,255,255,0.75);
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      overflow:visible;
+    }
+
+    .topbar-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      overflow:visible;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      color:var(--brand-blue);
+      font-size:18px;
+      letter-spacing:-0.02em;
+      line-height:1;
+      white-space:nowrap;
+    }
+
+    .brand img{width:28px;height:28px;object-fit:contain}
+
+    /* ===== NAV ===== */
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-size:14px;
+      font-weight:700;
+      color:#0f2f62;
+      white-space:nowrap;
+      overflow:visible;
+    }
+
+    .nav a,
+    .nav button{
+      font:inherit;
+      background:transparent;
+      border:0;
+      color:inherit;
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      line-height:1;
+    }
+
+    .nav a:hover,
+    .nav button:hover{
+      background:rgba(3,78,162,0.08);
+    }
+
+    .nav a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
+    }
+
+    /* Dropdown */
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      overflow:visible;
+      z-index:1100;
+    }
+
+    .dropbtn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
+    }
+
+    .caret{
+      width:10px;
+      height:10px;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
+      transform:rotate(45deg);
+      margin-top:-2px;
+      opacity:.7;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:42px;
+      right:0;
+      min-width:220px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:14px;
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
+      padding:8px;
+      display:none;
+      z-index:1200;
+    }
+
+    .dropdown.open .dropdown-menu{display:block}
+
+    .dropdown-menu a{
+      display:block;
+      padding:10px;
+      border-radius:10px;
+      font-weight:700;
+      color:#0f2f62;
+    }
+
+    .dropdown-menu a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
+    }
+
+    .dropdown-menu a:hover{
+      background:rgba(3,78,162,0.08);
+    }
+
+    /* ===== HERO (MUST EATS HERO BANNER PATTERN) ===== */
+    .hero{
+      max-width:1100px;
+      margin:0 auto;
+      padding:22px 18px 12px;
+    }
+
+    .hero-banner{
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 22px 60px rgba(0,0,0,0.18);
+      min-height:320px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)),
+        url("/assets/images/EE-AssetsHero-Experiences-Wildlife-Birding-02.jpg") center/cover no-repeat;
+    }
+
+    .hero-content{
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      align-items:flex-start;
+      padding:22px;
+    }
+
+    .hero-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.38);
+      border:1px solid rgba(255,255,255,0.22);
+      font-weight:700;
+      letter-spacing:0.02em;
+      font-size:12.5px;
+      margin-bottom:14px;
+      backdrop-filter:blur(10px);
+      color:#fff;
+    }
+
+    .hero-title{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:clamp(34px, 4.6vw, 54px);
+      letter-spacing:-0.03em;
+      line-height:1.03;
+      color:#fff;
+      text-shadow:0 10px 30px rgba(0,0,0,0.45);
+    }
+
+    .hero-subtext{
+      margin:0;
+      max-width:68ch;
+      font-size:clamp(15px, 2vw, 18px);
+      line-height:1.65;
+      color:rgba(255,255,255,0.92);
+      text-shadow:0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    /* ===== CONTENT ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:36px 18px 60px;
+    }
+
+    .section{margin-bottom:36px}
+
+    .section h2{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:24px;
+      margin:0 0 10px;
+      color:var(--brand-blue);
+    }
+
+    .section p{
+      max-width:85ch;
+      line-height:1.75;
+      font-size:15.8px;
+      color:#2a2f36;
+      margin:0;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:28px;
+      margin-top:18px;
+      align-items:start;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:22px;
+      padding:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:var(--shadow);
+    }
+
+    .card ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.75;
+      font-size:14.8px;
+      color:#24324a;
+    }
+
+    .mini{
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border-radius:20px;
+      padding:20px;
+      border:1px solid rgba(3,78,162,0.12);
+    }
+
+    .mini + .mini{margin-top:16px}
+
+    /* ===== SELECTOR (SAME SYSTEM AS ADVENTURE) ===== */
+    .selector{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .selector-top{
+      display:grid;
+      grid-template-columns:1fr auto;
+      grid-template-rows:auto auto;
+      align-items:start;
+      gap:16px;
+      padding:22px;
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+    }
+
+    .selector-copy{
+      grid-column:1 / -1;
+    }
+
+    .selector-copy h3{
+      margin:0 0 6px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:20px;
+      color:#0f2f62;
+    }
+
+    .selector-copy p{
+      margin:0;
+      color:#24324a;
+      opacity:0.92;
+      line-height:1.65;
+      font-size:14.8px;
+      max-width:70ch;
+    }
+
+    .selector-controls{
+      grid-column:2;
+      justify-self:end;
+      display:grid;
+      grid-template-columns:auto 260px;
+      column-gap:12px;
+      row-gap:10px;
+      align-items:center;
+    }
+
+    .selector-controls label{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+    }
+
+    .selector-controls select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-weight:700;
+      padding:11px 42px 11px 12px;
+      border-radius:14px;
+      font-size:14px;
+      cursor:pointer;
+      outline:none;
+      width:260px;
+      min-width:260px;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      background-image:
+        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
+        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%,
+        0 0;
+      background-size:6px 6px, 6px 6px, 100% 100%;
+      background-repeat:no-repeat;
+    }
+
+    .selector-controls select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .selector-body{ padding:22px; }
+
+    .recs-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:16px;
+    }
+
+    .rec{
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.06);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 16px 45px rgba(0,0,0,0.08);
+      transition:transform .2s ease, box-shadow .2s ease;
+      min-height:182px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .rec:hover{
+      transform:translateY(-5px);
+      box-shadow:0 24px 60px rgba(0,0,0,0.12);
+    }
+
+    .rec h4{
+      margin:0;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .rec p{
+      margin:0;
+      color:#2a2f36;
+      line-height:1.6;
+      font-size:14px;
+      opacity:0.95;
+      flex:1;
+    }
+
+    .chips{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      background:var(--chipBg);
+      color:var(--chipText);
+      font-weight:800;
+      font-size:12.5px;
+      letter-spacing:0.01em;
+      border:1px solid rgba(3,78,162,0.16);
+      transition:transform .15s ease, background .15s ease;
+    }
+
+    .chip:hover{
+      transform:translateY(-1px);
+      background:rgba(3,78,162,0.14);
+    }
+
+    .meta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:-2px;
+    }
+
+    .badge{
+      font-size:12px;
+      font-weight:800;
+      color:#0f2f62;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.14);
+      padding:6px 8px;
+      border-radius:999px;
+      line-height:1;
+    }
+
+    .rec-actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:4px;
+    }
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:900;
+      font-size:13px;
+      background:var(--brand-blue);
+      color:#fff;
+      border:0;
+      cursor:pointer;
+      min-width:120px;
+    }
+
+    .cta:hover{ filter:brightness(0.95); }
+
+    .hint{
+      font-size:12.5px;
+      color:#24324a;
+      opacity:0.85;
+      font-weight:700;
+    }
+
+    /* ===== CAROUSEL (REGIONS-STYLE, SAME AS ADVENTURE) ===== */
+    .carousel{
+      margin-top:18px;
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
+
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
+
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer{
+      background:var(--brand-blue);
+      color:#fff;
+    }
+
+    .footer-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px;
+      text-align:center;
+    }
+
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      margin-bottom:16px;
+    }
+
+    .social{
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+
+    .icon-btn{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:var(--brand-blue);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 14px 34px rgba(0,0,0,0.35);
+    }
+
+    .icon-btn img{width:34px;height:34px}
+
+    footer small{font-size:13px;opacity:.9}
+
+    /* ===== MOBILE ===== */
+    @media(max-width:900px){
+      .grid{grid-template-columns:1fr}
+      .recs-grid{grid-template-columns:1fr}
+      .selector-top{grid-template-columns:1fr;}
+      .selector-controls{
+        grid-column:1;
+        justify-self:start;
+        grid-template-columns:1fr;
+        row-gap:10px;
+        column-gap:0;
+        width:100%;
+      }
+      .selector-controls select{width:100%; min-width:0;}
+      .nav{gap:8px;flex-wrap:wrap;justify-content:center}
+
+      .hero-banner{ min-height:290px; }
+    }
+
+    @media(max-width:620px){
+      .topbar-inner{flex-direction:column;gap:10px}
+      .dropdown-menu{
+        left:50%;
+        right:auto;
+        transform:translateX(-50%);
+      }
+
+      .hero-content{ padding:16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .rec, .carousel-track { transition:none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/">
+      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+      <span>Experience Ecuador</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/mission/">Mission</a>
+
+      <div class="dropdown" id="regionsDropdown">
+        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
+          Regions <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+          <a href="/regions/" role="menuitem">All Regions</a>
+          <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+          <a href="/regions/coast/" role="menuitem">Coast</a>
+          <a href="/regions/andes/" role="menuitem">Andes</a>
+          <a href="/regions/amazon/" role="menuitem">Amazon</a>
+        </div>
+      </div>
+
+      <div class="dropdown" id="experiencesDropdown">
+        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+          Experiences <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+          <a href="/experiences/" role="menuitem">All Experiences</a>
+          <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+          <a href="/experiences/nature/" role="menuitem">Nature</a>
+          <a class="active" href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+          <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+          <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+          <a href="/experiences/culture/" role="menuitem">Culture</a>
+        </div>
+      </div>
+
+      <a href="/contact/">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" aria-label="Wildlife and Birding page hero">
+  <div class="hero-banner" role="img" aria-label="Wildlife and Birding hero image">
+    <div class="hero-content">
+      <div class="hero-kicker">Experience • Wildlife &amp; Birding</div>
+      <h1 class="hero-title">Wildlife &amp; Birding</h1>
+      <p class="hero-subtext">Ecuador is one of the most wildlife-rich countries on the planet. From hummingbirds and toucans to monkeys, frogs, and marine life, encounters are possible in every region. Use the selector below to match your style of wildlife travel.</p>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <section class="section">
+    <h2>What this experience is about</h2>
+    <p>
+      Wildlife and birding in Ecuador are not limited to remote expeditions. Short travel distances, expert local guides, and protected
+      ecosystems make it one of the most accessible destinations in the world for biodiversity-focused travel. Whether you are a casual
+      observer or a serious birder, Ecuador delivers exceptional encounters year round.
+    </p>
+  </section>
+
+  <!-- Wildlife Selector -->
+  <section class="section selector" aria-label="Wildlife and birding selector">
+    <div class="selector-top">
+      <div class="selector-controls">
+        <label for="ee_exp_nav">Experiences</label>
+        <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Select experience">
+          <option value="/experiences/adventure/">Adventure</option>
+          <option value="/experiences/nature/">Nature</option>
+          <option value="/experiences/wildlife-birding/" selected>Wildlife &amp; Birding</option>
+          <option value="/experiences/relaxation/">Relaxation</option>
+          <option value="/experiences/culinary/">Culinary</option>
+          <option value="/experiences/culture/">Culture</option>
+        </select>
+
+        <label for="ee_wildlife_focus">Focus</label>
+        <select id="ee_wildlife_focus" name="ee_wildlife_focus" aria-label="Select wildlife focus">
+          <option value="casual">Casual encounters (easy wins)</option>
+          <option value="birding" selected>Birding-first (target species)</option>
+          <option value="amazon">Amazon wildlife (deep jungle)</option>
+          <option value="marine">Marine life (ocean + islands)</option>
+        </select>
+      </div>
+
+      <div class="selector-copy">
+        <h3>Pick your wildlife focus</h3>
+        <p>
+          Choose what you want to prioritize and we’ll show three strong starting points, each linked to the best region to build from.
+          (You can refine these as you expand your location pages.)
+        </p>
+      </div>
+    </div>
+
+    <div class="selector-body">
+      <div class="recs-grid" id="ee_wildlife_recs" aria-live="polite"></div>
+      <div style="margin-top:12px;">
+        <span class="hint" id="ee_wildlife_hint">Tip: Birding-first is the most popular choice. Pair it with a cloud forest base.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section grid">
+    <div class="card">
+      <h2>Signature wildlife experiences</h2>
+      <ul>
+        <li>Birdwatching in cloud forests and reserves</li>
+        <li>Amazon rainforest wildlife and canopy exploration</li>
+        <li>Marine life encounters along the coast</li>
+        <li>Endemic species and guided nature walks</li>
+        <li>Photography-focused nature experiences</li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="mini">
+        <h2>Best for</h2>
+        <ul>
+          <li>Birders and wildlife enthusiasts</li>
+          <li>Nature photographers</li>
+          <li>Eco travelers and conservation-minded guests</li>
+          <li>Slow travel and immersive exploration</li>
+        </ul>
+      </div>
+
+      <div class="mini">
+        <h2>Regions that shine</h2>
+        <ul>
+          <li>Andes: cloud forests and endemic bird species</li>
+          <li>Amazon: jungle wildlife and biodiversity</li>
+          <li>Coast: marine ecosystems and coastal forests</li>
+          <li>Galapagos: iconic endemic species</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom Carousel (Regions-style) -->
+  <section class="section" aria-label="Wildlife and birding gallery">
+    <div class="carousel" id="wildlifeCarousel">
+      <button class="carousel-btn prev" type="button" aria-label="Previous slide">
+        <span aria-hidden="true"></span>
+      </button>
+      <button class="carousel-btn next" type="button" aria-label="Next slide">
+        <span aria-hidden="true"></span>
+      </button>
+
+      <div class="carousel-viewport" aria-label="Carousel viewport">
+        <div class="carousel-track" aria-label="Carousel track">
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Wildlife-1.jpg" alt="Wildlife gallery image 1">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Wildlife-2.jpg" alt="Wildlife gallery image 2">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Wildlife-3.jpg" alt="Wildlife gallery image 3">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Wildlife-4.jpg" alt="Wildlife gallery image 4">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Wildlife-5.jpg" alt="Wildlife gallery image 5">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Wildlife-6.jpg" alt="Wildlife gallery image 6">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Wildlife-7.jpg" alt="Wildlife gallery image 7">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Wildlife-8.jpg" alt="Wildlife gallery image 8">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Wildlife-9.jpg" alt="Wildlife gallery image 9">
+          </div>
+          <div class="carousel-slide">
+            <img src="/assets/images/EE-Carousel-Wildlife-10.jpg" alt="Wildlife gallery image 10">
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-ui" aria-label="Carousel controls">
+        <div class="carousel-dots" id="wildlifeDots" aria-label="Carousel dots"></div>
+        <div class="carousel-counter" id="wildlifeCounter" aria-label="Carousel counter">1 / 10</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
+    <div class="social">
+      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+      </a>
+      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+      </a>
+      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+      </a>
+      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+      </a>
+    </div>
+
+    <small>© 2025 Experience Ecuador. All rights reserved.</small>
+  </div>
+</footer>
+
+<script>
+  /* ===== Dropdown behavior (site standard) ===== */
+  (function () {
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    function closeAll() {
+      dropdowns.forEach(dd => {
+        dd.classList.remove('open');
+        const btn = dd.querySelector('.dropbtn');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    dropdowns.forEach(dd => {
+      const btn = dd.querySelector('.dropbtn');
+      const menu = dd.querySelector('.dropdown-menu');
+      if (!btn) return;
+
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const isOpen = dd.classList.contains('open');
+        closeAll();
+        dd.classList.toggle('open', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+      });
+
+      if (menu) {
+        menu.addEventListener('click', function (e) {
+          e.stopPropagation();
+        });
+      }
+    });
+
+    document.addEventListener('click', closeAll);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAll();
+    });
+  })();
+
+  /* ===== Experiences dropdown (auto-navigate) ===== */
+  (function(){
+    const expEl = document.getElementById("ee_exp_nav");
+    if (!expEl) return;
+    expEl.addEventListener("change", function(){
+      const url = this.value;
+      if (url) window.location.href = url;
+    });
+  })();
+
+  /* ===== Wildlife Focus Selector (3 recommendations) ===== */
+  (function(){
+    const focusEl = document.getElementById("ee_wildlife_focus");
+    const recsEl = document.getElementById("ee_wildlife_recs");
+    const hintEl = document.getElementById("ee_wildlife_hint");
+
+    const data = {
+      casual: {
+        hint: "Casual encounters are easiest with a cloud forest base. Lots of sightings with minimal logistics.",
+        recs: [
+          {
+            title: "Hummingbird gardens + easy reserve walks",
+            desc: "Short trails, frequent sightings, and a great intro to Ecuador’s biodiversity without going remote.",
+            badges: ["Easy", "Half day to full day"],
+            chips: [
+              { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
+              { label: "Explore Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "View Mindo",
+            ctaHref: "/regions/andes/mindo/"
+          },
+          {
+            title: "Guided nature walk for endemic species",
+            desc: "A guide helps you find what you’d miss on your own. Ideal for first-time wildlife travelers.",
+            badges: ["Easy", "Half day"],
+            chips: [
+              { label: "Best in: Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "Explore Andes",
+            ctaHref: "/regions/andes/"
+          },
+          {
+            title: "Coastal reserve day with wildlife surprises",
+            desc: "Combine beach time with nature. Mangroves, coastal forests, and frequent bird activity.",
+            badges: ["Easy", "Full day"],
+            chips: [
+              { label: "Best in: Coast", href: "/regions/coast/" }
+            ],
+            ctaLabel: "Explore Coast",
+            ctaHref: "/regions/coast/"
+          }
+        ]
+      },
+
+      birding: {
+        hint: "Birding-first trips work best with local guides and dawn starts. Cloud forests are the sweet spot.",
+        recs: [
+          {
+            title: "Cloud forest birding (target species mornings)",
+            desc: "Early starts, strategic reserve choices, and high species variety in a compact area.",
+            badges: ["Birding-first", "Full day"],
+            chips: [
+              { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
+              { label: "Explore Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "View Mindo",
+            ctaHref: "/regions/andes/mindo/"
+          },
+          {
+            title: "Endemic-focused routes (Andes hotspots)",
+            desc: "Build your trip around endemics and elevation bands for maximum variety.",
+            badges: ["Birding-first", "Full day"],
+            chips: [
+              { label: "Best in: Andes", href: "/regions/andes/" }
+            ],
+            ctaLabel: "Explore Andes",
+            ctaHref: "/regions/andes/"
+          },
+          {
+            title: "Photography-friendly birding stops",
+            desc: "Well-known feeders, good angles, and consistent sightings. Great for close-ups.",
+            badges: ["Birding-first", "Half day to full day"],
+            chips: [
+              { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" }
+            ],
+            ctaLabel: "View Mindo",
+            ctaHref: "/regions/andes/mindo/"
+          }
+        ]
+      },
+
+      amazon: {
+        hint: "Amazon wildlife is immersive. Plan for multi-day stays to increase sightings and reduce transit stress.",
+        recs: [
+          {
+            title: "Rainforest lodge base + guided wildlife walks",
+            desc: "Maximize encounters with guided day walks, river edges, and nighttime listening sessions.",
+            badges: ["Immersive", "Multi-day"],
+            chips: [
+              { label: "Best in: Amazon", href: "/regions/amazon/" }
+            ],
+            ctaLabel: "Explore Amazon",
+            ctaHref: "/regions/amazon/"
+          },
+          {
+            title: "Canopy and river systems (big biodiversity)",
+            desc: "Wildlife hotspots happen at ecosystem edges. River corridors and canopy zones are key.",
+            badges: ["Immersive", "Full day to multi-day"],
+            chips: [
+              { label: "Best in: Amazon", href: "/regions/amazon/" }
+            ],
+            ctaLabel: "Explore Amazon",
+            ctaHref: "/regions/amazon/"
+          },
+          {
+            title: "Night walks + amphibians and insects",
+            desc: "Some of Ecuador’s most memorable wildlife appears after dark. Guides make it safe and rewarding.",
+            badges: ["Immersive", "Night"],
+            chips: [
+              { label: "Best in: Amazon", href: "/regions/amazon/" }
+            ],
+            ctaLabel: "Explore Amazon",
+            ctaHref: "/regions/amazon/"
+          }
+        ]
+      },
+
+      marine: {
+        hint: "Marine life depends on sites and timing. Islands and protected coastal areas deliver the best encounters.",
+        recs: [
+          {
+            title: "Galapagos endemic wildlife (iconic encounters)",
+            desc: "The world’s most famous wildlife destination. Plan routes carefully for maximum variety.",
+            badges: ["Iconic", "Multi-day"],
+            chips: [
+              { label: "Best in: Galapagos", href: "/regions/galapagos/" }
+            ],
+            ctaLabel: "Explore Galapagos",
+            ctaHref: "/regions/galapagos/"
+          },
+          {
+            title: "Coastal marine reserves + boat day",
+            desc: "A strong option if you want ocean wildlife without a full island itinerary.",
+            badges: ["Marine", "Full day"],
+            chips: [
+              { label: "Best in: Coast", href: "/regions/coast/" }
+            ],
+            ctaLabel: "Explore Coast",
+            ctaHref: "/regions/coast/"
+          },
+          {
+            title: "Mangroves + coastal bird activity",
+            desc: "Great for birders who also want coastal ecosystems. Calmer water and consistent sightings.",
+            badges: ["Marine", "Half day to full day"],
+            chips: [
+              { label: "Best in: Coast", href: "/regions/coast/" }
+            ],
+            ctaLabel: "Explore Coast",
+            ctaHref: "/regions/coast/"
+          }
+        ]
+      }
+    };
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function render(key){
+      const block = data[key] || data.birding;
+      if (hintEl) hintEl.textContent = block.hint || "";
+
+      const html = (block.recs || []).map((r) => {
+        const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
+        const chips = (r.chips || []).map(c => `
+          <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
+        `).join("");
+
+        return `
+          <article class="rec">
+            <div class="meta">${badges}</div>
+            <h4>${escapeHtml(r.title)}</h4>
+            <p>${escapeHtml(r.desc)}</p>
+
+            <div class="chips">${chips}</div>
+
+            <div class="rec-actions">
+              <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
+              <span class="hint">Best-fit starting point</span>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      recsEl.innerHTML = html;
+    }
+
+    render(focusEl ? focusEl.value : "birding");
+
+    if (focusEl) {
+      focusEl.addEventListener("change", function(){
+        render(this.value);
+      });
+    }
+  })();
+
+  /* ===== Carousel (Regions-style, same as Adventure) ===== */
+  (function(){
+    const root = document.getElementById("wildlifeCarousel");
+    if (!root) return;
+
+    const track = root.querySelector(".carousel-track");
+    const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+    const prevBtn = root.querySelector(".carousel-btn.prev");
+    const nextBtn = root.querySelector(".carousel-btn.next");
+    const dotsWrap = document.getElementById("wildlifeDots");
+    const counter = document.getElementById("wildlifeCounter");
+
+    let index = 0;
+    const total = slides.length;
+
+    const dots = [];
+    if (dotsWrap) {
+      dotsWrap.innerHTML = "";
+      for (let i = 0; i < total; i++){
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "dot" + (i === 0 ? " active" : "");
+        b.setAttribute("aria-label", `Go to slide ${i+1}`);
+        b.addEventListener("click", () => goTo(i));
+        dotsWrap.appendChild(b);
+        dots.push(b);
+      }
+    }
+
+    function updateUI(){
+      const x = -index * 100;
+      track.style.transform = `translateX(${x}%)`;
+
+      if (counter) counter.textContent = `${index + 1} / ${total}`;
+
+      dots.forEach((d, i) => {
+        if (i === index) d.classList.add("active");
+        else d.classList.remove("active");
+      });
+    }
+
+    function clamp(i){
+      if (i < 0) return total - 1;
+      if (i >= total) return 0;
+      return i;
+    }
+
+    function goTo(i){
+      index = clamp(i);
+      updateUI();
+    }
+
+    function next(){ goTo(index + 1); }
+    function prev(){ goTo(index - 1); }
+
+    if (nextBtn) nextBtn.addEventListener("click", next);
+    if (prevBtn) prevBtn.addEventListener("click", prev);
+
+    root.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    });
+
+    let startX = 0;
+    let isDown = false;
+
+    const viewport = root.querySelector(".carousel-viewport");
+    if (viewport) {
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+      });
+
+      viewport.addEventListener("pointerup", (e) => {
+        if (!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        if (Math.abs(dx) > 45) {
+          if (dx < 0) next();
+          else prev();
+        }
+      });
+
+      viewport.addEventListener("pointercancel", () => { isDown = false; });
+      viewport.addEventListener("pointerleave", () => { isDown = false; });
+    }
+
+    updateUI();
+  })();
+</script>
+
+</body>
+</html>
