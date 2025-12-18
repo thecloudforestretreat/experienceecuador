@@ -238,13 +238,13 @@
       letter-spacing:-0.02em;
     }
 
-    /* ===== BUILDER + FLIGHTS LAYOUT (75% / 25%) ===== */
+    /* ===== BUILDER + FLIGHTS LAYOUT (DESKTOP) ===== */
     .builder-layout{
       margin-top:18px;
       display:grid;
       grid-template-columns: 3fr 1fr; /* ~75% / 25% */
       gap:14px;
-      align-items:stretch; /* equal height columns */
+      align-items:stretch;
     }
 
     .builder-card,
@@ -359,7 +359,7 @@
       max-width:100%;
     }
 
-    /* Tip moved under Pick regions, smaller */
+    /* Tip under Pick regions + smaller */
     .regions-tip{
       margin-top:8px;
       color:#24324a;
@@ -399,7 +399,7 @@
       cursor:not-allowed;
     }
 
-    /* ===== FLIGHTS BOX (RIGHT) ===== */
+    /* ===== FLIGHTS BOX ===== */
     .mini-title{
       font-weight:900;
       color:#0f2f62;
@@ -470,7 +470,7 @@
 
     /* ===== ITINERARY OUTPUT ===== */
     .itinerary{
-      margin-top:16px; /* clean, no big gap now */
+      margin-top:16px;
     }
 
     .day-card{
@@ -588,12 +588,26 @@
     .icon-btn img{width:34px;height:34px}
     footer small{font-size:13px;opacity:.9}
 
+    /* ===== MOBILE: move flights under "Your suggested itinerary" ===== */
     @media(max-width:900px){
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
       .hero-banner{min-height:290px}
 
+      /* builder becomes single column only; flights will NOT live here on mobile */
       .builder-layout{
         grid-template-columns:1fr;
+        gap:14px;
+      }
+
+      /* hide the desktop flights box (the one next to builder) */
+      #flightsDesktop{
+        display:none !important;
+      }
+
+      /* show the mobile flights box under itinerary title */
+      #flightsMobile{
+        display:block !important;
+        margin:10px 0 14px;
       }
 
       .controls-grid{ grid-template-columns:1fr; }
@@ -686,9 +700,9 @@
 
 <main class="wrap">
 
-  <!-- 75% builder + 25% flights, same height -->
+  <!-- 75% builder + 25% flights (desktop) -->
   <section class="builder-layout" aria-label="Trip builder and flights">
-    <!-- LEFT: Builder (75%) -->
+    <!-- LEFT: Builder -->
     <section class="card builder-card" aria-label="Trip builder wizard">
       <h2 style="margin-bottom:10px;">Build a custom Ecuador itinerary</h2>
       <p>
@@ -706,7 +720,6 @@
       <div style="margin-top:16px;">
         <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick regions</div>
 
-        <!-- Tip moved here + smaller -->
         <div class="regions-tip">
           Tip: If you select multiple regions, the tool will automatically split days and add lighter “transfer-friendly” pacing.
         </div>
@@ -726,31 +739,31 @@
       </div>
     </section>
 
-    <!-- RIGHT: Flights (25%) -->
-    <aside class="card flights-card" aria-label="Flights">
+    <!-- RIGHT: Flights (desktop only) -->
+    <aside class="card flights-card" id="flightsDesktop" aria-label="Flights (desktop)">
       <p class="mini-title">Flights</p>
 
       <div class="mini-grid">
-        <label for="flightFrom">From</label>
-        <input id="flightFrom" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
+        <label for="flightFromDesktop">From</label>
+        <input id="flightFromDesktop" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
 
-        <label for="flightTo">To</label>
-        <select id="flightTo" aria-label="Destination airport">
+        <label for="flightToDesktop">To</label>
+        <select id="flightToDesktop" aria-label="Destination airport">
           <option value="UIO">Quito (UIO)</option>
           <option value="GYE">Guayaquil (GYE)</option>
           <option value="GPS">Galapagos (GPS)</option>
           <option value="CUE">Cuenca (CUE)</option>
         </select>
 
-        <label for="flightDepart">Depart</label>
-        <input id="flightDepart" type="date">
+        <label for="flightDepartDesktop">Depart</label>
+        <input id="flightDepartDesktop" type="date">
 
-        <label for="flightReturn">Return</label>
-        <input id="flightReturn" type="date">
+        <label for="flightReturnDesktop">Return</label>
+        <input id="flightReturnDesktop" type="date">
       </div>
 
       <div class="mini-actions">
-        <button class="btn primary" id="flightSearchBtn" type="button">Search flights</button>
+        <button class="btn primary" id="flightSearchBtnDesktop" type="button">Search flights</button>
       </div>
 
       <div class="mini-hint">
@@ -760,9 +773,43 @@
     </aside>
   </section>
 
-  <!-- Itinerary sits cleanly underneath (no flights here) -->
+  <!-- Itinerary -->
   <section class="itinerary" aria-label="Generated itinerary">
     <h2 class="section-title" style="margin-top:26px;">Your suggested itinerary</h2>
+
+    <!-- Flights (mobile only) -->
+    <aside class="card flights-card" id="flightsMobile" aria-label="Flights (mobile)" style="display:none;">
+      <p class="mini-title">Flights</p>
+
+      <div class="mini-grid">
+        <label for="flightFromMobile">From</label>
+        <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
+
+        <label for="flightToMobile">To</label>
+        <select id="flightToMobile" aria-label="Destination airport">
+          <option value="UIO">Quito (UIO)</option>
+          <option value="GYE">Guayaquil (GYE)</option>
+          <option value="GPS">Galapagos (GPS)</option>
+          <option value="CUE">Cuenca (CUE)</option>
+        </select>
+
+        <label for="flightDepartMobile">Depart</label>
+        <input id="flightDepartMobile" type="date">
+
+        <label for="flightReturnMobile">Return</label>
+        <input id="flightReturnMobile" type="date">
+      </div>
+
+      <div class="mini-actions">
+        <button class="btn primary" id="flightSearchBtnMobile" type="button">Search flights</button>
+      </div>
+
+      <div class="mini-hint">
+        When flights and itinerary are confirmed, check out local safe transportation:
+        <a class="mini-link" href="/transportation/">Transportation</a>
+      </div>
+    </aside>
+
     <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate itinerary.”</div>
   </section>
 
@@ -848,15 +895,67 @@
     generateBtn: document.getElementById('generateBtn'),
     resetBtn: document.getElementById('resetBtn'),
     output: document.getElementById('output'),
-    regionHint: document.getElementById('regionHint'),
-
-    // Flights
-    flightFrom: document.getElementById('flightFrom'),
-    flightTo: document.getElementById('flightTo'),
-    flightDepart: document.getElementById('flightDepart'),
-    flightReturn: document.getElementById('flightReturn'),
-    flightSearchBtn: document.getElementById('flightSearchBtn')
+    regionHint: document.getElementById('regionHint')
   };
+
+  // Flights: desktop + mobile elements
+  const flightEls = {
+    desktop: {
+      from: document.getElementById('flightFromDesktop'),
+      to: document.getElementById('flightToDesktop'),
+      depart: document.getElementById('flightDepartDesktop'),
+      ret: document.getElementById('flightReturnDesktop'),
+      btn: document.getElementById('flightSearchBtnDesktop')
+    },
+    mobile: {
+      from: document.getElementById('flightFromMobile'),
+      to: document.getElementById('flightToMobile'),
+      depart: document.getElementById('flightDepartMobile'),
+      ret: document.getElementById('flightReturnMobile'),
+      btn: document.getElementById('flightSearchBtnMobile')
+    }
+  };
+
+  // Sync values between desktop/mobile flights inputs so user can switch responsively
+  function syncFlights(fromSet){
+    const d = flightEls.desktop;
+    const m = flightEls.mobile;
+
+    if (fromSet === "desktop") {
+      m.from.value = d.from.value;
+      m.to.value = d.to.value;
+      m.depart.value = d.depart.value;
+      m.ret.value = d.ret.value;
+      m.to.dataset.userSet = d.to.dataset.userSet || "false";
+    } else {
+      d.from.value = m.from.value;
+      d.to.value = m.to.value;
+      d.depart.value = m.depart.value;
+      d.ret.value = m.ret.value;
+      d.to.dataset.userSet = m.to.dataset.userSet || "false";
+    }
+  }
+
+  // Mark user-set destination on both selects
+  function setUserSetAll(val){
+    flightEls.desktop.to.dataset.userSet = val;
+    flightEls.mobile.to.dataset.userSet = val;
+  }
+
+  flightEls.desktop.to.addEventListener('change', () => setUserSetAll("true"));
+  flightEls.mobile.to.addEventListener('change', () => setUserSetAll("true"));
+
+  ["input","change"].forEach(evt => {
+    flightEls.desktop.from.addEventListener(evt, () => syncFlights("desktop"));
+    flightEls.desktop.to.addEventListener(evt, () => syncFlights("desktop"));
+    flightEls.desktop.depart.addEventListener(evt, () => syncFlights("desktop"));
+    flightEls.desktop.ret.addEventListener(evt, () => syncFlights("desktop"));
+
+    flightEls.mobile.from.addEventListener(evt, () => syncFlights("mobile"));
+    flightEls.mobile.to.addEventListener(evt, () => syncFlights("mobile"));
+    flightEls.mobile.depart.addEventListener(evt, () => syncFlights("mobile"));
+    flightEls.mobile.ret.addEventListener(evt, () => syncFlights("mobile"));
+  });
 
   const DAY_CAPACITY_HOURS = 8;
   const TIME_ORDER = ["morning","afternoon","evening"];
@@ -925,7 +1024,6 @@
   function renderExperiencePills() {
     els.experiencesPills.innerHTML = "";
 
-    // Force the exact 2-row / 3-column order you requested.
     const desiredOrder = ["adventure","nature","wildlife-birding","relaxation","culinary","culture"];
     const map = new Map((DATA.experiences.experiences || []).map(x => [x.id, x]));
 
@@ -934,7 +1032,6 @@
       if (item) els.experiencesPills.appendChild(createPill(item, "experience"));
     });
 
-    // If experiences.json ever adds more, append them after (keeps your first 6 fixed)
     (DATA.experiences.experiences || []).forEach(x => {
       if (!desiredOrder.includes(x.id)) {
         els.experiencesPills.appendChild(createPill(x, "experience"));
@@ -1230,12 +1327,6 @@
     els.output.appendChild(wrap);
   }
 
-  function capitalize(s){
-    const t = String(s || "");
-    if (!t) return "";
-    return t.charAt(0).toUpperCase() + t.slice(1);
-  }
-
   function extractPartLabelFromTitleOrId(block){
     const t = String(block && block.title ? block.title : "");
     const m1 = t.match(/\(Part\s+\d+\s+of\s+\d+\)/i);
@@ -1295,7 +1386,13 @@
     return div;
   }
 
-  // ===== FLIGHTS (Option 1) =====
+  function capitalize(s){
+    const t = String(s || "");
+    if (!t) return "";
+    return t.charAt(0).toUpperCase() + t.slice(1);
+  }
+
+  // ===== FLIGHTS =====
   const REGION_TO_AIRPORT = {
     andes: "UIO",
     coast: "GYE",
@@ -1303,24 +1400,27 @@
     galapagos: "GPS"
   };
 
+  function getActiveFlightsSet(){
+    // If desktop flights are hidden, use mobile values; otherwise desktop
+    const desktopVisible = window.getComputedStyle(document.getElementById('flightsDesktop')).display !== "none";
+    return desktopVisible ? "desktop" : "mobile";
+  }
+
   function syncDefaultFlightToFromRegions(){
     const selected = Array.from(state.selectedRegionIds);
     if (!selected.length) return;
 
     const airport = REGION_TO_AIRPORT[selected[0]] || "UIO";
-    if (!els.flightTo.dataset.userSet || els.flightTo.dataset.userSet === "false") {
-      els.flightTo.value = airport;
+
+    const d = flightEls.desktop;
+    const m = flightEls.mobile;
+
+    const userSet = (d.to.dataset.userSet || m.to.dataset.userSet || "false");
+
+    if (userSet === "false") {
+      d.to.value = airport;
+      m.to.value = airport;
     }
-  }
-
-  els.flightTo.addEventListener('change', () => {
-    els.flightTo.dataset.userSet = "true";
-  });
-
-  function normalizeAirportCode(v){
-    const s = String(v || "").trim().toUpperCase();
-    const m = s.match(/[A-Z]{3}/);
-    return m ? m[0] : "";
   }
 
   function buildGoogleFlightsUrl({ from, to, depart, ret }){
@@ -1331,19 +1431,26 @@
     return "https://www.google.com/travel/flights?q=" + encodeURIComponent(q);
   }
 
-  function openFlights(){
-    const from = normalizeAirportCode(els.flightFrom.value);
-    const to = String(els.flightTo.value || "").trim().toUpperCase();
-    const depart = String(els.flightDepart.value || "").trim();
-    const ret = String(els.flightReturn.value || "").trim();
+  function normalizeAirportCode(v){
+    const s = String(v || "").trim().toUpperCase();
+    const m = s.match(/[A-Z]{3}/);
+    return m ? m[0] : "";
+  }
 
+  function openFlightsFrom(setName){
+    const s = flightEls[setName];
+    const from = normalizeAirportCode(s.from.value);
+    const to = String(s.to.value || "").trim().toUpperCase();
+    const depart = String(s.depart.value || "").trim();
+    const ret = String(s.ret.value || "").trim();
     if (!to) return;
 
     const url = buildGoogleFlightsUrl({ from, to, depart, ret });
     window.open(url, "_blank", "noopener,noreferrer");
   }
 
-  els.flightSearchBtn.addEventListener('click', openFlights);
+  flightEls.desktop.btn.addEventListener('click', () => openFlightsFrom("desktop"));
+  flightEls.mobile.btn.addEventListener('click', () => openFlightsFrom("mobile"));
 
   // ===== LOAD JSON =====
   async function loadJSON(path){
@@ -1370,7 +1477,15 @@
       renderExperiencePills();
       updateHints();
       updateGenerateState();
+
+      // default flights setup
+      setUserSetAll("false");
+      flightEls.desktop.to.value = "UIO";
+      flightEls.mobile.to.value = "UIO";
       syncDefaultFlightToFromRegions();
+
+      // keep both sets in sync initially
+      syncFlights("desktop");
 
       els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
     } catch (e) {
@@ -1395,12 +1510,18 @@
     document.querySelectorAll('.pill').forEach(p => p.setAttribute('aria-pressed', 'false'));
     els.daysSelect.value = "5";
 
-    // reset flights
-    els.flightFrom.value = "";
-    els.flightDepart.value = "";
-    els.flightReturn.value = "";
-    els.flightTo.dataset.userSet = "false";
-    els.flightTo.value = "UIO";
+    // reset flights (both)
+    flightEls.desktop.from.value = "";
+    flightEls.desktop.depart.value = "";
+    flightEls.desktop.ret.value = "";
+
+    flightEls.mobile.from.value = "";
+    flightEls.mobile.depart.value = "";
+    flightEls.mobile.ret.value = "";
+
+    setUserSetAll("false");
+    flightEls.desktop.to.value = "UIO";
+    flightEls.mobile.to.value = "UIO";
 
     updateHints();
     updateGenerateState();
