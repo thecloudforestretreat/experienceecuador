@@ -798,8 +798,8 @@
         ...block,
         id: `${block.id}__part_${i+1}_of_${parts}`,
         title: `${block.title} (Part ${i+1} of ${parts})`,
-        duration_hours: Math.round(per * 10) / 10,
-        notes: (block.notes ? block.notes + " " : "") + "This is a multi-day activity split for pacing."
+        duration_hours: Math.round(per * 10) / 10
+        // notes are NOT modified here. We explain splits at render time (Option A).
       });
     }
     return out;
@@ -1030,6 +1030,18 @@
     return t.charAt(0).toUpperCase() + t.slice(1);
   }
 
+  function extractPartLabelFromTitleOrId(block){
+    const t = String(block && block.title ? block.title : "");
+    const m1 = t.match(/\(Part\s+\d+\s+of\s+\d+\)/i);
+    if (m1) return m1[0].replace(/[()]/g, "");
+
+    const id = String(block && block.id ? block.id : "");
+    const m2 = id.match(/__part_(\d+)_of_(\d+)/i);
+    if (m2) return `Part ${m2[1]} of ${m2[2]}`;
+
+    return "Part";
+  }
+
   function renderSlot(label, block, regionId){
     const div = document.createElement('div');
     div.className = "slot";
@@ -1039,11 +1051,30 @@
     const dur = block.duration_hours ? `${block.duration_hours}h` : "";
     const metaLine = [loc, exp, dur].filter(Boolean).join(" • ");
 
+    const isSplitPart = typeof block.id === "string" && block.id.includes("__part_");
+    const partLabel = isSplitPart ? extractPartLabelFromTitleOrId(block) : "";
+
+    const splitExplain = isSplitPart
+      ? `This experience spans multiple days. “${partLabel}” indicates one day within a longer lodge-based stay.`
+      : "";
+
+    const noteHtml = (() => {
+      const baseNote = block.notes ? String(block.notes) : "";
+      if (!baseNote && !splitExplain) return "";
+      if (baseNote && splitExplain) {
+        return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Note:</strong> " + baseNote + "<br><strong>Note:</strong> " + splitExplain + "</p>";
+      }
+      if (baseNote) {
+        return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Note:</strong> " + baseNote + "</p>";
+      }
+      return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Note:</strong> " + splitExplain + "</p>";
+    })();
+
     div.innerHTML = `
       <h4>${label}</h4>
       <div class="title">${block.title}</div>
       <p class="meta">${block.summary || ""}${metaLine ? "<br><span style='opacity:.9'>" + metaLine + "</span>" : ""}</p>
-      ${block.notes ? "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Note:</strong> " + block.notes + "</p>" : ""}
+      ${noteHtml}
     `;
     return div;
   }
