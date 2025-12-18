@@ -1,1 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transportation | Experience Ecuador</title>
 
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+      --ok:#0f8a5f;
+      --warn:#b65b00;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:#f6f8fb;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    /* ===== HEADER ===== */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(255,255,255,0.75);
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      overflow:visible;
+    }
+
+    .topbar-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      overflow:visible;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      color:var(--brand-blue);
+      font-size:18px;
+      white-space:nowrap;
+      letter-spacing:-0.02em;
+      line-height:1;
+    }
+
+    .brand img{width:28px;height:28px;object-fit:contain}
+
+    /* ===== NAV ===== */
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-size:14px;
+      font-weight:700;
+      color:#0f2f62;
+      white-space:nowrap;
+      overflow:visible;
+    }
+
+    .nav a,
+    .nav button{
+      font:inherit;
+      background:transparent;
+      border:0;
+      color:inherit;
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      line-height:1;
+    }
+
+    .nav a:hover,
+    .nav button:hover{
+      background:rgba(3,78,162,0.08);
+    }
+
+    .nav a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
+    }
+
+    /* Dropdown (nav) */
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      overflow:visible;
+      z-index:1100;
+    }
+
+    .dropbtn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+
+    .dropbtn:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
+    }
+
+    .caret{
+      width:10px;
+      height:10px;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
+      transform:rotate(45deg);
+      margin-top:-2px;
+      opacity:.7;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:42px;
+      right:0;
+      min-width:220px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:14px;
+      box-shadow:0 18px 55px rgba(3,78,162,0.16);
+      padding:8px;
+      display:none;
+      z-index:1200;
+    }
+
+    .dropdown.open .dropdown-menu{display:block}
+
+    .dropdown-menu a{
+      display:block;
+      padding:10px;
+      border-radius:10px;
+      font-weight:700;
+      color:#0f2f62;
+    }
+
+    .dropdown-menu a:hover{background:rgba(3,78,162,0.08)}
+    .dropdown-menu a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
+    }
+
+    /* ===== HERO (image behind title) ===== */
+    .hero{
+      position:relative;
+      max-width:1100px;
+      margin:0 auto;
+      padding:22px 18px 12px;
+    }
+
+    .hero-banner{
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 22px 60px rgba(0,0,0,0.18);
+      min-height:320px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)),
+        url("/assets/images/EE-Assets-Transportation-Hero.jpg") center/cover no-repeat;
+    }
+
+    .hero-content{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:flex-end;
+      padding:22px;
+    }
+
+    .hero-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:clamp(34px,4.6vw,54px);
+      letter-spacing:-0.03em;
+      color:#fff;
+      margin:0;
+      line-height:1.05;
+      text-shadow:0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    /* ===== CONTENT ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 18px 60px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:22px;
+      padding:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+    }
+
+    .card h2{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:22px;
+      margin:0 0 10px;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+    }
+
+    .card p{
+      margin:0;
+      line-height:1.75;
+      font-size:15.8px;
+      color:#2a2f36;
+      max-width:85ch;
+    }
+
+    /* ===== SELECTOR CARD (matches your standardized selector layout) ===== */
+    .selector-card{
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      overflow:hidden;
+      margin-top:18px;
+    }
+
+    .selector-top{
+      padding:18px 18px 0;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:12px;
+      align-items:start;
+    }
+
+    .selector-controls{
+      grid-column:2;
+      grid-row:1;
+      justify-self:end;
+
+      display:grid;
+      grid-template-columns:auto 260px;
+      gap:10px 10px;
+      align-items:center;
+    }
+
+    .selector-controls label{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+      text-align:left;
+      white-space:nowrap;
+    }
+
+    .selector-controls select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-weight:700;
+      padding:11px 42px 11px 12px;
+      border-radius:14px;
+      font-size:14px;
+      cursor:pointer;
+      outline:none;
+      min-width:0;
+      width:260px;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      background-image:
+        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
+        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%,
+        0 0;
+      background-size:6px 6px, 6px 6px, 100% 100%;
+      background-repeat:no-repeat;
+    }
+
+    .selector-controls select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .selector-copy{
+      grid-column:1 / -1;
+      padding:0 18px 0;
+    }
+
+    .selector-body{
+      padding:22px;
+    }
+
+    @media(max-width:900px){
+      .selector-top{ grid-template-columns:1fr; }
+      .selector-controls{
+        grid-column:1;
+        justify-self:stretch;
+        grid-template-columns:1fr;
+      }
+      .selector-controls label{ margin-top:8px; }
+      .selector-controls select{ width:100%; min-width:0; }
+      .hero-banner{min-height:290px}
+      .nav{gap:8px;flex-wrap:wrap;justify-content:center}
+    }
+
+    @media(max-width:620px){
+      .topbar-inner{flex-direction:column;gap:10px}
+      .dropdown-menu{
+        right:auto;
+        left:50%;
+        transform:translateX(-50%);
+      }
+      .hero-content{padding:16px}
+    }
+
+    /* ===== TRANSPORT RESULTS UI ===== */
+    .results-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      margin-top:18px;
+    }
+
+    @media(max-width:900px){
+      .results-grid{grid-template-columns:1fr}
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.14);
+      color:#0f2f62;
+      font-weight:800;
+      font-size:13px;
+      letter-spacing:0.01em;
+    }
+
+    .muted{
+      color:#24324a;
+      opacity:.9;
+      font-size:14.6px;
+      line-height:1.6;
+      margin-top:10px;
+    }
+
+    .kv{
+      display:grid;
+      grid-template-columns:170px 1fr;
+      gap:10px 14px;
+      margin-top:14px;
+      align-items:start;
+    }
+
+    .k{
+      color:#0f2f62;
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:0.02em;
+    }
+
+    .v{
+      color:#1f2a3a;
+      font-weight:700;
+      font-size:14.6px;
+      line-height:1.45;
+    }
+
+    .hint{
+      margin-top:14px;
+      border-radius:18px;
+      padding:14px;
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.12);
+    }
+
+    .hint-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      margin:0 0 8px;
+      color:#0f2f62;
+      letter-spacing:-0.02em;
+      font-size:16px;
+    }
+
+    .hint ul{
+      margin:0;
+      padding-left:18px;
+      color:#24324a;
+      opacity:.95;
+      line-height:1.7;
+      font-size:14.6px;
+    }
+
+    .status{
+      display:inline-flex;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:12px;
+      letter-spacing:0.02em;
+      border:1px solid rgba(0,0,0,0.08);
+      background:#fff;
+      color:#0f2f62;
+    }
+    .status.ok{ border-color: rgba(15,138,95,0.25); background: rgba(15,138,95,0.08); color: var(--ok); }
+    .status.warn{ border-color: rgba(182,91,0,0.25); background: rgba(182,91,0,0.08); color: var(--warn); }
+
+    /* ===== FOOTER ===== */
+    .footer{
+      background:var(--brand-blue);
+      color:#fff;
+      margin-top:54px;
+    }
+
+    .footer-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px;
+      text-align:center;
+    }
+
+    .footer-tagline{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      margin-bottom:16px;
+    }
+
+    .social{
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+
+    .icon-btn{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:var(--brand-blue);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 14px 34px rgba(0,0,0,0.35);
+    }
+
+    .icon-btn img{width:34px;height:34px}
+    footer small{font-size:13px;opacity:.9}
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/">
+      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+      <span>Experience Ecuador</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/mission/">Mission</a>
+
+      <div class="dropdown" id="regionsDropdown">
+        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
+          Regions <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+          <a href="/regions/" role="menuitem">All Regions</a>
+          <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+          <a href="/regions/coast/" role="menuitem">Coast</a>
+          <a href="/regions/andes/" role="menuitem">Andes</a>
+          <a href="/regions/amazon/" role="menuitem">Amazon</a>
+        </div>
+      </div>
+
+      <div class="dropdown" id="experiencesDropdown">
+        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+          Experiences <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+          <a href="/experiences/" role="menuitem">All Experiences</a>
+          <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+          <a href="/experiences/nature/" role="menuitem">Nature</a>
+          <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+          <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+          <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+          <a href="/experiences/culture/" role="menuitem">Culture</a>
+        </div>
+      </div>
+
+      <a href="/contact/">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" aria-label="Transportation hero">
+  <div class="hero-banner" role="img" aria-label="Transportation hero image placeholder">
+    <div class="hero-content">
+      <div>
+        <h1 class="hero-title">Transportation</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <section class="selector-card" aria-label="Transportation estimator">
+    <div class="selector-top">
+      <div></div>
+
+      <!-- Top-right controls block (labels left, dropdowns right, mobile stacks) -->
+      <div class="selector-controls" aria-label="Transportation controls">
+        <label for="fromSelect">Location</label>
+        <select id="fromSelect" name="from">
+          <option value="" selected>Select a location</option>
+        </select>
+
+        <label for="toSelect">Destination</label>
+        <select id="toSelect" name="to" disabled>
+          <option value="" selected>Select a destination</option>
+        </select>
+
+        <label for="paxSelect">Passengers</label>
+        <select id="paxSelect" name="pax">
+          <option value="1">1</option>
+          <option value="2" selected>2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+
+        <label for="bagsSelect">Bags</label>
+        <select id="bagsSelect" name="bags">
+          <option value="0">0</option>
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+      </div>
+
+      <div class="selector-copy" aria-label="Estimator intro copy">
+        <div style="padding:14px 0 6px 0;">
+          <span class="pill">Quick ride estimates</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="selector-body">
+      <div class="card" style="box-shadow:none;border:0;padding:0;background:transparent;">
+        <h2 style="margin-bottom:10px;">Plan transfers before you land</h2>
+        <p>
+          Choose where you are and where you are going, then adjust passengers and bags.
+          This page will show estimated travel time plus a rough transport cost range once pricing is added.
+        </p>
+
+        <div class="results-grid" aria-label="Estimator results grid">
+          <div class="card" style="margin:0;">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+              <h2 style="margin:0;color:#0f2f62;font-size:20px;">Your route</h2>
+              <span id="statusPill" class="status warn" aria-live="polite">Select two places</span>
+            </div>
+
+            <div class="kv" aria-label="Key values">
+              <div class="k">From</div>
+              <div class="v" id="fromOut">Not selected</div>
+
+              <div class="k">To</div>
+              <div class="v" id="toOut">Not selected</div>
+
+              <div class="k">Estimated time</div>
+              <div class="v" id="timeOut">Add route data</div>
+
+              <div class="k">Suggested vehicle</div>
+              <div class="v" id="vehicleOut">Car or SUV</div>
+
+              <div class="k">Car range</div>
+              <div class="v" id="carOut">Coming soon</div>
+
+              <div class="k">SUV range</div>
+              <div class="v" id="suvOut">Coming soon</div>
+            </div>
+
+            <p class="muted" id="noteOut">
+              Tip: When you add pricing later, you can set different ranges for day vs night, weekday vs weekend,
+              and airport pickup vs city pickup.
+            </p>
+          </div>
+
+          <div class="card" style="margin:0;">
+            <h2 style="margin-bottom:10px;">What we will estimate</h2>
+            <p>
+              This is designed to grow with you. Start with simple transfer prices, then expand.
+            </p>
+
+            <div class="hint" aria-label="Estimator roadmap">
+              <div class="hint-title">Next upgrades (easy)</div>
+              <ul>
+                <li>Per route travel times (minutes) and distance (km)</li>
+                <li>Car and SUV price ranges in USD</li>
+                <li>Extra bag fee, oversized luggage, child seat</li>
+                <li>Optional add-ons: quick stop, grocery stop, viewpoint stop</li>
+              </ul>
+            </div>
+
+            <div class="hint" aria-label="Transparency note">
+              <div class="hint-title">Transparency</div>
+              <ul>
+                <li>All estimates can show a range so expectations stay realistic</li>
+                <li>Final pricing can include a note: traffic and weather may change times</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+
+    <div class="social">
+      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+      </a>
+      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+      </a>
+      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+      </a>
+      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+        <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+      </a>
+    </div>
+
+    <small>© 2025 Experience Ecuador. All rights reserved.</small>
+  </div>
+</footer>
+
+<script>
+  /* =========================
+     NAV dropdown behavior
+     ========================= */
+  (function () {
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    function closeAll() {
+      dropdowns.forEach(dd => {
+        dd.classList.remove('open');
+        const btn = dd.querySelector('.dropbtn');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    dropdowns.forEach(dd => {
+      const btn = dd.querySelector('.dropbtn');
+      const menu = dd.querySelector('.dropdown-menu');
+      if (!btn) return;
+
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const isOpen = dd.classList.contains('open');
+        closeAll();
+        dd.classList.toggle('open', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+      });
+
+      if (menu) {
+        menu.addEventListener('click', function (e) {
+          e.stopPropagation();
+        });
+      }
+    });
+
+    document.addEventListener('click', closeAll);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAll();
+    });
+  })();
+
+  /* =========================
+     Transportation estimator
+     ========================= */
+
+  // Locations available in dropdowns
+  const LOCATIONS = [
+    { id: "uio", name: "Airport (UIO)" },
+    { id: "quito_south", name: "Quito South" },
+    { id: "quito_center", name: "Quito Center" },
+    { id: "quito_north", name: "Quito North" },
+    { id: "cotacachi", name: "Cotacachi" },
+    { id: "mindo", name: "Mindo" }
+  ];
+
+  /*
+    ROUTE_DATA structure:
+    key = "fromId|toId"
+    value = {
+      minutes: number,
+      // Optional placeholders you can fill later:
+      carMin: number, carMax: number,
+      suvMin: number, suvMax: number
+    }
+
+    Add both directions if you want different times by direction, or just mirror them.
+  */
+  const ROUTE_DATA = {
+    // Sample placeholders (replace with real data later)
+    "uio|quito_center": { minutes: 60, carMin: null, carMax: null, suvMin: null, suvMax: null },
+    "quito_center|uio": { minutes: 60, carMin: null, carMax: null, suvMin: null, suvMax: null },
+
+    "uio|mindo": { minutes: 120, carMin: null, carMax: null, suvMin: null, suvMax: null },
+    "mindo|uio": { minutes: 120, carMin: null, carMax: null, suvMin: null, suvMax: null },
+
+    "quito_center|mindo": { minutes: 105, carMin: null, carMax: null, suvMin: null, suvMax: null },
+    "mindo|quito_center": { minutes: 105, carMin: null, carMax: null, suvMin: null, suvMax: null },
+
+    "quito_north|cotacachi": { minutes: 110, carMin: null, carMax: null, suvMin: null, suvMax: null },
+    "cotacachi|quito_north": { minutes: 110, carMin: null, carMax: null, suvMin: null, suvMax: null }
+  };
+
+  function byId(id){ return document.getElementById(id); }
+
+  const fromSelect = byId("fromSelect");
+  const toSelect = byId("toSelect");
+  const paxSelect = byId("paxSelect");
+  const bagsSelect = byId("bagsSelect");
+
+  const statusPill = byId("statusPill");
+  const fromOut = byId("fromOut");
+  const toOut = byId("toOut");
+  const timeOut = byId("timeOut");
+  const vehicleOut = byId("vehicleOut");
+  const carOut = byId("carOut");
+  const suvOut = byId("suvOut");
+  const noteOut = byId("noteOut");
+
+  function formatTime(minutes){
+    if (!Number.isFinite(minutes)) return "Add route data";
+    if (minutes < 60) return minutes + " min";
+    const h = Math.floor(minutes / 60);
+    const m = minutes % 60;
+    return (m === 0) ? (h + " hr") : (h + " hr " + m + " min");
+  }
+
+  function formatUSDRange(min, max){
+    // Keep it simple for now. You will set real numbers later.
+    if (!Number.isFinite(min) || !Number.isFinite(max)) return "Coming soon";
+    return "$" + min.toFixed(0) + " to $" + max.toFixed(0);
+  }
+
+  function suggestVehicle(pax, bags){
+    // Simple rule: SUV if bigger group or lots of bags.
+    if (pax >= 4) return "SUV recommended";
+    if (bags >= 4) return "SUV recommended";
+    if (pax === 3 && bags >= 3) return "SUV recommended";
+    return "Car recommended";
+  }
+
+  function setStatus(text, type){
+    statusPill.textContent = text;
+    statusPill.classList.remove("ok","warn");
+    statusPill.classList.add(type);
+  }
+
+  function populateSelect(selectEl, includePlaceholder){
+    selectEl.innerHTML = "";
+    if (includePlaceholder){
+      const opt = document.createElement("option");
+      opt.value = "";
+      opt.textContent = selectEl === fromSelect ? "Select a location" : "Select a destination";
+      opt.selected = true;
+      selectEl.appendChild(opt);
+    }
+    LOCATIONS.forEach(loc => {
+      const opt = document.createElement("option");
+      opt.value = loc.id;
+      opt.textContent = loc.name;
+      selectEl.appendChild(opt);
+    });
+  }
+
+  function getLocName(id){
+    const loc = LOCATIONS.find(x => x.id === id);
+    return loc ? loc.name : "Not selected";
+  }
+
+  function updateResults(){
+    const from = fromSelect.value;
+    const to = toSelect.value;
+    const pax = parseInt(paxSelect.value, 10);
+    const bags = parseInt(bagsSelect.value, 10);
+
+    fromOut.textContent = getLocName(from);
+    toOut.textContent = getLocName(to);
+
+    vehicleOut.textContent = suggestVehicle(pax, bags);
+
+    // Prevent same place selection
+    if (from && to && from === to){
+      setStatus("Pick a different destination", "warn");
+      timeOut.textContent = "Not applicable";
+      carOut.textContent = "Coming soon";
+      suvOut.textContent = "Coming soon";
+      noteOut.textContent = "Choose two different places to estimate travel time and cost.";
+      return;
+    }
+
+    if (!from || !to){
+      setStatus("Select two places", "warn");
+      timeOut.textContent = "Add route data";
+      carOut.textContent = "Coming soon";
+      suvOut.textContent = "Coming soon";
+      noteOut.textContent =
+        "Once you add route pricing, this will show car and SUV ranges based on passengers and bags.";
+      return;
+    }
+
+    const key = from + "|" + to;
+    const data = ROUTE_DATA[key];
+
+    if (!data){
+      setStatus("Route not added yet", "warn");
+      timeOut.textContent = "Add route data";
+      carOut.textContent = "Coming soon";
+      suvOut.textContent = "Coming soon";
+      noteOut.textContent =
+        "You can add this route to ROUTE_DATA in the script. Keep travel time in minutes, then add car and SUV ranges.";
+      return;
+    }
+
+    setStatus("Estimate ready", "ok");
+    timeOut.textContent = formatTime(data.minutes);
+
+    // Placeholder ranges until you fill numbers
+    carOut.textContent = formatUSDRange(data.carMin, data.carMax);
+    suvOut.textContent = formatUSDRange(data.suvMin, data.suvMax);
+
+    // Friendly logic note
+    const veh = suggestVehicle(pax, bags);
+    if (veh.indexOf("SUV") >= 0){
+      noteOut.textContent =
+        "Based on passengers and bags, SUV is recommended for comfort. You can still show both ranges if you want users to compare.";
+    } else {
+      noteOut.textContent =
+        "A car should work well for this group size. If you add an SUV range too, users can upgrade if they want extra space.";
+    }
+  }
+
+  // Init
+  populateSelect(fromSelect, true);
+  populateSelect(toSelect, true);
+
+  fromSelect.addEventListener("change", function(){
+    const hasFrom = !!fromSelect.value;
+    toSelect.disabled = !hasFrom;
+    updateResults();
+  });
+
+  toSelect.addEventListener("change", updateResults);
+  paxSelect.addEventListener("change", updateResults);
+  bagsSelect.addEventListener("change", updateResults);
+
+  // First paint
+  updateResults();
+</script>
+
+</body>
+</html>
