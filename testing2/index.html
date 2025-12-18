@@ -399,7 +399,6 @@
     }
 
     /* ===== FLIGHTS BOX ===== */
-    /* UPDATED: Flights title matches builder H2 style */
     .mini-title{
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
@@ -647,12 +646,31 @@
         min-height:130px;
       }
 
+      /* Mobile: experiences already go 2 columns then 1 column below 620px */
       .pill-row.experiences-grid{
         grid-template-columns:repeat(2, 1fr);
       }
       .pill-row.experiences-grid .pill{
         width:100%;
         text-align:center;
+      }
+
+      /* Mobile: regions try to stay in one row */
+      #regionsPills{
+        flex-wrap:nowrap;
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+        gap:10px;
+        padding-bottom:4px;
+      }
+      #regionsPills .pill{
+        flex:0 0 auto;
+        white-space:nowrap;
+      }
+      #regionsPills::-webkit-scrollbar{ height:6px; }
+      #regionsPills::-webkit-scrollbar-thumb{
+        background:rgba(3,78,162,0.22);
+        border-radius:999px;
       }
     }
 
@@ -800,7 +818,6 @@
   </section>
 
   <section class="itinerary" aria-label="Generated itinerary">
-    <!-- UPDATED: Title moved inside the padded box -->
     <div class="itinerary-shell" aria-label="Itinerary output container">
       <h2 class="section-title" style="margin:0 0 12px;">Your suggested itinerary</h2>
 
@@ -1036,10 +1053,23 @@
     return b;
   }
 
+  // Regions in fixed order: Galapagos, Coast, Andes, Amazon
   function renderRegionPills() {
     els.regionsPills.innerHTML = "";
-    DATA.regions.regions.forEach(r => {
-      els.regionsPills.appendChild(createPill(r, "region"));
+
+    const desiredRegionOrder = ["galapagos","coast","andes","amazon"];
+    const map = new Map((DATA.regions.regions || []).map(r => [r.id, r]));
+
+    desiredRegionOrder.forEach(id => {
+      const item = map.get(id);
+      if (item) els.regionsPills.appendChild(createPill(item, "region"));
+    });
+
+    // Append any regions not in desired list (future-proof)
+    (DATA.regions.regions || []).forEach(r => {
+      if (!desiredRegionOrder.includes(r.id)) {
+        els.regionsPills.appendChild(createPill(r, "region"));
+      }
     });
   }
 
@@ -1063,14 +1093,18 @@
 
   function updateHints() {
     if (!DATA.regions) return;
-    const selected = Array.from(state.selectedRegionIds);
-    if (selected.length === 0) {
-      els.regionHint.textContent = "Select at least one region. You can choose multiple regions for a multi-stop trip.";
+
+    const selectedRegions = Array.from(state.selectedRegionIds);
+    const selectedExperiences = Array.from(state.selectedExperienceIds);
+
+    if (selectedRegions.length === 0 || selectedExperiences.length === 0) {
+      els.regionHint.textContent =
+        "Select at least one region and one experience. You can choose multiple regions and multiple experiences for a multi-stop trip.";
       return;
     }
 
     const regionMap = new Map(DATA.regions.regions.map(r => [r.id, r]));
-    const lines = selected.map(rid => {
+    const lines = selectedRegions.map(rid => {
       const r = regionMap.get(rid);
       const locs = (r && r.locations) ? r.locations.map(l => l.name).slice(0, 4) : [];
       const suffix = locs.length ? ` (locations: ${locs.join(", ")}${(r.locations.length > 4 ? ", ..." : "")})` : "";
