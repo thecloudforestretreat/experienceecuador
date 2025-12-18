@@ -379,7 +379,7 @@
       border:1px solid rgba(3,78,162,0.22);
       background:#fff;
       color:#0f2f62;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; /* 3) enforce consistent font */
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       font-weight:900;
       padding:12px 14px;
       border-radius:16px;
@@ -405,7 +405,7 @@
       font-weight:800;
       font-size:22px;
       margin:0 0 10px;
-      color:var(--brand-blue); /* 5) Flights title brand blue */
+      color:var(--brand-blue);
       letter-spacing:-0.02em;
       text-transform:none;
     }
@@ -417,7 +417,7 @@
       align-items:center;
       width:100%;
       max-width:100%;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; /* 3) consistent font */
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
 
     .mini-grid > *{ min-width:0; }
@@ -429,7 +429,7 @@
       letter-spacing:0.02em;
       white-space:nowrap;
       text-align:left;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; /* 3) consistent font */
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
 
     .mini-grid input,
@@ -441,7 +441,7 @@
       border:1px solid rgba(3,78,162,0.22);
       background:#fff;
       color:#0f2f62;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; /* 3) consistent font */
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       font-weight:700;
       padding:10px 12px;
       border-radius:14px;
@@ -469,7 +469,7 @@
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      justify-content:flex-end; /* default desktop alignment */
+      justify-content:flex-end;
     }
 
     .mini-hint{
@@ -478,7 +478,7 @@
       opacity:.95;
       font-size:13.6px;
       line-height:1.45;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; /* 3) consistent font */
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
 
     .mini-link{
@@ -486,7 +486,7 @@
       font-weight:900;
       text-decoration:underline;
       text-underline-offset:3px;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; /* 3) consistent font */
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
 
     /* ===== ITINERARY OUTPUT ===== */
@@ -506,9 +506,6 @@
     }
 
     .itinerary-shell .hint{ margin-top:0; }
-
-    /* 2) make itinerary title sit in its own box on mobile by keeping .itinerary-shell as the itinerary box,
-          and moving Flights (mobile) OUTSIDE of .itinerary-shell via layout below (see markup) */
 
     .day-card{
       border-radius:18px;
@@ -625,7 +622,7 @@
     .icon-btn img{width:34px;height:34px}
     footer small{font-size:13px;opacity:.9}
 
-    /* ===== MOBILE: move flights under itinerary ===== */
+    /* ===== MOBILE: stack layout + reorder sections via markup (itinerary above flights) ===== */
     @media(max-width:900px){
       .nav{gap:8px;flex-wrap:wrap;justify-content:center}
       .hero-banner{min-height:290px}
@@ -641,21 +638,20 @@
         display:block !important;
         width:100%;
         max-width:100%;
-        margin:12px 0 14px; /* sits between builder and itinerary */
+        margin:14px 0 0; /* now sits BELOW itinerary and above footer */
       }
 
       .controls-grid{ grid-template-columns:1fr; }
       .controls-grid select{ width:100%; }
 
       .mini-grid{ grid-template-columns:1fr; }
-      .mini-actions{ justify-content:flex-start; } /* mobile unchanged */
+      .mini-actions{ justify-content:flex-start; }
 
       .itinerary-shell{
         padding:18px;
         min-height:130px;
       }
 
-      /* Mobile: experiences already go 2 columns then 1 column below 620px */
       .pill-row.experiences-grid{
         grid-template-columns:repeat(2, 1fr);
       }
@@ -664,16 +660,13 @@
         text-align:center;
       }
 
-      /* 1) Regions: keep in one row, but ensure Amazon never looks cut off by:
-            - slightly smaller gap
-            - small side padding
-            - a little extra right padding so last pill breathes */
+      /* 1) Regions: reduce gap 1px more so Amazon isn't cut off (mobile only) */
       #regionsPills{
         flex-wrap:nowrap;
         overflow-x:auto;
         -webkit-overflow-scrolling:touch;
-        gap:6px;                 /* reduce spacing between buttons */
-        padding:0 6px 6px 6px;   /* give edge padding so Amazon isn't clipped */
+        gap:5px;                 /* was 6px */
+        padding:0 6px 6px 6px;
       }
       #regionsPills .pill{
         flex:0 0 auto;
@@ -687,7 +680,6 @@
     }
 
     @media(min-width:901px){
-      /* 4) Center the Search flights button on desktop */
       .flights-card .mini-actions{
         justify-content:center;
       }
@@ -836,7 +828,14 @@
     </aside>
   </section>
 
-  <!-- 2) Flights on mobile is now its OWN card ABOVE the itinerary box -->
+  <!-- 2) & 3) On mobile: itinerary comes first, then Flights right above footer -->
+  <section class="itinerary" aria-label="Generated itinerary">
+    <div class="itinerary-shell" aria-label="Itinerary output container">
+      <h2 class="section-title" style="margin:0 0 12px;">Your suggested itinerary</h2>
+      <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate itinerary.”</div>
+    </div>
+  </section>
+
   <aside class="card flights-card" id="flightsMobile" aria-label="Flights (mobile)" style="display:none;">
     <p class="mini-title">Flights</p>
 
@@ -868,13 +867,6 @@
       <a class="mini-link" href="/transportation/">Transportation</a>
     </div>
   </aside>
-
-  <section class="itinerary" aria-label="Generated itinerary">
-    <div class="itinerary-shell" aria-label="Itinerary output container">
-      <h2 class="section-title" style="margin:0 0 12px;">Your suggested itinerary</h2>
-      <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate itinerary.”</div>
-    </div>
-  </section>
 
 </main>
 
@@ -1072,7 +1064,6 @@
     return b;
   }
 
-  // Regions in fixed order: Galapagos, Coast, Andes, Amazon
   function renderRegionPills() {
     els.regionsPills.innerHTML = "";
 
@@ -1084,7 +1075,6 @@
       if (item) els.regionsPills.appendChild(createPill(item, "region"));
     });
 
-    // Append any regions not in desired list (future-proof)
     (DATA.regions.regions || []).forEach(r => {
       if (!desiredRegionOrder.includes(r.id)) {
         els.regionsPills.appendChild(createPill(r, "region"));
