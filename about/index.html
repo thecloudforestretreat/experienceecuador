@@ -82,6 +82,7 @@
       color:#0f2f62;
       white-space:nowrap;
       overflow:visible;
+      flex-wrap:nowrap; /* desktop = one row */
     }
 
     .nav a,
@@ -316,10 +317,6 @@
       align-items:flex-start;
     }
 
-    /* Order requested:
-       Row A: First + Last
-       Row B: Email + Sign up (same total width as Row A)
-    */
     .ee-row{
       display:flex;
       gap:10px;
@@ -328,15 +325,8 @@
       flex-wrap:nowrap;
     }
 
-    /* These widths define the "block width" */
     .ee-row .w-sm{ width:150px; }
-    .ee-row .w-email{
-      /* Email + button should equal First + Last + gap:
-         150 + 150 + 10 = 310
-         button = 90, gap = 10 => email = 210
-      */
-      width:210px;
-    }
+    .ee-row .w-email{ width:210px; }
     .ee-row .w-btn{ width:90px; }
 
     .ee-signup-form input{
@@ -429,7 +419,34 @@
     /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
-      .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+
+      /* Mobile: 2 rows with explicit order */
+      .nav{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:8px;
+      }
+
+      /* Row 1: Home, About, Mission, Contact */
+      .nav a.nav-home{ order:1; }
+      .nav a.nav-about{ order:2; }
+      .nav a.nav-mission{ order:3; }
+      .nav a.nav-contact{ order:4; }
+
+      /* Row 2: Regions, Experiences, Trip Builder */
+      .nav .dd-regions{ order:5; }
+      .nav .dd-experiences{ order:6; }
+      .nav a.nav-trip{ order:7; }
+
+      /* Force wrap break between row 1 and row 2 */
+      .nav .nav-break{
+        order:4.5;
+        flex-basis:100%;
+        height:0;
+        padding:0;
+        margin:0;
+      }
 
       .footer-top{
         grid-template-columns:1fr;
@@ -474,12 +491,18 @@
         <span>Experience Ecuador</span>
       </a>
 
+      <!-- Updated menu:
+           Desktop (one row): Home - About - Mission - Regions - Experiences - Trip Builder - Contact
+           Mobile (two rows): Row1 Home About Mission Contact | Row2 Regions Experiences Trip Builder
+      -->
       <nav class="nav" aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a class="active" href="/about/">About</a>
-        <a href="/mission/">Mission</a>
+        <a class="nav-home" href="/">Home</a>
+        <a class="nav-about active" href="/about/">About</a>
+        <a class="nav-mission" href="/mission/">Mission</a>
 
-        <div class="dropdown" id="regionsDropdown">
+        <span class="nav-break" aria-hidden="true"></span>
+
+        <div class="dropdown dd-regions" id="regionsDropdown">
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
             Regions <span class="caret" aria-hidden="true"></span>
           </button>
@@ -492,7 +515,7 @@
           </div>
         </div>
 
-        <div class="dropdown" id="experiencesDropdown">
+        <div class="dropdown dd-experiences" id="experiencesDropdown">
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
             Experiences <span class="caret" aria-hidden="true"></span>
           </button>
@@ -507,7 +530,11 @@
           </div>
         </div>
 
-        <a href="/contact/">Contact</a>
+        <!-- Trip Builder added -->
+        <a class="nav-trip" href="/trip-builder/">Trip Builder</a>
+
+        <!-- Contact moved to end on desktop, but stays in row 1 on mobile via ordering -->
+        <a class="nav-contact" href="/contact/">Contact</a>
       </nav>
     </div>
   </header>
@@ -687,13 +714,10 @@
         statusBox.textContent = "Submitting...";
       });
 
-      // Fallback: if no postMessage arrives, show a gentle success hint after 1.2s
-      // (since you confirmed the row is being written to Sheets)
       var fallbackTimer = null;
       form.addEventListener("submit", function(){
         if (fallbackTimer) clearTimeout(fallbackTimer);
         fallbackTimer = setTimeout(function(){
-          // Only apply if still "Submitting..."
           if (statusBox.textContent === "Submitting...") {
             statusBox.textContent = "Thanks. You are subscribed.";
             btn.disabled = false;
