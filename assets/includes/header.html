@@ -5,14 +5,13 @@
       <span>Experience Ecuador</span>
     </a>
 
-    <nav class="nav" aria-label="Primary navigation">
-      <!-- Desktop order -->
-      <!-- Home - About - Mission - Regions - Experiences - Trip Builder - Contact -->
+    <!-- Hamburger (mobile only) -->
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+      <span class="nav-toggle-lines" aria-hidden="true"></span>
+    </button>
 
-      <!-- Mobile order -->
-      <!-- Row 1: Home - About - Mission - Contact -->
-      <!-- Row 2: Regions - Experiences - Trip Builder -->
-
+    <!-- Desktop nav -->
+    <nav class="nav nav-desktop" aria-label="Primary navigation">
       <a class="nav-home" href="/">Home</a>
       <a class="nav-about" href="/about/">About</a>
       <a class="nav-mission" href="/mission/">Mission</a>
@@ -49,4 +48,45 @@
       <a class="nav-contact" href="/contact/">Contact</a>
     </nav>
   </div>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <div class="mobile-nav-inner">
+      <a class="m-link" href="/">Home</a>
+      <a class="m-link" href="/about/">About</a>
+      <a class="m-link" href="/mission/">Mission</a>
+      <a class="m-link" href="/contact/">Contact</a>
+
+      <div class="m-divider"></div>
+
+      <details class="m-accordion">
+        <summary>Regions</summary>
+        <div class="m-sub">
+          <a class="m-sublink" href="/regions/">All Regions</a>
+          <a class="m-sublink" href="/regions/galapagos/">Galapagos</a>
+          <a class="m-sublink" href="/regions/coast/">Coast</a>
+          <a class="m-sublink" href="/regions/andes/">Andes</a>
+          <a class="m-sublink" href="/regions/amazon/">Amazon</a>
+        </div>
+      </details>
+
+      <details class="m-accordion">
+        <summary>Experiences</summary>
+        <div class="m-sub">
+          <a class="m-sublink" href="/experiences/">All Experiences</a>
+          <a class="m-sublink" href="/experiences/adventure/">Adventure</a>
+          <a class="m-sublink" href="/experiences/nature/">Nature</a>
+          <a class="m-sublink" href="/experiences/wildlife-birding/">Wildlife &amp; Birding</a>
+          <a class="m-sublink" href="/experiences/relaxation/">Relaxation</a>
+          <a class="m-sublink" href="/experiences/culinary/">Culinary</a>
+          <a class="m-sublink" href="/experiences/culture/">Culture</a>
+        </div>
+      </details>
+
+      <a class="m-link" href="/trip-builder/">Trip Builder</a>
+    </div>
+  </div>
+
+  <!-- Backdrop -->
+  <div class="mobile-nav-backdrop" data-mobile-backdrop hidden></div>
 </header>
