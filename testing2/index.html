@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Regions | Experience Ecuador</title>
+  <title>Galapagos Islands | Experience Ecuador</title>
 
   <!-- Favicons -->
   <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
@@ -24,8 +24,10 @@
   <style>
     :root{
       --brand-blue:#034EA2;
+      --cloud-white:#F5F7FA;
       --charcoal:#1F1F1F;
       --slate:#6E7B8B;
+      --light-gray:#E3E5E8;
     }
 
     *{box-sizing:border-box}
@@ -37,109 +39,421 @@
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+    img{max-width:100%;display:block}
+    img{ user-select:none; -webkit-user-drag:none; }
 
-    /* ===== PAGE ===== */
-    .wrap{
-      max-width:1100px;
-      margin:0 auto;
-      padding:44px 18px 0;
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;
+      width:100%;
+      min-height:64vh;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      background:url("/assets/images/EE-Region-Galapagos-hero-01.jpg") center / cover no-repeat;
+      color:#fff;
     }
 
-    .hero{
-      text-align:center;
-      margin-bottom:36px;
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.15),
+        rgba(0,0,0,0.70)
+      );
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:1100px;
+      padding:54px 18px 34px;
+      text-align:left;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.38);
+      border:1px solid rgba(255,255,255,0.22);
+      font-weight:700;
+      letter-spacing:0.02em;
+      font-size:12.5px;
+      margin-bottom:14px;
+      backdrop-filter:blur(10px);
     }
 
     .hero h1{
-      margin:0 0 12px;
+      margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       letter-spacing:-0.03em;
-      font-size:clamp(36px,4.5vw,56px);
-      color:var(--brand-blue);
+      font-size:clamp(40px,5.4vw,72px);
+      line-height:1.03;
     }
 
     .hero p{
+      margin:0;
+      max-width:68ch;
+      font-size:clamp(15px,2vw,18px);
+      line-height:1.65;
+      color:rgba(255,255,255,0.92);
+    }
+
+    /* ===== PAGE WRAP ===== */
+    .wrap{
+      max-width:1100px;
       margin:0 auto;
-      max-width:70ch;
-      color:var(--slate);
-      font-size:18px;
-      line-height:1.6;
+      padding:36px 18px 0;
     }
 
-    /* ===== REGIONS GRID ===== */
-    .regions-grid{
+    /* ===== SECTION / CARDS ===== */
+    .section{ margin-bottom:26px; }
+
+    .section h2{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:24px;
+      color:var(--brand-blue);
+    }
+
+    .section p{
+      margin:0;
+      color:#2a2f36;
+      font-size:15.8px;
+      line-height:1.75;
+      max-width:80ch;
+    }
+
+    .grid{
       display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:28px;
-      margin-bottom:60px;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      align-items:start;
+      margin-top:18px;
     }
 
-    .region-card{
+    .grid.center-stack{ align-items:center; }
+
+    .stack-right{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .card{
       background:#fff;
       border-radius:22px;
-      overflow:hidden;
       border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 20px 55px rgba(3,78,162,0.12);
-      transition:transform .2s ease, box-shadow .2s ease;
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      padding:22px;
     }
 
-    .region-card:hover{
-      transform:translateY(-6px);
-      box-shadow:0 28px 70px rgba(3,78,162,0.18);
+    .card h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      color:#0f2f62;
     }
 
-    .region-image{
-      height:260px;
+    .card ul{
+      margin:0;
+      padding-left:18px;
+      color:#24324a;
+      line-height:1.75;
+      font-size:14.8px;
+    }
+
+    .mini{
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.12);
+      border-radius:20px;
+      padding:20px;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .tag{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.12);
+      color:#0f2f62;
+      font-weight:700;
+      font-size:13px;
+    }
+
+    /* ===== PLACES GRID (IMAGE HEADER TILES) ===== */
+    .places-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .place-tile{
+      display:block;
+      padding:0;
+      border-radius:18px;
       overflow:hidden;
+      background:#fff;
+      border:1px solid rgba(3,78,162,0.12);
+      box-shadow:0 14px 42px rgba(3,78,162,0.10);
+      transition:transform 160ms ease, box-shadow 160ms ease;
     }
 
-    .region-image img{
+    .place-tile:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 55px rgba(3,78,162,0.14);
+    }
+
+    .place-img{
+      width:100%;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .place-img img{
       width:100%;
       height:100%;
       object-fit:cover;
-      transition:transform .4s ease;
     }
 
-    .region-card:hover .region-image img{
-      transform:scale(1.05);
+    .place-body{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      background:linear-gradient(180deg, rgba(3,78,162,0.035), rgba(3,78,162,0.012));
     }
 
-    .region-content{
-      padding:22px 22px 26px;
+    .place-title{
+      margin:0;
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+      font-size:15px;
+      line-height:1.2;
     }
 
-    .region-content h2{
+    .place-meta{
+      margin:6px 0 0;
+      color:#1f2b3f;
+      opacity:.9;
+      line-height:1.5;
+      font-size:13.6px;
+      max-width:34ch;
+    }
+
+    .place-arrow{
+      flex:0 0 auto;
+      width:36px;
+      height:36px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.18);
+      background:rgba(255,255,255,0.75);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:2px;
+    }
+
+    .place-arrow span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
+      transform:rotate(-45deg);
+      opacity:.9;
+    }
+
+    /* ===== CAROUSEL (GALLERY) ===== */
+    .carousel{
+      margin-top:18px;
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
+
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
+
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
+    }
+
+    /* ===== VIDEO (LOCAL ONLY) ===== */
+    .video-embed{
+      margin-top:14px;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 14px 42px rgba(3,78,162,0.10);
+      background:#fff;
+    }
+
+    .video-embed iframe{
+      width:100%;
+      aspect-ratio:16/9;
+      height:auto;
+      display:block;
+      border:0;
+    }
+
+    /* ===== CTA ===== */
+    .cta{
+      margin:28px 0 56px;
+      background:var(--brand-blue);
+      color:#fff;
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 22px 60px rgba(3,78,162,0.22);
+    }
+
+    .cta h3{
       margin:0 0 8px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       letter-spacing:-0.02em;
-      font-size:22px;
-      color:var(--brand-blue);
+      font-size:20px;
     }
 
-    .region-content p{
-      margin:0 0 18px;
-      color:#2a2f36;
-      line-height:1.6;
+    .cta p{
+      margin:0;
+      color:rgba(255,255,255,0.92);
+      line-height:1.7;
       font-size:15.5px;
-    }
-
-    .region-link{
-      display:inline-block;
-      padding:10px 18px;
-      border-radius:999px;
-      background:var(--brand-blue);
-      color:#fff;
-      font-weight:600;
-      font-size:14px;
-      letter-spacing:.02em;
+      max-width:85ch;
     }
 
     /* ===== MOBILE ===== */
     @media(max-width:900px){
-      .regions-grid{ grid-template-columns:1fr; }
+      .grid{ grid-template-columns:1fr; }
+      .places-grid{ grid-template-columns:1fr; }
+      .hero-inner{ text-align:center; }
+      .hero p{ margin:0 auto; }
+    }
+
+    @media(max-width:480px){
+      .hero{ min-height:60vh; }
+      .cta{ border-radius:20px; }
+      .carousel-btn{ width:40px; height:40px; }
     }
   </style>
 </head>
@@ -148,61 +462,240 @@
   <!-- Global header include -->
   <div id="siteHeader"></div>
 
-  <!-- PAGE CONTENT -->
-  <main class="wrap">
-    <section class="hero">
-      <h1>Explore Ecuador by Region</h1>
+  <!-- HERO -->
+  <section class="hero" aria-label="Galapagos hero image">
+    <div class="hero-inner">
+      <div class="kicker">Region Guide • Live</div>
+      <h1>Galapagos Islands</h1>
       <p>
-        From pristine islands to highland volcanoes and deep rainforest,
-        Ecuador offers an incredible range of experiences in every region.
+        A world-famous ecosystem where wildlife, ocean, and volcanic landscapes come together.
+        This hub is being built to help you plan with clarity, confidence, and curated recommendations.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <main class="wrap">
+
+    <section class="section">
+      <h2>What makes Galapagos special</h2>
+      <p>
+        The Galapagos Islands are known for extraordinary biodiversity and strict conservation.
+        Experiences here feel different because nature leads the itinerary. The goal is to help you understand what is worth doing,
+        how long to stay, and what kind of trip fits your style.
+      </p>
+
+      <div class="grid center-stack">
+        <div class="card">
+          <h3>Signature highlights</h3>
+          <ul>
+            <li>Wildlife encounters: sea lions, giant tortoises, marine iguanas, blue-footed boobies</li>
+            <li>Snorkeling and diving in clear waters with reef life and larger species</li>
+            <li>Volcanic landscapes and dramatic coastlines</li>
+            <li>Guided rules and protected areas that preserve the ecosystem</li>
+          </ul>
+
+          <div class="pill-row" aria-label="Galapagos experience tags">
+            <span class="tag">Wildlife</span>
+            <span class="tag">Ocean</span>
+            <span class="tag">Adventure</span>
+            <span class="tag">Conservation</span>
+          </div>
+        </div>
+
+        <div class="stack-right">
+          <div class="mini">
+            <h3>Best for</h3>
+            <ul>
+              <li>Nature and wildlife lovers</li>
+              <li>Snorkelers and divers</li>
+              <li>Travelers who want curated, guided experiences</li>
+              <li>Photography and documentary style trips</li>
+            </ul>
+          </div>
+
+          <div class="mini">
+            <h3>Trip styles we will cover</h3>
+            <ul>
+              <li>Island-hopping and land-based stays</li>
+              <li>Small cruises and expedition routes</li>
+              <li>Day tours from main islands</li>
+              <li>Luxury to budget-friendly planning guidance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALAPAGOS DESTINATIONS (TILES) -->
+    <section class="section">
+      <h2>Galapagos destinations</h2>
+      <p>
+        Start with these islands first. Each destination page will include planning notes, a gallery carousel,
+        and the same unified weather card used across all location pages.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Featured islands</h3>
+
+          <div class="places-grid" aria-label="Galapagos destination tiles">
+            <a class="place-tile" href="/regions/galapagos/santa-cruz-island/" aria-label="Open Santa Cruz Island page">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-SantaCruzIsland.jpg" alt="Santa Cruz Island">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Santa Cruz</div>
+                  <div class="place-meta">Main hub for arrivals, day tours, tortoises, and easy planning.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+
+            <a class="place-tile" href="/regions/galapagos/san-cristobal-island/" aria-label="Open San Cristóbal Island page">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-43-SanCristobalIsland.jpg" alt="San Cristóbal Island">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">San Cristóbal</div>
+                  <div class="place-meta">Sea lions, iconic snorkel sites, and a calmer island rhythm.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+
+            <a class="place-tile" href="/regions/galapagos/isabela-island/" aria-label="Open Isabela Island page">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-44-IsabelaIsland.jpg" alt="Isabela Island">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Isabela</div>
+                  <div class="place-meta">Volcano landscapes, wildlife variety, and a more remote feel.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+
+            <a class="place-tile" href="/regions/galapagos/floreana-island/" aria-label="Open Floreana Island page">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-45-FloreanaIsland.jpg" alt="Floreana Island">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Floreana</div>
+                  <div class="place-meta">Historic stories and classic day-trip stops for depth and variety.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+          </div>
+
+          <div class="pill-row" aria-label="Galapagos destination tags">
+            <span class="tag">Island hubs</span>
+            <span class="tag">Wildlife</span>
+            <span class="tag">Snorkeling</span>
+            <span class="tag">Day tours</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>How to use this hub</h3>
+          <ul>
+            <li>Choose your base island first, then build tours around it</li>
+            <li>Plan trip length by what you want to do most: snorkel, wildlife, or volcano hikes</li>
+            <li>Mix guided day tours with downtime so the trip stays relaxed</li>
+            <li>Keep logistics simple: fewer island moves, better experience</li>
+          </ul>
+
+          <div class="video-embed" aria-label="National Geographic Galapagos video">
+            <iframe
+              src="https://www.youtube.com/embed/6UqiDs-_1A8"
+              title="The Galapagos Islands Are a Pristine Paradise | National Geographic"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What to expect on this page next</h2>
+      <p>
+        We are building this region hub into a complete guide that includes practical planning, curated experiences,
+        trusted stays, and a gallery of highlights.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Planned sections</h3>
+          <ul>
+            <li>Where to base yourself (by island)</li>
+            <li>Top experiences, organized by type</li>
+            <li>Suggested trip lengths and itinerary templates</li>
+            <li>Seasonality, costs, and planning checklist</li>
+            <li>Featured local partners and newsletters highlights</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Quick planning mindset</h3>
+          <ul>
+            <li>Prioritize experiences, then choose island logistics</li>
+            <li>Mix guided tours with flexible downtime</li>
+            <li>Plan for conservation rules and park access</li>
+            <li>Choose the right trip style for your budget and pace</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Gallery and highlights</h2>
+
+      <div id="galapagosCarousel" class="carousel" aria-label="Galapagos image gallery">
+        <button class="carousel-btn prev" type="button" aria-label="Previous image">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-1.jpg" alt="Galapagos highlight 1"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-2.jpg" alt="Galapagos highlight 2"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-3.jpg" alt="Galapagos highlight 3"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-4.jpg" alt="Galapagos highlight 4"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-5.jpg" alt="Galapagos highlight 5"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-6.jpg" alt="Galapagos highlight 6"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-7.jpg" alt="Galapagos highlight 7"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-8.jpg" alt="Galapagos highlight 8"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-9.jpg" alt="Galapagos highlight 9"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Galapagos-10.jpg" alt="Galapagos highlight 10"></div>
+          </div>
+        </div>
+
+        <button class="carousel-btn next" type="button" aria-label="Next image">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <div class="carousel-ui">
+          <div class="carousel-dots" aria-label="Carousel pagination"></div>
+          <div class="carousel-counter" id="galapagosCarouselCounter">1 / 10</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" aria-label="Newsletter future CTA">
+      <h3>Coming soon: curated Galapagos updates</h3>
+      <p>
+        This region hub will evolve into curated guides and a newsletter format where travelers discover experiences and trusted partners.
+        Next step: we will add structured sections for experiences, stays, and planning, then drop in a reusable gallery carousel.
       </p>
     </section>
 
-    <section class="regions-grid">
-      <article class="region-card">
-        <div class="region-image">
-          <img src="/assets/images/EE-Region-Galapagos-02.jpg" alt="Galapagos Islands">
-        </div>
-        <div class="region-content">
-          <h2>Galapagos Islands</h2>
-          <p>Wildlife encounters, volcanic landscapes, and once-in-a-lifetime natural experiences.</p>
-          <a class="region-link" href="/regions/galapagos/">Explore Galapagos</a>
-        </div>
-      </article>
-
-      <article class="region-card">
-        <div class="region-image">
-          <img src="/assets/images/EE-Region-Coast-02.jpg" alt="Ecuador Coast">
-        </div>
-        <div class="region-content">
-          <h2>The Coast</h2>
-          <p>Beaches, surf towns, seafood culture, and laid-back coastal escapes.</p>
-          <a class="region-link" href="/regions/coast/">Explore the Coast</a>
-        </div>
-      </article>
-
-      <article class="region-card">
-        <div class="region-image">
-          <img src="/assets/images/EE-Region-Andes-02.jpg" alt="Ecuador Andes">
-        </div>
-        <div class="region-content">
-          <h2>The Andes</h2>
-          <p>High-altitude cities, volcanoes, markets, and rich cultural heritage.</p>
-          <a class="region-link" href="/regions/andes/">Explore the Andes</a>
-        </div>
-      </article>
-
-      <article class="region-card">
-        <div class="region-image">
-          <img src="/assets/images/EE-Region-Amazon-02.jpg" alt="Ecuador Amazon">
-        </div>
-        <div class="region-content">
-          <h2>The Amazon</h2>
-          <p>Lush rainforest, wildlife, river journeys, and immersive eco experiences.</p>
-          <a class="region-link" href="/regions/amazon/">Explore the Amazon</a>
-        </div>
-      </article>
-    </section>
   </main>
 
   <!-- Global footer include -->
@@ -238,5 +731,115 @@
       })();
     })();
   </script>
+
+  <script>
+    (function(){
+      const root = document.getElementById("galapagosCarousel");
+      if(!root) return;
+
+      const track = root.querySelector(".carousel-track");
+      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+      const prevBtn = root.querySelector(".carousel-btn.prev");
+      const nextBtn = root.querySelector(".carousel-btn.next");
+      const dotsWrap = root.querySelector(".carousel-dots");
+      const counter = root.querySelector("#galapagosCarouselCounter");
+
+      let index = 0;
+
+      const AUTOPLAY_MS = 5000;
+      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      let autoplayTimer = null;
+      let autoplayEnabled = !prefersReducedMotion;
+
+      function setIndex(next){
+        index = (next + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        updateDots();
+        updateCounter();
+      }
+
+      function updateCounter(){
+        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
+      }
+
+      function updateDots(){
+        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
+        dots.forEach((d,i) => d.classList.toggle("active", i === index));
+      }
+
+      function buildDots(){
+        dotsWrap.innerHTML = "";
+        slides.forEach((_, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "dot" + (i === 0 ? " active" : "");
+          b.setAttribute("aria-label", `Go to image ${i + 1}`);
+          b.addEventListener("click", () => {
+            setIndex(i);
+            stopAutoplay();
+          });
+          dotsWrap.appendChild(b);
+        });
+      }
+
+      function next(){ setIndex(index + 1); }
+      function prev(){ setIndex(index - 1); }
+
+      function startAutoplay(){
+        if(!autoplayEnabled) return;
+        stopAutoplay();
+        autoplayTimer = setInterval(next, AUTOPLAY_MS);
+      }
+
+      function stopAutoplay(){
+        if(autoplayTimer){
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
+      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
+
+      root.addEventListener("keydown", (e) => {
+        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
+        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
+      });
+
+      let startX = 0;
+      let isDown = false;
+
+      const viewport = root.querySelector(".carousel-viewport");
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+      });
+
+      viewport.addEventListener("pointerup", (e) => {
+        if(!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        const threshold = 40;
+        if(dx > threshold){ prev(); stopAutoplay(); }
+        if(dx < -threshold){ next(); stopAutoplay(); }
+      });
+
+      viewport.addEventListener("pointercancel", () => { isDown = false; });
+
+      root.addEventListener("mouseenter", stopAutoplay);
+      root.addEventListener("mouseleave", startAutoplay);
+      root.addEventListener("focusin", stopAutoplay);
+      root.addEventListener("focusout", startAutoplay);
+
+      root.tabIndex = 0;
+      buildDots();
+      updateCounter();
+      setIndex(0);
+      startAutoplay();
+    })();
+  </script>
+
 </body>
 </html>
