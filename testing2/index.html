@@ -30,48 +30,78 @@
       -webkit-text-decoration: none !important;
     }
 
-    /* 2) MOBILE: make nav span FULL available width and evenly distribute items in 2 rows */
+    /* 2) MOBILE: TRUE full-width + evenly spread rows */
     @media (max-width: 620px){
-      /* Critical: stretch inner container so nav can be full-width (fixes “not evenly spaced”) */
+
+      /* Make the sticky header containers truly full width (no max-width “center column” effect) */
+      .topbar{
+        width: 100% !important;
+      }
+
       .topbar .topbar-inner{
+        width: 100% !important;
+        max-width: 100% !important;     /* critical */
+        margin: 0 !important;           /* critical */
+        padding-left: 12px !important;  /* small, consistent gutter */
+        padding-right: 12px !important; /* small, consistent gutter */
         align-items: stretch !important;
       }
 
-      /* Keep brand centered, but allow nav to stretch */
+      /* Brand centered */
       .topbar .brand{
-        justify-content: center;
+        width: 100% !important;
+        justify-content: center !important;
       }
 
-      /* Two-row grid with precise column math */
+      /* Nav fills full width */
       .topbar .nav{
         width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+
         display: grid !important;
         grid-template-columns: repeat(12, 1fr) !important;
         grid-auto-rows: auto;
-        gap: 10px 8px;
+        gap: 12px 0px !important; /* no column gap = mathematically even */
         align-items: center;
-        justify-items: stretch; /* each cell fills its column width */
+        justify-items: stretch;   /* each cell fills its column */
         white-space: normal;
       }
 
-      /* Make each direct item fill its grid cell */
+      /* Each top-level nav item MUST fill its grid cell */
       .topbar .nav > a,
       .topbar .nav > .dropdown{
         width: 100% !important;
         margin: 0 !important;
+        justify-self: stretch !important;
       }
 
-      /* Center labels inside each cell */
+      /* Force dropdown wrapper + button to behave like a full-width cell */
+      .topbar .nav > .dropdown{
+        display: block !important;
+      }
+      .topbar .nav > .dropdown .dropbtn{
+        width: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 10px 8px !important;
+        line-height: 1 !important;
+        white-space: nowrap !important;
+      }
+
+      /* Links/buttons centered INSIDE each cell */
       .topbar .nav a,
       .topbar .nav button{
         width: 100% !important;
         display: flex !important;
-        align-items: center;
+        align-items: center !important;
         justify-content: center !important;
         padding: 10px 8px !important;
         border-radius: 10px;
-        line-height: 1;
-        white-space: nowrap; /* keeps “Trip Builder” on one line */
+        line-height: 1 !important;
+        white-space: nowrap !important; /* keeps Trip Builder on one line */
       }
 
       /* --- Slot layout (Top row 4 x 3 cols, Bottom row 3 x 4 cols) --- */
@@ -84,12 +114,12 @@
       .topbar .nav > [data-slot="experiences"]{ grid-column: 5 / 9; grid-row: 2; }
       .topbar .nav > [data-slot="trip"]{ grid-column: 9 / 13; grid-row: 2; }
 
-      /* Keep dropdown menus inside the viewport on mobile */
+      /* Keep dropdown menus inside viewport on mobile */
       .topbar .dropdown-menu{
         left: 50% !important;
         right: auto !important;
         transform: translateX(-50%) !important;
-        width: min(320px, calc(100vw - 24px)) !important;
+        width: min(340px, calc(100vw - 24px)) !important;
         max-height: 55vh;
         overflow: auto;
       }
@@ -151,8 +181,7 @@
       const res = await fetch('/assets/includes/header.html', { cache: 'no-store' });
       mount.innerHTML = await res.text();
 
-      // Ensure mobile layout CSS can target the correct items even if header.html
-      // does NOT already include data-slot attributes.
+      // Apply slots so the mobile grid can lock items into exact cells
       function applyNavSlots(){
         const nav = document.querySelector('.topbar .nav');
         if(!nav) return;
@@ -160,10 +189,8 @@
         const children = Array.from(nav.children);
 
         children.forEach(el => {
-          // Clear any previous slot to avoid duplicates
           if (el.hasAttribute('data-slot')) el.removeAttribute('data-slot');
 
-          // Direct links
           if (el.tagName === 'A') {
             const t = (el.textContent || '').trim().toLowerCase();
             if (t === 'home') el.setAttribute('data-slot','home');
@@ -174,7 +201,6 @@
             return;
           }
 
-          // Dropdowns (Regions / Experiences)
           if (el.classList && el.classList.contains('dropdown')) {
             const btn = el.querySelector('.dropbtn');
             const bt = btn ? (btn.textContent || '').trim().toLowerCase() : '';
@@ -186,7 +212,7 @@
 
       applyNavSlots();
 
-      // Load the shared JS AFTER header is injected so listeners bind correctly
+      // Load shared dropdown JS AFTER injection
       const s = document.createElement('script');
       s.src = '/assets/js/header.js';
       s.defer = true;
