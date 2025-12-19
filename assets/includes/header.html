@@ -1,18 +1,19 @@
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="/">
+    <a class="brand" href="/" aria-label="Experience Ecuador Home">
       <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
       <span>Experience Ecuador</span>
     </a>
 
-    <!-- CSS-only hamburger toggle -->
-    <input class="nav-toggle" type="checkbox" id="eeNavToggle" aria-label="Open menu">
-    <label class="nav-toggle-btn" for="eeNavToggle" aria-hidden="true">
-      <span class="nav-toggle-icon"></span>
+    <!-- Mobile hamburger toggle -->
+    <input class="nav-toggle" type="checkbox" id="eeNavToggle" aria-label="Toggle menu">
+
+    <label class="nav-toggle-btn" for="eeNavToggle">
+      <span class="nav-toggle-icon" aria-hidden="true"></span>
       <span class="sr-only">Menu</span>
     </label>
 
-    <!-- DESKTOP NAV (always horizontal) -->
+    <!-- DESKTOP NAV -->
     <nav class="nav nav-desktop" aria-label="Primary navigation">
       <a class="nav-link" href="/">Home</a>
       <a class="nav-link" href="/about/">About</a>
@@ -47,37 +48,77 @@
     </nav>
   </div>
 
-  <!-- MOBILE PANEL (hamburger only) -->
-  <nav class="nav nav-mobile" aria-label="Mobile navigation">
-    <a class="m-link" href="/">Home</a>
-    <a class="m-link" href="/about/">About</a>
-    <a class="m-link" href="/mission/">Mission</a>
-    <a class="m-link" href="/contact/">Contact</a>
+  <!-- MOBILE OVERLAY + PANEL (CSS-only drilldown) -->
+  <div class="mobile-shell" aria-hidden="true">
+    <!-- overlay closes menu when tapped -->
+    <label class="mobile-overlay" for="eeNavToggle" aria-hidden="true"></label>
 
-    <details class="m-acc">
-      <summary class="m-acc-btn">Regions <span class="caret" aria-hidden="true"></span></summary>
-      <div class="m-sub">
-        <a class="m-sublink" href="/regions/">All Regions</a>
-        <a class="m-sublink" href="/regions/galapagos/">Galapagos</a>
-        <a class="m-sublink" href="/regions/coast/">Coast</a>
-        <a class="m-sublink" href="/regions/andes/">Andes</a>
-        <a class="m-sublink" href="/regions/amazon/">Amazon</a>
-      </div>
-    </details>
+    <nav class="nav nav-mobile" aria-label="Mobile navigation">
+      <!-- panel state -->
+      <input class="panel-state" type="radio" name="eePanel" id="panel-main" checked>
+      <input class="panel-state" type="radio" name="eePanel" id="panel-regions">
+      <input class="panel-state" type="radio" name="eePanel" id="panel-experiences">
 
-    <details class="m-acc">
-      <summary class="m-acc-btn">Experiences <span class="caret" aria-hidden="true"></span></summary>
-      <div class="m-sub">
-        <a class="m-sublink" href="/experiences/">All Experiences</a>
-        <a class="m-sublink" href="/experiences/adventure/">Adventure</a>
-        <a class="m-sublink" href="/experiences/nature/">Nature</a>
-        <a class="m-sublink" href="/experiences/wildlife-birding/">Wildlife &amp; Birding</a>
-        <a class="m-sublink" href="/experiences/relaxation/">Relaxation</a>
-        <a class="m-sublink" href="/experiences/culinary/">Culinary</a>
-        <a class="m-sublink" href="/experiences/culture/">Culture</a>
-      </div>
-    </details>
+      <!-- MAIN -->
+      <section class="panel panel-main" aria-label="Main menu">
+        <div class="panel-head">
+          <div class="panel-title">Menu</div>
+          <label class="panel-close" for="eeNavToggle" aria-label="Close menu">✕</label>
+        </div>
 
-    <a class="m-link" href="/trip-builder/">Trip Builder</a>
-  </nav>
+        <a class="m-item" href="/">Home</a>
+        <a class="m-item" href="/about/">About</a>
+        <a class="m-item" href="/mission/">Mission</a>
+
+        <label class="m-item m-next" for="panel-regions">
+          Regions <span class="m-chev" aria-hidden="true"></span>
+        </label>
+
+        <label class="m-item m-next" for="panel-experiences">
+          Experiences <span class="m-chev" aria-hidden="true"></span>
+        </label>
+
+        <a class="m-item" href="/trip-builder/">Trip Builder</a>
+        <a class="m-item" href="/contact/">Contact</a>
+      </section>
+
+      <!-- REGIONS -->
+      <section class="panel panel-regions" aria-label="Regions menu">
+        <div class="panel-head">
+          <label class="panel-back" for="panel-main" aria-label="Back to menu">
+            <span class="back-chev" aria-hidden="true"></span>
+            Back
+          </label>
+          <div class="panel-title">Regions</div>
+          <label class="panel-close" for="eeNavToggle" aria-label="Close menu">✕</label>
+        </div>
+
+        <a class="m-item" href="/regions/">All Regions</a>
+        <a class="m-item" href="/regions/galapagos/">Galapagos</a>
+        <a class="m-item" href="/regions/coast/">Coast</a>
+        <a class="m-item" href="/regions/andes/">Andes</a>
+        <a class="m-item" href="/regions/amazon/">Amazon</a>
+      </section>
+
+      <!-- EXPERIENCES -->
+      <section class="panel panel-experiences" aria-label="Experiences menu">
+        <div class="panel-head">
+          <label class="panel-back" for="panel-main" aria-label="Back to menu">
+            <span class="back-chev" aria-hidden="true"></span>
+            Back
+          </label>
+          <div class="panel-title">Experiences</div>
+          <label class="panel-close" for="eeNavToggle" aria-label="Close menu">✕</label>
+        </div>
+
+        <a class="m-item" href="/experiences/">All Experiences</a>
+        <a class="m-item" href="/experiences/adventure/">Adventure</a>
+        <a class="m-item" href="/experiences/nature/">Nature</a>
+        <a class="m-item" href="/experiences/wildlife-birding/">Wildlife &amp; Birding</a>
+        <a class="m-item" href="/experiences/relaxation/">Relaxation</a>
+        <a class="m-item" href="/experiences/culinary/">Culinary</a>
+        <a class="m-item" href="/experiences/culture/">Culture</a>
+      </section>
+    </nav>
+  </div>
 </header>
