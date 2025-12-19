@@ -88,7 +88,7 @@
       color:#0f2f62;
       white-space:nowrap;
       overflow:visible;
-      flex-wrap:nowrap; /* desktop = one row */
+      flex-wrap:nowrap; /* Desktop: one row */
     }
 
     .nav a,
@@ -335,26 +335,20 @@
       .grid{ grid-template-columns:1fr; }
       .topbar-inner{ justify-content:space-between; }
 
-      /* Mobile: 2 rows with explicit order */
+      /* Mobile: two rows, exact order */
       .nav{
-        display:flex;
+        gap:8px;
         flex-wrap:wrap;
         justify-content:center;
-        gap:8px;
       }
 
-      /* Row 1: Home, About, Mission, Contact */
+      /* Row 1: Home - About - Mission - Contact */
       .nav a.nav-home{ order:1; }
       .nav a.nav-about{ order:2; }
       .nav a.nav-mission{ order:3; }
       .nav a.nav-contact{ order:4; }
 
-      /* Row 2: Regions, Experiences, Trip Builder */
-      .nav .dd-regions{ order:5; }
-      .nav .dd-experiences{ order:6; }
-      .nav a.nav-trip{ order:7; }
-
-      /* Force wrap break between row 1 and row 2 */
+      /* Break line between row 1 and row 2 */
       .nav .nav-break{
         order:4.5;
         flex-basis:100%;
@@ -362,6 +356,11 @@
         padding:0;
         margin:0;
       }
+
+      /* Row 2: Regions - Experiences - Trip Builder */
+      .nav .dd-regions{ order:5; }
+      .nav .dd-experiences{ order:6; }
+      .nav a.nav-trip{ order:7; }
 
       .dropdown-menu{ right:0; left:auto; }
     }
@@ -384,9 +383,11 @@
         <span>Experience Ecuador</span>
       </a>
 
-      <!-- Updated menu:
-           Desktop (one row): Home - About - Mission - Regions - Experiences - Trip Builder - Contact
-           Mobile (two rows): Row1 Home About Mission Contact | Row2 Regions Experiences Trip Builder
+      <!-- Updated menu
+           Desktop: Home - About - Mission - Regions - Experiences - Trip Builder - Contact
+           Mobile (two rows):
+             Row 1: Home - About - Mission - Contact
+             Row 2: Regions - Experiences - Trip Builder
       -->
       <nav class="nav" aria-label="Primary navigation">
         <a class="nav-home" href="/">Home</a>
