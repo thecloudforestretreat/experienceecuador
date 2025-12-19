@@ -1,34 +1,17 @@
 :root{
   --brand-blue:#034EA2;
   --nav-text:#0f2f62;
-
-  --hdr-bg: rgba(255,255,255,.78);
-  --hdr-border: rgba(0,0,0,.06);
-
   --panel-bg:#ffffff;
   --panel-border: rgba(0,0,0,.08);
-  --panel-shadow: 0 18px 55px rgba(3,78,162,0.16);
-  --tap-bg: rgba(3,78,162,.07);
+  --shadow: 0 18px 55px rgba(3,78,162,0.16);
 }
 
 /* Header-only reset */
 .topbar, .topbar *{ box-sizing:border-box; }
-.topbar a,
-.topbar a:visited,
-.topbar a:hover,
-.topbar a:active{ color:inherit; text-decoration:none; }
+.topbar a{ color:inherit; text-decoration:none; }
+.topbar a:hover{ text-decoration:none; }
+.topbar a:visited{ text-decoration:none; }
 .topbar button{ font:inherit; }
-.sr-only{
-  position:absolute !important;
-  width:1px !important;
-  height:1px !important;
-  padding:0 !important;
-  margin:-1px !important;
-  overflow:hidden !important;
-  clip:rect(0,0,0,0) !important;
-  white-space:nowrap !important;
-  border:0 !important;
-}
 
 /* ===== HEADER SHELL ===== */
 .topbar{
@@ -36,37 +19,40 @@
   top:0;
   z-index:1000;
   backdrop-filter:saturate(160%) blur(10px);
-  background:var(--hdr-bg);
-  border-bottom:1px solid var(--hdr-border);
+  background:rgba(255,255,255,.75);
+  border-bottom:1px solid rgba(0,0,0,.06);
+  overflow:visible;
 }
 
-.topbar-inner{
+/* Desktop container */
+.topbar .topbar-inner{
   max-width:1100px;
   margin:0 auto;
   padding:14px 18px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   gap:16px;
 }
 
 /* Brand */
-.brand{
+.topbar .brand{
   display:flex;
   gap:10px;
   align-items:center;
   font-family:Montserrat,Inter,sans-serif;
   font-weight:800;
-  color:var(--brand-blue);
   letter-spacing:-0.02em;
   white-space:nowrap;
   font-size:18px;
   line-height:1;
+  color:var(--brand-blue) !important;
 }
-.brand img{ width:28px; height:28px; object-fit:contain; }
+.topbar .brand span{ color:var(--brand-blue) !important; }
+.topbar .brand img{ width:28px; height:28px; object-fit:contain; }
 
 /* ===== DESKTOP NAV ===== */
-.nav-desktop{
+.topbar .nav-desktop{
   display:flex;
   align-items:center;
   gap:18px;
@@ -76,7 +62,7 @@
   white-space:nowrap;
 }
 
-.nav-link{
+.topbar .nav-desktop .nav-link{
   background:transparent;
   border:0;
   color:inherit;
@@ -86,30 +72,19 @@
   line-height:1;
 }
 
-.nav-link:hover{ background:var(--tap-bg); }
+.topbar .nav-desktop .nav-link:hover{
+  background:rgba(3,78,162,.08);
+}
 
-/* Desktop dropdown (details) */
-.nav-dd{
+/* Desktop dropdown via <details> */
+.topbar .nav-dd{
   position:relative;
 }
-.nav-dd > summary{
+.topbar .nav-dd > summary{
   list-style:none;
 }
-.nav-dd > summary::-webkit-details-marker{ display:none; }
-
-.caret{
-  width:10px;
-  height:10px;
-  display:inline-block;
-  border-right:2px solid currentColor;
-  border-bottom:2px solid currentColor;
-  transform:rotate(45deg);
-  margin-left:8px;
-  margin-top:-2px;
-  opacity:.7;
-}
-
-.nav-dd-menu{
+.topbar .nav-dd > summary::-webkit-details-marker{ display:none; }
+.topbar .nav-dd-menu{
   position:absolute;
   top:42px;
   right:0;
@@ -117,244 +92,217 @@
   background:#fff;
   border:1px solid rgba(0,0,0,0.08);
   border-radius:14px;
-  box-shadow:var(--panel-shadow);
+  box-shadow:var(--shadow);
   padding:8px;
   display:none;
   z-index:1200;
 }
-.nav-dd[open] .nav-dd-menu{ display:block; }
+.topbar .nav-dd[open] .nav-dd-menu{ display:block; }
 
-.nav-dd-menu a{
+.topbar .nav-dd-menu a{
   display:block;
   padding:10px 10px;
   border-radius:10px;
   font-weight:700;
   color:var(--nav-text);
 }
-.nav-dd-menu a:hover{ background:var(--tap-bg); }
+.topbar .nav-dd-menu a:hover{ background:rgba(3,78,162,0.08); }
 
-/* ===== MOBILE TOGGLE BUTTON ===== */
-.nav-toggle{
-  position:absolute;
-  width:1px;
-  height:1px;
-  opacity:0;
-  pointer-events:none;
-}
-
-.nav-toggle-btn{
-  display:none; /* enabled on mobile */
-  width:44px;
-  height:44px;
-  border-radius:14px;
-  border:1px solid rgba(0,0,0,.08);
-  background:#fff;
-  box-shadow:0 10px 30px rgba(3,78,162,0.10);
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-}
-
-.nav-toggle-icon{
-  width:18px;
-  height:12px;
-  position:relative;
-  display:block;
-}
-.nav-toggle-icon::before,
-.nav-toggle-icon::after,
-.nav-toggle-icon span{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  height:2px;
-  background:var(--nav-text);
-  border-radius:2px;
-}
-.nav-toggle-icon::before{ top:0; }
-.nav-toggle-icon::after{ bottom:0; }
-.nav-toggle-icon span{ top:50%; transform:translateY(-50%); }
-
-/* We draw middle line using a real element via background trick */
-.nav-toggle-icon{ background:linear-gradient(var(--nav-text),var(--nav-text)) center/100% 2px no-repeat; }
-
-/* Hamburger -> X when open */
-#eeNavToggle:checked + .nav-toggle-btn .nav-toggle-icon{
-  background:none;
-}
-#eeNavToggle:checked + .nav-toggle-btn .nav-toggle-icon::before{
-  top:50%;
-  transform:translateY(-50%) rotate(45deg);
-}
-#eeNavToggle:checked + .nav-toggle-btn .nav-toggle-icon::after{
-  bottom:auto;
-  top:50%;
-  transform:translateY(-50%) rotate(-45deg);
-}
-
-/* ===== MOBILE OVERLAY + PANEL ===== */
-.mobile-shell{
-  display:none; /* enabled on mobile */
-}
-
-.mobile-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.22);
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .18s ease;
-  z-index:999;
-}
-
-.nav-mobile{
-  position:fixed;
-  top:0;
-  right:0;
-  height:100vh;
-  width:min(420px, 92vw);
-  background:var(--panel-bg);
-  border-left:1px solid var(--panel-border);
-  box-shadow:var(--panel-shadow);
-  transform:translateX(102%);
-  transition:transform .2s ease;
-  z-index:1000;
-  padding:14px;
-  padding-top:calc(env(safe-area-inset-top) + 14px);
-  padding-bottom:calc(env(safe-area-inset-bottom) + 14px);
-  overflow:auto;
-}
-
-/* Open state */
-#eeNavToggle:checked ~ .mobile-shell{
-  display:block;
-}
-#eeNavToggle:checked ~ .mobile-shell .mobile-overlay{
-  opacity:1;
-  pointer-events:auto;
-}
-#eeNavToggle:checked ~ .mobile-shell .nav-mobile{
-  transform:translateX(0);
-}
-
-/* Panel state radios */
-.panel-state{
-  position:absolute;
-  width:1px;
-  height:1px;
-  opacity:0;
-  pointer-events:none;
-}
-
-/* Panels */
-.panel{
-  display:none;
-}
-#panel-main:checked ~ .panel-main{ display:block; }
-#panel-regions:checked ~ .panel-regions{ display:block; }
-#panel-experiences:checked ~ .panel-experiences{ display:block; }
-
-.panel-head{
-  display:grid;
-  grid-template-columns: 1fr auto;
-  gap:10px;
-  align-items:center;
-  padding-bottom:10px;
-  border-bottom:1px solid rgba(0,0,0,.06);
-  margin-bottom:12px;
-}
-
-.panel-title{
-  font-family:Montserrat,Inter,sans-serif;
-  font-weight:800;
-  color:var(--brand-blue);
-  letter-spacing:-0.02em;
-  font-size:16px;
-}
-
-.panel-close{
-  width:40px;
-  height:40px;
-  border-radius:14px;
-  border:1px solid rgba(0,0,0,.08);
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  font-size:18px;
-  color:var(--nav-text);
-}
-
-.panel-back{
-  display:inline-flex;
-  gap:10px;
-  align-items:center;
-  justify-content:flex-start;
-  font-weight:800;
-  color:var(--nav-text);
-  cursor:pointer;
-  padding:10px 12px;
-  border-radius:14px;
-  background:rgba(3,78,162,.06);
-}
-
-.back-chev{
-  width:10px;
-  height:10px;
-  display:inline-block;
-  border-left:2px solid currentColor;
-  border-bottom:2px solid currentColor;
-  transform:rotate(45deg);
-  opacity:.8;
-}
-
-/* Menu items */
-.m-item{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  width:100%;
-  padding:14px 14px;
-  border-radius:18px;
-  border:1px solid rgba(0,0,0,.06);
-  background:#fff;
-  font-weight:800;
-  color:var(--nav-text);
-  margin-bottom:10px;
-}
-
-.m-item:hover{ background:rgba(3,78,162,.05); }
-
-.m-next{
-  cursor:pointer;
-}
-
-.m-chev{
+/* Caret */
+.topbar .caret{
   width:10px;
   height:10px;
   display:inline-block;
   border-right:2px solid currentColor;
   border-bottom:2px solid currentColor;
-  transform:rotate(-45deg);
-  opacity:.8;
+  transform:rotate(45deg);
+  margin-left:6px;
+  margin-top:-2px;
+  opacity:.7;
 }
 
-/* ===== RESPONSIVE RULES ===== */
+/* ===== HAMBURGER TOGGLE (CSS ONLY) ===== */
+.topbar .nav-toggle{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+.topbar .nav-toggle-btn{
+  display:none; /* desktop hidden */
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  border:1px solid rgba(0,0,0,.10);
+  background:rgba(255,255,255,.9);
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  user-select:none;
+}
+
+.topbar .nav-toggle-icon{
+  width:20px;
+  height:2px;
+  background:var(--nav-text);
+  position:relative;
+  border-radius:2px;
+}
+.topbar .nav-toggle-icon::before,
+.topbar .nav-toggle-icon::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:20px;
+  height:2px;
+  background:var(--nav-text);
+  border-radius:2px;
+}
+.topbar .nav-toggle-icon::before{ top:-6px; }
+.topbar .nav-toggle-icon::after{ top:6px; }
+
+/* X state */
+.topbar .nav-toggle:checked ~ .topbar-inner .nav-toggle-icon{
+  background:transparent;
+}
+.topbar .nav-toggle:checked ~ .topbar-inner .nav-toggle-icon::before{
+  top:0;
+  transform:rotate(45deg);
+}
+.topbar .nav-toggle:checked ~ .topbar-inner .nav-toggle-icon::after{
+  top:0;
+  transform:rotate(-45deg);
+}
+
+.sr-only{
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  padding:0!important;
+  margin:-1px!important;
+  overflow:hidden!important;
+  clip:rect(0,0,0,0)!important;
+  white-space:nowrap!important;
+  border:0!important;
+}
+
+/* ===== MOBILE PANEL (drill-down) ===== */
+.topbar .nav-mobile{
+  display:none; /* desktop hidden */
+}
+
 @media (max-width: 900px){
-  .nav-desktop{ gap:10px; }
+  .topbar .nav-desktop{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
 }
 
 @media (max-width: 620px){
-  /* mobile header layout */
-  .topbar-inner{
+
+  /* Mobile header row */
+  .topbar .topbar-inner{
     max-width:100%;
+    width:100%;
     margin:0;
-    padding-left:calc(env(safe-area-inset-left) + 12px);
-    padding-right:calc(env(safe-area-inset-right) + 12px);
+    padding-left:calc(env(safe-area-inset-left) + 14px);
+    padding-right:calc(env(safe-area-inset-right) + 14px);
+    padding-top:12px;
+    padding-bottom:12px;
   }
 
-  .nav-desktop{ display:none; }
-  .nav-toggle-btn{ display:flex; }
+  /* Hamburger visible */
+  .topbar .nav-toggle-btn{ display:flex; }
+
+  /* Desktop nav hidden on mobile */
+  .topbar .nav-desktop{ display:none; }
+
+  /* Mobile nav panel hidden until checked */
+  .topbar .nav-mobile{
+    display:block;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+    border-top:1px solid rgba(0,0,0,.06);
+    background:rgba(255,255,255,.85);
+  }
+
+  /* ✅ This now works because checkbox and nav-mobile share the same parent (.topbar) */
+  .topbar .nav-toggle:checked ~ .nav-mobile{
+    max-height:80vh;
+    overflow:auto;
+  }
+
+  .topbar .m-panel{
+    padding:14px;
+    padding-left:calc(env(safe-area-inset-left) + 14px);
+    padding-right:calc(env(safe-area-inset-right) + 14px);
+  }
+
+  /* Views */
+  .topbar .m-view{
+    display:none;
+  }
+  .topbar .m-main{
+    display:block;
+  }
+
+  /* Drill-down using :target (no JS) */
+  .topbar .m-submenu:target{
+    display:block;
+  }
+  .topbar .m-submenu:target ~ .m-main{
+    display:none;
+  }
+
+  /* Menu items */
+  .topbar .m-item,
+  .topbar .m-back{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    padding:14px 14px;
+    margin:0 0 10px;
+    background:var(--panel-bg);
+    border:1px solid var(--panel-border);
+    border-radius:18px;
+    box-shadow:0 10px 26px rgba(0,0,0,.04);
+    font-weight:800;
+    color:var(--nav-text);
+    font-size:18px;
+  }
+
+  .topbar .m-item:active,
+  .topbar .m-back:active{
+    transform:translateY(1px);
+  }
+
+  .topbar .m-next .m-arrow{
+    width:10px;
+    height:10px;
+    border-right:2px solid currentColor;
+    border-bottom:2px solid currentColor;
+    transform:rotate(-45deg);
+    opacity:.6;
+    margin-left:10px;
+  }
+
+  .topbar .m-back{
+    justify-content:flex-start;
+    gap:10px;
+  }
+  .topbar .m-back::before{
+    content:"";
+    width:10px;
+    height:10px;
+    border-left:2px solid currentColor;
+    border-bottom:2px solid currentColor;
+    transform:rotate(45deg);
+    opacity:.6;
+  }
 }
