@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Santa Cruz | Experience Ecuador</title>
 
-  <!-- Favicons (root) -->
+  <!-- Favicons (approved root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,7 +39,7 @@
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
-    /* ===== PAGE CONTENT ONLY (NO HEADER/FOOTER STYLES) ===== */
+    /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
@@ -233,7 +237,7 @@
       font-size:13px;
     }
 
-    /* ===== WEATHER (Quito-style) ===== */
+    /* ===== WEATHER (same as Quito) ===== */
     .wx-card{
       padding:18px 18px;
       border-radius:22px;
@@ -423,7 +427,7 @@
       opacity:.85;
     }
 
-    /* ===== MORE DESTINATIONS (tiles) ===== */
+    /* ===== MORE ANDES DESTINATIONS (structure/classes locked for tiles) ===== */
     .andes-grid{
       display:grid;
       grid-template-columns:1fr;
@@ -619,11 +623,11 @@
 </head>
 
 <body>
-  <div class="container">
-    <!-- Shared header mount -->
-    <div id="siteHeader"></div>
+  <div id="siteHeader"></div>
 
-    <main class="wrap">
+  <main>
+    <!-- PAGE CONTENT ONLY -->
+    <div class="wrap">
       <h1>Santa Cruz</h1>
       <p class="lede">
         Santa Cruz Island is the essential first stop for many Galapagos itineraries.
@@ -651,22 +655,30 @@
             <div class="two-col" aria-label="Santa Cruz highlights">
               <div class="mini-card">
                 <h3>Main logistics hub</h3>
-                <p>Simple flight and ferry connections make it a natural first base.</p>
+                <p>
+                  Simple flight and ferry connections make it a natural first base.
+                </p>
               </div>
 
               <div class="mini-card">
                 <h3>Charles Darwin Research Station</h3>
-                <p>A classic first-day stop that adds context to what you will see in the wild.</p>
+                <p>
+                  A classic first-day stop that adds context to what you will see in the wild.
+                </p>
               </div>
 
               <div class="mini-card">
                 <h3>Tortuga Bay</h3>
-                <p>One of the best easy-access beaches for a half-day plan.</p>
+                <p>
+                  One of the best easy-access beaches for a half-day plan.
+                </p>
               </div>
 
               <div class="mini-card">
                 <h3>Best base for first-timers</h3>
-                <p>Wildlife, beaches, and town access in one place with minimal friction.</p>
+                <p>
+                  Wildlife, beaches, and town access in one place with minimal friction.
+                </p>
               </div>
             </div>
 
@@ -830,36 +842,27 @@
           </div>
         </aside>
       </section>
-    </main>
+    </div>
+  </main>
 
-    <!-- Shared footer mount -->
-    <div id="siteFooter"></div>
-  </div>
+  <div id="siteFooter"></div>
 
+  <!-- Global behavior JS (required) -->
+  <script src="/assets/js/site.js"></script>
+
+  <!-- Required include injection script (exact) -->
   <script>
-    // Load global header/footer includes (single source of truth)
     (function(){
-      const headerMount = document.getElementById("siteHeader");
-      const footerMount = document.getElementById("siteFooter");
-
-      async function inject(el, url){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
         const res = await fetch(url, { cache: "no-store" });
-        if(!res.ok) throw new Error("Failed to load " + url);
         el.innerHTML = await res.text();
       }
-
-      Promise.all([
-        headerMount ? inject(headerMount, "/assets/includes/header.html") : Promise.resolve(),
-        footerMount ? inject(footerMount, "/assets/includes/footer.html") : Promise.resolve()
-      ]).catch(function(err){
-        // Fail quietly to avoid breaking page content if includes are unavailable
-        console.error(err);
-      });
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
     })();
   </script>
-
-  <!-- Global site behavior (menu, etc.) -->
-  <script src="/assets/js/site.js"></script>
 
   <script>
     /* Santa Cruz carousel */
@@ -977,6 +980,7 @@
       const gridEl = document.getElementById("santaCruzWx7");
       if(!dateEl || !linesEl || !gridEl) return;
 
+      // Santa Cruz (Puerto Ayora area), Galapagos (approx.)
       const LAT = -0.6118;
       const LON = -90.6640;
 
@@ -1195,6 +1199,20 @@
     document.addEventListener('contextmenu', (e) => {
       if (e.target && e.target.tagName === 'IMG') e.preventDefault();
     });
+  </script>
+
+  <!-- Required include injection script (exact) -->
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
   </script>
 </body>
 </html>
