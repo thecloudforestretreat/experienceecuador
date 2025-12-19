@@ -35,7 +35,7 @@
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
-    /* ===== HEADER (MATCH REST) ===== */
+    /* ===== HEADER ===== */
     .topbar{
       position:sticky;
       top:0;
@@ -76,7 +76,7 @@
       object-fit:contain;
     }
 
-    /* ===== NAV (MATCH REST) ===== */
+    /* ===== NAV (STANDARDIZED) ===== */
     .nav{
       display:flex;
       align-items:center;
@@ -86,15 +86,24 @@
       color:#0f2f62;
       white-space:nowrap;
       overflow:visible;
+      flex-wrap:nowrap; /* Desktop: one row */
     }
 
-    .nav a{
-      padding:8px 8px;
+    .nav a,
+    .nav button{
+      font:inherit;
+      background:transparent;
+      border:0;
+      color:inherit;
+      padding:8px 10px;
       border-radius:10px;
-      transition:background 0.15s ease;
+      cursor:pointer;
+      line-height:1;
+      white-space:nowrap; /* keep "Trip Builder" on one line */
     }
 
-    .nav a:hover{
+    .nav a:hover,
+    .nav button:hover{
       background:rgba(3,78,162,0.08);
     }
 
@@ -103,6 +112,7 @@
       background:rgba(3,78,162,0.08);
     }
 
+    /* ===== DROPDOWN ===== */
     .dropdown{
       position:relative;
       display:inline-flex;
@@ -112,24 +122,10 @@
     }
 
     .dropbtn{
-      appearance:none;
-      border:0;
-      background:transparent;
-      font:inherit;
-      color:inherit;
-
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding:8px 8px;
-      border-radius:10px;
-      cursor:pointer;
       user-select:none;
-      transition:background 0.15s ease;
-    }
-
-    .dropbtn:hover{
-      background:rgba(3,78,162,0.08);
     }
 
     .dropbtn:focus{
@@ -168,9 +164,15 @@
       border-radius:10px;
       font-weight:700;
       color:#0f2f62;
+      white-space:normal;
     }
 
     .dropdown-menu a:hover{
+      background:rgba(3,78,162,0.08);
+    }
+
+    .dropdown-menu a.active{
+      color:var(--brand-blue);
       background:rgba(3,78,162,0.08);
     }
 
@@ -311,20 +313,40 @@
     }
 
     .icon-btn img{width:34px;height:34px}
-
     footer small{font-size:13px;opacity:.9}
 
-    /* ===== MOBILE (MATCH REST) ===== */
+    /* ===== MOBILE (STANDARDIZED TWO-ROW MENU) ===== */
     @media(max-width:900px){
       .regions-grid{ grid-template-columns:1fr; }
       .topbar-inner{ justify-content:space-between; }
-      .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+
+      /* Mobile: FORCE two rows with grid so Contact stays in row 1 */
+      .nav{
+        display:grid;
+        grid-template-columns:repeat(4, auto);
+        justify-content:center;
+        align-items:center;
+        column-gap:10px;
+        row-gap:10px;
+        white-space:normal;
+      }
+
+      /* Row 1: Home - About - Mission - Contact */
+      .nav a.nav-home{ grid-row:1; grid-column:1; }
+      .nav a.nav-about{ grid-row:1; grid-column:2; }
+      .nav a.nav-mission{ grid-row:1; grid-column:3; }
+      .nav a.nav-contact{ grid-row:1; grid-column:4; }
+
+      /* Row 2: Regions - Experiences - Trip Builder */
+      .nav .dd-regions{ grid-row:2; grid-column:1; }
+      .nav .dd-experiences{ grid-row:2; grid-column:2; }
+      .nav a.nav-trip{ grid-row:2; grid-column:3; }
+
       .dropdown-menu{ right:0; left:auto; transform:none; }
     }
 
     @media(max-width:620px){
       .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
-      .nav{ justify-content:center; }
       .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
     }
   </style>
@@ -340,13 +362,17 @@
         <span>Experience Ecuador</span>
       </a>
 
+      <!-- MENU RULES:
+           Desktop: Home - About - Mission - Regions - Experiences - Trip Builder - Contact
+           Mobile:  Row 1: Home - About - Mission - Contact
+                   Row 2: Regions - Experiences - Trip Builder
+      -->
       <nav class="nav" aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/mission/">Mission</a>
+        <a class="nav-home" href="/">Home</a>
+        <a class="nav-about" href="/about/">About</a>
+        <a class="nav-mission" href="/mission/">Mission</a>
 
-        <!-- Regions dropdown -->
-        <div class="dropdown" id="regionsDropdown">
+        <div class="dropdown dd-regions" id="regionsDropdown">
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
             Regions <span class="caret" aria-hidden="true"></span>
           </button>
@@ -360,8 +386,7 @@
           </div>
         </div>
 
-        <!-- Experiences dropdown -->
-        <div class="dropdown" id="experiencesDropdown">
+        <div class="dropdown dd-experiences" id="experiencesDropdown">
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
             Experiences <span class="caret" aria-hidden="true"></span>
           </button>
@@ -377,7 +402,8 @@
           </div>
         </div>
 
-        <a href="/contact/">Contact</a>
+        <a class="nav-trip" href="/trip-builder/">Trip Builder</a>
+        <a class="nav-contact" href="/contact/">Contact</a>
       </nav>
     </div>
   </header>
