@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Santa Cruz | Experience Ecuador</title>
 
-  <!-- Favicons -->
-  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
-  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
-  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <!-- Favicons (root) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
 
   <!-- Fonts -->
@@ -233,7 +233,7 @@
       font-size:13px;
     }
 
-    /* ===== WEATHER (page content only) ===== */
+    /* ===== WEATHER (Quito-style) ===== */
     .wx-card{
       padding:18px 18px;
       border-radius:22px;
@@ -423,7 +423,7 @@
       opacity:.85;
     }
 
-    /* ===== MORE GALAPAGOS DESTINATIONS (tile styles) ===== */
+    /* ===== MORE DESTINATIONS (tiles) ===== */
     .andes-grid{
       display:grid;
       grid-template-columns:1fr;
@@ -651,30 +651,22 @@
             <div class="two-col" aria-label="Santa Cruz highlights">
               <div class="mini-card">
                 <h3>Main logistics hub</h3>
-                <p>
-                  Simple flight and ferry connections make it a natural first base.
-                </p>
+                <p>Simple flight and ferry connections make it a natural first base.</p>
               </div>
 
               <div class="mini-card">
                 <h3>Charles Darwin Research Station</h3>
-                <p>
-                  A classic first-day stop that adds context to what you will see in the wild.
-                </p>
+                <p>A classic first-day stop that adds context to what you will see in the wild.</p>
               </div>
 
               <div class="mini-card">
                 <h3>Tortuga Bay</h3>
-                <p>
-                  One of the best easy-access beaches for a half-day plan.
-                </p>
+                <p>One of the best easy-access beaches for a half-day plan.</p>
               </div>
 
               <div class="mini-card">
                 <h3>Best base for first-timers</h3>
-                <p>
-                  Wildlife, beaches, and town access in one place with minimal friction.
-                </p>
+                <p>Wildlife, beaches, and town access in one place with minimal friction.</p>
               </div>
             </div>
 
@@ -845,35 +837,31 @@
   </div>
 
   <script>
-    /* Global header/footer include loader (single source of truth) */
-    (function () {
+    // Load global header/footer includes (single source of truth)
+    (function(){
       const headerMount = document.getElementById("siteHeader");
       const footerMount = document.getElementById("siteFooter");
-      if (!headerMount || !footerMount) return;
 
-      async function inject(path, mount) {
-        const res = await fetch(path, { cache: "no-store" });
-        if (!res.ok) throw new Error("Failed to load " + path);
-        mount.innerHTML = await res.text();
+      async function inject(el, url){
+        const res = await fetch(url, { cache: "no-store" });
+        if(!res.ok) throw new Error("Failed to load " + url);
+        el.innerHTML = await res.text();
       }
 
-      (async function () {
-        try {
-          await Promise.all([
-            inject("/assets/includes/header.html", headerMount),
-            inject("/assets/includes/footer.html", footerMount)
-          ]);
-
-          // Let global scripts initialize after includes are present
-          document.dispatchEvent(new CustomEvent("ee:includes:loaded"));
-          if (typeof window.initSite === "function") window.initSite();
-        } catch (e) {
-          // Keep page usable even if includes fail
-          console.error(e);
-        }
-      })();
+      Promise.all([
+        headerMount ? inject(headerMount, "/assets/includes/header.html") : Promise.resolve(),
+        footerMount ? inject(footerMount, "/assets/includes/footer.html") : Promise.resolve()
+      ]).catch(function(err){
+        // Fail quietly to avoid breaking page content if includes are unavailable
+        console.error(err);
+      });
     })();
+  </script>
 
+  <!-- Global site behavior (menu, etc.) -->
+  <script src="/assets/js/site.js"></script>
+
+  <script>
     /* Santa Cruz carousel */
     (function(){
       const root = document.getElementById("santaCruzCarousel");
@@ -989,7 +977,6 @@
       const gridEl = document.getElementById("santaCruzWx7");
       if(!dateEl || !linesEl || !gridEl) return;
 
-      // Santa Cruz (Puerto Ayora area), Galapagos (approx.)
       const LAT = -0.6118;
       const LON = -90.6640;
 
