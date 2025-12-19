@@ -65,10 +65,13 @@
       if(!mount) return;
       const res = await fetch('/assets/includes/header.html', { cache: 'no-store' });
       mount.innerHTML = await res.text();
+
+      // Load the shared JS AFTER header is injected so listeners bind correctly
+      const s = document.createElement('script');
+      s.src = '/assets/js/header.js';
+      s.defer = true;
+      document.body.appendChild(s);
     })();
   </script>
-
-  <!-- Shared header JS -->
-  <script src="/assets/js/header.js" defer></script>
 </body>
 </html>
