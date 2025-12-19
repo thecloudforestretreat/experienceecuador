@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Santa Cruz | Experience Ecuador</title>
 
-  <!-- Favicons -->
-  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
-  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
-  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <!-- Favicons (approved root paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,172 +38,6 @@
 
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
-
-    /* ===== HEADER (MATCH OTHER PAGES) ===== */
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      backdrop-filter:saturate(160%) blur(10px);
-      background:rgba(255,255,255,.75);
-      border-bottom:1px solid rgba(0,0,0,.06);
-      overflow:visible;
-    }
-
-    .topbar-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:14px 18px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:16px;
-      overflow:visible;
-    }
-
-    .brand{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      color:var(--brand-blue);
-      letter-spacing:-0.02em;
-      white-space:nowrap;
-      font-size:18px;
-      line-height:1;
-    }
-
-    .brand img{width:28px;height:28px;object-fit:contain}
-
-    /* NAV (shared button/link styling) */
-    .nav a,
-    .nav button{
-      font:inherit;
-      background:transparent;
-      border:0;
-      color:inherit;
-      padding:8px 10px;
-      border-radius:10px;
-      cursor:pointer;
-      line-height:1;
-    }
-
-    .nav a:hover,
-    .nav button:hover{ background:rgba(3,78,162,.08); }
-
-    .nav a.active{
-      color:var(--brand-blue);
-      background:rgba(3,78,162,.08);
-    }
-
-    /* Desktop nav */
-    .nav-desktop{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      font-weight:700;
-      font-size:14px;
-      color:#0f2f62;
-      white-space:nowrap;
-      overflow:visible;
-    }
-
-    /* Mobile nav (two fixed rows) */
-    .nav-mobile{
-      display:none;
-      width:100%;
-      flex-direction:column;
-      gap:8px;
-      align-items:center;
-      justify-content:center;
-      font-weight:700;
-      font-size:14px;
-      color:#0f2f62;
-      white-space:nowrap;
-      overflow:visible;
-    }
-
-    .nav-row{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      flex-wrap:nowrap;
-      width:100%;
-    }
-
-    /* Dropdown */
-    .dropdown{
-      position:relative;
-      display:inline-flex;
-      align-items:center;
-      overflow:visible;
-      z-index:1100;
-    }
-
-    .dropbtn{
-      appearance:none;
-      border:0;
-      background:transparent;
-      font:inherit;
-      color:inherit;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      user-select:none;
-      padding:8px 10px;
-      border-radius:10px;
-      cursor:pointer;
-      line-height:1;
-    }
-
-    .dropbtn:focus{
-      outline:2px solid rgba(3,78,162,0.35);
-      outline-offset:2px;
-    }
-
-    .caret{
-      width:10px;
-      height:10px;
-      display:inline-block;
-      border-right:2px solid currentColor;
-      border-bottom:2px solid currentColor;
-      transform:rotate(45deg);
-      margin-top:-2px;
-      opacity:.7;
-    }
-
-    .dropdown-menu{
-      position:absolute;
-      top:42px;
-      right:0;
-      min-width:220px;
-      background:#fff;
-      border:1px solid rgba(0,0,0,0.08);
-      border-radius:14px;
-      box-shadow:0 18px 55px rgba(3,78,162,0.16);
-      padding:8px;
-      display:none;
-      z-index:1200;
-    }
-
-    .dropdown-menu a{
-      display:block;
-      padding:10px 10px;
-      border-radius:10px;
-      font-weight:700;
-      color:#0f2f62;
-    }
-
-    .dropdown-menu a:hover{ background:rgba(3,78,162,0.08); }
-
-    .dropdown-menu a.active{
-      color:var(--brand-blue);
-      background:rgba(3,78,162,0.08);
-    }
-
-    .dropdown.open .dropdown-menu{display:block}
 
     /* ===== CONTENT ===== */
     .wrap{
@@ -773,53 +611,6 @@
       white-space:nowrap;
     }
 
-    /* ===== FOOTER (LOCKED) ===== */
-    .footer{
-      background:var(--brand-blue);
-      color:#fff;
-      margin-top:30px;
-    }
-
-    .footer-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:28px 18px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:14px;
-      text-align:center;
-    }
-
-    .footer-tagline{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:16px;
-      opacity:.98;
-    }
-
-    .social{
-      display:flex;
-      gap:18px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-
-    .icon-btn{
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      background:var(--brand-blue);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:0 14px 34px rgba(0,0,0,.35);
-    }
-
-    .icon-btn img{width:34px;height:34px}
-    footer small{font-size:13px;opacity:.9}
-
     /* ===== RESPONSIVE ===== */
     @media(max-width:980px){
       .content-grid{grid-template-columns:1fr}
@@ -828,402 +619,252 @@
     @media(max-width:820px){
       .two-col{grid-template-columns:1fr}
     }
-
-    @media(max-width:900px){
-      .dropdown-menu{right:0;left:auto}
-    }
-
-    @media(max-width:620px){
-      .topbar-inner{flex-direction:column;align-items:center;gap:10px}
-      .nav-desktop{display:none}
-      .nav-mobile{display:flex}
-      .dropdown-menu{right:auto;left:50%;transform:translateX(-50%)}
-      .carousel-slide{ aspect-ratio:16/9; }
-    }
-
-    @media(max-width:480px){
-      .nav-mobile{font-size:13.5px}
-      .nav a,
-      .nav button{padding:8px 9px}
-      .carousel-btn{ width:40px; height:40px; }
-    }
   </style>
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="/">
-        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
-        <span>Experience Ecuador</span>
-      </a>
+  <div id="siteHeader"></div>
 
-      <!-- DESKTOP MENU: Home - About - Mission - Regions - Experiences - Trip Builder - Contact -->
-      <nav class="nav nav-desktop" aria-label="Primary navigation desktop">
-        <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/mission/">Mission</a>
+  <main>
+    <!-- PAGE CONTENT ONLY -->
+    <div class="wrap">
+      <h1>Santa Cruz</h1>
+      <p class="lede">
+        Santa Cruz Island is the essential first stop for many Galapagos itineraries.
+        It is the main logistics hub for flights and ferries, and it gives you the easiest mix of town access, beaches, and iconic wildlife experiences.
+        With Puerto Ayora as your base, you can keep planning simple while still doing big Galapagos highlights.
+      </p>
 
-        <div class="dropdown">
-          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
-            Regions <span class="caret" aria-hidden="true"></span>
-          </button>
-          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
-            <a href="/regions/" role="menuitem">All Regions</a>
-            <a class="active" href="/regions/galapagos/" role="menuitem">Galapagos</a>
-            <a href="/regions/coast/" role="menuitem">Coast</a>
-            <a href="/regions/andes/" role="menuitem">Andes</a>
-            <a href="/regions/amazon/" role="menuitem">Amazon</a>
-          </div>
-        </div>
-
-        <div class="dropdown">
-          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
-            Experiences <span class="caret" aria-hidden="true"></span>
-          </button>
-          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
-            <a href="/experiences/" role="menuitem">All Experiences</a>
-            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
-            <a href="/experiences/nature/" role="menuitem">Nature</a>
-            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
-            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
-            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
-            <a href="/experiences/culture/" role="menuitem">Culture</a>
-          </div>
-        </div>
-
-        <a href="/trip-builder/">Trip Builder</a>
-        <a href="/contact/">Contact</a>
-      </nav>
-
-      <!-- MOBILE MENU (two rows)
-           Top row: Home - About - Mission - Contact
-           Bottom row: Regions - Experiences - Trip Builder
-      -->
-      <nav class="nav nav-mobile" aria-label="Primary navigation mobile">
-        <div class="nav-row top" aria-label="Mobile menu top row">
-          <a href="/">Home</a>
-          <a href="/about/">About</a>
-          <a href="/mission/">Mission</a>
-          <a href="/contact/">Contact</a>
-        </div>
-
-        <div class="nav-row bottom" aria-label="Mobile menu bottom row">
-          <div class="dropdown">
-            <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
-              Regions <span class="caret" aria-hidden="true"></span>
-            </button>
-            <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
-              <a href="/regions/" role="menuitem">All Regions</a>
-              <a class="active" href="/regions/galapagos/" role="menuitem">Galapagos</a>
-              <a href="/regions/coast/" role="menuitem">Coast</a>
-              <a href="/regions/andes/" role="menuitem">Andes</a>
-              <a href="/regions/amazon/" role="menuitem">Amazon</a>
-            </div>
-          </div>
-
-          <div class="dropdown">
-            <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
-              Experiences <span class="caret" aria-hidden="true"></span>
-            </button>
-            <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
-              <a href="/experiences/" role="menuitem">All Experiences</a>
-              <a href="/experiences/adventure/" role="menuitem">Adventure</a>
-              <a href="/experiences/nature/" role="menuitem">Nature</a>
-              <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
-              <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
-              <a href="/experiences/culinary/" role="menuitem">Culinary</a>
-              <a href="/experiences/culture/" role="menuitem">Culture</a>
-            </div>
-          </div>
-
-          <a href="/trip-builder/">Trip Builder</a>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <h1>Santa Cruz</h1>
-    <p class="lede">
-      Santa Cruz Island is the essential first stop for many Galapagos itineraries.
-      It is the main logistics hub for flights and ferries, and it gives you the easiest mix of town access, beaches, and iconic wildlife experiences.
-      With Puerto Ayora as your base, you can keep planning simple while still doing big Galapagos highlights.
-    </p>
-
-    <div class="meta-row" aria-label="Santa Cruz overview metadata">
-      <span class="pill">Region: Galapagos</span>
-      <span class="pill">Best for: First-time trips, wildlife and beaches, easy logistics</span>
-      <span class="pill">Typical time: 3–5 days</span>
-    </div>
-
-    <section class="content-grid" aria-label="Santa Cruz content">
-      <!-- LEFT COLUMN -->
-      <div>
-        <div class="card">
-          <h2>What Santa Cruz Island is best for</h2>
-          <p>
-            Santa Cruz Island is best for first-time Galapagos trips because it is easy to move around from one base.
-            You get strong wildlife experiences without complicated transfers, plus beach time and a town routine that makes the islands feel approachable.
-            If you want one island to anchor your first Galapagos plan, this is the most flexible choice.
-          </p>
-
-          <div class="two-col" aria-label="Santa Cruz highlights">
-            <div class="mini-card">
-              <h3>Main logistics hub</h3>
-              <p>
-                Simple flight and ferry connections make it a natural first base.
-              </p>
-            </div>
-
-            <div class="mini-card">
-              <h3>Charles Darwin Research Station</h3>
-              <p>
-                A classic first-day stop that adds context to what you will see in the wild.
-              </p>
-            </div>
-
-            <div class="mini-card">
-              <h3>Tortuga Bay</h3>
-              <p>
-                One of the best easy-access beaches for a half-day plan.
-              </p>
-            </div>
-
-            <div class="mini-card">
-              <h3>Best base for first-timers</h3>
-              <p>
-                Wildlife, beaches, and town access in one place with minimal friction.
-              </p>
-            </div>
-          </div>
-
-          <div class="chips" aria-label="Santa Cruz theme chips">
-            <span class="chip">Wildlife</span>
-            <span class="chip">Beaches</span>
-            <span class="chip">Town base</span>
-            <span class="chip">First time</span>
-            <span class="chip">Day trips</span>
-            <span class="chip">Puerto Ayora</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h2>Simple planning flow</h2>
-          <p>
-            Start with a clean base plan.
-            Arrive, settle into Puerto Ayora, and use your first afternoon for an easy town walk and a simple wildlife or coastline stop.
-            Then build one beach half-day and one full-day excursion into your stay.
-          </p>
-          <p>
-            For a 3 to 5 day first trip, keep transfers minimal and protect your best days for the biggest experiences.
-            If you want help shaping an itinerary across islands without overpacking your schedule, reach out via the
-            <a class="inline-link" href="/contact/">Contact</a> page.
-          </p>
-        </div>
-
-        <!-- CAROUSEL (LEFT, UNDER SIMPLE PLANNING FLOW) -->
-        <div id="santaCruzCarousel" class="carousel" aria-label="Santa Cruz image gallery">
-          <button class="carousel-btn prev" type="button" aria-label="Previous image">
-            <span aria-hidden="true"></span>
-          </button>
-
-          <div class="carousel-viewport">
-            <div class="carousel-track">
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-SantaCruzIsland-1.jpg" alt="Santa Cruz highlight 1"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-SantaCruzIsland-2.jpg" alt="Santa Cruz highlight 2"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-SantaCruzIsland-3.jpg" alt="Santa Cruz highlight 3"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-SantaCruzIsland-4.jpg" alt="Santa Cruz highlight 4"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-SantaCruzIsland-5.jpg" alt="Santa Cruz highlight 5"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-SantaCruzIsland-6.jpg" alt="Santa Cruz highlight 6"></div>
-            </div>
-          </div>
-
-          <button class="carousel-btn next" type="button" aria-label="Next image">
-            <span aria-hidden="true"></span>
-          </button>
-
-          <div class="carousel-ui">
-            <div class="carousel-dots" aria-label="Carousel pagination"></div>
-            <div class="carousel-counter" id="santaCruzCarouselCounter">1 / 6</div>
-          </div>
-        </div>
+      <div class="meta-row" aria-label="Santa Cruz overview metadata">
+        <span class="pill">Region: Galapagos</span>
+        <span class="pill">Best for: First-time trips, wildlife and beaches, easy logistics</span>
+        <span class="pill">Typical time: 3–5 days</span>
       </div>
 
-      <!-- RIGHT COLUMN -->
-      <aside class="side-stack" aria-label="Santa Cruz side content">
-        <div class="mini">
-          <h3>Best use of time</h3>
-          <p>
-            Use Santa Cruz as your anchor.
-            Keep one day for Tortuga Bay and an easy town rhythm, then choose one full-day excursion that matches your priority.
-            If you are staying 3 days, do one major day plus one beach half-day.
-            If you are staying 5 days, add a second big day and keep the rest relaxed.
-          </p>
+      <section class="content-grid" aria-label="Santa Cruz content">
+        <!-- LEFT COLUMN -->
+        <div>
+          <div class="card">
+            <h2>What Santa Cruz Island is best for</h2>
+            <p>
+              Santa Cruz Island is best for first-time Galapagos trips because it is easy to move around from one base.
+              You get strong wildlife experiences without complicated transfers, plus beach time and a town routine that makes the islands feel approachable.
+              If you want one island to anchor your first Galapagos plan, this is the most flexible choice.
+            </p>
 
-          <div class="link-list" aria-label="Quick links">
-            <a class="pill-link" href="/regions/galapagos/">
-              Back to Galapagos Islands<span>Region page</span>
-            </a>
-            <a class="pill-link" href="/regions/galapagos/santa-cruz-island/">
-              Santa Cruz Island <span>First-time base</span>
-            </a>
-            <a class="pill-link" href="/contact/">
-              Contact <span>Questions and partnerships</span>
-            </a>
+            <div class="two-col" aria-label="Santa Cruz highlights">
+              <div class="mini-card">
+                <h3>Main logistics hub</h3>
+                <p>
+                  Simple flight and ferry connections make it a natural first base.
+                </p>
+              </div>
+
+              <div class="mini-card">
+                <h3>Charles Darwin Research Station</h3>
+                <p>
+                  A classic first-day stop that adds context to what you will see in the wild.
+                </p>
+              </div>
+
+              <div class="mini-card">
+                <h3>Tortuga Bay</h3>
+                <p>
+                  One of the best easy-access beaches for a half-day plan.
+                </p>
+              </div>
+
+              <div class="mini-card">
+                <h3>Best base for first-timers</h3>
+                <p>
+                  Wildlife, beaches, and town access in one place with minimal friction.
+                </p>
+              </div>
+            </div>
+
+            <div class="chips" aria-label="Santa Cruz theme chips">
+              <span class="chip">Wildlife</span>
+              <span class="chip">Beaches</span>
+              <span class="chip">Town base</span>
+              <span class="chip">First time</span>
+              <span class="chip">Day trips</span>
+              <span class="chip">Puerto Ayora</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Simple planning flow</h2>
+            <p>
+              Start with a clean base plan.
+              Arrive, settle into Puerto Ayora, and use your first afternoon for an easy town walk and a simple wildlife or coastline stop.
+              Then build one beach half-day and one full-day excursion into your stay.
+            </p>
+            <p>
+              For a 3 to 5 day first trip, keep transfers minimal and protect your best days for the biggest experiences.
+              If you want help shaping an itinerary across islands without overpacking your schedule, reach out via the
+              <a class="inline-link" href="/contact/">Contact</a> page.
+            </p>
+          </div>
+
+          <!-- CAROUSEL (LEFT, UNDER SIMPLE PLANNING FLOW) -->
+          <div id="santaCruzCarousel" class="carousel" aria-label="Santa Cruz image gallery">
+            <button class="carousel-btn prev" type="button" aria-label="Previous image">
+              <span aria-hidden="true"></span>
+            </button>
+
+            <div class="carousel-viewport">
+              <div class="carousel-track">
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-SantaCruzIsland-1.jpg" alt="Santa Cruz highlight 1"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-SantaCruzIsland-2.jpg" alt="Santa Cruz highlight 2"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-SantaCruzIsland-3.jpg" alt="Santa Cruz highlight 3"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-SantaCruzIsland-4.jpg" alt="Santa Cruz highlight 4"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-SantaCruzIsland-5.jpg" alt="Santa Cruz highlight 5"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-SantaCruzIsland-6.jpg" alt="Santa Cruz highlight 6"></div>
+              </div>
+            </div>
+
+            <button class="carousel-btn next" type="button" aria-label="Next image">
+              <span aria-hidden="true"></span>
+            </button>
+
+            <div class="carousel-ui">
+              <div class="carousel-dots" aria-label="Carousel pagination"></div>
+              <div class="carousel-counter" id="santaCruzCarouselCounter">1 / 6</div>
+            </div>
           </div>
         </div>
 
-        <!-- Weather card (same behavior as Quito) -->
-        <div class="wx-card" aria-label="Weather and seasonality">
-          <div class="wx-title">Current weather</div>
+        <!-- RIGHT COLUMN -->
+        <aside class="side-stack" aria-label="Santa Cruz side content">
+          <div class="mini">
+            <h3>Best use of time</h3>
+            <p>
+              Use Santa Cruz as your anchor.
+              Keep one day for Tortuga Bay and an easy town rhythm, then choose one full-day excursion that matches your priority.
+              If you are staying 3 days, do one major day plus one beach half-day.
+              If you are staying 5 days, add a second big day and keep the rest relaxed.
+            </p>
 
-          <div class="wx-now">
-            <div class="wx-date" id="santaCruzWxDate">--/--/----</div>
-            <p class="wx-lines" id="santaCruzWxLines">Loading…</p>
-          </div>
-
-          <div class="months" aria-label="Forecast and best months section">
-            <div class="wx-title" style="margin-top:0;">7-day forecast</div>
-            <div class="wx-sub">High / low and rain for the week ahead.</div>
-            <div class="wx-grid7" id="santaCruzWx7" aria-label="Santa Cruz 7-day forecast grid"></div>
-
-            <div class="wx-title" style="margin-top:14px;">Best months to visit</div>
-            <div class="wx-sub" style="margin-bottom:8px;">
-              Based on typically sunnier days and comfortable beach conditions.
-            </div>
-
-            <div class="legend" aria-label="Best months legend">
-              <div class="legend-item"><span class="swatch best" aria-hidden="true"></span>Best</div>
-              <div class="legend-item"><span class="swatch good" aria-hidden="true"></span>Good</div>
-              <div class="legend-item"><span class="swatch fair" aria-hidden="true"></span>Fair</div>
-            </div>
-
-            <div class="month-row" aria-label="12-month seasonality chips">
-              <span class="month-chip fair" aria-label="January">Jan</span>
-              <span class="month-chip fair" aria-label="February">Feb</span>
-              <span class="month-chip good" aria-label="March good month">Mar</span>
-              <span class="month-chip good" aria-label="April good month">Apr</span>
-              <span class="month-chip good" aria-label="May good month">May</span>
-              <span class="month-chip best" aria-label="June best month">Jun</span>
-              <span class="month-chip best" aria-label="July best month">Jul</span>
-              <span class="month-chip best" aria-label="August best month">Aug</span>
-              <span class="month-chip best" aria-label="September best month">Sep</span>
-              <span class="month-chip good" aria-label="October good month">Oct</span>
-              <span class="month-chip fair" aria-label="November">Nov</span>
-              <span class="month-chip fair" aria-label="December">Dec</span>
+            <div class="link-list" aria-label="Quick links">
+              <a class="pill-link" href="/regions/galapagos/">
+                Back to Galapagos Islands<span>Region page</span>
+              </a>
+              <a class="pill-link" href="/regions/galapagos/santa-cruz-island/">
+                Santa Cruz Island <span>First-time base</span>
+              </a>
+              <a class="pill-link" href="/contact/">
+                Contact <span>Questions and partnerships</span>
+              </a>
             </div>
           </div>
-        </div>
 
-        <div class="mini">
-          <h3>More Galapagos destinations</h3>
-          <p>
-            Add another island if you have time, or keep Santa Cruz as your main base and do a simple first trip.
-          </p>
+          <!-- Weather card (same behavior as Quito) -->
+          <div class="wx-card" aria-label="Weather and seasonality">
+            <div class="wx-title">Current weather</div>
 
-          <div class="andes-grid" aria-label="Galapagos destination links">
-            <a class="andes-tile" href="/regions/galapagos/san-cristobal-island/" aria-label="Open San Cristobal Island page">
-              <div class="andes-left">
-                <div class="andes-title">San Cristóbal</div>
-                <div class="andes-sub">A strong second base with coastal walks, wildlife, and easy island rhythm.</div>
+            <div class="wx-now">
+              <div class="wx-date" id="santaCruzWxDate">--/--/----</div>
+              <p class="wx-lines" id="santaCruzWxLines">Loading…</p>
+            </div>
+
+            <div class="months" aria-label="Forecast and best months section">
+              <div class="wx-title" style="margin-top:0;">7-day forecast</div>
+              <div class="wx-sub">High / low and rain for the week ahead.</div>
+              <div class="wx-grid7" id="santaCruzWx7" aria-label="Santa Cruz 7-day forecast grid"></div>
+
+              <div class="wx-title" style="margin-top:14px;">Best months to visit</div>
+              <div class="wx-sub" style="margin-bottom:8px;">
+                Based on typically sunnier days and comfortable beach conditions.
               </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
 
-            <a class="andes-tile" href="/regions/galapagos/isabela-island/" aria-label="Open Isabela Island page">
-              <div class="andes-left">
-                <div class="andes-title">Isabela</div>
-                <div class="andes-sub">Big nature energy with wide landscapes and a slower island feel.</div>
+              <div class="legend" aria-label="Best months legend">
+                <div class="legend-item"><span class="swatch best" aria-hidden="true"></span>Best</div>
+                <div class="legend-item"><span class="swatch good" aria-hidden="true"></span>Good</div>
+                <div class="legend-item"><span class="swatch fair" aria-hidden="true"></span>Fair</div>
               </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
 
-            <a class="andes-tile" href="/regions/galapagos/floreana-island/" aria-label="Open Floreana Island page">
-              <div class="andes-left">
-                <div class="andes-title">Floreana</div>
-                <div class="andes-sub">Small island vibe for quiet days and a more off-the-main-path feel.</div>
+              <div class="month-row" aria-label="12-month seasonality chips">
+                <span class="month-chip fair" aria-label="January">Jan</span>
+                <span class="month-chip fair" aria-label="February">Feb</span>
+                <span class="month-chip good" aria-label="March good month">Mar</span>
+                <span class="month-chip good" aria-label="April good month">Apr</span>
+                <span class="month-chip good" aria-label="May good month">May</span>
+                <span class="month-chip best" aria-label="June best month">Jun</span>
+                <span class="month-chip best" aria-label="July best month">Jul</span>
+                <span class="month-chip best" aria-label="August best month">Aug</span>
+                <span class="month-chip best" aria-label="September best month">Sep</span>
+                <span class="month-chip good" aria-label="October good month">Oct</span>
+                <span class="month-chip fair" aria-label="November">Nov</span>
+                <span class="month-chip fair" aria-label="December">Dec</span>
               </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/galapagos/" aria-label="Open Galapagos region page">
-              <div class="andes-left">
-                <div class="andes-title">Galapagos</div>
-                <div class="andes-sub">Explore all Galapagos destinations and trip ideas.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
+            </div>
           </div>
-        </div>
-      </aside>
-    </section>
+
+          <div class="mini">
+            <h3>More Galapagos destinations</h3>
+            <p>
+              Add another island if you have time, or keep Santa Cruz as your main base and do a simple first trip.
+            </p>
+
+            <div class="andes-grid" aria-label="Galapagos destination links">
+              <a class="andes-tile" href="/regions/galapagos/san-cristobal-island/" aria-label="Open San Cristobal Island page">
+                <div class="andes-left">
+                  <div class="andes-title">San Cristóbal</div>
+                  <div class="andes-sub">A strong second base with coastal walks, wildlife, and easy island rhythm.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/galapagos/isabela-island/" aria-label="Open Isabela Island page">
+                <div class="andes-left">
+                  <div class="andes-title">Isabela</div>
+                  <div class="andes-sub">Big nature energy with wide landscapes and a slower island feel.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/galapagos/floreana-island/" aria-label="Open Floreana Island page">
+                <div class="andes-left">
+                  <div class="andes-title">Floreana</div>
+                  <div class="andes-sub">Small island vibe for quiet days and a more off-the-main-path feel.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/galapagos/" aria-label="Open Galapagos region page">
+                <div class="andes-left">
+                  <div class="andes-title">Galapagos</div>
+                  <div class="andes-sub">Explore all Galapagos destinations and trip ideas.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </div>
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+  <div id="siteFooter"></div>
 
-      <div class="social" aria-label="Social media links">
-        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
-        </a>
-        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
-        </a>
-        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
-        </a>
-        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
-        </a>
-      </div>
+  <!-- Global behavior JS (required) -->
+  <script src="/assets/js/site.js"></script>
 
-      <small>© 2025 Experience Ecuador. All rights reserved.</small>
-    </div>
-  </footer>
+  <!-- Required include injection script (exact) -->
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
 
   <script>
-    // Unified dropdown handler (Regions + Experiences) - open one at a time, close on outside click / Esc
-    (function () {
-      const dropdowns = document.querySelectorAll('.dropdown');
-
-      function closeAll() {
-        dropdowns.forEach(dd => {
-          dd.classList.remove('open');
-          const btn = dd.querySelector('.dropbtn');
-          if (btn) btn.setAttribute('aria-expanded', 'false');
-        });
-      }
-
-      dropdowns.forEach(dd => {
-        const btn = dd.querySelector('.dropbtn');
-        const menu = dd.querySelector('.dropdown-menu');
-        if (!btn) return;
-
-        btn.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-
-          const isOpen = dd.classList.contains('open');
-          closeAll();
-          dd.classList.toggle('open', !isOpen);
-          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
-        });
-
-        if (menu) {
-          menu.addEventListener('click', function (e) {
-            e.stopPropagation();
-          });
-        }
-      });
-
-      document.addEventListener('click', closeAll);
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeAll();
-      });
-    })();
-
     /* Santa Cruz carousel */
     (function(){
       const root = document.getElementById("santaCruzCarousel");
@@ -1558,6 +1199,20 @@
     document.addEventListener('contextmenu', (e) => {
       if (e.target && e.target.tagName === 'IMG') e.preventDefault();
     });
+  </script>
+
+  <!-- Required include injection script (exact) -->
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
   </script>
 </body>
 </html>
