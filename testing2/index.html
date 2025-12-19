@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Shared Header CSS (hamburger-only mobile) -->
+  <!-- Shared Header CSS -->
   <link rel="stylesheet" href="/assets/css/header.css">
 
   <style>
@@ -47,6 +47,144 @@
       font-size:clamp(28px,4vw,48px);
     }
     p{ margin:0; line-height:1.7; color:#1f2b3f; }
+
+    /* Force brand color (fixes black brand text) */
+    .topbar .brand,
+    .topbar .brand span{
+      color:#034EA2 !important;
+    }
+
+    /* Ensure no underlines in header */
+    .topbar a,
+    .topbar a:visited,
+    .topbar a:hover,
+    .topbar a:active,
+    .topbar button{
+      text-decoration:none !important;
+      -webkit-text-decoration:none !important;
+    }
+
+    /* Minimal “overlay panel” styling in case header.css is missing parts */
+    .topbar .mobile-nav{
+      position:fixed;
+      inset:0;
+      background:rgba(255,255,255,.98);
+      backdrop-filter:saturate(160%) blur(10px);
+      z-index:2000;
+      padding:14px 16px 24px;
+      overflow:auto;
+    }
+    .topbar .mobile-nav[hidden]{ display:none !important; }
+
+    .topbar .mobile-nav .mobile-nav-inner{
+      max-width:560px;
+      margin:0 auto;
+      padding-top:10px;
+    }
+
+    .topbar .mobile-item{
+      display:block;
+      width:100%;
+      padding:16px 16px;
+      border-radius:16px;
+      border:1px solid rgba(0,0,0,.08);
+      background:#fff;
+      font-weight:800;
+      color:#0f2f62;
+      text-decoration:none;
+      line-height:1.1;
+    }
+    .topbar .mobile-item + .mobile-item{ margin-top:12px; }
+
+    .topbar .mobile-section{
+      margin-top:14px;
+      border-radius:18px;
+      border:1px solid rgba(0,0,0,.08);
+      background:#fff;
+      overflow:hidden;
+    }
+    .topbar .mobile-section summary{
+      list-style:none;
+      cursor:pointer;
+      padding:16px 16px;
+      font-weight:900;
+      color:#0f2f62;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .topbar .mobile-section summary::-webkit-details-marker{ display:none; }
+    .topbar .mobile-sub{
+      padding:8px 12px 14px;
+      background:rgba(3,78,162,.03);
+      border-top:1px solid rgba(0,0,0,.06);
+    }
+    .topbar .mobile-sub a{
+      display:block;
+      padding:14px 12px;
+      border-radius:14px;
+      font-weight:800;
+      color:#0f2f62;
+      text-decoration:none;
+      background:#fff;
+      border:1px solid rgba(0,0,0,.06);
+    }
+    .topbar .mobile-sub a + a{ margin-top:10px; }
+
+    /* A simple toggle button (if header.html doesn’t provide one) */
+    .topbar .nav-toggle{
+      appearance:none;
+      border:1px solid rgba(0,0,0,.10);
+      background:#fff;
+      border-radius:14px;
+      width:44px;
+      height:44px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+    }
+    .topbar .nav-toggle .bars{
+      width:18px; height:14px; position:relative; display:block;
+    }
+    .topbar .nav-toggle .bars::before,
+    .topbar .nav-toggle .bars::after,
+    .topbar .nav-toggle .bars span{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      height:2px;
+      background:#0f2f62;
+      border-radius:2px;
+    }
+    .topbar .nav-toggle .bars::before{ top:0; }
+    .topbar .nav-toggle .bars span{ top:6px; }
+    .topbar .nav-toggle .bars::after{ bottom:0; }
+
+    .topbar .nav-toggle[data-open="true"] .bars::before{ transform:translateY(6px) rotate(45deg); }
+    .topbar .nav-toggle[data-open="true"] .bars span{ opacity:0; }
+    .topbar .nav-toggle[data-open="true"] .bars::after{ transform:translateY(-6px) rotate(-45deg); }
+
+    /* Mobile: hide desktop nav row and use toggle */
+    @media (max-width: 620px){
+      .topbar .nav{ display:none !important; }
+      .topbar .topbar-inner{
+        max-width:100% !important;
+        width:100% !important;
+        margin:0 !important;
+        padding-left:calc(env(safe-area-inset-left) + 12px) !important;
+        padding-right:calc(env(safe-area-inset-right) + 12px) !important;
+      }
+      .topbar .topbar-inner{
+        display:flex !important;
+        flex-direction:row !important;
+        align-items:center !important;
+        justify-content:space-between !important;
+        gap:12px !important;
+      }
+      .topbar .brand{ justify-content:flex-start !important; }
+    }
   </style>
 </head>
 
@@ -68,10 +206,175 @@
       const res = await fetch('/assets/includes/header.html', { cache: 'no-store' });
       mount.innerHTML = await res.text();
 
-      // No JS needed for the final header:
-      // - Desktop dropdowns use <details>
-      // - Mobile hamburger uses a CSS checkbox toggle
-      // - Mobile accordions use <details>
+      // Build a reliable hamburger menu on top of whatever header.html provides.
+      (function(){
+        const qs = (s, r=document) => r.querySelector(s);
+        const qsa = (s, r=document) => Array.from(r.querySelectorAll(s));
+
+        const topbar = qs('.topbar');
+        if(!topbar) return;
+
+        const inner = qs('.topbar-inner', topbar);
+        const desktopNav = qs('.nav', topbar);
+
+        // Ensure brand stays blue
+        const brand = qs('.brand', topbar);
+        if(brand) brand.style.color = '#034EA2';
+
+        // 1) Ensure we have a toggle button (mobile)
+        let toggle = qs('.nav-toggle', topbar);
+        if(!toggle && inner){
+          toggle = document.createElement('button');
+          toggle.className = 'nav-toggle';
+          toggle.type = 'button';
+          toggle.setAttribute('aria-label', 'Open menu');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('data-open', 'false');
+          toggle.innerHTML = '<span class="bars" aria-hidden="true"><span></span></span>';
+          inner.appendChild(toggle);
+        }
+
+        // 2) Ensure we have a mobile panel
+        let panel = qs('.mobile-nav', topbar);
+        if(!panel){
+          panel = document.createElement('div');
+          panel.className = 'mobile-nav';
+          panel.hidden = true;
+          panel.innerHTML = '<div class="mobile-nav-inner" aria-label="Mobile navigation"></div>';
+          document.body.appendChild(panel);
+        }
+        const panelInner = qs('.mobile-nav-inner', panel);
+
+        // 3) Fill mobile panel from desktop nav (links + dropdown contents)
+        function buildMobileFromDesktop(){
+          if(!panelInner) return;
+          panelInner.innerHTML = '';
+
+          if(!desktopNav){
+            panelInner.innerHTML = '<div style="padding:16px;font-weight:800;color:#0f2f62;">Menu unavailable</div>';
+            return;
+          }
+
+          // Primary links we want as top-level buttons in this order:
+          const want = ['Home','About','Mission','Contact','Trip Builder'];
+
+          const links = qsa('a', desktopNav)
+            .filter(a => (a.textContent || '').trim().length);
+
+          // Add primary links (Home/About/Mission/Contact/Trip Builder)
+          want.forEach(label => {
+            const a = links.find(x => (x.textContent || '').trim() === label);
+            if(!a) return;
+            const item = document.createElement('a');
+            item.className = 'mobile-item';
+            item.href = a.getAttribute('href') || '#';
+            item.textContent = label;
+            panelInner.appendChild(item);
+          });
+
+          // Convert dropdowns (Regions / Experiences)
+          const dropdowns = qsa('.dropdown', desktopNav);
+          dropdowns.forEach(dd => {
+            const btn = qs('.dropbtn', dd);
+            const menu = qs('.dropdown-menu', dd);
+            if(!btn || !menu) return;
+
+            const title = (btn.textContent || '').replace(/\s+/g,' ').trim();
+            const section = document.createElement('details');
+            section.className = 'mobile-section';
+
+            const summary = document.createElement('summary');
+            summary.textContent = title;
+
+            const caret = document.createElement('span');
+            caret.setAttribute('aria-hidden','true');
+            caret.style.width = '10px';
+            caret.style.height = '10px';
+            caret.style.borderRight = '2px solid currentColor';
+            caret.style.borderBottom = '2px solid currentColor';
+            caret.style.transform = 'rotate(45deg)';
+            caret.style.opacity = '.7';
+            summary.appendChild(caret);
+
+            const sub = document.createElement('div');
+            sub.className = 'mobile-sub';
+
+            qsa('a', menu).forEach(a => {
+              const subA = document.createElement('a');
+              subA.href = a.getAttribute('href') || '#';
+              subA.textContent = (a.textContent || '').trim();
+              sub.appendChild(subA);
+            });
+
+            section.appendChild(summary);
+            section.appendChild(sub);
+            panelInner.appendChild(section);
+          });
+        }
+
+        buildMobileFromDesktop();
+
+        // 4) Desktop dropdown behavior (click-to-toggle)
+        function closeDesktopDropdowns(){
+          qsa('.topbar .dropdown.open').forEach(d => d.classList.remove('open'));
+          qsa('.topbar .dropdown .dropbtn').forEach(b => b.setAttribute('aria-expanded','false'));
+        }
+        function initDesktopDropdowns(){
+          qsa('.topbar [data-dd]').forEach(dd => {
+            const btn = qs('.dropbtn', dd);
+            if(!btn) return;
+            btn.addEventListener('click', (e) => {
+              e.preventDefault();
+              const isOpen = dd.classList.contains('open');
+              closeDesktopDropdowns();
+              if(!isOpen){
+                dd.classList.add('open');
+                btn.setAttribute('aria-expanded','true');
+              }
+            });
+          });
+          document.addEventListener('click', (e) => {
+            const inside = e.target.closest('.topbar [data-dd]');
+            if(!inside) closeDesktopDropdowns();
+          });
+          document.addEventListener('keydown', (e) => {
+            if(e.key === 'Escape') closeDesktopDropdowns();
+          });
+        }
+        initDesktopDropdowns();
+
+        // 5) Mobile open/close
+        function setMobileOpen(open){
+          if(!toggle || !panel) return;
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+          toggle.setAttribute('data-open', open ? 'true' : 'false');
+          toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+          panel.hidden = !open;
+
+          // lock scroll when open
+          document.documentElement.style.overflow = open ? 'hidden' : '';
+          document.body.style.overflow = open ? 'hidden' : '';
+        }
+
+        if(toggle){
+          toggle.addEventListener('click', () => {
+            const open = toggle.getAttribute('aria-expanded') === 'true';
+            setMobileOpen(!open);
+          });
+        }
+
+        // Close on escape
+        document.addEventListener('keydown', (e) => {
+          if(e.key === 'Escape') setMobileOpen(false);
+        });
+
+        // Close when switching to desktop breakpoint
+        const mq = window.matchMedia('(min-width: 621px)');
+        const onMqChange = (e) => { if(e.matches) setMobileOpen(false); };
+        if (mq.addEventListener) mq.addEventListener('change', onMqChange);
+        else mq.addListener(onMqChange);
+
+      })();
     })();
   </script>
 </body>
