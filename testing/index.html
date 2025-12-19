@@ -149,12 +149,11 @@
   </style>
 </head>
 
-<script src="/assets/js/site.js"></script>
-  
 <body>
   <!-- Global header include -->
   <div id="siteHeader"></div>
 
+  <!-- PAGE CONTENT -->
   <main class="wrap">
     <section class="hero">
       <h1>About Experience Ecuador</h1>
@@ -202,9 +201,13 @@
     </section>
   </main>
 
-  <!-- Global footer include (no newsletter here) -->
+  <!-- Global footer include -->
   <div id="siteFooter"></div>
 
+  <!-- ✅ GLOBAL HEADER / MOBILE NAV LOGIC -->
+  <script src="/assets/js/site.js"></script>
+
+  <!-- Header / Footer injection -->
   <script>
     (function () {
       async function inject(selector, url) {
@@ -213,20 +216,6 @@
 
         const res = await fetch(url, { cache: "no-store" });
         mount.innerHTML = await res.text();
-
-        // Ensure any <script> tags inside the injected HTML run
-        const scripts = mount.querySelectorAll("script");
-        scripts.forEach(oldScript => {
-          const s = document.createElement("script");
-          if (oldScript.src) {
-            s.src = oldScript.src;
-            s.async = oldScript.async || false;
-          } else {
-            s.textContent = oldScript.textContent;
-          }
-          document.body.appendChild(s);
-          oldScript.remove();
-        });
       }
 
       (async function () {
