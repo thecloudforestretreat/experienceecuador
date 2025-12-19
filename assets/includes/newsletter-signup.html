@@ -1,0 +1,84 @@
+<!-- /assets/includes/newsletter-signup.html -->
+<section class="ee-signup" aria-label="Newsletter signup">
+  <div class="ee-signup-title">Get insider access to Experience Ecuador</div>
+
+  <form
+    class="ee-signup-form"
+    id="ee_signup_form"
+    action="https://script.google.com/macros/s/AKfycbw-BhL_3ImqpIwX4DuXVoQCDKKkiQ_CcOipP0wyCUdljAX0F9YkmfToCb6YbHGW0SQoxA/exec"
+    method="post"
+    target="ee_signup_iframe"
+    autocomplete="on"
+  >
+    <div class="ee-row">
+      <input class="w-sm" name="first_name" type="text" placeholder="First Name" />
+      <input class="w-sm" name="last_name" type="text" placeholder="Last Name" />
+    </div>
+
+    <div class="ee-row">
+      <input class="w-email" name="email" type="email" placeholder="Email Address" required />
+      <button class="w-btn" type="submit" id="ee_signup_btn">Sign Up</button>
+    </div>
+
+    <!-- Honeypot (anti-spam) -->
+    <input class="ee-hp" name="company" type="text" tabindex="-1" autocomplete="off" />
+
+    <!-- Captures the current path -->
+    <input name="source_page" type="hidden" id="ee_source_page" value="" />
+
+    <div class="ee-signup-status" id="ee_signup_status" role="status" aria-live="polite"></div>
+  </form>
+
+  <iframe name="ee_signup_iframe" style="display:none;"></iframe>
+</section>
+
+<script>
+  (function(){
+    var src = window.location.pathname || "/";
+    var el = document.getElementById("ee_source_page");
+    if (el) el.value = src;
+  })();
+
+  (function(){
+    var form = document.getElementById("ee_signup_form");
+    var btn = document.getElementById("ee_signup_btn");
+    var statusBox = document.getElementById("ee_signup_status");
+    if(!form || !btn || !statusBox) return;
+
+    form.addEventListener("submit", function(){
+      btn.disabled = true;
+      btn.textContent = "Signing up...";
+      statusBox.textContent = "Submitting...";
+    });
+
+    var fallbackTimer = null;
+    form.addEventListener("submit", function(){
+      if (fallbackTimer) clearTimeout(fallbackTimer);
+      fallbackTimer = setTimeout(function(){
+        if (statusBox.textContent === "Submitting...") {
+          statusBox.textContent = "Thanks. You are subscribed.";
+          btn.disabled = false;
+          btn.textContent = "Sign Up";
+          form.reset();
+        }
+      }, 1200);
+    });
+  })();
+
+  window.addEventListener("message", function(e){
+    if (!e || !e.data || e.data.type !== "EE_SIGNUP") return;
+
+    var box = document.getElementById("ee_signup_status");
+    var form = document.getElementById("ee_signup_form");
+    var btn = document.getElementById("ee_signup_btn");
+    if (!box || !btn) return;
+
+    if (e.data.status === "success") box.textContent = e.data.message || "Thanks. You are subscribed.";
+    else if (e.data.status === "already") box.textContent = e.data.message || "You are already subscribed.";
+    else box.textContent = e.data.message || "Something went wrong. Please try again.";
+
+    btn.disabled = false;
+    btn.textContent = "Sign Up";
+    if (e.data.status === "success" && form) form.reset();
+  });
+</script>
