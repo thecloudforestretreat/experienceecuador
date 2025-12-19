@@ -335,15 +335,21 @@
       .grid{ grid-template-columns:1fr; }
       .topbar-inner{ justify-content:space-between; }
 
-      /* Mobile: FORCE two rows with a grid so "Contact" never drops to row 2 */
+      /* Mobile: two fixed rows (prevents "Trip" stacking over "Builder") */
       .nav{
         display:grid;
-        grid-template-columns:repeat(4, auto);
+        grid-template-columns:repeat(4, max-content);
         justify-content:center;
         align-items:center;
         column-gap:10px;
         row-gap:10px;
         white-space:normal;
+      }
+
+      /* Prevent any nav label from breaking to a second line */
+      .nav a,
+      .nav button{
+        white-space:nowrap;
       }
 
       /* Row 1: Home - About - Mission - Contact */
@@ -355,7 +361,11 @@
       /* Row 2: Regions - Experiences - Trip Builder */
       .nav .dd-regions{ grid-row:2; grid-column:1; }
       .nav .dd-experiences{ grid-row:2; grid-column:2; }
-      .nav a.nav-trip{ grid-row:2; grid-column:3; }
+      .nav a.nav-trip{
+        grid-row:2;
+        grid-column:3;
+        white-space:nowrap; /* extra safety */
+      }
 
       .dropdown-menu{ right:0; left:auto; }
     }
@@ -377,9 +387,8 @@
         <span>Experience Ecuador</span>
       </a>
 
-      <!-- Updated menu
-           Desktop: Home - About - Mission - Regions - Experiences - Trip Builder - Contact
-           Mobile (two rows):
+      <!-- Desktop: Home - About - Mission - Regions - Experiences - Trip Builder - Contact
+           Mobile:
              Row 1: Home - About - Mission - Contact
              Row 2: Regions - Experiences - Trip Builder
       -->
