@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About | Experience Ecuador</title>
+  <title>Regions | Experience Ecuador</title>
 
   <!-- Favicons -->
   <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
@@ -29,7 +29,7 @@
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--charcoal);
-      background:linear-gradient(180deg,#ffffff 0%, #f6f8fb 100%);
+      background:#f6f8fb;
     }
 
     a{text-decoration:none;color:inherit}
@@ -70,9 +70,13 @@
       white-space:nowrap;
     }
 
-    .brand img{ width:28px; height:28px; object-fit:contain; }
+    .brand img{
+      width:28px;
+      height:28px;
+      object-fit:contain;
+    }
 
-    /* ===== NAV ===== */
+    /* ===== NAV (STANDARDIZED) ===== */
     .nav{
       display:flex;
       align-items:center;
@@ -82,7 +86,7 @@
       color:#0f2f62;
       white-space:nowrap;
       overflow:visible;
-      flex-wrap:nowrap; /* desktop = one row */
+      flex-wrap:nowrap; /* Desktop: one row */
     }
 
     .nav a,
@@ -99,14 +103,16 @@
     }
 
     .nav a:hover,
-    .nav button:hover{ background:rgba(3,78,162,0.08); }
+    .nav button:hover{
+      background:rgba(3,78,162,0.08);
+    }
 
     .nav a.active{
       color:var(--brand-blue);
       background:rgba(3,78,162,0.08);
     }
 
-    /* Dropdown */
+    /* ===== DROPDOWN ===== */
     .dropdown{
       position:relative;
       display:inline-flex;
@@ -120,7 +126,6 @@
       align-items:center;
       gap:8px;
       user-select:none;
-      white-space:nowrap;
     }
 
     .dropbtn:focus{
@@ -153,126 +158,122 @@
       z-index:1200;
     }
 
-    .dropdown.open .dropdown-menu{display:block}
-
     .dropdown-menu a{
       display:block;
-      padding:10px;
+      padding:10px 10px;
       border-radius:10px;
       font-weight:700;
       color:#0f2f62;
-      white-space:normal; /* allow submenu items to wrap if needed */
+      white-space:normal;
     }
 
-    .dropdown-menu a:hover{ background:rgba(3,78,162,0.08); }
+    .dropdown-menu a:hover{
+      background:rgba(3,78,162,0.08);
+    }
 
     .dropdown-menu a.active{
       color:var(--brand-blue);
       background:rgba(3,78,162,0.08);
     }
 
+    .dropdown.open .dropdown-menu{ display:block; }
+
     /* ===== PAGE ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:42px 18px 0;
+      padding:44px 18px 0;
+    }
+
+    .hero{
+      text-align:center;
+      margin-bottom:36px;
     }
 
     .hero h1{
+      margin:0 0 12px;
       font-family:Montserrat,Inter,sans-serif;
-      font-size:clamp(36px,4.5vw,56px);
       font-weight:800;
-      margin:0 0 10px;
       letter-spacing:-0.03em;
+      font-size:clamp(36px,4.5vw,56px);
       color:var(--brand-blue);
     }
 
     .hero p{
-      max-width:72ch;
+      margin:0 auto;
+      max-width:70ch;
       color:var(--slate);
-      font-size:17px;
-      line-height:1.65;
-      margin:0;
+      font-size:18px;
+      line-height:1.6;
     }
 
-    .grid{
+    /* ===== REGIONS GRID ===== */
+    .regions-grid{
       display:grid;
-      grid-template-columns:1.15fr 0.85fr;
+      grid-template-columns:repeat(2,1fr);
       gap:28px;
-      padding:36px 0 18px;
-      align-items:center;
+      margin-bottom:60px;
     }
 
-    .card{
+    .region-card{
       background:#fff;
-      border-radius:22px;
-      padding:26px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
-    }
-
-    .card h2{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      margin:0 0 12px;
-      font-size:22px;
-      color:#0f2f62;
-      letter-spacing:-0.02em;
-    }
-
-    .card p{
-      line-height:1.75;
-      font-size:15.5px;
-      margin:0;
-      color:#2a2f36;
-    }
-
-    .stack{
-      display:flex;
-      flex-direction:column;
-      gap:20px;
-      justify-content:center;
-    }
-
-    .mini{
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      border-radius:20px;
-      padding:20px;
-      border:1px solid rgba(3,78,162,0.12);
-    }
-
-    .mini h3{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      margin:0 0 8px;
-      color:#0f2f62;
-      font-size:16px;
-      letter-spacing:-0.01em;
-    }
-
-    .mini ul{
-      margin:0;
-      padding-left:18px;
-      line-height:1.7;
-      font-size:14.5px;
-      color:#24324a;
-    }
-
-    .break{
-      margin:18px 0 40px;
       border-radius:22px;
       overflow:hidden;
       border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 60px rgba(0,0,0,0.14);
-      background:transparent;
+      box-shadow:0 20px 55px rgba(3,78,162,0.12);
+      transition:transform .2s ease, box-shadow .2s ease;
     }
 
-    .break img{
+    .region-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 28px 70px rgba(3,78,162,0.18);
+    }
+
+    .region-image{
+      height:260px;
+      overflow:hidden;
+    }
+
+    .region-image img{
       width:100%;
-      height:auto;
-      display:block;
-      user-select:none;
-      pointer-events:none;
+      height:100%;
+      object-fit:cover;
+      transition:transform .4s ease;
+    }
+
+    .region-card:hover .region-image img{
+      transform:scale(1.05);
+    }
+
+    .region-content{
+      padding:22px 22px 26px;
+    }
+
+    .region-content h2{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:22px;
+      color:var(--brand-blue);
+    }
+
+    .region-content p{
+      margin:0 0 18px;
+      color:#2a2f36;
+      line-height:1.6;
+      font-size:15.5px;
+    }
+
+    .region-link{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:999px;
+      background:var(--brand-blue);
+      color:#fff;
+      font-weight:600;
+      font-size:14px;
+      letter-spacing:.02em;
     }
 
     /* ===== FOOTER ===== */
@@ -285,146 +286,41 @@
     .footer-inner{
       max-width:1100px;
       margin:0 auto;
-      padding:22px 18px 18px;
-    }
-
-    /* Row 1: left signup | right socials */
-    .footer-top{
-      display:grid;
-      grid-template-columns: 1fr auto;
-      align-items:start;
-      gap:18px;
-    }
-
-    /* LEFT: signup */
-    .ee-signup{
-      justify-self:start;
-      width:min(520px, 100%);
-    }
-
-    .ee-signup-title{
-      margin:0 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:15.5px;
-      line-height:1.2;
-      opacity:0.98;
-      text-align:left;
-    }
-
-    .ee-signup-form{
+      padding:28px 18px;
       display:flex;
       flex-direction:column;
-      gap:10px;
-      align-items:flex-start;
-    }
-
-    .ee-row{
-      display:flex;
-      gap:10px;
       align-items:center;
-      justify-content:flex-start;
-      flex-wrap:nowrap;
+      gap:14px;
+      text-align:center;
     }
 
-    .ee-row .w-sm{ width:150px; }
-    .ee-row .w-email{ width:210px; }
-    .ee-row .w-btn{ width:90px; }
-
-    .ee-signup-form input{
-      border:1px solid rgba(255,255,255,0.38);
-      background:#ffffff;
-      color:var(--brand-blue);
-      border-radius:12px;
-      padding:8px 10px;
-      font-size:13.25px;
-      outline:none;
-      height:34px;
-    }
-
-    .ee-signup-form input::placeholder{ color:rgba(3,78,162,0.70); }
-
-    .ee-signup-form button{
-      border:0;
-      border-radius:12px;
-      padding:8px 12px;
-      font-weight:800;
-      cursor:pointer;
-      color:var(--brand-blue);
-      background:#ffffff;
-      font-size:13.25px;
-      height:34px;
-      white-space:nowrap;
-    }
-
-    .ee-signup-status{
-      font-size:12.5px;
-      opacity:0.95;
-      min-height:16px;
-      width:100%;
-    }
-
-    .ee-hp{ display:none !important; }
-
-    /* RIGHT: socials */
     .social{
-      justify-self:end;
       display:flex;
-      flex-direction:row;
-      gap:12px;
-      align-items:center;
-      justify-content:flex-end;
-      flex-wrap:nowrap;
-      margin-top:2px;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:center;
     }
 
     .icon-btn{
-      width:56px;
-      height:56px;
+      width:64px;
+      height:64px;
       border-radius:50%;
       background:var(--brand-blue);
       display:flex;
       align-items:center;
       justify-content:center;
       box-shadow:0 14px 34px rgba(0,0,0,0.35);
-      transition:transform 0.18s ease, box-shadow 0.18s ease;
     }
 
-    .icon-btn:hover{
-      transform:translateY(-3px);
-      box-shadow:0 18px 44px rgba(0,0,0,0.40);
-    }
+    .icon-btn img{width:34px;height:34px}
+    footer small{font-size:13px;opacity:.9}
 
-    .icon-btn img{ width:30px; height:30px; }
-
-    /* Row 2: centered tagline + centered copyright under it */
-    .footer-center{
-      margin-top:14px;
-      text-align:center;
-    }
-
-    .footer-tagline{
-      margin:0 0 6px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:16px;
-      opacity:0.98;
-      line-height:1.25;
-    }
-
-    .footer-center small{
-      font-size:12.5px;
-      opacity:0.90;
-    }
-
-    /* ===== MOBILE ===== */
+    /* ===== MOBILE (STANDARDIZED TWO-ROW MENU) ===== */
     @media(max-width:900px){
-      .grid{ grid-template-columns:1fr; }
+      .regions-grid{ grid-template-columns:1fr; }
       .topbar-inner{ justify-content:space-between; }
 
-      /* Mobile: force 2 rows, exact order (and keep "Trip Builder" on one line) */
+      /* Mobile: FORCE two rows with grid so Contact stays in row 1 */
       .nav{
         display:grid;
         grid-template-columns:repeat(4, auto);
@@ -446,37 +342,11 @@
       .nav .dd-experiences{ grid-row:2; grid-column:2; }
       .nav a.nav-trip{ grid-row:2; grid-column:3; }
 
-      .dropdown-menu{ right:0; left:auto; }
-
-      .footer-top{
-        grid-template-columns:1fr;
-        justify-items:center;
-        gap:14px;
-      }
-
-      .ee-signup{ width:100%; }
-      .ee-signup-form{ align-items:stretch; }
-
-      .ee-row{
-        width:100%;
-        flex-wrap:wrap;
-      }
-
-      .ee-row .w-sm,
-      .ee-row .w-email,
-      .ee-row .w-btn{
-        width:100%;
-      }
-
-      .social{
-        justify-self:center;
-        flex-wrap:wrap;
-      }
+      .dropdown-menu{ right:0; left:auto; transform:none; }
     }
 
     @media(max-width:620px){
       .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
-      .nav{ justify-content:center; }
       .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
     }
   </style>
@@ -484,6 +354,7 @@
 
 <body>
 
+  <!-- HEADER -->
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="/">
@@ -498,15 +369,16 @@
       -->
       <nav class="nav" aria-label="Primary navigation">
         <a class="nav-home" href="/">Home</a>
-        <a class="nav-about active" href="/about/">About</a>
+        <a class="nav-about" href="/about/">About</a>
         <a class="nav-mission" href="/mission/">Mission</a>
 
         <div class="dropdown dd-regions" id="regionsDropdown">
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
             Regions <span class="caret" aria-hidden="true"></span>
           </button>
+
           <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
-            <a href="/regions/" role="menuitem">All Regions</a>
+            <a class="active" href="/regions/" role="menuitem">All Regions</a>
             <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
             <a href="/regions/coast/" role="menuitem">Coast</a>
             <a href="/regions/andes/" role="menuitem">Andes</a>
@@ -518,6 +390,7 @@
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
             Experiences <span class="caret" aria-hidden="true"></span>
           </button>
+
           <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
             <a href="/experiences/" role="menuitem">All Experiences</a>
             <a href="/experiences/adventure/" role="menuitem">Adventure</a>
@@ -535,112 +408,81 @@
     </div>
   </header>
 
+  <!-- PAGE CONTENT -->
   <main class="wrap">
     <section class="hero">
-      <h1>About Experience Ecuador</h1>
+      <h1>Explore Ecuador by Region</h1>
       <p>
-        Experience Ecuador is being built as a one stop hub for travel ideas, local highlights,
-        and curated journeys across the country. From relaxation to adventure, culinary to cultural,
-        the goal is simple: help travelers discover Ecuador with clarity and confidence.
+        From pristine islands to highland volcanoes and deep rainforest,
+        Ecuador offers an incredible range of experiences in every region.
       </p>
     </section>
 
-    <section class="grid">
-      <div class="card">
-        <h2>What we are building</h2>
-        <p>
-          A thoughtfully curated platform that helps you explore Ecuador by region and by experience.
-          We want to make it easy to discover what to do, where to stay, how to plan, and what is worth your time.
-          Over time, this grows into a community and a digital newsletter where trusted local partners can showcase what they offer.
-        </p>
-      </div>
-
-      <div class="stack">
-        <div class="mini">
-          <h3>Built for travelers like you</h3>
-          <ul>
-            <li>International visitors looking for guidance and planning</li>
-            <li>Domestic travelers seeking weekend getaways</li>
-            <li>Eco tourists, birders, nomads, and adventure lovers</li>
-            <li>Retreat guests, food lovers, and culture seekers</li>
-          </ul>
+    <section class="regions-grid">
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Galapagos-02.jpg" alt="Galapagos Islands">
         </div>
-
-        <div class="mini">
-          <h3>What to expect next</h3>
-          <ul>
-            <li>Regional hubs: Galapagos, Coast, Andes, Amazon</li>
-            <li>Experience categories: relaxation, adventure, nature, culinary, culture</li>
-            <li>Newsletter highlights and featured partners</li>
-          </ul>
+        <div class="region-content">
+          <h2>Galapagos Islands</h2>
+          <p>Wildlife encounters, volcanic landscapes, and once-in-a-lifetime natural experiences.</p>
+          <a class="region-link" href="/regions/galapagos/">Explore Galapagos</a>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <section class="break" aria-label="About image">
-      <img src="/assets/images/EE-About-02.jpg" alt="Ecuador inspiration">
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Coast-02.jpg" alt="Ecuador Coast">
+        </div>
+        <div class="region-content">
+          <h2>The Coast</h2>
+          <p>Beaches, surf towns, seafood culture, and laid-back coastal escapes.</p>
+          <a class="region-link" href="/regions/coast/">Explore the Coast</a>
+        </div>
+      </article>
+
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Andes-02.jpg" alt="Ecuador Andes">
+        </div>
+        <div class="region-content">
+          <h2>The Andes</h2>
+          <p>High-altitude cities, volcanoes, markets, and rich cultural heritage.</p>
+          <a class="region-link" href="/regions/andes/">Explore the Andes</a>
+        </div>
+      </article>
+
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Amazon-02.jpg" alt="Ecuador Amazon">
+        </div>
+        <div class="region-content">
+          <h2>The Amazon</h2>
+          <p>Lush rainforest, wildlife, river journeys, and immersive eco experiences.</p>
+          <a class="region-link" href="/regions/amazon/">Explore the Amazon</a>
+        </div>
+      </article>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
-
-      <div class="footer-top">
-
-        <!-- LEFT: Newsletter -->
-        <section class="ee-signup" aria-label="Newsletter signup">
-          <div class="ee-signup-title">Get insider access to Experience Ecuador</div>
-
-          <form
-            class="ee-signup-form"
-            id="ee_signup_form"
-            action="https://script.google.com/macros/s/AKfycbw-BhL_3ImqpIwX4DuXVoQCDKKkiQ_CcOipP0wyCUdljAX0F9YkmfToCb6YbHGW0SQoxA/exec"
-            method="post"
-            target="ee_signup_iframe"
-            autocomplete="on"
-          >
-            <div class="ee-row">
-              <input class="w-sm" name="first_name" type="text" placeholder="First Name" />
-              <input class="w-sm" name="last_name" type="text" placeholder="Last Name" />
-            </div>
-
-            <div class="ee-row">
-              <input class="w-email" name="email" type="email" placeholder="Email Address" required />
-              <button class="w-btn" type="submit" id="ee_signup_btn">Sign Up</button>
-            </div>
-
-            <input class="ee-hp" name="company" type="text" tabindex="-1" autocomplete="off" />
-            <input name="source_page" type="hidden" id="ee_source_page" value="" />
-
-            <div class="ee-signup-status" id="ee_signup_status" role="status" aria-live="polite"></div>
-          </form>
-
-          <iframe name="ee_signup_iframe" style="display:none;"></iframe>
-        </section>
-
-        <!-- RIGHT: Socials -->
-        <div class="social" aria-label="Social links">
-          <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
-            <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
-          </a>
-          <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-            <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
-          </a>
-          <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
-            <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
-          </a>
-          <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
-            <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
-          </a>
-        </div>
-
+      <div class="social" aria-label="Social media links">
+        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+        </a>
+        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+        </a>
+        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+        </a>
       </div>
-
-      <div class="footer-center">
-        <div class="footer-tagline">Curated travel experiences across Ecuador</div>
-        <small>© 2025 Experience Ecuador. All rights reserved.</small>
-      </div>
-
+      <small>© 2025 Experience Ecuador. All rights reserved.</small>
     </div>
   </footer>
 
@@ -683,55 +525,6 @@
         if (e.key === 'Escape') closeAll();
       });
     })();
-
-    (function(){
-      var src = window.location.pathname || "/";
-      var el = document.getElementById("ee_source_page");
-      if (el) el.value = src;
-    })();
-
-    (function(){
-      var form = document.getElementById("ee_signup_form");
-      var btn = document.getElementById("ee_signup_btn");
-      var statusBox = document.getElementById("ee_signup_status");
-      if(!form || !btn || !statusBox) return;
-
-      form.addEventListener("submit", function(){
-        btn.disabled = true;
-        btn.textContent = "Signing up...";
-        statusBox.textContent = "Submitting...";
-      });
-
-      var fallbackTimer = null;
-      form.addEventListener("submit", function(){
-        if (fallbackTimer) clearTimeout(fallbackTimer);
-        fallbackTimer = setTimeout(function(){
-          if (statusBox.textContent === "Submitting...") {
-            statusBox.textContent = "Thanks. You are subscribed.";
-            btn.disabled = false;
-            btn.textContent = "Sign Up";
-            form.reset();
-          }
-        }, 1200);
-      });
-    })();
-
-    window.addEventListener("message", function(e){
-      if (!e || !e.data || e.data.type !== "EE_SIGNUP") return;
-
-      var box = document.getElementById("ee_signup_status");
-      var form = document.getElementById("ee_signup_form");
-      var btn = document.getElementById("ee_signup_btn");
-      if (!box || !btn) return;
-
-      if (e.data.status === "success") box.textContent = e.data.message || "Thanks. You are subscribed.";
-      else if (e.data.status === "already") box.textContent = e.data.message || "You are already subscribed.";
-      else box.textContent = e.data.message || "Something went wrong. Please try again.";
-
-      btn.disabled = false;
-      btn.textContent = "Sign Up";
-      if (e.data.status === "success" && form) form.reset();
-    });
   </script>
 
 </body>
