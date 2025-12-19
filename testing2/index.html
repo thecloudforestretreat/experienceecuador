@@ -152,8 +152,6 @@
   </style>
 </head>
 
-<script src="/assets/js/site.js"></script>
-  
 <body>
   <!-- Global header include -->
   <div id="siteHeader"></div>
@@ -207,6 +205,10 @@
   <!-- Global footer include -->
   <div id="siteFooter"></div>
 
+  <!-- ✅ GLOBAL HEADER / FOOTER BEHAVIOR -->
+  <script src="/assets/js/site.js"></script>
+
+  <!-- Header/Footer injection -->
   <script>
     (function () {
       async function inject(selector, url) {
@@ -215,20 +217,6 @@
 
         const res = await fetch(url, { cache: "no-store" });
         mount.innerHTML = await res.text();
-
-        // Ensure any <script> tags inside the injected HTML run
-        const scripts = mount.querySelectorAll("script");
-        scripts.forEach(oldScript => {
-          const s = document.createElement("script");
-          if (oldScript.src) {
-            s.src = oldScript.src;
-            s.async = oldScript.async || false;
-          } else {
-            s.textContent = oldScript.textContent;
-          }
-          document.body.appendChild(s);
-          oldScript.remove();
-        });
       }
 
       (async function () {
