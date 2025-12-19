@@ -70,7 +70,7 @@
       const res = await fetch('/assets/includes/header.html', { cache: 'no-store' });
       mount.innerHTML = await res.text();
 
-      // ===== Inline header JS (so it always runs, even if server serves .js as text/plain) =====
+      // ===== Inline header JS (runs reliably everywhere) =====
       (function () {
         function qs(sel, root=document){ return root.querySelector(sel); }
         function qsa(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
@@ -147,9 +147,11 @@
             if(e.key === 'Escape') setMobileOpen(false);
           });
 
-          window.addEventListener('resize', () => {
-            if(window.innerWidth > 620) setMobileOpen(false);
-          });
+          // ✅ iOS-friendly: close ONLY when breakpoint changes to desktop
+          const mq = window.matchMedia('(min-width: 621px)');
+          const onMqChange = (e) => { if(e.matches) setMobileOpen(false); };
+          if (mq.addEventListener) mq.addEventListener('change', onMqChange);
+          else mq.addListener(onMqChange);
         }
 
         initDesktopDropdowns();
