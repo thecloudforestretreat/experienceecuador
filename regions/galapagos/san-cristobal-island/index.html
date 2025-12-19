@@ -94,6 +94,7 @@
       border-radius:10px;
       cursor:pointer;
       line-height:1;
+      white-space:nowrap; /* prevent "Trip Builder" from stacking */
     }
 
     .nav a:hover,
@@ -123,6 +124,7 @@
       align-items:center;
       gap:8px;
       user-select:none;
+      white-space:nowrap; /* extra guard */
     }
 
     .dropbtn:focus{
@@ -161,6 +163,7 @@
       border-radius:10px;
       font-weight:700;
       color:#0f2f62;
+      white-space:nowrap;
     }
 
     .dropdown-menu a:hover{ background:rgba(3,78,162,0.08); }
@@ -309,6 +312,7 @@
       color:#0f2f62;
       font-weight:800;
       font-size:12.8px;
+      white-space:nowrap;
     }
 
     .side-stack{
@@ -542,6 +546,7 @@
       font-weight:900;
       font-size:12.4px;
       min-width:46px;
+      white-space:nowrap;
     }
 
     .month-chip.best{
@@ -800,16 +805,54 @@
       .two-col{grid-template-columns:1fr}
     }
 
+    /* Desktop -> wraps naturally if needed */
     @media(max-width:900px){
       .nav{gap:8px;flex-wrap:wrap;justify-content:flex-end}
       .dropdown-menu{right:0;left:auto}
     }
 
+    /* Mobile: force 2 clean rows, and keep "Trip Builder" on one line */
     @media(max-width:620px){
       .topbar-inner{flex-direction:column;align-items:center;gap:10px}
-      .nav{justify-content:center}
+
+      .nav{
+        display:grid;
+        grid-template-columns:repeat(4, max-content);
+        grid-auto-rows:auto;
+        justify-content:center;
+        align-items:center;
+        column-gap:8px;
+        row-gap:8px;
+        white-space:nowrap; /* keeps labels from breaking */
+      }
+
+      .nav > *{ justify-self:center; }
+
+      /* Row 1: Home - About - Mission - Contact */
+      .nav-home{ grid-row:1; grid-column:1; }
+      .nav-about{ grid-row:1; grid-column:2; }
+      .nav-mission{ grid-row:1; grid-column:3; }
+      .nav-contact{ grid-row:1; grid-column:4; }
+
+      /* Row 2: Regions - Experiences - Trip Builder (side-by-side) */
+      .nav-regions{ grid-row:2; grid-column:1; }
+      .nav-experiences{ grid-row:2; grid-column:2; }
+      .nav-trip{ grid-row:2; grid-column:3; }
+
+      /* Center dropdown menus under their buttons on mobile */
       .dropdown-menu{right:auto;left:50%;transform:translateX(-50%)}
+
       .carousel-slide{ aspect-ratio:16/9; }
+    }
+
+    /* Extra-small phones: tighten spacing so row 2 still fits side-by-side */
+    @media(max-width:420px){
+      .nav{ column-gap:6px; row-gap:6px; }
+      .nav a,
+      .nav button{
+        padding:7px 8px;
+        font-size:13px;
+      }
     }
 
     @media(max-width:480px){
@@ -827,11 +870,17 @@
       </a>
 
       <nav class="nav" aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/mission/">Mission</a>
+        <!-- Desktop: Home - About - Mission - Regions - Experiences - Trip Builder - Contact -->
+        <!-- Mobile:
+             Row 1: Home - About - Mission - Contact
+             Row 2: Regions - Experiences - Trip Builder
+        -->
 
-        <div class="dropdown" id="regionsDropdown">
+        <a class="nav-home" href="/">Home</a>
+        <a class="nav-about" href="/about/">About</a>
+        <a class="nav-mission" href="/mission/">Mission</a>
+
+        <div class="dropdown nav-regions" id="regionsDropdown">
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
             Regions <span class="caret" aria-hidden="true"></span>
           </button>
@@ -844,7 +893,7 @@
           </div>
         </div>
 
-        <div class="dropdown" id="experiencesDropdown">
+        <div class="dropdown nav-experiences" id="experiencesDropdown">
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
             Experiences <span class="caret" aria-hidden="true"></span>
           </button>
@@ -859,7 +908,8 @@
           </div>
         </div>
 
-        <a href="/contact/">Contact</a>
+        <a class="nav-trip" href="/trip-builder/">Trip Builder</a>
+        <a class="nav-contact" href="/contact/">Contact</a>
       </nav>
     </div>
   </header>
@@ -1069,7 +1119,7 @@
               </div>
               <div class="andes-arrow" aria-hidden="true"><span></span></div>
             </a>
-            
+
             <a class="andes-tile" href="/regions/galapagos/" aria-label="Open Galapagos Islands region page">
               <div class="andes-left">
                 <div class="andes-title">Galapagos</div>
