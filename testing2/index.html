@@ -806,32 +806,37 @@
       .dropdown-menu{right:0;left:auto}
     }
 
-    /* Mobile nav order + forced 2-row layout */
+    /* Mobile: force 2 clean rows with perfect alignment */
     @media(max-width:620px){
       .topbar-inner{flex-direction:column;align-items:center;gap:10px}
+
       .nav{
+        display:grid;
+        grid-template-columns:repeat(4, auto);
+        grid-auto-rows:auto;
         justify-content:center;
-        flex-wrap:wrap;
-        gap:8px;
+        align-items:center;
+        column-gap:8px;
+        row-gap:8px;
+        white-space:normal;
       }
-      /* Top row: Home, About, Mission, Contact */
-      .nav > a:nth-of-type(1){ order:1; } /* Home */
-      .nav > a:nth-of-type(2){ order:2; } /* About */
-      .nav > a:nth-of-type(3){ order:3; } /* Mission */
-      .nav > a:nth-of-type(4){ order:4; } /* Contact */
 
-      /* Bottom row: Regions, Experiences, Trip Builder */
-      .nav > .dropdown:nth-of-type(1){ order:5; } /* Regions dropdown */
-      .nav > .dropdown:nth-of-type(2){ order:6; } /* Experiences dropdown */
-      .nav > a.trip-builder{ order:7; } /* Trip Builder */
+      .nav > *{ justify-self:center; }
 
-      /* Force 4 items in row 1, 3 items in row 2 */
-      .nav > *{ flex:0 0 auto; }
-      .nav > :nth-child(-n+4){ flex-basis:auto; }
-      .nav > :nth-child(5){ flex-basis:100%; height:0; padding:0; margin:0; } /* line break helper */
-      .nav .break{ width:100%; height:0; padding:0; margin:0; }
+      /* Row 1: Home - About - Mission - Contact */
+      .nav-home{ grid-row:1; grid-column:1; }
+      .nav-about{ grid-row:1; grid-column:2; }
+      .nav-mission{ grid-row:1; grid-column:3; }
+      .nav-contact{ grid-row:1; grid-column:4; }
 
+      /* Row 2: Regions - Experiences - Trip Builder */
+      .nav-regions{ grid-row:2; grid-column:1; }
+      .nav-experiences{ grid-row:2; grid-column:2; }
+      .nav-trip{ grid-row:2; grid-column:3; }
+
+      /* Center dropdown menus under their buttons on mobile */
       .dropdown-menu{right:auto;left:50%;transform:translateX(-50%)}
+
       .carousel-slide{ aspect-ratio:16/9; }
     }
 
@@ -850,14 +855,17 @@
       </a>
 
       <nav class="nav" aria-label="Primary navigation">
-        <!-- Desktop order: Home - About - Mission - Regions - Experiences - Trip Builder - Contact -->
-        <!-- Mobile order:   Row 1: Home - About - Mission - Contact | Row 2: Regions - Experiences - Trip Builder -->
+        <!-- Desktop: Home - About - Mission - Regions - Experiences - Trip Builder - Contact -->
+        <!-- Mobile:
+             Row 1: Home - About - Mission - Contact
+             Row 2: Regions - Experiences - Trip Builder
+        -->
 
-        <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/mission/">Mission</a>
+        <a class="nav-home" href="/">Home</a>
+        <a class="nav-about" href="/about/">About</a>
+        <a class="nav-mission" href="/mission/">Mission</a>
 
-        <div class="dropdown" id="regionsDropdown">
+        <div class="dropdown nav-regions" id="regionsDropdown">
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
             Regions <span class="caret" aria-hidden="true"></span>
           </button>
@@ -870,7 +878,7 @@
           </div>
         </div>
 
-        <div class="dropdown" id="experiencesDropdown">
+        <div class="dropdown nav-experiences" id="experiencesDropdown">
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
             Experiences <span class="caret" aria-hidden="true"></span>
           </button>
@@ -885,8 +893,8 @@
           </div>
         </div>
 
-        <a class="trip-builder" href="/trip-builder/">Trip Builder</a>
-        <a href="/contact/">Contact</a>
+        <a class="nav-trip" href="/trip-builder/">Trip Builder</a>
+        <a class="nav-contact" href="/contact/">Contact</a>
       </nav>
     </div>
   </header>
