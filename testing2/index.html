@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Header Test | Experience Ecuador</title>
+  <title>Header & Footer Test | Experience Ecuador</title>
 
   <!-- Favicons (root) -->
   <link rel="icon" href="/favicon.ico">
@@ -16,8 +16,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Shared Header CSS -->
+  <!-- Shared Header + Footer CSS -->
   <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
 
   <style>
     body{
@@ -26,11 +27,13 @@
       background:#f6f8fb;
       color:#1F1F1F;
     }
+
     main{
       max-width:1100px;
       margin:0 auto;
       padding:40px 18px 120px;
     }
+
     .card{
       background:#fff;
       border-radius:22px;
@@ -38,6 +41,7 @@
       box-shadow:0 18px 55px rgba(3,78,162,.12);
       padding:22px;
     }
+
     h1{
       margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
@@ -46,27 +50,51 @@
       color:#034EA2;
       font-size:clamp(28px,4vw,48px);
     }
-    p{ margin:0; line-height:1.7; color:#1f2b3f; }
+
+    p{
+      margin:0;
+      line-height:1.7;
+      color:#1f2b3f;
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- Shared Header -->
   <div id="siteHeader"></div>
 
+  <!-- Page Content -->
   <main>
     <div class="card">
-      <h1>Header Test Page</h1>
-      <p>Use this page to test desktop spacing and the mobile hamburger menu.</p>
+      <h1>Header & Footer Test Page</h1>
+      <p>
+        This page is used to verify the finalized header (desktop + mobile hamburger)
+        and the approved Experience Ecuador footer styling.
+      </p>
     </div>
   </main>
 
+  <!-- Shared Footer -->
+  <div id="siteFooter"></div>
+
+  <!-- Includes Loader -->
   <script>
     (async function(){
-      const mount = document.getElementById('siteHeader');
-      if(!mount) return;
-      const res = await fetch('/assets/includes/header.html', { cache: 'no-store' });
-      mount.innerHTML = await res.text();
+      const headerMount = document.getElementById('siteHeader');
+      const footerMount = document.getElementById('siteFooter');
+
+      if(headerMount){
+        const h = await fetch('/assets/includes/header.html', { cache: 'no-store' });
+        headerMount.innerHTML = await h.text();
+      }
+
+      if(footerMount){
+        const f = await fetch('/assets/includes/footer.html', { cache: 'no-store' });
+        footerMount.innerHTML = await f.text();
+      }
     })();
   </script>
+
 </body>
 </html>
