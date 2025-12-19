@@ -17,6 +17,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+  <!-- Shared global CSS -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+
   <style>
     :root{
       --brand-blue:#034EA2;
@@ -36,147 +40,6 @@
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
     img{ user-select:none; -webkit-user-drag:none; }
-
-    /* ===== HEADER ===== */
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      backdrop-filter:saturate(160%) blur(10px);
-      background:rgba(255,255,255,0.75);
-      border-bottom:1px solid rgba(0,0,0,0.06);
-      overflow:visible;
-    }
-
-    .topbar-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:14px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      overflow:visible;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      color:var(--brand-blue);
-      font-size:18px;
-      line-height:1;
-      white-space:nowrap;
-    }
-
-    .brand img{
-      width:28px;
-      height:28px;
-      object-fit:contain;
-    }
-
-    /* ===== NAV ===== */
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      font-size:14px;
-      font-weight:700;
-      color:#0f2f62;
-      white-space:nowrap;
-      overflow:visible;
-      flex-wrap:nowrap; /* Desktop: one row */
-    }
-
-    .nav a,
-    .nav button{
-      font:inherit;
-      background:transparent;
-      border:0;
-      color:inherit;
-      padding:8px 10px;
-      border-radius:10px;
-      cursor:pointer;
-      line-height:1;
-    }
-
-    .nav a:hover,
-    .nav button:hover{
-      background:rgba(3,78,162,0.08);
-    }
-
-    .nav a.active{
-      background:rgba(3,78,162,0.08);
-      color:var(--brand-blue);
-    }
-
-    /* ===== DROPDOWN ===== */
-    .dropdown{
-      position:relative;
-      display:inline-flex;
-      align-items:center;
-      overflow:visible;
-      z-index:1100;
-    }
-
-    .dropbtn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      user-select:none;
-    }
-
-    .dropbtn:focus{
-      outline:2px solid rgba(3,78,162,0.35);
-      outline-offset:2px;
-    }
-
-    .caret{
-      width:10px;
-      height:10px;
-      display:inline-block;
-      border-right:2px solid currentColor;
-      border-bottom:2px solid currentColor;
-      transform:rotate(45deg);
-      margin-top:-2px;
-      opacity:0.7;
-    }
-
-    .dropdown-menu{
-      position:absolute;
-      top:42px;
-      right:0;
-      min-width:220px;
-      background:#fff;
-      border:1px solid rgba(0,0,0,0.08);
-      border-radius:14px;
-      box-shadow:0 18px 55px rgba(3,78,162,0.16);
-      padding:8px;
-      display:none;
-      z-index:1200;
-    }
-
-    .dropdown-menu a{
-      display:block;
-      padding:10px 10px;
-      border-radius:10px;
-      font-weight:700;
-      color:#0f2f62;
-    }
-
-    .dropdown-menu a:hover{
-      background:rgba(3,78,162,0.08);
-    }
-
-    .dropdown-menu a.active{
-      color:var(--brand-blue);
-      background:rgba(3,78,162,0.08);
-    }
-
-    .dropdown.open .dropdown-menu{ display:block; }
 
     /* ===== PAGE ===== */
     .wrap{
@@ -282,156 +145,16 @@
       display:block;
     }
 
-    /* ===== FOOTER ===== */
-    .footer{
-      background:var(--brand-blue);
-      color:#fff;
-      margin-top:30px;
-    }
-
-    .footer-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:28px 18px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:14px;
-      text-align:center;
-    }
-
-    .footer-tagline{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:16px;
-      opacity:.98;
-    }
-
-    .social{
-      display:flex;
-      gap:18px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-
-    .icon-btn{
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      background:var(--brand-blue);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:0 14px 34px rgba(0,0,0,0.35);
-    }
-
-    .icon-btn img{ width:34px; height:34px; }
-
-    footer small{ font-size:13px; opacity:.9; }
-
     /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
-      .topbar-inner{ justify-content:space-between; }
-
-      /* Mobile: two fixed rows (prevents "Trip" stacking over "Builder") */
-      .nav{
-        display:grid;
-        grid-template-columns:repeat(4, max-content);
-        justify-content:center;
-        align-items:center;
-        column-gap:10px;
-        row-gap:10px;
-        white-space:normal;
-      }
-
-      /* Prevent any nav label from breaking to a second line */
-      .nav a,
-      .nav button{
-        white-space:nowrap;
-      }
-
-      /* Row 1: Home - About - Mission - Contact */
-      .nav a.nav-home{ grid-row:1; grid-column:1; }
-      .nav a.nav-about{ grid-row:1; grid-column:2; }
-      .nav a.nav-mission{ grid-row:1; grid-column:3; }
-      .nav a.nav-contact{ grid-row:1; grid-column:4; }
-
-      /* Row 2: Regions - Experiences - Trip Builder */
-      .nav .dd-regions{ grid-row:2; grid-column:1; }
-      .nav .dd-experiences{ grid-row:2; grid-column:2; }
-      .nav a.nav-trip{
-        grid-row:2;
-        grid-column:3;
-        white-space:nowrap; /* extra safety */
-      }
-
-      .dropdown-menu{ right:0; left:auto; }
-    }
-
-    @media(max-width:620px){
-      .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
-      .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- HEADER -->
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="/">
-        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
-        <span>Experience Ecuador</span>
-      </a>
-
-      <!-- Desktop: Home - About - Mission - Regions - Experiences - Trip Builder - Contact
-           Mobile:
-             Row 1: Home - About - Mission - Contact
-             Row 2: Regions - Experiences - Trip Builder
-      -->
-      <nav class="nav" aria-label="Primary navigation">
-        <a class="nav-home" href="/">Home</a>
-        <a class="nav-about" href="/about/">About</a>
-        <a class="nav-mission active" href="/mission/">Mission</a>
-
-        <div class="dropdown dd-regions" id="regionsDropdown">
-          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
-            Regions <span class="caret" aria-hidden="true"></span>
-          </button>
-
-          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
-            <a href="/regions/" role="menuitem">All Regions</a>
-            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
-            <a href="/regions/coast/" role="menuitem">Coast</a>
-            <a href="/regions/andes/" role="menuitem">Andes</a>
-            <a href="/regions/amazon/" role="menuitem">Amazon</a>
-          </div>
-        </div>
-
-        <div class="dropdown dd-experiences" id="experiencesDropdown">
-          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
-            Experiences <span class="caret" aria-hidden="true"></span>
-          </button>
-
-          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
-            <a href="/experiences/" role="menuitem">All Experiences</a>
-            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
-            <a href="/experiences/nature/" role="menuitem">Nature</a>
-            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
-            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
-            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
-            <a href="/experiences/culture/" role="menuitem">Culture</a>
-          </div>
-        </div>
-
-        <a class="nav-trip" href="/trip-builder/">Trip Builder</a>
-        <a class="nav-contact" href="/contact/">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <!-- Global header include -->
+  <div id="siteHeader"></div>
 
   <!-- PAGE CONTENT -->
   <main class="wrap">
@@ -479,70 +202,38 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
-
-      <div class="social">
-        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
-        </a>
-        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
-        </a>
-        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
-        </a>
-        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
-        </a>
-      </div>
-
-      <small>© 2025 Experience Ecuador. All rights reserved.</small>
-    </div>
-  </footer>
+  <!-- Global footer include -->
+  <div id="siteFooter"></div>
 
   <script>
     (function () {
-      const dropdowns = document.querySelectorAll('.dropdown');
+      async function inject(selector, url) {
+        const mount = document.querySelector(selector);
+        if (!mount) return;
 
-      function closeAll() {
-        dropdowns.forEach(dd => {
-          dd.classList.remove('open');
-          const btn = dd.querySelector('.dropbtn');
-          if (btn) btn.setAttribute('aria-expanded', 'false');
+        const res = await fetch(url, { cache: "no-store" });
+        mount.innerHTML = await res.text();
+
+        // Ensure any <script> tags inside the injected HTML run
+        const scripts = mount.querySelectorAll("script");
+        scripts.forEach(oldScript => {
+          const s = document.createElement("script");
+          if (oldScript.src) {
+            s.src = oldScript.src;
+            s.async = oldScript.async || false;
+          } else {
+            s.textContent = oldScript.textContent;
+          }
+          document.body.appendChild(s);
+          oldScript.remove();
         });
       }
 
-      dropdowns.forEach(dd => {
-        const btn = dd.querySelector('.dropbtn');
-        const menu = dd.querySelector('.dropdown-menu');
-        if (!btn) return;
-
-        btn.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-
-          const isOpen = dd.classList.contains('open');
-          closeAll();
-          dd.classList.toggle('open', !isOpen);
-          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
-        });
-
-        if (menu) {
-          menu.addEventListener('click', function (e) {
-            e.stopPropagation();
-          });
-        }
-      });
-
-      document.addEventListener('click', closeAll);
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeAll();
-      });
+      (async function () {
+        await inject("#siteHeader", "/assets/includes/header.html");
+        await inject("#siteFooter", "/assets/includes/footer.html");
+      })();
     })();
   </script>
-
 </body>
 </html>
