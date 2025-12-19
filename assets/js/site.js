@@ -1,241 +1,153 @@
 /* /assets/js/site.js
-   Global header/footer behavior for ExperienceEcuador.com
-   - Works with pages that inject /assets/includes/header.html and footer.html
-   - Binds hamburger + mobile drill-down menus even if header is injected AFTER this script loads
+   Global header behavior for ExperienceEcuador.com
+   Works even when header.html is injected AFTER this script loads.
 */
-
 (function () {
   "use strict";
 
-  // ---------------------------
-  // Small utilities
-  // ---------------------------
-  const $ = (sel, root = document) => root.querySelector(sel);
-  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const HEADER_MOUNT_ID = "siteHeader";
+  const TOGGLE_ID = "eeNavToggle";
 
-  function on(el, evt, fn, opts) {
-    if (!el) return;
-    el.addEventListener(evt, fn, opts || false);
+  function qs(root, sel) {
+    return root ? root.querySelector(sel) : null;
+  }
+  function qsa(root, sel) {
+    return root ? Array.from(root.querySelectorAll(sel)) : [];
   }
 
-  function lockBody(lock) {
-    // Prevent scroll bleed when menu open (mobile)
-    // Use a class so CSS can do the right thing if needed
-    document.documentElement.classList.toggle("menu-open", !!lock);
-    document.body.classList.toggle("menu-open", !!lock);
+  function setBodyLock(locked) {
+    document.documentElement.classList.toggle("nav-open", locked);
+    document.body.style.overflow = locked ? "hidden" : "";
+    document.body.style.touchAction = locked ? "none" : "";
   }
 
-  // ---------------------------
-  // Header behavior (hamburger + drill-down)
-  // ---------------------------
-  function initHeaderBehavior() {
-    const mount = $("#siteHeader");
+  function closeMobile(headerEl) {
+    const toggle = qs(headerEl, `#${TOGGLE_ID}`);
+    if (toggle) toggle.checked = false;
+    setBodyLock(false);
+
+    // Always return to main view on close
+    const panel = qs(headerEl, ".nav-mobile .m-panel");
+    const main = qs(headerEl, ".nav-mobile .m-main");
+    const subs = qsa(headerEl, ".nav-mobile .m-submenu");
+    if (panel && main) {
+      main.hidden = false;
+      subs.forEach((s) => (s.hidden = true));
+    }
+  }
+
+  function openMobile(headerEl) {
+    const toggle = qs(headerEl, `#${TOGGLE_ID}`);
+    if (toggle) toggle.checked = true;
+    setBodyLock(true);
+  }
+
+  function initMobileViews(headerEl) {
+    const main = qs(headerEl, ".nav-mobile .m-main");
+    const subs = qsa(headerEl, ".nav-mobile .m-submenu");
+
+    if (main) main.hidden = false;
+    subs.forEach((s) => (s.hidden = true));
+
+    // MAIN -> SUBMENU
+    qsa(headerEl, ".nav-mobile .m-next").forEach((a) => {
+      a.addEventListener("click", (e) => {
+        const href = a.getAttribute("href") || "";
+        if (!href.startsWith("#")) return;
+
+        e.preventDefault();
+
+        const target = qs(headerEl, href);
+        if (!target) return;
+
+        if (main) main.hidden = true;
+        subs.forEach((s) => (s.hidden = true));
+        target.hidden = false;
+      });
+    });
+
+    // SUBMENU -> MAIN
+    qsa(headerEl, ".nav-mobile .m-back").forEach((a) => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (main) main.hidden = false;
+        subs.forEach((s) => (s.hidden = true));
+      });
+    });
+  }
+
+  function initHeader(headerEl) {
+    if (!headerEl || headerEl.__eeNavInit) return;
+    headerEl.__eeNavInit = true;
+
+    const toggle = qs(headerEl, `#${TOGGLE_ID}`);
+    const toggleBtn = qs(headerEl, `.nav-toggle-btn[for="${TOGGLE_ID}"]`);
+    const mobileNav = qs(headerEl, ".nav.nav-mobile");
+
+    // If the include changed or did not mount correctly, do nothing
+    if (!toggle || !toggleBtn || !mobileNav) return;
+
+    initMobileViews(headerEl);
+
+    // Ensure opening the checkbox locks scroll (CSS-only menus often miss this)
+    toggle.addEventListener("change", () => {
+      if (toggle.checked) openMobile(headerEl);
+      else closeMobile(headerEl);
+    });
+
+    // Close on ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMobile(headerEl);
+    });
+
+    // Close when tapping outside the header
+    document.addEventListener("click", (e) => {
+      if (!toggle.checked) return;
+      const inside = headerEl.contains(e.target);
+      if (!inside) closeMobile(headerEl);
+    });
+
+    // Close after selecting any real link in the mobile menu
+    qsa(headerEl, ".nav.nav-mobile a[href]").forEach((a) => {
+      a.addEventListener("click", () => {
+        const href = a.getAttribute("href") || "";
+        if (href.startsWith("#")) return; // submenu nav stays open
+        closeMobile(headerEl);
+      });
+    });
+
+    // Close if switching to desktop width
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 901) closeMobile(headerEl);
+    });
+  }
+
+  function tryInitFromMount() {
+    const mount = document.getElementById(HEADER_MOUNT_ID);
     if (!mount) return false;
 
-    // Find a header root inside injected markup
-    // Support multiple selector styles to avoid brittle coupling.
-    const headerRoot =
-      $("[data-site-header]", mount) ||
-      $(".site-header", mount) ||
-      $("header", mount) || // NOTE: This is inside injected include, not page-level markup
-      mount;
+    // header include root
+    const headerEl = qs(mount, ".topbar") || qs(mount, "header");
+    if (!headerEl) return false;
 
-    // If nothing injected yet, bail
-    if (!headerRoot || headerRoot === mount) {
-      // mount exists but may still be empty
-      const hasContent = mount.children && mount.children.length > 0;
-      if (!hasContent) return false;
-    }
-
-    // Prevent duplicate binding if init runs multiple times
-    if (headerRoot && headerRoot.__eeBound) return true;
-    if (headerRoot) headerRoot.__eeBound = true;
-
-    // ---- Core elements (flexible selectors) ----
-    const toggle =
-      $("[data-menu-toggle]", headerRoot) ||
-      $(".js-menu-toggle", headerRoot) ||
-      $("#menuToggle", headerRoot) ||
-      $("[aria-controls='mobileMenu']", headerRoot);
-
-    const mobileMenu =
-      $("[data-mobile-menu]", headerRoot) ||
-      $(".js-mobile-menu", headerRoot) ||
-      $("#mobileMenu", headerRoot);
-
-    const overlay =
-      $("[data-menu-overlay]", headerRoot) ||
-      $(".js-menu-overlay", headerRoot) ||
-      $("#mobileMenuOverlay", headerRoot);
-
-    // Panels (main + submenus) for drill-down UX
-    const panelMain =
-      $("[data-menu-panel='main']", headerRoot) ||
-      $(".js-menu-panel-main", headerRoot) ||
-      $("#mobileMenuMain", headerRoot);
-
-    const panelRegions =
-      $("[data-menu-panel='regions']", headerRoot) ||
-      $(".js-menu-panel-regions", headerRoot) ||
-      $("#mobileMenuRegions", headerRoot);
-
-    const panelExperiences =
-      $("[data-menu-panel='experiences']", headerRoot) ||
-      $(".js-menu-panel-experiences", headerRoot) ||
-      $("#mobileMenuExperiences", headerRoot);
-
-    // Triggers for submenus
-    const regionsTrigger =
-      $("[data-open-submenu='regions']", headerRoot) ||
-      $(".js-open-regions", headerRoot) ||
-      $("[data-submenu='regions']", headerRoot);
-
-    const experiencesTrigger =
-      $("[data-open-submenu='experiences']", headerRoot) ||
-      $(".js-open-experiences", headerRoot) ||
-      $("[data-submenu='experiences']", headerRoot);
-
-    // Back actions
-    const backButtons = $$(
-      "[data-menu-back], .js-menu-back, [data-back], .menu-back",
-      headerRoot
-    );
-
-    // Close buttons (optional)
-    const closeButtons = $$(
-      "[data-menu-close], .js-menu-close, .menu-close",
-      headerRoot
-    );
-
-    // If the include uses only desktop nav and no mobile menu, we still mark bound and return.
-    // But hamburger won't exist, which is fine.
-    if (!toggle || !mobileMenu) return true;
-
-    // Accessibility defaults
-    if (!toggle.getAttribute("aria-expanded")) toggle.setAttribute("aria-expanded", "false");
-
-    function showPanel(name) {
-      // If panels exist, switch them, otherwise do nothing.
-      const panels = [panelMain, panelRegions, panelExperiences].filter(Boolean);
-      if (!panels.length) return;
-
-      panels.forEach((p) => p.classList.remove("is-active"));
-      if (name === "regions" && panelRegions) panelRegions.classList.add("is-active");
-      else if (name === "experiences" && panelExperiences) panelExperiences.classList.add("is-active");
-      else if (panelMain) panelMain.classList.add("is-active");
-    }
-
-    function openMenu() {
-      mobileMenu.classList.add("is-open");
-      if (overlay) overlay.classList.add("is-open");
-      toggle.setAttribute("aria-expanded", "true");
-      lockBody(true);
-      showPanel("main");
-    }
-
-    function closeMenu() {
-      mobileMenu.classList.remove("is-open");
-      if (overlay) overlay.classList.remove("is-open");
-      toggle.setAttribute("aria-expanded", "false");
-      lockBody(false);
-      showPanel("main");
-    }
-
-    function isOpen() {
-      return mobileMenu.classList.contains("is-open");
-    }
-
-    // Toggle hamburger
-    on(toggle, "click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      if (isOpen()) closeMenu();
-      else openMenu();
-    });
-
-    // Overlay click closes
-    on(overlay, "click", (e) => {
-      e.preventDefault();
-      closeMenu();
-    });
-
-    // Close buttons (if present)
-    closeButtons.forEach((btn) => {
-      on(btn, "click", (e) => {
-        e.preventDefault();
-        closeMenu();
-      });
-    });
-
-    // Drill-down open
-    on(regionsTrigger, "click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      showPanel("regions");
-    });
-
-    on(experiencesTrigger, "click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      showPanel("experiences");
-    });
-
-    // Back buttons go to main
-    backButtons.forEach((btn) => {
-      on(btn, "click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        showPanel("main");
-      });
-    });
-
-    // ESC closes
-    on(document, "keydown", (e) => {
-      if (e.key === "Escape") closeMenu();
-    });
-
-    // Click outside closes (only when open)
-    on(document, "click", (e) => {
-      if (!isOpen()) return;
-      const target = e.target;
-      if (!target) return;
-      if (mobileMenu.contains(target) || toggle.contains(target)) return;
-      closeMenu();
-    });
-
-    // If user rotates / resizes to desktop, ensure body unlock
-    on(window, "resize", () => {
-      if (!isOpen()) return;
-      // If the menu becomes irrelevant (desktop), just unlock scrolling safely.
-      // Keep menu open state as-is; CSS can decide visibility.
-      lockBody(true);
-    });
-
+    initHeader(headerEl);
     return true;
   }
 
-  // ---------------------------
-  // Ensure init runs AFTER injection
-  // ---------------------------
-  function boot() {
-    // Try immediately
-    initHeaderBehavior();
+  // 1) Try immediately (for pages where header is already in DOM)
+  tryInitFromMount();
 
-    // Observe header mount for injected content changes
-    const mount = document.getElementById("siteHeader");
-    if (!mount) return;
-
-    const obs = new MutationObserver(() => {
-      // Try to init whenever content changes
-      initHeaderBehavior();
+  // 2) Observe the mount, because your pages inject header AFTER site.js loads
+  const mount = document.getElementById(HEADER_MOUNT_ID);
+  if (mount) {
+    const mo = new MutationObserver(() => {
+      if (tryInitFromMount()) mo.disconnect();
     });
-
-    obs.observe(mount, { childList: true, subtree: true });
+    mo.observe(mount, { childList: true, subtree: true });
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", boot);
-  } else {
-    boot();
-  }
+  // 3) Safety: if something injects later than expected, try again after load
+  window.addEventListener("load", () => {
+    tryInitFromMount();
+  });
 })();
