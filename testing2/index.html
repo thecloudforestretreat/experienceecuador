@@ -30,72 +30,61 @@
       -webkit-text-decoration: none !important;
     }
 
-    /* 2) MOBILE: enforce two rows and TRUE even spacing across full width
-       Top row: Home - About - Mission - Contact (each = 25%)
-       Bottom row: Regions - Experiences - Trip Builder (each = 33.333%)
-    */
+    /* 2) MOBILE: make nav span FULL available width and evenly distribute items in 2 rows */
     @media (max-width: 620px){
-      /* Make the nav a wrapping flex row so spacing is mathematically even */
+      /* Critical: stretch inner container so nav can be full-width (fixes “not evenly spaced”) */
+      .topbar .topbar-inner{
+        align-items: stretch !important;
+      }
+
+      /* Keep brand centered, but allow nav to stretch */
+      .topbar .brand{
+        justify-content: center;
+      }
+
+      /* Two-row grid with precise column math */
       .topbar .nav{
         width: 100% !important;
-        display: flex !important;
-        flex-wrap: wrap !important;
-        row-gap: 10px;
-        column-gap: 0px;
-        justify-content: space-between; /* edges align cleanly */
+        display: grid !important;
+        grid-template-columns: repeat(12, 1fr) !important;
+        grid-auto-rows: auto;
+        gap: 10px 8px;
         align-items: center;
+        justify-items: stretch; /* each cell fills its column width */
         white-space: normal;
       }
 
-      /* Remove any leftover gaps/margins that can distort spacing */
-      .topbar .nav > *{
+      /* Make each direct item fill its grid cell */
+      .topbar .nav > a,
+      .topbar .nav > .dropdown{
+        width: 100% !important;
         margin: 0 !important;
       }
 
-      /* Each nav item becomes a full-width tap target INSIDE its fixed column */
+      /* Center labels inside each cell */
       .topbar .nav a,
       .topbar .nav button{
+        width: 100% !important;
         display: flex !important;
         align-items: center;
         justify-content: center !important;
-        width: 100% !important;
         padding: 10px 8px !important;
         border-radius: 10px;
         line-height: 1;
         white-space: nowrap; /* keeps “Trip Builder” on one line */
       }
 
-      /* Dropdown wrapper should behave like a normal “cell” */
-      .topbar .nav .dropdown{
-        display: block !important;
-        width: 100% !important;
-      }
+      /* --- Slot layout (Top row 4 x 3 cols, Bottom row 3 x 4 cols) --- */
+      .topbar .nav > [data-slot="home"]{ grid-column: 1 / 4;  grid-row: 1; }
+      .topbar .nav > [data-slot="about"]{ grid-column: 4 / 7;  grid-row: 1; }
+      .topbar .nav > [data-slot="mission"]{ grid-column: 7 / 10; grid-row: 1; }
+      .topbar .nav > [data-slot="contact"]{ grid-column: 10 / 13; grid-row: 1; }
 
-      /* Top row (4 items) */
-      .topbar .nav > [data-slot="home"],
-      .topbar .nav > [data-slot="about"],
-      .topbar .nav > [data-slot="mission"],
-      .topbar .nav > [data-slot="contact"]{
-        flex: 0 0 25%;
-      }
+      .topbar .nav > [data-slot="regions"]{ grid-column: 1 / 5;  grid-row: 2; }
+      .topbar .nav > [data-slot="experiences"]{ grid-column: 5 / 9; grid-row: 2; }
+      .topbar .nav > [data-slot="trip"]{ grid-column: 9 / 13; grid-row: 2; }
 
-      /* Bottom row (3 items) */
-      .topbar .nav > [data-slot="regions"],
-      .topbar .nav > [data-slot="experiences"],
-      .topbar .nav > [data-slot="trip"]{
-        flex: 0 0 33.3333%;
-      }
-
-      /* Ensure order is locked even if header markup changes */
-      .topbar .nav > [data-slot="home"]{ order: 1; }
-      .topbar .nav > [data-slot="about"]{ order: 2; }
-      .topbar .nav > [data-slot="mission"]{ order: 3; }
-      .topbar .nav > [data-slot="contact"]{ order: 4; }
-      .topbar .nav > [data-slot="regions"]{ order: 5; }
-      .topbar .nav > [data-slot="experiences"]{ order: 6; }
-      .topbar .nav > [data-slot="trip"]{ order: 7; }
-
-      /* Keep dropdown menus inside viewport on mobile */
+      /* Keep dropdown menus inside the viewport on mobile */
       .topbar .dropdown-menu{
         left: 50% !important;
         right: auto !important;
@@ -161,6 +150,41 @@
 
       const res = await fetch('/assets/includes/header.html', { cache: 'no-store' });
       mount.innerHTML = await res.text();
+
+      // Ensure mobile layout CSS can target the correct items even if header.html
+      // does NOT already include data-slot attributes.
+      function applyNavSlots(){
+        const nav = document.querySelector('.topbar .nav');
+        if(!nav) return;
+
+        const children = Array.from(nav.children);
+
+        children.forEach(el => {
+          // Clear any previous slot to avoid duplicates
+          if (el.hasAttribute('data-slot')) el.removeAttribute('data-slot');
+
+          // Direct links
+          if (el.tagName === 'A') {
+            const t = (el.textContent || '').trim().toLowerCase();
+            if (t === 'home') el.setAttribute('data-slot','home');
+            else if (t === 'about') el.setAttribute('data-slot','about');
+            else if (t === 'mission') el.setAttribute('data-slot','mission');
+            else if (t === 'contact') el.setAttribute('data-slot','contact');
+            else if (t === 'trip builder') el.setAttribute('data-slot','trip');
+            return;
+          }
+
+          // Dropdowns (Regions / Experiences)
+          if (el.classList && el.classList.contains('dropdown')) {
+            const btn = el.querySelector('.dropbtn');
+            const bt = btn ? (btn.textContent || '').trim().toLowerCase() : '';
+            if (bt.includes('regions')) el.setAttribute('data-slot','regions');
+            else if (bt.includes('experiences')) el.setAttribute('data-slot','experiences');
+          }
+        });
+      }
+
+      applyNavSlots();
 
       // Load the shared JS AFTER header is injected so listeners bind correctly
       const s = document.createElement('script');
