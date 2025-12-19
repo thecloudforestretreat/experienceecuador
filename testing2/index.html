@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trip Builder | Experience Ecuador</title>
+  <title>About | Experience Ecuador</title>
 
   <!-- Favicons -->
   <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
@@ -22,7 +22,6 @@
       --brand-blue:#034EA2;
       --charcoal:#1F1F1F;
       --slate:#6E7B8B;
-      --soft:#f6f8fb;
     }
 
     *{box-sizing:border-box}
@@ -30,11 +29,11 @@
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--charcoal);
-      background:var(--soft);
+      background:linear-gradient(180deg,#ffffff 0%, #f6f8fb 100%);
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
     /* ===== HEADER ===== */
     .topbar{
@@ -64,14 +63,14 @@
       gap:10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
+      letter-spacing:-0.02em;
       color:var(--brand-blue);
       font-size:18px;
-      white-space:nowrap;
-      letter-spacing:-0.02em;
       line-height:1;
+      white-space:nowrap;
     }
 
-    .brand img{width:28px;height:28px;object-fit:contain}
+    .brand img{ width:28px; height:28px; object-fit:contain; }
 
     /* ===== NAV ===== */
     .nav{
@@ -83,6 +82,7 @@
       color:#0f2f62;
       white-space:nowrap;
       overflow:visible;
+      flex-wrap:nowrap; /* desktop = one row */
     }
 
     .nav a,
@@ -98,11 +98,14 @@
     }
 
     .nav a:hover,
-    .nav button:hover{
+    .nav button:hover{ background:rgba(3,78,162,0.08); }
+
+    .nav a.active{
+      color:var(--brand-blue);
       background:rgba(3,78,162,0.08);
     }
 
-    /* Dropdown (nav) */
+    /* Dropdown */
     .dropdown{
       position:relative;
       display:inline-flex;
@@ -126,11 +129,12 @@
     .caret{
       width:10px;
       height:10px;
+      display:inline-block;
       border-right:2px solid currentColor;
       border-bottom:2px solid currentColor;
       transform:rotate(45deg);
       margin-top:-2px;
-      opacity:.7;
+      opacity:0.7;
     }
 
     .dropdown-menu{
@@ -157,1529 +161,591 @@
       color:#0f2f62;
     }
 
-    .dropdown-menu a:hover{background:rgba(3,78,162,0.08)}
+    .dropdown-menu a:hover{ background:rgba(3,78,162,0.08); }
 
-    /* ===== HERO ===== */
-    .hero{
-      position:relative;
-      max-width:1100px;
-      margin:0 auto;
-      padding:22px 18px 12px;
+    .dropdown-menu a.active{
+      color:var(--brand-blue);
+      background:rgba(3,78,162,0.08);
     }
 
-    .hero-banner{
-      position:relative;
-      border-radius:24px;
-      overflow:hidden;
-      box-shadow:0 22px 60px rgba(0,0,0,0.18);
-      min-height:320px;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)),
-        url("/assets/images/EE-Assets-55-Hero-Trip-builder.jpg") center/cover no-repeat;
-    }
-
-    .hero-content{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:flex-end;
-      padding:22px;
-    }
-
-    .hero-title{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:clamp(34px,4.6vw,54px);
-      letter-spacing:-0.03em;
-      color:#fff;
-      margin:0;
-      line-height:1.05;
-      text-shadow:0 10px 30px rgba(0,0,0,0.35);
-    }
-
-    /* ===== WRAP ===== */
+    /* ===== PAGE ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:0 18px 60px;
+      padding:42px 18px 0;
+    }
+
+    .hero h1{
+      font-family:Montserrat,Inter,sans-serif;
+      font-size:clamp(36px,4.5vw,56px);
+      font-weight:800;
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
+      color:var(--brand-blue);
+    }
+
+    .hero p{
+      max-width:72ch;
+      color:var(--slate);
+      font-size:17px;
+      line-height:1.65;
+      margin:0;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:28px;
+      padding:36px 0 18px;
+      align-items:center;
     }
 
     .card{
       background:#fff;
       border-radius:22px;
-      padding:22px;
+      padding:26px;
       border:1px solid rgba(0,0,0,0.06);
       box-shadow:0 18px 55px rgba(3,78,162,0.12);
-      min-width:0;
     }
 
     .card h2{
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
+      margin:0 0 12px;
       font-size:22px;
-      margin:0 0 10px;
-      color:var(--brand-blue);
+      color:#0f2f62;
       letter-spacing:-0.02em;
     }
 
     .card p{
-      margin:0;
       line-height:1.75;
-      font-size:15.8px;
+      font-size:15.5px;
+      margin:0;
       color:#2a2f36;
-      max-width:90ch;
     }
 
-    .section-title{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:24px;
-      margin:0 0 14px;
-      color:var(--brand-blue);
-      letter-spacing:-0.02em;
-    }
-
-    /* ===== BUILDER + FLIGHTS LAYOUT (DESKTOP) ===== */
-    .builder-layout{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: 3fr 1fr;
-      gap:14px;
-      align-items:stretch;
-    }
-
-    .builder-card,
-    .flights-card{
-      height:100%;
+    .stack{
       display:flex;
       flex-direction:column;
-      min-width:0;
+      gap:20px;
+      justify-content:center;
     }
 
-    /* ===== BUILDER CARD ===== */
-    .builder-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-    }
-
-    .controls-grid{
-      display:grid;
-      grid-template-columns:auto 260px;
-      gap:10px 12px;
-      align-items:center;
-    }
-
-    .controls-grid label{
-      font-weight:800;
-      color:#0f2f62;
-      font-size:13px;
-      letter-spacing:0.02em;
-      text-align:left;
-    }
-
-    .controls-grid select{
-      appearance:none;
-      -webkit-appearance:none;
-      -moz-appearance:none;
-      border:1px solid rgba(3,78,162,0.22);
-      background:#fff;
-      color:#0f2f62;
-      font-weight:700;
-      padding:11px 42px 11px 12px;
-      border-radius:14px;
-      font-size:14px;
-      cursor:pointer;
-      outline:none;
-      min-width:0;
-      width:260px;
-      box-shadow:0 14px 30px rgba(3,78,162,0.10);
-      background-image:
-        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
-        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
-        linear-gradient(to right, transparent, transparent);
-      background-position:
-        calc(100% - 18px) 50%,
-        calc(100% - 12px) 50%,
-        0 0;
-      background-size:6px 6px, 6px 6px, 100% 100%;
-      background-repeat:no-repeat;
-    }
-
-    .controls-grid select:focus{
-      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
-      border-color:rgba(3,78,162,0.45);
-    }
-
-    .pill-row{
-      margin-top:14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .pill{
-      border:1px solid rgba(3,78,162,0.16);
+    .mini{
       background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      color:#0f2f62;
-      padding:10px 12px;
-      border-radius:999px;
-      font-weight:800;
-      font-size:13px;
-      cursor:pointer;
-      user-select:none;
-      max-width:100%;
+      border-radius:20px;
+      padding:20px;
+      border:1px solid rgba(3,78,162,0.12);
     }
 
-    .pill[aria-pressed="true"]{
-      background:rgba(3,78,162,0.12);
-      border-color:rgba(3,78,162,0.28);
-      box-shadow:0 12px 26px rgba(3,78,162,0.10);
-    }
-
-    .pill-row.experiences-grid{
-      display:grid;
-      grid-template-columns:repeat(3, max-content);
-      gap:10px 12px;
-      align-items:start;
-      justify-content:start;
-    }
-
-    .region-hint{
-      margin-top:10px;
-      color:#24324a;
-      opacity:.95;
-      font-size:14.6px;
-      line-height:1.55;
-      white-space:normal;
-      overflow-wrap:anywhere;
-      word-break:break-word;
-      max-width:100%;
-    }
-
-    .regions-tip{
-      margin-top:8px;
-      color:#24324a;
-      opacity:.95;
-      font-size:13.2px;
-      line-height:1.45;
-      max-width:90ch;
-    }
-
-    .actions{
-      margin-top:18px;
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      border:1px solid rgba(3,78,162,0.22);
-      background:#fff;
-      color:#0f2f62;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      font-weight:900;
-      padding:12px 14px;
-      border-radius:16px;
-      cursor:pointer;
-      box-shadow:0 14px 30px rgba(3,78,162,0.10);
-      letter-spacing:-0.01em;
-    }
-
-    .btn.primary{
-      background:var(--brand-blue);
-      color:#fff;
-      border-color:rgba(3,78,162,0.35);
-    }
-
-    .btn:disabled{
-      opacity:.6;
-      cursor:not-allowed;
-    }
-
-    /* ===== FLIGHTS BOX ===== */
-    .mini-title{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:24px; /* match "Your suggested itinerary" */
-      margin:0 0 12px;
-      color:var(--brand-blue); /* #034EA2 */
-      letter-spacing:-0.02em;
-      text-transform:none;
-    }
-
-    .mini-grid{
-      display:grid;
-      grid-template-columns:auto 1fr;
-      gap:10px 10px;
-      align-items:center;
-      width:100%;
-      max-width:100%;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-
-    .mini-grid > *{ min-width:0; }
-
-    .mini-grid label{
-      font-weight:800;
-      color:#0f2f62;
-      font-size:13px;
-      letter-spacing:0.02em;
-      white-space:nowrap;
-      text-align:left;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-
-    .mini-grid input,
-    .mini-grid select{
-      display:block;
-      width:100%;
-      max-width:100%;
-      min-width:0;
-      border:1px solid rgba(3,78,162,0.22);
-      background:#fff;
-      color:#0f2f62;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      font-weight:700;
-      padding:10px 12px;
-      border-radius:14px;
-      font-size:14px;
-      outline:none;
-      box-shadow:0 14px 30px rgba(3,78,162,0.10);
-      height:44px;            /* keep From, To, Depart, Return same dimensions */
-      line-height:22px;
-    }
-
-    .mini-grid input[type="date"]{
-      -webkit-appearance:none;
-      appearance:none;
-      width:100%;
-      max-width:100%;
-      min-width:0;
-      height:44px;            /* ensure date controls match */
-    }
-
-    .mini-grid input:focus,
-    .mini-grid select:focus{
-      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
-      border-color:rgba(3,78,162,0.45);
-    }
-
-    .mini-actions{
-      margin-top:12px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
-    .mini-hint{
-      margin-top:12px;
-      color:#24324a;
-      opacity:.95;
-      font-size:13.6px;
-      line-height:1.45;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-
-    .mini-link{
-      color:#0f2f62;
-      font-weight:900;
-      text-decoration:underline;
-      text-underline-offset:3px;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-
-    /* ===== ITINERARY OUTPUT ===== */
-    .itinerary{
-      margin-top:16px;
-    }
-
-    .itinerary-shell{
-      margin-top:12px;
-      background:#fff;
-      border-radius:22px;
-      padding:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
-      min-height:140px;
-      min-width:0;
-    }
-
-    .itinerary-shell .hint{ margin-top:0; }
-
-    .day-card{
-      border-radius:18px;
-      border:1px solid rgba(0,0,0,0.06);
-      background:#fff;
-      padding:16px;
-      box-shadow:0 14px 34px rgba(3,78,162,0.10);
-    }
-    .day-card + .day-card{ margin-top:12px; }
-
-    .day-title{
+    .mini h3{
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       margin:0 0 8px;
       color:#0f2f62;
-      letter-spacing:-0.02em;
-      font-size:18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
+      font-size:16px;
+      letter-spacing:-0.01em;
     }
 
-    .tag{
-      font-size:12px;
-      font-weight:900;
-      color:#0f2f62;
-      background:rgba(3,78,162,0.10);
-      border:1px solid rgba(3,78,162,0.18);
-      padding:6px 10px;
-      border-radius:999px;
-      white-space:nowrap;
-    }
-
-    .slot{
-      margin-top:10px;
-      padding:12px;
-      border-radius:14px;
-      background:linear-gradient(180deg, rgba(3,78,162,0.05), rgba(3,78,162,0.02));
-      border:1px solid rgba(3,78,162,0.12);
-    }
-
-    .slot h4{
-      margin:0 0 6px;
-      font-weight:900;
-      color:#0f2f62;
-      font-size:13px;
-      letter-spacing:0.02em;
-      text-transform:uppercase;
-    }
-
-    .slot .title{
-      font-weight:900;
-      color:#0f2f62;
-      margin:0 0 4px;
-    }
-
-    .slot .meta{
-      color:#24324a;
-      opacity:.95;
-      font-size:14px;
-      line-height:1.55;
+    .mini ul{
       margin:0;
+      padding-left:18px;
+      line-height:1.7;
+      font-size:14.5px;
+      color:#24324a;
     }
 
-    .hint{
-      margin-top:10px;
-      color:#24324a;
-      opacity:.95;
-      font-size:14.6px;
-      line-height:1.6;
+    .break{
+      margin:18px 0 40px;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 60px rgba(0,0,0,0.14);
+      background:transparent;
+    }
+
+    .break img{
+      width:100%;
+      height:auto;
+      display:block;
+      user-select:none;
+      pointer-events:none;
     }
 
     /* ===== FOOTER ===== */
     .footer{
       background:var(--brand-blue);
       color:#fff;
-      margin-top:54px;
+      margin-top:30px;
     }
 
     .footer-inner{
       max-width:1100px;
       margin:0 auto;
-      padding:28px 18px;
-      text-align:center;
+      padding:22px 18px 18px;
     }
 
-    .footer-tagline{
+    /* Row 1: left signup | right socials */
+    .footer-top{
+      display:grid;
+      grid-template-columns: 1fr auto;
+      align-items:start;
+      gap:18px;
+    }
+
+    /* LEFT: signup */
+    .ee-signup{
+      justify-self:start;
+      width:min(520px, 100%);
+    }
+
+    .ee-signup-title{
+      margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      margin-bottom:16px;
+      letter-spacing:-0.02em;
+      font-size:15.5px;
+      line-height:1.2;
+      opacity:0.98;
+      text-align:left;
     }
 
-    .social{
+    .ee-signup-form{
       display:flex;
-      justify-content:center;
-      gap:18px;
-      flex-wrap:wrap;
-      margin-bottom:12px;
+      flex-direction:column;
+      gap:10px;
+      align-items:flex-start;
+    }
+
+    .ee-row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-start;
+      flex-wrap:nowrap;
+    }
+
+    .ee-row .w-sm{ width:150px; }
+    .ee-row .w-email{ width:210px; }
+    .ee-row .w-btn{ width:90px; }
+
+    .ee-signup-form input{
+      border:1px solid rgba(255,255,255,0.38);
+      background:#ffffff;
+      color:var(--brand-blue);
+      border-radius:12px;
+      padding:8px 10px;
+      font-size:13.25px;
+      outline:none;
+      height:34px;
+    }
+
+    .ee-signup-form input::placeholder{ color:rgba(3,78,162,0.70); }
+
+    .ee-signup-form button{
+      border:0;
+      border-radius:12px;
+      padding:8px 12px;
+      font-weight:800;
+      cursor:pointer;
+      color:var(--brand-blue);
+      background:#ffffff;
+      font-size:13.25px;
+      height:34px;
+      white-space:nowrap;
+    }
+
+    .ee-signup-status{
+      font-size:12.5px;
+      opacity:0.95;
+      min-height:16px;
+      width:100%;
+    }
+
+    .ee-hp{ display:none !important; }
+
+    /* RIGHT: socials */
+    .social{
+      justify-self:end;
+      display:flex;
+      flex-direction:row;
+      gap:12px;
+      align-items:center;
+      justify-content:flex-end;
+      flex-wrap:nowrap;
+      margin-top:2px;
     }
 
     .icon-btn{
-      width:64px;
-      height:64px;
+      width:56px;
+      height:56px;
       border-radius:50%;
       background:var(--brand-blue);
       display:flex;
       align-items:center;
       justify-content:center;
       box-shadow:0 14px 34px rgba(0,0,0,0.35);
+      transition:transform 0.18s ease, box-shadow 0.18s ease;
     }
 
-    .icon-btn img{width:34px;height:34px}
-    footer small{font-size:13px;opacity:.9}
+    .icon-btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 18px 44px rgba(0,0,0,0.40);
+    }
 
-    /* ===== MOBILE: stack layout + reorder sections via markup (itinerary above flights) ===== */
+    .icon-btn img{ width:30px; height:30px; }
+
+    /* Row 2: centered tagline + centered copyright under it */
+    .footer-center{
+      margin-top:14px;
+      text-align:center;
+    }
+
+    .footer-tagline{
+      margin:0 0 6px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      opacity:0.98;
+      line-height:1.25;
+    }
+
+    .footer-center small{
+      font-size:12.5px;
+      opacity:0.90;
+    }
+
+    /* ===== MOBILE ===== */
     @media(max-width:900px){
-      .nav{gap:8px;flex-wrap:wrap;justify-content:center}
-      .hero-banner{min-height:290px}
+      .grid{ grid-template-columns:1fr; }
 
-      .builder-layout{
+      /* Mobile: 2 rows with explicit order */
+      .nav{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:8px;
+      }
+
+      /* Row 1: Home, About, Mission, Contact */
+      .nav a.nav-home{ order:1; }
+      .nav a.nav-about{ order:2; }
+      .nav a.nav-mission{ order:3; }
+      .nav a.nav-contact{ order:4; }
+
+      /* Row 2: Regions, Experiences, Trip Builder */
+      .nav .dd-regions{ order:5; }
+      .nav .dd-experiences{ order:6; }
+      .nav a.nav-trip{ order:7; }
+
+      /* Force wrap break between row 1 and row 2 */
+      .nav .nav-break{
+        order:4.5;
+        flex-basis:100%;
+        height:0;
+        padding:0;
+        margin:0;
+      }
+
+      .footer-top{
         grid-template-columns:1fr;
+        justify-items:center;
         gap:14px;
       }
 
-      #flightsDesktop{ display:none !important; }
+      .ee-signup{ width:100%; }
+      .ee-signup-form{ align-items:stretch; }
 
-      #flightsMobile{
-        display:block !important;
+      .ee-row{
         width:100%;
-        max-width:100%;
-        margin:14px 0 0;
+        flex-wrap:wrap;
       }
 
-      .controls-grid{ grid-template-columns:1fr; }
-      .controls-grid select{ width:100%; }
-
-      .mini-grid{ grid-template-columns:1fr; }
-      .mini-actions{ justify-content:flex-start; }
-
-      .itinerary-shell{
-        padding:18px;
-        min-height:130px;
-      }
-
-      .pill-row.experiences-grid{
-        grid-template-columns:repeat(2, 1fr);
-      }
-      .pill-row.experiences-grid .pill{
+      .ee-row .w-sm,
+      .ee-row .w-email,
+      .ee-row .w-btn{
         width:100%;
-        text-align:center;
       }
 
-      /* Regions pills: full width across, 4 columns, aligned with Experiences container */
-      #regionsPills{
-        display:grid;
-        grid-template-columns:repeat(4, 1fr);
-        gap:10px;
-        margin-top:14px;
-      }
-      #regionsPills .pill{
-        width:100%;
-        text-align:center;
-        white-space:nowrap;
-      }
-    }
-
-    @media(min-width:901px){
-      .flights-card .mini-actions{
-        justify-content:center;
+      .social{
+        justify-self:center;
+        flex-wrap:wrap;
       }
     }
 
     @media(max-width:620px){
-      .topbar-inner{flex-direction:column;gap:10px}
-      .dropdown-menu{
-        right:auto;
-        left:50%;
-        transform:translateX(-50%);
-      }
-      .hero-content{padding:16px}
-
-      .pill-row.experiences-grid{ grid-template-columns:1fr; }
-
-      /* Keep regions in one row on small screens too */
-      #regionsPills{
-        grid-template-columns:repeat(4, 1fr);
-        gap:8px;
-      }
-      #regionsPills .pill{
-        padding:10px 8px;
-        font-size:12.5px;
-      }
+      .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
+      .nav{ justify-content:center; }
+      .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
     }
   </style>
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="/">
-      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
-      <span>Experience Ecuador</span>
-    </a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
+        <span>Experience Ecuador</span>
+      </a>
 
-    <nav class="nav" aria-label="Primary navigation">
-      <a href="/">Home</a>
-      <a href="/about/">About</a>
-      <a href="/mission/">Mission</a>
+      <!-- Updated menu:
+           Desktop (one row): Home - About - Mission - Regions - Experiences - Trip Builder - Contact
+           Mobile (two rows): Row1 Home About Mission Contact | Row2 Regions Experiences Trip Builder
+      -->
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="nav-home" href="/">Home</a>
+        <a class="nav-about active" href="/about/">About</a>
+        <a class="nav-mission" href="/mission/">Mission</a>
 
-      <div class="dropdown" id="regionsDropdown">
-        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
-          Regions <span class="caret" aria-hidden="true"></span>
-        </button>
-        <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
-          <a href="/regions/" role="menuitem">All Regions</a>
-          <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
-          <a href="/regions/coast/" role="menuitem">Coast</a>
-          <a href="/regions/andes/" role="menuitem">Andes</a>
-          <a href="/regions/amazon/" role="menuitem">Amazon</a>
+        <span class="nav-break" aria-hidden="true"></span>
+
+        <div class="dropdown dd-regions" id="regionsDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
+            Regions <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+            <a href="/regions/" role="menuitem">All Regions</a>
+            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
+            <a href="/regions/coast/" role="menuitem">Coast</a>
+            <a href="/regions/andes/" role="menuitem">Andes</a>
+            <a href="/regions/amazon/" role="menuitem">Amazon</a>
+          </div>
         </div>
-      </div>
 
-      <div class="dropdown" id="experiencesDropdown">
-        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
-          Experiences <span class="caret" aria-hidden="true"></span>
-        </button>
-        <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
-          <a href="/experiences/" role="menuitem">All Experiences</a>
-          <a href="/experiences/adventure/" role="menuitem">Adventure</a>
-          <a href="/experiences/nature/" role="menuitem">Nature</a>
-          <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
-          <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
-          <a href="/experiences/culinary/" role="menuitem">Culinary</a>
-          <a href="/experiences/culture/" role="menuitem">Culture</a>
+        <div class="dropdown dd-experiences" id="experiencesDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+            Experiences <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+            <a href="/experiences/" role="menuitem">All Experiences</a>
+            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+            <a href="/experiences/nature/" role="menuitem">Nature</a>
+            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+            <a href="/experiences/culture/" role="menuitem">Culture</a>
+          </div>
         </div>
-      </div>
 
-      <a href="/contact/">Contact</a>
-    </nav>
-  </div>
-</header>
+        <!-- Trip Builder added -->
+        <a class="nav-trip" href="/trip-builder/">Trip Builder</a>
 
-<section class="hero" aria-label="Trip Builder hero">
-  <div class="hero-banner" role="img" aria-label="Trip Builder hero image placeholder">
-    <div class="hero-content">
-      <div>
-        <h1 class="hero-title">Trip Builder</h1>
-      </div>
+        <!-- Contact moved to end on desktop, but stays in row 1 on mobile via ordering -->
+        <a class="nav-contact" href="/contact/">Contact</a>
+      </nav>
     </div>
-  </div>
-</section>
+  </header>
 
-<main class="wrap">
-
-  <section class="builder-layout" aria-label="Trip builder and flights">
-    <section class="card builder-card" aria-label="Trip builder wizard">
-      <h2 style="margin-bottom:10px;">Build a custom Ecuador itinerary</h2>
+  <main class="wrap">
+    <section class="hero">
+      <h1>About Experience Ecuador</h1>
       <p>
-        Choose your trip length, regions, and experiences. Then generate a suggested itinerary you can customize.
-        This version is rules-based and runs entirely in your browser.
+        Experience Ecuador is being built as a one stop hub for travel ideas, local highlights,
+        and curated journeys across the country. From relaxation to adventure, culinary to cultural,
+        the goal is simple: help travelers discover Ecuador with clarity and confidence.
       </p>
+    </section>
 
-      <div class="builder-top" style="margin-top:14px;">
-        <div class="controls-grid" aria-label="Builder controls">
-          <label for="daysSelect">Number of days</label>
-          <select id="daysSelect"></select>
+    <section class="grid">
+      <div class="card">
+        <h2>What we are building</h2>
+        <p>
+          A thoughtfully curated platform that helps you explore Ecuador by region and by experience.
+          We want to make it easy to discover what to do, where to stay, how to plan, and what is worth your time.
+          Over time, this grows into a community and a digital newsletter where trusted local partners can showcase what they offer.
+        </p>
+      </div>
+
+      <div class="stack">
+        <div class="mini">
+          <h3>Built for travelers like you</h3>
+          <ul>
+            <li>International visitors looking for guidance and planning</li>
+            <li>Domestic travelers seeking weekend getaways</li>
+            <li>Eco tourists, birders, nomads, and adventure lovers</li>
+            <li>Retreat guests, food lovers, and culture seekers</li>
+          </ul>
         </div>
-      </div>
 
-      <div style="margin-top:16px;">
-        <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick regions</div>
-
-        <div class="regions-tip">
-          Tip: If you select multiple regions, the tool will automatically split days and add lighter transfer-friendly pacing.
+        <div class="mini">
+          <h3>What to expect next</h3>
+          <ul>
+            <li>Regional hubs: Galapagos, Coast, Andes, Amazon</li>
+            <li>Experience categories: relaxation, adventure, nature, culinary, culture</li>
+            <li>Newsletter highlights and featured partners</li>
+          </ul>
         </div>
-
-        <div class="pill-row" id="regionsPills" aria-label="Region selection"></div>
-        <div class="region-hint" id="regionHint"></div>
-      </div>
-
-      <div style="margin-top:18px;">
-        <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick experiences</div>
-        <div class="pill-row experiences-grid" id="experiencesPills" aria-label="Experience selection"></div>
-      </div>
-
-      <div class="actions">
-        <button class="btn primary" id="generateBtn" type="button" disabled>Generate itinerary</button>
-        <button class="btn" id="resetBtn" type="button">Reset</button>
       </div>
     </section>
 
-    <aside class="card flights-card" id="flightsDesktop" aria-label="Flights (desktop)">
-      <p class="mini-title">Flights</p>
+    <section class="break" aria-label="About image">
+      <img src="/assets/images/EE-About-02.jpg" alt="Ecuador inspiration">
+    </section>
+  </main>
 
-      <div class="mini-grid">
-        <label for="flightFromDesktop">From</label>
-        <input id="flightFromDesktop" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
+  <footer class="footer">
+    <div class="footer-inner">
 
-        <label for="flightToDesktop">To</label>
-        <select id="flightToDesktop" aria-label="Destination airport">
-          <option value="UIO">Quito (UIO)</option>
-          <option value="GYE">Guayaquil (GYE)</option>
-          <option value="GPS">Galapagos (GPS)</option>
-          <option value="CUE">Cuenca (CUE)</option>
-        </select>
+      <div class="footer-top">
 
-        <label for="flightDepartDesktop">Depart</label>
-        <input id="flightDepartDesktop" type="date">
+        <!-- LEFT: Newsletter -->
+        <section class="ee-signup" aria-label="Newsletter signup">
+          <div class="ee-signup-title">Get insider access to Experience Ecuador</div>
 
-        <label for="flightReturnDesktop">Return</label>
-        <input id="flightReturnDesktop" type="date">
+          <form
+            class="ee-signup-form"
+            id="ee_signup_form"
+            action="https://script.google.com/macros/s/AKfycbw-BhL_3ImqpIwX4DuXVoQCDKKkiQ_CcOipP0wyCUdljAX0F9YkmfToCb6YbHGW0SQoxA/exec"
+            method="post"
+            target="ee_signup_iframe"
+            autocomplete="on"
+          >
+            <!-- Row A: First + Last -->
+            <div class="ee-row">
+              <input class="w-sm" name="first_name" type="text" placeholder="First Name" />
+              <input class="w-sm" name="last_name" type="text" placeholder="Last Name" />
+            </div>
+
+            <!-- Row B: Email + Sign up (same block width as Row A) -->
+            <div class="ee-row">
+              <input class="w-email" name="email" type="email" placeholder="Email Address" required />
+              <button class="w-btn" type="submit" id="ee_signup_btn">Sign Up</button>
+            </div>
+
+            <!-- Honeypot field -->
+            <input class="ee-hp" name="company" type="text" tabindex="-1" autocomplete="off" />
+
+            <!-- Source page -->
+            <input name="source_page" type="hidden" id="ee_source_page" value="" />
+
+            <div class="ee-signup-status" id="ee_signup_status" role="status" aria-live="polite"></div>
+          </form>
+
+          <iframe name="ee_signup_iframe" style="display:none;"></iframe>
+        </section>
+
+        <!-- RIGHT: Socials -->
+        <div class="social" aria-label="Social links">
+          <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
+            <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
+          </a>
+          <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
+            <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
+          </a>
+          <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
+            <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
+          </a>
+          <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
+            <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
+          </a>
+        </div>
+
       </div>
 
-      <div class="mini-actions">
-        <button class="btn primary" id="flightSearchBtnDesktop" type="button">Search flights</button>
+      <!-- CENTERED UNDER BOTH BLOCKS -->
+      <div class="footer-center">
+        <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+        <small>© 2025 Experience Ecuador. All rights reserved.</small>
       </div>
 
-      <div class="mini-hint">
-        When flights and itinerary are confirmed, check out local safe transportation:
-        <a class="mini-link" href="/transportation/">Transportation</a>
-      </div>
-    </aside>
-  </section>
-
-  <section class="itinerary" aria-label="Generated itinerary">
-    <div class="itinerary-shell" aria-label="Itinerary output container">
-      <h2 class="section-title" style="margin:0 0 12px;">Your suggested itinerary</h2>
-      <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate itinerary.”</div>
     </div>
-  </section>
+  </footer>
 
-  <aside class="card flights-card" id="flightsMobile" aria-label="Flights (mobile)" style="display:none;">
-    <p class="mini-title">Flights</p>
+  <script>
+    (function () {
+      const dropdowns = document.querySelectorAll('.dropdown');
 
-    <div class="mini-grid">
-      <label for="flightFromMobile">From</label>
-      <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
+      function closeAll() {
+        dropdowns.forEach(dd => {
+          dd.classList.remove('open');
+          const btn = dd.querySelector('.dropbtn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+      }
 
-      <label for="flightToMobile">To</label>
-      <select id="flightToMobile" aria-label="Destination airport">
-        <option value="UIO">Quito (UIO)</option>
-        <option value="GYE">Guayaquil (GYE)</option>
-        <option value="GPS">Galapagos (GPS)</option>
-        <option value="CUE">Cuenca (CUE)</option>
-      </select>
-
-      <label for="flightDepartMobile">Depart</label>
-      <input id="flightDepartMobile" type="date">
-
-      <label for="flightReturnMobile">Return</label>
-      <input id="flightReturnMobile" type="date">
-    </div>
-
-    <div class="mini-actions">
-      <button class="btn primary" id="flightSearchBtnMobile" type="button">Search flights</button>
-    </div>
-
-    <div class="mini-hint">
-      When flights and itinerary are confirmed, check out local safe transportation:
-      <a class="mini-link" href="/transportation/">Transportation</a>
-    </div>
-  </aside>
-
-</main>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-tagline">Curated travel experiences across Ecuador</div>
-
-    <div class="social">
-      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
-      </a>
-      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
-      </a>
-      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
-      </a>
-      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
-      </a>
-    </div>
-
-    <small>© 2025 Experience Ecuador. All rights reserved.</small>
-  </div>
-</footer>
-
-<script>
-  // ===== NAV DROPDOWNS =====
-  (function () {
-    const dropdowns = document.querySelectorAll('.dropdown');
-
-    function closeAll() {
       dropdowns.forEach(dd => {
-        dd.classList.remove('open');
         const btn = dd.querySelector('.dropbtn');
-        if (btn) btn.setAttribute('aria-expanded', 'false');
-      });
-    }
-
-    dropdowns.forEach(dd => {
-      const btn = dd.querySelector('.dropbtn');
-      const menu = dd.querySelector('.dropdown-menu');
-      if (!btn) return;
-
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        const isOpen = dd.classList.contains('open');
-        closeAll();
-        dd.classList.toggle('open', !isOpen);
-        btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
-      });
-
-      if (menu) menu.addEventListener('click', e => e.stopPropagation());
-    });
-
-    document.addEventListener('click', closeAll);
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeAll();
-    });
-  })();
-
-  // ===== TRIP BUILDER =====
-  const DATA = { regions: null, experiences: null, blocks: null };
-
-  const state = {
-    days: 5,
-    selectedRegionIds: new Set(),
-    selectedExperienceIds: new Set()
-  };
-
-  const els = {
-    daysSelect: document.getElementById('daysSelect'),
-    regionsPills: document.getElementById('regionsPills'),
-    experiencesPills: document.getElementById('experiencesPills'),
-    generateBtn: document.getElementById('generateBtn'),
-    resetBtn: document.getElementById('resetBtn'),
-    output: document.getElementById('output'),
-    regionHint: document.getElementById('regionHint')
-  };
-
-  const flightEls = {
-    desktop: {
-      from: document.getElementById('flightFromDesktop'),
-      to: document.getElementById('flightToDesktop'),
-      depart: document.getElementById('flightDepartDesktop'),
-      ret: document.getElementById('flightReturnDesktop'),
-      btn: document.getElementById('flightSearchBtnDesktop')
-    },
-    mobile: {
-      from: document.getElementById('flightFromMobile'),
-      to: document.getElementById('flightToMobile'),
-      depart: document.getElementById('flightDepartMobile'),
-      ret: document.getElementById('flightReturnMobile'),
-      btn: document.getElementById('flightSearchBtnMobile')
-    }
-  };
-
-  // ===== URL PARAMS: PRESELECT REGIONS / EXPERIENCES / DAYS =====
-  // Supported:
-  // /trip-builder/?region=andes
-  // /trip-builder/?regions=andes,amazon
-  // /trip-builder/?experience=adventure
-  // /trip-builder/?experiences=adventure,culture
-  // /trip-builder/?days=7
-  function parseCsvParam(v){
-    if (!v) return [];
-    return String(v)
-      .split(',')
-      .map(s => s.trim())
-      .filter(Boolean);
-  }
-
-  function readUrlPreset(){
-    const sp = new URLSearchParams(window.location.search);
-
-    const daysRaw = sp.get('days');
-    const days = daysRaw ? Number(daysRaw) : null;
-
-    const regions = [
-      ...parseCsvParam(sp.get('regions')),
-      ...parseCsvParam(sp.get('region'))
-    ];
-
-    const experiences = [
-      ...parseCsvParam(sp.get('experiences')),
-      ...parseCsvParam(sp.get('experience'))
-    ];
-
-    // allow also: exp=... as a short alias
-    const expAlias = parseCsvParam(sp.get('exp'));
-    expAlias.forEach(x => experiences.push(x));
-
-    // dedupe
-    const uniq = arr => Array.from(new Set(arr.map(x => String(x).trim().toLowerCase()))).filter(Boolean);
-
-    return {
-      days: Number.isFinite(days) ? days : null,
-      regions: uniq(regions),
-      experiences: uniq(experiences)
-    };
-  }
-
-  function pressPillById(containerEl, id){
-    if (!containerEl) return false;
-    const btn = containerEl.querySelector(`.pill[data-id="${CSS.escape(id)}"]`);
-    if (!btn) return false;
-    if (btn.getAttribute('aria-pressed') !== 'true') btn.click();
-    return true;
-  }
-
-  function applyUrlPreset(preset){
-    if (!preset) return;
-
-    // days
-    if (preset.days !== null) {
-      const clamped = clamp(preset.days, 1, 21);
-      state.days = clamped;
-      els.daysSelect.value = String(clamped);
-    }
-
-    // regions + experiences (after pills exist)
-    (preset.regions || []).forEach(id => pressPillById(els.regionsPills, id));
-    (preset.experiences || []).forEach(id => pressPillById(els.experiencesPills, id));
-
-    // ensure UI state is consistent
-    updateHints();
-    updateGenerateState();
-    syncDefaultFlightToFromRegions();
-
-    // if any preselection happened, show the normal hint text (unchanged)
-    els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
-  }
-
-  function syncFlights(fromSet){
-    const d = flightEls.desktop;
-    const m = flightEls.mobile;
-
-    if (!m.from || !m.to || !m.depart || !m.ret) return;
-
-    if (fromSet === "desktop") {
-      m.from.value = d.from.value;
-      m.to.value = d.to.value;
-      m.depart.value = d.depart.value;
-      m.ret.value = d.ret.value;
-      m.to.dataset.userSet = d.to.dataset.userSet || "false";
-    } else {
-      d.from.value = m.from.value;
-      d.to.value = m.to.value;
-      d.depart.value = m.depart.value;
-      d.ret.value = m.ret.value;
-      d.to.dataset.userSet = m.to.dataset.userSet || "false";
-    }
-  }
-
-  function setUserSetAll(val){
-    flightEls.desktop.to.dataset.userSet = val;
-    if (flightEls.mobile.to) flightEls.mobile.to.dataset.userSet = val;
-  }
-
-  flightEls.desktop.to.addEventListener('change', () => setUserSetAll("true"));
-  if (flightEls.mobile.to) flightEls.mobile.to.addEventListener('change', () => setUserSetAll("true"));
-
-  ["input","change"].forEach(evt => {
-    flightEls.desktop.from.addEventListener(evt, () => syncFlights("desktop"));
-    flightEls.desktop.to.addEventListener(evt, () => syncFlights("desktop"));
-    flightEls.desktop.depart.addEventListener(evt, () => syncFlights("desktop"));
-    flightEls.desktop.ret.addEventListener(evt, () => syncFlights("desktop"));
-
-    if (flightEls.mobile.from) flightEls.mobile.from.addEventListener(evt, () => syncFlights("mobile"));
-    if (flightEls.mobile.to) flightEls.mobile.to.addEventListener(evt, () => syncFlights("mobile"));
-    if (flightEls.mobile.depart) flightEls.mobile.depart.addEventListener(evt, () => syncFlights("mobile"));
-    if (flightEls.mobile.ret) flightEls.mobile.ret.addEventListener(evt, () => syncFlights("mobile"));
-  });
-
-  const DAY_CAPACITY_HOURS = 8;
-  const TIME_ORDER = ["morning","afternoon","evening"];
-
-  function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
-  function pickRandom(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
-
-  function normalizePace(dayIndex, totalDays) {
-    if (totalDays >= 7 && (dayIndex + 1) % 3 === 0) return "easy";
-    return "any";
-  }
-
-  function daysPerRegion(totalDays, regionIdsInOrder){
-    const n = regionIdsInOrder.length;
-    if (n === 0) return [];
-    const base = Math.floor(totalDays / n);
-    let extra = totalDays % n;
-
-    return regionIdsInOrder.map((rid, idx) => {
-      const add = extra > 0 ? 1 : 0;
-      if (extra > 0) extra--;
-      return { region_id: rid, days: base + add, order: idx };
-    }).filter(x => x.days > 0);
-  }
-
-  function renderDaysOptions() {
-    els.daysSelect.innerHTML = "";
-    for (let d = 1; d <= 21; d++) {
-      const opt = document.createElement('option');
-      opt.value = String(d);
-      opt.textContent = String(d);
-      if (d === state.days) opt.selected = true;
-      els.daysSelect.appendChild(opt);
-    }
-  }
-
-  function createPill({ id, name }, type) {
-    const b = document.createElement('button');
-    b.type = "button";
-    b.className = "pill";
-    b.textContent = name;
-    b.setAttribute('data-id', id);
-    b.setAttribute('aria-pressed', 'false');
-
-    b.addEventListener('click', () => {
-      const set = type === "region" ? state.selectedRegionIds : state.selectedExperienceIds;
-      if (set.has(id)) set.delete(id);
-      else set.add(id);
-
-      b.setAttribute('aria-pressed', set.has(id) ? 'true' : 'false');
-      updateHints();
-      updateGenerateState();
-      syncDefaultFlightToFromRegions();
-    });
-
-    return b;
-  }
-
-  function renderRegionPills() {
-    els.regionsPills.innerHTML = "";
-
-    const desiredRegionOrder = ["galapagos","coast","andes","amazon"];
-    const map = new Map((DATA.regions.regions || []).map(r => [r.id, r]));
-
-    desiredRegionOrder.forEach(id => {
-      const item = map.get(id);
-      if (item) els.regionsPills.appendChild(createPill(item, "region"));
-    });
-
-    (DATA.regions.regions || []).forEach(r => {
-      if (!desiredRegionOrder.includes(r.id)) {
-        els.regionsPills.appendChild(createPill(r, "region"));
-      }
-    });
-  }
-
-  function renderExperiencePills() {
-    els.experiencesPills.innerHTML = "";
-
-    const desiredOrder = ["adventure","nature","wildlife-birding","relaxation","culinary","culture"];
-    const map = new Map((DATA.experiences.experiences || []).map(x => [x.id, x]));
-
-    desiredOrder.forEach(id => {
-      const item = map.get(id);
-      if (item) els.experiencesPills.appendChild(createPill(item, "experience"));
-    });
-
-    (DATA.experiences.experiences || []).forEach(x => {
-      if (!desiredOrder.includes(x.id)) {
-        els.experiencesPills.appendChild(createPill(x, "experience"));
-      }
-    });
-  }
-
-  function updateHints() {
-    if (!DATA.regions) return;
-
-    const selectedRegions = Array.from(state.selectedRegionIds);
-    const selectedExperiences = Array.from(state.selectedExperienceIds);
-
-    if (selectedRegions.length === 0 || selectedExperiences.length === 0) {
-      els.regionHint.textContent =
-        "Select at least one region and one experience. You can choose multiple regions and multiple experiences for a multi-stop trip.";
-      return;
-    }
-
-    const regionMap = new Map(DATA.regions.regions.map(r => [r.id, r]));
-    const lines = selectedRegions.map(rid => {
-      const r = regionMap.get(rid);
-      const locs = (r && r.locations) ? r.locations.map(l => l.name).slice(0, 4) : [];
-      const suffix = locs.length ? ` (locations: ${locs.join(", ")}${(r.locations.length > 4 ? ", ..." : "")})` : "";
-      return `${r ? r.name : rid}${suffix}`;
-    });
-
-    els.regionHint.textContent = "Selected: " + lines.join(" · ");
-  }
-
-  function updateGenerateState() {
-    const ok = state.selectedRegionIds.size > 0 && state.selectedExperienceIds.size > 0;
-    els.generateBtn.disabled = !ok;
-  }
-
-  function regionName(id){
-    const r = DATA.regions.regions.find(x => x.id === id);
-    return r ? r.name : id;
-  }
-
-  function locationName(regionId, locationId){
-    const r = DATA.regions.regions.find(x => x.id === regionId);
-    if (!r) return "";
-    const l = (r.locations || []).find(x => x.id === locationId);
-    return l ? l.name : "";
-  }
-
-  function experienceName(id){
-    const x = DATA.experiences.experiences.find(e => e.id === id);
-    return x ? x.name : id;
-  }
-
-  function hasAnySelectedExperience(block, selectedExperienceIds){
-    return (block.experiences || []).some(e => selectedExperienceIds.has(e));
-  }
-
-  function safeNumber(n, fallback){
-    const v = Number(n);
-    return Number.isFinite(v) ? v : fallback;
-  }
-
-  function splitLongBlockIfNeeded(block){
-    const dur = safeNumber(block.duration_hours, 0);
-    if (dur <= DAY_CAPACITY_HOURS) return [block];
-
-    const parts = Math.ceil(dur / DAY_CAPACITY_HOURS);
-    const per = dur / parts;
-
-    const out = [];
-    for (let i = 0; i < parts; i++) {
-      out.push({
-        ...block,
-        id: `${block.id}__part_${i+1}_of_${parts}`,
-        title: `${block.title} (Part ${i+1} of ${parts})`,
-        duration_hours: Math.round(per * 10) / 10
-      });
-    }
-    return out;
-  }
-
-  function scoreBlock(block, selectedExperienceIds, pacePreference, usedIds, isTransferDay) {
-    if (usedIds.has(block.id)) return -999;
-
-    let score = 0;
-
-    const overlap = (block.experiences || []).filter(e => selectedExperienceIds.has(e)).length;
-    score += overlap * 3;
-
-    if (pacePreference !== "any") {
-      if (block.pace === pacePreference) score += 2;
-      if (pacePreference === "easy" && block.pace === "moderate") score += 1;
-    }
-
-    if (isTransferDay) {
-      if (block.pace === "easy") score += 2;
-      if (block.time_of_day === "afternoon") score += 1;
-    }
-
-    if (TIME_ORDER.includes(block.time_of_day)) score += 1;
-    if (block.location_id) score += 1;
-
-    const dur = safeNumber(block.duration_hours, 0);
-    if (dur > 0 && dur <= 4) score += 1;
-
-    return score;
-  }
-
-  function planOneDay(regionId, expIds, pacePref, usedIds, isTransferDay) {
-    let remaining = DAY_CAPACITY_HOURS;
-
-    const dayBlocks = [];
-    let optionalAddOn = null;
-
-    let regionBlocks = (DATA.blocks.blocks || [])
-      .filter(b => b.region_id === regionId)
-      .filter(b => hasAnySelectedExperience(b, expIds))
-      .flatMap(b => splitLongBlockIfNeeded(b));
-
-    regionBlocks = regionBlocks.filter(b => !usedIds.has(b.id));
-
-    const byTime = new Map();
-    TIME_ORDER.forEach(t => byTime.set(t, []));
-    const other = [];
-
-    regionBlocks.forEach(b => {
-      if (byTime.has(b.time_of_day)) byTime.get(b.time_of_day).push(b);
-      else other.push(b);
-    });
-
-    function pickFromList(list) {
-      const scored = list
-        .map(b => ({ b, s: scoreBlock(b, expIds, pacePref, usedIds, isTransferDay) }))
-        .filter(x => x.s > -500)
-        .sort((a,b) => b.s - a.s);
-
-      if (!scored.length) return null;
-      const top = scored.slice(0, Math.min(6, scored.length)).map(x => x.b);
-      return pickRandom(top);
-    }
-
-    function tryAdd(block) {
-      if (!block) return false;
-      const dur = safeNumber(block.duration_hours, 0);
-      if (dur <= 0) return false;
-
-      if (dur > remaining) {
-        if (!optionalAddOn && dur <= 4) optionalAddOn = block;
-        return false;
-      }
-
-      dayBlocks.push(block);
-      usedIds.add(block.id);
-      remaining -= dur;
-      return true;
-    }
-
-    const longPart = regionBlocks.find(b => safeNumber(b.duration_hours, 0) >= DAY_CAPACITY_HOURS);
-    if (longPart) {
-      tryAdd(longPart);
-      return { blocks: dayBlocks, optionalAddOn, remaining_hours: remaining };
-    }
-
-    const morningPick = pickFromList(byTime.get("morning"));
-    if (morningPick) tryAdd(morningPick);
-
-    const aftPick = pickFromList(byTime.get("afternoon"));
-    if (aftPick) tryAdd(aftPick);
-
-    if (remaining >= 2) {
-      const evePick = pickFromList(byTime.get("evening"));
-      if (evePick) tryAdd(evePick);
-    }
-
-    if (remaining >= 2 && dayBlocks.length < 2) {
-      const fillerPool = [
-        ...byTime.get("morning"),
-        ...byTime.get("afternoon"),
-        ...byTime.get("evening"),
-        ...other
-      ].filter(b => !usedIds.has(b.id));
-
-      const filler = pickFromList(fillerPool);
-      if (filler) tryAdd(filler);
-    }
-
-    if (!optionalAddOn && remaining >= 2) {
-      const addOnPool = [
-        ...byTime.get("morning"),
-        ...byTime.get("afternoon"),
-        ...byTime.get("evening"),
-        ...other
-      ].filter(b => !usedIds.has(b.id))
-       .filter(b => safeNumber(b.duration_hours, 0) > remaining && safeNumber(b.duration_hours, 0) <= 4);
-
-      const addOn = pickFromList(addOnPool);
-      if (addOn) optionalAddOn = addOn;
-    }
-
-    return { blocks: dayBlocks, optionalAddOn, remaining_hours: remaining };
-  }
-
-  function generateItinerary() {
-    const totalDays = clamp(Number(state.days), 1, 21);
-    const regionIds = Array.from(state.selectedRegionIds);
-    const expIds = state.selectedExperienceIds;
-
-    const plan = [];
-    const allocation = daysPerRegion(totalDays, regionIds);
-    const usedBlockIds = new Set();
-
-    let dayCounter = 0;
-
-    allocation.forEach((chunk, chunkIndex) => {
-      for (let d = 0; d < chunk.days; d++) {
-        const pacePref = normalizePace(dayCounter, totalDays);
-        const isTransferDay = (d === 0 && chunkIndex > 0);
-
-        const dayPlan = planOneDay(chunk.region_id, expIds, pacePref, usedBlockIds, isTransferDay);
-
-        plan.push({
-          day: dayCounter + 1,
-          region_id: chunk.region_id,
-          is_transfer_friendly: isTransferDay,
-          blocks: dayPlan.blocks,
-          optional_add_on: dayPlan.optional_add_on,
-          remaining_hours: dayPlan.remaining_hours
+        const menu = dd.querySelector('.dropdown-menu');
+        if (!btn) return;
+
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isOpen = dd.classList.contains('open');
+          closeAll();
+          dd.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
         });
 
-        dayCounter++;
-      }
-    });
+        if (menu) {
+          menu.addEventListener('click', function (e) {
+            e.stopPropagation();
+          });
+        }
+      });
 
-    return plan;
-  }
-
-  function renderItinerary(plan) {
-    if (!plan || plan.length === 0) {
-      els.output.innerHTML = "<div class='hint'>No itinerary generated. Make sure you selected regions and experiences.</div>";
-      return;
-    }
-
-    const wrap = document.createElement('div');
-
-    const disclaimer = document.createElement('div');
-    disclaimer.className = "hint";
-    disclaimer.innerHTML = "<strong>Note:</strong> This is a suggested itinerary generated from your selections. Times and logistics can vary by season, traffic, and exact pickup locations.";
-    wrap.appendChild(disclaimer);
-
-    plan.forEach(d => {
-      const card = document.createElement('div');
-      card.className = "day-card";
-
-      const title = document.createElement('div');
-      title.className = "day-title";
-      title.innerHTML = `
-        <span>Day ${d.day}: ${regionName(d.region_id)}</span>
-        <span class="tag">${d.is_transfer_friendly ? "Transfer-friendly pace" : "Suggested day plan"}</span>
-      `;
-      card.appendChild(title);
-
-      const blocks = Array.isArray(d.blocks) ? d.blocks : [];
-      if (blocks.length === 0) {
-        card.appendChild(renderEmptySlot("Day", "No matching activity blocks found for this region based on your selected experiences. Add more blocks to this region in itinerary_blocks.json."));
-      } else {
-        const ordered = blocks.slice().sort((a,b) => {
-          const ai = TIME_ORDER.includes(a.time_of_day) ? TIME_ORDER.indexOf(a.time_of_day) : 99;
-          const bi = TIME_ORDER.includes(b.time_of_day) ? TIME_ORDER.indexOf(b.time_of_day) : 99;
-          if (ai !== bi) return ai - bi;
-          return safeNumber(a.duration_hours, 0) - safeNumber(b.duration_hours, 0);
-        });
-
-        ordered.forEach(block => {
-          const label = block.time_of_day ? capitalize(block.time_of_day) : "Day";
-          card.appendChild(renderSlot(label, block, d.region_id));
-        });
-      }
-
-      if (d.optional_add_on) {
-        const add = document.createElement('div');
-        add.className = "hint";
-        const dur = d.optional_add_on.duration_hours ? `${d.optional_add_on.duration_hours}h` : "";
-        add.innerHTML = `Optional add-on if you still have energy: <strong>${d.optional_add_on.title}</strong>${dur ? " (" + dur + ")" : ""}.`;
-        card.appendChild(add);
-      } else if (typeof d.remaining_hours === "number" && d.remaining_hours >= 2) {
-        const rest = document.createElement('div');
-        rest.className = "hint";
-        rest.innerHTML = `You still have about <strong>${Math.round(d.remaining_hours * 10) / 10} hours</strong> available today. Consider a café stop, a viewpoint, or a relaxed neighborhood walk.`;
-        card.appendChild(rest);
-      }
-
-      wrap.appendChild(card);
-    });
-
-    els.output.innerHTML = "";
-    els.output.appendChild(wrap);
-  }
-
-  function extractPartLabelFromTitleOrId(block){
-    const t = String(block && block.title ? block.title : "");
-    const m1 = t.match(/\(Part\s+\d+\s+of\s+\d+\)/i);
-    if (m1) return m1[0].replace(/[()]/g, "");
-
-    const id = String(block && block.id ? block.id : "");
-    const m2 = id.match(/__part_(\d+)_of_(\d+)/i);
-    if (m2) return `Part ${m2[1]} of ${m2[2]}`;
-
-    return "Part";
-  }
-
-  function renderSlot(label, block, regionId){
-    const div = document.createElement('div');
-    div.className = "slot";
-
-    const loc = block.location_id ? locationName(regionId, block.location_id) : "";
-    const exp = (block.experiences || []).map(experienceName).slice(0, 3).join(" · ");
-    const dur = block.duration_hours ? `${block.duration_hours}h` : "";
-    const metaLine = [loc, exp, dur].filter(Boolean).join(" • ");
-
-    const isSplitPart = typeof block.id === "string" && block.id.includes("__part_");
-    const partLabel = isSplitPart ? extractPartLabelFromTitleOrId(block) : "";
-
-    const splitExplain = isSplitPart
-      ? `This experience spans multiple days. "${partLabel}" indicates one day within a longer lodge-based stay.`
-      : "";
-
-    const noteHtml = (() => {
-      const baseNote = block.notes ? String(block.notes) : "";
-      if (!baseNote && !splitExplain) return "";
-      if (baseNote && splitExplain) {
-        return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Note:</strong> " + baseNote + "<br><strong>Note:</strong> " + splitExplain + "</p>";
-      }
-      if (baseNote) {
-        return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Note:</strong> " + baseNote + "</p>";
-      }
-      return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Note:</strong> " + splitExplain + "</p>";
+      document.addEventListener('click', closeAll);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAll();
+      });
     })();
 
-    div.innerHTML = `
-      <h4>${label}</h4>
-      <div class="title">${block.title}</div>
-      <p class="meta">${block.summary || ""}${metaLine ? "<br><span style='opacity:.9'>" + metaLine + "</span>" : ""}</p>
-      ${noteHtml}
-    `;
-    return div;
-  }
+    // Fill source_page automatically
+    (function(){
+      var src = window.location.pathname || "/";
+      var el = document.getElementById("ee_source_page");
+      if (el) el.value = src;
+    })();
 
-  function renderEmptySlot(label, text){
-    const div = document.createElement('div');
-    div.className = "slot";
-    div.innerHTML = `
-      <h4>${label}</h4>
-      <p class="meta">${text}</p>
-    `;
-    return div;
-  }
+    // UX: show immediate "Submitting..." feedback + clear on success/fail
+    (function(){
+      var form = document.getElementById("ee_signup_form");
+      var btn = document.getElementById("ee_signup_btn");
+      var statusBox = document.getElementById("ee_signup_status");
+      if(!form || !btn || !statusBox) return;
 
-  function capitalize(s){
-    const t = String(s || "");
-    if (!t) return "";
-    return t.charAt(0).toUpperCase() + t.slice(1);
-  }
+      form.addEventListener("submit", function(){
+        btn.disabled = true;
+        btn.textContent = "Signing up...";
+        statusBox.textContent = "Submitting...";
+      });
 
-  // ===== FLIGHTS =====
-  const REGION_TO_AIRPORT = {
-    andes: "UIO",
-    coast: "GYE",
-    amazon: "UIO",
-    galapagos: "GPS"
-  };
+      var fallbackTimer = null;
+      form.addEventListener("submit", function(){
+        if (fallbackTimer) clearTimeout(fallbackTimer);
+        fallbackTimer = setTimeout(function(){
+          if (statusBox.textContent === "Submitting...") {
+            statusBox.textContent = "Thanks. You are subscribed.";
+            btn.disabled = false;
+            btn.textContent = "Sign up";
+            form.reset();
+          }
+        }, 1200);
+      });
+    })();
 
-  function syncDefaultFlightToFromRegions(){
-    const selected = Array.from(state.selectedRegionIds);
-    if (!selected.length) return;
+    // If your Apps Script uses postMessage, this will override the fallback with the real status
+    window.addEventListener("message", function(e){
+      if (!e || !e.data || e.data.type !== "EE_SIGNUP") return;
 
-    const airport = REGION_TO_AIRPORT[selected[0]] || "UIO";
+      var box = document.getElementById("ee_signup_status");
+      var form = document.getElementById("ee_signup_form");
+      var btn = document.getElementById("ee_signup_btn");
+      if (!box || !btn) return;
 
-    const d = flightEls.desktop;
-    const m = flightEls.mobile;
+      if (e.data.status === "success") box.textContent = e.data.message || "Thanks. You are subscribed.";
+      else if (e.data.status === "already") box.textContent = e.data.message || "You are already subscribed.";
+      else box.textContent = e.data.message || "Something went wrong. Please try again.";
 
-    const userSet = (d.to.dataset.userSet || (m.to ? m.to.dataset.userSet : "false") || "false");
-
-    if (userSet === "false") {
-      d.to.value = airport;
-      if (m.to) m.to.value = airport;
-    }
-  }
-
-  function buildGoogleFlightsUrl({ from, to, depart, ret }){
-    let q = `Flights to ${to}`;
-    if (from) q += ` from ${from}`;
-    if (depart) q += ` on ${depart}`;
-    if (ret) q += ` return ${ret}`;
-    return "https://www.google.com/travel/flights?q=" + encodeURIComponent(q);
-  }
-
-  function normalizeAirportCode(v){
-    const s = String(v || "").trim().toUpperCase();
-    const m = s.match(/[A-Z]{3}/);
-    return m ? m[0] : "";
-  }
-
-  function openFlightsFrom(setName){
-    const s = flightEls[setName];
-    if (!s || !s.to) return;
-
-    const from = normalizeAirportCode(s.from.value);
-    const to = String(s.to.value || "").trim().toUpperCase();
-    const depart = String(s.depart.value || "").trim();
-    const ret = String(s.ret.value || "").trim();
-    if (!to) return;
-
-    const url = buildGoogleFlightsUrl({ from, to, depart, ret });
-    window.open(url, "_blank", "noopener,noreferrer");
-  }
-
-  flightEls.desktop.btn.addEventListener('click', () => openFlightsFrom("desktop"));
-  if (flightEls.mobile.btn) flightEls.mobile.btn.addEventListener('click', () => openFlightsFrom("mobile"));
-
-  // ===== LOAD JSON =====
-  async function loadJSON(path){
-    const res = await fetch(path, { cache: "no-store" });
-    if (!res.ok) throw new Error("Failed to load " + path);
-    return await res.json();
-  }
-
-  async function init() {
-    renderDaysOptions();
-
-    // read URL preset early, apply after pills render
-    const preset = readUrlPreset();
-
-    try {
-      const [regions, experiences, blocks] = await Promise.all([
-        loadJSON("/assets/data/regions.json"),
-        loadJSON("/assets/data/experiences.json"),
-        loadJSON("/assets/data/itinerary_blocks.json")
-      ]);
-
-      DATA.regions = regions;
-      DATA.experiences = experiences;
-      DATA.blocks = blocks;
-
-      renderRegionPills();
-      renderExperiencePills();
-
-      // default flights state
-      setUserSetAll("false");
-      flightEls.desktop.to.value = "UIO";
-      if (flightEls.mobile.to) flightEls.mobile.to.value = "UIO";
-
-      // apply URL preset now that pills exist (auto-clicks pills safely)
-      applyUrlPreset(preset);
-
-      // if URL preset did not set any regions, still sync default airport
-      syncDefaultFlightToFromRegions();
-
-      // keep desktop/mobile fields aligned
-      syncFlights("desktop");
-
-      updateHints();
-      updateGenerateState();
-
-      els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
-    } catch (e) {
-      els.output.innerHTML = "<div class='hint'><strong>Data load error:</strong> " + (e.message || e) + "</div>";
-    }
-  }
-
-  els.daysSelect.addEventListener('change', () => {
-    state.days = Number(els.daysSelect.value);
-  });
-
-  els.generateBtn.addEventListener('click', () => {
-    const plan = generateItinerary();
-    renderItinerary(plan);
-  });
-
-  els.resetBtn.addEventListener('click', () => {
-    state.days = 5;
-    state.selectedRegionIds.clear();
-    state.selectedExperienceIds.clear();
-
-    document.querySelectorAll('.pill').forEach(p => p.setAttribute('aria-pressed', 'false'));
-    els.daysSelect.value = "5";
-
-    flightEls.desktop.from.value = "";
-    flightEls.desktop.depart.value = "";
-    flightEls.desktop.ret.value = "";
-
-    if (flightEls.mobile.from) flightEls.mobile.from.value = "";
-    if (flightEls.mobile.depart) flightEls.mobile.depart.value = "";
-    if (flightEls.mobile.ret) flightEls.mobile.ret.value = "";
-
-    setUserSetAll("false");
-    flightEls.desktop.to.value = "UIO";
-    if (flightEls.mobile.to) flightEls.mobile.to.value = "UIO";
-
-    updateHints();
-    updateGenerateState();
-    els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
-  });
-
-  init();
-</script>
+      btn.disabled = false;
+      btn.textContent = "Sign Up";
+      if (e.data.status === "success" && form) form.reset();
+    });
+  </script>
 
 </body>
 </html>
