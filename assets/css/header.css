@@ -14,10 +14,12 @@
 .topbar button{ font:inherit; }
 
 /* ===== HEADER SHELL ===== */
+/* Force sticky to win even if site.css or page CSS tries to override */
 .topbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 5000 !important;
+
   backdrop-filter:saturate(160%) blur(10px);
   background:rgba(255,255,255,.75);
   border-bottom:1px solid rgba(0,0,0,.06);
@@ -95,7 +97,7 @@
   box-shadow:var(--shadow);
   padding:8px;
   display:none;
-  z-index:1200;
+  z-index:5200;
 }
 .topbar .nav-dd[open] .nav-dd-menu{ display:block; }
 
@@ -231,7 +233,7 @@
     background:rgba(255,255,255,.85);
   }
 
-  /* ✅ This now works because checkbox and nav-mobile share the same parent (.topbar) */
+  /* Checkbox controls panel */
   .topbar .nav-toggle:checked ~ .nav-mobile{
     max-height:80vh;
     overflow:auto;
