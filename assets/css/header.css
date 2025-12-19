@@ -180,7 +180,7 @@
     justify-content:center !important;
   }
 
-  /* Force nav into a 12-column grid (this is what prevents the vertical stacking) */
+  /* Force nav into a 12-column grid and override the 900px justify-content:flex-end */
   .topbar .nav{
     width:100% !important;
     max-width:100% !important;
@@ -196,6 +196,10 @@
 
     align-items:center !important;
     justify-items:stretch !important;
+
+    /* These two lines fix the iPhone behavior */
+    justify-content:stretch !important;
+    place-content:stretch !important;
 
     white-space:normal !important;
   }
@@ -218,11 +222,17 @@
     padding:10px 6px !important;
     border-radius:10px !important;
     line-height:1 !important;
-    white-space:nowrap !important; /* keeps Trip Builder on one line */
+    white-space:nowrap !important;
     text-decoration:none !important;
   }
 
-  /* Enforce MOBILE ORDER + ROW POSITIONS (using your existing classes) */
+  /* Desktop order stays as-is in HTML:
+     Home - About - Mission - Regions - Experiences - Trip Builder - Contact
+
+     Mobile layout:
+     Row 1: Home - About - Mission - Contact
+     Row 2: Regions - Experiences - Trip Builder
+  */
   .topbar .nav .nav-home{ grid-column:1 / 4;  grid-row:1; }
   .topbar .nav .nav-about{ grid-column:4 / 7;  grid-row:1; }
   .topbar .nav .nav-mission{ grid-column:7 / 10; grid-row:1; }
