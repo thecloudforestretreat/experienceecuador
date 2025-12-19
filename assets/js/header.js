@@ -1,73 +1,87 @@
 (function () {
-  function qs(sel, root = document) { return root.querySelector(sel); }
-  function qsa(sel, root = document) { return Array.from(root.querySelectorAll(sel)); }
+  function qs(sel, root=document){ return root.querySelector(sel); }
+  function qsa(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
 
-  const topbar = qs('.topbar');
-  if (!topbar) return;
+  function closeDesktopDropdowns(){
+    qsa('.topbar .dropdown.open').forEach(d => d.classList.remove('open'));
+    qsa('.topbar .dropdown .dropbtn').forEach(b => b.setAttribute('aria-expanded','false'));
+  }
 
-  // Desktop dropdowns (Regions/Experiences)
-  qsa('[data-dd]', topbar).forEach(dd => {
-    const btn = qs('.dropbtn', dd);
-    if (!btn) return;
+  function initDesktopDropdowns(){
+    qsa('.topbar [data-dd]').forEach(dd => {
+      const btn = qs('.dropbtn', dd);
+      if(!btn) return;
 
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const isOpen = dd.classList.contains('open');
-      qsa('[data-dd].open', topbar).forEach(x => x.classList.remove('open'));
-      dd.classList.toggle('open', !isOpen);
-      btn.setAttribute('aria-expanded', String(!isOpen));
-    });
-  });
-
-  // Close dropdowns on outside click
-  document.addEventListener('click', (e) => {
-    if (!topbar.contains(e.target)) {
-      qsa('[data-dd].open', topbar).forEach(x => {
-        x.classList.remove('open');
-        const b = qs('.dropbtn', x);
-        if (b) b.setAttribute('aria-expanded', 'false');
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isOpen = dd.classList.contains('open');
+        closeDesktopDropdowns();
+        if(!isOpen){
+          dd.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
       });
-    }
-  });
-
-  // Mobile hamburger
-  const toggle = qs('.nav-toggle', topbar);
-  const drawer = qs('#mobileNav', topbar);
-  const backdrop = qs('[data-mobile-backdrop]', topbar);
-
-  function openMobile() {
-    if (!drawer || !backdrop || !toggle) return;
-    drawer.classList.add('open');
-    drawer.setAttribute('aria-hidden', 'false');
-    toggle.setAttribute('aria-expanded', 'true');
-    backdrop.hidden = false;
-    document.documentElement.style.overflow = 'hidden';
-  }
-
-  function closeMobile() {
-    if (!drawer || !backdrop || !toggle) return;
-    drawer.classList.remove('open');
-    drawer.setAttribute('aria-hidden', 'true');
-    toggle.setAttribute('aria-expanded', 'false');
-    backdrop.hidden = true;
-    document.documentElement.style.overflow = '';
-  }
-
-  if (toggle && drawer && backdrop) {
-    toggle.addEventListener('click', () => {
-      const isOpen = drawer.classList.contains('open');
-      if (isOpen) closeMobile();
-      else openMobile();
     });
 
-    backdrop.addEventListener('click', closeMobile);
+    document.addEventListener('click', (e) => {
+      const inside = e.target.closest('.topbar [data-dd]');
+      if(!inside) closeDesktopDropdowns();
+    });
 
-    // Close on ESC
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMobile();
+      if(e.key === 'Escape') closeDesktopDropdowns();
+    });
+  }
+
+  function setMobileOpen(isOpen){
+    const toggle = qs('.topbar .nav-toggle');
+    const panel = qs('.topbar .mobile-nav');
+    if(!toggle || !panel) return;
+
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    panel.hidden = !isOpen;
+
+    if(!isOpen){
+      qsa('.topbar .mobile-accordion').forEach(btn => btn.setAttribute('aria-expanded','false'));
+      qsa('.topbar .mobile-submenu').forEach(sm => sm.hidden = true);
+    }
+  }
+
+  function initMobileMenu(){
+    const toggle = qs('.topbar .nav-toggle');
+    const panel = qs('.topbar .mobile-nav');
+    if(!toggle || !panel) return;
+
+    setMobileOpen(false);
+
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      setMobileOpen(!open);
     });
 
-    // Close after clicking any link inside drawer
-    qsa('a', drawer).forEach(a => a.addEventListener('click', closeMobile));
+    qsa('.topbar .mobile-accordion').forEach(btn => {
+      const targetId = btn.getAttribute('aria-controls');
+      const target = targetId ? document.getElementById(targetId) : null;
+
+      btn.addEventListener('click', () => {
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+        if(target) target.hidden = isOpen;
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') setMobileOpen(false);
+    });
+
+    // If you rotate or resize to desktop, close mobile menu
+    window.addEventListener('resize', () => {
+      if(window.innerWidth > 620) setMobileOpen(false);
+    });
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initDesktopDropdowns();
+    initMobileMenu();
+  });
 })();
