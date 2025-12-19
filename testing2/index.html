@@ -200,21 +200,17 @@
     </section>
   </main>
 
-  <!-- Optional pre-footer include (per-page) -->
-  <div id="siteNewsletter"></div>
-
-  <!-- Global footer include -->
+  <!-- Global footer include (no newsletter here) -->
   <div id="siteFooter"></div>
 
   <script>
     (function () {
       async function inject(selector, url) {
         const mount = document.querySelector(selector);
-        if (!mount) return null;
+        if (!mount) return;
 
         const res = await fetch(url, { cache: "no-store" });
-        const html = await res.text();
-        mount.innerHTML = html;
+        mount.innerHTML = await res.text();
 
         // Ensure any <script> tags inside the injected HTML run
         const scripts = mount.querySelectorAll("script");
@@ -229,13 +225,10 @@
           document.body.appendChild(s);
           oldScript.remove();
         });
-
-        return mount;
       }
 
       (async function () {
         await inject("#siteHeader", "/assets/includes/header.html");
-        await inject("#siteNewsletter", "/assets/includes/newsletter-signup.html");
         await inject("#siteFooter", "/assets/includes/footer.html");
       })();
     })();
