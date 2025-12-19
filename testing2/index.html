@@ -335,39 +335,33 @@
       .grid{ grid-template-columns:1fr; }
       .topbar-inner{ justify-content:space-between; }
 
-      /* Mobile: two rows, exact order */
+      /* Mobile: FORCE two rows with a grid so "Contact" never drops to row 2 */
       .nav{
-        gap:8px;
-        flex-wrap:wrap;
+        display:grid;
+        grid-template-columns:repeat(4, auto);
         justify-content:center;
+        align-items:center;
+        column-gap:10px;
+        row-gap:10px;
+        white-space:normal;
       }
 
       /* Row 1: Home - About - Mission - Contact */
-      .nav a.nav-home{ order:1; }
-      .nav a.nav-about{ order:2; }
-      .nav a.nav-mission{ order:3; }
-      .nav a.nav-contact{ order:4; }
-
-      /* Break line between row 1 and row 2 */
-      .nav .nav-break{
-        order:4.5;
-        flex-basis:100%;
-        height:0;
-        padding:0;
-        margin:0;
-      }
+      .nav a.nav-home{ grid-row:1; grid-column:1; }
+      .nav a.nav-about{ grid-row:1; grid-column:2; }
+      .nav a.nav-mission{ grid-row:1; grid-column:3; }
+      .nav a.nav-contact{ grid-row:1; grid-column:4; }
 
       /* Row 2: Regions - Experiences - Trip Builder */
-      .nav .dd-regions{ order:5; }
-      .nav .dd-experiences{ order:6; }
-      .nav a.nav-trip{ order:7; }
+      .nav .dd-regions{ grid-row:2; grid-column:1; }
+      .nav .dd-experiences{ grid-row:2; grid-column:2; }
+      .nav a.nav-trip{ grid-row:2; grid-column:3; }
 
       .dropdown-menu{ right:0; left:auto; }
     }
 
     @media(max-width:620px){
       .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
-      .nav{ justify-content:center; }
       .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
     }
   </style>
@@ -393,8 +387,6 @@
         <a class="nav-home" href="/">Home</a>
         <a class="nav-about" href="/about/">About</a>
         <a class="nav-mission active" href="/mission/">Mission</a>
-
-        <span class="nav-break" aria-hidden="true"></span>
 
         <div class="dropdown dd-regions" id="regionsDropdown">
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
