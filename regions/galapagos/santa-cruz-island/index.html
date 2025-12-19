@@ -72,18 +72,7 @@
 
     .brand img{width:28px;height:28px;object-fit:contain}
 
-    /* NAV */
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      font-weight:700;
-      font-size:14px;
-      color:#0f2f62;
-      white-space:nowrap;
-      overflow:visible;
-    }
-
+    /* NAV (shared button/link styling) */
     .nav a,
     .nav button{
       font:inherit;
@@ -102,6 +91,42 @@
     .nav a.active{
       color:var(--brand-blue);
       background:rgba(3,78,162,.08);
+    }
+
+    /* Desktop nav */
+    .nav-desktop{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-weight:700;
+      font-size:14px;
+      color:#0f2f62;
+      white-space:nowrap;
+      overflow:visible;
+    }
+
+    /* Mobile nav (two fixed rows) */
+    .nav-mobile{
+      display:none;
+      width:100%;
+      flex-direction:column;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:14px;
+      color:#0f2f62;
+      white-space:nowrap;
+      overflow:visible;
+    }
+
+    .nav-row{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      flex-wrap:nowrap;
+      width:100%;
     }
 
     /* Dropdown */
@@ -123,6 +148,10 @@
       align-items:center;
       gap:8px;
       user-select:none;
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      line-height:1;
     }
 
     .dropbtn:focus{
@@ -791,7 +820,7 @@
     .icon-btn img{width:34px;height:34px}
     footer small{font-size:13px;opacity:.9}
 
-    /* ===== MOBILE ===== */
+    /* ===== RESPONSIVE ===== */
     @media(max-width:980px){
       .content-grid{grid-template-columns:1fr}
     }
@@ -801,18 +830,21 @@
     }
 
     @media(max-width:900px){
-      .nav{gap:8px;flex-wrap:wrap;justify-content:flex-end}
       .dropdown-menu{right:0;left:auto}
     }
 
     @media(max-width:620px){
       .topbar-inner{flex-direction:column;align-items:center;gap:10px}
-      .nav{justify-content:center}
+      .nav-desktop{display:none}
+      .nav-mobile{display:flex}
       .dropdown-menu{right:auto;left:50%;transform:translateX(-50%)}
       .carousel-slide{ aspect-ratio:16/9; }
     }
 
     @media(max-width:480px){
+      .nav-mobile{font-size:13.5px}
+      .nav a,
+      .nav button{padding:8px 9px}
       .carousel-btn{ width:40px; height:40px; }
     }
   </style>
@@ -826,12 +858,13 @@
         <span>Experience Ecuador</span>
       </a>
 
-      <nav class="nav" aria-label="Primary navigation">
+      <!-- DESKTOP MENU: Home - About - Mission - Regions - Experiences - Trip Builder - Contact -->
+      <nav class="nav nav-desktop" aria-label="Primary navigation desktop">
         <a href="/">Home</a>
         <a href="/about/">About</a>
         <a href="/mission/">Mission</a>
 
-        <div class="dropdown" id="regionsDropdown">
+        <div class="dropdown">
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
             Regions <span class="caret" aria-hidden="true"></span>
           </button>
@@ -844,7 +877,7 @@
           </div>
         </div>
 
-        <div class="dropdown" id="experiencesDropdown">
+        <div class="dropdown">
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
             Experiences <span class="caret" aria-hidden="true"></span>
           </button>
@@ -859,7 +892,53 @@
           </div>
         </div>
 
+        <a href="/trip-builder/">Trip Builder</a>
         <a href="/contact/">Contact</a>
+      </nav>
+
+      <!-- MOBILE MENU (two rows)
+           Top row: Home - About - Mission - Contact
+           Bottom row: Regions - Experiences - Trip Builder
+      -->
+      <nav class="nav nav-mobile" aria-label="Primary navigation mobile">
+        <div class="nav-row top" aria-label="Mobile menu top row">
+          <a href="/">Home</a>
+          <a href="/about/">About</a>
+          <a href="/mission/">Mission</a>
+          <a href="/contact/">Contact</a>
+        </div>
+
+        <div class="nav-row bottom" aria-label="Mobile menu bottom row">
+          <div class="dropdown">
+            <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
+              Regions <span class="caret" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+              <a href="/regions/" role="menuitem">All Regions</a>
+              <a class="active" href="/regions/galapagos/" role="menuitem">Galapagos</a>
+              <a href="/regions/coast/" role="menuitem">Coast</a>
+              <a href="/regions/andes/" role="menuitem">Andes</a>
+              <a href="/regions/amazon/" role="menuitem">Amazon</a>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
+              Experiences <span class="caret" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+              <a href="/experiences/" role="menuitem">All Experiences</a>
+              <a href="/experiences/adventure/" role="menuitem">Adventure</a>
+              <a href="/experiences/nature/" role="menuitem">Nature</a>
+              <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
+              <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
+              <a href="/experiences/culinary/" role="menuitem">Culinary</a>
+              <a href="/experiences/culture/" role="menuitem">Culture</a>
+            </div>
+          </div>
+
+          <a href="/trip-builder/">Trip Builder</a>
+        </div>
       </nav>
     </div>
   </header>
