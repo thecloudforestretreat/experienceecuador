@@ -5,35 +5,33 @@
       <span>Experience Ecuador</span>
     </a>
 
-    <!-- MOBILE TOGGLE -->
-    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
-      <span class="hamburger" aria-hidden="true"></span>
-    </button>
+    <!-- CSS-only hamburger toggle -->
+    <input class="nav-toggle" type="checkbox" id="eeNavToggle" aria-label="Open menu">
+    <label class="nav-toggle-btn" for="eeNavToggle" aria-hidden="true">
+      <span class="nav-toggle-icon"></span>
+      <span class="sr-only">Menu</span>
+    </label>
 
-    <!-- DESKTOP NAV -->
-    <nav class="nav desktop-nav" aria-label="Primary navigation">
-      <a class="nav-home" href="/">Home</a>
-      <a class="nav-about" href="/about/">About</a>
-      <a class="nav-mission" href="/mission/">Mission</a>
+    <!-- DESKTOP NAV (always horizontal) -->
+    <nav class="nav nav-desktop" aria-label="Primary navigation">
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/about/">About</a>
+      <a class="nav-link" href="/mission/">Mission</a>
 
-      <div class="dropdown nav-regions" data-dd>
-        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false">
-          Regions <span class="caret" aria-hidden="true"></span>
-        </button>
-        <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
+      <details class="nav-dd">
+        <summary class="nav-link nav-dd-btn">Regions <span class="caret" aria-hidden="true"></span></summary>
+        <div class="nav-dd-menu" role="menu" aria-label="Regions submenu">
           <a href="/regions/" role="menuitem">All Regions</a>
           <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
           <a href="/regions/coast/" role="menuitem">Coast</a>
           <a href="/regions/andes/" role="menuitem">Andes</a>
           <a href="/regions/amazon/" role="menuitem">Amazon</a>
         </div>
-      </div>
+      </details>
 
-      <div class="dropdown nav-experiences" data-dd>
-        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false">
-          Experiences <span class="caret" aria-hidden="true"></span>
-        </button>
-        <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
+      <details class="nav-dd">
+        <summary class="nav-link nav-dd-btn">Experiences <span class="caret" aria-hidden="true"></span></summary>
+        <div class="nav-dd-menu" role="menu" aria-label="Experiences submenu">
           <a href="/experiences/" role="menuitem">All Experiences</a>
           <a href="/experiences/adventure/" role="menuitem">Adventure</a>
           <a href="/experiences/nature/" role="menuitem">Nature</a>
@@ -42,48 +40,44 @@
           <a href="/experiences/culinary/" role="menuitem">Culinary</a>
           <a href="/experiences/culture/" role="menuitem">Culture</a>
         </div>
-      </div>
+      </details>
 
-      <a class="nav-trip" href="/trip-builder/">Trip Builder</a>
-      <a class="nav-contact" href="/contact/">Contact</a>
+      <a class="nav-link" href="/trip-builder/">Trip Builder</a>
+      <a class="nav-link" href="/contact/">Contact</a>
     </nav>
   </div>
 
-  <!-- MOBILE PANEL -->
-  <div id="mobileNav" class="mobile-nav" hidden>
-    <nav class="mobile-nav-inner" aria-label="Mobile navigation">
-      <a class="mobile-link" href="/">Home</a>
-      <a class="mobile-link" href="/about/">About</a>
-      <a class="mobile-link" href="/mission/">Mission</a>
-      <a class="mobile-link" href="/contact/">Contact</a>
+  <!-- MOBILE PANEL (hamburger only) -->
+  <nav class="nav nav-mobile" aria-label="Mobile navigation">
+    <a class="m-link" href="/">Home</a>
+    <a class="m-link" href="/about/">About</a>
+    <a class="m-link" href="/mission/">Mission</a>
+    <a class="m-link" href="/contact/">Contact</a>
 
-      <button class="mobile-accordion" type="button" aria-expanded="false" aria-controls="mobileRegions">
-        <span>Regions</span>
-        <span class="chev" aria-hidden="true"></span>
-      </button>
-      <div id="mobileRegions" class="mobile-submenu" hidden>
-        <a class="mobile-sublink" href="/regions/">All Regions</a>
-        <a class="mobile-sublink" href="/regions/galapagos/">Galapagos</a>
-        <a class="mobile-sublink" href="/regions/coast/">Coast</a>
-        <a class="mobile-sublink" href="/regions/andes/">Andes</a>
-        <a class="mobile-sublink" href="/regions/amazon/">Amazon</a>
+    <details class="m-acc">
+      <summary class="m-acc-btn">Regions <span class="caret" aria-hidden="true"></span></summary>
+      <div class="m-sub">
+        <a class="m-sublink" href="/regions/">All Regions</a>
+        <a class="m-sublink" href="/regions/galapagos/">Galapagos</a>
+        <a class="m-sublink" href="/regions/coast/">Coast</a>
+        <a class="m-sublink" href="/regions/andes/">Andes</a>
+        <a class="m-sublink" href="/regions/amazon/">Amazon</a>
       </div>
+    </details>
 
-      <button class="mobile-accordion" type="button" aria-expanded="false" aria-controls="mobileExperiences">
-        <span>Experiences</span>
-        <span class="chev" aria-hidden="true"></span>
-      </button>
-      <div id="mobileExperiences" class="mobile-submenu" hidden>
-        <a class="mobile-sublink" href="/experiences/">All Experiences</a>
-        <a class="mobile-sublink" href="/experiences/adventure/">Adventure</a>
-        <a class="mobile-sublink" href="/experiences/nature/">Nature</a>
-        <a class="mobile-sublink" href="/experiences/wildlife-birding/">Wildlife &amp; Birding</a>
-        <a class="mobile-sublink" href="/experiences/relaxation/">Relaxation</a>
-        <a class="mobile-sublink" href="/experiences/culinary/">Culinary</a>
-        <a class="mobile-sublink" href="/experiences/culture/">Culture</a>
+    <details class="m-acc">
+      <summary class="m-acc-btn">Experiences <span class="caret" aria-hidden="true"></span></summary>
+      <div class="m-sub">
+        <a class="m-sublink" href="/experiences/">All Experiences</a>
+        <a class="m-sublink" href="/experiences/adventure/">Adventure</a>
+        <a class="m-sublink" href="/experiences/nature/">Nature</a>
+        <a class="m-sublink" href="/experiences/wildlife-birding/">Wildlife &amp; Birding</a>
+        <a class="m-sublink" href="/experiences/relaxation/">Relaxation</a>
+        <a class="m-sublink" href="/experiences/culinary/">Culinary</a>
+        <a class="m-sublink" href="/experiences/culture/">Culture</a>
       </div>
+    </details>
 
-      <a class="mobile-link" href="/trip-builder/">Trip Builder</a>
-    </nav>
-  </div>
+    <a class="m-link" href="/trip-builder/">Trip Builder</a>
+  </nav>
 </header>
