@@ -1,3 +1,10 @@
+/* /assets/css/header.css
+   ExperienceEcuador.com (EE) Global Header Styles
+   - Sticky behavior is applied to #siteHeader (mount) so it works site-wide
+   - Mobile hamburger uses checkbox (#eeNavToggle) + drill-down panel
+   - No per-page header CSS should be needed
+*/
+
 :root{
   --brand-blue:#034EA2;
   --nav-text:#0f2f62;
@@ -6,6 +13,18 @@
   --shadow: 0 18px 55px rgba(3,78,162,0.16);
 }
 
+/* =========================
+   Sticky mount (site-wide)
+   ========================= */
+#siteHeader{
+  position: sticky;
+  top: 0;
+  z-index: 5000;
+}
+
+/* Prevent common sticky-breakers */
+html, body{ overflow-x: visible; }
+
 /* Header-only reset */
 .topbar, .topbar *{ box-sizing:border-box; }
 .topbar a{ color:inherit; text-decoration:none; }
@@ -13,12 +32,13 @@
 .topbar a:visited{ text-decoration:none; }
 .topbar button{ font:inherit; }
 
-/* ===== HEADER SHELL ===== */
-/* Force sticky to win even if site.css or page CSS tries to override */
+/* =========================
+   HEADER SHELL
+   ========================= */
 .topbar{
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 5000 !important;
+  /* do NOT make .topbar sticky here; keep sticky on #siteHeader */
+  position: relative;
+  z-index: 1;
 
   backdrop-filter:saturate(160%) blur(10px);
   background:rgba(255,255,255,.75);
@@ -48,12 +68,14 @@
   white-space:nowrap;
   font-size:18px;
   line-height:1;
-  color:var(--brand-blue) !important;
+  color:var(--brand-blue);
 }
-.topbar .brand span{ color:var(--brand-blue) !important; }
+.topbar .brand span{ color:var(--brand-blue); }
 .topbar .brand img{ width:28px; height:28px; object-fit:contain; }
 
-/* ===== DESKTOP NAV ===== */
+/* =========================
+   DESKTOP NAV
+   ========================= */
 .topbar .nav-desktop{
   display:flex;
   align-items:center;
@@ -86,6 +108,7 @@
   list-style:none;
 }
 .topbar .nav-dd > summary::-webkit-details-marker{ display:none; }
+
 .topbar .nav-dd-menu{
   position:absolute;
   top:42px;
@@ -123,7 +146,9 @@
   opacity:.7;
 }
 
-/* ===== HAMBURGER TOGGLE (CSS ONLY) ===== */
+/* =========================
+   HAMBURGER TOGGLE (checkbox)
+   ========================= */
 .topbar .nav-toggle{
   position:absolute;
   width:1px;
@@ -137,7 +162,7 @@
 }
 
 .topbar .nav-toggle-btn{
-  display:none; /* desktop hidden */
+  display:none; /* shown on mobile */
   width:44px;
   height:44px;
   border-radius:14px;
@@ -195,9 +220,13 @@
   border:0!important;
 }
 
-/* ===== MOBILE PANEL (drill-down) ===== */
+/* =========================
+   MOBILE PANEL (drill-down)
+   Key fix: do NOT rely on max-height animation only.
+   Ensure panel is truly available and can overlay content.
+   ========================= */
 .topbar .nav-mobile{
-  display:none; /* desktop hidden */
+  display:none; /* hidden on desktop */
 }
 
 @media (max-width: 900px){
@@ -223,43 +252,55 @@
   /* Desktop nav hidden on mobile */
   .topbar .nav-desktop{ display:none; }
 
-  /* Mobile nav panel hidden until checked */
+  /* Mobile nav wrapper: overlay panel directly under header */
   .topbar .nav-mobile{
     display:block;
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .25s ease;
-    border-top:1px solid rgba(0,0,0,.06);
-    background:rgba(255,255,255,.85);
+    position:absolute;
+    left:0;
+    right:0;
+    top:100%;
+    z-index:5200;
+
+    /* default closed */
+    pointer-events:none;
+    opacity:0;
+    transform:translateY(-6px);
+
+    transition: opacity .18s ease, transform .18s ease;
+    background: transparent;
   }
 
-  /* Checkbox controls panel */
+  /* Open state */
   .topbar .nav-toggle:checked ~ .nav-mobile{
-    max-height:80vh;
-    overflow:auto;
+    pointer-events:auto;
+    opacity:1;
+    transform:translateY(0);
   }
 
+  /* Panel */
   .topbar .m-panel{
+    margin: 10px 12px 12px;
+    max-height: calc(100vh - 90px);
+    overflow:auto;
+
     padding:14px;
     padding-left:calc(env(safe-area-inset-left) + 14px);
     padding-right:calc(env(safe-area-inset-right) + 14px);
+
+    background: rgba(255,255,255,.92);
+    border-top:1px solid rgba(0,0,0,.06);
+    border:1px solid rgba(0,0,0,.08);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
   }
 
   /* Views */
-  .topbar .m-view{
-    display:none;
-  }
-  .topbar .m-main{
-    display:block;
-  }
+  .topbar .m-view{ display:none; }
+  .topbar .m-main{ display:block; }
 
-  /* Drill-down using :target (no JS) */
-  .topbar .m-submenu:target{
-    display:block;
-  }
-  .topbar .m-submenu:target ~ .m-main{
-    display:none;
-  }
+  /* Drill-down using :target */
+  .topbar .m-submenu:target{ display:block; }
+  .topbar .m-submenu:target ~ .m-main{ display:none; }
 
   /* Menu items */
   .topbar .m-item,
