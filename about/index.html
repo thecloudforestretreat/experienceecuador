@@ -95,6 +95,7 @@
       border-radius:10px;
       cursor:pointer;
       line-height:1;
+      white-space:nowrap; /* keep "Trip Builder" on one line */
     }
 
     .nav a:hover,
@@ -119,6 +120,7 @@
       align-items:center;
       gap:8px;
       user-select:none;
+      white-space:nowrap;
     }
 
     .dropbtn:focus{
@@ -159,6 +161,7 @@
       border-radius:10px;
       font-weight:700;
       color:#0f2f62;
+      white-space:normal; /* allow submenu items to wrap if needed */
     }
 
     .dropdown-menu a:hover{ background:rgba(3,78,162,0.08); }
@@ -419,34 +422,31 @@
     /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
+      .topbar-inner{ justify-content:space-between; }
 
-      /* Mobile: 2 rows with explicit order */
+      /* Mobile: force 2 rows, exact order (and keep "Trip Builder" on one line) */
       .nav{
-        display:flex;
-        flex-wrap:wrap;
+        display:grid;
+        grid-template-columns:repeat(4, auto);
         justify-content:center;
-        gap:8px;
+        align-items:center;
+        column-gap:10px;
+        row-gap:10px;
+        white-space:normal;
       }
 
-      /* Row 1: Home, About, Mission, Contact */
-      .nav a.nav-home{ order:1; }
-      .nav a.nav-about{ order:2; }
-      .nav a.nav-mission{ order:3; }
-      .nav a.nav-contact{ order:4; }
+      /* Row 1: Home - About - Mission - Contact */
+      .nav a.nav-home{ grid-row:1; grid-column:1; }
+      .nav a.nav-about{ grid-row:1; grid-column:2; }
+      .nav a.nav-mission{ grid-row:1; grid-column:3; }
+      .nav a.nav-contact{ grid-row:1; grid-column:4; }
 
-      /* Row 2: Regions, Experiences, Trip Builder */
-      .nav .dd-regions{ order:5; }
-      .nav .dd-experiences{ order:6; }
-      .nav a.nav-trip{ order:7; }
+      /* Row 2: Regions - Experiences - Trip Builder */
+      .nav .dd-regions{ grid-row:2; grid-column:1; }
+      .nav .dd-experiences{ grid-row:2; grid-column:2; }
+      .nav a.nav-trip{ grid-row:2; grid-column:3; }
 
-      /* Force wrap break between row 1 and row 2 */
-      .nav .nav-break{
-        order:4.5;
-        flex-basis:100%;
-        height:0;
-        padding:0;
-        margin:0;
-      }
+      .dropdown-menu{ right:0; left:auto; }
 
       .footer-top{
         grid-template-columns:1fr;
@@ -491,16 +491,15 @@
         <span>Experience Ecuador</span>
       </a>
 
-      <!-- Updated menu:
-           Desktop (one row): Home - About - Mission - Regions - Experiences - Trip Builder - Contact
-           Mobile (two rows): Row1 Home About Mission Contact | Row2 Regions Experiences Trip Builder
+      <!-- MENU RULES:
+           Desktop: Home - About - Mission - Regions - Experiences - Trip Builder - Contact
+           Mobile:  Row 1: Home - About - Mission - Contact
+                   Row 2: Regions - Experiences - Trip Builder
       -->
       <nav class="nav" aria-label="Primary navigation">
         <a class="nav-home" href="/">Home</a>
         <a class="nav-about active" href="/about/">About</a>
         <a class="nav-mission" href="/mission/">Mission</a>
-
-        <span class="nav-break" aria-hidden="true"></span>
 
         <div class="dropdown dd-regions" id="regionsDropdown">
           <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
@@ -530,10 +529,7 @@
           </div>
         </div>
 
-        <!-- Trip Builder added -->
         <a class="nav-trip" href="/trip-builder/">Trip Builder</a>
-
-        <!-- Contact moved to end on desktop, but stays in row 1 on mobile via ordering -->
         <a class="nav-contact" href="/contact/">Contact</a>
       </nav>
     </div>
@@ -603,22 +599,17 @@
             target="ee_signup_iframe"
             autocomplete="on"
           >
-            <!-- Row A: First + Last -->
             <div class="ee-row">
               <input class="w-sm" name="first_name" type="text" placeholder="First Name" />
               <input class="w-sm" name="last_name" type="text" placeholder="Last Name" />
             </div>
 
-            <!-- Row B: Email + Sign up (same block width as Row A) -->
             <div class="ee-row">
               <input class="w-email" name="email" type="email" placeholder="Email Address" required />
               <button class="w-btn" type="submit" id="ee_signup_btn">Sign Up</button>
             </div>
 
-            <!-- Honeypot field -->
             <input class="ee-hp" name="company" type="text" tabindex="-1" autocomplete="off" />
-
-            <!-- Source page -->
             <input name="source_page" type="hidden" id="ee_source_page" value="" />
 
             <div class="ee-signup-status" id="ee_signup_status" role="status" aria-live="polite"></div>
@@ -645,7 +636,6 @@
 
       </div>
 
-      <!-- CENTERED UNDER BOTH BLOCKS -->
       <div class="footer-center">
         <div class="footer-tagline">Curated travel experiences across Ecuador</div>
         <small>© 2025 Experience Ecuador. All rights reserved.</small>
@@ -694,14 +684,12 @@
       });
     })();
 
-    // Fill source_page automatically
     (function(){
       var src = window.location.pathname || "/";
       var el = document.getElementById("ee_source_page");
       if (el) el.value = src;
     })();
 
-    // UX: show immediate "Submitting..." feedback + clear on success/fail
     (function(){
       var form = document.getElementById("ee_signup_form");
       var btn = document.getElementById("ee_signup_btn");
@@ -721,14 +709,13 @@
           if (statusBox.textContent === "Submitting...") {
             statusBox.textContent = "Thanks. You are subscribed.";
             btn.disabled = false;
-            btn.textContent = "Sign up";
+            btn.textContent = "Sign Up";
             form.reset();
           }
         }, 1200);
       });
     })();
 
-    // If your Apps Script uses postMessage, this will override the fallback with the real status
     window.addEventListener("message", function(e){
       if (!e || !e.data || e.data.type !== "EE_SIGNUP") return;
 
