@@ -1,14 +1,15 @@
 <header class="topbar">
+  <!-- ✅ Checkbox is now a DIRECT child of .topbar so it can control the panel -->
+  <input class="nav-toggle" type="checkbox" id="eeNavToggle" aria-label="Open menu">
+
   <div class="topbar-inner">
-    <a class="brand" href="/" aria-label="Experience Ecuador Home">
+    <a class="brand" href="/">
       <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
       <span>Experience Ecuador</span>
     </a>
 
-    <!-- Mobile hamburger toggle -->
-    <input class="nav-toggle" type="checkbox" id="eeNavToggle" aria-label="Toggle menu">
-
-    <label class="nav-toggle-btn" for="eeNavToggle">
+    <!-- Hamburger button (label toggles checkbox) -->
+    <label class="nav-toggle-btn" for="eeNavToggle" aria-label="Menu">
       <span class="nav-toggle-icon" aria-hidden="true"></span>
       <span class="sr-only">Menu</span>
     </label>
@@ -48,69 +49,35 @@
     </nav>
   </div>
 
-  <!-- MOBILE OVERLAY + PANEL (CSS-only drilldown) -->
-  <div class="mobile-shell" aria-hidden="true">
-    <!-- overlay closes menu when tapped -->
-    <label class="mobile-overlay" for="eeNavToggle" aria-hidden="true"></label>
-
-    <nav class="nav nav-mobile" aria-label="Mobile navigation">
-      <!-- panel state -->
-      <input class="panel-state" type="radio" name="eePanel" id="panel-main" checked>
-      <input class="panel-state" type="radio" name="eePanel" id="panel-regions">
-      <input class="panel-state" type="radio" name="eePanel" id="panel-experiences">
-
-      <!-- MAIN -->
-      <section class="panel panel-main" aria-label="Main menu">
-        <div class="panel-head">
-          <div class="panel-title">Menu</div>
-          <label class="panel-close" for="eeNavToggle" aria-label="Close menu">✕</label>
-        </div>
-
+  <!-- ✅ MOBILE PANEL (hamburger-only) -->
+  <nav class="nav nav-mobile" aria-label="Mobile navigation">
+    <div class="m-panel">
+      <!-- MAIN MENU -->
+      <div class="m-view m-main">
         <a class="m-item" href="/">Home</a>
         <a class="m-item" href="/about/">About</a>
         <a class="m-item" href="/mission/">Mission</a>
 
-        <label class="m-item m-next" for="panel-regions">
-          Regions <span class="m-chev" aria-hidden="true"></span>
-        </label>
-
-        <label class="m-item m-next" for="panel-experiences">
-          Experiences <span class="m-chev" aria-hidden="true"></span>
-        </label>
+        <a class="m-item m-next" href="#m-regions">Regions <span class="m-arrow" aria-hidden="true"></span></a>
+        <a class="m-item m-next" href="#m-experiences">Experiences <span class="m-arrow" aria-hidden="true"></span></a>
 
         <a class="m-item" href="/trip-builder/">Trip Builder</a>
         <a class="m-item" href="/contact/">Contact</a>
-      </section>
+      </div>
 
-      <!-- REGIONS -->
-      <section class="panel panel-regions" aria-label="Regions menu">
-        <div class="panel-head">
-          <label class="panel-back" for="panel-main" aria-label="Back to menu">
-            <span class="back-chev" aria-hidden="true"></span>
-            Back
-          </label>
-          <div class="panel-title">Regions</div>
-          <label class="panel-close" for="eeNavToggle" aria-label="Close menu">✕</label>
-        </div>
-
+      <!-- REGIONS SUBMENU -->
+      <div class="m-view m-submenu" id="m-regions">
+        <a class="m-back" href="#m-main">Back</a>
         <a class="m-item" href="/regions/">All Regions</a>
         <a class="m-item" href="/regions/galapagos/">Galapagos</a>
         <a class="m-item" href="/regions/coast/">Coast</a>
         <a class="m-item" href="/regions/andes/">Andes</a>
         <a class="m-item" href="/regions/amazon/">Amazon</a>
-      </section>
+      </div>
 
-      <!-- EXPERIENCES -->
-      <section class="panel panel-experiences" aria-label="Experiences menu">
-        <div class="panel-head">
-          <label class="panel-back" for="panel-main" aria-label="Back to menu">
-            <span class="back-chev" aria-hidden="true"></span>
-            Back
-          </label>
-          <div class="panel-title">Experiences</div>
-          <label class="panel-close" for="eeNavToggle" aria-label="Close menu">✕</label>
-        </div>
-
+      <!-- EXPERIENCES SUBMENU -->
+      <div class="m-view m-submenu" id="m-experiences">
+        <a class="m-back" href="#m-main">Back</a>
         <a class="m-item" href="/experiences/">All Experiences</a>
         <a class="m-item" href="/experiences/adventure/">Adventure</a>
         <a class="m-item" href="/experiences/nature/">Nature</a>
@@ -118,7 +85,10 @@
         <a class="m-item" href="/experiences/relaxation/">Relaxation</a>
         <a class="m-item" href="/experiences/culinary/">Culinary</a>
         <a class="m-item" href="/experiences/culture/">Culture</a>
-      </section>
-    </nav>
-  </div>
+      </div>
+
+      <!-- hash target used for “Back” to main -->
+      <div id="m-main" hidden></div>
+    </div>
+  </nav>
 </header>
