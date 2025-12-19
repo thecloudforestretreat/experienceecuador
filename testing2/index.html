@@ -13,7 +13,79 @@
   <!-- Shared Header CSS -->
   <link rel="stylesheet" href="/assets/css/header.css">
 
+  <!-- Page-level header fixes (force NO underlines + force mobile two-row evenly spread) -->
   <style>
+    /* 1) Force no underlines anywhere in header (desktop + mobile) */
+    .topbar a,
+    .topbar a:visited,
+    .topbar a:hover,
+    .topbar a:active,
+    .topbar .nav a,
+    .topbar .nav button{
+      text-decoration: none !important;
+      -webkit-text-decoration: none !important;
+    }
+
+    /* Also kill any underline that might come from global styles */
+    .topbar .nav-link{
+      text-decoration: none !important;
+    }
+
+    /* 2) Force mobile layout:
+       Top row: Home - About - Mission - Contact
+       Bottom row: Regions - Experiences - Trip Builder
+       Both rows evenly spread full width
+    */
+    @media (max-width: 620px){
+      .topbar .nav{
+        width: 100%;
+        display: grid !important;
+        grid-template-columns: repeat(12, 1fr) !important;
+        grid-auto-rows: auto;
+        gap: 10px 6px;
+        justify-items: center;
+        align-items: center;
+        white-space: normal;
+      }
+
+      /* Evenly spread: each item full width inside its grid cell */
+      .topbar .nav > a,
+      .topbar .nav > .dropdown,
+      .topbar .nav > button{
+        width: 100%;
+      }
+
+      /* Row 1 (4 items, each 3/12) */
+      .topbar .nav > [data-slot="home"]{ grid-column: 1 / 4;  grid-row: 1; }
+      .topbar .nav > [data-slot="about"]{ grid-column: 4 / 7;  grid-row: 1; }
+      .topbar .nav > [data-slot="mission"]{ grid-column: 7 / 10; grid-row: 1; }
+      .topbar .nav > [data-slot="contact"]{ grid-column: 10 / 13; grid-row: 1; }
+
+      /* Row 2 (3 items, each 4/12) */
+      .topbar .nav > [data-slot="regions"]{ grid-column: 1 / 5;  grid-row: 2; }
+      .topbar .nav > [data-slot="experiences"]{ grid-column: 5 / 9; grid-row: 2; }
+      .topbar .nav > [data-slot="trip"]{ grid-column: 9 / 13; grid-row: 2; }
+
+      /* Center each label inside its cell */
+      .topbar .nav-link{
+        width: 100%;
+        justify-content: center;
+        padding: 10px 8px;
+        white-space: nowrap; /* keeps "Trip Builder" on one line */
+      }
+
+      /* Keep dropdown menus inside viewport on mobile */
+      .topbar .dropdown-menu{
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        width: min(320px, calc(100vw - 24px)) !important;
+        max-height: 55vh;
+        overflow: auto;
+      }
+    }
+
+    /* Page styling */
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -63,6 +135,7 @@
     (async function(){
       const mount = document.getElementById('siteHeader');
       if(!mount) return;
+
       const res = await fetch('/assets/includes/header.html', { cache: 'no-store' });
       mount.innerHTML = await res.text();
 
