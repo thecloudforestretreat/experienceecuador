@@ -973,6 +973,82 @@
     }
   };
 
+  // ===== URL PARAMS: PRESELECT REGIONS / EXPERIENCES / DAYS =====
+  // Supported:
+  // /trip-builder/?region=andes
+  // /trip-builder/?regions=andes,amazon
+  // /trip-builder/?experience=adventure
+  // /trip-builder/?experiences=adventure,culture
+  // /trip-builder/?days=7
+  function parseCsvParam(v){
+    if (!v) return [];
+    return String(v)
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+  }
+
+  function readUrlPreset(){
+    const sp = new URLSearchParams(window.location.search);
+
+    const daysRaw = sp.get('days');
+    const days = daysRaw ? Number(daysRaw) : null;
+
+    const regions = [
+      ...parseCsvParam(sp.get('regions')),
+      ...parseCsvParam(sp.get('region'))
+    ];
+
+    const experiences = [
+      ...parseCsvParam(sp.get('experiences')),
+      ...parseCsvParam(sp.get('experience'))
+    ];
+
+    // allow also: exp=... as a short alias
+    const expAlias = parseCsvParam(sp.get('exp'));
+    expAlias.forEach(x => experiences.push(x));
+
+    // dedupe
+    const uniq = arr => Array.from(new Set(arr.map(x => String(x).trim().toLowerCase()))).filter(Boolean);
+
+    return {
+      days: Number.isFinite(days) ? days : null,
+      regions: uniq(regions),
+      experiences: uniq(experiences)
+    };
+  }
+
+  function pressPillById(containerEl, id){
+    if (!containerEl) return false;
+    const btn = containerEl.querySelector(`.pill[data-id="${CSS.escape(id)}"]`);
+    if (!btn) return false;
+    if (btn.getAttribute('aria-pressed') !== 'true') btn.click();
+    return true;
+  }
+
+  function applyUrlPreset(preset){
+    if (!preset) return;
+
+    // days
+    if (preset.days !== null) {
+      const clamped = clamp(preset.days, 1, 21);
+      state.days = clamped;
+      els.daysSelect.value = String(clamped);
+    }
+
+    // regions + experiences (after pills exist)
+    (preset.regions || []).forEach(id => pressPillById(els.regionsPills, id));
+    (preset.experiences || []).forEach(id => pressPillById(els.experiencesPills, id));
+
+    // ensure UI state is consistent
+    updateHints();
+    updateGenerateState();
+    syncDefaultFlightToFromRegions();
+
+    // if any preselection happened, show the normal hint text (unchanged)
+    els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
+  }
+
   function syncFlights(fromSet){
     const d = flightEls.desktop;
     const m = flightEls.mobile;
@@ -1528,6 +1604,9 @@
   async function init() {
     renderDaysOptions();
 
+    // read URL preset early, apply after pills render
+    const preset = readUrlPreset();
+
     try {
       const [regions, experiences, blocks] = await Promise.all([
         loadJSON("/assets/data/regions.json"),
@@ -1541,15 +1620,23 @@
 
       renderRegionPills();
       renderExperiencePills();
-      updateHints();
-      updateGenerateState();
 
+      // default flights state
       setUserSetAll("false");
       flightEls.desktop.to.value = "UIO";
       if (flightEls.mobile.to) flightEls.mobile.to.value = "UIO";
+
+      // apply URL preset now that pills exist (auto-clicks pills safely)
+      applyUrlPreset(preset);
+
+      // if URL preset did not set any regions, still sync default airport
       syncDefaultFlightToFromRegions();
 
+      // keep desktop/mobile fields aligned
       syncFlights("desktop");
+
+      updateHints();
+      updateGenerateState();
 
       els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
     } catch (e) {
