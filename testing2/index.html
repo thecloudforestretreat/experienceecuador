@@ -1,87 +1,163 @@
-(function () {
-  function qs(sel, root=document){ return root.querySelector(sel); }
-  function qsa(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Header Test | Experience Ecuador</title>
 
-  function closeDesktopDropdowns(){
-    qsa('.topbar .dropdown.open').forEach(d => d.classList.remove('open'));
-    qsa('.topbar .dropdown .dropbtn').forEach(b => b.setAttribute('aria-expanded','false'));
-  }
+  <!-- Favicons (root) -->
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 
-  function initDesktopDropdowns(){
-    qsa('.topbar [data-dd]').forEach(dd => {
-      const btn = qs('.dropbtn', dd);
-      if(!btn) return;
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const isOpen = dd.classList.contains('open');
-        closeDesktopDropdowns();
-        if(!isOpen){
-          dd.classList.add('open');
-          btn.setAttribute('aria-expanded','true');
-        }
-      });
-    });
+  <!-- Shared Header CSS -->
+  <link rel="stylesheet" href="/assets/css/header.css">
 
-    document.addEventListener('click', (e) => {
-      const inside = e.target.closest('.topbar [data-dd]');
-      if(!inside) closeDesktopDropdowns();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape') closeDesktopDropdowns();
-    });
-  }
-
-  function setMobileOpen(isOpen){
-    const toggle = qs('.topbar .nav-toggle');
-    const panel = qs('.topbar .mobile-nav');
-    if(!toggle || !panel) return;
-
-    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    panel.hidden = !isOpen;
-
-    if(!isOpen){
-      qsa('.topbar .mobile-accordion').forEach(btn => btn.setAttribute('aria-expanded','false'));
-      qsa('.topbar .mobile-submenu').forEach(sm => sm.hidden = true);
+  <style>
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:#f6f8fb;
+      color:#1F1F1F;
     }
-  }
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:40px 18px 120px;
+    }
+    .card{
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      padding:22px;
+    }
+    h1{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      color:#034EA2;
+      font-size:clamp(28px,4vw,48px);
+    }
+    p{ margin:0; line-height:1.7; color:#1f2b3f; }
+  </style>
+</head>
 
-  function initMobileMenu(){
-    const toggle = qs('.topbar .nav-toggle');
-    const panel = qs('.topbar .mobile-nav');
-    if(!toggle || !panel) return;
+<body>
+  <div id="siteHeader"></div>
 
-    setMobileOpen(false);
+  <main>
+    <div class="card">
+      <h1>Header Test Page</h1>
+      <p>
+        Use this page to test desktop spacing and the mobile hamburger menu.
+      </p>
+    </div>
+  </main>
 
-    toggle.addEventListener('click', () => {
-      const open = toggle.getAttribute('aria-expanded') === 'true';
-      setMobileOpen(!open);
-    });
+  <script>
+    (async function(){
+      const mount = document.getElementById('siteHeader');
+      if(!mount) return;
 
-    qsa('.topbar .mobile-accordion').forEach(btn => {
-      const targetId = btn.getAttribute('aria-controls');
-      const target = targetId ? document.getElementById(targetId) : null;
+      const res = await fetch('/assets/includes/header.html', { cache: 'no-store' });
+      mount.innerHTML = await res.text();
 
-      btn.addEventListener('click', () => {
-        const isOpen = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-        if(target) target.hidden = isOpen;
-      });
-    });
+      // ===== Inline header JS (so it always runs, even if server serves .js as text/plain) =====
+      (function () {
+        function qs(sel, root=document){ return root.querySelector(sel); }
+        function qsa(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
 
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape') setMobileOpen(false);
-    });
+        function closeDesktopDropdowns(){
+          qsa('.topbar .dropdown.open').forEach(d => d.classList.remove('open'));
+          qsa('.topbar .dropdown .dropbtn').forEach(b => b.setAttribute('aria-expanded','false'));
+        }
 
-    // If you rotate or resize to desktop, close mobile menu
-    window.addEventListener('resize', () => {
-      if(window.innerWidth > 620) setMobileOpen(false);
-    });
-  }
+        function initDesktopDropdowns(){
+          qsa('.topbar [data-dd]').forEach(dd => {
+            const btn = qs('.dropbtn', dd);
+            if(!btn) return;
 
-  document.addEventListener('DOMContentLoaded', () => {
-    initDesktopDropdowns();
-    initMobileMenu();
-  });
-})();
+            btn.addEventListener('click', (e) => {
+              e.preventDefault();
+              const isOpen = dd.classList.contains('open');
+              closeDesktopDropdowns();
+              if(!isOpen){
+                dd.classList.add('open');
+                btn.setAttribute('aria-expanded','true');
+              }
+            });
+          });
+
+          document.addEventListener('click', (e) => {
+            const inside = e.target.closest('.topbar [data-dd]');
+            if(!inside) closeDesktopDropdowns();
+          });
+
+          document.addEventListener('keydown', (e) => {
+            if(e.key === 'Escape') closeDesktopDropdowns();
+          });
+        }
+
+        function setMobileOpen(isOpen){
+          const toggle = qs('.topbar .nav-toggle');
+          const panel = qs('.topbar .mobile-nav');
+          if(!toggle || !panel) return;
+
+          toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          panel.hidden = !isOpen;
+
+          if(!isOpen){
+            qsa('.topbar .mobile-accordion').forEach(btn => btn.setAttribute('aria-expanded','false'));
+            qsa('.topbar .mobile-submenu').forEach(sm => sm.hidden = true);
+          }
+        }
+
+        function initMobileMenu(){
+          const toggle = qs('.topbar .nav-toggle');
+          const panel = qs('.topbar .mobile-nav');
+          if(!toggle || !panel) return;
+
+          setMobileOpen(false);
+
+          toggle.addEventListener('click', () => {
+            const open = toggle.getAttribute('aria-expanded') === 'true';
+            setMobileOpen(!open);
+          });
+
+          qsa('.topbar .mobile-accordion').forEach(btn => {
+            const targetId = btn.getAttribute('aria-controls');
+            const target = targetId ? document.getElementById(targetId) : null;
+
+            btn.addEventListener('click', () => {
+              const isOpen = btn.getAttribute('aria-expanded') === 'true';
+              btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+              if(target) target.hidden = isOpen;
+            });
+          });
+
+          document.addEventListener('keydown', (e) => {
+            if(e.key === 'Escape') setMobileOpen(false);
+          });
+
+          window.addEventListener('resize', () => {
+            if(window.innerWidth > 620) setMobileOpen(false);
+          });
+        }
+
+        initDesktopDropdowns();
+        initMobileMenu();
+      })();
+      // ===== end inline header JS =====
+
+    })();
+  </script>
+</body>
+</html>
