@@ -1,4 +1,5 @@
 <header class="topbar">
+  <!-- Checkbox must be a DIRECT child of .topbar -->
   <input class="nav-toggle" type="checkbox" id="eeNavToggle" aria-label="Open menu">
 
   <div class="topbar-inner">
@@ -7,11 +8,13 @@
       <span>Experience Ecuador</span>
     </a>
 
+    <!-- Hamburger button (label toggles checkbox) -->
     <label class="nav-toggle-btn" for="eeNavToggle" aria-label="Menu">
       <span class="nav-toggle-icon" aria-hidden="true"></span>
       <span class="sr-only">Menu</span>
     </label>
 
+    <!-- DESKTOP NAV -->
     <nav class="nav nav-desktop" aria-label="Primary navigation">
       <a class="nav-link" href="/">Home</a>
       <a class="nav-link" href="/about/">About</a>
@@ -46,15 +49,16 @@
     </nav>
   </div>
 
+  <!-- MOBILE PANEL (hamburger-only, JS-driven, NO hash navigation) -->
   <nav class="nav nav-mobile" aria-label="Mobile navigation">
     <div class="m-panel">
+
       <!-- MAIN MENU -->
       <div class="m-view m-main">
         <a class="m-item" href="/">Home</a>
         <a class="m-item" href="/about/">About</a>
         <a class="m-item" href="/mission/">Mission</a>
 
-        <!-- Buttons, not anchors. This prevents hash URLs like #m-regions -->
         <button class="m-item m-next" type="button" data-target="#m-regions">
           Regions <span class="m-arrow" aria-hidden="true"></span>
         </button>
@@ -69,7 +73,10 @@
 
       <!-- REGIONS SUBMENU -->
       <div class="m-view m-submenu" id="m-regions" hidden>
-        <button class="m-back" type="button" data-back>Back</button>
+        <button class="m-back" type="button" data-back>
+          Back
+        </button>
+
         <a class="m-item" href="/regions/">All Regions</a>
         <a class="m-item" href="/regions/galapagos/">Galapagos</a>
         <a class="m-item" href="/regions/coast/">Coast</a>
@@ -79,7 +86,10 @@
 
       <!-- EXPERIENCES SUBMENU -->
       <div class="m-view m-submenu" id="m-experiences" hidden>
-        <button class="m-back" type="button" data-back>Back</button>
+        <button class="m-back" type="button" data-back>
+          Back
+        </button>
+
         <a class="m-item" href="/experiences/">All Experiences</a>
         <a class="m-item" href="/experiences/adventure/">Adventure</a>
         <a class="m-item" href="/experiences/nature/">Nature</a>
@@ -88,6 +98,7 @@
         <a class="m-item" href="/experiences/culinary/">Culinary</a>
         <a class="m-item" href="/experiences/culture/">Culture</a>
       </div>
+
     </div>
   </nav>
 </header>
