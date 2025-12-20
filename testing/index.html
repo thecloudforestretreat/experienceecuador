@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amazon (Oriente) | Experience Ecuador</title>
+  <title>Tena | Experience Ecuador</title>
 
   <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -24,140 +24,86 @@
   <style>
     :root{
       --brand-blue:#034EA2;
-      --cloud-white:#F5F7FA;
-      --charcoal:#1F1F1F;
       --slate:#6E7B8B;
-      --light-gray:#E3E5E8;
+      --text:#1F1F1F;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--charcoal);
       background:#f6f8fb;
+      color:var(--text);
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-    img{ user-select:none; -webkit-user-drag:none; }
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
-    /* ===== HERO ===== */
-    .hero{
-      position:relative;
-      width:100%;
-      min-height:64vh;
-      display:flex;
-      align-items:flex-end;
-      justify-content:center;
-      background:url("/assets/images/EE-Region-Amazon-hero-01.jpg") center / cover no-repeat;
-      color:#fff;
-    }
-
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.14),
-        rgba(0,0,0,0.72)
-      );
-    }
-
-    .hero-inner{
-      position:relative;
-      z-index:2;
-      width:100%;
-      max-width:1100px;
-      padding:54px 18px 34px;
-      text-align:left;
-    }
-
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,0.38);
-      border:1px solid rgba(255,255,255,0.22);
-      font-weight:700;
-      letter-spacing:0.02em;
-      font-size:12.5px;
-      margin-bottom:14px;
-      backdrop-filter:blur(10px);
-    }
-
-    .hero h1{
-      margin:0 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.03em;
-      font-size:clamp(40px,5.4vw,72px);
-      line-height:1.03;
-    }
-
-    .hero p{
-      margin:0;
-      max-width:70ch;
-      font-size:clamp(15px,2vw,18px);
-      line-height:1.65;
-      color:rgba(255,255,255,0.92);
-    }
-
-    /* ===== PAGE WRAP ===== */
+    /* ===== PAGE CONTENT ONLY ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:36px 18px 0;
+      padding:40px 18px 56px;
     }
 
-    /* ===== SECTION / CARDS ===== */
-    .section{ margin-bottom:26px; }
-
-    .section h2{
-      margin:0 0 10px;
+    h1{
       font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:24px;
+      font-size:clamp(34px,4vw,54px);
       color:var(--brand-blue);
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
     }
 
-    .section p{
+    .lede{
+      color:var(--slate);
+      line-height:1.65;
+      max-width:92ch;
       margin:0;
-      color:#2a2f36;
-      font-size:15.8px;
-      line-height:1.75;
-      max-width:82ch;
+      font-size:16.8px;
     }
 
-    .grid{
+    .meta-row{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      color:#162b55;
+      font-weight:700;
+      font-size:13.5px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
+      font-weight:800;
+    }
+
+    .content-grid{
       display:grid;
       grid-template-columns:1.15fr 0.85fr;
       gap:22px;
+      margin-top:22px;
       align-items:start;
-      margin-top:18px;
-    }
-
-    .grid.center-stack{ align-items:center; }
-
-    .stack-right{
-      display:flex;
-      flex-direction:column;
-      gap:16px;
     }
 
     .card{
       background:#fff;
-      border-radius:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
       padding:22px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
     }
 
-    .card h3{
+    .card + .card{ margin-top:16px; }
+
+    .card h2{
       margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
@@ -166,144 +112,393 @@
       color:#0f2f62;
     }
 
-    .card ul{
-      margin:0;
-      padding-left:18px;
-      color:#24324a;
+    .card p{
+      margin:0 0 12px;
+      color:#1f2b3f;
       line-height:1.75;
-      font-size:14.8px;
+      font-size:15.5px;
+      max-width:84ch;
     }
 
-    .mini{
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      border:1px solid rgba(3,78,162,0.12);
-      border-radius:20px;
-      padding:20px;
+    .card p:last-child{ margin-bottom:0; }
+
+    .inline-link{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:800;
+      color:#162b55;
     }
 
-    .pill-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:14px;
-    }
-
-    .tag{
-      display:inline-flex;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,0.08);
-      border:1px solid rgba(3,78,162,0.12);
-      color:#0f2f62;
-      font-weight:700;
-      font-size:13px;
-    }
-
-    /* ===== PLACES GRID (IMAGE HEADER TILES) ===== */
-    .places-grid{
+    .two-col{
       display:grid;
-      grid-template-columns:repeat(2, 1fr);
-      gap:12px;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
       margin-top:10px;
     }
 
-    .place-tile{
-      display:block;
-      padding:0;
+    .mini-card{
+      padding:14px 14px;
       border-radius:18px;
-      overflow:hidden;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .mini-card h3{
+      margin:0 0 6px;
+      font-size:14.5px;
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+    }
+
+    .mini-card p{
+      margin:0;
+      color:#1f2b3f;
+      opacity:.92;
+      line-height:1.6;
+      font-size:14.4px;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
+      font-weight:800;
+      font-size:12.8px;
+    }
+
+    .side-stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .mini{
       background:#fff;
-      border:1px solid rgba(3,78,162,0.12);
-      box-shadow:0 14px 42px rgba(3,78,162,0.10);
-      transition:transform 160ms ease, box-shadow 160ms ease;
+      padding:20px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
     }
 
-    .place-tile:hover{
-      transform:translateY(-2px);
-      box-shadow:0 18px 55px rgba(3,78,162,0.14);
+    .mini h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
     }
 
-    .place-img{
-      width:100%;
-      aspect-ratio:16/9;
-      background:#eef2f7;
+    .mini p{
+      margin:0;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:14.8px;
     }
 
-    .place-img img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
+    .link-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
     }
 
-    .place-body{
+    .pill-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      font-weight:900;
+      color:#0f2f62;
+    }
+
+    .pill-link:hover{ background:rgba(3,78,162,.08); }
+
+    .pill-link span{
+      opacity:.9;
+      font-weight:700;
+      color:#162b55;
+      font-size:13px;
+    }
+
+    /* ===== WEATHER (same as Quito) ===== */
+    .wx-card{
+      padding:18px 18px;
+      border-radius:22px;
+      background:#fff;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .wx-title{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .wx-now{
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
       gap:12px;
       padding:14px 14px;
-      background:linear-gradient(180deg, rgba(3,78,162,0.035), rgba(3,78,162,0.012));
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
     }
 
-    .place-title{
-      margin:0;
+    .wx-date{
       font-weight:900;
       color:#0f2f62;
       letter-spacing:-0.01em;
-      font-size:15px;
+      font-size:13.2px;
+      opacity:.95;
+      white-space:nowrap;
+      margin-top:2px;
+    }
+
+    .wx-lines{
+      margin:0;
+      color:#1f2b3f;
+      line-height:1.55;
+      font-size:13.8px;
+      opacity:.95;
+      text-align:right;
+    }
+
+    .wx-grid7{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .wx-day{
+      border-radius:16px;
+      padding:10px 10px;
+      background:rgba(255,255,255,.9);
+      border:1px solid rgba(3,78,162,.14);
+      text-align:left;
+    }
+
+    .wx-top{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:8px;
+    }
+
+    .wx-dow{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:12.5px;
+      letter-spacing:-0.01em;
+    }
+
+    .wx-mmdd{
+      color:#162b55;
+      opacity:.75;
+      font-size:11.5px;
+    }
+
+    .wx-hi{
+      margin-top:8px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:12.8px;
+    }
+
+    .wx-lo{
+      color:#162b55;
+      opacity:.8;
+      font-size:12.3px;
+      margin-top:2px;
+    }
+
+    .wx-rain{
+      margin-top:6px;
+      color:#162b55;
+      opacity:.85;
+      font-size:11.7px;
+      white-space:nowrap;
+    }
+
+    @media(max-width:980px){
+      .wx-grid7{ grid-template-columns:repeat(2, 1fr); }
+    }
+
+    .months{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid rgba(0,0,0,.06);
+    }
+
+    .wx-sub{
+      margin:0 0 10px;
+      color:#1f2b3f;
+      opacity:.85;
+      font-size:13.5px;
+      line-height:1.5;
+    }
+
+    .legend{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+      align-items:center;
+    }
+
+    .legend-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:12.8px;
+      font-weight:800;
+      color:#162b55;
+      opacity:.9;
+    }
+
+    .swatch{
+      width:14px;
+      height:14px;
+      border-radius:6px;
+      border:1px solid rgba(3,78,162,.22);
+      background:rgba(3,78,162,.06);
+    }
+
+    .swatch.best{ background:rgba(3,78,162,.14); border-color:rgba(3,78,162,.32); }
+    .swatch.good{ background:rgba(3,78,162,.09); border-color:rgba(3,78,162,.22); }
+    .swatch.fair{ background:rgba(3,78,162,.04); border-color:rgba(3,78,162,.18); opacity:.85; }
+
+    .month-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .month-chip{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,.14);
+      background:rgba(3,78,162,.06);
+      color:#0f2f62;
+      font-weight:900;
+      font-size:12.4px;
+      min-width:46px;
+    }
+
+    .month-chip.best{
+      background:rgba(3,78,162,.14);
+      border-color:rgba(3,78,162,.32);
+    }
+
+    .month-chip.good{
+      background:rgba(3,78,162,.09);
+      border-color:rgba(3,78,162,.22);
+    }
+
+    .month-chip.fair{
+      background:rgba(3,78,162,.04);
+      border-color:rgba(3,78,162,.18);
+      opacity:.85;
+    }
+
+    /* ===== MORE AMAZON DESTINATIONS (structure/classes locked for tiles) ===== */
+    .andes-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .andes-tile{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    .andes-tile:hover{
+      background:rgba(3,78,162,.07);
+      transform:translateY(-1px);
+    }
+
+    .andes-left{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
+    }
+
+    .andes-title{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:14.8px;
+      letter-spacing:-0.01em;
       line-height:1.2;
     }
 
-    .place-meta{
-      margin:6px 0 0;
+    .andes-sub{
       color:#1f2b3f;
       opacity:.9;
       line-height:1.5;
-      font-size:13.6px;
-      max-width:34ch;
+      font-size:13.4px;
+      max-width:60ch;
     }
 
-    .place-arrow{
+    .andes-arrow{
       flex:0 0 auto;
-      width:36px;
-      height:36px;
+      width:34px;
+      height:34px;
       border-radius:999px;
-      border:1px solid rgba(3,78,162,0.18);
-      background:rgba(255,255,255,0.75);
+      border:1px solid rgba(3,78,162,.18);
+      background:rgba(255,255,255,.75);
       display:flex;
       align-items:center;
       justify-content:center;
       margin-top:2px;
     }
 
-    .place-arrow span{
+    .andes-arrow span{
       display:block;
       width:10px;
       height:10px;
       border-right:2px solid #0f2f62;
       border-bottom:2px solid #0f2f62;
       transform:rotate(-45deg);
-      opacity:.9;
+      opacity:.85;
     }
 
-    /* ===== VIDEO EMBED (MATCH ANDES STYLE) ===== */
-    .video-embed{
-      margin-top:16px;
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.10);
-      background:#000;
-    }
-
-    .video-embed iframe{
-      width:100%;
-      aspect-ratio:16/9;
-      height:auto;
-      display:block;
-      border:0;
-    }
-
-    /* ===== CAROUSEL (GALLERY) ===== */
+    /* ===== CAROUSEL (LEFT COLUMN) ===== */
     .carousel{
       margin-top:18px;
       background:#fff;
@@ -416,43 +611,20 @@
       white-space:nowrap;
     }
 
-    /* ===== CTA ===== */
-    .cta{
-      margin:28px 0 56px;
-      background:var(--brand-blue);
-      color:#fff;
-      border-radius:24px;
-      padding:22px;
-      box-shadow:0 22px 60px rgba(3,78,162,0.22);
-    }
-
-    .cta h3{
-      margin:0 0 8px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:20px;
-    }
-
-    .cta p{
-      margin:0;
-      color:rgba(255,255,255,0.92);
-      line-height:1.7;
-      font-size:15.5px;
-      max-width:85ch;
-    }
-
     /* ===== MOBILE ===== */
-    @media(max-width:900px){
-      .grid{ grid-template-columns:1fr; }
-      .places-grid{ grid-template-columns:1fr; }
-      .hero-inner{ text-align:center; }
-      .hero p{ margin:0 auto; }
+    @media(max-width:980px){
+      .content-grid{grid-template-columns:1fr}
+    }
+
+    @media(max-width:820px){
+      .two-col{grid-template-columns:1fr}
+    }
+
+    @media(max-width:620px){
+      .carousel-slide{ aspect-ratio:16/9; }
     }
 
     @media(max-width:480px){
-      .hero{ min-height:60vh; }
-      .cta{ border-radius:20px; }
       .carousel-btn{ width:40px; height:40px; }
     }
   </style>
@@ -462,241 +634,221 @@
   <div id="siteHeader"></div>
 
   <main>
-    <!-- HERO -->
-    <section class="hero" aria-label="Amazon hero image">
-      <div class="hero-inner">
-        <div class="kicker">Region Guide • Live</div>
-        <h1>Amazon (Oriente)</h1>
-        <p>
-          Ecuador’s rainforest region is about gateways and lodge-based experiences, not big cities.
-          This hub will help you choose the right entry point, reserve, and trip style for your time and comfort level.
-        </p>
-      </div>
-    </section>
-
-    <!-- CONTENT -->
     <div class="wrap">
+      <h1>Tena</h1>
+      <p class="lede">
+        Tena is the easiest way to experience the Amazon without overcomplicating your trip.
+        It is the main jungle gateway from Quito, with quick access to rivers, rainforest lodges, and adventure activities.
+        If you only have a short window and want a real Amazon feel, Tena gives you the best balance of logistics, nature, and adrenaline.
+      </p>
 
-      <section class="section">
-        <h2>What makes the Amazon special</h2>
-        <p>
-          The Amazon is immersive. Days revolve around rivers, trails, canoe trips, wildlife, and guided experiences.
-          The key decision is not “which town,” but “how deep do you want to go” and “how many days do you have.”
-        </p>
+      <div class="meta-row" aria-label="Tena overview metadata">
+        <span class="pill">Region: Amazon</span>
+        <span class="pill">Best for: First-time Amazon trips, short stays, adventure + nature</span>
+        <span class="pill">Typical time: 2–4 days</span>
+      </div>
 
-        <div class="grid center-stack">
+      <section class="content-grid" aria-label="Tena content">
+        <!-- LEFT COLUMN -->
+        <div>
           <div class="card">
-            <h3>Signature highlights</h3>
-            <ul>
-              <li>Guided jungle walks, canoe rides, and night wildlife excursions</li>
-              <li>River towns as gateways to rainforest lodges and reserves</li>
-              <li>Wildlife sightings: monkeys, caimans, birds, frogs, and more</li>
-              <li>Deep biodiversity in protected areas and indigenous territories</li>
-            </ul>
+            <h2>What Tena is best for</h2>
+            <p>
+              Tena is best for first-time Amazon travelers because you can keep planning simple and still get real jungle access.
+              It is close enough to Quito to work for short stays, and it is one of the best places in Ecuador for combining rainforest time with active days on the river.
+              If you want an Amazon trip that feels high-impact without being high-effort, this is the most flexible base.
+            </p>
 
-            <div class="pill-row" aria-label="Amazon experience tags">
-              <span class="tag">Rainforest</span>
-              <span class="tag">Wildlife</span>
-              <span class="tag">Lodges</span>
-              <span class="tag">Guided</span>
+            <div class="two-col" aria-label="Tena highlights">
+              <div class="mini-card">
+                <h3>Main gateway from Quito</h3>
+                <p>
+                  One of the most straightforward Amazon entries for quick itineraries.
+                </p>
+              </div>
+
+              <div class="mini-card">
+                <h3>Whitewater rafting capital</h3>
+                <p>
+                  A top choice for river adventure paired with jungle scenery.
+                </p>
+              </div>
+
+              <div class="mini-card">
+                <h3>Easy jungle access</h3>
+                <p>
+                  Lodges, trails, and river routes close enough for short stays.
+                </p>
+              </div>
+
+              <div class="mini-card">
+                <h3>Adventure + nature balance</h3>
+                <p>
+                  Active mornings, calm rainforest afternoons, and a simple base routine.
+                </p>
+              </div>
+            </div>
+
+            <div class="chips" aria-label="Tena theme chips">
+              <span class="chip">Amazon gateway</span>
+              <span class="chip">Rafting</span>
+              <span class="chip">Jungle lodges</span>
+              <span class="chip">Short trip</span>
+              <span class="chip">Nature</span>
+              <span class="chip">Adventure</span>
             </div>
           </div>
 
-          <div class="stack-right">
-            <div class="mini">
-              <h3>Best for</h3>
-              <ul>
-                <li>First-time Amazon travelers (short gateway stays)</li>
-                <li>Nature lovers and wildlife-focused trips</li>
-                <li>Adventure: rafting, river days, jungle hikes</li>
-                <li>Longer immersive lodge-based journeys</li>
-              </ul>
+          <div class="card">
+            <h2>Simple planning flow</h2>
+            <p>
+              Keep your Tena plan clean.
+              Arrive, settle in, and use your first afternoon for an easy riverfront or lodge-based jungle intro.
+              Then pick one “big adventure day” like rafting, and one “slow nature day” for trails, wildlife, and relaxing jungle time.
+            </p>
+            <p>
+              For a 2 to 4 day stay, avoid stacking too many long excursions back to back.
+              Protect one day for river energy and one day for rainforest rhythm.
+              If you want help shaping a short Amazon plan that fits neatly into a Quito itinerary, reach out via the
+              <a class="inline-link" href="/contact/">Contact</a> page.
+            </p>
+          </div>
+
+          <!-- CAROUSEL (placeholder images for now) -->
+          <div id="tenaCarousel" class="carousel" aria-label="Tena image gallery">
+            <button class="carousel-btn prev" type="button" aria-label="Previous image">
+              <span aria-hidden="true"></span>
+            </button>
+
+            <div class="carousel-viewport">
+              <div class="carousel-track">
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Tena-1.jpg" alt="Tena highlight 1"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Tena-2.jpg" alt="Tena highlight 2"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Tena-3.jpg" alt="Tena highlight 3"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Tena-4.jpg" alt="Tena highlight 4"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Tena-5.jpg" alt="Tena highlight 5"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Tena-6.jpg" alt="Tena highlight 6"></div>
+              </div>
             </div>
 
-            <div class="mini">
-              <h3>Trip styles we will cover</h3>
-              <ul>
-                <li>2–4 day Amazon intro trips</li>
-                <li>Multi-day lodge-based adventures</li>
-                <li>Family-friendly experiences and easy logistics</li>
-                <li>Photography and wildlife-heavy itineraries</li>
-              </ul>
+            <button class="carousel-btn next" type="button" aria-label="Next image">
+              <span aria-hidden="true"></span>
+            </button>
+
+            <div class="carousel-ui">
+              <div class="carousel-dots" aria-label="Carousel pagination"></div>
+              <div class="carousel-counter" id="tenaCarouselCounter">1 / 6</div>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- AMAZON DESTINATIONS (TILES) -->
-      <section class="section">
-        <h2>Amazon gateways and reserves</h2>
-        <p>
-          These four locations give you a strong foundation: two easy gateways from Quito, plus two iconic protected areas.
-          Each destination page will include planning notes, a gallery carousel, and the same unified weather card used across location pages.
-        </p>
+        <!-- RIGHT COLUMN -->
+        <aside class="side-stack" aria-label="Tena side content">
+          <div class="mini">
+            <h3>Best use of time</h3>
+            <p>
+              Tena is ideal when you want an Amazon experience that fits into a shorter Ecuador trip.
+              If you have 2 days, do one active river day and one calm jungle day.
+              If you have 3 to 4 days, add a second nature-focused day and keep at least one afternoon unplanned for rest and weather flexibility.
+            </p>
 
-        <div class="grid">
-          <div class="card">
-            <h3>Featured locations</h3>
-
-            <div class="places-grid" aria-label="Amazon destination tiles">
-              <a class="place-tile" href="/regions/amazon/tena/" aria-label="Open Tena page">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-46-Tena.jpg" alt="Tena">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">Tena</div>
-                    <div class="place-meta">Main gateway from Quito. Rafting capital and easy jungle access.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
+            <div class="link-list" aria-label="Quick links">
+              <a class="pill-link" href="/regions/amazon/">
+                Back to Amazon <span>Region page</span>
               </a>
-
-              <a class="place-tile" href="/regions/amazon/misahualli/" aria-label="Open Misahuallí page">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-47-Misahualli.jpg" alt="Misahuallí">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">Misahuallí</div>
-                    <div class="place-meta">Small river town vibe, wildlife centers, relaxed Amazon intro.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
+              <a class="pill-link" href="/regions/amazon/tena/">
+                Tena <span>Amazon gateway</span>
               </a>
-
-              <a class="place-tile" href="/regions/amazon/yasuni-national-park/" aria-label="Open Yasuní National Park page">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-48-YasuniNationalPark.jpg" alt="Yasuní National Park">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">Yasuní National Park</div>
-                    <div class="place-meta">Deep Amazon, extreme biodiversity, experience-led lodge trips.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
-              </a>
-
-              <a class="place-tile" href="/regions/amazon/cuyabeno-wildlife-reserve/" aria-label="Open Cuyabeno Wildlife Reserve page">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-49-Cuyabeno.jpg" alt="Cuyabeno Wildlife Reserve">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">Cuyabeno Wildlife Reserve</div>
-                    <div class="place-meta">Lagoon system, canoe exploration, excellent wildlife sightings.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
+              <a class="pill-link" href="/contact/">
+                Contact <span>Questions and partnerships</span>
               </a>
             </div>
+          </div>
 
-            <div class="pill-row" aria-label="Amazon destination tags">
-              <span class="tag">Gateway towns</span>
-              <span class="tag">Protected areas</span>
-              <span class="tag">Guided lodges</span>
-              <span class="tag">Wildlife</span>
+          <!-- Weather card (same behavior as Quito) -->
+          <div class="wx-card" aria-label="Weather and seasonality">
+            <div class="wx-title">Current weather</div>
+
+            <div class="wx-now">
+              <div class="wx-date" id="tenaWxDate">--/--/----</div>
+              <p class="wx-lines" id="tenaWxLines">Loading…</p>
+            </div>
+
+            <div class="months" aria-label="Forecast and best months section">
+              <div class="wx-title" style="margin-top:0;">7-day forecast</div>
+              <div class="wx-sub">High / low and rain for the week ahead.</div>
+              <div class="wx-grid7" id="tenaWx7" aria-label="Tena 7-day forecast grid"></div>
+
+              <div class="wx-title" style="margin-top:14px;">Best months to visit</div>
+              <div class="wx-sub" style="margin-bottom:8px;">
+                Based on typically drier stretches and comfortable outdoor conditions.
+              </div>
+
+              <div class="legend" aria-label="Best months legend">
+                <div class="legend-item"><span class="swatch best" aria-hidden="true"></span>Best</div>
+                <div class="legend-item"><span class="swatch good" aria-hidden="true"></span>Good</div>
+                <div class="legend-item"><span class="swatch fair" aria-hidden="true"></span>Fair</div>
+              </div>
+
+              <div class="month-row" aria-label="12-month seasonality chips">
+                <span class="month-chip fair" aria-label="January">Jan</span>
+                <span class="month-chip fair" aria-label="February">Feb</span>
+                <span class="month-chip good" aria-label="March good month">Mar</span>
+                <span class="month-chip good" aria-label="April good month">Apr</span>
+                <span class="month-chip good" aria-label="May good month">May</span>
+                <span class="month-chip best" aria-label="June best month">Jun</span>
+                <span class="month-chip best" aria-label="July best month">Jul</span>
+                <span class="month-chip best" aria-label="August best month">Aug</span>
+                <span class="month-chip best" aria-label="September best month">Sep</span>
+                <span class="month-chip good" aria-label="October good month">Oct</span>
+                <span class="month-chip fair" aria-label="November">Nov</span>
+                <span class="month-chip fair" aria-label="December">Dec</span>
+              </div>
             </div>
           </div>
 
-          <div class="card">
-            <h3>How to use this hub</h3>
-            <ul>
-              <li>If you have 2–4 days: start with Tena or Misahuallí for easy access</li>
-              <li>If you want deep immersion: choose Yasuní or Cuyabeno as your anchor</li>
-              <li>Expect guided schedules, early mornings, and nature-led pacing</li>
-              <li>Pack for humidity, rain, and muddy trails</li>
-            </ul>
+          <div class="mini">
+            <h3>More Amazon destinations</h3>
+            <p>
+              Build your Amazon itinerary around one base, then add depth based on your time and comfort level.
+            </p>
 
-            <!-- ✅ Fixed: YouTube embed section under "How to use this hub" -->
-            <div class="video-embed" aria-label="Amazon video">
-              <iframe
-                src="https://www.youtube.com/embed/ATSm3IdETuc"
-                title="Cuyabeno Wildlife Reserve"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen>
-              </iframe>
+            <div class="andes-grid" aria-label="Amazon destination links">
+              <a class="andes-tile" href="/regions/amazon/misahualli/" aria-label="Open Misahuallí page">
+                <div class="andes-left">
+                  <div class="andes-title">Misahuallí</div>
+                  <div class="andes-sub">Relaxed river town for families and an easy Amazon intro.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/amazon/yasuni-national-park/" aria-label="Open Yasuní National Park page">
+                <div class="andes-left">
+                  <div class="andes-title">Yasuní National Park</div>
+                  <div class="andes-sub">Deep Amazon immersion with guided lodge-based exploration.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/amazon/cuyabeno-wildlife-reserve/" aria-label="Open Cuyabeno Wildlife Reserve page">
+                <div class="andes-left">
+                  <div class="andes-title">Cuyabeno Wildlife Reserve</div>
+                  <div class="andes-sub">Lagoon system, canoe exploration, excellent wildlife sightings.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/amazon/" aria-label="Open Amazon region page">
+                <div class="andes-left">
+                  <div class="andes-title">Amazon</div>
+                  <div class="andes-sub">Explore all Amazon destinations and trip ideas.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
             </div>
           </div>
-        </div>
+        </aside>
       </section>
-
-      <section class="section">
-        <h2>What to expect on this page next</h2>
-        <p>
-          We are building this region hub into a complete guide with lodge planning, trip length templates,
-          and clear decision-making for first-time vs deep Amazon travel.
-        </p>
-
-        <div class="grid">
-          <div class="card">
-            <h3>Planned sections</h3>
-            <ul>
-              <li>How to choose: gateway stay vs lodge-based trip</li>
-              <li>Top experiences: canoeing, night walks, wildlife, culture</li>
-              <li>Suggested trip lengths (2–4 days vs 5–8 days)</li>
-              <li>Seasonality, costs, and packing checklist</li>
-              <li>Trusted partners and curated lodge recommendations</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>Quick planning mindset</h3>
-            <ul>
-              <li>Choose depth first, then choose your entry point</li>
-              <li>Longer stays improve wildlife and immersion</li>
-              <li>Guided trips are the best way to experience the jungle safely</li>
-              <li>Keep expectations realistic, nature is unpredictable and that is the point</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>Gallery and highlights</h2>
-
-        <!-- CAROUSEL -->
-        <div id="amazonCarousel" class="carousel" aria-label="Amazon image gallery">
-          <button class="carousel-btn prev" type="button" aria-label="Previous image">
-            <span aria-hidden="true"></span>
-          </button>
-
-          <div class="carousel-viewport">
-            <div class="carousel-track">
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-1.jpg" alt="Amazon highlight 1"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-2.jpg" alt="Amazon highlight 2"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-3.jpg" alt="Amazon highlight 3"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-4.jpg" alt="Amazon highlight 4"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-5.jpg" alt="Amazon highlight 5"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-6.jpg" alt="Amazon highlight 6"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-7.jpg" alt="Amazon highlight 7"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-8.jpg" alt="Amazon highlight 8"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-9.jpg" alt="Amazon highlight 9"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-10.jpg" alt="Amazon highlight 10"></div>
-            </div>
-          </div>
-
-          <button class="carousel-btn next" type="button" aria-label="Next image">
-            <span aria-hidden="true"></span>
-          </button>
-
-          <div class="carousel-ui">
-            <div class="carousel-dots" aria-label="Carousel pagination"></div>
-            <div class="carousel-counter" id="amazonCarouselCounter">1 / 10</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="cta" aria-label="Newsletter future CTA">
-        <h3>Coming soon: curated Amazon updates</h3>
-        <p>
-          This region hub will evolve into curated guides and a newsletter format where travelers discover experiences and trusted partners.
-          Next step: lodge decision guides, sample itineraries, and a reusable gallery carousel for each location page.
-        </p>
-      </section>
-
     </div>
   </main>
 
@@ -718,9 +870,9 @@
   </script>
 
   <script>
-    /* Amazon carousel */
+    /* Tena carousel */
     (function(){
-      const root = document.getElementById("amazonCarousel");
+      const root = document.getElementById("tenaCarousel");
       if(!root) return;
 
       const track = root.querySelector(".carousel-track");
@@ -728,7 +880,7 @@
       const prevBtn = root.querySelector(".carousel-btn.prev");
       const nextBtn = root.querySelector(".carousel-btn.next");
       const dotsWrap = root.querySelector(".carousel-dots");
-      const counter = root.querySelector("#amazonCarouselCounter");
+      const counter = root.querySelector("#tenaCarouselCounter");
 
       let index = 0;
 
@@ -825,7 +977,233 @@
       setIndex(0);
       startAutoplay();
     })();
-  </script>
 
+    /* Tena weather (Quito-style contract: /api/weather + localStorage cache + Max/Min/Rain with <br>) */
+    (function(){
+      const dateEl = document.getElementById("tenaWxDate");
+      const linesEl = document.getElementById("tenaWxLines");
+      const gridEl = document.getElementById("tenaWx7");
+      if(!dateEl || !linesEl || !gridEl) return;
+
+      // Tena, Ecuador (approx.)
+      const LAT = -0.9868;
+      const LON = -77.8159;
+
+      const CACHE_KEY = "tena-wx-v1";
+      const TTL_MS = 30 * 60 * 1000;
+
+      function fmtDateMMDDYYYY(d){
+        const mm = String(d.getMonth()+1).padStart(2,"0");
+        const dd = String(d.getDate()).padStart(2,"0");
+        const yy = d.getFullYear();
+        return `${mm}/${dd}/${yy}`;
+      }
+
+      function fmtMMDD(iso){
+        const d = new Date(iso + "T00:00:00");
+        const mm = String(d.getMonth()+1).padStart(2,"0");
+        const dd = String(d.getDate()).padStart(2,"0");
+        return `${mm}/${dd}`;
+      }
+
+      function dowShort(iso){
+        const d = new Date(iso + "T00:00:00");
+        return d.toLocaleDateString("en-US",{ weekday:"short" });
+      }
+
+      function cToF(c){
+        return Math.round((c * 9/5) + 32);
+      }
+
+      function setUnavailable(){
+        dateEl.textContent = "--/--/----";
+        linesEl.innerHTML = "Weather unavailable right now.";
+        gridEl.innerHTML = "";
+      }
+
+      function setLoading(){
+        dateEl.textContent = fmtDateMMDDYYYY(new Date());
+        linesEl.innerHTML = "Loading…";
+        gridEl.innerHTML = "";
+      }
+
+      function readCache(){
+        try{
+          const raw = localStorage.getItem(CACHE_KEY);
+          if(!raw) return null;
+          const obj = JSON.parse(raw);
+          if(!obj || typeof obj !== "object") return null;
+          if(!obj.ts || !obj.data) return null;
+          if((Date.now() - obj.ts) > TTL_MS) return null;
+          return obj.data;
+        }catch(e){
+          return null;
+        }
+      }
+
+      function writeCache(data){
+        try{
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+        }catch(e){}
+      }
+
+      function normalize(api){
+        const unitsTemp =
+          (api && api.units && (api.units.temp || api.units.temperature)) ||
+          (api && api.unit && api.unit.temperature) ||
+          null;
+
+        const isC =
+          (typeof unitsTemp === "string" && unitsTemp.toUpperCase().includes("C")) ? true :
+          (typeof unitsTemp === "string" && unitsTemp.toUpperCase().includes("F")) ? false :
+          true;
+
+        if(api && api.current && Array.isArray(api.daily)){
+          const current = api.current || {};
+          const dailyArr = api.daily || [];
+          return {
+            isC,
+            current: {
+              tmax: current.tmax,
+              tmin: current.tmin,
+              rain: current.rain
+            },
+            days: dailyArr.slice(0, 7).map(d => ({
+              date: d.date,
+              tmax: d.tmax,
+              tmin: d.tmin,
+              rain: d.rain
+            }))
+          };
+        }
+
+        const daily = (api && api.daily) ? api.daily : {};
+        const days = daily.time || [];
+        const tmax = daily.temperature_2m_max || [];
+        const tmin = daily.temperature_2m_min || [];
+        const rain = daily.precipitation_probability_max || [];
+
+        return {
+          isC,
+          current: {
+            tmax: (typeof tmax[0] === "number" ? tmax[0] : null),
+            tmin: (typeof tmin[0] === "number" ? tmin[0] : null),
+            rain: (typeof rain[0] === "number" ? rain[0] : null)
+          },
+          days: days.slice(0, 7).map((iso, i) => ({
+            date: iso,
+            tmax: tmax[i],
+            tmin: tmin[i],
+            rain: rain[i]
+          }))
+        };
+      }
+
+      function render(norm){
+        dateEl.textContent = fmtDateMMDDYYYY(new Date());
+
+        const tmax = norm.current.tmax;
+        const tmin = norm.current.tmin;
+        const rain = norm.current.rain;
+
+        const maxStr = (typeof tmax === "number")
+          ? `Max: ${norm.isC ? cToF(tmax) : Math.round(tmax)}°F`
+          : "Max: --";
+        const minStr = (typeof tmin === "number")
+          ? `Min: ${norm.isC ? cToF(tmin) : Math.round(tmin)}°F`
+          : "Min: --";
+        const rainStr = (typeof rain === "number")
+          ? `Rain: ${Math.round(rain)}%`
+          : "Rain: --";
+
+        linesEl.innerHTML = `${maxStr}<br>${minStr}<br>${rainStr}`;
+
+        gridEl.innerHTML = "";
+        const count = Math.min(7, norm.days.length);
+
+        for(let i=0; i<count; i++){
+          const d = norm.days[i] || {};
+          const dayIso = d.date;
+
+          const hi = d.tmax;
+          const lo = d.tmin;
+          const r = d.rain;
+
+          const card = document.createElement("div");
+          card.className = "wx-day";
+
+          const top = document.createElement("div");
+          top.className = "wx-top";
+
+          const dow = document.createElement("div");
+          dow.className = "wx-dow";
+          dow.textContent = dayIso ? dowShort(dayIso) : "--";
+
+          const mmdd = document.createElement("div");
+          mmdd.className = "wx-mmdd";
+          mmdd.textContent = dayIso ? fmtMMDD(dayIso) : "--/--";
+
+          top.appendChild(dow);
+          top.appendChild(mmdd);
+
+          const hiEl = document.createElement("div");
+          hiEl.className = "wx-hi";
+          hiEl.textContent = (typeof hi === "number")
+            ? `High ${norm.isC ? cToF(hi) : Math.round(hi)}°F`
+            : "High --";
+
+          const loEl = document.createElement("div");
+          loEl.className = "wx-lo";
+          loEl.textContent = (typeof lo === "number")
+            ? `Low ${norm.isC ? cToF(lo) : Math.round(lo)}°F`
+            : "Low --";
+
+          const rainEl = document.createElement("div");
+          rainEl.className = "wx-rain";
+          rainEl.textContent = (typeof r === "number")
+            ? `Rain ${Math.round(r)}%`
+            : "Rain --";
+
+          card.appendChild(top);
+          card.appendChild(hiEl);
+          card.appendChild(loEl);
+          card.appendChild(rainEl);
+
+          gridEl.appendChild(card);
+        }
+      }
+
+      async function load(){
+        setLoading();
+
+        const cached = readCache();
+        if(cached){
+          try{
+            render(normalize(cached));
+            return;
+          }catch(e){}
+        }
+
+        try{
+          const url = `/api/weather?lat=${encodeURIComponent(LAT)}&lon=${encodeURIComponent(LON)}`;
+          const res = await fetch(url, { cache: "no-store" });
+          if(!res.ok) throw new Error("Weather fetch failed");
+          const data = await res.json();
+
+          writeCache(data);
+          render(normalize(data));
+        }catch(e){
+          setUnavailable();
+        }
+      }
+
+      load();
+    })();
+
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+  </script>
 </body>
 </html>
