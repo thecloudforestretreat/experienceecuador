@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | Experience Ecuador</title>
 
-  <!-- Favicons -->
-  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
-  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
-  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <!-- Favicons (root) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
 
   <!-- Fonts -->
@@ -150,10 +150,8 @@
 </head>
 
 <body>
-  <!-- Global header include -->
   <div id="siteHeader"></div>
 
-  <!-- PAGE CONTENT -->
   <main class="wrap">
     <section class="hero">
       <h1>About Experience Ecuador</h1>
@@ -201,27 +199,20 @@
     </section>
   </main>
 
-  <!-- Global footer include -->
   <div id="siteFooter"></div>
 
-  <!-- ✅ GLOBAL HEADER / MOBILE NAV LOGIC -->
   <script src="/assets/js/site.js"></script>
 
-  <!-- Header / Footer injection -->
   <script>
-    (function () {
-      async function inject(selector, url) {
-        const mount = document.querySelector(selector);
-        if (!mount) return;
-
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
         const res = await fetch(url, { cache: "no-store" });
-        mount.innerHTML = await res.text();
+        el.innerHTML = await res.text();
       }
-
-      (async function () {
-        await inject("#siteHeader", "/assets/includes/header.html");
-        await inject("#siteFooter", "/assets/includes/footer.html");
-      })();
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
     })();
   </script>
 </body>
