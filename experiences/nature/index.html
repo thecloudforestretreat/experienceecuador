@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nature | Experience Ecuador</title>
 
-  <!-- Favicons -->
-  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
-  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
-  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <!-- Favicons (approved root paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,141 +46,6 @@
 
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
-
-    /* ===== HEADER ===== */
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      backdrop-filter:saturate(160%) blur(10px);
-      background:rgba(255,255,255,0.75);
-      border-bottom:1px solid rgba(0,0,0,0.06);
-      overflow:visible;
-    }
-
-    .topbar-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:14px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      overflow:visible;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      color:var(--brand-blue);
-      font-size:18px;
-      white-space:nowrap;
-      letter-spacing:-0.02em;
-      line-height:1;
-    }
-
-    .brand img{width:28px;height:28px;object-fit:contain}
-
-    /* ===== NAV ===== */
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      font-size:14px;
-      font-weight:700;
-      color:#0f2f62;
-      white-space:nowrap;
-      overflow:visible;
-    }
-
-    .nav a,
-    .nav button{
-      font:inherit;
-      background:transparent;
-      border:0;
-      color:inherit;
-      padding:8px 10px;
-      border-radius:10px;
-      cursor:pointer;
-      line-height:1;
-    }
-
-    .nav a:hover,
-    .nav button:hover{
-      background:rgba(3,78,162,0.08);
-    }
-
-    .nav a.active{
-      color:var(--brand-blue);
-      background:rgba(3,78,162,0.08);
-    }
-
-    /* Dropdown */
-    .dropdown{
-      position:relative;
-      display:inline-flex;
-      align-items:center;
-      overflow:visible;
-      z-index:1100;
-    }
-
-    .dropbtn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      user-select:none;
-    }
-
-    .dropbtn:focus{
-      outline:2px solid rgba(3,78,162,0.35);
-      outline-offset:2px;
-    }
-
-    .caret{
-      width:10px;
-      height:10px;
-      border-right:2px solid currentColor;
-      border-bottom:2px solid currentColor;
-      transform:rotate(45deg);
-      margin-top:-2px;
-      opacity:.7;
-    }
-
-    .dropdown-menu{
-      position:absolute;
-      top:42px;
-      right:0;
-      min-width:220px;
-      background:#fff;
-      border:1px solid rgba(0,0,0,0.08);
-      border-radius:14px;
-      box-shadow:0 18px 55px rgba(3,78,162,0.16);
-      padding:8px;
-      display:none;
-      z-index:1200;
-    }
-
-    .dropdown.open .dropdown-menu{display:block}
-
-    .dropdown-menu a{
-      display:block;
-      padding:10px;
-      border-radius:10px;
-      font-weight:700;
-      color:#0f2f62;
-    }
-
-    .dropdown-menu a:hover{
-      background:rgba(3,78,162,0.08);
-    }
-
-    .dropdown-menu a.active{
-      color:var(--brand-blue);
-      background:rgba(3,78,162,0.08);
-    }
 
     /* ===== HERO ===== */
     .hero{
@@ -621,48 +490,6 @@
       white-space:nowrap;
     }
 
-    /* ===== FOOTER (PLACEHOLDER) ===== */
-    .footer{
-      background:var(--brand-blue);
-      color:#fff;
-    }
-
-    .footer-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:28px 18px;
-      text-align:center;
-    }
-
-    .footer-tagline{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      margin-bottom:16px;
-    }
-
-    .social{
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      flex-wrap:wrap;
-      margin-bottom:12px;
-    }
-
-    .icon-btn{
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      background:var(--brand-blue);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:0 14px 34px rgba(0,0,0,0.35);
-    }
-
-    .icon-btn img{width:34px;height:34px}
-
-    footer small{font-size:13px;opacity:.9}
-
     /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{grid-template-columns:1fr}
@@ -681,17 +508,6 @@
       }
       .selector-controls label{width:100%; justify-self:auto;}
       .selector-controls select{width:100%; min-width:260px;}
-
-      .nav{gap:8px;flex-wrap:wrap;justify-content:center}
-    }
-
-    @media(max-width:620px){
-      .topbar-inner{flex-direction:column;gap:10px}
-      .dropdown-menu{
-        left:50%;
-        right:auto;
-        transform:translateX(-50%);
-      }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -702,550 +518,461 @@
 </head>
 
 <body>
+  <div id="siteHeader"></div>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="/">
-      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
-      <span>Experience Ecuador</span>
-    </a>
+  <main>
+    <!-- PAGE CONTENT ONLY -->
 
-    <nav class="nav" aria-label="Primary navigation">
-      <a href="/">Home</a>
-      <a href="/about/">About</a>
-      <a href="/mission/">Mission</a>
-
-      <div class="dropdown" id="regionsDropdown">
-        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
-          Regions <span class="caret" aria-hidden="true"></span>
-        </button>
-        <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
-          <a href="/regions/" role="menuitem">All Regions</a>
-          <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
-          <a href="/regions/coast/" role="menuitem">Coast</a>
-          <a href="/regions/andes/" role="menuitem">Andes</a>
-          <a href="/regions/amazon/" role="menuitem">Amazon</a>
-        </div>
+    <section class="hero" aria-label="Nature page hero">
+      <div class="hero-inner">
+        <div class="kicker">Experiences • Nature</div>
+        <h1>Nature</h1>
+        <p>Ecuador’s natural variety is massive: volcanoes, cloud forests, rainforest rivers, beaches, and islands. Choose your pace below and start with the best-fit regions.</p>
       </div>
+    </section>
 
-      <div class="dropdown" id="experiencesDropdown">
-        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
-          Experiences <span class="caret" aria-hidden="true"></span>
-        </button>
-        <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
-          <a href="/experiences/" role="menuitem">All Experiences</a>
-          <a href="/experiences/adventure/" role="menuitem">Adventure</a>
-          <a class="active" href="/experiences/nature/" role="menuitem">Nature</a>
-          <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
-          <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
-          <a href="/experiences/culinary/" role="menuitem">Culinary</a>
-          <a href="/experiences/culture/" role="menuitem">Culture</a>
-        </div>
-      </div>
-
-      <a href="/contact/">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<section class="hero" aria-label="Nature page hero">
-  <div class="hero-inner">
-    <div class="kicker">Experiences • Nature</div>
-    <h1>Nature</h1>
-    <p>Ecuador’s natural variety is massive: volcanoes, cloud forests, rainforest rivers, beaches, and islands. Choose your pace below and start with the best-fit regions.</p>
-  </div>
-</section>
-
-<main class="wrap">
-
-  <section class="section">
-    <h2>What this experience is about</h2>
-    <p>
-      Nature travel in Ecuador is about easy access to dramatically different ecosystems. In a single itinerary you can go from
-      highland viewpoints and volcanic landscapes to misty cloud forest trails and rainforest rivers. Many of the best experiences
-      are guided or community-led, so you get safer logistics, local context, and a deeper connection to the places you visit.
-    </p>
-  </section>
-
-  <!-- Nature Pace Selector -->
-  <section class="section selector" aria-label="Nature pace selector">
-    <div class="selector-top">
-      <!-- UPDATED: controls first (so mobile stacks label above select like culinary/culture) -->
-      <div class="selector-controls">
-        <label for="ee_exp_nav">Experiences</label>
-        <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Navigate to an experience">
-          <option value="/experiences/adventure/">Adventure</option>
-          <option value="/experiences/nature/" selected>Nature</option>
-          <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
-          <option value="/experiences/relaxation/">Relaxation</option>
-          <option value="/experiences/culinary/">Culinary</option>
-          <option value="/experiences/culture/">Culture</option>
-        </select>
-
-        <label for="ee_nature_pace">Nature pace</label>
-        <select id="ee_nature_pace" name="ee_nature_pace" aria-label="Select nature pace">
-          <option value="easy">Easy + scenic (slow nature)</option>
-          <option value="active" selected>Active exploring (trails + viewpoints)</option>
-          <option value="immersive">Immersive ecosystems (deep nature)</option>
-          <option value="iconic">Iconic landscapes (must-see)</option>
-        </select>
-      </div>
-
-      <div class="selector-copy">
-        <h3>Pick your nature pace</h3>
+    <div class="wrap">
+      <section class="section">
+        <h2>What this experience is about</h2>
         <p>
-          Choose the style of nature you want and we’ll show three strong starting points — each linked to the best region to build from.
-          (You can refine these as you expand your location pages.)
+          Nature travel in Ecuador is about easy access to dramatically different ecosystems. In a single itinerary you can go from
+          highland viewpoints and volcanic landscapes to misty cloud forest trails and rainforest rivers. Many of the best experiences
+          are guided or community-led, so you get safer logistics, local context, and a deeper connection to the places you visit.
         </p>
-      </div>
+      </section>
+
+      <!-- Nature Pace Selector -->
+      <section class="section selector" aria-label="Nature pace selector">
+        <div class="selector-top">
+          <!-- UPDATED: controls first (so mobile stacks label above select like culinary/culture) -->
+          <div class="selector-controls">
+            <label for="ee_exp_nav">Experiences</label>
+            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Navigate to an experience">
+              <option value="/experiences/adventure/">Adventure</option>
+              <option value="/experiences/nature/" selected>Nature</option>
+              <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
+              <option value="/experiences/relaxation/">Relaxation</option>
+              <option value="/experiences/culinary/">Culinary</option>
+              <option value="/experiences/culture/">Culture</option>
+            </select>
+
+            <label for="ee_nature_pace">Nature pace</label>
+            <select id="ee_nature_pace" name="ee_nature_pace" aria-label="Select nature pace">
+              <option value="easy">Easy + scenic (slow nature)</option>
+              <option value="active" selected>Active exploring (trails + viewpoints)</option>
+              <option value="immersive">Immersive ecosystems (deep nature)</option>
+              <option value="iconic">Iconic landscapes (must-see)</option>
+            </select>
+          </div>
+
+          <div class="selector-copy">
+            <h3>Pick your nature pace</h3>
+            <p>
+              Choose the style of nature you want and we’ll show three strong starting points — each linked to the best region to build from.
+              (You can refine these as you expand your location pages.)
+            </p>
+          </div>
+        </div>
+
+        <div class="selector-body">
+          <div class="recs-grid" id="ee_nature_recs" aria-live="polite"></div>
+          <div style="margin-top:12px;">
+            <span class="hint" id="ee_nature_hint">Tip: Start with Active exploring — then dial up immersion or go fully iconic.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section grid">
+        <div class="card">
+          <h2>Signature nature experiences</h2>
+          <ul>
+            <li>Cloud forest trails, waterfalls, and canopy viewpoints</li>
+            <li>Rainforest lodges, river canoeing, and jungle walks</li>
+            <li>Volcano viewpoints, páramo landscapes, and highland lakes</li>
+            <li>Coastal nature reserves, mangroves, and beach ecosystems</li>
+            <li>Protected areas and national parks across regions</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="mini">
+            <h2>Best for</h2>
+            <ul>
+              <li>Travelers who want scenery and quiet beauty</li>
+              <li>Hikers and casual explorers</li>
+              <li>Photographers and nature-first itineraries</li>
+              <li>Couples, families, and small groups</li>
+            </ul>
+          </div>
+
+          <div class="mini">
+            <h2>Regions that shine</h2>
+            <ul>
+              <li>Andes: volcano routes, lakes, and highland viewpoints</li>
+              <li>Amazon: rainforest biodiversity and river systems</li>
+              <li>Coast: reserves, beaches, and coastal forests</li>
+              <li>Galapagos: unique island ecosystems and marine life</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Carousel -->
+      <section class="carousel" aria-label="Nature gallery carousel">
+        <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
+          <span aria-hidden="true"></span>
+        </button>
+        <button class="carousel-btn next" type="button" aria-label="Next slide" id="ee_car_next">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <!-- FIXED: add required ids so JS can hook up -->
+        <div class="carousel-viewport" id="ee_car_viewport" aria-label="Carousel viewport">
+          <div class="carousel-track" id="ee_car_track" aria-label="Carousel track">
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-1.jpg" alt="Nature gallery image 1"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-2.jpg" alt="Nature gallery image 2"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-3.jpg" alt="Nature gallery image 3"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-4.jpg" alt="Nature gallery image 4"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-5.jpg" alt="Nature gallery image 5"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-6.jpg" alt="Nature gallery image 6"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-7.jpg" alt="Nature gallery image 7"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-8.jpg" alt="Nature gallery image 8"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-9.jpg" alt="Nature gallery image 9"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-10.jpg" alt="Nature gallery image 10"></div>
+          </div>
+        </div>
+
+        <div class="carousel-ui">
+          <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
+          <div class="carousel-counter" id="ee_car_counter">1 / 10</div>
+        </div>
+      </section>
     </div>
+  </main>
 
-    <div class="selector-body">
-      <div class="recs-grid" id="ee_nature_recs" aria-live="polite"></div>
-      <div style="margin-top:12px;">
-        <span class="hint" id="ee_nature_hint">Tip: Start with Active exploring — then dial up immersion or go fully iconic.</span>
-      </div>
-    </div>
-  </section>
+  <div id="siteFooter"></div>
 
-  <section class="section grid">
-    <div class="card">
-      <h2>Signature nature experiences</h2>
-      <ul>
-        <li>Cloud forest trails, waterfalls, and canopy viewpoints</li>
-        <li>Rainforest lodges, river canoeing, and jungle walks</li>
-        <li>Volcano viewpoints, páramo landscapes, and highland lakes</li>
-        <li>Coastal nature reserves, mangroves, and beach ecosystems</li>
-        <li>Protected areas and national parks across regions</li>
-      </ul>
-    </div>
+  <script src="/assets/js/site.js"></script>
 
-    <div>
-      <div class="mini">
-        <h2>Best for</h2>
-        <ul>
-          <li>Travelers who want scenery and quiet beauty</li>
-          <li>Hikers and casual explorers</li>
-          <li>Photographers and nature-first itineraries</li>
-          <li>Couples, families, and small groups</li>
-        </ul>
-      </div>
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
 
-      <div class="mini">
-        <h2>Regions that shine</h2>
-        <ul>
-          <li>Andes: volcano routes, lakes, and highland viewpoints</li>
-          <li>Amazon: rainforest biodiversity and river systems</li>
-          <li>Coast: reserves, beaches, and coastal forests</li>
-          <li>Galapagos: unique island ecosystems and marine life</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+  <script>
+    /* ===== Experiences selector quick nav (universal) ===== */
+    (function(){
+      const expNav = document.getElementById("ee_exp_nav");
+      if (!expNav) return;
 
-  <!-- Bottom Carousel -->
-  <section class="carousel" aria-label="Nature gallery carousel">
-    <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
-      <span aria-hidden="true"></span>
-    </button>
-    <button class="carousel-btn next" type="button" aria-label="Next slide" id="ee_car_next">
-      <span aria-hidden="true"></span>
-    </button>
-
-    <!-- FIXED: add required ids so JS can hook up -->
-    <div class="carousel-viewport" id="ee_car_viewport" aria-label="Carousel viewport">
-      <div class="carousel-track" id="ee_car_track" aria-label="Carousel track">
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-1.jpg" alt="Nature gallery image 1"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-2.jpg" alt="Nature gallery image 2"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-3.jpg" alt="Nature gallery image 3"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-4.jpg" alt="Nature gallery image 4"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-5.jpg" alt="Nature gallery image 5"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-6.jpg" alt="Nature gallery image 6"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-7.jpg" alt="Nature gallery image 7"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-8.jpg" alt="Nature gallery image 8"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-9.jpg" alt="Nature gallery image 9"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-10.jpg" alt="Nature gallery image 10"></div>
-      </div>
-    </div>
-
-    <div class="carousel-ui">
-      <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
-      <div class="carousel-counter" id="ee_car_counter">1 / 10</div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-tagline">Curated travel experiences across Ecuador</div>
-
-    <div class="social">
-      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
-      </a>
-      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
-      </a>
-      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
-      </a>
-      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
-      </a>
-    </div>
-
-    <small>© 2025 Experience Ecuador. All rights reserved.</small>
-  </div>
-</footer>
-
-<script>
-  /* ===== Dropdown behavior (site standard) ===== */
-  (function () {
-    const dropdowns = document.querySelectorAll('.dropdown');
-
-    function closeAll() {
-      dropdowns.forEach(dd => {
-        dd.classList.remove('open');
-        const btn = dd.querySelector('.dropbtn');
-        if (btn) btn.setAttribute('aria-expanded', 'false');
+      expNav.addEventListener("change", function(){
+        const url = String(this.value || "").trim();
+        if (!url) return;
+        if (url === window.location.pathname || url === window.location.pathname + "/") return;
+        window.location.href = url;
       });
-    }
+    })();
 
-    dropdowns.forEach(dd => {
-      const btn = dd.querySelector('.dropbtn');
-      const menu = dd.querySelector('.dropdown-menu');
-      if (!btn) return;
+    /* ===== Nature Pace Selector (3 recommendations) ===== */
+    (function(){
+      const paceEl = document.getElementById("ee_nature_pace");
+      const recsEl = document.getElementById("ee_nature_recs");
+      const hintEl = document.getElementById("ee_nature_hint");
 
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
+      const data = {
+        easy: {
+          hint: "Easy + scenic = calm days, short walks, and big views without feeling rushed.",
+          recs: [
+            {
+              title: "Cloud forest waterfalls + gentle trails",
+              desc: "Easy hikes, lush greenery, and waterfall viewpoints — great for a relaxed nature-first day.",
+              badges: ["Easy", "Half day–Full day"],
+              chips: [
+                { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Mindo",
+              ctaHref: "/regions/andes/mindo/"
+            },
+            {
+              title: "Highland lakes + panoramic viewpoints",
+              desc: "Clean air, open landscapes, and dramatic horizons — a simple itinerary win with low effort.",
+              badges: ["Easy", "Half day–Full day"],
+              chips: [
+                { label: "Best in: Andes (Quito area)", href: "/regions/andes/quito/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Quito",
+              ctaHref: "/regions/andes/quito/"
+            },
+            {
+              title: "Beach nature day + coastal sunsets",
+              desc: "A slower coastal day: shoreline walks, ocean air, and easy nature time with zero pressure.",
+              badges: ["Easy", "Full day"],
+              chips: [
+                { label: "Best in: Coast", href: "/regions/coast/" }
+              ],
+              ctaLabel: "Explore Coast",
+              ctaHref: "/regions/coast/"
+            }
+          ]
+        },
 
-        const isOpen = dd.classList.contains('open');
-        closeAll();
-        dd.classList.toggle('open', !isOpen);
-        btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
-      });
+        active: {
+          hint: "Active exploring = longer trails, more viewpoints, and full days that still feel balanced.",
+          recs: [
+            {
+              title: "Cotopaxi landscapes + páramo trails",
+              desc: "Open highland terrain, volcanic scenery, and iconic Ecuador nature — perfect for active day hikes.",
+              badges: ["Active", "Full day"],
+              chips: [
+                { label: "Best in: Andes (Cotopaxi)", href: "/regions/andes/cotopaxi/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Cotopaxi",
+              ctaHref: "/regions/andes/cotopaxi/"
+            },
+            {
+              title: "Cloud forest viewpoints + canopy walks",
+              desc: "A full day of misty trails, waterfalls, and elevated views — classic nature with variety.",
+              badges: ["Active", "Full day"],
+              chips: [
+                { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Mindo",
+              ctaHref: "/regions/andes/mindo/"
+            },
+            {
+              title: "Hot springs route + river scenery",
+              desc: "Combine nature scenery with warm-water recovery — great for travelers who like to stay moving.",
+              badges: ["Active", "Half day–Full day"],
+              chips: [
+                { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Baños",
+              ctaHref: "/regions/andes/banos/"
+            }
+          ]
+        },
 
-      if (menu) {
-        menu.addEventListener('click', function (e) {
-          e.stopPropagation();
+        immersive: {
+          hint: "Immersive ecosystems = deeper nature, longer logistics, and richer biodiversity.",
+          recs: [
+            {
+              title: "Rainforest lodge base + guided jungle walks",
+              desc: "Wake up inside the ecosystem — guided trails, river edges, and nighttime sounds you won’t forget.",
+              badges: ["Immersive", "Multi-day"],
+              chips: [
+                { label: "Best in: Amazon", href: "/regions/amazon/" }
+              ],
+              ctaLabel: "Explore Amazon",
+              ctaHref: "/regions/amazon/"
+            },
+            {
+              title: "River canoe time + forest edges",
+              desc: "Slow travel through river corridors for maximum nature immersion and photography opportunities.",
+              badges: ["Immersive", "Full day–Multi-day"],
+              chips: [
+                { label: "Best in: Amazon", href: "/regions/amazon/" }
+              ],
+              ctaLabel: "Explore Amazon",
+              ctaHref: "/regions/amazon/"
+            },
+            {
+              title: "Cloud forest deep trails + hidden waterfalls",
+              desc: "Go beyond the quick stops — longer trails, fewer crowds, and more of the real forest rhythm.",
+              badges: ["Immersive", "Full day"],
+              chips: [
+                { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Mindo",
+              ctaHref: "/regions/andes/mindo/"
+            }
+          ]
+        },
+
+        iconic: {
+          hint: "Iconic landscapes = the must-see Ecuador nature list: volcanoes, islands, and unforgettable scenery.",
+          recs: [
+            {
+              title: "Volcano viewpoints + big sky landscapes",
+              desc: "Classic Andean scenery where the scale is the experience — perfect for first-time Ecuador trips.",
+              badges: ["Iconic", "Full day"],
+              chips: [
+                { label: "Best in: Andes (Cotopaxi)", href: "/regions/andes/cotopaxi/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Cotopaxi",
+              ctaHref: "/regions/andes/cotopaxi/"
+            },
+            {
+              title: "Galapagos ecosystems + coastal trails",
+              desc: "Island nature that feels like nowhere else — plan around routes, time, and permitted sites.",
+              badges: ["Iconic", "Multi-day"],
+              chips: [
+                { label: "Best in: Galapagos", href: "/regions/galapagos/" }
+              ],
+              ctaLabel: "Explore Galapagos",
+              ctaHref: "/regions/galapagos/"
+            },
+            {
+              title: "Highland lakes + dramatic ridgelines",
+              desc: "Wide-open viewpoints, clean air, and classic photo stops that define Ecuador’s highlands.",
+              badges: ["Iconic", "Full day"],
+              chips: [
+                { label: "Best in: Andes (Quito area)", href: "/regions/andes/quito/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Quito",
+              ctaHref: "/regions/andes/quito/"
+            }
+          ]
+        }
+      };
+
+      function escapeHtml(str){
+        return String(str)
+          .replaceAll("&","&amp;")
+          .replaceAll("<","&lt;")
+          .replaceAll(">","&gt;")
+          .replaceAll('"',"&quot;")
+          .replaceAll("'","&#039;");
+      }
+
+      function render(key){
+        const block = data[key] || data.active;
+        if (hintEl) hintEl.textContent = block.hint || "";
+
+        const html = block.recs.map((r) => {
+          const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
+          const chips = (r.chips || []).map(c => `
+            <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
+          `).join("");
+
+          return `
+            <article class="rec">
+              <div class="meta">${badges}</div>
+              <h4>${escapeHtml(r.title)}</h4>
+              <p>${escapeHtml(r.desc)}</p>
+
+              <div class="chips">${chips}</div>
+
+              <div class="rec-actions">
+                <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
+                <span class="hint">Best-fit starting point</span>
+              </div>
+            </article>
+          `;
+        }).join("");
+
+        recsEl.innerHTML = html;
+      }
+
+      render(paceEl ? paceEl.value : "active");
+
+      if (paceEl) {
+        paceEl.addEventListener("change", function(){
+          render(this.value);
         });
       }
-    });
+    })();
 
-    document.addEventListener('click', closeAll);
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeAll();
-    });
-  })();
+    /* ===== Carousel (fixed hookup) ===== */
+    (function(){
+      const track = document.getElementById("ee_car_track");
+      const viewport = document.getElementById("ee_car_viewport");
+      const prevBtn = document.getElementById("ee_car_prev");
+      const nextBtn = document.getElementById("ee_car_next");
+      const dotsWrap = document.getElementById("ee_car_dots");
+      const counter = document.getElementById("ee_car_counter");
 
-  /* ===== Experiences selector quick nav (universal) ===== */
-  (function(){
-    const expNav = document.getElementById("ee_exp_nav");
-    if (!expNav) return;
+      if (!track || !viewport) return;
 
-    expNav.addEventListener("change", function(){
-      const url = String(this.value || "").trim();
-      if (!url) return;
-      if (url === window.location.pathname || url === window.location.pathname + "/") return;
-      window.location.href = url;
-    });
-  })();
+      const slides = Array.from(track.children);
+      const total = slides.length;
+      let index = 0;
+      let startX = 0;
+      let currentX = 0;
+      let dragging = false;
 
-  /* ===== Nature Pace Selector (3 recommendations) ===== */
-  (function(){
-    const paceEl = document.getElementById("ee_nature_pace");
-    const recsEl = document.getElementById("ee_nature_recs");
-    const hintEl = document.getElementById("ee_nature_hint");
-
-    const data = {
-      easy: {
-        hint: "Easy + scenic = calm days, short walks, and big views without feeling rushed.",
-        recs: [
-          {
-            title: "Cloud forest waterfalls + gentle trails",
-            desc: "Easy hikes, lush greenery, and waterfall viewpoints — great for a relaxed nature-first day.",
-            badges: ["Easy", "Half day–Full day"],
-            chips: [
-              { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
-              { label: "Explore Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "View Mindo",
-            ctaHref: "/regions/andes/mindo/"
-          },
-          {
-            title: "Highland lakes + panoramic viewpoints",
-            desc: "Clean air, open landscapes, and dramatic horizons — a simple itinerary win with low effort.",
-            badges: ["Easy", "Half day–Full day"],
-            chips: [
-              { label: "Best in: Andes (Quito area)", href: "/regions/andes/quito/" },
-              { label: "Explore Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "View Quito",
-            ctaHref: "/regions/andes/quito/"
-          },
-          {
-            title: "Beach nature day + coastal sunsets",
-            desc: "A slower coastal day: shoreline walks, ocean air, and easy nature time with zero pressure.",
-            badges: ["Easy", "Full day"],
-            chips: [
-              { label: "Best in: Coast", href: "/regions/coast/" }
-            ],
-            ctaLabel: "Explore Coast",
-            ctaHref: "/regions/coast/"
-          }
-        ]
-      },
-
-      active: {
-        hint: "Active exploring = longer trails, more viewpoints, and full days that still feel balanced.",
-        recs: [
-          {
-            title: "Cotopaxi landscapes + páramo trails",
-            desc: "Open highland terrain, volcanic scenery, and iconic Ecuador nature — perfect for active day hikes.",
-            badges: ["Active", "Full day"],
-            chips: [
-              { label: "Best in: Andes (Cotopaxi)", href: "/regions/andes/cotopaxi/" },
-              { label: "Explore Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "View Cotopaxi",
-            ctaHref: "/regions/andes/cotopaxi/"
-          },
-          {
-            title: "Cloud forest viewpoints + canopy walks",
-            desc: "A full day of misty trails, waterfalls, and elevated views — classic nature with variety.",
-            badges: ["Active", "Full day"],
-            chips: [
-              { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
-              { label: "Explore Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "View Mindo",
-            ctaHref: "/regions/andes/mindo/"
-          },
-          {
-            title: "Hot springs route + river scenery",
-            desc: "Combine nature scenery with warm-water recovery — great for travelers who like to stay moving.",
-            badges: ["Active", "Half day–Full day"],
-            chips: [
-              { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
-              { label: "Explore Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "View Baños",
-            ctaHref: "/regions/andes/banos/"
-          }
-        ]
-      },
-
-      immersive: {
-        hint: "Immersive ecosystems = deeper nature, longer logistics, and richer biodiversity.",
-        recs: [
-          {
-            title: "Rainforest lodge base + guided jungle walks",
-            desc: "Wake up inside the ecosystem — guided trails, river edges, and nighttime sounds you won’t forget.",
-            badges: ["Immersive", "Multi-day"],
-            chips: [
-              { label: "Best in: Amazon", href: "/regions/amazon/" }
-            ],
-            ctaLabel: "Explore Amazon",
-            ctaHref: "/regions/amazon/"
-          },
-          {
-            title: "River canoe time + forest edges",
-            desc: "Slow travel through river corridors for maximum nature immersion and photography opportunities.",
-            badges: ["Immersive", "Full day–Multi-day"],
-            chips: [
-              { label: "Best in: Amazon", href: "/regions/amazon/" }
-            ],
-            ctaLabel: "Explore Amazon",
-            ctaHref: "/regions/amazon/"
-          },
-          {
-            title: "Cloud forest deep trails + hidden waterfalls",
-            desc: "Go beyond the quick stops — longer trails, fewer crowds, and more of the real forest rhythm.",
-            badges: ["Immersive", "Full day"],
-            chips: [
-              { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
-              { label: "Explore Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "View Mindo",
-            ctaHref: "/regions/andes/mindo/"
-          }
-        ]
-      },
-
-      iconic: {
-        hint: "Iconic landscapes = the must-see Ecuador nature list: volcanoes, islands, and unforgettable scenery.",
-        recs: [
-          {
-            title: "Volcano viewpoints + big sky landscapes",
-            desc: "Classic Andean scenery where the scale is the experience — perfect for first-time Ecuador trips.",
-            badges: ["Iconic", "Full day"],
-            chips: [
-              { label: "Best in: Andes (Cotopaxi)", href: "/regions/andes/cotopaxi/" },
-              { label: "Explore Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "View Cotopaxi",
-            ctaHref: "/regions/andes/cotopaxi/"
-          },
-          {
-            title: "Galapagos ecosystems + coastal trails",
-            desc: "Island nature that feels like nowhere else — plan around routes, time, and permitted sites.",
-            badges: ["Iconic", "Multi-day"],
-            chips: [
-              { label: "Best in: Galapagos", href: "/regions/galapagos/" }
-            ],
-            ctaLabel: "Explore Galapagos",
-            ctaHref: "/regions/galapagos/"
-          },
-          {
-            title: "Highland lakes + dramatic ridgelines",
-            desc: "Wide-open viewpoints, clean air, and classic photo stops that define Ecuador’s highlands.",
-            badges: ["Iconic", "Full day"],
-            chips: [
-              { label: "Best in: Andes (Quito area)", href: "/regions/andes/quito/" },
-              { label: "Explore Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "View Quito",
-            ctaHref: "/regions/andes/quito/"
-          }
-        ]
+      function setCounter(){
+        if (!counter) return;
+        counter.textContent = `${index + 1} / ${total}`;
       }
-    };
 
-    function escapeHtml(str){
-      return String(str)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
+      function setDots(){
+        if (!dotsWrap) return;
+        dotsWrap.innerHTML = "";
+        for (let i = 0; i < total; i++){
+          const b = document.createElement("button");
+          b.className = "dot" + (i === index ? " active" : "");
+          b.type = "button";
+          b.setAttribute("aria-label", `Go to slide ${i + 1}`);
+          b.addEventListener("click", () => goTo(i));
+          dotsWrap.appendChild(b);
+        }
+      }
 
-    function render(key){
-      const block = data[key] || data.active;
-      if (hintEl) hintEl.textContent = block.hint || "";
+      function update(){
+        track.style.transform = `translateX(${-index * 100}%)`;
+        setCounter();
+        setDots();
+      }
 
-      const html = block.recs.map((r) => {
-        const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
-        const chips = (r.chips || []).map(c => `
-          <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
-        `).join("");
+      function goTo(i){
+        index = (i + total) % total;
+        update();
+      }
 
-        return `
-          <article class="rec">
-            <div class="meta">${badges}</div>
-            <h4>${escapeHtml(r.title)}</h4>
-            <p>${escapeHtml(r.desc)}</p>
+      function next(){ goTo(index + 1); }
+      function prev(){ goTo(index - 1); }
 
-            <div class="chips">${chips}</div>
+      if (nextBtn) nextBtn.addEventListener("click", next);
+      if (prevBtn) prevBtn.addEventListener("click", prev);
 
-            <div class="rec-actions">
-              <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
-              <span class="hint">Best-fit starting point</span>
-            </div>
-          </article>
-        `;
-      }).join("");
+      viewport.addEventListener("touchstart", (e) => {
+        if (e.touches.length !== 1) return;
+        dragging = true;
+        startX = e.touches[0].clientX;
+        currentX = startX;
+      }, { passive:true });
 
-      recsEl.innerHTML = html;
-    }
+      viewport.addEventListener("touchmove", (e) => {
+        if (!dragging || e.touches.length !== 1) return;
+        currentX = e.touches[0].clientX;
+      }, { passive:true });
 
-    render(paceEl ? paceEl.value : "active");
-
-    if (paceEl) {
-      paceEl.addEventListener("change", function(){
-        render(this.value);
+      viewport.addEventListener("touchend", () => {
+        if (!dragging) return;
+        const dx = currentX - startX;
+        dragging = false;
+        if (Math.abs(dx) > 45){
+          if (dx < 0) next();
+          else prev();
+        }
       });
-    }
-  })();
 
-  /* ===== Carousel (fixed hookup) ===== */
-  (function(){
-    const track = document.getElementById("ee_car_track");
-    const viewport = document.getElementById("ee_car_viewport");
-    const prevBtn = document.getElementById("ee_car_prev");
-    const nextBtn = document.getElementById("ee_car_next");
-    const dotsWrap = document.getElementById("ee_car_dots");
-    const counter = document.getElementById("ee_car_counter");
+      // Make viewport focusable for arrow keys
+      viewport.tabIndex = 0;
 
-    if (!track || !viewport) return;
+      viewport.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") next();
+        if (e.key === "ArrowLeft") prev();
+      });
 
-    const slides = Array.from(track.children);
-    const total = slides.length;
-    let index = 0;
-    let startX = 0;
-    let currentX = 0;
-    let dragging = false;
-
-    function setCounter(){
-      if (!counter) return;
-      counter.textContent = `${index + 1} / ${total}`;
-    }
-
-    function setDots(){
-      if (!dotsWrap) return;
-      dotsWrap.innerHTML = "";
-      for (let i = 0; i < total; i++){
-        const b = document.createElement("button");
-        b.className = "dot" + (i === index ? " active" : "");
-        b.type = "button";
-        b.setAttribute("aria-label", `Go to slide ${i + 1}`);
-        b.addEventListener("click", () => goTo(i));
-        dotsWrap.appendChild(b);
-      }
-    }
-
-    function update(){
-      track.style.transform = `translateX(${-index * 100}%)`;
-      setCounter();
-      setDots();
-    }
-
-    function goTo(i){
-      index = (i + total) % total;
       update();
-    }
-
-    function next(){ goTo(index + 1); }
-    function prev(){ goTo(index - 1); }
-
-    if (nextBtn) nextBtn.addEventListener("click", next);
-    if (prevBtn) prevBtn.addEventListener("click", prev);
-
-    viewport.addEventListener("touchstart", (e) => {
-      if (e.touches.length !== 1) return;
-      dragging = true;
-      startX = e.touches[0].clientX;
-      currentX = startX;
-    }, { passive:true });
-
-    viewport.addEventListener("touchmove", (e) => {
-      if (!dragging || e.touches.length !== 1) return;
-      currentX = e.touches[0].clientX;
-    }, { passive:true });
-
-    viewport.addEventListener("touchend", () => {
-      if (!dragging) return;
-      const dx = currentX - startX;
-      dragging = false;
-      if (Math.abs(dx) > 45){
-        if (dx < 0) next();
-        else prev();
-      }
-    });
-
-    // Make viewport focusable for arrow keys
-    viewport.tabIndex = 0;
-
-    viewport.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") next();
-      if (e.key === "ArrowLeft") prev();
-    });
-
-    update();
-  })();
-</script>
-
+    })();
+  </script>
 </body>
 </html>
