@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Culture | Experience Ecuador</title>
 
-  <!-- Favicons -->
-  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
-  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
-  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <!-- Favicons (approved root paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,145 +45,6 @@
 
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
-
-    /* ===== HEADER ===== */
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      backdrop-filter:saturate(160%) blur(10px);
-      background:rgba(255,255,255,0.75);
-      border-bottom:1px solid rgba(0,0,0,0.06);
-      overflow:visible;
-    }
-
-    .topbar-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:14px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      overflow:visible;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      color:var(--brand-blue);
-      font-size:18px;
-      white-space:nowrap;
-      letter-spacing:-0.02em;
-      line-height:1;
-    }
-
-    .brand img{
-      width:28px;
-      height:28px;
-      object-fit:contain;
-    }
-
-    /* ===== NAV ===== */
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      font-size:14px;
-      font-weight:700;
-      color:#0f2f62;
-      white-space:nowrap;
-      overflow:visible;
-    }
-
-    .nav a,
-    .nav button{
-      font:inherit;
-      background:transparent;
-      border:0;
-      color:inherit;
-      padding:8px 10px;
-      border-radius:10px;
-      cursor:pointer;
-      line-height:1;
-    }
-
-    .nav a:hover,
-    .nav button:hover{
-      background:rgba(3,78,162,0.08);
-    }
-
-    .nav a.active{
-      color:var(--brand-blue);
-      background:rgba(3,78,162,0.08);
-    }
-
-    /* Dropdown */
-    .dropdown{
-      position:relative;
-      display:inline-flex;
-      align-items:center;
-      overflow:visible;
-      z-index:1100;
-    }
-
-    .dropbtn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      user-select:none;
-    }
-
-    .dropbtn:focus{
-      outline:2px solid rgba(3,78,162,0.35);
-      outline-offset:2px;
-    }
-
-    .caret{
-      width:10px;
-      height:10px;
-      border-right:2px solid currentColor;
-      border-bottom:2px solid currentColor;
-      transform:rotate(45deg);
-      margin-top:-2px;
-      opacity:.7;
-    }
-
-    .dropdown-menu{
-      position:absolute;
-      top:42px;
-      right:0;
-      min-width:220px;
-      background:#fff;
-      border:1px solid rgba(0,0,0,0.08);
-      border-radius:14px;
-      box-shadow:0 18px 55px rgba(3,78,162,0.16);
-      padding:8px;
-      display:none;
-      z-index:1200;
-    }
-
-    .dropdown.open .dropdown-menu{display:block}
-
-    .dropdown-menu a{
-      display:block;
-      padding:10px;
-      border-radius:10px;
-      font-weight:700;
-      color:#0f2f62;
-    }
-
-    .dropdown-menu a:hover{
-      background:rgba(3,78,162,0.08);
-    }
-
-    .dropdown-menu a.active{
-      color:var(--brand-blue);
-      background:rgba(3,78,162,0.08);
-    }
 
     /* ===== HERO (Galapagos pattern) ===== */
     .hero{
@@ -351,7 +216,6 @@
       color:#0f2f62;
       font-size:13px;
       letter-spacing:0.02em;
-      /* CHANGED: left-align label column so FOCUS aligns under EXPERIENCES */
       justify-self:start;
       text-align:left;
       white-space:nowrap;
@@ -624,48 +488,6 @@
       white-space:nowrap;
     }
 
-    /* ===== FOOTER ===== */
-    .footer{
-      background:var(--brand-blue);
-      color:#fff;
-    }
-
-    .footer-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:28px 18px;
-      text-align:center;
-    }
-
-    .footer-tagline{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      margin-bottom:16px;
-    }
-
-    .social{
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      flex-wrap:wrap;
-      margin-bottom:12px;
-    }
-
-    .icon-btn{
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      background:var(--brand-blue);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:0 14px 34px rgba(0,0,0,0.35);
-    }
-
-    .icon-btn img{width:34px;height:34px}
-
-    footer small{font-size:13px;opacity:.9}
-
     /* ===== MOBILE ===== */
     @media(max-width:900px){
       .hero-inner{ text-align:center; }
@@ -682,16 +504,6 @@
       }
       .selector-controls label{width:100%; justify-self:auto;}
       .selector-controls select{width:100%; min-width:260px;}
-      .nav{gap:8px;flex-wrap:wrap;justify-content:center}
-    }
-
-    @media(max-width:620px){
-      .topbar-inner{flex-direction:column;gap:10px}
-      .dropdown-menu{
-        right:auto;
-        left:50%;
-        transform:translateX(-50%);
-      }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -702,538 +514,455 @@
 </head>
 
 <body>
+  <div id="siteHeader"></div>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="/">
-      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
-      <span>Experience Ecuador</span>
-    </a>
-
-    <nav class="nav" aria-label="Primary navigation">
-      <a href="/">Home</a>
-      <a href="/about/">About</a>
-      <a href="/mission/">Mission</a>
-
-      <div class="dropdown" id="regionsDropdown">
-        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
-          Regions <span class="caret" aria-hidden="true"></span>
-        </button>
-        <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
-          <a href="/regions/" role="menuitem">All Regions</a>
-          <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
-          <a href="/regions/coast/" role="menuitem">Coast</a>
-          <a href="/regions/andes/" role="menuitem">Andes</a>
-          <a href="/regions/amazon/" role="menuitem">Amazon</a>
-        </div>
-      </div>
-
-      <div class="dropdown" id="experiencesDropdown">
-        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
-          Experiences <span class="caret" aria-hidden="true"></span>
-        </button>
-        <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
-          <a href="/experiences/" role="menuitem">All Experiences</a>
-          <a href="/experiences/adventure/" role="menuitem">Adventure</a>
-          <a href="/experiences/nature/" role="menuitem">Nature</a>
-          <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
-          <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
-          <a href="/experiences/culinary/" role="menuitem">Culinary</a>
-          <a class="active" href="/experiences/culture/" role="menuitem">Culture</a>
-        </div>
-      </div>
-
-      <a href="/contact/">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<section class="hero" aria-label="Culture page hero">
-  <div class="hero-inner">
-    <div class="kicker">Experience: Culture</div>
-    <h1>Culture</h1>
-    <p>
-      Indigenous traditions, colonial history, and strong regional identity shape daily life across Ecuador.
-      Cultural travel here is about how people live, celebrate, and preserve heritage.
-    </p>
-  </div>
-</section>
-
-<main class="wrap">
-
-  <section class="section">
-    <h2>What this experience is about</h2>
-    <p>
-      Cultural experiences in Ecuador range from markets and festivals to artisan communities, historic towns, music, and everyday traditions.
-      This category focuses on meaningful encounters rather than surface-level sightseeing.
-    </p>
-  </section>
-
-  <!-- Culture Selector -->
-  <section class="section selector" aria-label="Culture selector">
-    <div class="selector-top">
-      <div class="selector-controls">
-        <label for="ee_exp_nav">Experiences</label>
-        <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Navigate to an experience">
-          <option value="/experiences/adventure/">Adventure</option>
-          <option value="/experiences/nature/">Nature</option>
-          <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
-          <option value="/experiences/relaxation/">Relaxation</option>
-          <option value="/experiences/culinary/">Culinary</option>
-          <option value="/experiences/culture/" selected>Culture</option>
-        </select>
-
-        <label for="ee_cult_focus">Focus</label>
-        <select id="ee_cult_focus" name="ee_cult_focus" aria-label="Select culture focus">
-          <option value="markets" selected>Markets + artisan towns</option>
-          <option value="history">Historic cities + architecture</option>
-          <option value="communities">Indigenous communities + crafts</option>
-          <option value="festivals">Festivals + local traditions</option>
-        </select>
-      </div>
-
-      <div class="selector-copy">
-        <h3>Pick your culture focus</h3>
+  <main>
+    <section class="hero" aria-label="Culture page hero">
+      <div class="hero-inner">
+        <div class="kicker">Experience: Culture</div>
+        <h1>Culture</h1>
         <p>
-          Choose what you want to experience and we’ll show three strong starting points — plus the best region to build from.
-          Keep it practical and let the local rhythm guide the day.
+          Indigenous traditions, colonial history, and strong regional identity shape daily life across Ecuador.
+          Cultural travel here is about how people live, celebrate, and preserve heritage.
         </p>
       </div>
+    </section>
+
+    <div class="wrap">
+      <section class="section">
+        <h2>What this experience is about</h2>
+        <p>
+          Cultural experiences in Ecuador range from markets and festivals to artisan communities, historic towns, music, and everyday traditions.
+          This category focuses on meaningful encounters rather than surface-level sightseeing.
+        </p>
+      </section>
+
+      <!-- Culture Selector -->
+      <section class="section selector" aria-label="Culture selector">
+        <div class="selector-top">
+          <div class="selector-controls">
+            <label for="ee_exp_nav">Experiences</label>
+            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Navigate to an experience">
+              <option value="/experiences/adventure/">Adventure</option>
+              <option value="/experiences/nature/">Nature</option>
+              <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
+              <option value="/experiences/relaxation/">Relaxation</option>
+              <option value="/experiences/culinary/">Culinary</option>
+              <option value="/experiences/culture/" selected>Culture</option>
+            </select>
+
+            <label for="ee_cult_focus">Focus</label>
+            <select id="ee_cult_focus" name="ee_cult_focus" aria-label="Select culture focus">
+              <option value="markets" selected>Markets + artisan towns</option>
+              <option value="history">Historic cities + architecture</option>
+              <option value="communities">Indigenous communities + crafts</option>
+              <option value="festivals">Festivals + local traditions</option>
+            </select>
+          </div>
+
+          <div class="selector-copy">
+            <h3>Pick your culture focus</h3>
+            <p>
+              Choose what you want to experience and we’ll show three strong starting points — plus the best region to build from.
+              Keep it practical and let the local rhythm guide the day.
+            </p>
+          </div>
+        </div>
+
+        <div class="selector-body">
+          <div class="recs-grid" id="ee_cult_recs" aria-live="polite"></div>
+          <div style="margin-top:12px;">
+            <span class="hint" id="ee_cult_hint">Tip: Start with a market. It’s the easiest way to feel a region fast.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section grid">
+        <div class="card">
+          <h2>Signature cultural experiences</h2>
+          <ul>
+            <li>Traditional markets and artisan towns</li>
+            <li>Indigenous communities and heritage crafts</li>
+            <li>Historic cities and colonial architecture</li>
+            <li>Festivals, rituals, and local celebrations</li>
+            <li>Music, dance, and storytelling traditions</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="mini card" style="padding:20px;">
+            <h2 style="margin:0 0 10px; font-family:Montserrat,Inter,sans-serif; font-weight:800; color:var(--brand-blue); font-size:20px;">Best for</h2>
+            <ul style="margin:0; padding-left:18px; line-height:1.75; font-size:14.8px; color:#24324a;">
+              <li>Cultural explorers</li>
+              <li>Slow travelers</li>
+              <li>History and anthropology enthusiasts</li>
+              <li>Travelers seeking authentic connection</li>
+            </ul>
+          </div>
+
+          <div class="mini card" style="padding:20px; margin-top:16px;">
+            <h2 style="margin:0 0 10px; font-family:Montserrat,Inter,sans-serif; font-weight:800; color:var(--brand-blue); font-size:20px;">Good region matches</h2>
+            <ul style="margin:0; padding-left:18px; line-height:1.75; font-size:14.8px; color:#24324a;">
+              <li>Andes: markets, heritage towns, indigenous culture</li>
+              <li>Coast: music, food culture, coastal traditions</li>
+              <li>Amazon: ancestral knowledge and community life</li>
+              <li>Galapagos: island history and conservation culture</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Carousel -->
+      <section class="carousel" aria-label="Culture gallery carousel">
+        <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
+          <span aria-hidden="true"></span>
+        </button>
+        <button class="carousel-btn next" type="button" aria-label="Next slide" id="ee_car_next">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <div class="carousel-viewport" id="ee_car_viewport">
+          <div class="carousel-track" id="ee_car_track">
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-1.jpg" alt="Culture gallery image 1"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-2.jpg" alt="Culture gallery image 2"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-3.jpg" alt="Culture gallery image 3"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-4.jpg" alt="Culture gallery image 4"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-5.jpg" alt="Culture gallery image 5"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-6.jpg" alt="Culture gallery image 6"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-7.jpg" alt="Culture gallery image 7"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-8.jpg" alt="Culture gallery image 8"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-9.jpg" alt="Culture gallery image 9"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-10.jpg" alt="Culture gallery image 10"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-11.jpg" alt="Culture gallery image 11"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-12.jpg" alt="Culture gallery image 12"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-13.jpg" alt="Culture gallery image 13"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-14.jpg" alt="Culture gallery image 14"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-15.jpg" alt="Culture gallery image 15"></div>
+          </div>
+        </div>
+
+        <div class="carousel-ui">
+          <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
+          <div class="carousel-counter" id="ee_car_counter">1 / 15</div>
+        </div>
+      </section>
     </div>
+  </main>
 
-    <div class="selector-body">
-      <div class="recs-grid" id="ee_cult_recs" aria-live="polite"></div>
-      <div style="margin-top:12px;">
-        <span class="hint" id="ee_cult_hint">Tip: Start with a market. It’s the easiest way to feel a region fast.</span>
-      </div>
-    </div>
-  </section>
+  <div id="siteFooter"></div>
 
-  <section class="section grid">
-    <div class="card">
-      <h2>Signature cultural experiences</h2>
-      <ul>
-        <li>Traditional markets and artisan towns</li>
-        <li>Indigenous communities and heritage crafts</li>
-        <li>Historic cities and colonial architecture</li>
-        <li>Festivals, rituals, and local celebrations</li>
-        <li>Music, dance, and storytelling traditions</li>
-      </ul>
-    </div>
+  <script src="/assets/js/site.js"></script>
 
-    <div>
-      <div class="mini">
-        <h2>Best for</h2>
-        <ul>
-          <li>Cultural explorers</li>
-          <li>Slow travelers</li>
-          <li>History and anthropology enthusiasts</li>
-          <li>Travelers seeking authentic connection</li>
-        </ul>
-      </div>
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
 
-      <div class="mini">
-        <h2>Good region matches</h2>
-        <ul>
-          <li>Andes: markets, heritage towns, indigenous culture</li>
-          <li>Coast: music, food culture, coastal traditions</li>
-          <li>Amazon: ancestral knowledge and community life</li>
-          <li>Galapagos: island history and conservation culture</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+  <script>
+    /* ===== Experiences selector quick nav (universal) ===== */
+    (function(){
+      const expNav = document.getElementById("ee_exp_nav");
+      if (!expNav) return;
 
-  <!-- Bottom Carousel -->
-  <section class="carousel" aria-label="Culture gallery carousel">
-    <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
-      <span aria-hidden="true"></span>
-    </button>
-    <button class="carousel-btn next" type="button" aria-label="Next slide" id="ee_car_next">
-      <span aria-hidden="true"></span>
-    </button>
-
-    <div class="carousel-viewport" id="ee_car_viewport">
-      <div class="carousel-track" id="ee_car_track">
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-1.jpg" alt="Culture gallery image 1"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-2.jpg" alt="Culture gallery image 2"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-3.jpg" alt="Culture gallery image 3"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-4.jpg" alt="Culture gallery image 4"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-5.jpg" alt="Culture gallery image 5"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-6.jpg" alt="Culture gallery image 6"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-7.jpg" alt="Culture gallery image 7"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-8.jpg" alt="Culture gallery image 8"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-9.jpg" alt="Culture gallery image 9"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-10.jpg" alt="Culture gallery image 10"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-11.jpg" alt="Culture gallery image 11"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-12.jpg" alt="Culture gallery image 12"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-13.jpg" alt="Culture gallery image 13"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-14.jpg" alt="Culture gallery image 14"></div>
-        <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-15.jpg" alt="Culture gallery image 15"></div>
-      </div>
-    </div>
-
-    <div class="carousel-ui">
-      <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
-      <div class="carousel-counter" id="ee_car_counter">1 / 15</div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-tagline">Curated travel experiences across Ecuador</div>
-
-    <div class="social">
-      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener"><img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook"></a>
-      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener"><img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram"></a>
-      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener"><img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok"></a>
-      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener"><img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube"></a>
-    </div>
-
-    <small>© 2025 Experience Ecuador. All rights reserved.</small>
-  </div>
-</footer>
-
-<script>
-  /* ===== Dropdown behavior (site standard) ===== */
-  (function () {
-    const dropdowns = document.querySelectorAll('.dropdown');
-
-    function closeAll() {
-      dropdowns.forEach(dd => {
-        dd.classList.remove('open');
-        const btn = dd.querySelector('.dropbtn');
-        if (btn) btn.setAttribute('aria-expanded', 'false');
+      expNav.addEventListener("change", function(){
+        const url = String(this.value || "").trim();
+        if (!url) return;
+        if (url === window.location.pathname || url === window.location.pathname + "/") return;
+        window.location.href = url;
       });
-    }
+    })();
 
-    dropdowns.forEach(dd => {
-      const btn = dd.querySelector('.dropbtn');
-      const menu = dd.querySelector('.dropdown-menu');
-      if (!btn) return;
+    /* ===== Culture Selector ===== */
+    (function(){
+      const focusEl = document.getElementById("ee_cult_focus");
+      const recsEl = document.getElementById("ee_cult_recs");
+      const hintEl = document.getElementById("ee_cult_hint");
 
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
+      const data = {
+        markets: {
+          hint: "Markets and artisan towns are the easiest entry point. Go early and keep the pace slow.",
+          recs: [
+            {
+              title: "Market morning + artisan browsing",
+              desc: "Start with a traditional market, then visit nearby artisan shops for textiles, ceramics, and small crafts.",
+              badges: ["Easy", "Half day"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            },
+            {
+              title: "Hands-on workshop (short + local)",
+              desc: "A small craft lesson or demonstration that keeps the focus on people and process, not souvenirs.",
+              badges: ["Easy", "2–3 hours"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            },
+            {
+              title: "Food + culture stroll (simple loop)",
+              desc: "Pair one local dish with a short walk through historic streets and daily-life neighborhoods.",
+              badges: ["Easy", "2–4 hours"],
+              chips: [
+                { label: "Good match: Andes", href: "/regions/andes/" },
+                { label: "Also: Coast", href: "/regions/coast/" }
+              ],
+              ctaLabel: "Explore Regions",
+              ctaHref: "/regions/"
+            }
+          ]
+        },
 
-        const isOpen = dd.classList.contains('open');
-        closeAll();
-        dd.classList.toggle('open', !isOpen);
-        btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
-      });
+        history: {
+          hint: "Historic cities are best done in layers: one neighborhood, one museum, one café. No rushing.",
+          recs: [
+            {
+              title: "Colonial city walk (one district)",
+              desc: "Choose one historic area and explore slowly with stops for viewpoints, plazas, and architecture details.",
+              badges: ["Easy", "2–4 hours"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            },
+            {
+              title: "Museum + café reset",
+              desc: "A simple culture day: one museum, then downtime. Works well on travel days.",
+              badges: ["Easy", "Half day"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            },
+            {
+              title: "Heritage town base + short excursions",
+              desc: "Stay in a scenic town and take short cultural outings without turning the day into a checklist.",
+              badges: ["Easy", "Full day"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            }
+          ]
+        },
 
-      if (menu) {
-        menu.addEventListener('click', function (e) {
-          e.stopPropagation();
+        communities: {
+          hint: "For community visits, prioritize respect and context. A good guide makes all the difference.",
+          recs: [
+            {
+              title: "Community visit + craft context",
+              desc: "Learn the story behind weaving, carving, or painting and how it connects to identity and daily life.",
+              badges: ["Moderate", "Half day"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            },
+            {
+              title: "Cultural exchange day (slow pace)",
+              desc: "A slower day focused on conversation, small demonstrations, and shared meals when available.",
+              badges: ["Moderate", "Full day"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            },
+            {
+              title: "Amazon community life (when appropriate)",
+              desc: "A deeper cultural angle built around local knowledge, river life, and sustainable traditions.",
+              badges: ["Moderate", "Full day"],
+              chips: [
+                { label: "Best in: Amazon", href: "/regions/amazon/" }
+              ],
+              ctaLabel: "Explore Amazon",
+              ctaHref: "/regions/amazon/"
+            }
+          ]
+        },
+
+        festivals: {
+          hint: "Festivals are seasonal. If there’s no festival, choose music + daily traditions instead.",
+          recs: [
+            {
+              title: "Festival day plan (light + flexible)",
+              desc: "Arrive early, keep expectations open, and focus on one or two key moments rather than everything.",
+              badges: ["Easy", "Half day–Full day"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" },
+                { label: "Also: Coast", href: "/regions/coast/" }
+              ],
+              ctaLabel: "Explore Regions",
+              ctaHref: "/regions/"
+            },
+            {
+              title: "Music, dance, and evening culture",
+              desc: "If timing aligns, build an evening around local music, small performances, and community energy.",
+              badges: ["Easy", "Evening"],
+              chips: [
+                { label: "Good match: Coast", href: "/regions/coast/" }
+              ],
+              ctaLabel: "Explore Coast",
+              ctaHref: "/regions/coast/"
+            },
+            {
+              title: "Traditions day (markets + rituals)",
+              desc: "A non-festival alternative that still feels cultural: markets, crafts, and local daily rhythms.",
+              badges: ["Easy", "Half day"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            }
+          ]
+        }
+      };
+
+      function escapeHtml(str){
+        return String(str)
+          .replaceAll("&","&amp;")
+          .replaceAll("<","&lt;")
+          .replaceAll(">","&gt;")
+          .replaceAll('"',"&quot;")
+          .replaceAll("'","&#039;");
+      }
+
+      function render(key){
+        const block = data[key] || data.markets;
+        if (hintEl) hintEl.textContent = block.hint || "";
+
+        const html = block.recs.map((r) => {
+          const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
+          const chips = (r.chips || []).map(c => `
+            <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
+          `).join("");
+
+          return `
+            <article class="rec">
+              <div class="meta">${badges}</div>
+              <h4>${escapeHtml(r.title)}</h4>
+              <p>${escapeHtml(r.desc)}</p>
+
+              <div class="chips">${chips}</div>
+
+              <div class="rec-actions">
+                <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
+                <span class="hint">Best-fit starting point</span>
+              </div>
+            </article>
+          `;
+        }).join("");
+
+        recsEl.innerHTML = html;
+      }
+
+      render(focusEl ? focusEl.value : "markets");
+
+      if (focusEl) {
+        focusEl.addEventListener("change", function(){
+          render(this.value);
         });
       }
-    });
+    })();
 
-    document.addEventListener('click', closeAll);
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeAll();
-    });
-  })();
+    /* ===== Carousel ===== */
+    (function(){
+      const track = document.getElementById("ee_car_track");
+      const viewport = document.getElementById("ee_car_viewport");
+      const prevBtn = document.getElementById("ee_car_prev");
+      const nextBtn = document.getElementById("ee_car_next");
+      const dotsWrap = document.getElementById("ee_car_dots");
+      const counter = document.getElementById("ee_car_counter");
 
-  /* ===== Experiences selector quick nav (universal) ===== */
-  (function(){
-    const expNav = document.getElementById("ee_exp_nav");
-    if (!expNav) return;
+      if (!track || !viewport) return;
 
-    expNav.addEventListener("change", function(){
-      const url = String(this.value || "").trim();
-      if (!url) return;
-      if (url === window.location.pathname || url === window.location.pathname + "/") return;
-      window.location.href = url;
-    });
-  })();
+      const slides = Array.from(track.children);
+      const total = slides.length;
+      let index = 0;
+      let startX = 0;
+      let currentX = 0;
+      let dragging = false;
 
-  /* ===== Culture Selector ===== */
-  (function(){
-    const focusEl = document.getElementById("ee_cult_focus");
-    const recsEl = document.getElementById("ee_cult_recs");
-    const hintEl = document.getElementById("ee_cult_hint");
-
-    const data = {
-      markets: {
-        hint: "Markets and artisan towns are the easiest entry point. Go early and keep the pace slow.",
-        recs: [
-          {
-            title: "Market morning + artisan browsing",
-            desc: "Start with a traditional market, then visit nearby artisan shops for textiles, ceramics, and small crafts.",
-            badges: ["Easy", "Half day"],
-            chips: [
-              { label: "Best in: Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "Explore Andes",
-            ctaHref: "/regions/andes/"
-          },
-          {
-            title: "Hands-on workshop (short + local)",
-            desc: "A small craft lesson or demonstration that keeps the focus on people and process, not souvenirs.",
-            badges: ["Easy", "2–3 hours"],
-            chips: [
-              { label: "Best in: Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "Explore Andes",
-            ctaHref: "/regions/andes/"
-          },
-          {
-            title: "Food + culture stroll (simple loop)",
-            desc: "Pair one local dish with a short walk through historic streets and daily-life neighborhoods.",
-            badges: ["Easy", "2–4 hours"],
-            chips: [
-              { label: "Good match: Andes", href: "/regions/andes/" },
-              { label: "Also: Coast", href: "/regions/coast/" }
-            ],
-            ctaLabel: "Explore Regions",
-            ctaHref: "/regions/"
-          }
-        ]
-      },
-
-      history: {
-        hint: "Historic cities are best done in layers: one neighborhood, one museum, one café. No rushing.",
-        recs: [
-          {
-            title: "Colonial city walk (one district)",
-            desc: "Choose one historic area and explore slowly with stops for viewpoints, plazas, and architecture details.",
-            badges: ["Easy", "2–4 hours"],
-            chips: [
-              { label: "Best in: Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "Explore Andes",
-            ctaHref: "/regions/andes/"
-          },
-          {
-            title: "Museum + café reset",
-            desc: "A simple culture day: one museum, then downtime. Works well on travel days.",
-            badges: ["Easy", "Half day"],
-            chips: [
-              { label: "Best in: Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "Explore Andes",
-            ctaHref: "/regions/andes/"
-          },
-          {
-            title: "Heritage town base + short excursions",
-            desc: "Stay in a scenic town and take short cultural outings without turning the day into a checklist.",
-            badges: ["Easy", "Full day"],
-            chips: [
-              { label: "Best in: Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "Explore Andes",
-            ctaHref: "/regions/andes/"
-          }
-        ]
-      },
-
-      communities: {
-        hint: "For community visits, prioritize respect and context. A good guide makes all the difference.",
-        recs: [
-          {
-            title: "Community visit + craft context",
-            desc: "Learn the story behind weaving, carving, or painting and how it connects to identity and daily life.",
-            badges: ["Moderate", "Half day"],
-            chips: [
-              { label: "Best in: Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "Explore Andes",
-            ctaHref: "/regions/andes/"
-          },
-          {
-            title: "Cultural exchange day (slow pace)",
-            desc: "A slower day focused on conversation, small demonstrations, and shared meals when available.",
-            badges: ["Moderate", "Full day"],
-            chips: [
-              { label: "Best in: Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "Explore Andes",
-            ctaHref: "/regions/andes/"
-          },
-          {
-            title: "Amazon community life (when appropriate)",
-            desc: "A deeper cultural angle built around local knowledge, river life, and sustainable traditions.",
-            badges: ["Moderate", "Full day"],
-            chips: [
-              { label: "Best in: Amazon", href: "/regions/amazon/" }
-            ],
-            ctaLabel: "Explore Amazon",
-            ctaHref: "/regions/amazon/"
-          }
-        ]
-      },
-
-      festivals: {
-        hint: "Festivals are seasonal. If there’s no festival, choose music + daily traditions instead.",
-        recs: [
-          {
-            title: "Festival day plan (light + flexible)",
-            desc: "Arrive early, keep expectations open, and focus on one or two key moments rather than everything.",
-            badges: ["Easy", "Half day–Full day"],
-            chips: [
-              { label: "Best in: Andes", href: "/regions/andes/" },
-              { label: "Also: Coast", href: "/regions/coast/" }
-            ],
-            ctaLabel: "Explore Regions",
-            ctaHref: "/regions/"
-          },
-          {
-            title: "Music, dance, and evening culture",
-            desc: "If timing aligns, build an evening around local music, small performances, and community energy.",
-            badges: ["Easy", "Evening"],
-            chips: [
-              { label: "Good match: Coast", href: "/regions/coast/" }
-            ],
-            ctaLabel: "Explore Coast",
-            ctaHref: "/regions/coast/"
-          },
-          {
-            title: "Traditions day (markets + rituals)",
-            desc: "A non-festival alternative that still feels cultural: markets, crafts, and local daily rhythms.",
-            badges: ["Easy", "Half day"],
-            chips: [
-              { label: "Best in: Andes", href: "/regions/andes/" }
-            ],
-            ctaLabel: "Explore Andes",
-            ctaHref: "/regions/andes/"
-          }
-        ]
+      function setCounter(){
+        if (!counter) return;
+        counter.textContent = `${index + 1} / ${total}`;
       }
-    };
 
-    function escapeHtml(str){
-      return String(str)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
+      function setDots(){
+        if (!dotsWrap) return;
+        dotsWrap.innerHTML = "";
+        for (let i = 0; i < total; i++){
+          const b = document.createElement("button");
+          b.className = "dot" + (i === index ? " active" : "");
+          b.type = "button";
+          b.setAttribute("aria-label", `Go to slide ${i + 1}`);
+          b.addEventListener("click", () => goTo(i));
+          dotsWrap.appendChild(b);
+        }
+      }
 
-    function render(key){
-      const block = data[key] || data.markets;
-      if (hintEl) hintEl.textContent = block.hint || "";
+      function update(){
+        track.style.transform = `translateX(${-index * 100}%)`;
+        setCounter();
+        setDots();
+      }
 
-      const html = block.recs.map((r) => {
-        const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
-        const chips = (r.chips || []).map(c => `
-          <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
-        `).join("");
+      function goTo(i){
+        index = (i + total) % total;
+        update();
+      }
 
-        return `
-          <article class="rec">
-            <div class="meta">${badges}</div>
-            <h4>${escapeHtml(r.title)}</h4>
-            <p>${escapeHtml(r.desc)}</p>
+      function next(){ goTo(index + 1); }
+      function prev(){ goTo(index - 1); }
 
-            <div class="chips">${chips}</div>
+      if (nextBtn) nextBtn.addEventListener("click", next);
+      if (prevBtn) prevBtn.addEventListener("click", prev);
 
-            <div class="rec-actions">
-              <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
-              <span class="hint">Best-fit starting point</span>
-            </div>
-          </article>
-        `;
-      }).join("");
+      viewport.addEventListener("touchstart", (e) => {
+        if (e.touches.length !== 1) return;
+        dragging = true;
+        startX = e.touches[0].clientX;
+        currentX = startX;
+      }, { passive:true });
 
-      recsEl.innerHTML = html;
-    }
+      viewport.addEventListener("touchmove", (e) => {
+        if (!dragging || e.touches.length !== 1) return;
+        currentX = e.touches[0].clientX;
+      }, { passive:true });
 
-    render(focusEl ? focusEl.value : "markets");
-
-    if (focusEl) {
-      focusEl.addEventListener("change", function(){
-        render(this.value);
+      viewport.addEventListener("touchend", () => {
+        if (!dragging) return;
+        const dx = currentX - startX;
+        dragging = false;
+        if (Math.abs(dx) > 45){
+          if (dx < 0) next();
+          else prev();
+        }
       });
-    }
-  })();
 
-  /* ===== Carousel ===== */
-  (function(){
-    const track = document.getElementById("ee_car_track");
-    const viewport = document.getElementById("ee_car_viewport");
-    const prevBtn = document.getElementById("ee_car_prev");
-    const nextBtn = document.getElementById("ee_car_next");
-    const dotsWrap = document.getElementById("ee_car_dots");
-    const counter = document.getElementById("ee_car_counter");
+      viewport.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") next();
+        if (e.key === "ArrowLeft") prev();
+      });
 
-    if (!track || !viewport) return;
-
-    const slides = Array.from(track.children);
-    const total = slides.length;
-    let index = 0;
-    let startX = 0;
-    let currentX = 0;
-    let dragging = false;
-
-    function setCounter(){
-      if (!counter) return;
-      counter.textContent = `${index + 1} / ${total}`;
-    }
-
-    function setDots(){
-      if (!dotsWrap) return;
-      dotsWrap.innerHTML = "";
-      for (let i = 0; i < total; i++){
-        const b = document.createElement("button");
-        b.className = "dot" + (i === index ? " active" : "");
-        b.type = "button";
-        b.setAttribute("aria-label", `Go to slide ${i + 1}`);
-        b.addEventListener("click", () => goTo(i));
-        dotsWrap.appendChild(b);
-      }
-    }
-
-    function update(){
-      track.style.transform = `translateX(${-index * 100}%)`;
-      setCounter();
-      setDots();
-    }
-
-    function goTo(i){
-      index = (i + total) % total;
       update();
-    }
-
-    function next(){ goTo(index + 1); }
-    function prev(){ goTo(index - 1); }
-
-    if (nextBtn) nextBtn.addEventListener("click", next);
-    if (prevBtn) prevBtn.addEventListener("click", prev);
-
-    viewport.addEventListener("touchstart", (e) => {
-      if (e.touches.length !== 1) return;
-      dragging = true;
-      startX = e.touches[0].clientX;
-      currentX = startX;
-    }, { passive:true });
-
-    viewport.addEventListener("touchmove", (e) => {
-      if (!dragging || e.touches.length !== 1) return;
-      currentX = e.touches[0].clientX;
-    }, { passive:true });
-
-    viewport.addEventListener("touchend", () => {
-      if (!dragging) return;
-      const dx = currentX - startX;
-      dragging = false;
-      if (Math.abs(dx) > 45){
-        if (dx < 0) next();
-        else prev();
-      }
-    });
-
-    viewport.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") next();
-      if (e.key === "ArrowLeft") prev();
-    });
-
-    update();
-  })();
-</script>
-
+    })();
+  </script>
 </body>
 </html>
