@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Amazon (Oriente) | Experience Ecuador</title>
 
-  <!-- Favicons -->
-  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
-  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
-  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <!-- Favicons (root paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,150 +41,6 @@
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
     img{ user-select:none; -webkit-user-drag:none; }
-
-    /* ===== HEADER (LOCKED) ===== */
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      backdrop-filter:saturate(160%) blur(10px);
-      background:rgba(255,255,255,0.75);
-      border-bottom:1px solid rgba(0,0,0,0.06);
-      overflow:visible;
-    }
-
-    .topbar-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:14px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      overflow:visible;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      color:var(--brand-blue);
-      font-size:18px;
-      line-height:1;
-      white-space:nowrap;
-    }
-
-    .brand img{
-      width:28px;
-      height:28px;
-      object-fit:contain;
-    }
-
-    /* ===== MENU ===== */
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      font-weight:700;
-      font-size:14px;
-      color:#1b2b4a;
-      white-space:nowrap;
-      overflow:visible;
-    }
-
-    .nav a,
-    .nav button{
-      font:inherit;
-      background:transparent;
-      border:0;
-      color:inherit;
-      padding:8px 10px;
-      border-radius:10px;
-      cursor:pointer;
-      line-height:1;
-    }
-
-    .nav a:hover,
-    .nav button:hover{
-      background:rgba(3,78,162,0.08);
-    }
-
-    .nav a.active{
-      color:var(--brand-blue);
-      background:rgba(3,78,162,0.08);
-    }
-
-    .dropdown{
-      position:relative;
-      display:inline-flex;
-      align-items:center;
-      z-index:1100;
-      overflow:visible;
-    }
-
-    .dropbtn{
-      appearance:none;
-      border:0;
-      background:transparent;
-      font:inherit;
-      color:inherit;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      user-select:none;
-    }
-
-    .dropbtn:focus{
-      outline:2px solid rgba(3,78,162,0.35);
-      outline-offset:2px;
-    }
-
-    .caret{
-      width:10px;
-      height:10px;
-      display:inline-block;
-      border-right:2px solid currentColor;
-      border-bottom:2px solid currentColor;
-      transform:rotate(45deg);
-      margin-top:-2px;
-      opacity:0.7;
-    }
-
-    .dropdown-menu{
-      position:absolute;
-      top:42px;
-      right:0;
-      min-width:220px;
-      background:#fff;
-      border:1px solid rgba(0,0,0,0.08);
-      border-radius:14px;
-      box-shadow:0 18px 55px rgba(3,78,162,0.16);
-      padding:8px;
-      display:none;
-      z-index:1200;
-    }
-
-    .dropdown-menu a{
-      display:block;
-      padding:10px 10px;
-      border-radius:10px;
-      font-weight:700;
-      color:#0f2f62;
-    }
-
-    .dropdown-menu a:hover{
-      background:rgba(3,78,162,0.08);
-    }
-
-    .dropdown-menu a.active{
-      color:var(--brand-blue);
-      background:rgba(3,78,162,0.08);
-    }
-
-    .dropdown.open .dropdown-menu{ display:block; }
 
     /* ===== HERO ===== */
     .hero{
@@ -582,70 +442,12 @@
       max-width:85ch;
     }
 
-    /* ===== FOOTER (LOCKED) ===== */
-    .footer{
-      background:var(--brand-blue);
-      color:#fff;
-      margin-top:30px;
-    }
-
-    .footer-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:28px 18px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:14px;
-      text-align:center;
-    }
-
-    .footer-tagline{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.01em;
-      font-size:16px;
-      opacity:0.95;
-      margin-top:2px;
-    }
-
-    .social{
-      display:flex;
-      gap:18px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-
-    .icon-btn{
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      background:var(--brand-blue);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:0 14px 34px rgba(0,0,0,0.35);
-    }
-
-    .icon-btn img{ width:34px; height:34px; }
-
-    footer small{ font-size:13px; opacity:.9; }
-
     /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
       .places-grid{ grid-template-columns:1fr; }
-      .topbar-inner{ justify-content:space-between; }
       .hero-inner{ text-align:center; }
       .hero p{ margin:0 auto; }
-      .nav{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
-      .dropdown-menu{ right:0; left:auto; transform:none; }
-    }
-
-    @media(max-width:620px){
-      .topbar-inner{ flex-direction:column; align-items:center; gap:10px; }
-      .nav{ justify-content:center; }
-      .dropdown-menu{ right:auto; left:50%; transform:translateX(-50%); }
     }
 
     @media(max-width:480px){
@@ -657,355 +459,265 @@
 </head>
 
 <body>
+  <div id="siteHeader"></div>
 
-  <!-- HEADER -->
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="/">
-        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
-        <span>Experience Ecuador</span>
-      </a>
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-label="Amazon hero image">
+      <div class="hero-inner">
+        <div class="kicker">Region Guide • Live</div>
+        <h1>Amazon (Oriente)</h1>
+        <p>
+          Ecuador’s rainforest region is about gateways and lodge-based experiences, not big cities.
+          This hub will help you choose the right entry point, reserve, and trip style for your time and comfort level.
+        </p>
+      </div>
+    </section>
 
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/mission/">Mission</a>
+    <!-- CONTENT -->
+    <div class="wrap">
 
-        <div class="dropdown" id="regionsDropdown">
-          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
-            Regions <span class="caret" aria-hidden="true"></span>
-          </button>
-          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
-            <a href="/regions/" role="menuitem">All Regions</a>
-            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
-            <a href="/regions/coast/" role="menuitem">Coast</a>
-            <a href="/regions/andes/" role="menuitem">Andes</a>
-            <a class="active" href="/regions/amazon/" role="menuitem">Amazon</a>
-          </div>
-        </div>
+      <section class="section">
+        <h2>What makes the Amazon special</h2>
+        <p>
+          The Amazon is immersive. Days revolve around rivers, trails, canoe trips, wildlife, and guided experiences.
+          The key decision is not “which town,” but “how deep do you want to go” and “how many days do you have.”
+        </p>
 
-        <div class="dropdown" id="experiencesDropdown">
-          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
-            Experiences <span class="caret" aria-hidden="true"></span>
-          </button>
-          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
-            <a href="/experiences/" role="menuitem">All Experiences</a>
-            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
-            <a href="/experiences/nature/" role="menuitem">Nature</a>
-            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
-            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
-            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
-            <a href="/experiences/culture/" role="menuitem">Culture</a>
-          </div>
-        </div>
-
-        <a href="/contact/">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero" aria-label="Amazon hero image">
-    <div class="hero-inner">
-      <div class="kicker">Region Guide • Live</div>
-      <h1>Amazon (Oriente)</h1>
-      <p>
-        Ecuador’s rainforest region is about gateways and lodge-based experiences, not big cities.
-        This hub will help you choose the right entry point, reserve, and trip style for your time and comfort level.
-      </p>
-    </div>
-  </section>
-
-  <!-- CONTENT -->
-  <main class="wrap">
-
-    <section class="section">
-      <h2>What makes the Amazon special</h2>
-      <p>
-        The Amazon is immersive. Days revolve around rivers, trails, canoe trips, wildlife, and guided experiences.
-        The key decision is not “which town,” but “how deep do you want to go” and “how many days do you have.”
-      </p>
-
-      <div class="grid center-stack">
-        <div class="card">
-          <h3>Signature highlights</h3>
-          <ul>
-            <li>Guided jungle walks, canoe rides, and night wildlife excursions</li>
-            <li>River towns as gateways to rainforest lodges and reserves</li>
-            <li>Wildlife sightings: monkeys, caimans, birds, frogs, and more</li>
-            <li>Deep biodiversity in protected areas and indigenous territories</li>
-          </ul>
-
-          <div class="pill-row" aria-label="Amazon experience tags">
-            <span class="tag">Rainforest</span>
-            <span class="tag">Wildlife</span>
-            <span class="tag">Lodges</span>
-            <span class="tag">Guided</span>
-          </div>
-        </div>
-
-        <div class="stack-right">
-          <div class="mini">
-            <h3>Best for</h3>
+        <div class="grid center-stack">
+          <div class="card">
+            <h3>Signature highlights</h3>
             <ul>
-              <li>First-time Amazon travelers (short gateway stays)</li>
-              <li>Nature lovers and wildlife-focused trips</li>
-              <li>Adventure: rafting, river days, jungle hikes</li>
-              <li>Longer immersive lodge-based journeys</li>
+              <li>Guided jungle walks, canoe rides, and night wildlife excursions</li>
+              <li>River towns as gateways to rainforest lodges and reserves</li>
+              <li>Wildlife sightings: monkeys, caimans, birds, frogs, and more</li>
+              <li>Deep biodiversity in protected areas and indigenous territories</li>
+            </ul>
+
+            <div class="pill-row" aria-label="Amazon experience tags">
+              <span class="tag">Rainforest</span>
+              <span class="tag">Wildlife</span>
+              <span class="tag">Lodges</span>
+              <span class="tag">Guided</span>
+            </div>
+          </div>
+
+          <div class="stack-right">
+            <div class="mini">
+              <h3>Best for</h3>
+              <ul>
+                <li>First-time Amazon travelers (short gateway stays)</li>
+                <li>Nature lovers and wildlife-focused trips</li>
+                <li>Adventure: rafting, river days, jungle hikes</li>
+                <li>Longer immersive lodge-based journeys</li>
+              </ul>
+            </div>
+
+            <div class="mini">
+              <h3>Trip styles we will cover</h3>
+              <ul>
+                <li>2–4 day Amazon intro trips</li>
+                <li>Multi-day lodge-based adventures</li>
+                <li>Family-friendly experiences and easy logistics</li>
+                <li>Photography and wildlife-heavy itineraries</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AMAZON DESTINATIONS (TILES) -->
+      <section class="section">
+        <h2>Amazon gateways and reserves</h2>
+        <p>
+          These four locations give you a strong foundation: two easy gateways from Quito, plus two iconic protected areas.
+          Each destination page will include planning notes, a gallery carousel, and the same unified weather card used across location pages.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Featured locations</h3>
+
+            <div class="places-grid" aria-label="Amazon destination tiles">
+              <a class="place-tile" href="/regions/amazon/tena/" aria-label="Open Tena page">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-46-Tena.jpg" alt="Tena">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Tena</div>
+                    <div class="place-meta">Main gateway from Quito. Rafting capital and easy jungle access.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/regions/amazon/misahualli/" aria-label="Open Misahuallí page">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-47-Misahualli.jpg" alt="Misahuallí">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Misahuallí</div>
+                    <div class="place-meta">Small river town vibe, wildlife centers, relaxed Amazon intro.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/regions/amazon/yasuni-national-park/" aria-label="Open Yasuní National Park page">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-48-YasuniNationalPark.jpg" alt="Yasuní National Park">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Yasuní National Park</div>
+                    <div class="place-meta">Deep Amazon, extreme biodiversity, experience-led lodge trips.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/regions/amazon/cuyabeno-wildlife-reserve/" aria-label="Open Cuyabeno Wildlife Reserve page">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-49-Cuyabeno.jpg" alt="Cuyabeno Wildlife Reserve">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Cuyabeno Wildlife Reserve</div>
+                    <div class="place-meta">Lagoon system, canoe exploration, excellent wildlife sightings.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+            </div>
+
+            <div class="pill-row" aria-label="Amazon destination tags">
+              <span class="tag">Gateway towns</span>
+              <span class="tag">Protected areas</span>
+              <span class="tag">Guided lodges</span>
+              <span class="tag">Wildlife</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>How to use this hub</h3>
+            <ul>
+              <li>If you have 2–4 days: start with Tena or Misahuallí for easy access</li>
+              <li>If you want deep immersion: choose Yasuní or Cuyabeno as your anchor</li>
+              <li>Expect guided schedules, early mornings, and nature-led pacing</li>
+              <li>Pack for humidity, rain, and muddy trails</li>
+            </ul>
+
+            <!-- ✅ Fixed: YouTube embed section under "How to use this hub" -->
+            <div class="video-embed" aria-label="Amazon video">
+              <iframe
+                src="https://www.youtube.com/embed/ATSm3IdETuc"
+                title="Cuyabeno Wildlife Reserve"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>What to expect on this page next</h2>
+        <p>
+          We are building this region hub into a complete guide with lodge planning, trip length templates,
+          and clear decision-making for first-time vs deep Amazon travel.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Planned sections</h3>
+            <ul>
+              <li>How to choose: gateway stay vs lodge-based trip</li>
+              <li>Top experiences: canoeing, night walks, wildlife, culture</li>
+              <li>Suggested trip lengths (2–4 days vs 5–8 days)</li>
+              <li>Seasonality, costs, and packing checklist</li>
+              <li>Trusted partners and curated lodge recommendations</li>
             </ul>
           </div>
 
-          <div class="mini">
-            <h3>Trip styles we will cover</h3>
+          <div class="card">
+            <h3>Quick planning mindset</h3>
             <ul>
-              <li>2–4 day Amazon intro trips</li>
-              <li>Multi-day lodge-based adventures</li>
-              <li>Family-friendly experiences and easy logistics</li>
-              <li>Photography and wildlife-heavy itineraries</li>
+              <li>Choose depth first, then choose your entry point</li>
+              <li>Longer stays improve wildlife and immersion</li>
+              <li>Guided trips are the best way to experience the jungle safely</li>
+              <li>Keep expectations realistic, nature is unpredictable and that is the point</li>
             </ul>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- AMAZON DESTINATIONS (TILES) -->
-    <section class="section">
-      <h2>Amazon gateways and reserves</h2>
-      <p>
-        These four locations give you a strong foundation: two easy gateways from Quito, plus two iconic protected areas.
-        Each destination page will include planning notes, a gallery carousel, and the same unified weather card used across location pages.
-      </p>
+      <section class="section">
+        <h2>Gallery and highlights</h2>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Featured locations</h3>
+        <!-- CAROUSEL -->
+        <div id="amazonCarousel" class="carousel" aria-label="Amazon image gallery">
+          <button class="carousel-btn prev" type="button" aria-label="Previous image">
+            <span aria-hidden="true"></span>
+          </button>
 
-          <div class="places-grid" aria-label="Amazon destination tiles">
-            <a class="place-tile" href="/regions/amazon/tena/" aria-label="Open Tena page">
-              <div class="place-img">
-                <img src="/assets/images/EE-Assets-46-Tena.jpg" alt="Tena">
-              </div>
-              <div class="place-body">
-                <div>
-                  <div class="place-title">Tena</div>
-                  <div class="place-meta">Main gateway from Quito. Rafting capital and easy jungle access.</div>
-                </div>
-                <div class="place-arrow" aria-hidden="true"><span></span></div>
-              </div>
-            </a>
-
-            <a class="place-tile" href="/regions/amazon/misahualli/" aria-label="Open Misahuallí page">
-              <div class="place-img">
-                <img src="/assets/images/EE-Assets-47-Misahualli.jpg" alt="Misahuallí">
-              </div>
-              <div class="place-body">
-                <div>
-                  <div class="place-title">Misahuallí</div>
-                  <div class="place-meta">Small river town vibe, wildlife centers, relaxed Amazon intro.</div>
-                </div>
-                <div class="place-arrow" aria-hidden="true"><span></span></div>
-              </div>
-            </a>
-
-            <a class="place-tile" href="/regions/amazon/yasuni-national-park/" aria-label="Open Yasuní National Park page">
-              <div class="place-img">
-                <img src="/assets/images/EE-Assets-48-YasuniNationalPark.jpg" alt="Yasuní National Park">
-              </div>
-              <div class="place-body">
-                <div>
-                  <div class="place-title">Yasuní National Park</div>
-                  <div class="place-meta">Deep Amazon, extreme biodiversity, experience-led lodge trips.</div>
-                </div>
-                <div class="place-arrow" aria-hidden="true"><span></span></div>
-              </div>
-            </a>
-
-            <a class="place-tile" href="/regions/amazon/cuyabeno-wildlife-reserve/" aria-label="Open Cuyabeno Wildlife Reserve page">
-              <div class="place-img">
-                <img src="/assets/images/EE-Assets-49-Cuyabeno.jpg" alt="Cuyabeno Wildlife Reserve">
-              </div>
-              <div class="place-body">
-                <div>
-                  <div class="place-title">Cuyabeno Wildlife Reserve</div>
-                  <div class="place-meta">Lagoon system, canoe exploration, excellent wildlife sightings.</div>
-                </div>
-                <div class="place-arrow" aria-hidden="true"><span></span></div>
-              </div>
-            </a>
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-1.jpg" alt="Amazon highlight 1"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-2.jpg" alt="Amazon highlight 2"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-3.jpg" alt="Amazon highlight 3"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-4.jpg" alt="Amazon highlight 4"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-5.jpg" alt="Amazon highlight 5"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-6.jpg" alt="Amazon highlight 6"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-7.jpg" alt="Amazon highlight 7"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-8.jpg" alt="Amazon highlight 8"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-9.jpg" alt="Amazon highlight 9"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-10.jpg" alt="Amazon highlight 10"></div>
+            </div>
           </div>
 
-          <div class="pill-row" aria-label="Amazon destination tags">
-            <span class="tag">Gateway towns</span>
-            <span class="tag">Protected areas</span>
-            <span class="tag">Guided lodges</span>
-            <span class="tag">Wildlife</span>
+          <button class="carousel-btn next" type="button" aria-label="Next image">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-ui">
+            <div class="carousel-dots" aria-label="Carousel pagination"></div>
+            <div class="carousel-counter" id="amazonCarouselCounter">1 / 10</div>
           </div>
         </div>
+      </section>
 
-        <div class="card">
-          <h3>How to use this hub</h3>
-          <ul>
-            <li>If you have 2–4 days: start with Tena or Misahuallí for easy access</li>
-            <li>If you want deep immersion: choose Yasuní or Cuyabeno as your anchor</li>
-            <li>Expect guided schedules, early mornings, and nature-led pacing</li>
-            <li>Pack for humidity, rain, and muddy trails</li>
-          </ul>
+      <section class="cta" aria-label="Newsletter future CTA">
+        <h3>Coming soon: curated Amazon updates</h3>
+        <p>
+          This region hub will evolve into curated guides and a newsletter format where travelers discover experiences and trusted partners.
+          Next step: lodge decision guides, sample itineraries, and a reusable gallery carousel for each location page.
+        </p>
+      </section>
 
-          <!-- ✅ Fixed: YouTube embed section under "How to use this hub" -->
-          <div class="video-embed" aria-label="Amazon video">
-            <iframe
-              src="https://www.youtube.com/embed/ATSm3IdETuc"
-              title="Cuyabeno Wildlife Reserve"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>What to expect on this page next</h2>
-      <p>
-        We are building this region hub into a complete guide with lodge planning, trip length templates,
-        and clear decision-making for first-time vs deep Amazon travel.
-      </p>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Planned sections</h3>
-          <ul>
-            <li>How to choose: gateway stay vs lodge-based trip</li>
-            <li>Top experiences: canoeing, night walks, wildlife, culture</li>
-            <li>Suggested trip lengths (2–4 days vs 5–8 days)</li>
-            <li>Seasonality, costs, and packing checklist</li>
-            <li>Trusted partners and curated lodge recommendations</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Quick planning mindset</h3>
-          <ul>
-            <li>Choose depth first, then choose your entry point</li>
-            <li>Longer stays improve wildlife and immersion</li>
-            <li>Guided trips are the best way to experience the jungle safely</li>
-            <li>Keep expectations realistic, nature is unpredictable and that is the point</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Gallery and highlights</h2>
-
-      <!-- CAROUSEL -->
-      <div id="amazonCarousel" class="carousel" aria-label="Amazon image gallery">
-        <button class="carousel-btn prev" type="button" aria-label="Previous image">
-          <span aria-hidden="true"></span>
-        </button>
-
-        <div class="carousel-viewport">
-          <div class="carousel-track">
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-1.jpg" alt="Amazon highlight 1"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-2.jpg" alt="Amazon highlight 2"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-3.jpg" alt="Amazon highlight 3"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-4.jpg" alt="Amazon highlight 4"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-5.jpg" alt="Amazon highlight 5"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-6.jpg" alt="Amazon highlight 6"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-7.jpg" alt="Amazon highlight 7"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-8.jpg" alt="Amazon highlight 8"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-9.jpg" alt="Amazon highlight 9"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-10.jpg" alt="Amazon highlight 10"></div>
-          </div>
-        </div>
-
-        <button class="carousel-btn next" type="button" aria-label="Next image">
-          <span aria-hidden="true"></span>
-        </button>
-
-        <div class="carousel-ui">
-          <div class="carousel-dots" aria-label="Carousel pagination"></div>
-          <div class="carousel-counter" id="amazonCarouselCounter">1 / 10</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta" aria-label="Newsletter future CTA">
-      <h3>Coming soon: curated Amazon updates</h3>
-      <p>
-        This region hub will evolve into curated guides and a newsletter format where travelers discover experiences and trusted partners.
-        Next step: lodge decision guides, sample itineraries, and a reusable gallery carousel for each location page.
-      </p>
-    </section>
-
+    </div>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
+  <div id="siteFooter"></div>
 
-      <div class="social">
-        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
-        </a>
-        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
-        </a>
-        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
-        </a>
-        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
-        </a>
-      </div>
-
-      <small>© 2025 Experience Ecuador. All rights reserved.</small>
-    </div>
-  </footer>
+  <script src="/assets/js/site.js"></script>
 
   <script>
-    // Unified dropdown handler (Regions + Experiences) - open one at a time, close on outside click / Esc
-    (function () {
-      const dropdowns = document.querySelectorAll('.dropdown');
-
-      function closeAll() {
-        dropdowns.forEach(dd => {
-          dd.classList.remove('open');
-          const btn = dd.querySelector('.dropbtn');
-          if (btn) btn.setAttribute('aria-expanded', 'false');
-        });
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
       }
-
-      dropdowns.forEach(dd => {
-        const btn = dd.querySelector('.dropbtn');
-        const menu = dd.querySelector('.dropdown-menu');
-        if (!btn) return;
-
-        btn.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-
-          const isOpen = dd.classList.contains('open');
-          closeAll();
-          dd.classList.toggle('open', !isOpen);
-          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
-        });
-
-        if (menu) {
-          menu.addEventListener('click', function (e) {
-            e.stopPropagation();
-          });
-        }
-      });
-
-      document.addEventListener('click', closeAll);
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeAll();
-      });
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
     })();
+  </script>
 
+  <script>
     /* Amazon carousel */
     (function(){
       const root = document.getElementById("amazonCarousel");
