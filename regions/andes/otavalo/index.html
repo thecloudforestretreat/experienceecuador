@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Otavalo | Experience Ecuador</title>
 
-  <!-- Favicons -->
-  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
-  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
-  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <!-- Favicons (root-approved) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,143 +38,6 @@
 
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
-
-    /* ===== HEADER (MATCH OTHER PAGES) ===== */
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      backdrop-filter:saturate(160%) blur(10px);
-      background:rgba(255,255,255,.75);
-      border-bottom:1px solid rgba(0,0,0,.06);
-      overflow:visible;
-    }
-
-    .topbar-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:14px 18px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:16px;
-      overflow:visible;
-    }
-
-    .brand{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      color:var(--brand-blue);
-      letter-spacing:-0.02em;
-      white-space:nowrap;
-      font-size:18px;
-      line-height:1;
-    }
-
-    .brand img{width:28px;height:28px;object-fit:contain}
-
-    /* NAV */
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      font-weight:700;
-      font-size:14px;
-      color:#0f2f62;
-      white-space:nowrap;
-      overflow:visible;
-    }
-
-    .nav a,
-    .nav button{
-      font:inherit;
-      background:transparent;
-      border:0;
-      color:inherit;
-      padding:8px 10px;
-      border-radius:10px;
-      cursor:pointer;
-      line-height:1;
-    }
-
-    .nav a:hover,
-    .nav button:hover{ background:rgba(3,78,162,.08); }
-
-    .nav a.active{
-      color:var(--brand-blue);
-      background:rgba(3,78,162,.08);
-    }
-
-    /* Dropdown */
-    .dropdown{
-      position:relative;
-      display:inline-flex;
-      align-items:center;
-      overflow:visible;
-      z-index:1100;
-    }
-
-    .dropbtn{
-      appearance:none;
-      border:0;
-      background:transparent;
-      font:inherit;
-      color:inherit;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      user-select:none;
-    }
-
-    .dropbtn:focus{
-      outline:2px solid rgba(3,78,162,0.35);
-      outline-offset:2px;
-    }
-
-    .caret{
-      width:10px;
-      height:10px;
-      display:inline-block;
-      border-right:2px solid currentColor;
-      border-bottom:2px solid currentColor;
-      transform:rotate(45deg);
-      margin-top:-2px;
-      opacity:.7;
-    }
-
-    .dropdown-menu{
-      position:absolute;
-      top:42px;
-      right:0;
-      min-width:220px;
-      background:#fff;
-      border:1px solid rgba(0,0,0,0.08);
-      border-radius:14px;
-      box-shadow:0 18px 55px rgba(3,78,162,0.16);
-      padding:8px;
-      display:none;
-      z-index:1200;
-    }
-
-    .dropdown-menu a{
-      display:block;
-      padding:10px 10px;
-      border-radius:10px;
-      font-weight:700;
-      color:#0f2f62;
-    }
-
-    .dropdown-menu a:hover{ background:rgba(3,78,162,0.08); }
-
-    .dropdown-menu a.active{
-      color:var(--brand-blue);
-      background:rgba(3,78,162,0.08);
-    }
-
-    .dropdown.open .dropdown-menu{display:block}
 
     /* ===== CONTENT ===== */
     .wrap{
@@ -680,67 +547,12 @@
     .month-chip.good{ background:rgba(3,78,162,0.06); }
     .month-chip.fair{ background:rgba(3,78,162,0.03); opacity:.95; }
 
-    /* ===== FOOTER (LOCKED) ===== */
-    .footer{
-      background:var(--brand-blue);
-      color:#fff;
-      margin-top:30px;
-    }
-
-    .footer-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:28px 18px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:14px;
-      text-align:center;
-    }
-
-    .footer-tagline{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:16px;
-      opacity:.98;
-    }
-
-    .social{
-      display:flex;
-      gap:18px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-
-    .icon-btn{
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      background:var(--brand-blue);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:0 14px 34px rgba(0,0,0,.35);
-    }
-
-    .icon-btn img{width:34px;height:34px}
-    footer small{font-size:13px;opacity:.9}
-
     /* ===== MOBILE ===== */
     @media(max-width:980px){
       .content-grid{grid-template-columns:1fr}
     }
 
-    @media(max-width:900px){
-      .nav{gap:8px;flex-wrap:wrap;justify-content:flex-end}
-      .dropdown-menu{right:0;left:auto}
-    }
-
     @media(max-width:620px){
-      .topbar-inner{flex-direction:column;align-items:center;gap:10px}
-      .nav{justify-content:center}
-      .dropdown-menu{right:auto;left:50%;transform:translateX(-50%)}
       .carousel-slide{ aspect-ratio:16/9; }
     }
 
@@ -751,268 +563,205 @@
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="/">
-        <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
-        <span>Experience Ecuador</span>
-      </a>
+  <div id="siteHeader"></div>
 
-      <!-- Keep menu structure exactly (no new Plan Trips item yet) -->
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/mission/">Mission</a>
+  <main>
+    <main class="wrap">
+      <h1>Otavalo</h1>
+      <p class="lede">
+        Otavalo is one of the Andes’ most iconic culture stops, known for indigenous markets, textiles, and highland scenery.
+        It works best as a focused day trip from Quito or a one-night base if you want a slower pace and nearby lake country.
+      </p>
 
-        <div class="dropdown" id="regionsDropdown">
-          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
-            Regions <span class="caret" aria-hidden="true"></span>
-          </button>
-          <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
-            <a href="/regions/" role="menuitem">All Regions</a>
-            <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
-            <a href="/regions/coast/" role="menuitem">Coast</a>
-            <a class="active" href="/regions/andes/" role="menuitem">Andes</a>
-            <a href="/regions/amazon/" role="menuitem">Amazon</a>
-          </div>
-        </div>
-
-        <div class="dropdown" id="experiencesDropdown">
-          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
-            Experiences <span class="caret" aria-hidden="true"></span>
-          </button>
-          <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
-            <a href="/experiences/" role="menuitem">All Experiences</a>
-            <a href="/experiences/adventure/" role="menuitem">Adventure</a>
-            <a href="/experiences/nature/" role="menuitem">Nature</a>
-            <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
-            <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
-            <a href="/experiences/culinary/" role="menuitem">Culinary</a>
-            <a href="/experiences/culture/" role="menuitem">Culture</a>
-          </div>
-        </div>
-
-        <a href="/contact/">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <h1>Otavalo</h1>
-    <p class="lede">
-      Otavalo is one of the Andes’ most iconic culture stops, known for indigenous markets, textiles, and highland scenery.
-      It works best as a focused day trip from Quito or a one-night base if you want a slower pace and nearby lake country.
-    </p>
-
-    <div class="meta-row" aria-label="Otavalo overview metadata">
-      <span class="pill">Region: Andes</span>
-      <span class="pill">Best for: Markets, culture, crafts</span>
-      <span class="pill">Typical time: Half-day to 1 night</span>
-    </div>
-
-    <section class="content-grid" aria-label="Otavalo content">
-      <!-- LEFT COLUMN -->
-      <div>
-        <!-- STANDARDIZED BLOCK 1 -->
-        <div class="card">
-          <h2>What Otavalo is best for</h2>
-          <p>
-            Otavalo is a place to slow down and shop with intention. Beyond the market, the area is surrounded by highland
-            landscapes, small villages, and easy lake-country viewpoints.
-          </p>
-        </div>
-
-        <!-- STANDARDIZED BLOCK 2 -->
-        <div class="card">
-          <h2>Quick planning notes</h2>
-          <p>
-            Keep the plan simple: one main market block, one scenic add-on, and a relaxed meal. If you are coming from Quito,
-            start early to reduce traffic risk. For a curated route, reach out via the <a class="inline-link" href="/contact/">Contact</a> page.
-          </p>
-        </div>
-
-        <!-- STANDARDIZED CAROUSEL BLOCK -->
-        <div id="otavaloCarousel" class="carousel" aria-label="Otavalo image gallery">
-          <button class="carousel-btn prev" type="button" aria-label="Previous image">
-            <span aria-hidden="true"></span>
-          </button>
-
-          <div class="carousel-viewport">
-            <div class="carousel-track">
-              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-1.jpg" alt="Otavalo highlight 1"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-2.jpg" alt="Otavalo highlight 2"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-3.jpg" alt="Otavalo highlight 3"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-4.jpg" alt="Otavalo highlight 4"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-5.jpg" alt="Otavalo highlight 5"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-6.jpg" alt="Otavalo highlight 6"></div>
-            </div>
-          </div>
-
-          <button class="carousel-btn next" type="button" aria-label="Next image">
-            <span aria-hidden="true"></span>
-          </button>
-
-          <div class="carousel-ui">
-            <div class="carousel-dots" aria-label="Carousel pagination"></div>
-            <div class="carousel-counter" id="otavaloCarouselCounter">1 / 6</div>
-          </div>
-        </div>
+      <div class="meta-row" aria-label="Otavalo overview metadata">
+        <span class="pill">Region: Andes</span>
+        <span class="pill">Best for: Markets, culture, crafts</span>
+        <span class="pill">Typical time: Half-day to 1 night</span>
       </div>
 
-      <!-- RIGHT COLUMN -->
-      <aside class="side-stack" aria-label="Otavalo side content">
-        <!-- STANDARDIZED MINI 1 -->
-        <div class="mini">
-          <h3>Good for short stays</h3>
-          <p>
-            Otavalo is ideal as a day trip from Quito. If you want a slower pace, stay one night and add a second nearby stop
-            the next morning.
-          </p>
-
-          <div class="link-list" aria-label="Andes quick links">
-            <a class="pill-link" href="/regions/andes/">
-              Back to Andes <span>Region page</span>
-            </a>
-            <a class="pill-link" href="/regions/andes/quito/">
-              Quito <span>Main hub</span>
-            </a>
-            <a class="pill-link" href="/contact/">
-              Contact <span>Questions and partnerships</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- STANDARDIZED WEATHER (SINGLE wx-card) -->
-        <div class="wx-card" aria-label="Otavalo weather">
-          <div class="wx-title">Current weather</div>
-
-          <div class="wx-now" aria-label="Weather snapshot">
-            <div class="wx-date" id="otavaloWxDate">MM/DD/YYYY</div>
-            <div class="wx-lines" id="otavaloWxLines">Max: --°C / --°F<br>Min: --°C / --°F<br>Rain: -- mm</div>
+      <section class="content-grid" aria-label="Otavalo content">
+        <!-- LEFT COLUMN -->
+        <div>
+          <!-- STANDARDIZED BLOCK 1 -->
+          <div class="card">
+            <h2>What Otavalo is best for</h2>
+            <p>
+              Otavalo is a place to slow down and shop with intention. Beyond the market, the area is surrounded by highland
+              landscapes, small villages, and easy lake-country viewpoints.
+            </p>
           </div>
 
-          <div class="months" aria-label="Forecast and best months">
-            <div class="wx-title" style="margin-top:14px;">7-day forecast</div>
-            <div class="wx-sub">High / low and rain for the week ahead.</div>
+          <!-- STANDARDIZED BLOCK 2 -->
+          <div class="card">
+            <h2>Quick planning notes</h2>
+            <p>
+              Keep the plan simple: one main market block, one scenic add-on, and a relaxed meal. If you are coming from Quito,
+              start early to reduce traffic risk. For a curated route, reach out via the <a class="inline-link" href="/contact/">Contact</a> page.
+            </p>
+          </div>
 
-            <div class="wx-grid7" id="otavaloWx7" aria-label="7-day forecast grid"></div>
+          <!-- STANDARDIZED CAROUSEL BLOCK -->
+          <div id="otavaloCarousel" class="carousel" aria-label="Otavalo image gallery">
+            <button class="carousel-btn prev" type="button" aria-label="Previous image">
+              <span aria-hidden="true"></span>
+            </button>
 
-            <div class="wx-title" style="margin-top:14px;">Best months to visit</div>
-
-            <div class="legend" aria-label="Month legend">
-              <span class="legend-item"><span class="swatch best" aria-hidden="true"></span> Best</span>
-              <span class="legend-item"><span class="swatch good" aria-hidden="true"></span> Good</span>
-              <span class="legend-item"><span class="swatch fair" aria-hidden="true"></span> Fair</span>
+            <div class="carousel-viewport">
+              <div class="carousel-track">
+                <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-1.jpg" alt="Otavalo highlight 1"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-2.jpg" alt="Otavalo highlight 2"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-3.jpg" alt="Otavalo highlight 3"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-4.jpg" alt="Otavalo highlight 4"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-5.jpg" alt="Otavalo highlight 5"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Otavalo-Carousel-6.jpg" alt="Otavalo highlight 6"></div>
+              </div>
             </div>
 
-            <div class="month-row" aria-label="Month chips">
-              <span class="month-chip good">Jan</span>
-              <span class="month-chip good">Feb</span>
-              <span class="month-chip good">Mar</span>
-              <span class="month-chip fair">Apr</span>
-              <span class="month-chip fair">May</span>
-              <span class="month-chip best">Jun</span>
-              <span class="month-chip best">Jul</span>
-              <span class="month-chip best">Aug</span>
-              <span class="month-chip best">Sep</span>
-              <span class="month-chip best">Oct</span>
-              <span class="month-chip good">Nov</span>
-              <span class="month-chip good">Dec</span>
+            <button class="carousel-btn next" type="button" aria-label="Next image">
+              <span aria-hidden="true"></span>
+            </button>
+
+            <div class="carousel-ui">
+              <div class="carousel-dots" aria-label="Carousel pagination"></div>
+              <div class="carousel-counter" id="otavaloCarouselCounter">1 / 6</div>
             </div>
           </div>
         </div>
 
-        <!-- STANDARDIZED MINI 2 -->
-        <div class="mini" aria-label="More Andes destinations">
-          <h3>More Andes destinations</h3>
-          <p style="margin-top:-4px;">
-            Pair Otavalo with a city stop, volcano landscapes, cloud forest, or waterfalls.
-          </p>
+        <!-- RIGHT COLUMN -->
+        <aside class="side-stack" aria-label="Otavalo side content">
+          <!-- STANDARDIZED MINI 1 -->
+          <div class="mini">
+            <h3>Good for short stays</h3>
+            <p>
+              Otavalo is ideal as a day trip from Quito. If you want a slower pace, stay one night and add a second nearby stop
+              the next morning.
+            </p>
 
-          <div class="andes-grid" aria-label="Andes destination links">
-            <a class="andes-tile" href="/regions/andes/quito/" aria-label="Open Quito page">
-              <div class="andes-left">
-                <div class="andes-title">Quito</div>
-                <div class="andes-sub">Historic center, viewpoints, and easy day trips.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/andes/mindo/" aria-label="Open Mindo page">
-              <div class="andes-left">
-                <div class="andes-title">Mindo</div>
-                <div class="andes-sub">Cloud forest, birding, waterfalls, relaxed nature days.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/andes/cuenca/" aria-label="Open Cuenca page">
-              <div class="andes-left">
-                <div class="andes-title">Cuenca</div>
-                <div class="andes-sub">Colonial streets, artisan culture, relaxed city rhythm.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/andes/cotopaxi/" aria-label="Open Cotopaxi page">
-              <div class="andes-left">
-                <div class="andes-title">Cotopaxi</div>
-                <div class="andes-sub">Volcano scenery, hikes, and páramo landscapes.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/andes/banos/" aria-label="Open Baños page">
-              <div class="andes-left">
-                <div class="andes-title">Baños</div>
-                <div class="andes-sub">Waterfalls, viewpoints, and soft adventure energy.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/andes/papallacta/" aria-label="Open Papallacta page">
-              <div class="andes-left">
-                <div class="andes-title">Papallacta</div>
-                <div class="andes-sub">Hot springs, high altitude views, easy reset days.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
-
-            <a class="andes-tile" href="/regions/andes/choco-andino/" aria-label="Open Chocó Andino page">
-              <div class="andes-left">
-                <div class="andes-title">Chocó Andino</div>
-                <div class="andes-sub">Biodiversity, forest reserves, birding, quiet nature routes.</div>
-              </div>
-              <div class="andes-arrow" aria-hidden="true"><span></span></div>
-            </a>
+            <div class="link-list" aria-label="Andes quick links">
+              <a class="pill-link" href="/regions/andes/">
+                Back to Andes <span>Region page</span>
+              </a>
+              <a class="pill-link" href="/regions/andes/quito/">
+                Quito <span>Main hub</span>
+              </a>
+              <a class="pill-link" href="/contact/">
+                Contact <span>Questions and partnerships</span>
+              </a>
+            </div>
           </div>
-        </div>
-      </aside>
-    </section>
+
+          <!-- STANDARDIZED WEATHER (SINGLE wx-card) -->
+          <div class="wx-card" aria-label="Otavalo weather">
+            <div class="wx-title">Current weather</div>
+
+            <div class="wx-now" aria-label="Weather snapshot">
+              <div class="wx-date" id="otavaloWxDate">MM/DD/YYYY</div>
+              <div class="wx-lines" id="otavaloWxLines">Max: --°C / --°F<br>Min: --°C / --°F<br>Rain: -- mm</div>
+            </div>
+
+            <div class="months" aria-label="Forecast and best months">
+              <div class="wx-title" style="margin-top:14px;">7-day forecast</div>
+              <div class="wx-sub">High / low and rain for the week ahead.</div>
+
+              <div class="wx-grid7" id="otavaloWx7" aria-label="7-day forecast grid"></div>
+
+              <div class="wx-title" style="margin-top:14px;">Best months to visit</div>
+
+              <div class="legend" aria-label="Month legend">
+                <span class="legend-item"><span class="swatch best" aria-hidden="true"></span> Best</span>
+                <span class="legend-item"><span class="swatch good" aria-hidden="true"></span> Good</span>
+                <span class="legend-item"><span class="swatch fair" aria-hidden="true"></span> Fair</span>
+              </div>
+
+              <div class="month-row" aria-label="Month chips">
+                <span class="month-chip good">Jan</span>
+                <span class="month-chip good">Feb</span>
+                <span class="month-chip good">Mar</span>
+                <span class="month-chip fair">Apr</span>
+                <span class="month-chip fair">May</span>
+                <span class="month-chip best">Jun</span>
+                <span class="month-chip best">Jul</span>
+                <span class="month-chip best">Aug</span>
+                <span class="month-chip best">Sep</span>
+                <span class="month-chip best">Oct</span>
+                <span class="month-chip good">Nov</span>
+                <span class="month-chip good">Dec</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STANDARDIZED MINI 2 -->
+          <div class="mini" aria-label="More Andes destinations">
+            <h3>More Andes destinations</h3>
+            <p style="margin-top:-4px;">
+              Pair Otavalo with a city stop, volcano landscapes, cloud forest, or waterfalls.
+            </p>
+
+            <div class="andes-grid" aria-label="Andes destination links">
+              <a class="andes-tile" href="/regions/andes/quito/" aria-label="Open Quito page">
+                <div class="andes-left">
+                  <div class="andes-title">Quito</div>
+                  <div class="andes-sub">Historic center, viewpoints, and easy day trips.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/andes/mindo/" aria-label="Open Mindo page">
+                <div class="andes-left">
+                  <div class="andes-title">Mindo</div>
+                  <div class="andes-sub">Cloud forest, birding, waterfalls, relaxed nature days.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/andes/cuenca/" aria-label="Open Cuenca page">
+                <div class="andes-left">
+                  <div class="andes-title">Cuenca</div>
+                  <div class="andes-sub">Colonial streets, artisan culture, relaxed city rhythm.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/andes/cotopaxi/" aria-label="Open Cotopaxi page">
+                <div class="andes-left">
+                  <div class="andes-title">Cotopaxi</div>
+                  <div class="andes-sub">Volcano scenery, hikes, and páramo landscapes.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/andes/banos/" aria-label="Open Baños page">
+                <div class="andes-left">
+                  <div class="andes-title">Baños</div>
+                  <div class="andes-sub">Waterfalls, viewpoints, and soft adventure energy.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/andes/papallacta/" aria-label="Open Papallacta page">
+                <div class="andes-left">
+                  <div class="andes-title">Papallacta</div>
+                  <div class="andes-sub">Hot springs, high altitude views, easy reset days.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/andes/choco-andino/" aria-label="Open Chocó Andino page">
+                <div class="andes-left">
+                  <div class="andes-title">Chocó Andino</div>
+                  <div class="andes-sub">Biodiversity, forest reserves, birding, quiet nature routes.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-tagline">Curated travel experiences across Ecuador</div>
-
-      <div class="social" aria-label="Social media links">
-        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
-        </a>
-        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
-        </a>
-        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
-        </a>
-        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
-        </a>
-      </div>
-
-      <small>© 2025 Experience Ecuador. All rights reserved.</small>
-    </div>
-  </footer>
+  <div id="siteFooter"></div>
 
   <script>
     // Unified dropdown handler (Regions + Experiences) - open one at a time, close on outside click / Esc
@@ -1318,6 +1067,21 @@
     document.addEventListener('contextmenu', (e) => {
       if (e.target && e.target.tagName === 'IMG') e.preventDefault();
     });
+  </script>
+
+  <script src="/assets/js/site.js"></script>
+
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
   </script>
 </body>
 </html>
