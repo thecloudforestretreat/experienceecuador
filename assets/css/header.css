@@ -13,9 +13,6 @@
 .topbar a:visited{ text-decoration:none; }
 .topbar button{ font:inherit; }
 
-/* Hidden attribute support for JS-driven views */
-[hidden]{ display:none !important; }
-
 /* ===== HEADER SHELL ===== */
 .topbar{
   position: sticky !important;
@@ -125,7 +122,7 @@
   opacity:.7;
 }
 
-/* ===== HAMBURGER TOGGLE (checkbox controls open/close) ===== */
+/* ===== HAMBURGER TOGGLE (checkbox) ===== */
 .topbar .nav-toggle{
   position:absolute;
   width:1px;
@@ -186,18 +183,18 @@
 }
 
 .sr-only{
-  position:absolute !important;
-  width:1px !important;
-  height:1px !important;
-  padding:0 !important;
-  margin:-1px !important;
-  overflow:hidden !important;
-  clip:rect(0,0,0,0) !important;
-  white-space:nowrap !important;
-  border:0 !important;
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  padding:0!important;
+  margin:-1px!important;
+  overflow:hidden!important;
+  clip:rect(0,0,0,0)!important;
+  white-space:nowrap!important;
+  border:0!important;
 }
 
-/* ===== MOBILE PANEL ===== */
+/* ===== MOBILE PANEL (drill-down, JS controlled) ===== */
 .topbar .nav-mobile{
   display:none; /* desktop hidden */
 }
@@ -235,7 +232,7 @@
     background:rgba(255,255,255,.85);
   }
 
-  /* Checkbox controls panel open */
+  /* Checkbox controls panel */
   .topbar .nav-toggle:checked ~ .nav-mobile{
     max-height:80vh;
     overflow:auto;
@@ -247,10 +244,17 @@
     padding-right:calc(env(safe-area-inset-right) + 14px);
   }
 
-  /* JS controls which view is visible via [hidden].
-     Do NOT use :target drill-down here. */
-  .topbar .m-view{
-    display:block;
+  /* Views (JS controls via [hidden]) */
+  .topbar .m-view{ display:block; }
+  .topbar .m-view[hidden]{ display:none !important; }
+
+  /* Buttons should look like links/cards */
+  .topbar .m-item,
+  .topbar .m-back{
+    appearance:none;
+    -webkit-appearance:none;
+    border:0;
+    text-align:left;
   }
 
   /* Menu items */
@@ -269,6 +273,7 @@
     font-weight:800;
     color:var(--nav-text);
     font-size:18px;
+    cursor:pointer;
   }
 
   .topbar .m-item:active,
