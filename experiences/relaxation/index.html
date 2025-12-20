@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Relaxation | Experience Ecuador</title>
 
-  <!-- Favicons -->
-  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any">
-  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
-  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <!-- Favicons (root paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,120 +45,6 @@
     }
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
-
-    /* ===== HEADER ===== */
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      backdrop-filter:saturate(160%) blur(10px);
-      background:rgba(255,255,255,0.75);
-      border-bottom:1px solid rgba(0,0,0,0.06);
-      overflow:visible;
-    }
-    .topbar-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:14px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      overflow:visible;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      color:var(--brand-blue);
-      font-size:18px;
-      letter-spacing:-0.02em;
-      line-height:1;
-      white-space:nowrap;
-    }
-    .brand img{width:28px;height:28px;object-fit:contain}
-
-    /* ===== NAV ===== */
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      font-size:14px;
-      font-weight:700;
-      color:#0f2f62;
-      white-space:nowrap;
-      overflow:visible;
-    }
-    .nav a,
-    .nav button{
-      font:inherit;
-      background:transparent;
-      border:0;
-      color:inherit;
-      padding:8px 10px;
-      border-radius:10px;
-      cursor:pointer;
-      line-height:1;
-    }
-    .nav a:hover,
-    .nav button:hover{ background:rgba(3,78,162,0.08); }
-    .nav a.active{ color:var(--brand-blue); background:rgba(3,78,162,0.08); }
-
-    /* Dropdown */
-    .dropdown{
-      position:relative;
-      display:inline-flex;
-      align-items:center;
-      overflow:visible;
-      z-index:1100;
-    }
-    .dropbtn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      user-select:none;
-    }
-    .dropbtn:focus{
-      outline:2px solid rgba(3,78,162,0.35);
-      outline-offset:2px;
-    }
-    .caret{
-      width:10px;
-      height:10px;
-      border-right:2px solid currentColor;
-      border-bottom:2px solid currentColor;
-      transform:rotate(45deg);
-      margin-top:-2px;
-      opacity:.7;
-    }
-    .dropdown-menu{
-      position:absolute;
-      top:42px;
-      right:0;
-      min-width:220px;
-      background:#fff;
-      border:1px solid rgba(0,0,0,0.08);
-      border-radius:14px;
-      box-shadow:0 18px 55px rgba(3,78,162,0.16);
-      padding:8px;
-      display:none;
-      z-index:1200;
-    }
-    .dropdown.open .dropdown-menu{display:block}
-    .dropdown-menu a{
-      display:block;
-      padding:10px;
-      border-radius:10px;
-      font-weight:700;
-      color:#0f2f62;
-    }
-    .dropdown-menu a.active{
-      color:var(--brand-blue);
-      background:rgba(3,78,162,0.08);
-    }
-    .dropdown-menu a:hover{ background:rgba(3,78,162,0.08); }
 
     /* ===== HERO (GALAPAGOS PATTERN) ===== */
     .hero{
@@ -530,39 +420,6 @@
       white-space:nowrap;
     }
 
-    /* ===== FOOTER ===== */
-    .footer{ background:var(--brand-blue); color:#fff; }
-    .footer-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:28px 18px;
-      text-align:center;
-    }
-    .footer-tagline{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      margin-bottom:16px;
-    }
-    .social{
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      flex-wrap:wrap;
-      margin-bottom:12px;
-    }
-    .icon-btn{
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      background:var(--brand-blue);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:0 14px 34px rgba(0,0,0,0.35);
-    }
-    .icon-btn img{width:34px;height:34px}
-    footer small{font-size:13px;opacity:.9}
-
     /* ===== MOBILE (MATCH GALAPAGOS HERO + WILDLIFE) ===== */
     @media(max-width:900px){
       .hero-inner{ text-align:center; }
@@ -579,16 +436,6 @@
         width:100%;
       }
       .selector-controls select{width:100%; min-width:0;}
-      .nav{gap:8px;flex-wrap:wrap;justify-content:center}
-    }
-
-    @media(max-width:620px){
-      .topbar-inner{flex-direction:column;gap:10px}
-      .dropdown-menu{
-        left:50%;
-        right:auto;
-        transform:translateX(-50%);
-      }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -600,408 +447,323 @@
 
 <body>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="/">
-      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
-      <span>Experience Ecuador</span>
-    </a>
+  <div id="siteHeader"></div>
 
-    <nav class="nav" aria-label="Primary navigation">
-      <a href="/">Home</a>
-      <a href="/about/">About</a>
-      <a href="/mission/">Mission</a>
+  <main>
+    <!-- PAGE CONTENT ONLY -->
 
-      <div class="dropdown" id="regionsDropdown">
-        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Regions menu">
-          Regions <span class="caret" aria-hidden="true"></span>
-        </button>
-        <div class="dropdown-menu" role="menu" aria-label="Regions submenu">
-          <a href="/regions/" role="menuitem">All Regions</a>
-          <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
-          <a href="/regions/coast/" role="menuitem">Coast</a>
-          <a href="/regions/andes/" role="menuitem">Andes</a>
-          <a href="/regions/amazon/" role="menuitem">Amazon</a>
-        </div>
-      </div>
-
-      <div class="dropdown" id="experiencesDropdown">
-        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Experiences menu">
-          Experiences <span class="caret" aria-hidden="true"></span>
-        </button>
-        <div class="dropdown-menu" role="menu" aria-label="Experiences submenu">
-          <a href="/experiences/" role="menuitem">All Experiences</a>
-          <a href="/experiences/adventure/" role="menuitem">Adventure</a>
-          <a href="/experiences/nature/" role="menuitem">Nature</a>
-          <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
-          <a class="active" href="/experiences/relaxation/" role="menuitem">Relaxation</a>
-          <a href="/experiences/culinary/" role="menuitem">Culinary</a>
-          <a href="/experiences/culture/" role="menuitem">Culture</a>
-        </div>
-      </div>
-
-      <a href="/contact/">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<section class="hero" aria-label="Relaxation page hero">
-  <div class="hero-inner">
-    <div class="kicker">Experiences</div>
-    <h1>Relaxation</h1>
-    <p>
-      Slow mornings, scenic stays, hot springs, easy day trips, and quiet moments that still feel distinctly Ecuador.
-    </p>
-  </div>
-</section>
-
-<main class="wrap">
-
-  <section class="section">
-    <h2>What this experience is about</h2>
-    <p>
-      Relaxation in Ecuador can mean spa and wellness, nature-forward lodging, warm springs, or a calm base that makes day trips easy.
-      Because distances are short, you can unwind without feeling isolated from the best scenery and culture.
-    </p>
-  </section>
-
-  <!-- Relaxation Selector -->
-  <section class="section selector" aria-label="Relaxation selector">
-    <div class="selector-top">
-
-      <!-- Controls FIRST, top-right (matches Wildlife) -->
-      <div class="selector-controls">
-        <label for="ee_exp_nav">Experiences</label>
-        <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Select experience">
-          <option value="/experiences/adventure/">Adventure</option>
-          <option value="/experiences/nature/">Nature</option>
-          <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
-          <option value="/experiences/relaxation/" selected>Relaxation</option>
-          <option value="/experiences/culinary/">Culinary</option>
-          <option value="/experiences/culture/">Culture</option>
-        </select>
-
-        <label for="ee_relax_focus">Focus</label>
-        <select id="ee_relax_focus" name="ee_relax_focus" aria-label="Select relaxation focus">
-          <option value="hot_springs" selected>Hot springs and wellness</option>
-          <option value="scenic_base">Scenic base (easy day trips)</option>
-          <option value="coastal_chill">Coastal slow travel</option>
-          <option value="quiet_city">Quiet city reset</option>
-        </select>
-      </div>
-
-      <!-- Copy spans full width below (matches Wildlife) -->
-      <div class="selector-copy">
-        <h3>Pick your relaxation focus</h3>
+    <section class="hero" aria-label="Relaxation page hero">
+      <div class="hero-inner">
+        <div class="kicker">Experiences</div>
+        <h1>Relaxation</h1>
         <p>
-          Choose your vibe and we’ll show three strong starting points. Each recommendation links to the best region to build from.
+          Slow mornings, scenic stays, hot springs, easy day trips, and quiet moments that still feel distinctly Ecuador.
         </p>
       </div>
+    </section>
+
+    <div class="wrap">
+
+      <section class="section">
+        <h2>What this experience is about</h2>
+        <p>
+          Relaxation in Ecuador can mean spa and wellness, nature-forward lodging, warm springs, or a calm base that makes day trips easy.
+          Because distances are short, you can unwind without feeling isolated from the best scenery and culture.
+        </p>
+      </section>
+
+      <!-- Relaxation Selector -->
+      <section class="section selector" aria-label="Relaxation selector">
+        <div class="selector-top">
+
+          <!-- Controls FIRST, top-right (matches Wildlife) -->
+          <div class="selector-controls">
+            <label for="ee_exp_nav">Experiences</label>
+            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Select experience">
+              <option value="/experiences/adventure/">Adventure</option>
+              <option value="/experiences/nature/">Nature</option>
+              <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
+              <option value="/experiences/relaxation/" selected>Relaxation</option>
+              <option value="/experiences/culinary/">Culinary</option>
+              <option value="/experiences/culture/">Culture</option>
+            </select>
+
+            <label for="ee_relax_focus">Focus</label>
+            <select id="ee_relax_focus" name="ee_relax_focus" aria-label="Select relaxation focus">
+              <option value="hot_springs" selected>Hot springs and wellness</option>
+              <option value="scenic_base">Scenic base (easy day trips)</option>
+              <option value="coastal_chill">Coastal slow travel</option>
+              <option value="quiet_city">Quiet city reset</option>
+            </select>
+          </div>
+
+          <!-- Copy spans full width below (matches Wildlife) -->
+          <div class="selector-copy">
+            <h3>Pick your relaxation focus</h3>
+            <p>
+              Choose your vibe and we’ll show three strong starting points. Each recommendation links to the best region to build from.
+            </p>
+          </div>
+        </div>
+
+        <div class="selector-body">
+          <div class="recs-grid" id="ee_relax_recs" aria-live="polite"></div>
+          <div style="margin-top:12px;">
+            <span class="hint" id="ee_relax_hint">Tip: Hot springs are the fastest way to feel the reset.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Carousel (same format as Culture) -->
+      <section class="carousel" aria-label="Relaxation gallery carousel">
+        <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
+          <span aria-hidden="true"></span>
+        </button>
+        <button class="carousel-btn next" type="button" aria-label="Next slide" id="ee_car_next">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <div class="carousel-viewport" id="ee_car_viewport">
+          <div class="carousel-track" id="ee_car_track">
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Relaxation-1.jpg" alt="Relaxation gallery image 1">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Relaxation-2.jpg" alt="Relaxation gallery image 2">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Relaxation-3.jpg" alt="Relaxation gallery image 3">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Relaxation-4.jpg" alt="Relaxation gallery image 4">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Relaxation-5.jpg" alt="Relaxation gallery image 5">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Relaxation-6.jpg" alt="Relaxation gallery image 6">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Relaxation-7.jpg" alt="Relaxation gallery image 7">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Relaxation-8.jpg" alt="Relaxation gallery image 8">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Relaxation-9.jpg" alt="Relaxation gallery image 9">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Relaxation-10.jpg" alt="Relaxation gallery image 10">
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-ui">
+          <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
+          <div class="carousel-counter" id="ee_car_counter">1 / 1</div>
+        </div>
+      </section>
+
     </div>
+  </main>
 
-    <div class="selector-body">
-      <div class="recs-grid" id="ee_relax_recs" aria-live="polite"></div>
-      <div style="margin-top:12px;">
-        <span class="hint" id="ee_relax_hint">Tip: Hot springs are the fastest way to feel the reset.</span>
-      </div>
-    </div>
-  </section>
+  <div id="siteFooter"></div>
 
-  <!-- Bottom Carousel (same format as Culture) -->
-  <section class="carousel" aria-label="Relaxation gallery carousel">
-    <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
-      <span aria-hidden="true"></span>
-    </button>
-    <button class="carousel-btn next" type="button" aria-label="Next slide" id="ee_car_next">
-      <span aria-hidden="true"></span>
-    </button>
+  <script src="/assets/js/site.js"></script>
 
-    <div class="carousel-viewport" id="ee_car_viewport">
-      <div class="carousel-track" id="ee_car_track">
-        <div class="carousel-slide">
-          <img src="/assets/images/EE-Carousel-Relaxation-1.jpg" alt="Relaxation gallery image 1">
-        </div>
-        <div class="carousel-slide">
-          <img src="/assets/images/EE-Carousel-Relaxation-2.jpg" alt="Relaxation gallery image 2">
-        </div>
-        <div class="carousel-slide">
-          <img src="/assets/images/EE-Carousel-Relaxation-3.jpg" alt="Relaxation gallery image 3">
-        </div>
-        <div class="carousel-slide">
-          <img src="/assets/images/EE-Carousel-Relaxation-4.jpg" alt="Relaxation gallery image 4">
-        </div>
-        <div class="carousel-slide">
-          <img src="/assets/images/EE-Carousel-Relaxation-5.jpg" alt="Relaxation gallery image 5">
-        </div>
-        <div class="carousel-slide">
-          <img src="/assets/images/EE-Carousel-Relaxation-6.jpg" alt="Relaxation gallery image 6">
-        </div>
-        <div class="carousel-slide">
-          <img src="/assets/images/EE-Carousel-Relaxation-7.jpg" alt="Relaxation gallery image 7">
-        </div>
-        <div class="carousel-slide">
-          <img src="/assets/images/EE-Carousel-Relaxation-8.jpg" alt="Relaxation gallery image 8">
-        </div>
-        <div class="carousel-slide">
-          <img src="/assets/images/EE-Carousel-Relaxation-9.jpg" alt="Relaxation gallery image 9">
-        </div>
-        <div class="carousel-slide">
-          <img src="/assets/images/EE-Carousel-Relaxation-10.jpg" alt="Relaxation gallery image 10">
-        </div>
-      </div>
-    </div>
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
 
-    <div class="carousel-ui">
-      <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
-      <div class="carousel-counter" id="ee_car_counter">1 / 1</div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-tagline">Curated travel experiences across Ecuador</div>
-
-    <div class="social">
-      <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
-      </a>
-      <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
-      </a>
-      <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
-      </a>
-      <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
-        <img src="/assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
-      </a>
-    </div>
-
-    <small>© 2025 Experience Ecuador. All rights reserved.</small>
-  </div>
-</footer>
-
-<script>
-  /* ===== Dropdown behavior (site standard) ===== */
-  (function () {
-    const dropdowns = document.querySelectorAll('.dropdown');
-
-    function closeAll() {
-      dropdowns.forEach(dd => {
-        dd.classList.remove('open');
-        const btn = dd.querySelector('.dropbtn');
-        if (btn) btn.setAttribute('aria-expanded', 'false');
+  <script>
+    /* ===== Experiences dropdown (auto-navigate) ===== */
+    (function(){
+      const expEl = document.getElementById("ee_exp_nav");
+      if (!expEl) return;
+      expEl.addEventListener("change", function(){
+        const url = this.value;
+        if (url) window.location.href = url;
       });
-    }
+    })();
 
-    dropdowns.forEach(dd => {
-      const btn = dd.querySelector('.dropbtn');
-      const menu = dd.querySelector('.dropdown-menu');
-      if (!btn) return;
+    /* ===== Relaxation Focus Selector (3 recommendations) ===== */
+    (function(){
+      const focusEl = document.getElementById("ee_relax_focus");
+      const recsEl = document.getElementById("ee_relax_recs");
+      const hintEl = document.getElementById("ee_relax_hint");
 
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
+      const data = {
+        hot_springs: {
+          hint: "Hot springs and wellness are best when you stay nearby and keep your schedule light.",
+          recs: [
+            { title:"Hot springs soak and spa reset", desc:"Unwind with a simple wellness day centered around warm mineral water and a slow pace.", badges:["Easy","Wellness"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
+            { title:"Scenic lodge base with optional soak", desc:"Stay somewhere quiet with views and add a short soak session when you want it.", badges:["Easy","Scenic"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
+            { title:"Low-planning relaxation trip", desc:"A calm itinerary with just one highlight a day. Sleep in, explore lightly, repeat.", badges:["Easy","Slow travel"], ctaLabel:"All Regions", ctaHref:"/regions/" }
+          ]
+        },
+        scenic_base: {
+          hint: "Pick one beautiful base and do short day trips so you can keep your evenings relaxed.",
+          recs: [
+            { title:"Single base, short day trips", desc:"A simple plan: one home base, easy outings, and plenty of downtime built in.", badges:["Easy","Flexible"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
+            { title:"Nature-forward lodging", desc:"Choose a stay that feels like the destination. Views, quiet mornings, and easy walks.", badges:["Easy","Scenic"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
+            { title:"Relaxed culture and cafés", desc:"Slow city days with markets, cafés, and a calm pace without constant transit.", badges:["Easy","City"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" }
+          ]
+        },
+        coastal_chill: {
+          hint: "Coastal slow travel works best with fewer stops and longer stays in each place.",
+          recs: [
+            { title:"Beach days, no schedule", desc:"Keep it simple: ocean, long meals, and nothing timed unless you want it.", badges:["Easy","Coast"], ctaLabel:"Explore Coast", ctaHref:"/regions/coast/" },
+            { title:"Coastal nature and sunsets", desc:"Light exploration in the afternoon, then sunset downtime with zero rush.", badges:["Easy","Scenic"], ctaLabel:"Explore Coast", ctaHref:"/regions/coast/" },
+            { title:"Quiet seaside base", desc:"A calm home base so you can alternate between rest and short local outings.", badges:["Easy","Slow travel"], ctaLabel:"Explore Coast", ctaHref:"/regions/coast/" }
+          ]
+        },
+        quiet_city: {
+          hint: "A quiet city reset is best when you keep your plan light and walkable.",
+          recs: [
+            { title:"Walkable city + downtime", desc:"A calm pace with easy walking, cafés, and gentle culture days.", badges:["Easy","City"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
+            { title:"Food, parks, and viewpoints", desc:"Minimal transit, maximum comfort. Choose a few simple highlights and relax.", badges:["Easy","Comfort"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
+            { title:"Short stay recharge", desc:"Perfect for 2–3 nights when you want to reset before moving on.", badges:["Easy","Short stay"], ctaLabel:"All Regions", ctaHref:"/regions/" }
+          ]
+        }
+      };
 
-        const isOpen = dd.classList.contains('open');
-        closeAll();
-        dd.classList.toggle('open', !isOpen);
-        btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
-      });
+      function escapeHtml(str){
+        return String(str)
+          .replaceAll("&","&amp;")
+          .replaceAll("<","&lt;")
+          .replaceAll(">","&gt;")
+          .replaceAll('"',"&quot;")
+          .replaceAll("'","&#039;");
+      }
 
-      if (menu) {
-        menu.addEventListener('click', function (e) {
-          e.stopPropagation();
+      function render(key){
+        const block = data[key] || data.hot_springs;
+        if (hintEl) hintEl.textContent = block.hint || "";
+
+        const html = (block.recs || []).map((r) => {
+          const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
+          return `
+            <article class="rec">
+              <div class="meta">${badges}</div>
+              <h4>${escapeHtml(r.title)}</h4>
+              <p>${escapeHtml(r.desc)}</p>
+
+              <div class="rec-actions">
+                <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
+                <span class="hint">Best-fit starting point</span>
+              </div>
+            </article>
+          `;
+        }).join("");
+
+        recsEl.innerHTML = html;
+      }
+
+      render(focusEl ? focusEl.value : "hot_springs");
+
+      if (focusEl) {
+        focusEl.addEventListener("change", function(){
+          render(this.value);
         });
       }
-    });
+    })();
 
-    document.addEventListener('click', closeAll);
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeAll();
-    });
-  })();
+    /* ===== Carousel (same JS as Culture) ===== */
+    (function(){
+      const track = document.getElementById("ee_car_track");
+      const viewport = document.getElementById("ee_car_viewport");
+      const prevBtn = document.getElementById("ee_car_prev");
+      const nextBtn = document.getElementById("ee_car_next");
+      const dotsWrap = document.getElementById("ee_car_dots");
+      const counter = document.getElementById("ee_car_counter");
 
-  /* ===== Experiences dropdown (auto-navigate) ===== */
-  (function(){
-    const expEl = document.getElementById("ee_exp_nav");
-    if (!expEl) return;
-    expEl.addEventListener("change", function(){
-      const url = this.value;
-      if (url) window.location.href = url;
-    });
-  })();
+      if (!track || !viewport) return;
 
-  /* ===== Relaxation Focus Selector (3 recommendations) ===== */
-  (function(){
-    const focusEl = document.getElementById("ee_relax_focus");
-    const recsEl = document.getElementById("ee_relax_recs");
-    const hintEl = document.getElementById("ee_relax_hint");
+      const slides = Array.from(track.children);
+      const total = slides.length;
+      let index = 0;
+      let startX = 0;
+      let currentX = 0;
+      let dragging = false;
 
-    const data = {
-      hot_springs: {
-        hint: "Hot springs and wellness are best when you stay nearby and keep your schedule light.",
-        recs: [
-          { title:"Hot springs soak and spa reset", desc:"Unwind with a simple wellness day centered around warm mineral water and a slow pace.", badges:["Easy","Wellness"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
-          { title:"Scenic lodge base with optional soak", desc:"Stay somewhere quiet with views and add a short soak session when you want it.", badges:["Easy","Scenic"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
-          { title:"Low-planning relaxation trip", desc:"A calm itinerary with just one highlight a day. Sleep in, explore lightly, repeat.", badges:["Easy","Slow travel"], ctaLabel:"All Regions", ctaHref:"/regions/" }
-        ]
-      },
-      scenic_base: {
-        hint: "Pick one beautiful base and do short day trips so you can keep your evenings relaxed.",
-        recs: [
-          { title:"Single base, short day trips", desc:"A simple plan: one home base, easy outings, and plenty of downtime built in.", badges:["Easy","Flexible"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
-          { title:"Nature-forward lodging", desc:"Choose a stay that feels like the destination. Views, quiet mornings, and easy walks.", badges:["Easy","Scenic"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
-          { title:"Relaxed culture and cafés", desc:"Slow city days with markets, cafés, and a calm pace without constant transit.", badges:["Easy","City"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" }
-        ]
-      },
-      coastal_chill: {
-        hint: "Coastal slow travel works best with fewer stops and longer stays in each place.",
-        recs: [
-          { title:"Beach days, no schedule", desc:"Keep it simple: ocean, long meals, and nothing timed unless you want it.", badges:["Easy","Coast"], ctaLabel:"Explore Coast", ctaHref:"/regions/coast/" },
-          { title:"Coastal nature and sunsets", desc:"Light exploration in the afternoon, then sunset downtime with zero rush.", badges:["Easy","Scenic"], ctaLabel:"Explore Coast", ctaHref:"/regions/coast/" },
-          { title:"Quiet seaside base", desc:"A calm home base so you can alternate between rest and short local outings.", badges:["Easy","Slow travel"], ctaLabel:"Explore Coast", ctaHref:"/regions/coast/" }
-        ]
-      },
-      quiet_city: {
-        hint: "A quiet city reset is best when you keep your plan light and walkable.",
-        recs: [
-          { title:"Walkable city + downtime", desc:"A calm pace with easy walking, cafés, and gentle culture days.", badges:["Easy","City"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
-          { title:"Food, parks, and viewpoints", desc:"Minimal transit, maximum comfort. Choose a few simple highlights and relax.", badges:["Easy","Comfort"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
-          { title:"Short stay recharge", desc:"Perfect for 2–3 nights when you want to reset before moving on.", badges:["Easy","Short stay"], ctaLabel:"All Regions", ctaHref:"/regions/" }
-        ]
+      function setCounter(){
+        if (!counter) return;
+        counter.textContent = `${index + 1} / ${total}`;
       }
-    };
 
-    function escapeHtml(str){
-      return String(str)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
+      function setDots(){
+        if (!dotsWrap) return;
+        dotsWrap.innerHTML = "";
+        for (let i = 0; i < total; i++){
+          const b = document.createElement("button");
+          b.className = "dot" + (i === index ? " active" : "");
+          b.type = "button";
+          b.setAttribute("aria-label", `Go to slide ${i + 1}`);
+          b.addEventListener("click", () => goTo(i));
+          dotsWrap.appendChild(b);
+        }
+      }
 
-    function render(key){
-      const block = data[key] || data.hot_springs;
-      if (hintEl) hintEl.textContent = block.hint || "";
+      function update(){
+        track.style.transform = `translateX(${-index * 100}%)`;
+        setCounter();
+        setDots();
+        if (prevBtn) prevBtn.style.display = total > 1 ? "" : "none";
+        if (nextBtn) nextBtn.style.display = total > 1 ? "" : "none";
+      }
 
-      const html = (block.recs || []).map((r) => {
-        const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
-        return `
-          <article class="rec">
-            <div class="meta">${badges}</div>
-            <h4>${escapeHtml(r.title)}</h4>
-            <p>${escapeHtml(r.desc)}</p>
+      function goTo(i){
+        index = (i + total) % total;
+        update();
+      }
 
-            <div class="rec-actions">
-              <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
-              <span class="hint">Best-fit starting point</span>
-            </div>
-          </article>
-        `;
-      }).join("");
+      function next(){ goTo(index + 1); }
+      function prev(){ goTo(index - 1); }
 
-      recsEl.innerHTML = html;
-    }
+      if (nextBtn) nextBtn.addEventListener("click", next);
+      if (prevBtn) prevBtn.addEventListener("click", prev);
 
-    render(focusEl ? focusEl.value : "hot_springs");
+      viewport.addEventListener("touchstart", (e) => {
+        if (total <= 1) return;
+        if (e.touches.length !== 1) return;
+        dragging = true;
+        startX = e.touches[0].clientX;
+        currentX = startX;
+      }, { passive:true });
 
-    if (focusEl) {
-      focusEl.addEventListener("change", function(){
-        render(this.value);
+      viewport.addEventListener("touchmove", (e) => {
+        if (!dragging || e.touches.length !== 1) return;
+        currentX = e.touches[0].clientX;
+      }, { passive:true });
+
+      viewport.addEventListener("touchend", () => {
+        if (!dragging) return;
+        const dx = currentX - startX;
+        dragging = false;
+        if (Math.abs(dx) > 45){
+          if (dx < 0) next();
+          else prev();
+        }
       });
-    }
-  })();
 
-  /* ===== Carousel (same JS as Culture) ===== */
-  (function(){
-    const track = document.getElementById("ee_car_track");
-    const viewport = document.getElementById("ee_car_viewport");
-    const prevBtn = document.getElementById("ee_car_prev");
-    const nextBtn = document.getElementById("ee_car_next");
-    const dotsWrap = document.getElementById("ee_car_dots");
-    const counter = document.getElementById("ee_car_counter");
+      viewport.addEventListener("keydown", (e) => {
+        if (total <= 1) return;
+        if (e.key === "ArrowRight") next();
+        if (e.key === "ArrowLeft") prev();
+      });
 
-    if (!track || !viewport) return;
-
-    const slides = Array.from(track.children);
-    const total = slides.length;
-    let index = 0;
-    let startX = 0;
-    let currentX = 0;
-    let dragging = false;
-
-    function setCounter(){
-      if (!counter) return;
-      counter.textContent = `${index + 1} / ${total}`;
-    }
-
-    function setDots(){
-      if (!dotsWrap) return;
-      dotsWrap.innerHTML = "";
-      for (let i = 0; i < total; i++){
-        const b = document.createElement("button");
-        b.className = "dot" + (i === index ? " active" : "");
-        b.type = "button";
-        b.setAttribute("aria-label", `Go to slide ${i + 1}`);
-        b.addEventListener("click", () => goTo(i));
-        dotsWrap.appendChild(b);
-      }
-    }
-
-    function update(){
-      track.style.transform = `translateX(${-index * 100}%)`;
-      setCounter();
-      setDots();
-      if (prevBtn) prevBtn.style.display = total > 1 ? "" : "none";
-      if (nextBtn) nextBtn.style.display = total > 1 ? "" : "none";
-    }
-
-    function goTo(i){
-      index = (i + total) % total;
       update();
-    }
-
-    function next(){ goTo(index + 1); }
-    function prev(){ goTo(index - 1); }
-
-    if (nextBtn) nextBtn.addEventListener("click", next);
-    if (prevBtn) prevBtn.addEventListener("click", prev);
-
-    viewport.addEventListener("touchstart", (e) => {
-      if (total <= 1) return;
-      if (e.touches.length !== 1) return;
-      dragging = true;
-      startX = e.touches[0].clientX;
-      currentX = startX;
-    }, { passive:true });
-
-    viewport.addEventListener("touchmove", (e) => {
-      if (!dragging || e.touches.length !== 1) return;
-      currentX = e.touches[0].clientX;
-    }, { passive:true });
-
-    viewport.addEventListener("touchend", () => {
-      if (!dragging) return;
-      const dx = currentX - startX;
-      dragging = false;
-      if (Math.abs(dx) > 45){
-        if (dx < 0) next();
-        else prev();
-      }
-    });
-
-    viewport.addEventListener("keydown", (e) => {
-      if (total <= 1) return;
-      if (e.key === "ArrowRight") next();
-      if (e.key === "ArrowLeft") prev();
-    });
-
-    update();
-  })();
-</script>
+    })();
+  </script>
 
 </body>
 </html>
