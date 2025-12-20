@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quito in 1 Day | Experience Ecuador</title>
+  <title>Quito in 2 Days | Experience Ecuador</title>
 
   <!-- Favicons (root-approved paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -26,6 +26,7 @@
       --brand-blue:#034EA2;
       --slate:#6E7B8B;
       --text:#1F1F1F;
+      --ink:#0f2f62;
     }
 
     *{box-sizing:border-box}
@@ -57,32 +58,26 @@
     .lede{
       color:var(--slate);
       line-height:1.65;
-      max-width:92ch;
+      max-width:85ch;
       margin:0;
       font-size:16.8px;
     }
 
     .meta-row{
-      margin-top:14px;
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      align-items:center;
-      color:#162b55;
-      font-weight:700;
-      font-size:13.5px;
+      margin-top:14px;
     }
 
     .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
       padding:8px 12px;
       border-radius:999px;
       background:rgba(3,78,162,.06);
       border:1px solid rgba(3,78,162,.14);
-      color:#0f2f62;
       font-weight:800;
+      color:var(--ink);
+      font-size:13px;
     }
 
     .content-grid{
@@ -109,111 +104,84 @@
       font-weight:800;
       letter-spacing:-0.02em;
       font-size:18px;
-      color:#0f2f62;
+      color:var(--ink);
     }
 
     .card p{
-      margin:0 0 12px;
-      color:#1f2b3f;
-      line-height:1.75;
-      font-size:15.5px;
-      max-width:84ch;
+      margin:0 0 14px;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:15.8px;
+      max-width:85ch;
     }
 
-    .card p:last-child{ margin-bottom:0; }
-
-    /* Timeline */
     .timeline{
       display:flex;
       flex-direction:column;
       gap:12px;
-      margin-top:12px;
+      margin-top:10px;
     }
 
     .stop{
-      display:flex;
+      display:grid;
+      grid-template-columns:110px 1fr;
       gap:12px;
       padding:14px;
       border-radius:18px;
-      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      background:linear-gradient(180deg, rgba(3,78,162,.04), rgba(3,78,162,.015));
       border:1px solid rgba(3,78,162,.12);
     }
 
     .time{
-      flex:0 0 auto;
-      min-width:86px;
-      height:34px;
-      padding:0 10px;
-      border-radius:999px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
       font-weight:900;
-      font-size:12.8px;
-      color:#0f2f62;
-      background:#fff;
-      border:1px solid rgba(3,78,162,.16);
-    }
-
-    .stop-body{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      min-width:0;
+      color:var(--ink);
+      font-size:13px;
+      letter-spacing:.01em;
     }
 
     .stop-title{
       font-weight:900;
-      color:#0f2f62;
+      color:var(--ink);
       font-size:15.5px;
-      letter-spacing:-0.01em;
+      margin:0 0 6px;
     }
 
     .stop-text{
       color:#1f2b3f;
-      opacity:.92;
-      line-height:1.6;
-      font-size:14.6px;
-      max-width:72ch;
+      line-height:1.65;
+      font-size:14.8px;
+      margin:0 0 10px;
     }
 
     .tags{
       display:flex;
       flex-wrap:wrap;
       gap:8px;
-      margin-top:2px;
     }
 
     .tag{
-      display:inline-flex;
-      align-items:center;
-      padding:6px 9px;
+      padding:6px 10px;
       border-radius:999px;
-      background:rgba(3,78,162,.06);
+      background:rgba(3,78,162,.08);
       border:1px solid rgba(3,78,162,.14);
-      color:#0f2f62;
       font-weight:800;
-      font-size:12.4px;
+      color:#162b55;
+      font-size:12.5px;
     }
 
     .note{
-      margin-top:10px;
+      margin-top:14px;
       padding:14px 14px;
       border-radius:18px;
       background:rgba(3,78,162,.05);
       border:1px solid rgba(3,78,162,.12);
       color:#1f2b3f;
-      line-height:1.7;
+      font-weight:600;
+      line-height:1.6;
       font-size:14.8px;
     }
 
-    .inline-link{
-      text-decoration:underline;
-      text-underline-offset:3px;
-      font-weight:800;
-      color:#162b55;
-    }
-
+    /* ===== RIGHT COLUMN ===== */
     .side-stack{
       display:flex;
       flex-direction:column;
@@ -234,7 +202,7 @@
       font-weight:800;
       letter-spacing:-0.02em;
       font-size:16px;
-      color:#0f2f62;
+      color:var(--ink);
     }
 
     .mini p{
@@ -260,8 +228,8 @@
       border-radius:16px;
       background:rgba(3,78,162,.05);
       border:1px solid rgba(3,78,162,.12);
-      font-weight:900;
-      color:#0f2f62;
+      font-weight:800;
+      color:var(--ink);
     }
 
     .pill-link:hover{ background:rgba(3,78,162,.08); }
@@ -278,20 +246,20 @@
       overflow:hidden;
       border:1px solid rgba(0,0,0,.06);
       box-shadow:0 18px 60px rgba(0,0,0,.14);
-      aspect-ratio:4 / 3;
       background:#eef2f7;
     }
 
     .side-image img{
       width:100%;
-      height:100%;
-      object-fit:cover;
+      height:auto;
       display:block;
     }
 
     /* ===== MOBILE ===== */
     @media(max-width:980px){
       .content-grid{grid-template-columns:1fr}
+      .stop{grid-template-columns:1fr}
+      .time{opacity:.9}
     }
   </style>
 </head>
@@ -301,170 +269,151 @@
 
   <main>
     <main class="wrap">
-      <h1>Quito in 1 Day</h1>
+      <h1>Quito in 2 Days</h1>
       <p class="lede">
-        A simple, high-impact 1-day route designed for first-time visitors and tight schedules.
-        You will cover the historic core, a major viewpoint, and one classic “must-do” stop without rushing.
+        Two days in Quito gives you breathing room.
+        You can explore the historic city properly, visit the equator, and still add a nearby nature or viewpoint experience without rushing.
       </p>
 
-      <div class="meta-row" aria-label="Quito 1 day metadata">
-        <span class="pill">Best for: First visit</span>
-        <span class="pill">Pace: Easy to moderate</span>
-        <span class="pill">Ideal start time: Morning</span>
+      <div class="meta-row" aria-label="Trip summary">
+        <span class="pill">Best for: Short city stays</span>
+        <span class="pill">Pace: Balanced</span>
+        <span class="pill">Includes: City + Equator</span>
       </div>
 
-      <section class="content-grid" aria-label="Quito 1 day content">
+      <section class="content-grid" aria-label="Quito 2 day itinerary content">
         <div>
           <div class="card">
-            <h2>One day itinerary</h2>
+            <h2>Day 1: Historic Quito and city viewpoints</h2>
             <p>
-              This is a practical flow, not a checklist. If you arrive late, start at the first stop that fits your schedule.
-              If you feel the altitude, slow down and keep the key highlights.
+              Your first day focuses on orientation, culture, and altitude adjustment.
+              Keep things walkable and allow time to absorb the city instead of stacking stops.
             </p>
 
-            <div class="timeline" aria-label="Quito 1 day timeline">
+            <div class="timeline">
               <div class="stop">
-                <div class="time">9:00 AM</div>
-                <div class="stop-body">
-                  <div class="stop-title">Start in the Historic Center</div>
-                  <div class="stop-text">
-                    Walk the main plazas and the classic colonial streets.
-                    Aim for a short loop that includes the big viewpoints, photo stops, and one memorable interior visit.
-                  </div>
-                  <div class="tags" aria-label="Tags">
-                    <span class="tag">Walkable</span>
+                <div class="time">Morning</div>
+                <div>
+                  <div class="stop-title">Historic Center walk</div>
+                  <p class="stop-text">
+                    Walk the main plazas, streets, and viewpoints of Old Town.
+                    Enter one or two churches at most and spend time outdoors between stops.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">UNESCO</span>
                     <span class="tag">Architecture</span>
-                    <span class="tag">Churches</span>
+                    <span class="tag">Walkable</span>
                   </div>
                 </div>
               </div>
 
               <div class="stop">
-                <div class="time">11:30 AM</div>
-                <div class="stop-body">
-                  <div class="stop-title">Choose one signature church stop</div>
-                  <div class="stop-text">
-                    Pick one standout church experience so you do not overload your day.
-                    Go for your preferred vibe: ornate interiors, art history, or panoramic rooftop views (when available).
+                <div class="time">Midday</div>
+                <div>
+                  <div class="stop-title">Lunch and reset</div>
+                  <p class="stop-text">
+                    Choose lunch near Old Town or in a nearby modern district.
+                    This is a good moment to rest, hydrate, and adjust to elevation.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">Local food</span>
+                    <span class="tag">Altitude friendly</span>
                   </div>
-                  <div class="tags" aria-label="Tags">
-                    <span class="tag">Culture</span>
-                    <span class="tag">Photos</span>
+                </div>
+              </div>
+
+              <div class="stop">
+                <div class="time">Afternoon</div>
+                <div>
+                  <div class="stop-title">A major viewpoint</div>
+                  <p class="stop-text">
+                    Head to a major viewpoint for panoramic city views.
+                    Late afternoon light is ideal for photos without rushing.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">Views</span>
+                    <span class="tag">Photography</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Day 2: Equator and surroundings</h2>
+            <p>
+              Day two expands outward.
+              You can visit the equator monument and still have time for a relaxed afternoon back in the city or nearby nature.
+            </p>
+
+            <div class="timeline">
+              <div class="stop">
+                <div class="time">Morning</div>
+                <div>
+                  <div class="stop-title">Mitad del Mundo or equator area</div>
+                  <p class="stop-text">
+                    Visit the equator monument and surrounding exhibits.
+                    This is a classic Quito experience and easiest earlier in the day.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">Equator</span>
                     <span class="tag">Must see</span>
                   </div>
                 </div>
               </div>
 
               <div class="stop">
-                <div class="time">1:00 PM</div>
-                <div class="stop-body">
-                  <div class="stop-title">Lunch + a slow hour</div>
-                  <div class="stop-text">
-                    Keep lunch close to where you are to save time.
-                    Use this hour to recharge and adjust for altitude before the afternoon viewpoint.
-                  </div>
-                  <div class="tags" aria-label="Tags">
-                    <span class="tag">Local food</span>
-                    <span class="tag">Rest</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="stop">
-                <div class="time">3:00 PM</div>
-                <div class="stop-body">
-                  <div class="stop-title">Mitad del Mundo or a city viewpoint</div>
-                  <div class="stop-text">
-                    If you want the iconic “equator” photo, do Mitad del Mundo.
-                    If you want the best city-wide views, choose a major lookout or ride that gets you above the skyline.
-                  </div>
-                  <div class="tags" aria-label="Tags">
-                    <span class="tag">Top attraction</span>
-                    <span class="tag">Views</span>
-                    <span class="tag">Easy transit</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="stop">
-                <div class="time">6:30 PM</div>
-                <div class="stop-body">
-                  <div class="stop-title">Golden hour + dinner</div>
-                  <div class="stop-text">
-                    Plan golden hour around a viewpoint or a scenic neighborhood.
-                    Then choose dinner based on your vibe: casual local, modern Ecuadorian, or a relaxed cafe-style evening.
-                  </div>
-                  <div class="tags" aria-label="Tags">
-                    <span class="tag">Sunset</span>
-                    <span class="tag">Dinner</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="note" aria-label="Itinerary note">
-              If you only do three things today: Historic Center walk, one standout church experience, and one big viewpoint.
-              That combination is the best “Quito in a day” payoff.
-            </div>
-          </div>
-
-          <div class="card">
-            <h2>Fast swaps depending on your style</h2>
-            <p>
-              Prefer to customize? Use one of these simple swaps without breaking the flow.
-            </p>
-
-            <div class="timeline" aria-label="Swap options">
-              <div class="stop">
-                <div class="time">Swap</div>
-                <div class="stop-body">
-                  <div class="stop-title">More culture, less driving</div>
-                  <div class="stop-text">
-                    Replace Mitad del Mundo with an extra museum stop and a longer historic center route.
-                  </div>
+                <div class="time">Afternoon</div>
+                <div>
+                  <div class="stop-title">Choose: city return or nearby nature</div>
+                  <p class="stop-text">
+                    Either return to Quito for cafes and neighborhoods,
+                    or add a short nearby nature stop such as a park, reserve, or scenic drive.
+                  </p>
                   <div class="tags">
-                    <span class="tag">Museums</span>
-                    <span class="tag">Neighborhoods</span>
+                    <span class="tag">Flexible</span>
+                    <span class="tag">Nature option</span>
                   </div>
                 </div>
               </div>
 
               <div class="stop">
-                <div class="time">Swap</div>
-                <div class="stop-body">
-                  <div class="stop-title">More nature, still easy</div>
-                  <div class="stop-text">
-                    Choose a nearby viewpoint and a short park or green-space walk instead of adding extra city stops.
-                  </div>
+                <div class="time">Evening</div>
+                <div>
+                  <div class="stop-title">Relaxed dinner and walk</div>
+                  <p class="stop-text">
+                    End your stay with a slow dinner and an evening walk in a safe, lively district.
+                    Quito evenings are best enjoyed unhurried.
+                  </p>
                   <div class="tags">
-                    <span class="tag">Easy nature</span>
-                    <span class="tag">Views</span>
+                    <span class="tag">Evening</span>
+                    <span class="tag">Dining</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <p style="margin-top:12px;">
-              Want a tighter plan for your arrival and departure time?
-              Message us via <a class="inline-link" href="/contact/">Contact</a>.
-            </p>
+            <div class="note">
+              Two days is ideal if Quito is your arrival or departure hub.
+              You get culture, context, and one major excursion without travel fatigue.
+            </div>
           </div>
         </div>
 
-        <aside class="side-stack" aria-label="Quito 1 day side content">
+        <aside class="side-stack" aria-label="Quito 2 day sidebar">
           <div class="mini">
-            <h3>Quick tips</h3>
+            <h3>Good to know</h3>
             <p>
-              Keep your first day flexible for altitude. Start with walking, hydrate, and leave a buffer for traffic.
-              If you are arriving and leaving the same day, prioritize the Historic Center plus one viewpoint.
+              Traffic can affect timing more than distance.
+              Group city activities together and plan excursions early in the day for the smoothest flow.
             </p>
 
-            <div class="link-list" aria-label="Quito quick links">
+            <div class="link-list" aria-label="Quito itinerary links">
               <a class="pill-link" href="../">
                 Back to Quito <span>Overview</span>
               </a>
-              <a class="pill-link" href="../2-days/">
-                Quito in 2 Days <span>Next plan</span>
+              <a class="pill-link" href="../1-day/">
+                Quito in 1 Day <span>Short stay</span>
               </a>
               <a class="pill-link" href="../3-days/">
                 Quito in 3 Days <span>More depth</span>
@@ -472,8 +421,8 @@
             </div>
           </div>
 
-          <div class="side-image" aria-label="Quito 1 day image">
-            <img src="/assets/images/EE-Assets-20-Quito-1-day.jpg" alt="Quito 1 day travel highlights">
+          <div class="side-image" aria-label="Quito 2 days image">
+            <img src="/assets/images/EE-Assets-21-Quito-2-days.jpg" alt="Quito 2 day itinerary highlights">
           </div>
         </aside>
       </section>
