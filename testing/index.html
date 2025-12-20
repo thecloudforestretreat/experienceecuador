@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Salinas | Experience Ecuador</title>
+  <title>Trip Builder | Experience Ecuador</title>
 
-  <!-- Favicons (root paths) -->
+  <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -24,604 +24,517 @@
   <style>
     :root{
       --brand-blue:#034EA2;
+      --charcoal:#1F1F1F;
       --slate:#6E7B8B;
-      --text:#1F1F1F;
+      --soft:#f6f8fb;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:#f6f8fb;
-      color:var(--text);
+      color:var(--charcoal);
+      background:var(--soft);
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+    img{max-width:100%;display:block}
 
-    /* ===== CONTENT ONLY (NO HEADER/FOOTER STYLES) ===== */
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;
+      max-width:1100px;
+      margin:0 auto;
+      padding:22px 18px 12px;
+    }
+
+    .hero-banner{
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 22px 60px rgba(0,0,0,0.18);
+      min-height:320px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)),
+        url("/assets/images/EE-Assets-55-Hero-Trip-builder.jpg") center/cover no-repeat;
+    }
+
+    .hero-content{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:flex-end;
+      padding:22px;
+    }
+
+    .hero-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:clamp(34px,4.6vw,54px);
+      letter-spacing:-0.03em;
+      color:#fff;
+      margin:0;
+      line-height:1.05;
+      text-shadow:0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    /* ===== WRAP ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:40px 18px 56px;
-    }
-
-    h1{
-      font-family:Montserrat,Inter,sans-serif;
-      font-size:clamp(34px,4vw,54px);
-      color:var(--brand-blue);
-      margin:0 0 10px;
-      letter-spacing:-0.03em;
-    }
-
-    .lede{
-      color:var(--slate);
-      line-height:1.65;
-      max-width:92ch;
-      margin:0;
-      font-size:16.8px;
-    }
-
-    .meta-row{
-      margin-top:14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-      color:#162b55;
-      font-weight:700;
-      font-size:13.5px;
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,.06);
-      border:1px solid rgba(3,78,162,.14);
-      color:#0f2f62;
-      font-weight:800;
-    }
-
-    .content-grid{
-      display:grid;
-      grid-template-columns:1.15fr 0.85fr;
-      gap:22px;
-      margin-top:22px;
-      align-items:start;
+      padding:0 18px 60px;
     }
 
     .card{
       background:#fff;
+      border-radius:22px;
       padding:22px;
-      border-radius:22px;
-      box-shadow:0 18px 55px rgba(3,78,162,.12);
-      border:1px solid rgba(0,0,0,.06);
-    }
-
-    .card + .card{ margin-top:16px; }
-
-    .card h2{
-      margin:0 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:18px;
-      color:#0f2f62;
-    }
-
-    .card p{
-      margin:0 0 12px;
-      color:#1f2b3f;
-      line-height:1.75;
-      font-size:15.5px;
-      max-width:84ch;
-    }
-
-    .card p:last-child{ margin-bottom:0; }
-
-    .inline-link{
-      text-decoration:underline;
-      text-underline-offset:3px;
-      font-weight:800;
-      color:#162b55;
-    }
-
-    .two-col{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-      margin-top:10px;
-    }
-
-    .mini-card{
-      padding:14px 14px;
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
-      border:1px solid rgba(3,78,162,.12);
-    }
-
-    .mini-card h3{
-      margin:0 0 6px;
-      font-size:14.5px;
-      font-weight:900;
-      color:#0f2f62;
-      letter-spacing:-0.01em;
-    }
-
-    .mini-card p{
-      margin:0;
-      color:#1f2b3f;
-      opacity:.92;
-      line-height:1.6;
-      font-size:14.4px;
-    }
-
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:10px;
-    }
-
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      padding:7px 10px;
-      border-radius:999px;
-      background:rgba(3,78,162,.06);
-      border:1px solid rgba(3,78,162,.14);
-      color:#0f2f62;
-      font-weight:800;
-      font-size:12.8px;
-    }
-
-    .side-stack{
-      display:flex;
-      flex-direction:column;
-      gap:16px;
-    }
-
-    .mini{
-      background:#fff;
-      padding:20px;
-      border-radius:22px;
-      box-shadow:0 18px 55px rgba(3,78,162,.12);
-      border:1px solid rgba(0,0,0,.06);
-    }
-
-    .mini h3{
-      margin:0 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:16px;
-      color:#0f2f62;
-    }
-
-    .mini p{
-      margin:0;
-      color:var(--slate);
-      line-height:1.65;
-      font-size:14.8px;
-    }
-
-    .link-list{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      margin-top:12px;
-    }
-
-    .pill-link{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:12px 12px;
-      border-radius:16px;
-      background:rgba(3,78,162,.05);
-      border:1px solid rgba(3,78,162,.12);
-      font-weight:900;
-      color:#0f2f62;
-    }
-
-    .pill-link:hover{ background:rgba(3,78,162,.08); }
-
-    .pill-link span{
-      opacity:.9;
-      font-weight:700;
-      color:#162b55;
-      font-size:13px;
-    }
-
-    /* ===== WEATHER (same as Quito) ===== */
-    .wx-card{
-      padding:18px 18px;
-      border-radius:22px;
-      background:#fff;
-      box-shadow:0 18px 55px rgba(3,78,162,.12);
-      border:1px solid rgba(0,0,0,.06);
-    }
-
-    .wx-title{
-      margin:0 0 8px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:16px;
-      color:#0f2f62;
-    }
-
-    .wx-now{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      padding:14px 14px;
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
-      border:1px solid rgba(3,78,162,.12);
-    }
-
-    .wx-date{
-      font-weight:900;
-      color:#0f2f62;
-      letter-spacing:-0.01em;
-      font-size:13.2px;
-      opacity:.95;
-      white-space:nowrap;
-      margin-top:2px;
-    }
-
-    .wx-lines{
-      margin:0;
-      color:#1f2b3f;
-      line-height:1.55;
-      font-size:13.8px;
-      opacity:.95;
-      text-align:right;
-    }
-
-    .wx-grid7{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:10px;
-      margin-top:12px;
-    }
-
-    .wx-day{
-      border-radius:16px;
-      padding:10px 10px;
-      background:rgba(255,255,255,.9);
-      border:1px solid rgba(3,78,162,.14);
-      text-align:left;
-    }
-
-    .wx-top{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap:8px;
-    }
-
-    .wx-dow{
-      font-weight:900;
-      color:#0f2f62;
-      font-size:12.5px;
-      letter-spacing:-0.01em;
-    }
-
-    .wx-mmdd{
-      color:#162b55;
-      opacity:.75;
-      font-size:11.5px;
-    }
-
-    .wx-hi{
-      margin-top:8px;
-      font-weight:900;
-      color:#0f2f62;
-      font-size:12.8px;
-    }
-
-    .wx-lo{
-      color:#162b55;
-      opacity:.8;
-      font-size:12.3px;
-      margin-top:2px;
-    }
-
-    .wx-rain{
-      margin-top:6px;
-      color:#162b55;
-      opacity:.85;
-      font-size:11.7px;
-      white-space:nowrap;
-    }
-
-    @media(max-width:980px){
-      .wx-grid7{ grid-template-columns:repeat(2, 1fr); }
-    }
-
-    .months{
-      margin-top:14px;
-      padding-top:14px;
-      border-top:1px solid rgba(0,0,0,.06);
-    }
-
-    .wx-sub{
-      margin:0 0 10px;
-      color:#1f2b3f;
-      opacity:.85;
-      font-size:13.5px;
-      line-height:1.5;
-    }
-
-    .legend{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:10px;
-      align-items:center;
-    }
-
-    .legend-item{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      font-size:12.8px;
-      font-weight:800;
-      color:#162b55;
-      opacity:.9;
-    }
-
-    .swatch{
-      width:14px;
-      height:14px;
-      border-radius:6px;
-      border:1px solid rgba(3,78,162,.22);
-      background:rgba(3,78,162,.06);
-    }
-
-    .swatch.best{ background:rgba(3,78,162,.14); border-color:rgba(3,78,162,.32); }
-    .swatch.good{ background:rgba(3,78,162,.09); border-color:rgba(3,78,162,.22); }
-    .swatch.fair{ background:rgba(3,78,162,.04); border-color:rgba(3,78,162,.18); opacity:.85; }
-
-    .month-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:10px;
-    }
-
-    .month-chip{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(3,78,162,.14);
-      background:rgba(3,78,162,.06);
-      color:#0f2f62;
-      font-weight:900;
-      font-size:12.4px;
-      min-width:46px;
-    }
-
-    .month-chip.best{
-      background:rgba(3,78,162,.14);
-      border-color:rgba(3,78,162,.32);
-    }
-
-    .month-chip.good{
-      background:rgba(3,78,162,.09);
-      border-color:rgba(3,78,162,.22);
-    }
-
-    .month-chip.fair{
-      background:rgba(3,78,162,.04);
-      border-color:rgba(3,78,162,.18);
-      opacity:.85;
-    }
-
-    /* ===== MORE COAST DESTINATIONS (structure/classes locked for tiles) ===== */
-    .andes-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
-      margin-top:12px;
-    }
-
-    .andes-tile{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      padding:12px 12px;
-      border-radius:16px;
-      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
-      border:1px solid rgba(3,78,162,.12);
-      transition:transform .12s ease, background .12s ease;
-    }
-
-    .andes-tile:hover{
-      background:rgba(3,78,162,.07);
-      transform:translateY(-1px);
-    }
-
-    .andes-left{
-      display:flex;
-      flex-direction:column;
-      gap:4px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
       min-width:0;
     }
 
-    .andes-title{
-      font-weight:900;
-      color:#0f2f62;
-      font-size:14.8px;
-      letter-spacing:-0.01em;
-      line-height:1.2;
+    .card h2{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:22px;
+      margin:0 0 10px;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
     }
 
-    .andes-sub{
-      color:#1f2b3f;
-      opacity:.9;
-      line-height:1.5;
-      font-size:13.4px;
-      max-width:60ch;
+    .card p{
+      margin:0;
+      line-height:1.75;
+      font-size:15.8px;
+      color:#2a2f36;
+      max-width:90ch;
     }
 
-    .andes-arrow{
-      flex:0 0 auto;
-      width:34px;
-      height:34px;
-      border-radius:999px;
-      border:1px solid rgba(3,78,162,.18);
-      background:rgba(255,255,255,.75);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin-top:2px;
+    .section-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:24px;
+      margin:0 0 14px;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
     }
 
-    .andes-arrow span{
-      display:block;
-      width:10px;
-      height:10px;
-      border-right:2px solid #0f2f62;
-      border-bottom:2px solid #0f2f62;
-      transform:rotate(-45deg);
-      opacity:.85;
-    }
-
-    /* ===== CAROUSEL (LEFT COLUMN) ===== */
-    .carousel{
+    /* ===== BUILDER + FLIGHTS LAYOUT (DESKTOP) ===== */
+    .builder-layout{
       margin-top:18px;
+      display:grid;
+      grid-template-columns: 3fr 1fr;
+      gap:14px;
+      align-items:stretch;
+    }
+
+    .builder-card,
+    .flights-card{
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      min-width:0;
+    }
+
+    /* ===== BUILDER CARD ===== */
+    .builder-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .controls-grid{
+      display:grid;
+      grid-template-columns:auto 260px;
+      gap:10px 12px;
+      align-items:center;
+    }
+
+    .controls-grid label{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+      text-align:left;
+    }
+
+    .controls-grid select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-weight:700;
+      padding:11px 42px 11px 12px;
+      border-radius:14px;
+      font-size:14px;
+      cursor:pointer;
+      outline:none;
+      min-width:0;
+      width:260px;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      background-image:
+        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
+        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%,
+        0 0;
+      background-size:6px 6px, 6px 6px, 100% 100%;
+      background-repeat:no-repeat;
+    }
+
+    .controls-grid select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .pill-row{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .pill{
+      border:1px solid rgba(3,78,162,0.16);
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      color:#0f2f62;
+      padding:10px 12px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+      max-width:100%;
+    }
+
+    .pill[aria-pressed="true"]{
+      background:rgba(3,78,162,0.12);
+      border-color:rgba(3,78,162,0.28);
+      box-shadow:0 12px 26px rgba(3,78,162,0.10);
+    }
+
+    .pill-row.experiences-grid{
+      display:grid;
+      grid-template-columns:repeat(3, max-content);
+      gap:10px 12px;
+      align-items:start;
+      justify-content:start;
+    }
+
+    .region-hint{
+      margin-top:10px;
+      color:#24324a;
+      opacity:.95;
+      font-size:14.6px;
+      line-height:1.55;
+      white-space:normal;
+      overflow-wrap:anywhere;
+      word-break:break-word;
+      max-width:100%;
+    }
+
+    .regions-tip{
+      margin-top:8px;
+      color:#24324a;
+      opacity:.95;
+      font-size:13.2px;
+      line-height:1.45;
+      max-width:90ch;
+    }
+
+    .actions{
+      margin-top:18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-weight:900;
+      padding:12px 14px;
+      border-radius:16px;
+      cursor:pointer;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      letter-spacing:-0.01em;
+    }
+
+    .btn.primary{
+      background:var(--brand-blue);
+      color:#fff;
+      border-color:rgba(3,78,162,0.35);
+    }
+
+    .btn:disabled{
+      opacity:.6;
+      cursor:not-allowed;
+    }
+
+    /* ===== FLIGHTS BOX ===== */
+    .mini-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:24px;
+      margin:0 0 12px;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+      text-transform:none;
+    }
+
+    .mini-grid{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:10px 10px;
+      align-items:center;
+      width:100%;
+      max-width:100%;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    .mini-grid > *{ min-width:0; }
+
+    .mini-grid label{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+      white-space:nowrap;
+      text-align:left;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    .mini-grid input,
+    .mini-grid select{
+      display:block;
+      width:100%;
+      max-width:100%;
+      min-width:0;
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-weight:700;
+      padding:10px 12px;
+      border-radius:14px;
+      font-size:14px;
+      outline:none;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      height:44px;
+      line-height:22px;
+    }
+
+    .mini-grid input[type="date"]{
+      -webkit-appearance:none;
+      appearance:none;
+      width:100%;
+      max-width:100%;
+      min-width:0;
+      height:44px;
+    }
+
+    .mini-grid input:focus,
+    .mini-grid select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .mini-actions{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .mini-hint{
+      margin-top:12px;
+      color:#24324a;
+      opacity:.95;
+      font-size:13.6px;
+      line-height:1.45;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    .mini-link{
+      color:#0f2f62;
+      font-weight:900;
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    /* ===== ITINERARY OUTPUT ===== */
+    .itinerary{
+      margin-top:16px;
+    }
+
+    .itinerary-shell{
+      margin-top:12px;
       background:#fff;
       border-radius:22px;
+      padding:22px;
       border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.10);
-      overflow:hidden;
-      position:relative;
-      z-index:1;
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      min-height:140px;
+      min-width:0;
     }
 
-    .carousel-viewport{
-      overflow:hidden;
-      width:100%;
-      touch-action:pan-y;
+    .itinerary-shell .hint{ margin-top:0; }
+
+    .day-card{
+      border-radius:18px;
+      border:1px solid rgba(0,0,0,0.06);
+      background:#fff;
+      padding:16px;
+      box-shadow:0 14px 34px rgba(3,78,162,0.10);
     }
+    .day-card + .day-card{ margin-top:12px; }
 
-    .carousel-track{
-      display:flex;
-      width:100%;
-      transform:translateX(0);
-      transition:transform 450ms ease;
-      will-change:transform;
-    }
-
-    .carousel-slide{
-      min-width:100%;
-      position:relative;
-      aspect-ratio:16/9;
-      background:#eef2f7;
-    }
-
-    .carousel-slide img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .carousel-btn{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:44px;
-      height:44px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.35);
-      background:rgba(15,47,98,0.55);
-      backdrop-filter:blur(10px);
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:5;
-    }
-
-    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
-
-    .carousel-btn.prev{ left:12px; }
-    .carousel-btn.next{ right:12px; }
-
-    .carousel-btn span{
-      display:block;
-      width:10px;
-      height:10px;
-      border-right:2px solid #fff;
-      border-bottom:2px solid #fff;
-      opacity:.95;
-    }
-
-    .carousel-btn.prev span{ transform:rotate(135deg); }
-    .carousel-btn.next span{ transform:rotate(-45deg); }
-
-    .carousel-ui{
+    .day-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      margin:0 0 8px;
+      color:#0f2f62;
+      letter-spacing:-0.02em;
+      font-size:18px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
-      padding:12px 14px;
-      border-top:1px solid rgba(0,0,0,0.06);
-      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
-    }
-
-    .carousel-dots{
-      display:flex;
-      gap:8px;
+      gap:10px;
       flex-wrap:wrap;
-      align-items:center;
     }
 
-    .dot{
-      width:10px;
-      height:10px;
-      border-radius:999px;
-      border:1px solid rgba(3,78,162,0.25);
-      background:rgba(3,78,162,0.12);
-      cursor:pointer;
-      padding:0;
-    }
-
-    .dot.active{
-      background:rgba(3,78,162,0.85);
-      border-color:rgba(3,78,162,0.85);
-    }
-
-    .carousel-counter{
-      font-weight:700;
-      font-size:13px;
+    .tag{
+      font-size:12px;
+      font-weight:900;
       color:#0f2f62;
-      opacity:.9;
+      background:rgba(3,78,162,0.10);
+      border:1px solid rgba(3,78,162,0.18);
+      padding:6px 10px;
+      border-radius:999px;
       white-space:nowrap;
     }
 
-    /* ===== MOBILE ===== */
-    @media(max-width:980px){
-      .content-grid{grid-template-columns:1fr}
+    .slot{
+      margin-top:10px;
+      padding:12px;
+      border-radius:14px;
+      background:linear-gradient(180deg, rgba(3,78,162,0.05), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.12);
     }
 
-    @media(max-width:820px){
-      .two-col{grid-template-columns:1fr}
+    .slot h4{
+      margin:0 0 6px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
     }
 
-    @media(max-width:480px){
-      .carousel-btn{ width:40px; height:40px; }
+    .slot .title{
+      font-weight:900;
+      color:#0f2f62;
+      margin:0 0 4px;
+    }
+
+    .slot .meta{
+      color:#24324a;
+      opacity:.95;
+      font-size:14px;
+      line-height:1.55;
+      margin:0;
+    }
+
+    .hint{
+      margin-top:10px;
+      color:#24324a;
+      opacity:.95;
+      font-size:14.6px;
+      line-height:1.6;
+    }
+
+    /* ===== MOBILE: stack layout + reorder sections via markup (itinerary above flights) ===== */
+    @media(max-width:900px){
+      .hero-banner{min-height:290px}
+
+      .builder-layout{
+        grid-template-columns:1fr;
+        gap:14px;
+      }
+
+      #flightsDesktop{ display:none !important; }
+
+      #flightsMobile{
+        display:block !important;
+        width:100%;
+        max-width:100%;
+        margin:14px 0 0;
+      }
+
+      .controls-grid{ grid-template-columns:1fr; }
+      .controls-grid select{ width:100%; }
+
+      .mini-grid{ grid-template-columns:1fr; }
+      .mini-actions{ justify-content:flex-start; }
+
+      .itinerary-shell{
+        padding:18px;
+        min-height:130px;
+      }
+
+      .pill-row.experiences-grid{
+        grid-template-columns:repeat(2, 1fr);
+      }
+      .pill-row.experiences-grid .pill{
+        width:100%;
+        text-align:center;
+      }
+
+      /* Regions pills: full width across, 4 columns, aligned with Experiences container */
+      #regionsPills{
+        display:grid;
+        grid-template-columns:repeat(4, 1fr);
+        gap:10px;
+        margin-top:14px;
+      }
+      #regionsPills .pill{
+        width:100%;
+        text-align:center;
+        white-space:nowrap;
+      }
+    }
+
+    @media(min-width:901px){
+      .flights-card .mini-actions{
+        justify-content:center;
+      }
+    }
+
+    @media(max-width:620px){
+      .hero-content{padding:16px}
+
+      .pill-row.experiences-grid{ grid-template-columns:1fr; }
+
+      /* Keep regions in one row on small screens too */
+      #regionsPills{
+        grid-template-columns:repeat(4, 1fr);
+        gap:8px;
+      }
+      #regionsPills .pill{
+        padding:10px 8px;
+        font-size:12.5px;
+      }
     }
   </style>
 </head>
@@ -630,227 +543,787 @@
   <div id="siteHeader"></div>
 
   <main>
-    <!-- PAGE CONTENT ONLY -->
-    <div class="wrap">
-      <h1>Salinas</h1>
-      <p class="lede">
-        Salinas is Ecuador’s classic beach city on the Santa Elena Peninsula.
-        It is one of the easiest Coast bases for a simple beach reset, a boardwalk stroll, and a comfortable stay with quick day trips nearby.
-        Think easy logistics, ocean air, and sunsets you can plan around.
-      </p>
-
-      <div class="meta-row" aria-label="Salinas overview metadata">
-        <span class="pill">Region: Coast</span>
-        <span class="pill">Best for: Boardwalk, easy beach time, day trips</span>
-        <span class="pill">Typical time: 2–3 nights</span>
-      </div>
-
-      <section class="content-grid" aria-label="Salinas content">
-        <!-- LEFT COLUMN -->
-        <div>
-          <div class="card">
-            <h2>What Salinas is best for</h2>
-            <p>
-              Salinas is best for an easy, comfortable Coast base.
-              It is ideal when you want a walkable beachfront, simple planning, and quick access to nearby peninsula stops.
-              If you are building a Coast road trip, Salinas works well as a first or last base.
-            </p>
-
-            <div class="two-col" aria-label="Salinas highlights">
-              <div class="mini-card">
-                <h3>Boardwalk walks</h3>
-                <p>
-                  Easy mornings and evenings by the ocean with low-effort planning.
-                </p>
-              </div>
-
-              <div class="mini-card">
-                <h3>Beach reset</h3>
-                <p>
-                  A simple place to slow down, swim, and keep your days light.
-                </p>
-              </div>
-
-              <div class="mini-card">
-                <h3>Peninsula day trips</h3>
-                <p>
-                  Build short drives to nearby beaches and viewpoints without moving hotels.
-                </p>
-              </div>
-
-              <div class="mini-card">
-                <h3>Sunset planning</h3>
-                <p>
-                  Great golden hour light, especially when you protect late afternoons.
-                </p>
-              </div>
-            </div>
-
-            <div class="chips" aria-label="Salinas theme chips">
-              <span class="chip">Beach base</span>
-              <span class="chip">Boardwalk</span>
-              <span class="chip">Day trips</span>
-              <span class="chip">Sunsets</span>
-              <span class="chip">Santa Elena</span>
-              <span class="chip">Coast routes</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <h2>Simple planning flow</h2>
-            <p>
-              Use Salinas as your base and keep the trip simple.
-              Plan one boardwalk block plus one beach block each day, and then add a nearby day trip if you want variety.
-              If you are doing La Ruta del Sol, Salinas is a clean starting point before you continue north.
-            </p>
-            <p>
-              Want help building a Coast route with the right pacing and stops?
-              Reach out via the <a class="inline-link" href="/contact/">Contact</a> page.
-            </p>
-          </div>
-
-          <!-- CAROUSEL (LEFT, UNDER SIMPLE PLANNING FLOW) -->
-          <div id="salinasCarousel" class="carousel" aria-label="Salinas image gallery">
-            <button class="carousel-btn prev" type="button" aria-label="Previous image">
-              <span aria-hidden="true"></span>
-            </button>
-
-            <div class="carousel-viewport">
-              <div class="carousel-track">
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Salinas-1.jpg" alt="Salinas highlight 1"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Salinas-2.jpg" alt="Salinas highlight 2"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Salinas-3.jpg" alt="Salinas highlight 3"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Salinas-4.jpg" alt="Salinas highlight 4"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Salinas-5.jpg" alt="Salinas highlight 5"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Salinas-6.jpg" alt="Salinas highlight 6"></div>
-              </div>
-            </div>
-
-            <button class="carousel-btn next" type="button" aria-label="Next image">
-              <span aria-hidden="true"></span>
-            </button>
-
-            <div class="carousel-ui">
-              <div class="carousel-dots" aria-label="Carousel pagination"></div>
-              <div class="carousel-counter" id="salinasCarouselCounter">1 / 6</div>
-            </div>
+    <section class="hero" aria-label="Trip Builder hero">
+      <div class="hero-banner" role="img" aria-label="Trip Builder hero image placeholder">
+        <div class="hero-content">
+          <div>
+            <h1 class="hero-title">Trip Builder</h1>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- RIGHT COLUMN -->
-        <aside class="side-stack" aria-label="Salinas side content">
-          <div class="mini">
-            <h3>Best use of time</h3>
-            <p>
-              Keep it light.
-              Do a morning beach block, a relaxed lunch, and then protect late afternoon for a boardwalk stroll and sunset.
-              If you want a day trip, do it early and be back for golden hour.
-            </p>
+    <div class="wrap">
+      <section class="builder-layout" aria-label="Trip builder and flights">
+        <section class="card builder-card" aria-label="Trip builder wizard">
+          <h2 style="margin-bottom:10px;">Build a custom Ecuador itinerary</h2>
+          <p>
+            Choose your trip length, regions, and experiences. Then generate a suggested itinerary you can customize.
+            This version is rules-based and runs entirely in your browser.
+          </p>
 
-            <div class="link-list" aria-label="Quick links">
-              <a class="pill-link" href="/regions/coast/">
-                Back to Coast <span>Region page</span>
-              </a>
-              <a class="pill-link" href="/regions/coast/salinas/">
-                Salinas <span>Beach base</span>
-              </a>
-              <a class="pill-link" href="/regions/coast/la-ruta-del-sol/">
-                La Ruta del Sol <span>Road trip guide</span>
-              </a>
-              <a class="pill-link" href="/contact/">
-                Contact <span>Questions and partnerships</span>
-              </a>
+          <div class="builder-top" style="margin-top:14px;">
+            <div class="controls-grid" aria-label="Builder controls">
+              <label for="daysSelect">Number of days</label>
+              <select id="daysSelect"></select>
             </div>
           </div>
 
-          <!-- Weather card (same behavior as Quito) -->
-          <div class="wx-card" aria-label="Weather and seasonality">
-            <div class="wx-title">Current weather</div>
+          <div style="margin-top:16px;">
+            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick regions</div>
 
-            <div class="wx-now">
-              <div class="wx-date" id="salinasWxDate">--/--/----</div>
-              <p class="wx-lines" id="salinasWxLines">Loading…</p>
+            <div class="regions-tip">
+              Tip: If you select multiple regions, the tool will automatically split days and add lighter transfer-friendly pacing.
             </div>
 
-            <div class="months" aria-label="Forecast and best months section">
-              <div class="wx-title" style="margin-top:0;">7-day forecast</div>
-              <div class="wx-sub">High / low and rain for the week ahead.</div>
-              <div class="wx-grid7" id="salinasWx7" aria-label="Salinas 7-day forecast grid"></div>
-
-              <div class="wx-title" style="margin-top:14px;">Best months to visit</div>
-              <div class="wx-sub" style="margin-bottom:8px;">
-                Based on typically sunnier days and comfortable beach conditions.
-              </div>
-
-              <div class="legend" aria-label="Best months legend">
-                <div class="legend-item"><span class="swatch best" aria-hidden="true"></span>Best</div>
-                <div class="legend-item"><span class="swatch good" aria-hidden="true"></span>Good</div>
-                <div class="legend-item"><span class="swatch fair" aria-hidden="true"></span>Fair</div>
-              </div>
-
-              <div class="month-row" aria-label="12-month seasonality chips">
-                <span class="month-chip fair" aria-label="January">Jan</span>
-                <span class="month-chip fair" aria-label="February">Feb</span>
-                <span class="month-chip fair" aria-label="March">Mar</span>
-                <span class="month-chip good" aria-label="April good month">Apr</span>
-                <span class="month-chip good" aria-label="May good month">May</span>
-                <span class="month-chip best" aria-label="June best month">Jun</span>
-                <span class="month-chip best" aria-label="July best month">Jul</span>
-                <span class="month-chip best" aria-label="August best month">Aug</span>
-                <span class="month-chip best" aria-label="September best month">Sep</span>
-                <span class="month-chip good" aria-label="October good month">Oct</span>
-                <span class="month-chip good" aria-label="November good month">Nov</span>
-                <span class="month-chip fair" aria-label="December">Dec</span>
-              </div>
-            </div>
+            <div class="pill-row" id="regionsPills" aria-label="Region selection"></div>
+            <div class="region-hint" id="regionHint"></div>
           </div>
 
-          <div class="mini">
-            <h3>More Coast destinations</h3>
-            <p>
-              Add beach towns, surf spots, and coastal nature stops to build a Coast route.
-            </p>
+          <div style="margin-top:18px;">
+            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick experiences</div>
+            <div class="pill-row experiences-grid" id="experiencesPills" aria-label="Experience selection"></div>
+          </div>
 
-            <div class="andes-grid" aria-label="Coast destination links">
-              <a class="andes-tile" href="/regions/coast/montanita/" aria-label="Open Montañita page">
-                <div class="andes-left">
-                  <div class="andes-title">Montañita</div>
-                  <div class="andes-sub">Surf culture, nightlife, and easy access to quieter nearby beaches.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
+          <div class="actions">
+            <button class="btn primary" id="generateBtn" type="button" disabled>Generate itinerary</button>
+            <button class="btn" id="resetBtn" type="button">Reset</button>
+          </div>
+        </section>
 
-              <a class="andes-tile" href="/regions/coast/guayaquil/" aria-label="Open Guayaquil page">
-                <div class="andes-left">
-                  <div class="andes-title">Guayaquil</div>
-                  <div class="andes-sub">Coast gateway city with waterfront walks, food, and easy connections.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
+        <aside class="card flights-card" id="flightsDesktop" aria-label="Flights (desktop)">
+          <p class="mini-title">Flights</p>
 
-              <a class="andes-tile" href="/regions/coast/la-ruta-del-sol/" aria-label="Open La Ruta del Sol page">
-                <div class="andes-left">
-                  <div class="andes-title">La Ruta del Sol</div>
-                  <div class="andes-sub">Ecuador’s iconic coastal road trip with beach hops, sunsets, and seafood stops.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
+          <div class="mini-grid">
+            <label for="flightFromDesktop">From</label>
+            <input id="flightFromDesktop" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
 
-              <a class="andes-tile" href="/regions/coast/" aria-label="Open Coast region page">
-                <div class="andes-left">
-                  <div class="andes-title">Coast</div>
-                  <div class="andes-sub">Explore all Coast destinations and trip ideas.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-            </div>
+            <label for="flightToDesktop">To</label>
+            <select id="flightToDesktop" aria-label="Destination airport">
+              <option value="UIO">Quito (UIO)</option>
+              <option value="GYE">Guayaquil (GYE)</option>
+              <option value="GPS">Galapagos (GPS)</option>
+              <option value="CUE">Cuenca (CUE)</option>
+            </select>
+
+            <label for="flightDepartDesktop">Depart</label>
+            <input id="flightDepartDesktop" type="date">
+
+            <label for="flightReturnDesktop">Return</label>
+            <input id="flightReturnDesktop" type="date">
+          </div>
+
+          <div class="mini-actions">
+            <button class="btn primary" id="flightSearchBtnDesktop" type="button">Search flights</button>
+          </div>
+
+          <div class="mini-hint">
+            When flights and itinerary are confirmed, check out local safe transportation:
+            <a class="mini-link" href="/transportation/">Transportation</a>
           </div>
         </aside>
       </section>
+
+      <section class="itinerary" aria-label="Generated itinerary">
+        <div class="itinerary-shell" aria-label="Itinerary output container">
+          <h2 class="section-title" style="margin:0 0 12px;">Your suggested itinerary</h2>
+          <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate itinerary.”</div>
+        </div>
+      </section>
+
+      <aside class="card flights-card" id="flightsMobile" aria-label="Flights (mobile)" style="display:none;">
+        <p class="mini-title">Flights</p>
+
+        <div class="mini-grid">
+          <label for="flightFromMobile">From</label>
+          <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
+
+          <label for="flightToMobile">To</label>
+          <select id="flightToMobile" aria-label="Destination airport">
+            <option value="UIO">Quito (UIO)</option>
+            <option value="GYE">Guayaquil (GYE)</option>
+            <option value="GPS">Galapagos (GPS)</option>
+            <option value="CUE">Cuenca (CUE)</option>
+          </select>
+
+          <label for="flightDepartMobile">Depart</label>
+          <input id="flightDepartMobile" type="date">
+
+          <label for="flightReturnMobile">Return</label>
+          <input id="flightReturnMobile" type="date">
+        </div>
+
+        <div class="mini-actions">
+          <button class="btn primary" id="flightSearchBtnMobile" type="button">Search flights</button>
+        </div>
+
+        <div class="mini-hint">
+          When flights and itinerary are confirmed, check out local safe transportation:
+          <a class="mini-link" href="/transportation/">Transportation</a>
+        </div>
+      </aside>
     </div>
   </main>
 
   <div id="siteFooter"></div>
+
+  <script>
+    // ===== TRIP BUILDER =====
+    const DATA = { regions: null, experiences: null, blocks: null };
+
+    const state = {
+      days: 5,
+      selectedRegionIds: new Set(),
+      selectedExperienceIds: new Set()
+    };
+
+    const els = {
+      daysSelect: document.getElementById('daysSelect'),
+      regionsPills: document.getElementById('regionsPills'),
+      experiencesPills: document.getElementById('experiencesPills'),
+      generateBtn: document.getElementById('generateBtn'),
+      resetBtn: document.getElementById('resetBtn'),
+      output: document.getElementById('output'),
+      regionHint: document.getElementById('regionHint')
+    };
+
+    const flightEls = {
+      desktop: {
+        from: document.getElementById('flightFromDesktop'),
+        to: document.getElementById('flightToDesktop'),
+        depart: document.getElementById('flightDepartDesktop'),
+        ret: document.getElementById('flightReturnDesktop'),
+        btn: document.getElementById('flightSearchBtnDesktop')
+      },
+      mobile: {
+        from: document.getElementById('flightFromMobile'),
+        to: document.getElementById('flightToMobile'),
+        depart: document.getElementById('flightDepartMobile'),
+        ret: document.getElementById('flightReturnMobile'),
+        btn: document.getElementById('flightSearchBtnMobile')
+      }
+    };
+
+    function syncFlights(fromSet){
+      const d = flightEls.desktop;
+      const m = flightEls.mobile;
+
+      if (!m.from || !m.to || !m.depart || !m.ret) return;
+
+      if (fromSet === "desktop") {
+        m.from.value = d.from.value;
+        m.to.value = d.to.value;
+        m.depart.value = d.depart.value;
+        m.ret.value = d.ret.value;
+        m.to.dataset.userSet = d.to.dataset.userSet || "false";
+      } else {
+        d.from.value = m.from.value;
+        d.to.value = m.to.value;
+        d.depart.value = m.depart.value;
+        d.ret.value = m.ret.value;
+        d.to.dataset.userSet = m.to.dataset.userSet || "false";
+      }
+    }
+
+    function setUserSetAll(val){
+      flightEls.desktop.to.dataset.userSet = val;
+      if (flightEls.mobile.to) flightEls.mobile.to.dataset.userSet = val;
+    }
+
+    flightEls.desktop.to.addEventListener('change', () => setUserSetAll("true"));
+    if (flightEls.mobile.to) flightEls.mobile.to.addEventListener('change', () => setUserSetAll("true"));
+
+    ["input","change"].forEach(evt => {
+      flightEls.desktop.from.addEventListener(evt, () => syncFlights("desktop"));
+      flightEls.desktop.to.addEventListener(evt, () => syncFlights("desktop"));
+      flightEls.desktop.depart.addEventListener(evt, () => syncFlights("desktop"));
+      flightEls.desktop.ret.addEventListener(evt, () => syncFlights("desktop"));
+
+      if (flightEls.mobile.from) flightEls.mobile.from.addEventListener(evt, () => syncFlights("mobile"));
+      if (flightEls.mobile.to) flightEls.mobile.to.addEventListener(evt, () => syncFlights("mobile"));
+      if (flightEls.mobile.depart) flightEls.mobile.depart.addEventListener(evt, () => syncFlights("mobile"));
+      if (flightEls.mobile.ret) flightEls.mobile.ret.addEventListener(evt, () => syncFlights("mobile"));
+    });
+
+    const DAY_CAPACITY_HOURS = 8;
+    const TIME_ORDER = ["morning","afternoon","evening"];
+
+    function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+    function pickRandom(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+
+    function normalizePace(dayIndex, totalDays) {
+      if (totalDays >= 7 && (dayIndex + 1) % 3 === 0) return "easy";
+      return "any";
+    }
+
+    function daysPerRegion(totalDays, regionIdsInOrder){
+      const n = regionIdsInOrder.length;
+      if (n === 0) return [];
+      const base = Math.floor(totalDays / n);
+      let extra = totalDays % n;
+
+      return regionIdsInOrder.map((rid, idx) => {
+        const add = extra > 0 ? 1 : 0;
+        if (extra > 0) extra--;
+        return { region_id: rid, days: base + add, order: idx };
+      }).filter(x => x.days > 0);
+    }
+
+    function renderDaysOptions() {
+      els.daysSelect.innerHTML = "";
+      for (let d = 1; d <= 21; d++) {
+        const opt = document.createElement('option');
+        opt.value = String(d);
+        opt.textContent = String(d);
+        if (d === state.days) opt.selected = true;
+        els.daysSelect.appendChild(opt);
+      }
+    }
+
+    function createPill({ id, name }, type) {
+      const b = document.createElement('button');
+      b.type = "button";
+      b.className = "pill";
+      b.textContent = name;
+      b.setAttribute('data-id', id);
+      b.setAttribute('aria-pressed', 'false');
+
+      b.addEventListener('click', () => {
+        const set = type === "region" ? state.selectedRegionIds : state.selectedExperienceIds;
+        if (set.has(id)) set.delete(id);
+        else set.add(id);
+
+        b.setAttribute('aria-pressed', set.has(id) ? 'true' : 'false');
+        updateHints();
+        updateGenerateState();
+        syncDefaultFlightToFromRegions();
+      });
+
+      return b;
+    }
+
+    function renderRegionPills() {
+      els.regionsPills.innerHTML = "";
+
+      const desiredRegionOrder = ["galapagos","coast","andes","amazon"];
+      const map = new Map((DATA.regions.regions || []).map(r => [r.id, r]));
+
+      desiredRegionOrder.forEach(id => {
+        const item = map.get(id);
+        if (item) els.regionsPills.appendChild(createPill(item, "region"));
+      });
+
+      (DATA.regions.regions || []).forEach(r => {
+        if (!desiredRegionOrder.includes(r.id)) {
+          els.regionsPills.appendChild(createPill(r, "region"));
+        }
+      });
+    }
+
+    function renderExperiencePills() {
+      els.experiencesPills.innerHTML = "";
+
+      const desiredOrder = ["adventure","nature","wildlife-birding","relaxation","culinary","culture"];
+      const map = new Map((DATA.experiences.experiences || []).map(x => [x.id, x]));
+
+      desiredOrder.forEach(id => {
+        const item = map.get(id);
+        if (item) els.experiencesPills.appendChild(createPill(item, "experience"));
+      });
+
+      (DATA.experiences.experiences || []).forEach(x => {
+        if (!desiredOrder.includes(x.id)) {
+          els.experiencesPills.appendChild(createPill(x, "experience"));
+        }
+      });
+    }
+
+    function updateHints() {
+      if (!DATA.regions) return;
+
+      const selectedRegions = Array.from(state.selectedRegionIds);
+      const selectedExperiences = Array.from(state.selectedExperienceIds);
+
+      if (selectedRegions.length === 0 || selectedExperiences.length === 0) {
+        els.regionHint.textContent =
+          "Select at least one region and one experience. You can choose multiple regions and multiple experiences for a multi-stop trip.";
+        return;
+      }
+
+      const regionMap = new Map(DATA.regions.regions.map(r => [r.id, r]));
+      const lines = selectedRegions.map(rid => {
+        const r = regionMap.get(rid);
+        const locs = (r && r.locations) ? r.locations.map(l => l.name).slice(0, 4) : [];
+        const suffix = locs.length ? ` (locations: ${locs.join(", ")}${(r.locations.length > 4 ? ", ..." : "")})` : "";
+        return `${r ? r.name : rid}${suffix}`;
+      });
+
+      els.regionHint.textContent = "Selected: " + lines.join(" · ");
+    }
+
+    function updateGenerateState() {
+      const ok = state.selectedRegionIds.size > 0 && state.selectedExperienceIds.size > 0;
+      els.generateBtn.disabled = !ok;
+    }
+
+    function regionName(id){
+      const r = DATA.regions.regions.find(x => x.id === id);
+      return r ? r.name : id;
+    }
+
+    function locationName(regionId, locationId){
+      const r = DATA.regions.regions.find(x => x.id === regionId);
+      if (!r) return "";
+      const l = (r.locations || []).find(x => x.id === locationId);
+      return l ? l.name : "";
+    }
+
+    function experienceName(id){
+      const x = DATA.experiences.experiences.find(e => e.id === id);
+      return x ? x.name : id;
+    }
+
+    function hasAnySelectedExperience(block, selectedExperienceIds){
+      return (block.experiences || []).some(e => selectedExperienceIds.has(e));
+    }
+
+    function safeNumber(n, fallback){
+      const v = Number(n);
+      return Number.isFinite(v) ? v : fallback;
+    }
+
+    function splitLongBlockIfNeeded(block){
+      const dur = safeNumber(block.duration_hours, 0);
+      if (dur <= DAY_CAPACITY_HOURS) return [block];
+
+      const parts = Math.ceil(dur / DAY_CAPACITY_HOURS);
+      const per = dur / parts;
+
+      const out = [];
+      for (let i = 0; i < parts; i++) {
+        out.push({
+          ...block,
+          id: `${block.id}__part_${i+1}_of_${parts}`,
+          title: `${block.title} (Part ${i+1} of ${parts})`,
+          duration_hours: Math.round(per * 10) / 10
+        });
+      }
+      return out;
+    }
+
+    function scoreBlock(block, selectedExperienceIds, pacePreference, usedIds, isTransferDay) {
+      if (usedIds.has(block.id)) return -999;
+
+      let score = 0;
+
+      const overlap = (block.experiences || []).filter(e => selectedExperienceIds.has(e)).length;
+      score += overlap * 3;
+
+      if (pacePreference !== "any") {
+        if (block.pace === pacePreference) score += 2;
+        if (pacePreference === "easy" && block.pace === "moderate") score += 1;
+      }
+
+      if (isTransferDay) {
+        if (block.pace === "easy") score += 2;
+        if (block.time_of_day === "afternoon") score += 1;
+      }
+
+      if (TIME_ORDER.includes(block.time_of_day)) score += 1;
+      if (block.location_id) score += 1;
+
+      const dur = safeNumber(block.duration_hours, 0);
+      if (dur > 0 && dur <= 4) score += 1;
+
+      return score;
+    }
+
+    function planOneDay(regionId, expIds, pacePref, usedIds, isTransferDay) {
+      let remaining = DAY_CAPACITY_HOURS;
+
+      const dayBlocks = [];
+      let optionalAddOn = null;
+
+      let regionBlocks = (DATA.blocks.blocks || [])
+        .filter(b => b.region_id === regionId)
+        .filter(b => hasAnySelectedExperience(b, expIds))
+        .flatMap(b => splitLongBlockIfNeeded(b));
+
+      regionBlocks = regionBlocks.filter(b => !usedIds.has(b.id));
+
+      const byTime = new Map();
+      TIME_ORDER.forEach(t => byTime.set(t, []));
+      const other = [];
+
+      regionBlocks.forEach(b => {
+        if (byTime.has(b.time_of_day)) byTime.get(b.time_of_day).push(b);
+        else other.push(b);
+      });
+
+      function pickFromList(list) {
+        const scored = list
+          .map(b => ({ b, s: scoreBlock(b, expIds, pacePref, usedIds, isTransferDay) }))
+          .filter(x => x.s > -500)
+          .sort((a,b) => b.s - a.s);
+
+        if (!scored.length) return null;
+        const top = scored.slice(0, Math.min(6, scored.length)).map(x => x.b);
+        return pickRandom(top);
+      }
+
+      function tryAdd(block) {
+        if (!block) return false;
+        const dur = safeNumber(block.duration_hours, 0);
+        if (dur <= 0) return false;
+
+        if (dur > remaining) {
+          if (!optionalAddOn && dur <= 4) optionalAddOn = block;
+          return false;
+        }
+
+        dayBlocks.push(block);
+        usedIds.add(block.id);
+        remaining -= dur;
+        return true;
+      }
+
+      const longPart = regionBlocks.find(b => safeNumber(b.duration_hours, 0) >= DAY_CAPACITY_HOURS);
+      if (longPart) {
+        tryAdd(longPart);
+        return { blocks: dayBlocks, optionalAddOn, remaining_hours: remaining };
+      }
+
+      const morningPick = pickFromList(byTime.get("morning"));
+      if (morningPick) tryAdd(morningPick);
+
+      const aftPick = pickFromList(byTime.get("afternoon"));
+      if (aftPick) tryAdd(aftPick);
+
+      if (remaining >= 2) {
+        const evePick = pickFromList(byTime.get("evening"));
+        if (evePick) tryAdd(evePick);
+      }
+
+      if (remaining >= 2 && dayBlocks.length < 2) {
+        const fillerPool = [
+          ...byTime.get("morning"),
+          ...byTime.get("afternoon"),
+          ...byTime.get("evening"),
+          ...other
+        ].filter(b => !usedIds.has(b.id));
+
+        const filler = pickFromList(fillerPool);
+        if (filler) tryAdd(filler);
+      }
+
+      if (!optionalAddOn && remaining >= 2) {
+        const addOnPool = [
+          ...byTime.get("morning"),
+          ...byTime.get("afternoon"),
+          ...byTime.get("evening"),
+          ...other
+        ].filter(b => !usedIds.has(b.id))
+         .filter(b => safeNumber(b.duration_hours, 0) > remaining && safeNumber(b.duration_hours, 0) <= 4);
+
+        const addOn = pickFromList(addOnPool);
+        if (addOn) optionalAddOn = addOn;
+      }
+
+      return { blocks: dayBlocks, optionalAddOn, remaining_hours: remaining };
+    }
+
+    function generateItinerary() {
+      const totalDays = clamp(Number(state.days), 1, 21);
+      const regionIds = Array.from(state.selectedRegionIds);
+      const expIds = state.selectedExperienceIds;
+
+      const plan = [];
+      const allocation = daysPerRegion(totalDays, regionIds);
+      const usedBlockIds = new Set();
+
+      let dayCounter = 0;
+
+      allocation.forEach((chunk, chunkIndex) => {
+        for (let d = 0; d < chunk.days; d++) {
+          const pacePref = normalizePace(dayCounter, totalDays);
+          const isTransferDay = (d === 0 && chunkIndex > 0);
+
+          const dayPlan = planOneDay(chunk.region_id, expIds, pacePref, usedBlockIds, isTransferDay);
+
+          plan.push({
+            day: dayCounter + 1,
+            region_id: chunk.region_id,
+            is_transfer_friendly: isTransferDay,
+            blocks: dayPlan.blocks,
+            optional_add_on: dayPlan.optional_add_on,
+            remaining_hours: dayPlan.remaining_hours
+          });
+
+          dayCounter++;
+        }
+      });
+
+      return plan;
+    }
+
+    function renderItinerary(plan) {
+      if (!plan || plan.length === 0) {
+        els.output.innerHTML = "<div class='hint'>No itinerary generated. Make sure you selected regions and experiences.</div>";
+        return;
+      }
+
+      const wrap = document.createElement('div');
+
+      const disclaimer = document.createElement('div');
+      disclaimer.className = "hint";
+      disclaimer.innerHTML = "<strong>Note:</strong> This is a suggested itinerary generated from your selections. Times and logistics can vary by season, traffic, and exact pickup locations.";
+      wrap.appendChild(disclaimer);
+
+      plan.forEach(d => {
+        const card = document.createElement('div');
+        card.className = "day-card";
+
+        const title = document.createElement('div');
+        title.className = "day-title";
+        title.innerHTML = `
+          <span>Day ${d.day}: ${regionName(d.region_id)}</span>
+          <span class="tag">${d.is_transfer_friendly ? "Transfer-friendly pace" : "Suggested day plan"}</span>
+        `;
+        card.appendChild(title);
+
+        const blocks = Array.isArray(d.blocks) ? d.blocks : [];
+        if (blocks.length === 0) {
+          card.appendChild(renderEmptySlot("Day", "No matching activity blocks found for this region based on your selected experiences. Add more blocks to this region in itinerary_blocks.json."));
+        } else {
+          const ordered = blocks.slice().sort((a,b) => {
+            const ai = TIME_ORDER.includes(a.time_of_day) ? TIME_ORDER.indexOf(a.time_of_day) : 99;
+            const bi = TIME_ORDER.includes(b.time_of_day) ? TIME_ORDER.indexOf(b.time_of_day) : 99;
+            if (ai !== bi) return ai - bi;
+            return safeNumber(a.duration_hours, 0) - safeNumber(b.duration_hours, 0);
+          });
+
+          ordered.forEach(block => {
+            const label = block.time_of_day ? capitalize(block.time_of_day) : "Day";
+            card.appendChild(renderSlot(label, block, d.region_id));
+          });
+        }
+
+        if (d.optional_add_on) {
+          const add = document.createElement('div');
+          add.className = "hint";
+          const dur = d.optional_add_on.duration_hours ? `${d.optional_add_on.duration_hours}h` : "";
+          add.innerHTML = `Optional add-on if you still have energy: <strong>${d.optional_add_on.title}</strong>${dur ? " (" + dur + ")" : ""}.`;
+          card.appendChild(add);
+        } else if (typeof d.remaining_hours === "number" && d.remaining_hours >= 2) {
+          const rest = document.createElement('div');
+          rest.className = "hint";
+          rest.innerHTML = `You still have about <strong>${Math.round(d.remaining_hours * 10) / 10} hours</strong> available today. Consider a café stop, a viewpoint, or a relaxed neighborhood walk.`;
+          card.appendChild(rest);
+        }
+
+        wrap.appendChild(card);
+      });
+
+      els.output.innerHTML = "";
+      els.output.appendChild(wrap);
+    }
+
+    function extractPartLabelFromTitleOrId(block){
+      const t = String(block && block.title ? block.title : "");
+      const m1 = t.match(/\(Part\s+\d+\s+of\s+\d+\)/i);
+      if (m1) return m1[0].replace(/[()]/g, "");
+
+      const id = String(block && block.id ? block.id : "");
+      const m2 = id.match(/__part_(\d+)_of_(\d+)/i);
+      if (m2) return `Part ${m2[1]} of ${m2[2]}`;
+
+      return "Part";
+    }
+
+    function renderSlot(label, block, regionId){
+      const div = document.createElement('div');
+      div.className = "slot";
+
+      const loc = block.location_id ? locationName(regionId, block.location_id) : "";
+      const exp = (block.experiences || []).map(experienceName).slice(0, 3).join(" · ");
+      const dur = block.duration_hours ? `${block.duration_hours}h` : "";
+      const metaLine = [loc, exp, dur].filter(Boolean).join(" • ");
+
+      const isSplitPart = typeof block.id === "string" && block.id.includes("__part_");
+      const partLabel = isSplitPart ? extractPartLabelFromTitleOrId(block) : "";
+
+      const splitExplain = isSplitPart
+        ? `This experience spans multiple days. "${partLabel}" indicates one day within a longer lodge-based stay.`
+        : "";
+
+      const noteHtml = (() => {
+        const baseNote = block.notes ? String(block.notes) : "";
+        if (!baseNote && !splitExplain) return "";
+        if (baseNote && splitExplain) {
+          return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Note:</strong> " + baseNote + "<br><strong>Note:</strong> " + splitExplain + "</p>";
+        }
+        if (baseNote) {
+          return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Note:</strong> " + baseNote + "</p>";
+        }
+        return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Note:</strong> " + splitExplain + "</p>";
+      })();
+
+      div.innerHTML = `
+        <h4>${label}</h4>
+        <div class="title">${block.title}</div>
+        <p class="meta">${block.summary || ""}${metaLine ? "<br><span style='opacity:.9'>" + metaLine + "</span>" : ""}</p>
+        ${noteHtml}
+      `;
+      return div;
+    }
+
+    function renderEmptySlot(label, text){
+      const div = document.createElement('div');
+      div.className = "slot";
+      div.innerHTML = `
+        <h4>${label}</h4>
+        <p class="meta">${text}</p>
+      `;
+      return div;
+    }
+
+    function capitalize(s){
+      const t = String(s || "");
+      if (!t) return "";
+      return t.charAt(0).toUpperCase() + t.slice(1);
+    }
+
+    // ===== FLIGHTS =====
+    const REGION_TO_AIRPORT = {
+      andes: "UIO",
+      coast: "GYE",
+      amazon: "UIO",
+      galapagos: "GPS"
+    };
+
+    function syncDefaultFlightToFromRegions(){
+      const selected = Array.from(state.selectedRegionIds);
+      if (!selected.length) return;
+
+      const airport = REGION_TO_AIRPORT[selected[0]] || "UIO";
+
+      const d = flightEls.desktop;
+      const m = flightEls.mobile;
+
+      const userSet = (d.to.dataset.userSet || (m.to ? m.to.dataset.userSet : "false") || "false");
+
+      if (userSet === "false") {
+        d.to.value = airport;
+        if (m.to) m.to.value = airport;
+      }
+    }
+
+    function buildGoogleFlightsUrl({ from, to, depart, ret }){
+      let q = `Flights to ${to}`;
+      if (from) q += ` from ${from}`;
+      if (depart) q += ` on ${depart}`;
+      if (ret) q += ` return ${ret}`;
+      return "https://www.google.com/travel/flights?q=" + encodeURIComponent(q);
+    }
+
+    function normalizeAirportCode(v){
+      const s = String(v || "").trim().toUpperCase();
+      const m = s.match(/[A-Z]{3}/);
+      return m ? m[0] : "";
+    }
+
+    function openFlightsFrom(setName){
+      const s = flightEls[setName];
+      if (!s || !s.to) return;
+
+      const from = normalizeAirportCode(s.from.value);
+      const to = String(s.to.value || "").trim().toUpperCase();
+      const depart = String(s.depart.value || "").trim();
+      const ret = String(s.ret.value || "").trim();
+      if (!to) return;
+
+      const url = buildGoogleFlightsUrl({ from, to, depart, ret });
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    flightEls.desktop.btn.addEventListener('click', () => openFlightsFrom("desktop"));
+    if (flightEls.mobile.btn) flightEls.mobile.btn.addEventListener('click', () => openFlightsFrom("mobile"));
+
+    // ===== LOAD JSON =====
+    async function loadJSON(path){
+      const res = await fetch(path, { cache: "no-store" });
+      if (!res.ok) throw new Error("Failed to load " + path);
+      return await res.json();
+    }
+
+    async function init() {
+      renderDaysOptions();
+
+      try {
+        const [regions, experiences, blocks] = await Promise.all([
+          loadJSON("/assets/data/regions.json"),
+          loadJSON("/assets/data/experiences.json"),
+          loadJSON("/assets/data/itinerary_blocks.json")
+        ]);
+
+        DATA.regions = regions;
+        DATA.experiences = experiences;
+        DATA.blocks = blocks;
+
+        renderRegionPills();
+        renderExperiencePills();
+        updateHints();
+        updateGenerateState();
+
+        setUserSetAll("false");
+        flightEls.desktop.to.value = "UIO";
+        if (flightEls.mobile.to) flightEls.mobile.to.value = "UIO";
+        syncDefaultFlightToFromRegions();
+
+        syncFlights("desktop");
+
+        els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
+      } catch (e) {
+        els.output.innerHTML = "<div class='hint'><strong>Data load error:</strong> " + (e.message || e) + "</div>";
+      }
+    }
+
+    els.daysSelect.addEventListener('change', () => {
+      state.days = Number(els.daysSelect.value);
+    });
+
+    els.generateBtn.addEventListener('click', () => {
+      const plan = generateItinerary();
+      renderItinerary(plan);
+    });
+
+    els.resetBtn.addEventListener('click', () => {
+      state.days = 5;
+      state.selectedRegionIds.clear();
+      state.selectedExperienceIds.clear();
+
+      document.querySelectorAll('.pill').forEach(p => p.setAttribute('aria-pressed', 'false'));
+      els.daysSelect.value = "5";
+
+      flightEls.desktop.from.value = "";
+      flightEls.desktop.depart.value = "";
+      flightEls.desktop.ret.value = "";
+
+      if (flightEls.mobile.from) flightEls.mobile.from.value = "";
+      if (flightEls.mobile.depart) flightEls.mobile.depart.value = "";
+      if (flightEls.mobile.ret) flightEls.mobile.ret.value = "";
+
+      setUserSetAll("false");
+      flightEls.desktop.to.value = "UIO";
+      if (flightEls.mobile.to) flightEls.mobile.to.value = "UIO";
+
+      updateHints();
+      updateGenerateState();
+      els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
+    });
+
+    init();
+  </script>
 
   <script src="/assets/js/site.js"></script>
 
@@ -865,343 +1338,6 @@
       inject("siteHeader", "/assets/includes/header.html");
       inject("siteFooter", "/assets/includes/footer.html");
     })();
-  </script>
-
-  <script>
-    /* Salinas carousel */
-    (function(){
-      const root = document.getElementById("salinasCarousel");
-      if(!root) return;
-
-      const track = root.querySelector(".carousel-track");
-      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
-      const prevBtn = root.querySelector(".carousel-btn.prev");
-      const nextBtn = root.querySelector(".carousel-btn.next");
-      const dotsWrap = root.querySelector(".carousel-dots");
-      const counter = root.querySelector("#salinasCarouselCounter");
-
-      let index = 0;
-
-      const AUTOPLAY_MS = 5000;
-      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      let autoplayTimer = null;
-      let autoplayEnabled = !prefersReducedMotion;
-
-      function setIndex(next){
-        index = (next + slides.length) % slides.length;
-        track.style.transform = `translateX(-${index * 100}%)`;
-        updateDots();
-        updateCounter();
-      }
-
-      function updateCounter(){
-        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
-      }
-
-      function updateDots(){
-        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
-        dots.forEach((d,i) => d.classList.toggle("active", i === index));
-      }
-
-      function buildDots(){
-        dotsWrap.innerHTML = "";
-        slides.forEach((_, i) => {
-          const b = document.createElement("button");
-          b.type = "button";
-          b.className = "dot" + (i === 0 ? " active" : "");
-          b.setAttribute("aria-label", `Go to image ${i + 1}`);
-          b.addEventListener("click", () => {
-            setIndex(i);
-            stopAutoplay();
-          });
-          dotsWrap.appendChild(b);
-        });
-      }
-
-      function next(){ setIndex(index + 1); }
-      function prev(){ setIndex(index - 1); }
-
-      function startAutoplay(){
-        if(!autoplayEnabled) return;
-        stopAutoplay();
-        autoplayTimer = setInterval(next, AUTOPLAY_MS);
-      }
-
-      function stopAutoplay(){
-        if(autoplayTimer){
-          clearInterval(autoplayTimer);
-          autoplayTimer = null;
-        }
-      }
-
-      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
-      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
-
-      root.addEventListener("keydown", (e) => {
-        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
-        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
-      });
-
-      let startX = 0;
-      let isDown = false;
-
-      const viewport = root.querySelector(".carousel-viewport");
-      viewport.addEventListener("pointerdown", (e) => {
-        isDown = true;
-        startX = e.clientX;
-        viewport.setPointerCapture(e.pointerId);
-      });
-
-      viewport.addEventListener("pointerup", (e) => {
-        if(!isDown) return;
-        isDown = false;
-        const dx = e.clientX - startX;
-        const threshold = 40;
-        if(dx > threshold){ prev(); stopAutoplay(); }
-        if(dx < -threshold){ next(); stopAutoplay(); }
-      });
-
-      viewport.addEventListener("pointercancel", () => { isDown = false; });
-
-      root.addEventListener("mouseenter", stopAutoplay);
-      root.addEventListener("mouseleave", startAutoplay);
-      root.addEventListener("focusin", stopAutoplay);
-      root.addEventListener("focusout", startAutoplay);
-
-      root.tabIndex = 0;
-      buildDots();
-      updateCounter();
-      setIndex(0);
-      startAutoplay();
-    })();
-
-    /* Salinas weather (Quito-style contract: /api/weather + localStorage cache + Max/Min/Rain with <br>) */
-    (function(){
-      const dateEl = document.getElementById("salinasWxDate");
-      const linesEl = document.getElementById("salinasWxLines");
-      const gridEl = document.getElementById("salinasWx7");
-      if(!dateEl || !linesEl || !gridEl) return;
-
-      // Salinas, Ecuador (approx.)
-      const LAT = -2.214;
-      const LON = -80.955;
-
-      const CACHE_KEY = "salinas-wx-v1";
-      const TTL_MS = 30 * 60 * 1000;
-
-      function fmtDateMMDDYYYY(d){
-        const mm = String(d.getMonth()+1).padStart(2,"0");
-        const dd = String(d.getDate()).padStart(2,"0");
-        const yy = d.getFullYear();
-        return `${mm}/${dd}/${yy}`;
-      }
-
-      function fmtMMDD(iso){
-        const d = new Date(iso + "T00:00:00");
-        const mm = String(d.getMonth()+1).padStart(2,"0");
-        const dd = String(d.getDate()).padStart(2,"0");
-        return `${mm}/${dd}`;
-      }
-
-      function dowShort(iso){
-        const d = new Date(iso + "T00:00:00");
-        return d.toLocaleDateString("en-US",{ weekday:"short" });
-      }
-
-      function cToF(c){
-        return Math.round((c * 9/5) + 32);
-      }
-
-      function setUnavailable(){
-        dateEl.textContent = "--/--/----";
-        linesEl.innerHTML = "Weather unavailable right now.";
-        gridEl.innerHTML = "";
-      }
-
-      function setLoading(){
-        dateEl.textContent = fmtDateMMDDYYYY(new Date());
-        linesEl.innerHTML = "Loading…";
-        gridEl.innerHTML = "";
-      }
-
-      function readCache(){
-        try{
-          const raw = localStorage.getItem(CACHE_KEY);
-          if(!raw) return null;
-          const obj = JSON.parse(raw);
-          if(!obj || typeof obj !== "object") return null;
-          if(!obj.ts || !obj.data) return null;
-          if((Date.now() - obj.ts) > TTL_MS) return null;
-          return obj.data;
-        }catch(e){
-          return null;
-        }
-      }
-
-      function writeCache(data){
-        try{
-          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
-        }catch(e){}
-      }
-
-      function normalize(api){
-        const unitsTemp =
-          (api && api.units && (api.units.temp || api.units.temperature)) ||
-          (api && api.unit && api.unit.temperature) ||
-          null;
-
-        const isC =
-          (typeof unitsTemp === "string" && unitsTemp.toUpperCase().includes("C")) ? true :
-          (typeof unitsTemp === "string" && unitsTemp.toUpperCase().includes("F")) ? false :
-          true;
-
-        if(api && api.current && Array.isArray(api.daily)){
-          const current = api.current || {};
-          const dailyArr = api.daily || [];
-          return {
-            isC,
-            current: {
-              tmax: current.tmax,
-              tmin: current.tmin,
-              rain: current.rain
-            },
-            days: dailyArr.slice(0, 7).map(d => ({
-              date: d.date,
-              tmax: d.tmax,
-              tmin: d.tmin,
-              rain: d.rain
-            }))
-          };
-        }
-
-        const daily = (api && api.daily) ? api.daily : {};
-        const days = daily.time || [];
-        const tmax = daily.temperature_2m_max || [];
-        const tmin = daily.temperature_2m_min || [];
-        const rain = daily.precipitation_probability_max || [];
-
-        return {
-          isC,
-          current: {
-            tmax: (typeof tmax[0] === "number" ? tmax[0] : null),
-            tmin: (typeof tmin[0] === "number" ? tmin[0] : null),
-            rain: (typeof rain[0] === "number" ? rain[0] : null)
-          },
-          days: days.slice(0, 7).map((iso, i) => ({
-            date: iso,
-            tmax: tmax[i],
-            tmin: tmin[i],
-            rain: rain[i]
-          }))
-        };
-      }
-
-      function render(norm){
-        dateEl.textContent = fmtDateMMDDYYYY(new Date());
-
-        const tmax = norm.current.tmax;
-        const tmin = norm.current.tmin;
-        const rain = norm.current.rain;
-
-        const maxStr = (typeof tmax === "number")
-          ? `Max: ${norm.isC ? cToF(tmax) : Math.round(tmax)}°F`
-          : "Max: --";
-        const minStr = (typeof tmin === "number")
-          ? `Min: ${norm.isC ? cToF(tmin) : Math.round(tmin)}°F`
-          : "Min: --";
-        const rainStr = (typeof rain === "number")
-          ? `Rain: ${Math.round(rain)}%`
-          : "Rain: --";
-
-        linesEl.innerHTML = `${maxStr}<br>${minStr}<br>${rainStr}`;
-
-        gridEl.innerHTML = "";
-        const count = Math.min(7, norm.days.length);
-
-        for(let i=0; i<count; i++){
-          const d = norm.days[i] || {};
-          const dayIso = d.date;
-
-          const hi = d.tmax;
-          const lo = d.tmin;
-          const r = d.rain;
-
-          const card = document.createElement("div");
-          card.className = "wx-day";
-
-          const top = document.createElement("div");
-          top.className = "wx-top";
-
-          const dow = document.createElement("div");
-          dow.className = "wx-dow";
-          dow.textContent = dayIso ? dowShort(dayIso) : "--";
-
-          const mmdd = document.createElement("div");
-          mmdd.className = "wx-mmdd";
-          mmdd.textContent = dayIso ? fmtMMDD(dayIso) : "--/--";
-
-          top.appendChild(dow);
-          top.appendChild(mmdd);
-
-          const hiEl = document.createElement("div");
-          hiEl.className = "wx-hi";
-          hiEl.textContent = (typeof hi === "number")
-            ? `High ${norm.isC ? cToF(hi) : Math.round(hi)}°F`
-            : "High --";
-
-          const loEl = document.createElement("div");
-          loEl.className = "wx-lo";
-          loEl.textContent = (typeof lo === "number")
-            ? `Low ${norm.isC ? cToF(lo) : Math.round(lo)}°F`
-            : "Low --";
-
-          const rainEl = document.createElement("div");
-          rainEl.className = "wx-rain";
-          rainEl.textContent = (typeof r === "number")
-            ? `Rain ${Math.round(r)}%`
-            : "Rain --";
-
-          card.appendChild(top);
-          card.appendChild(hiEl);
-          card.appendChild(loEl);
-          card.appendChild(rainEl);
-
-          gridEl.appendChild(card);
-        }
-      }
-
-      async function load(){
-        setLoading();
-
-        const cached = readCache();
-        if(cached){
-          try{
-            render(normalize(cached));
-            return;
-          }catch(e){}
-        }
-
-        try{
-          const url = `/api/weather?lat=${encodeURIComponent(LAT)}&lon=${encodeURIComponent(LON)}`;
-          const res = await fetch(url, { cache: "no-store" });
-          if(!res.ok) throw new Error("Weather fetch failed");
-          const data = await res.json();
-
-          writeCache(data);
-          render(normalize(data));
-        }catch(e){
-          setUnavailable();
-        }
-      }
-
-      load();
-    })();
-
-    // Light deterrent: disable right-click on images only
-    document.addEventListener('contextmenu', (e) => {
-      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
-    });
   </script>
 </body>
 </html>
