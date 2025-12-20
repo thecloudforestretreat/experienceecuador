@@ -1,6 +1,9 @@
 /* /assets/js/site.js
-   Global header behavior for ExperienceEcuador.com
-   Works even when header.html is injected AFTER this script loads.
+   ExperienceEcuador.com — Global header behavior
+   - Works with injected /assets/includes/header.html
+   - Hamburger open/close + scroll lock
+   - Mobile drill-down menus (data-target / data-back)
+   - Uses event delegation so taps on inner spans still work
 */
 (function () {
   "use strict";
@@ -18,7 +21,8 @@
   function setBodyLock(locked) {
     document.documentElement.classList.toggle("nav-open", locked);
     document.body.style.overflow = locked ? "hidden" : "";
-    document.body.style.touchAction = locked ? "none" : "";
+    // NOTE: removing touchAction prevents iOS weird tap issues
+    document.body.style.touchAction = "";
   }
 
   function showMain(headerEl) {
@@ -42,7 +46,6 @@
   function closeMobile(headerEl) {
     const toggle = qs(headerEl, `#${TOGGLE_ID}`);
     if (toggle) toggle.checked = false;
-
     setBodyLock(false);
     showMain(headerEl);
   }
@@ -50,31 +53,43 @@
   function openMobile(headerEl) {
     const toggle = qs(headerEl, `#${TOGGLE_ID}`);
     if (toggle) toggle.checked = true;
-
     setBodyLock(true);
   }
 
   function initMobileViews(headerEl) {
     showMain(headerEl);
 
-    // MAIN -> SUBMENU (buttons)
-    qsa(headerEl, ".nav-mobile .m-next").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
+    const mobileNav = qs(headerEl, ".nav.nav-mobile");
+    if (!mobileNav) return;
+
+    // Event delegation (fixes “tap on span doesn’t work”)
+    mobileNav.addEventListener("click", (e) => {
+      const t = e.target;
+
+      // Drill-down forward
+      const next = t.closest(".m-next");
+      if (next && mobileNav.contains(next)) {
         e.preventDefault();
+        const targetSel = next.getAttribute("data-target") || "";
+        if (targetSel) showSubmenu(headerEl, targetSel);
+        return;
+      }
 
-        const targetSel = btn.getAttribute("data-target") || "";
-        if (!targetSel) return;
-
-        showSubmenu(headerEl, targetSel);
-      });
-    });
-
-    // SUBMENU -> MAIN (buttons)
-    qsa(headerEl, ".nav-mobile [data-back]").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
+      // Back to main
+      const back = t.closest("[data-back]");
+      if (back && mobileNav.contains(back)) {
         e.preventDefault();
         showMain(headerEl);
-      });
+        return;
+      }
+
+      // Normal link click inside mobile menu closes the menu
+      const link = t.closest('a[href]');
+      if (link && mobileNav.contains(link)) {
+        const href = link.getAttribute("href") || "";
+        if (!href || href.charAt(0) === "#") return;
+        closeMobile(headerEl);
+      }
     });
   }
 
@@ -101,17 +116,7 @@
 
     document.addEventListener("click", (e) => {
       if (!toggle.checked) return;
-      const inside = headerEl.contains(e.target);
-      if (!inside) closeMobile(headerEl);
-    });
-
-    // Close after selecting any real link in the mobile menu
-    qsa(headerEl, ".nav.nav-mobile a[href]").forEach((a) => {
-      a.addEventListener("click", () => {
-        const href = a.getAttribute("href") || "";
-        if (!href || href.charAt(0) === "#") return;
-        closeMobile(headerEl);
-      });
+      if (!headerEl.contains(e.target)) closeMobile(headerEl);
     });
 
     window.addEventListener("resize", () => {
@@ -130,8 +135,10 @@
     return true;
   }
 
+  // Try now
   tryInitFromMount();
 
+  // Observe injection
   const mount = document.getElementById(HEADER_MOUNT_ID);
   if (mount) {
     const mo = new MutationObserver(() => {
@@ -140,6 +147,7 @@
     mo.observe(mount, { childList: true, subtree: true });
   }
 
+  // Safety
   window.addEventListener("load", () => {
     tryInitFromMount();
   });
