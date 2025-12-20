@@ -13,7 +13,7 @@
 .topbar a:visited{ text-decoration:none; }
 .topbar button{ font:inherit; }
 
-/* ===== HEADER SHELL ===== */
+/* ===== STICKY HEADER SHELL (SITE-WIDE) ===== */
 .topbar{
   position: sticky !important;
   top: 0 !important;
@@ -22,7 +22,7 @@
   backdrop-filter:saturate(160%) blur(10px);
   background:rgba(255,255,255,.75);
   border-bottom:1px solid rgba(0,0,0,.06);
-  overflow:visible;
+  overflow: visible;
 }
 
 /* Desktop container */
@@ -78,12 +78,8 @@
 }
 
 /* Desktop dropdown via <details> */
-.topbar .nav-dd{
-  position:relative;
-}
-.topbar .nav-dd > summary{
-  list-style:none;
-}
+.topbar .nav-dd{ position:relative; }
+.topbar .nav-dd > summary{ list-style:none; }
 .topbar .nav-dd > summary::-webkit-details-marker{ display:none; }
 .topbar .nav-dd-menu{
   position:absolute;
@@ -170,17 +166,9 @@
 .topbar .nav-toggle-icon::after{ top:6px; }
 
 /* X state */
-.topbar .nav-toggle:checked ~ .topbar-inner .nav-toggle-icon{
-  background:transparent;
-}
-.topbar .nav-toggle:checked ~ .topbar-inner .nav-toggle-icon::before{
-  top:0;
-  transform:rotate(45deg);
-}
-.topbar .nav-toggle:checked ~ .topbar-inner .nav-toggle-icon::after{
-  top:0;
-  transform:rotate(-45deg);
-}
+.topbar .nav-toggle:checked ~ .topbar-inner .nav-toggle-icon{ background:transparent; }
+.topbar .nav-toggle:checked ~ .topbar-inner .nav-toggle-icon::before{ top:0; transform:rotate(45deg); }
+.topbar .nav-toggle:checked ~ .topbar-inner .nav-toggle-icon::after{ top:0; transform:rotate(-45deg); }
 
 .sr-only{
   position:absolute!important;
@@ -194,18 +182,14 @@
   border:0!important;
 }
 
-/* ===== MOBILE PANEL (drill-down, JS controlled) ===== */
-.topbar .nav-mobile{
-  display:none; /* desktop hidden */
-}
+/* ===== MOBILE PANEL ===== */
+.topbar .nav-mobile{ display:none; }
 
 @media (max-width: 900px){
   .topbar .nav-desktop{ gap:8px; flex-wrap:wrap; justify-content:flex-end; }
 }
 
 @media (max-width: 620px){
-
-  /* Mobile header row */
   .topbar .topbar-inner{
     max-width:100%;
     width:100%;
@@ -216,13 +200,9 @@
     padding-bottom:12px;
   }
 
-  /* Hamburger visible */
   .topbar .nav-toggle-btn{ display:flex; }
-
-  /* Desktop nav hidden on mobile */
   .topbar .nav-desktop{ display:none; }
 
-  /* Mobile nav panel hidden until checked */
   .topbar .nav-mobile{
     display:block;
     max-height:0;
@@ -232,7 +212,6 @@
     background:rgba(255,255,255,.85);
   }
 
-  /* Checkbox controls panel */
   .topbar .nav-toggle:checked ~ .nav-mobile{
     max-height:80vh;
     overflow:auto;
@@ -244,20 +223,10 @@
     padding-right:calc(env(safe-area-inset-right) + 14px);
   }
 
-  /* Views (JS controls via [hidden]) */
-  .topbar .m-view{ display:block; }
+  /* Views are controlled by JS using [hidden] */
   .topbar .m-view[hidden]{ display:none !important; }
+  .topbar .m-view{ display:block; }
 
-  /* Buttons should look like links/cards */
-  .topbar .m-item,
-  .topbar .m-back{
-    appearance:none;
-    -webkit-appearance:none;
-    border:0;
-    text-align:left;
-  }
-
-  /* Menu items */
   .topbar .m-item,
   .topbar .m-back{
     display:flex;
@@ -274,6 +243,7 @@
     color:var(--nav-text);
     font-size:18px;
     cursor:pointer;
+    text-align:left;
   }
 
   .topbar .m-item:active,
