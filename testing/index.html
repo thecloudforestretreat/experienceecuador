@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adventure | Experience Ecuador</title>
+  <title>Quito | Experience Ecuador</title>
 
   <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -12,7 +12,7 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
 
-  <!-- Global header/footer CSS (required) -->
+  <!-- Global header/footer CSS -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
 
@@ -24,267 +24,253 @@
   <style>
     :root{
       --brand-blue:#034EA2;
-      --charcoal:#1F1F1F;
       --slate:#6E7B8B;
-
-      --card:#ffffff;
-      --border:rgba(0,0,0,0.06);
-      --shadow:0 18px 55px rgba(3,78,162,0.12);
-      --shadowHover:0 28px 70px rgba(3,78,162,0.18);
-
-      --chipBg: rgba(3,78,162,0.10);
-      --chipText:#0f2f62;
+      --text:#1F1F1F;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--charcoal);
       background:#f6f8fb;
+      color:var(--text);
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
-    /* ===== HERO (GALAPAGOS PATTERN) ===== */
-    .hero{
-      position:relative;
-      width:100%;
-      min-height:64vh;
-      display:flex;
-      align-items:flex-end;
-      justify-content:center;
-      background:url("/assets/images/EE-Experiences-adventure-01.jpg") center / cover no-repeat;
-      color:#fff;
-    }
-
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.70));
-    }
-
-    .hero-inner{
-      position:relative;
-      z-index:2;
-      width:100%;
-      max-width:1100px;
-      padding:54px 18px 34px;
-      text-align:left;
-    }
-
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,0.38);
-      border:1px solid rgba(255,255,255,0.22);
-      font-weight:700;
-      letter-spacing:0.02em;
-      font-size:12.5px;
-      margin-bottom:14px;
-      backdrop-filter:blur(10px);
-    }
-
-    .hero h1{
-      margin:0 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.03em;
-      font-size:clamp(40px,5.4vw,72px);
-      line-height:1.03;
-    }
-
-    .hero p{
-      margin:0;
-      max-width:68ch;
-      font-size:clamp(15px,2vw,18px);
-      line-height:1.65;
-      color:rgba(255,255,255,0.92);
-    }
-
-    /* ===== CONTENT ===== */
+    /* ===== CONTENT ONLY ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:36px 18px 60px;
+      padding:40px 18px 56px;
     }
 
-    .section{margin-bottom:36px}
-
-    .section h2{
+    h1{
       font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:24px;
-      margin:0 0 10px;
+      font-size:clamp(34px,4vw,54px);
       color:var(--brand-blue);
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
     }
 
-    .section p{
-      max-width:85ch;
-      line-height:1.75;
-      font-size:15.8px;
-      color:#2a2f36;
+    .lede{
+      color:var(--slate);
+      line-height:1.65;
+      max-width:92ch;
       margin:0;
+      font-size:16.8px;
     }
 
-    .grid{
+    .meta-row{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      color:#162b55;
+      font-weight:700;
+      font-size:13.5px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
+      font-weight:800;
+    }
+
+    .content-grid{
       display:grid;
       grid-template-columns:1.15fr 0.85fr;
-      gap:28px;
-      margin-top:18px;
+      gap:22px;
+      margin-top:22px;
       align-items:start;
     }
 
     .card{
-      background:var(--card);
-      border-radius:22px;
-      padding:22px;
-      border:1px solid var(--border);
-      box-shadow:var(--shadow);
-    }
-
-    .card ul{
-      margin:0;
-      padding-left:18px;
-      line-height:1.75;
-      font-size:14.8px;
-      color:#24324a;
-    }
-
-    .mini{
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      border-radius:20px;
-      padding:20px;
-      border:1px solid rgba(3,78,162,0.12);
-    }
-
-    .mini + .mini{margin-top:16px}
-
-    /* ===== ADVENTURE LEVEL SELECTOR ===== */
-    .selector{
       background:#fff;
-      border:1px solid var(--border);
-      border-radius:24px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-
-    .selector-top{
-      display:grid;
-      grid-template-columns:1fr auto;
-      grid-template-rows:auto auto;
-      align-items:start;
-      gap:16px;
       padding:22px;
-      border-bottom:1px solid rgba(0,0,0,0.06);
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
     }
 
-    .selector-copy{
-      grid-column:1 / -1;
-    }
+    .card + .card{ margin-top:16px; }
 
-    .selector-copy h3{
-      margin:0 0 6px;
+    .card h2{
+      margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       letter-spacing:-0.02em;
-      font-size:20px;
+      font-size:18px;
       color:#0f2f62;
     }
 
-    .selector-copy p{
+    .card p{
+      margin:0 0 12px;
+      color:#1f2b3f;
+      line-height:1.75;
+      font-size:15.5px;
+      max-width:84ch;
+    }
+
+    .card p:last-child{ margin-bottom:0; }
+
+    .inline-link{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:800;
+      color:#162b55;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:10px;
+    }
+
+    .mini-card{
+      padding:14px 14px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .mini-card h3{
+      margin:0 0 6px;
+      font-size:14.5px;
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+    }
+
+    .mini-card p{
       margin:0;
-      color:#24324a;
-      opacity:0.92;
-      line-height:1.65;
-      font-size:14.8px;
+      color:#1f2b3f;
+      opacity:.92;
+      line-height:1.6;
+      font-size:14.4px;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
+      font-weight:800;
+      font-size:12.8px;
+    }
+
+    /* Itinerary cards (link style) */
+    .itinerary-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+
+    .it-card{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px 14px;
+      border-radius:18px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    .it-card:hover{
+      background:rgba(3,78,162,.08);
+      transform:translateY(-1px);
+    }
+
+    .it-left{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-width:0;
+    }
+
+    .it-title{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:15.5px;
+      letter-spacing:-0.01em;
+    }
+
+    .it-sub{
+      color:#1f2b3f;
+      opacity:.92;
+      line-height:1.55;
+      font-size:14.4px;
       max-width:70ch;
     }
 
-    .selector-controls{
-      grid-column:2;
-      justify-self:end;
-      display:grid;
-      grid-template-columns:auto 260px;
-      column-gap:12px;
-      row-gap:10px;
+    .it-meta{
+      margin-top:2px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .it-pill{
+      display:inline-flex;
       align-items:center;
-    }
-
-    .selector-controls label{
-      font-weight:800;
-      color:#0f2f62;
-      font-size:13px;
-      letter-spacing:0.02em;
-    }
-
-    .selector-controls select{
-      appearance:none;
-      -webkit-appearance:none;
-      -moz-appearance:none;
-      border:1px solid rgba(3,78,162,0.22);
+      padding:6px 9px;
+      border-radius:999px;
       background:#fff;
+      border:1px solid rgba(3,78,162,.16);
       color:#0f2f62;
-      font-weight:700;
-      padding:11px 42px 11px 12px;
-      border-radius:14px;
-      font-size:14px;
-      cursor:pointer;
-      outline:none;
-      width:260px;
-      min-width:260px;
-      box-shadow:0 14px 30px rgba(3,78,162,0.10);
-      background-image:
-        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
-        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
-        linear-gradient(to right, transparent, transparent);
-      background-position:
-        calc(100% - 18px) 50%,
-        calc(100% - 12px) 50%,
-        0 0;
-      background-size:6px 6px, 6px 6px, 100% 100%;
-      background-repeat:no-repeat;
+      font-weight:800;
+      font-size:12.5px;
     }
 
-    .selector-controls select:focus{
-      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
-      border-color:rgba(3,78,162,0.45);
+    .arrow{
+      flex:0 0 auto;
+      width:12px;
+      height:12px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
+      transform:rotate(-45deg);
+      margin-top:6px;
+      opacity:.7;
     }
 
-    .selector-body{ padding:22px; }
-
-    .recs-grid{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
+    .side-stack{
+      display:flex;
+      flex-direction:column;
       gap:16px;
     }
 
-    .rec{
+    .mini{
       background:#fff;
-      border:1px solid rgba(0,0,0,0.06);
-      border-radius:18px;
-      padding:16px;
-      box-shadow:0 16px 45px rgba(0,0,0,0.08);
-      transition:transform .2s ease, box-shadow .2s ease;
-      min-height:178px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+      padding:20px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
     }
 
-    .rec:hover{
-      transform:translateY(-5px);
-      box-shadow:0 24px 60px rgba(0,0,0,0.12);
-    }
-
-    .rec h4{
-      margin:0;
+    .mini h3{
+      margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       letter-spacing:-0.02em;
@@ -292,95 +278,308 @@
       color:#0f2f62;
     }
 
-    .rec p{
+    .mini p{
       margin:0;
-      color:#2a2f36;
-      line-height:1.6;
-      font-size:14px;
-      opacity:0.95;
-      flex:1;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:14.8px;
     }
 
-    .chips{
+    .link-list{
       display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      align-items:center;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
     }
 
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      background:var(--chipBg);
-      color:var(--chipText);
-      font-weight:800;
-      font-size:12.5px;
-      letter-spacing:0.01em;
-      border:1px solid rgba(3,78,162,0.16);
-      transition:transform .15s ease, background .15s ease;
-    }
-
-    .chip:hover{
-      transform:translateY(-1px);
-      background:rgba(3,78,162,0.14);
-    }
-
-    .meta{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-top:-2px;
-    }
-
-    .badge{
-      font-size:12px;
-      font-weight:800;
-      color:#0f2f62;
-      background:rgba(3,78,162,0.08);
-      border:1px solid rgba(3,78,162,0.14);
-      padding:6px 8px;
-      border-radius:999px;
-      line-height:1;
-    }
-
-    .rec-actions{
+    .pill-link{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:10px;
-      margin-top:4px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      font-weight:900;
+      color:#0f2f62;
     }
 
-    .cta{
+    .pill-link:hover{ background:rgba(3,78,162,.08); }
+
+    .pill-link span{
+      opacity:.9;
+      font-weight:700;
+      color:#162b55;
+      font-size:13px;
+    }
+
+    /* ===== ANDES QUICK LINKS ===== */
+    .andes-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .andes-tile{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    .andes-tile:hover{
+      background:rgba(3,78,162,.07);
+      transform:translateY(-1px);
+    }
+
+    .andes-left{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
+    }
+
+    .andes-title{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:14.8px;
+      letter-spacing:-0.01em;
+      line-height:1.2;
+    }
+
+    .andes-sub{
+      color:#1f2b3f;
+      opacity:.9;
+      line-height:1.5;
+      font-size:13.4px;
+      max-width:60ch;
+    }
+
+    .andes-arrow{
+      flex:0 0 auto;
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,.18);
+      background:rgba(255,255,255,.75);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:2px;
+    }
+
+    .andes-arrow span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
+      transform:rotate(-45deg);
+      opacity:.85;
+    }
+
+    /* ===== WEATHER (separate right card) ===== */
+    .wx-card{
+      padding:18px 18px;
+      border-radius:22px;
+      background:#fff;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .wx-title{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .wx-now{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .wx-date{
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+      font-size:13.2px;
+      opacity:.95;
+      white-space:nowrap;
+      margin-top:2px;
+    }
+
+    .wx-lines{
+      margin:0;
+      color:#1f2b3f;
+      line-height:1.55;
+      font-size:13.8px;
+      opacity:.95;
+      text-align:right;
+    }
+
+    /* 3 + 4 grid */
+    .wx-grid7{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .wx-day{
+      border-radius:16px;
+      padding:10px 10px;
+      background:rgba(255,255,255,.9);
+      border:1px solid rgba(3,78,162,.14);
+      text-align:left;
+    }
+
+    .wx-top{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:8px;
+    }
+
+    .wx-dow{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:12.5px;
+      letter-spacing:-0.01em;
+    }
+
+    .wx-mmdd{
+      color:#162b55;
+      opacity:.75;
+      font-size:11.5px;
+    }
+
+    .wx-hi{
+      margin-top:8px;
+      color:#162b55;
+      opacity:.8;
+      font-size:12.3px;
+    }
+
+    .wx-lo{
+      color:#162b55;
+      opacity:.8;
+      font-size:12.3px;
+      margin-top:2px;
+    }
+
+    .wx-rain{
+      margin-top:6px;
+      color:#162b55;
+      opacity:.85;
+      font-size:11.7px;
+      white-space:nowrap;
+    }
+
+    @media(max-width:980px){
+      .wx-grid7{ grid-template-columns:repeat(2, 1fr); }
+    }
+
+    /* Months + legend */
+    .months{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid rgba(0,0,0,.06);
+    }
+
+    .wx-sub{
+      margin:0 0 10px;
+      color:#1f2b3f;
+      opacity:.85;
+      font-size:13.5px;
+      line-height:1.5;
+    }
+
+    .legend{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+      align-items:center;
+    }
+
+    .legend-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:12.8px;
+      font-weight:800;
+      color:#162b55;
+      opacity:.9;
+    }
+
+    .swatch{
+      width:14px;
+      height:14px;
+      border-radius:6px;
+      border:1px solid rgba(3,78,162,.22);
+      background:rgba(3,78,162,.06);
+    }
+
+    .swatch.best{ background:rgba(3,78,162,.14); border-color:rgba(3,78,162,.32); }
+    .swatch.good{ background:rgba(3,78,162,.09); border-color:rgba(3,78,162,.22); }
+    .swatch.fair{ background:rgba(3,78,162,.04); border-color:rgba(3,78,162,.18); opacity:.85; }
+
+    .month-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .month-chip{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:10px 12px;
-      border-radius:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,.14);
+      background:rgba(3,78,162,.06);
+      color:#0f2f62;
       font-weight:900;
-      font-size:13px;
-      background:var(--brand-blue);
-      color:#fff;
-      border:0;
-      cursor:pointer;
-      min-width:120px;
+      font-size:12.4px;
+      min-width:46px;
     }
 
-    .cta:hover{ filter:brightness(0.95); }
-
-    .hint{
-      font-size:12.5px;
-      color:#24324a;
-      opacity:0.85;
-      font-weight:700;
+    .month-chip.best{
+      background:rgba(3,78,162,.14);
+      border-color:rgba(3,78,162,.32);
     }
 
-    /* ===== CAROUSEL (GALLERY) - REGIONS STYLE (MATCH NATURE) ===== */
+    .month-chip.good{
+      background:rgba(3,78,162,.09);
+      border-color:rgba(3,78,162,.22);
+    }
+
+    .month-chip.fair{
+      background:rgba(3,78,162,.04);
+      border-color:rgba(3,78,162,.18);
+      opacity:.85;
+    }
+
+    /* ===== CAROUSEL (BOTTOM) ===== */
     .carousel{
-      margin-top:40px;
+      margin-top:18px;
       background:#fff;
       border-radius:22px;
       border:1px solid rgba(0,0,0,0.06);
@@ -394,7 +593,6 @@
       overflow:hidden;
       width:100%;
       touch-action:pan-y;
-      outline:none;
     }
 
     .carousel-track{
@@ -467,8 +665,6 @@
       gap:8px;
       flex-wrap:wrap;
       align-items:center;
-      justify-content:center;
-      flex:1;
     }
 
     .dot{
@@ -494,36 +690,13 @@
       white-space:nowrap;
     }
 
-    /* ===== MOBILE ===== */
-    @media(max-width:900px){
-      .grid{grid-template-columns:1fr}
-      .recs-grid{grid-template-columns:1fr}
-      .selector-top{
-        grid-template-columns:1fr;
-      }
-      .selector-controls{
-        grid-column:1;
-        justify-self:start;
-        grid-template-columns:1fr;
-        row-gap:10px;
-        column-gap:0;
-        width:100%;
-      }
-      .selector-controls label{
-        margin:0;
-      }
-      .selector-controls select{
-        width:100%;
-        min-width:0;
-      }
-
-      .hero-inner{ text-align:center; }
-      .hero p{ margin:0 auto; }
+    /* ===== MOBILE (CONTENT ONLY) ===== */
+    @media(max-width:980px){
+      .content-grid{grid-template-columns:1fr}
     }
 
-    @media (prefers-reduced-motion: reduce){
-      .rec { transition:none !important; }
-      .carousel-track{ transition:none !important; }
+    @media(max-width:820px){
+      .two-col{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -532,160 +705,536 @@
   <div id="siteHeader"></div>
 
   <main>
-    <!-- PAGE CONTENT ONLY -->
-
-    <section class="hero" aria-label="Adventure hero image">
-      <div class="hero-inner">
-        <div class="kicker">Experience Guide</div>
-        <h1>Adventure</h1>
-        <p>
-          Ecuador is built for adventure — volcanoes, rivers, coastlines, and cloud forests all within a few hours of each other.
-          Use the selector below to match your energy level with the best-fit adventures and regions.
-        </p>
-      </div>
-    </section>
-
     <div class="wrap">
+      <h1>Quito</h1>
+      <p class="lede">
+        Quito is Ecuador’s main travel hub and one of the most rewarding short-stay cities in South America.
+        Use this page to choose a simple 1, 2, or 3 day plan based on your pace, interests, and how much you want to explore beyond the city.
+      </p>
 
-      <section class="section">
-        <h2>What this experience is about</h2>
-        <p>
-          Adventure in Ecuador is compact, diverse, and surprisingly accessible. You can combine high-altitude volcano routes,
-          cloud forest canopy days, whitewater rivers, and coastal adventure into a single itinerary without losing days in transit.
-          Whether you want something easy and scenic or full-throttle challenge, the country makes it simple to build an “active trip”
-          that still feels balanced.
-        </p>
-      </section>
+      <div class="meta-row" aria-label="Quito overview metadata">
+        <span class="pill">Region: Andes</span>
+        <span class="pill">Best for: Culture, views, day trips</span>
+        <span class="pill">Good base for: Cotopaxi, cloud forest, hot springs</span>
+      </div>
 
-      <!-- Adventure Level Selector -->
-      <section class="section selector" aria-label="Adventure level selector">
-        <div class="selector-top">
-          <div class="selector-controls">
-            <label for="ee_exp_nav">Experiences</label>
-            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Select experience">
-              <option value="/experiences/adventure/" selected>Adventure</option>
-              <option value="/experiences/nature/">Nature</option>
-              <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
-              <option value="/experiences/relaxation/">Relaxation</option>
-              <option value="/experiences/culinary/">Culinary</option>
-              <option value="/experiences/culture/">Culture</option>
-            </select>
+      <section class="content-grid" aria-label="Quito content">
+        <div>
+          <div class="card">
+            <h2>What Quito is best for</h2>
+            <p>
+              Quito sits high in the Andes with dramatic views and one of the best-preserved historic centers in the region.
+              It is a great place to begin or end an Ecuador trip, especially when you only have a few days.
+            </p>
 
-            <label for="ee_level">Level</label>
-            <select id="ee_level" name="ee_level" aria-label="Select level">
-              <option value="beginner">Beginner (easy + scenic)</option>
-              <option value="intermediate" selected>Intermediate (active days)</option>
-              <option value="advanced">Advanced (big days)</option>
-              <option value="thrill">Thrill Seeker (bucket-list)</option>
-            </select>
+            <div class="two-col" aria-label="Quito highlights">
+              <div class="mini-card">
+                <h3>Historic center</h3>
+                <p>
+                  Colonial streets, major churches, plazas, and museums.
+                  Great for walking tours and day-to-night exploring.
+                </p>
+              </div>
+
+              <div class="mini-card">
+                <h3>Viewpoints and rides</h3>
+                <p>
+                  Big panoramic viewpoints and quick ways to see the city from above.
+                  Ideal for sunrise or golden hour.
+                </p>
+              </div>
+
+              <div class="mini-card">
+                <h3>Easy day trips</h3>
+                <p>
+                  Short drives to famous landmarks and landscapes.
+                  Perfect if you want one “big” experience without changing hotels.
+                </p>
+              </div>
+
+              <div class="mini-card">
+                <h3>Food and markets</h3>
+                <p>
+                  Local flavors, cafes, and markets that make Quito feel alive beyond the checklist stops.
+                </p>
+              </div>
+            </div>
+
+            <div class="chips" aria-label="Quito theme chips">
+              <span class="chip">Culture</span>
+              <span class="chip">Architecture</span>
+              <span class="chip">Museums</span>
+              <span class="chip">Viewpoints</span>
+              <span class="chip">Markets</span>
+              <span class="chip">Day trips</span>
+            </div>
           </div>
 
-          <div class="selector-copy">
-            <h3>Pick your adventure level</h3>
+          <div class="card">
+            <h2>Quick planning notes</h2>
             <p>
-              Choose your pace and we’ll show three strong starting points — each with the best region to explore it.
-              (You can adjust later as you add more location pages and partners.)
+              Quito is at high altitude. Plan a slower first morning if you are arriving from sea level, drink water,
+              and keep your first day flexible. Most visitors enjoy Quito most when they mix a few “must see” stops with time to wander.
+            </p>
+            <p>
+              Want help picking the right plan or building a simple route for your dates?
+              Send us a note on the <a class="inline-link" href="/contact/">Contact</a> page.
             </p>
           </div>
-        </div>
 
-        <div class="selector-body">
-          <div class="recs-grid" id="ee_recs" aria-live="polite"></div>
-          <div style="margin-top:12px;">
-            <span class="hint" id="ee_hint">Tip: Start with Intermediate — then dial up or down.</span>
+          <div class="card">
+            <h2>Choose your Quito plan</h2>
+            <p>
+              Start with the itinerary that matches your time, then swap in options depending on weather, energy level,
+              and what you care about most (history, food, viewpoints, or a quick day trip).
+            </p>
+
+            <div class="itinerary-grid" aria-label="Quito itinerary links">
+              <a class="it-card" href="./1-day/">
+                <div class="it-left">
+                  <div class="it-title">Quito in 1 Day</div>
+                  <div class="it-sub">
+                    The essentials. Historic center highlights, classic viewpoints, and an easy flow that works for tight schedules.
+                  </div>
+                  <div class="it-meta">
+                    <span class="it-pill">City focus</span>
+                    <span class="it-pill">Easy pace</span>
+                    <span class="it-pill">Best first visit</span>
+                  </div>
+                </div>
+                <span class="arrow" aria-hidden="true"></span>
+              </a>
+
+              <a class="it-card" href="./2-days/">
+                <div class="it-left">
+                  <div class="it-title">Quito in 2 Days</div>
+                  <div class="it-sub">
+                    A balanced plan. Add a half-day trip or deeper neighborhoods, plus time for food and unhurried stops.
+                  </div>
+                  <div class="it-meta">
+                    <span class="it-pill">City + half-day</span>
+                    <span class="it-pill">Balanced</span>
+                    <span class="it-pill">Most popular</span>
+                  </div>
+                </div>
+                <span class="arrow" aria-hidden="true"></span>
+              </a>
+
+              <a class="it-card" href="./3-days/">
+                <div class="it-left">
+                  <div class="it-title">Quito in 3 Days</div>
+                  <div class="it-sub">
+                    The full short-stay. Include a day trip and still keep time for markets, museums, and slow evenings.
+                  </div>
+                  <div class="it-meta">
+                    <span class="it-pill">City + day trip</span>
+                    <span class="it-pill">More depth</span>
+                    <span class="it-pill">Flexible options</span>
+                  </div>
+                </div>
+                <span class="arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </div>
+
+          <div id="quitoCarousel" class="carousel" aria-label="Quito image gallery">
+            <button class="carousel-btn prev" type="button" aria-label="Previous image">
+              <span aria-hidden="true"></span>
+            </button>
+
+            <div class="carousel-viewport">
+              <div class="carousel-track">
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Quito-1.jpg" alt="Quito highlight 1"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Quito-2.jpg" alt="Quito highlight 2"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Quito-3.jpg" alt="Quito highlight 3"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Quito-4.jpg" alt="Quito highlight 4"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Quito-5.jpg" alt="Quito highlight 5"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Quito-6.jpg" alt="Quito highlight 6"></div>
+              </div>
+            </div>
+
+            <button class="carousel-btn next" type="button" aria-label="Next image">
+              <span aria-hidden="true"></span>
+            </button>
+
+            <div class="carousel-ui">
+              <div class="carousel-dots" aria-label="Carousel pagination"></div>
+              <div class="carousel-counter" id="quitoCarouselCounter">1 / 6</div>
+            </div>
           </div>
         </div>
-      </section>
 
-      <section class="section grid">
-        <div class="card">
-          <h2>Signature activities</h2>
-          <ul>
-            <li>Volcano hikes, ridgelines, and high-altitude viewpoints</li>
-            <li>Rafting, canyoning, and river adventure days</li>
-            <li>Ziplining and canopy tours in cloud forest terrain</li>
-            <li>Trail rides, mountain biking, and off-road excursions</li>
-            <li>Coastal surf days and ocean-forward adventures</li>
-          </ul>
-        </div>
-
-        <div>
+        <aside class="side-stack" aria-label="Quito side content">
           <div class="mini">
-            <h2>Best for</h2>
-            <ul>
-              <li>Active travelers who like “do something every day” itineraries</li>
-              <li>Couples and small groups who want variety in a short trip</li>
-              <li>People who prefer local guides for safety + efficiency</li>
-              <li>Travelers who want to combine multiple regions without hassle</li>
-            </ul>
+            <h3>Good for short stays</h3>
+            <p>
+              If you have limited time in Ecuador, Quito gives you a strong mix of culture, viewpoints, and quick access to nature.
+              Start with 1 day if you are in transit. Choose 2 or 3 days if you want a day trip and a slower pace.
+            </p>
+
+            <div class="link-list" aria-label="Quito quick links">
+              <a class="pill-link" href="/regions/andes/">
+                Back to Andes <span>Region page</span>
+              </a>
+              <a class="pill-link" href="/contact/">
+                Contact <span>Questions and partnerships</span>
+              </a>
+            </div>
           </div>
 
-          <div class="mini">
-            <h2>Regions that shine</h2>
-            <ul>
-              <li>Andes: volcano routes, altitude trails, adventure hubs</li>
-              <li>Amazon: river + jungle exploration with guide support</li>
-              <li>Coast: surf, ocean activities, beach adventure days</li>
-              <li>Galapagos: controlled exploration and iconic wildlife</li>
-            </ul>
+          <div class="wx-card" aria-label="Weather and seasonality">
+            <div class="wx-title">Current weather</div>
+
+            <div class="wx-now">
+              <div class="wx-date" id="quitoWxDate">--/--/----</div>
+              <p class="wx-lines" id="quitoWxLines">Loading…</p>
+            </div>
+
+            <div class="months" aria-label="Forecast and best months section">
+              <div class="wx-title" style="margin-top:0;">7-day forecast</div>
+              <div class="wx-sub">High / low and rain for the week ahead.</div>
+              <div class="wx-grid7" id="quitoWx7" aria-label="Quito 7-day forecast grid"></div>
+
+              <div class="wx-title" style="margin-top:14px;">Best months to visit</div>
+              <div class="wx-sub" style="margin-bottom:8px;">
+                Based on typically drier skies and comfort for city exploring.
+              </div>
+
+              <div class="legend" aria-label="Best months legend">
+                <div class="legend-item"><span class="swatch best" aria-hidden="true"></span>Best</div>
+                <div class="legend-item"><span class="swatch good" aria-hidden="true"></span>Good</div>
+                <div class="legend-item"><span class="swatch fair" aria-hidden="true"></span>Fair</div>
+              </div>
+
+              <div class="month-row" aria-label="12-month seasonality chips">
+                <span class="month-chip fair" aria-label="January">Jan</span>
+                <span class="month-chip fair" aria-label="February">Feb</span>
+                <span class="month-chip fair" aria-label="March">Mar</span>
+                <span class="month-chip fair" aria-label="April">Apr</span>
+                <span class="month-chip fair" aria-label="May">May</span>
+                <span class="month-chip best" aria-label="June best month">Jun</span>
+                <span class="month-chip best" aria-label="July best month">Jul</span>
+                <span class="month-chip best" aria-label="August best month">Aug</span>
+                <span class="month-chip good" aria-label="September good month">Sep</span>
+                <span class="month-chip fair" aria-label="October">Oct</span>
+                <span class="month-chip fair" aria-label="November">Nov</span>
+                <span class="month-chip fair" aria-label="December">Dec</span>
+              </div>
+            </div>
           </div>
-        </div>
+
+          <div class="mini" aria-label="More Andes destinations card">
+            <h3>More Andes destinations</h3>
+
+            <div class="andes-grid" aria-label="Andes destination links">
+              <a class="andes-tile" href="/regions/andes/mindo/" aria-label="Open Mindo page">
+                <div class="andes-left">
+                  <div class="andes-title">Mindo</div>
+                  <div class="andes-sub">Cloud forest, birding, waterfalls, relaxed nature days.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/andes/otavalo/" aria-label="Open Otavalo page">
+                <div class="andes-left">
+                  <div class="andes-title">Otavalo</div>
+                  <div class="andes-sub">Markets, textiles, lakes, northern highland culture.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/andes/cotopaxi/" aria-label="Open Cotopaxi page">
+                <div class="andes-left">
+                  <div class="andes-title">Cotopaxi</div>
+                  <div class="andes-sub">Volcano scenery, hikes, and páramo landscapes.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/andes/banos/" aria-label="Open Baños page">
+                <div class="andes-left">
+                  <div class="andes-title">Baños</div>
+                  <div class="andes-sub">Waterfalls, viewpoints, and soft adventure energy.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/andes/cuenca/" aria-label="Open Cuenca page">
+                <div class="andes-left">
+                  <div class="andes-title">Cuenca</div>
+                  <div class="andes-sub">Colonial charm, riverside walks, and local craft culture.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/andes/papallacta/" aria-label="Open Papallacta page">
+                <div class="andes-left">
+                  <div class="andes-title">Papallacta</div>
+                  <div class="andes-sub">Hot springs, páramo views, and relaxing mountain air.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/regions/andes/choco-andino/" aria-label="Open Chocó Andino page">
+                <div class="andes-left">
+                  <div class="andes-title">Chocó Andino</div>
+                  <div class="andes-sub">Biodiversity, cloud forest landscapes, and nature routes.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+            </div>
+          </div>
+        </aside>
       </section>
-
-      <!-- Bottom Carousel (MATCH NATURE IDs + SCRIPT) -->
-      <section class="carousel" aria-label="Adventure gallery carousel">
-        <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
-          <span aria-hidden="true"></span>
-        </button>
-        <button class="carousel-btn next" type="button" aria-label="Next slide" id="ee_car_next">
-          <span aria-hidden="true"></span>
-        </button>
-
-        <div class="carousel-viewport" id="ee_car_viewport" aria-label="Carousel viewport" tabindex="0">
-          <div class="carousel-track" id="ee_car_track" aria-label="Carousel track">
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-1.jpg" alt="Adventure gallery image 1">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-2.jpg" alt="Adventure gallery image 2">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-3.jpg" alt="Adventure gallery image 3">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-4.jpg" alt="Adventure gallery image 4">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-5.jpg" alt="Adventure gallery image 5">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-6.jpg" alt="Adventure gallery image 6">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-7.jpg" alt="Adventure gallery image 7">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-8.jpg" alt="Adventure gallery image 8">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-9.jpg" alt="Adventure gallery image 9">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-10.jpg" alt="Adventure gallery image 10">
-            </div>
-          </div>
-        </div>
-
-        <div class="carousel-ui">
-          <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
-          <div class="carousel-counter" id="ee_car_counter">1 / 10</div>
-        </div>
-      </section>
-
     </div>
   </main>
 
   <div id="siteFooter"></div>
+
+  <script>
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+
+    /* Quito weather: date + (max/min/rain) + 7-day forecast */
+    (function(){
+      const dateEl = document.getElementById("quitoWxDate");
+      const linesEl = document.getElementById("quitoWxLines");
+      const grid7 = document.getElementById("quitoWx7");
+      if(!dateEl || !linesEl || !grid7) return;
+
+      const PLACE = { name:"Quito", lat:-0.1807, lon:-78.4678 };
+
+      const CACHE_KEY = "ee_quito_weather_v3";
+      const CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes
+
+      function cToF(c){ return (c * 9/5) + 32; }
+      function fmtTemp(c){
+        const cc = Math.round(c * 10) / 10;
+        const ff = Math.round(cToF(cc) * 10) / 10;
+        return `${cc}°C / ${ff}°F`;
+      }
+
+      function fmtDow(dateStr){
+        const d = new Date(dateStr + "T00:00:00");
+        return d.toLocaleDateString(undefined, { weekday:"short" });
+      }
+
+      function fmtMd(dateStr){
+        const d = new Date(dateStr + "T00:00:00");
+        return d.toLocaleDateString(undefined, { month:"short", day:"numeric" });
+      }
+
+      function fmtMMDDYYYY(dateStr){
+        const d = new Date(dateStr + "T00:00:00");
+        const mm = String(d.getMonth() + 1).padStart(2, "0");
+        const dd = String(d.getDate()).padStart(2, "0");
+        const yy = d.getFullYear();
+        return `${mm}/${dd}/${yy}`;
+      }
+
+      function readCache(){
+        try{
+          const raw = localStorage.getItem(CACHE_KEY);
+          if(!raw) return null;
+          const obj = JSON.parse(raw);
+          if(!obj || !obj.ts || !obj.data) return null;
+          if(Date.now() - obj.ts > CACHE_TTL_MS) return null;
+          return obj.data;
+        }catch(_){ return null; }
+      }
+
+      function writeCache(data){
+        try{ localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); }catch(_){}
+      }
+
+      function render(d){
+        const daily = d && d.daily ? d.daily : null;
+
+        const t0 = daily && Array.isArray(daily.time) ? daily.time[0] : null;
+        const todayMax = daily && daily.temperature_2m_max && typeof daily.temperature_2m_max[0] === "number" ? daily.temperature_2m_max[0] : null;
+        const todayMin = daily && daily.temperature_2m_min && typeof daily.temperature_2m_min[0] === "number" ? daily.temperature_2m_min[0] : null;
+        const todayRain = daily && daily.precipitation_sum && typeof daily.precipitation_sum[0] === "number" ? daily.precipitation_sum[0] : null;
+
+        dateEl.textContent = t0 ? fmtMMDDYYYY(t0) : "--/--/----";
+
+        const lines = [];
+        if(todayMax !== null) lines.push(`Max: ${fmtTemp(todayMax)}`);
+        if(todayMin !== null) lines.push(`Min: ${fmtTemp(todayMin)}`);
+        if(todayRain !== null) lines.push(`Rain: ${Math.round(todayRain * 10)/10} mm`);
+        linesEl.innerHTML = lines.length ? lines.join("<br>") : "Weather data unavailable right now.";
+
+        const times = daily && Array.isArray(daily.time) ? daily.time : [];
+        const maxArr = daily && Array.isArray(daily.temperature_2m_max) ? daily.temperature_2m_max : [];
+        const minArr = daily && Array.isArray(daily.temperature_2m_min) ? daily.temperature_2m_min : [];
+        const rainArr = daily && Array.isArray(daily.precipitation_sum) ? daily.precipitation_sum : [];
+
+        const days = [];
+        for(let i=0; i<7; i++){
+          if(!times[i]) break;
+          days.push({
+            time: times[i],
+            max: typeof maxArr[i] === "number" ? maxArr[i] : null,
+            min: typeof minArr[i] === "number" ? minArr[i] : null,
+            rain: typeof rainArr[i] === "number" ? rainArr[i] : null
+          });
+        }
+
+        grid7.innerHTML = days.map((day) => {
+          const hi = day.max !== null ? fmtTemp(day.max) : "--";
+          const lo = day.min !== null ? fmtTemp(day.min) : "--";
+          const rain = day.rain !== null ? (Math.round(day.rain * 10)/10 + " mm") : "--";
+          return `
+            <div class="wx-day" aria-label="Forecast ${day.time}">
+              <div class="wx-top">
+                <div class="wx-dow">${fmtDow(day.time)}</div>
+                <div class="wx-mmdd">${fmtMd(day.time)}</div>
+              </div>
+              <div class="wx-hi">${hi}</div>
+              <div class="wx-lo">${lo}</div>
+              <div class="wx-rain">☔ ${rain}</div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      async function load(){
+        const cached = readCache();
+        if(cached){
+          render(cached);
+          return;
+        }
+
+        try{
+          const url = `/api/weather?lat=${encodeURIComponent(PLACE.lat)}&lon=${encodeURIComponent(PLACE.lon)}`;
+          const res = await fetch(url, { headers: { "accept": "application/json" } });
+          const json = await res.json();
+          const d = json && json.data ? json.data : null;
+
+          if(!d || d.error){
+            linesEl.textContent = "Weather unavailable right now.";
+            return;
+          }
+
+          writeCache(d);
+          render(d);
+        }catch(_){
+          linesEl.textContent = "Weather unavailable right now.";
+        }
+      }
+
+      load();
+    })();
+
+    /* Quito carousel */
+    (function(){
+      const root = document.getElementById("quitoCarousel");
+      if(!root) return;
+
+      const track = root.querySelector(".carousel-track");
+      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+      const prevBtn = root.querySelector(".carousel-btn.prev");
+      const nextBtn = root.querySelector(".carousel-btn.next");
+      const dotsWrap = root.querySelector(".carousel-dots");
+      const counter = root.querySelector("#quitoCarouselCounter");
+
+      let index = 0;
+
+      const AUTOPLAY_MS = 5000;
+      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      let autoplayTimer = null;
+      let autoplayEnabled = !prefersReducedMotion;
+
+      function setIndex(next){
+        index = (next + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        updateDots();
+        updateCounter();
+      }
+
+      function updateCounter(){
+        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
+      }
+
+      function updateDots(){
+        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
+        dots.forEach((d,i) => d.classList.toggle("active", i === index));
+      }
+
+      function buildDots(){
+        dotsWrap.innerHTML = "";
+        slides.forEach((_, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "dot" + (i === 0 ? " active" : "");
+          b.setAttribute("aria-label", `Go to image ${i + 1}`);
+          b.addEventListener("click", () => {
+            setIndex(i);
+            stopAutoplay();
+          });
+          dotsWrap.appendChild(b);
+        });
+      }
+
+      function next(){ setIndex(index + 1); }
+      function prev(){ setIndex(index - 1); }
+
+      function startAutoplay(){
+        if(!autoplayEnabled) return;
+        stopAutoplay();
+        autoplayTimer = setInterval(next, AUTOPLAY_MS);
+      }
+
+      function stopAutoplay(){
+        if(autoplayTimer){
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
+      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
+
+      root.addEventListener("keydown", (e) => {
+        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
+        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
+      });
+
+      let startX = 0;
+      let isDown = false;
+
+      const viewport = root.querySelector(".carousel-viewport");
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+      });
+
+      viewport.addEventListener("pointerup", (e) => {
+        if(!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        const threshold = 40;
+        if(dx > threshold){ prev(); stopAutoplay(); }
+        if(dx < -threshold){ next(); stopAutoplay(); }
+      });
+
+      viewport.addEventListener("pointercancel", () => { isDown = false; });
+
+      root.addEventListener("mouseenter", stopAutoplay);
+      root.addEventListener("mouseleave", startAutoplay);
+      root.addEventListener("focusin", stopAutoplay);
+      root.addEventListener("focusout", startAutoplay);
+
+      root.tabIndex = 0;
+      buildDots();
+      updateCounter();
+      setIndex(0);
+      startAutoplay();
+    })();
+  </script>
 
   <script src="/assets/js/site.js"></script>
 
@@ -699,311 +1248,6 @@
       }
       inject("siteHeader", "/assets/includes/header.html");
       inject("siteFooter", "/assets/includes/footer.html");
-    })();
-  </script>
-
-  <script>
-    /* ===== Experiences dropdown (auto-navigate) ===== */
-    (function(){
-      const expEl = document.getElementById("ee_exp_nav");
-      if (!expEl) return;
-      expEl.addEventListener("change", function(){
-        const url = this.value;
-        if (url) window.location.href = url;
-      });
-    })();
-
-    /* ===== Adventure Level Selector (3 recommendations) ===== */
-    (function(){
-      const levelEl = document.getElementById("ee_level");
-      const recsEl = document.getElementById("ee_recs");
-      const hintEl = document.getElementById("ee_hint");
-
-      const data = {
-        beginner: {
-          hint: "Beginner = scenic + low commitment. Perfect if you want adventure without feeling “extreme.”",
-          recs: [
-            {
-              title: "Waterfalls + easy cloud forest trails",
-              desc: "Short hikes, viewpoints, and lush jungle scenery — a perfect intro day that still feels like Ecuador.",
-              badges: ["Beginner", "Half day–Full day"],
-              chips: [
-                { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "View Mindo",
-              ctaHref: "/regions/andes/mindo/"
-            },
-            {
-              title: "Hot springs + light canyon walks",
-              desc: "Relaxation meets adventure — warm pools, easy trails, and optional add-ons if you want more.",
-              badges: ["Beginner", "Half day–Full day"],
-              chips: [
-                { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "View Baños",
-              ctaHref: "/regions/andes/banos/"
-            },
-            {
-              title: "First surf lesson + beach adventure day",
-              desc: "A fun, beginner-friendly way to add energy to your itinerary without needing advanced skills.",
-              badges: ["Beginner", "Full day"],
-              chips: [
-                { label: "Best in: Coast", href: "/regions/coast/" }
-              ],
-              ctaLabel: "Explore Coast",
-              ctaHref: "/regions/coast/"
-            }
-          ]
-        },
-
-        intermediate: {
-          hint: "Intermediate = active days. You’ll do more, move more, and still keep the trip balanced.",
-          recs: [
-            {
-              title: "Cotopaxi day hike (refugio + viewpoints)",
-              desc: "One of the best “big day” adventures — high-altitude landscapes without committing to a summit climb.",
-              badges: ["Intermediate", "Full day"],
-              chips: [
-                { label: "Best in: Andes (Cotopaxi)", href: "/regions/andes/cotopaxi/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "View Cotopaxi",
-              ctaHref: "/regions/andes/cotopaxi/"
-            },
-            {
-              title: "Rafting day (class depends on river)",
-              desc: "A classic Ecuador adventure — rivers range from fun + splashy to serious, depending on the route.",
-              badges: ["Intermediate", "Half day–Full day"],
-              chips: [
-                { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "View Baños",
-              ctaHref: "/regions/andes/banos/"
-            },
-            {
-              title: "Canopy zipline + cloud forest combo",
-              desc: "A high-energy day with iconic scenery — zipline circuits paired with trails, waterfalls, and viewpoints.",
-              badges: ["Intermediate", "Full day"],
-              chips: [
-                { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "View Mindo",
-              ctaHref: "/regions/andes/mindo/"
-            }
-          ]
-        },
-
-        advanced: {
-          hint: "Advanced = demanding days. Expect long routes, altitude, and more technical effort.",
-          recs: [
-            {
-              title: "High-altitude ridgelines + long volcanic routes",
-              desc: "Longer hikes at altitude where weather and pacing matter — the Andes is the playground here.",
-              badges: ["Advanced", "Full day"],
-              chips: [
-                { label: "Best in: Andes (Quito area)", href: "/regions/andes/quito/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "View Quito",
-              ctaHref: "/regions/andes/quito/"
-            },
-            {
-              title: "Serious canyoning routes",
-              desc: "Bigger rappels, faster water, and higher intensity lines — best done with experienced guides.",
-              badges: ["Advanced", "Half day–Full day"],
-              chips: [
-                { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "View Baños",
-              ctaHref: "/regions/andes/banos/"
-            },
-            {
-              title: "Remote jungle days (long boat + trekking)",
-              desc: "Multi-hour river travel, humid trails, and longer days — rewarding, but physically demanding.",
-              badges: ["Advanced", "Multi-day"],
-              chips: [
-                { label: "Best in: Amazon", href: "/regions/amazon/" }
-              ],
-              ctaLabel: "Explore Amazon",
-              ctaHref: "/regions/amazon/"
-            }
-          ]
-        },
-
-        thrill: {
-          hint: "Thrill Seeker = bucket-list intensity. These are the “tell everyone about it” days.",
-          recs: [
-            {
-              title: "Cotopaxi summit climb",
-              desc: "A true mountaineering objective — altitude, glacier conditions, and a serious achievement.",
-              badges: ["Thrill Seeker", "Overnight"],
-              chips: [
-                { label: "Best in: Andes (Cotopaxi)", href: "/regions/andes/cotopaxi/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "View Cotopaxi",
-              ctaHref: "/regions/andes/cotopaxi/"
-            },
-            {
-              title: "Galapagos dive trips (iconic marine life)",
-              desc: "World-class diving with big wildlife moments — plan around conditions and permitted sites.",
-              badges: ["Thrill Seeker", "Multi-day"],
-              chips: [
-                { label: "Best in: Galapagos", href: "/regions/galapagos/" }
-              ],
-              ctaLabel: "Explore Galapagos",
-              ctaHref: "/regions/galapagos/"
-            },
-            {
-              title: "High-intensity rafting or extreme canyoning day",
-              desc: "If you want adrenaline on water — choose routes that match your skills and conditions.",
-              badges: ["Thrill Seeker", "Full day"],
-              chips: [
-                { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "View Baños",
-              ctaHref: "/regions/andes/banos/"
-            }
-          ]
-        }
-      };
-
-      function escapeHtml(str){
-        return String(str)
-          .replaceAll("&","&amp;")
-          .replaceAll("<","&lt;")
-          .replaceAll(">","&gt;")
-          .replaceAll('"',"&quot;")
-          .replaceAll("'","&#039;");
-      }
-
-      function render(levelKey){
-        const block = data[levelKey] || data.intermediate;
-        if (hintEl) hintEl.textContent = block.hint || "";
-
-        const html = block.recs.map((r) => {
-          const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
-          const chips = (r.chips || []).map(c => `
-            <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
-          `).join("");
-
-          return `
-            <article class="rec">
-              <div class="meta">${badges}</div>
-              <h4>${escapeHtml(r.title)}</h4>
-              <p>${escapeHtml(r.desc)}</p>
-
-              <div class="chips">${chips}</div>
-
-              <div class="rec-actions">
-                <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
-                <span class="hint">Best-fit starting point</span>
-              </div>
-            </article>
-          `;
-        }).join("");
-
-        recsEl.innerHTML = html;
-      }
-
-      render(levelEl ? levelEl.value : "intermediate");
-
-      if (levelEl) {
-        levelEl.addEventListener("change", function(){
-          render(this.value);
-        });
-      }
-    })();
-
-    /* ===== Carousel (regions-style) - MATCH NATURE ===== */
-    (function(){
-      const track = document.getElementById("ee_car_track");
-      const viewport = document.getElementById("ee_car_viewport");
-      const prevBtn = document.getElementById("ee_car_prev");
-      const nextBtn = document.getElementById("ee_car_next");
-      const dotsWrap = document.getElementById("ee_car_dots");
-      const counter = document.getElementById("ee_car_counter");
-
-      if (!track || !viewport) return;
-
-      const slides = Array.from(track.children);
-      const total = slides.length;
-      let index = 0;
-      let startX = 0;
-      let currentX = 0;
-      let dragging = false;
-
-      function setCounter(){
-        if (!counter) return;
-        counter.textContent = `${index + 1} / ${total}`;
-      }
-
-      function setDots(){
-        if (!dotsWrap) return;
-        dotsWrap.innerHTML = "";
-        for (let i = 0; i < total; i++){
-          const b = document.createElement("button");
-          b.className = "dot" + (i === index ? " active" : "");
-          b.type = "button";
-          b.setAttribute("aria-label", `Go to slide ${i + 1}`);
-          b.addEventListener("click", () => goTo(i));
-          dotsWrap.appendChild(b);
-        }
-      }
-
-      function update(){
-        track.style.transform = `translateX(${-index * 100}%)`;
-        setCounter();
-        setDots();
-      }
-
-      function goTo(i){
-        index = (i + total) % total;
-        update();
-      }
-
-      function next(){ goTo(index + 1); }
-      function prev(){ goTo(index - 1); }
-
-      if (nextBtn) nextBtn.addEventListener("click", next);
-      if (prevBtn) prevBtn.addEventListener("click", prev);
-
-      // Touch swipe
-      viewport.addEventListener("touchstart", (e) => {
-        if (e.touches.length !== 1) return;
-        dragging = true;
-        startX = e.touches[0].clientX;
-        currentX = startX;
-      }, { passive:true });
-
-      viewport.addEventListener("touchmove", (e) => {
-        if (!dragging || e.touches.length !== 1) return;
-        currentX = e.touches[0].clientX;
-      }, { passive:true });
-
-      viewport.addEventListener("touchend", () => {
-        if (!dragging) return;
-        const dx = currentX - startX;
-        dragging = false;
-        if (Math.abs(dx) > 45){
-          if (dx < 0) next();
-          else prev();
-        }
-      });
-
-      // Keyboard (viewport has tabindex="0")
-      viewport.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight") next();
-        if (e.key === "ArrowLeft") prev();
-      });
-
-      update();
     })();
   </script>
 </body>
