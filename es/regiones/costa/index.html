@@ -1,1 +1,852 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Costa | Experience Ecuador</title>
 
+  <!-- Favicons (approved root paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --cloud-white:#F5F7FA;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+      --light-gray:#E3E5E8;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:#f6f8fb;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    img{ user-select:none; -webkit-user-drag:none; }
+
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;
+      width:100%;
+      min-height:64vh;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      background:url("/assets/images/EE-Region-Coast-hero-01.jpg") center / cover no-repeat;
+      color:#fff;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.12),
+        rgba(0,0,0,0.70)
+      );
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:1100px;
+      padding:54px 18px 34px;
+      text-align:left;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.38);
+      border:1px solid rgba(255,255,255,0.22);
+      font-weight:700;
+      letter-spacing:0.02em;
+      font-size:12.5px;
+      margin-bottom:14px;
+      backdrop-filter:blur(10px);
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      font-size:clamp(40px,5.4vw,72px);
+      line-height:1.03;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:70ch;
+      font-size:clamp(15px,2vw,18px);
+      line-height:1.65;
+      color:rgba(255,255,255,0.92);
+    }
+
+    /* ===== PAGE WRAP ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:36px 18px 0;
+    }
+
+    /* ===== SECTION / CARDS ===== */
+    .section{ margin-bottom:26px; }
+
+    .section h2{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:24px;
+      color:var(--brand-blue);
+    }
+
+    .section p{
+      margin:0;
+      color:#2a2f36;
+      font-size:15.8px;
+      line-height:1.75;
+      max-width:82ch;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      align-items:start;
+      margin-top:18px;
+    }
+
+    .grid.center-stack{ align-items:center; }
+
+    .stack-right{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      padding:22px;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      color:#0f2f62;
+    }
+
+    .card ul{
+      margin:0;
+      padding-left:18px;
+      color:#24324a;
+      line-height:1.75;
+      font-size:14.8px;
+    }
+
+    .mini{
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.12);
+      border-radius:20px;
+      padding:20px;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .tag{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.12);
+      color:#0f2f62;
+      font-weight:700;
+      font-size:13px;
+    }
+
+    /* ✅ VIDEO EMBED (matches Andes pattern) */
+    .video-embed{
+      margin-top:16px;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 14px 42px rgba(3,78,162,0.10);
+      background:#000;
+    }
+    .video-embed iframe{
+      width:100%;
+      aspect-ratio:16/9;
+      height:auto;
+      display:block;
+      border:0;
+    }
+
+    /* ===== PLACES GRID (IMAGE HEADER TILES) ===== */
+    .places-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .place-tile{
+      display:block;
+      padding:0;
+      border-radius:18px;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid rgba(3,78,162,0.12);
+      box-shadow:0 14px 42px rgba(3,78,162,0.10);
+      transition:transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .place-tile:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 55px rgba(3,78,162,0.14);
+    }
+
+    .place-img{
+      width:100%;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .place-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .place-body{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      background:linear-gradient(180deg, rgba(3,78,162,0.035), rgba(3,78,162,0.012));
+    }
+
+    .place-title{
+      margin:0;
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+      font-size:15px;
+      line-height:1.2;
+    }
+
+    .place-meta{
+      margin:6px 0 0;
+      color:#1f2b3f;
+      opacity:.9;
+      line-height:1.5;
+      font-size:13.6px;
+      max-width:34ch;
+    }
+
+    .place-arrow{
+      flex:0 0 auto;
+      width:36px;
+      height:36px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.18);
+      background:rgba(255,255,255,0.75);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:2px;
+    }
+
+    .place-arrow span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
+      transform:rotate(-45deg);
+      opacity:.9;
+    }
+
+    /* ===== CAROUSEL (GALLERY) ===== */
+    .carousel{
+      margin-top:18px;
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
+
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
+
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
+    }
+
+    /* ===== CTA ===== */
+    .cta{
+      margin:28px 0 56px;
+      background:var(--brand-blue);
+      color:#fff;
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 22px 60px rgba(3,78,162,0.22);
+    }
+
+    .cta h3{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:20px;
+    }
+
+    .cta p{
+      margin:0;
+      color:rgba(255,255,255,0.92);
+      line-height:1.7;
+      font-size:15.5px;
+      max-width:85ch;
+    }
+
+    /* ===== MOBILE ===== */
+    @media(max-width:900px){
+      .grid{ grid-template-columns:1fr; }
+      .places-grid{ grid-template-columns:1fr; }
+      .hero-inner{ text-align:center; }
+      .hero p{ margin:0 auto; }
+    }
+
+    @media(max-width:480px){
+      .hero{ min-height:60vh; }
+      .cta{ border-radius:20px; }
+      .carousel-btn{ width:40px; height:40px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="siteHeader"></div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-label="Imagen hero de la Costa">
+      <div class="hero-inner">
+        <div class="kicker">Guía de región • En vivo</div>
+        <h1>La Costa</h1>
+        <p>
+          Sol, mar, cultura de mariscos y pueblos costeros relajados.
+          Este hub se está construyendo para ayudarte a descubrir a dónde ir, qué hacer y cómo planear la escapada perfecta a la playa.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <div class="wrap">
+      <section class="section">
+        <h2>Qué hace especial a la Costa</h2>
+        <p>
+          La Costa del Ecuador combina vida de playa con una cultura local vibrante. Algunas zonas son perfectas para desconectarte y descansar,
+          mientras que otras son ideales para surf, vida nocturna y aventuras gastronómicas. Esta guía te ayudará a elegir los lugares correctos
+          según tu estilo de viaje y tus fechas.
+        </p>
+
+        <div class="grid center-stack">
+          <div class="card">
+            <h3>Imperdibles</h3>
+            <ul>
+              <li>Pueblos de playa con vibra distinta, desde tranquila hasta energética</li>
+              <li>Spots de surf, miradores al mar y atardeceres costeros</li>
+              <li>Cultura de mariscos: ceviches, mercados y favoritos locales</li>
+              <li>Excursiones de un día, reservas naturales y paseos por la costa</li>
+            </ul>
+
+            <div class="pill-row" aria-label="Tags de experiencias en la Costa">
+              <span class="tag">Playa</span>
+              <span class="tag">Surf</span>
+              <span class="tag">Comida</span>
+              <span class="tag">Relax</span>
+            </div>
+          </div>
+
+          <div class="stack-right">
+            <div class="mini">
+              <h3>Ideal para</h3>
+              <ul>
+                <li>Escapadas relajadas y días de playa</li>
+                <li>Amantes de la comida y cultura costera</li>
+                <li>Surfistas y exploradores del océano</li>
+                <li>Viajes de fin de semana y rutas tranquilas</li>
+              </ul>
+            </div>
+
+            <div class="mini">
+              <h3>Estilos de viaje que cubriremos</h3>
+              <ul>
+                <li>Playas tranquilas y escapadas wellness</li>
+                <li>Ruta por pueblos surf y días de aventura</li>
+                <li>Planificación costera para familias</li>
+                <li>Opciones lujo, media gama y presupuesto</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UPDATED: COAST DESTINATIONS + ROUTE FEATURE -->
+      <section class="section">
+        <h2>Destinos en la Costa</h2>
+        <p>
+          Empieza por estos lugares y amplía tu ruta a medida que más destinos de la Costa estén en vivo.
+          Cada página incluirá notas de planificación, un carrusel de galería y una tarjeta de clima unificada.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Lugares destacados</h3>
+
+            <div class="places-grid" aria-label="Tarjetas de destinos de la Costa">
+              <!-- 1) Guayaquil -->
+              <a class="place-tile" href="/es/regiones/costa/guayaquil/" aria-label="Abrir página de Guayaquil">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-Guayaquil.jpg" alt="Guayaquil">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Guayaquil</div>
+                    <div class="place-meta">Centro urbano y puerta de entrada. Ideal para llegada, comida y conexiones.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <!-- 2) Salinas -->
+              <a class="place-tile" href="/es/regiones/costa/salinas/" aria-label="Abrir página de Salinas">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-Salinas.jpg" alt="Salinas">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Salinas</div>
+                    <div class="place-meta">Ciudad de playa clásica con malecón, atardeceres y rutas fáciles por la península.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <!-- 3) Montañita -->
+              <a class="place-tile" href="/es/regiones/costa/montanita/" aria-label="Abrir página de Montañita">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-Montanita.jpg" alt="Montañita">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Montañita</div>
+                    <div class="place-meta">Energía surf, atardeceres de playa y un ambiente animado para escapadas rápidas.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <!-- 4) Puerto López -->
+              <a class="place-tile" href="/es/regiones/costa/puerto-lopez/" aria-label="Abrir página de Puerto López">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-PuertoLopez.jpg" alt="Puerto López">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Puerto López</div>
+                    <div class="place-meta">Base costera relajada para naturaleza, días en barco y acceso a Isla de la Plata.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Below the 4 locations: La Ruta del Sol -->
+            <div class="pill-row" style="margin-top:16px;" aria-label="Feature de ruta costera">
+              <span class="tag">Road trip</span>
+              <span class="tag">Playas</span>
+              <span class="tag">Atardeceres</span>
+            </div>
+
+            <div style="margin-top:14px;">
+              <a class="place-tile" href="/es/regiones/costa/la-ruta-del-sol/" aria-label="Abrir página de La Ruta del Sol">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Logo-Assets-35-LaRutadelSol.jpg" alt="La Ruta del Sol">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">La Ruta del Sol</div>
+                    <div class="place-meta">El road trip costero icónico del Ecuador. Playas, paradas de mariscos y drives dorados.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Cómo usar este hub</h3>
+            <ul>
+              <li>Primero elige una base: ciudad principal o pueblo de playa</li>
+              <li>Agrega 1–2 excursiones para mantener el itinerario simple</li>
+              <li>Planifica según condiciones del mar y temporada</li>
+              <li>Mantén traslados realistas: la Costa se disfruta lento</li>
+            </ul>
+
+            <!-- ✅ YouTube embed section under "How to use this hub" -->
+            <div class="video-embed" aria-label="Video de la Costa">
+              <iframe
+                src="https://www.youtube.com/embed/v7Mp2QC_AsQ"
+                title="Ecuador: Ruta del Sol (varias playas)"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Qué viene después en esta página</h2>
+        <p>
+          Este hub de la Costa evolucionará hacia una guía completa con perfiles de pueblos, listas de experiencias, tips de planificación
+          y highlights que hagan fácil armar un viaje.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Secciones planificadas</h3>
+            <ul>
+              <li>Top pueblos costeros y para qué es mejor cada uno</li>
+              <li>Mejores playas, miradores y excursiones</li>
+              <li>Mapa gastronómico: platos imperdibles y recomendaciones locales</li>
+              <li>Duraciones sugeridas e itinerarios</li>
+              <li>Temporada, costos y checklist de planificación</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Mentalidad rápida de planificación</h3>
+            <ul>
+              <li>Elige tu vibra primero: chill, surf, comida o noche</li>
+              <li>Combina una base con excursiones cortas</li>
+              <li>Planifica según clima y condiciones del mar</li>
+              <li>Incluye downtime: la Costa se disfruta lento</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Galería y destacados</h2>
+
+        <!-- CAROUSEL -->
+        <div id="coastCarousel" class="carousel" aria-label="Galería de imágenes de la Costa">
+          <button class="carousel-btn prev" type="button" aria-label="Imagen anterior">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-1.jpg" alt="Costa destacado 1"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-2.jpg" alt="Costa destacado 2"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-3.jpg" alt="Costa destacado 3"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-4.jpg" alt="Costa destacado 4"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-5.jpg" alt="Costa destacado 5"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-6.jpg" alt="Costa destacado 6"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-7.jpg" alt="Costa destacado 7"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-8.jpg" alt="Costa destacado 8"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-9.jpg" alt="Costa destacado 9"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-10.jpg" alt="Costa destacado 10"></div>
+            </div>
+          </div>
+
+          <button class="carousel-btn next" type="button" aria-label="Siguiente imagen">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-ui">
+            <div class="carousel-dots" aria-label="Paginación del carrusel"></div>
+            <div class="carousel-counter" id="coastCarouselCounter">1 / 10</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" aria-label="CTA futura del boletín">
+        <h3>Pronto: actualizaciones curadas de la Costa</h3>
+        <p>
+          Este hub crecerá hacia guías curadas y un formato tipo newsletter donde viajeros descubran experiencias y partners de confianza.
+          Próximo paso: highlights estructurados por pueblo y categorías de experiencia, luego un carrusel reutilizable.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script src="/assets/js/site.js"></script>
+
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
+
+  <script>
+    /* Coast carousel */
+    (function(){
+      const root = document.getElementById("coastCarousel");
+      if(!root) return;
+
+      const track = root.querySelector(".carousel-track");
+      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+      const prevBtn = root.querySelector(".carousel-btn.prev");
+      const nextBtn = root.querySelector(".carousel-btn.next");
+      const dotsWrap = root.querySelector(".carousel-dots");
+      const counter = root.querySelector("#coastCarouselCounter");
+
+      let index = 0;
+
+      const AUTOPLAY_MS = 5000;
+      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      let autoplayTimer = null;
+      let autoplayEnabled = !prefersReducedMotion;
+
+      function setIndex(next){
+        index = (next + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        updateDots();
+        updateCounter();
+      }
+
+      function updateCounter(){
+        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
+      }
+
+      function updateDots(){
+        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
+        dots.forEach((d,i) => d.classList.toggle("active", i === index));
+      }
+
+      function buildDots(){
+        dotsWrap.innerHTML = "";
+        slides.forEach((_, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "dot" + (i === 0 ? " active" : "");
+          b.setAttribute("aria-label", `Ir a la imagen ${i + 1}`);
+          b.addEventListener("click", () => {
+            setIndex(i);
+            stopAutoplay();
+          });
+          dotsWrap.appendChild(b);
+        });
+      }
+
+      function next(){ setIndex(index + 1); }
+      function prev(){ setIndex(index - 1); }
+
+      function startAutoplay(){
+        if(!autoplayEnabled) return;
+        stopAutoplay();
+        autoplayTimer = setInterval(next, AUTOPLAY_MS);
+      }
+
+      function stopAutoplay(){
+        if(autoplayTimer){
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
+      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
+
+      root.addEventListener("keydown", (e) => {
+        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
+        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
+      });
+
+      let startX = 0;
+      let isDown = false;
+
+      const viewport = root.querySelector(".carousel-viewport");
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+      });
+
+      viewport.addEventListener("pointerup", (e) => {
+        if(!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        const threshold = 40;
+        if(dx > threshold){ prev(); stopAutoplay(); }
+        if(dx < -threshold){ next(); stopAutoplay(); }
+      });
+
+      viewport.addEventListener("pointercancel", () => { isDown = false; });
+
+      root.addEventListener("mouseenter", stopAutoplay);
+      root.addEventListener("mouseleave", startAutoplay);
+      root.addEventListener("focusin", stopAutoplay);
+      root.addEventListener("focusout", startAutoplay);
+
+      root.tabIndex = 0;
+      buildDots();
+      updateCounter();
+      setIndex(0);
+      startAutoplay();
+    })();
+
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+  </script>
+</body>
+</html>
