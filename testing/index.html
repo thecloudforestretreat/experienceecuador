@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Planificador de viajes | Experience Ecuador</title>
+  <title>Contacto | Experience Ecuador</title>
 
-  <!-- Favicons -->
+  <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
 
-  <!-- Global header/footer CSS -->
+  <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
 
@@ -24,517 +24,236 @@
   <style>
     :root{
       --brand-blue:#034EA2;
-      --charcoal:#1F1F1F;
       --slate:#6E7B8B;
-      --soft:#f6f8fb;
+      --text:#1F1F1F;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--charcoal);
-      background:var(--soft);
+      background:#f6f8fb;
+      color:var(--text);
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
-    /* ===== HERO ===== */
-    .hero{
-      position:relative;
-      max-width:1100px;
-      margin:0 auto;
-      padding:22px 18px 12px;
-    }
-
-    .hero-banner{
-      position:relative;
-      border-radius:24px;
-      overflow:hidden;
-      box-shadow:0 22px 60px rgba(0,0,0,0.18);
-      min-height:320px;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)),
-        url("/assets/images/EE-Assets-55-Hero-Trip-builder.jpg") center/cover no-repeat;
-    }
-
-    .hero-content{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:flex-end;
-      padding:22px;
-    }
-
-    .hero-title{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:clamp(34px,4.6vw,54px);
-      letter-spacing:-0.03em;
-      color:#fff;
-      margin:0;
-      line-height:1.05;
-      text-shadow:0 10px 30px rgba(0,0,0,0.35);
-    }
-
-    /* ===== WRAP ===== */
+    /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:0 18px 60px;
+      padding:40px 18px;
+    }
+
+    h1{
+      font-family:Montserrat,Inter,sans-serif;
+      font-size:clamp(34px,4vw,54px);
+      color:var(--brand-blue);
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
+    }
+
+    p{
+      color:var(--slate);
+      line-height:1.65;
+      max-width:75ch;
+      margin:0;
+      font-size:16.8px;
+    }
+
+    .lede{
+      margin-top:0;
+      max-width:80ch;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      margin-top:22px;
+      align-items:start;
     }
 
     .card{
       background:#fff;
-      border-radius:22px;
       padding:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
-      min-width:0;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
     }
 
-    .card h2{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:22px;
-      margin:0 0 10px;
-      color:var(--brand-blue);
-      letter-spacing:-0.02em;
-    }
+    .card p{margin:0 0 14px}
 
-    .card p{
-      margin:0;
-      line-height:1.75;
-      font-size:15.8px;
-      color:#2a2f36;
-      max-width:90ch;
-    }
-
-    .section-title{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:24px;
-      margin:0 0 14px;
-      color:var(--brand-blue);
-      letter-spacing:-0.02em;
-    }
-
-    /* ===== BUILDER + FLIGHTS LAYOUT (DESKTOP) ===== */
-    .builder-layout{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: 3fr 1fr;
-      gap:14px;
-      align-items:stretch;
-    }
-
-    .builder-card,
-    .flights-card{
-      height:100%;
-      display:flex;
-      flex-direction:column;
-      min-width:0;
-    }
-
-    /* ===== BUILDER CARD ===== */
-    .builder-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-    }
-
-    .controls-grid{
-      display:grid;
-      grid-template-columns:auto 260px;
-      gap:10px 12px;
-      align-items:center;
-    }
-
-    .controls-grid label{
-      font-weight:800;
-      color:#0f2f62;
-      font-size:13px;
-      letter-spacing:0.02em;
-      text-align:left;
-    }
-
-    .controls-grid select{
-      appearance:none;
-      -webkit-appearance:none;
-      -moz-appearance:none;
-      border:1px solid rgba(3,78,162,0.22);
-      background:#fff;
-      color:#0f2f62;
-      font-weight:700;
-      padding:11px 42px 11px 12px;
-      border-radius:14px;
-      font-size:14px;
-      cursor:pointer;
-      outline:none;
-      min-width:0;
-      width:260px;
-      box-shadow:0 14px 30px rgba(3,78,162,0.10);
-      background-image:
-        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
-        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
-        linear-gradient(to right, transparent, transparent);
-      background-position:
-        calc(100% - 18px) 50%,
-        calc(100% - 12px) 50%,
-        0 0;
-      background-size:6px 6px, 6px 6px, 100% 100%;
-      background-repeat:no-repeat;
-    }
-
-    .controls-grid select:focus{
-      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
-      border-color:rgba(3,78,162,0.45);
-    }
-
-    .pill-row{
-      margin-top:14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .pill{
-      border:1px solid rgba(3,78,162,0.16);
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      color:#0f2f62;
-      padding:10px 12px;
-      border-radius:999px;
-      font-weight:800;
-      font-size:13px;
-      cursor:pointer;
-      user-select:none;
-      max-width:100%;
-    }
-
-    .pill[aria-pressed="true"]{
-      background:rgba(3,78,162,0.12);
-      border-color:rgba(3,78,162,0.28);
-      box-shadow:0 12px 26px rgba(3,78,162,0.10);
-    }
-
-    .pill-row.experiences-grid{
-      display:grid;
-      grid-template-columns:repeat(3, max-content);
-      gap:10px 12px;
-      align-items:start;
-      justify-content:start;
-    }
-
-    .region-hint{
-      margin-top:10px;
-      color:#24324a;
-      opacity:.95;
-      font-size:14.6px;
-      line-height:1.55;
-      white-space:normal;
-      overflow-wrap:anywhere;
-      word-break:break-word;
-      max-width:100%;
-    }
-
-    .regions-tip{
-      margin-top:8px;
-      color:#24324a;
-      opacity:.95;
-      font-size:13.2px;
-      line-height:1.45;
-      max-width:90ch;
-    }
-
-    .actions{
-      margin-top:18px;
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      border:1px solid rgba(3,78,162,0.22);
-      background:#fff;
-      color:#0f2f62;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      font-weight:900;
-      padding:12px 14px;
+    .info-item{
+      margin-top:16px;
+      padding:16px;
       border-radius:16px;
-      cursor:pointer;
-      box-shadow:0 14px 30px rgba(3,78,162,0.10);
-      letter-spacing:-0.01em;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
     }
 
-    .btn.primary{
-      background:var(--brand-blue);
-      color:#fff;
-      border-color:rgba(3,78,162,0.35);
-    }
-
-    .btn:disabled{
-      opacity:.6;
-      cursor:not-allowed;
-    }
-
-    /* ===== FLIGHTS BOX ===== */
-    .mini-title{
-      font-family:Montserrat,Inter,sans-serif;
+    .label{
       font-weight:800;
-      font-size:24px;
-      margin:0 0 12px;
-      color:var(--brand-blue);
-      letter-spacing:-0.02em;
-      text-transform:none;
-    }
-
-    .mini-grid{
-      display:grid;
-      grid-template-columns:auto 1fr;
-      gap:10px 10px;
-      align-items:center;
-      width:100%;
-      max-width:100%;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-
-    .mini-grid > *{ min-width:0; }
-
-    .mini-grid label{
-      font-weight:800;
-      color:#0f2f62;
       font-size:13px;
-      letter-spacing:0.02em;
-      white-space:nowrap;
-      text-align:left;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-
-    .mini-grid input,
-    .mini-grid select{
-      display:block;
-      width:100%;
-      max-width:100%;
-      min-width:0;
-      border:1px solid rgba(3,78,162,0.22);
-      background:#fff;
+      margin-bottom:6px;
       color:#0f2f62;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      font-weight:700;
-      padding:10px 12px;
-      border-radius:14px;
-      font-size:14px;
-      outline:none;
-      box-shadow:0 14px 30px rgba(3,78,162,0.10);
-      height:44px;
-      line-height:22px;
+      letter-spacing:.01em;
     }
 
-    .mini-grid input[type="date"]{
-      -webkit-appearance:none;
-      appearance:none;
-      width:100%;
-      max-width:100%;
-      min-width:0;
-      height:44px;
-    }
-
-    .mini-grid input:focus,
-    .mini-grid select:focus{
-      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
-      border-color:rgba(3,78,162,0.45);
-    }
-
-    .mini-actions{
-      margin-top:12px;
+    .value{
       display:flex;
+      align-items:center;
       gap:10px;
       flex-wrap:wrap;
-      justify-content:flex-end;
     }
 
-    .mini-hint{
-      margin-top:12px;
-      color:#24324a;
-      opacity:.95;
-      font-size:13.6px;
-      line-height:1.45;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-
-    .mini-link{
-      color:#0f2f62;
-      font-weight:900;
+    .value a{
       text-decoration:underline;
       text-underline-offset:3px;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-size:15px;
+      font-weight:600;
+      color:#162b55;
     }
 
-    /* ===== ITINERARY OUTPUT ===== */
-    .itinerary{
-      margin-top:16px;
-    }
-
-    .itinerary-shell{
-      margin-top:12px;
+    /* Copy icon button */
+    .copy-icon-btn{
+      width:36px;
+      height:36px;
+      border-radius:12px;
+      border:1px solid rgba(3,78,162,.22);
       background:#fff;
-      border-radius:22px;
-      padding:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
-      min-height:140px;
-      min-width:0;
-    }
-
-    .itinerary-shell .hint{ margin-top:0; }
-
-    .day-card{
-      border-radius:18px;
-      border:1px solid rgba(0,0,0,0.06);
-      background:#fff;
-      padding:16px;
-      box-shadow:0 14px 34px rgba(3,78,162,0.10);
-    }
-    .day-card + .day-card{ margin-top:12px; }
-
-    .day-title{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      margin:0 0 8px;
-      color:#0f2f62;
-      letter-spacing:-0.02em;
-      font-size:18px;
-      display:flex;
+      display:inline-flex;
       align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
+      justify-content:center;
+      cursor:pointer;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+      flex:0 0 auto;
+    }
+    .copy-icon-btn:hover{ background:rgba(3,78,162,.06); }
+    .copy-icon-btn:active{ transform:scale(0.98); }
+    .copy-icon-btn.copied{
+      background:rgba(3,78,162,.10);
+      border-color:rgba(3,78,162,.35);
     }
 
-    .tag{
-      font-size:12px;
-      font-weight:900;
-      color:#0f2f62;
-      background:rgba(3,78,162,0.10);
-      border:1px solid rgba(3,78,162,0.18);
-      padding:6px 10px;
+    .copy-ico{
+      width:18px;
+      height:18px;
+      fill:none;
+      stroke:#0f2f62;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .copy-toast{
+      display:none;
+      margin-top:10px;
+      width:fit-content;
+      padding:8px 12px;
       border-radius:999px;
-      white-space:nowrap;
-    }
-
-    .slot{
-      margin-top:10px;
-      padding:12px;
-      border-radius:14px;
-      background:linear-gradient(180deg, rgba(3,78,162,0.05), rgba(3,78,162,0.02));
-      border:1px solid rgba(3,78,162,0.12);
-    }
-
-    .slot h4{
-      margin:0 0 6px;
-      font-weight:900;
+      background:rgba(3,78,162,.08);
+      border:1px solid rgba(3,78,162,.18);
       color:#0f2f62;
+      font-weight:800;
       font-size:13px;
-      letter-spacing:0.02em;
-      text-transform:uppercase;
+    }
+    .copy-toast.show{ display:inline-flex; }
+
+    .partners-lines{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      color:#162b55;
+      font-weight:600;
+      line-height:1.5;
+      font-size:14.7px;
     }
 
-    .slot .title{
-      font-weight:900;
-      color:#0f2f62;
-      margin:0 0 4px;
-    }
-
-    .slot .meta{
-      color:#24324a;
-      opacity:.95;
-      font-size:14px;
-      line-height:1.55;
-      margin:0;
-    }
-
-    .hint{
-      margin-top:10px;
-      color:#24324a;
-      opacity:.95;
-      font-size:14.6px;
+    .partners-lines .muted{
+      color:var(--slate);
+      font-weight:600;
+      font-size:13.8px;
       line-height:1.6;
     }
 
-    /* ===== MOBILE: stack layout + reorder sections via markup (itinerary above flights) ===== */
-    @media(max-width:900px){
-      .hero-banner{min-height:290px}
-
-      .builder-layout{
-        grid-template-columns:1fr;
-        gap:14px;
-      }
-
-      #flightsDesktop{ display:none !important; }
-
-      #flightsMobile{
-        display:block !important;
-        width:100%;
-        max-width:100%;
-        margin:14px 0 0;
-      }
-
-      .controls-grid{ grid-template-columns:1fr; }
-      .controls-grid select{ width:100%; }
-
-      .mini-grid{ grid-template-columns:1fr; }
-      .mini-actions{ justify-content:flex-start; }
-
-      .itinerary-shell{
-        padding:18px;
-        min-height:130px;
-      }
-
-      .pill-row.experiences-grid{
-        grid-template-columns:repeat(2, 1fr);
-      }
-      .pill-row.experiences-grid .pill{
-        width:100%;
-        text-align:center;
-      }
-
-      /* Regions pills: full width across, 4 columns, aligned with Experiences container */
-      #regionsPills{
-        display:grid;
-        grid-template-columns:repeat(4, 1fr);
-        gap:10px;
-        margin-top:14px;
-      }
-      #regionsPills .pill{
-        width:100%;
-        text-align:center;
-        white-space:nowrap;
-      }
+    .side-stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
     }
 
-    @media(min-width:901px){
-      .flights-card .mini-actions{
-        justify-content:center;
-      }
+    .mini{
+      background:#fff;
+      padding:20px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
     }
 
-    @media(max-width:620px){
-      .hero-content{padding:16px}
+    .mini h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
 
-      .pill-row.experiences-grid{ grid-template-columns:1fr; }
+    .mini p{
+      margin:0;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:14.8px;
+    }
 
-      /* Keep regions in one row on small screens too */
-      #regionsPills{
-        grid-template-columns:repeat(4, 1fr);
-        gap:8px;
-      }
-      #regionsPills .pill{
-        padding:10px 8px;
-        font-size:12.5px;
-      }
+    .link-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .pill-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      font-weight:800;
+      color:#0f2f62;
+    }
+
+    .pill-link:hover{ background:rgba(3,78,162,.08); }
+
+    .pill-link span{
+      opacity:.9;
+      font-weight:700;
+      color:#162b55;
+      font-size:13px;
+    }
+
+    .side-image{
+      border-radius:22px;
+      overflow:hidden;
+      background:transparent;
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:0 18px 60px rgba(0,0,0,.14);
+    }
+
+    .side-image img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* ===== MOBILE ===== */
+    @media(max-width:980px){
+      .content-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -543,789 +262,131 @@
   <div id="siteHeader"></div>
 
   <main>
-    <section class="hero" aria-label="Hero del planificador de viajes">
-      <div class="hero-banner" role="img" aria-label="Imagen del hero del planificador de viajes">
-        <div class="hero-content">
-          <div>
-            <h1 class="hero-title">Planificador de viajes</h1>
-          </div>
-        </div>
-      </div>
-    </section>
+    <main class="wrap">
+      <h1>Contacto</h1>
+      <p class="lede">
+        ¿Quieres colaborar, destacar una experiencia o formar parte de nuestro boletín y guías regionales?
+        Comparte una nota breve y la enviaremos al lugar correcto.
+      </p>
 
-    <div class="wrap">
-      <section class="builder-layout" aria-label="Planificador de viaje y vuelos">
-        <section class="card builder-card" aria-label="Asistente del planificador">
-          <h2 style="margin-bottom:10px;">Crea un itinerario personalizado por Ecuador</h2>
+      <section class="content-grid" aria-label="Contenido de contacto">
+        <div class="card">
           <p>
-            Elige la duración del viaje, regiones y experiencias. Luego genera un itinerario sugerido que puedes ajustar.
-            Esta versión funciona por reglas y corre completamente en tu navegador.
+            Experience Ecuador es un hub de viajes curado para que planificar se sienta simple, claro e inspirador.
+            Si representas un lodge, restaurante, operador turístico, retiro, guía o negocio local, nos encantaría escucharte.
           </p>
 
-          <div class="builder-top" style="margin-top:14px;">
-            <div class="controls-grid" aria-label="Controles del planificador">
-              <label for="daysSelect">Número de días</label>
-              <select id="daysSelect"></select>
+          <div class="info-item">
+            <div class="label">Intereses de colaboración</div>
+            <div class="partners-lines" aria-label="Lista de intereses de colaboración">
+              <div><strong>Alojamiento</strong> • hoteles boutique, eco-lodges, haciendas, retiros</div>
+              <div><strong>Experiencias</strong> • tours, excursiones, guías, operadores de aventura</div>
+              <div><strong>Gastronomía</strong> • restaurantes, experiencias culinarias, café y cacao</div>
+              <div class="muted">
+                Incluye tu ubicación, sitio web y el mejor contacto. Si tienes fotos o un media kit, agrega un enlace.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="side-stack" aria-label="Contenido lateral de contacto">
+          <!-- KEEP EMAIL ONLY ON RIGHT SIDE ABOVE IMAGE -->
+          <div class="mini">
+            <h3>Escríbenos</h3>
+            <p>
+              Envía aquí consultas de alianzas, features y colaboraciones.
+            </p>
+
+            <div class="link-list" aria-label="Email">
+              <div class="value" style="margin-top:10px;">
+                <a class="email-link" href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
+                <button class="copy-icon-btn" id="copyContactEmail" type="button" aria-label="Copiar email">
+                  <svg class="copy-ico" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V9z"></path>
+                    <path d="M7 15H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="copy-toast" id="contactCopyToast" role="status" aria-live="polite">Copiado</div>
             </div>
           </div>
 
-          <div style="margin-top:16px;">
-            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Elige regiones</div>
+          <div class="mini">
+            <h3>Páginas relacionadas</h3>
+            <p>
+              Enlaces útiles para políticas y detalles del sitio.
+            </p>
 
-            <div class="regions-tip">
-              Consejo: si seleccionas varias regiones, la herramienta dividirá los días automáticamente y sugerirá un ritmo más ligero para traslados.
+            <div class="link-list" aria-label="Páginas relacionadas">
+              <a class="pill-link" href="/es/faq/">
+                FAQ <span>Preguntas comunes</span>
+              </a>
+              <a class="pill-link" href="/es/politica-de-privacidad/">
+                Política de privacidad <span>Cómo manejamos los datos</span>
+              </a>
+              <a class="pill-link" href="/es/terminos/">
+                Términos y condiciones <span>Términos generales</span>
+              </a>
+              <a class="pill-link" href="/es/terminos-de-servicio/">
+                Términos del servicio <span>Reglas del servicio</span>
+              </a>
             </div>
-
-            <div class="pill-row" id="regionsPills" aria-label="Selección de regiones"></div>
-            <div class="region-hint" id="regionHint"></div>
           </div>
 
-          <div style="margin-top:18px;">
-            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Elige experiencias</div>
-            <div class="pill-row experiences-grid" id="experiencesPills" aria-label="Selección de experiencias"></div>
-          </div>
-
-          <div class="actions">
-            <button class="btn primary" id="generateBtn" type="button" disabled>Generar itinerario</button>
-            <button class="btn" id="resetBtn" type="button">Reiniciar</button>
-          </div>
-        </section>
-
-        <aside class="card flights-card" id="flightsDesktop" aria-label="Vuelos (escritorio)">
-          <p class="mini-title">Vuelos</p>
-
-          <div class="mini-grid">
-            <label for="flightFromDesktop">Desde</label>
-            <input id="flightFromDesktop" type="text" inputmode="latin" autocomplete="off" placeholder="ej., JFK" maxlength="6">
-
-            <label for="flightToDesktop">Hacia</label>
-            <select id="flightToDesktop" aria-label="Aeropuerto de destino">
-              <option value="UIO">Quito (UIO)</option>
-              <option value="GYE">Guayaquil (GYE)</option>
-              <option value="GPS">Galápagos (GPS)</option>
-              <option value="CUE">Cuenca (CUE)</option>
-            </select>
-
-            <label for="flightDepartDesktop">Salida</label>
-            <input id="flightDepartDesktop" type="date">
-
-            <label for="flightReturnDesktop">Regreso</label>
-            <input id="flightReturnDesktop" type="date">
-          </div>
-
-          <div class="mini-actions">
-            <button class="btn primary" id="flightSearchBtnDesktop" type="button">Buscar vuelos</button>
-          </div>
-
-          <div class="mini-hint">
-            Cuando confirmes vuelos e itinerario, revisa transporte local seguro:
-            <a class="mini-link" href="/es/transporte/">Transporte</a>
+          <div class="side-image" aria-label="Imagen de contacto">
+            <img src="/assets/images/EE-contact-image-02.jpg" alt="Collage de viaje en Ecuador">
           </div>
         </aside>
       </section>
-
-      <section class="itinerary" aria-label="Itinerario generado">
-        <div class="itinerary-shell" aria-label="Contenedor de salida del itinerario">
-          <h2 class="section-title" style="margin:0 0 12px;">Tu itinerario sugerido</h2>
-          <div id="output" class="hint">Selecciona días, regiones y experiencias. Luego haz clic en “Generar itinerario”.</div>
-        </div>
-      </section>
-
-      <aside class="card flights-card" id="flightsMobile" aria-label="Vuelos (móvil)" style="display:none;">
-        <p class="mini-title">Vuelos</p>
-
-        <div class="mini-grid">
-          <label for="flightFromMobile">Desde</label>
-          <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="ej., JFK" maxlength="6">
-
-          <label for="flightToMobile">Hacia</label>
-          <select id="flightToMobile" aria-label="Aeropuerto de destino">
-            <option value="UIO">Quito (UIO)</option>
-            <option value="GYE">Guayaquil (GYE)</option>
-            <option value="GPS">Galápagos (GPS)</option>
-            <option value="CUE">Cuenca (CUE)</option>
-          </select>
-
-          <label for="flightDepartMobile">Salida</label>
-          <input id="flightDepartMobile" type="date">
-
-          <label for="flightReturnMobile">Regreso</label>
-          <input id="flightReturnMobile" type="date">
-        </div>
-
-        <div class="mini-actions">
-          <button class="btn primary" id="flightSearchBtnMobile" type="button">Buscar vuelos</button>
-        </div>
-
-        <div class="mini-hint">
-          Cuando confirmes vuelos e itinerario, revisa transporte local seguro:
-          <a class="mini-link" href="/es/transporte/">Transporte</a>
-        </div>
-      </aside>
-    </div>
+    </main>
   </main>
 
   <div id="siteFooter"></div>
 
   <script>
-    // ===== TRIP BUILDER =====
-    const DATA = { regions: null, experiences: null, blocks: null };
-
-    const state = {
-      days: 5,
-      selectedRegionIds: new Set(),
-      selectedExperienceIds: new Set()
-    };
-
-    const els = {
-      daysSelect: document.getElementById('daysSelect'),
-      regionsPills: document.getElementById('regionsPills'),
-      experiencesPills: document.getElementById('experiencesPills'),
-      generateBtn: document.getElementById('generateBtn'),
-      resetBtn: document.getElementById('resetBtn'),
-      output: document.getElementById('output'),
-      regionHint: document.getElementById('regionHint')
-    };
-
-    const flightEls = {
-      desktop: {
-        from: document.getElementById('flightFromDesktop'),
-        to: document.getElementById('flightToDesktop'),
-        depart: document.getElementById('flightDepartDesktop'),
-        ret: document.getElementById('flightReturnDesktop'),
-        btn: document.getElementById('flightSearchBtnDesktop')
-      },
-      mobile: {
-        from: document.getElementById('flightFromMobile'),
-        to: document.getElementById('flightToMobile'),
-        depart: document.getElementById('flightDepartMobile'),
-        ret: document.getElementById('flightReturnMobile'),
-        btn: document.getElementById('flightSearchBtnMobile')
-      }
-    };
-
-    function syncFlights(fromSet){
-      const d = flightEls.desktop;
-      const m = flightEls.mobile;
-
-      if (!m.from || !m.to || !m.depart || !m.ret) return;
-
-      if (fromSet === "desktop") {
-        m.from.value = d.from.value;
-        m.to.value = d.to.value;
-        m.depart.value = d.depart.value;
-        m.ret.value = d.ret.value;
-        m.to.dataset.userSet = d.to.dataset.userSet || "false";
-      } else {
-        d.from.value = m.from.value;
-        d.to.value = m.to.value;
-        d.depart.value = m.depart.value;
-        d.ret.value = m.ret.value;
-        d.to.dataset.userSet = m.to.dataset.userSet || "false";
-      }
-    }
-
-    function setUserSetAll(val){
-      flightEls.desktop.to.dataset.userSet = val;
-      if (flightEls.mobile.to) flightEls.mobile.to.dataset.userSet = val;
-    }
-
-    flightEls.desktop.to.addEventListener('change', () => setUserSetAll("true"));
-    if (flightEls.mobile.to) flightEls.mobile.to.addEventListener('change', () => setUserSetAll("true"));
-
-    ["input","change"].forEach(evt => {
-      flightEls.desktop.from.addEventListener(evt, () => syncFlights("desktop"));
-      flightEls.desktop.to.addEventListener(evt, () => syncFlights("desktop"));
-      flightEls.desktop.depart.addEventListener(evt, () => syncFlights("desktop"));
-      flightEls.desktop.ret.addEventListener(evt, () => syncFlights("desktop"));
-
-      if (flightEls.mobile.from) flightEls.mobile.from.addEventListener(evt, () => syncFlights("mobile"));
-      if (flightEls.mobile.to) flightEls.mobile.to.addEventListener(evt, () => syncFlights("mobile"));
-      if (flightEls.mobile.depart) flightEls.mobile.depart.addEventListener(evt, () => syncFlights("mobile"));
-      if (flightEls.mobile.ret) flightEls.mobile.ret.addEventListener(evt, () => syncFlights("mobile"));
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
     });
 
-    const DAY_CAPACITY_HOURS = 8;
-    const TIME_ORDER = ["morning","afternoon","evening"];
+    // Copy email icon button (single)
+    (function(){
+      const email = 'info@experienceecuador.com';
+      const btn = document.getElementById('copyContactEmail');
+      const toast = document.getElementById('contactCopyToast');
+      if(!btn) return;
 
-    function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
-    function pickRandom(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
-
-    function normalizePace(dayIndex, totalDays) {
-      if (totalDays >= 7 && (dayIndex + 1) % 3 === 0) return "easy";
-      return "any";
-    }
-
-    function daysPerRegion(totalDays, regionIdsInOrder){
-      const n = regionIdsInOrder.length;
-      if (n === 0) return [];
-      const base = Math.floor(totalDays / n);
-      let extra = totalDays % n;
-
-      return regionIdsInOrder.map((rid, idx) => {
-        const add = extra > 0 ? 1 : 0;
-        if (extra > 0) extra--;
-        return { region_id: rid, days: base + add, order: idx };
-      }).filter(x => x.days > 0);
-    }
-
-    function renderDaysOptions() {
-      els.daysSelect.innerHTML = "";
-      for (let d = 1; d <= 21; d++) {
-        const opt = document.createElement('option');
-        opt.value = String(d);
-        opt.textContent = String(d);
-        if (d === state.days) opt.selected = true;
-        els.daysSelect.appendChild(opt);
+      function showCopied(){
+        btn.classList.add('copied');
+        if(toast) toast.classList.add('show');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          if(toast) toast.classList.remove('show');
+        }, 1600);
       }
-    }
 
-    function createPill({ id, name }, type) {
-      const b = document.createElement('button');
-      b.type = "button";
-      b.className = "pill";
-      b.textContent = name;
-      b.setAttribute('data-id', id);
-      b.setAttribute('aria-pressed', 'false');
-
-      b.addEventListener('click', () => {
-        const set = type === "region" ? state.selectedRegionIds : state.selectedExperienceIds;
-        if (set.has(id)) set.delete(id);
-        else set.add(id);
-
-        b.setAttribute('aria-pressed', set.has(id) ? 'true' : 'false');
-        updateHints();
-        updateGenerateState();
-        syncDefaultFlightToFromRegions();
+      btn.addEventListener('click', async () => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(email);
+            showCopied();
+            return;
+          }
+          const ta = document.createElement('textarea');
+          ta.value = email;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          ta.style.top = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showCopied();
+        } catch (e) {}
       });
-
-      return b;
-    }
-
-    function renderRegionPills() {
-      els.regionsPills.innerHTML = "";
-
-      const desiredRegionOrder = ["galapagos","coast","andes","amazon"];
-      const map = new Map((DATA.regions.regions || []).map(r => [r.id, r]));
-
-      desiredRegionOrder.forEach(id => {
-        const item = map.get(id);
-        if (item) els.regionsPills.appendChild(createPill(item, "region"));
-      });
-
-      (DATA.regions.regions || []).forEach(r => {
-        if (!desiredRegionOrder.includes(r.id)) {
-          els.regionsPills.appendChild(createPill(r, "region"));
-        }
-      });
-    }
-
-    function renderExperiencePills() {
-      els.experiencesPills.innerHTML = "";
-
-      const desiredOrder = ["adventure","nature","wildlife-birding","relaxation","culinary","culture"];
-      const map = new Map((DATA.experiences.experiences || []).map(x => [x.id, x]));
-
-      desiredOrder.forEach(id => {
-        const item = map.get(id);
-        if (item) els.experiencesPills.appendChild(createPill(item, "experience"));
-      });
-
-      (DATA.experiences.experiences || []).forEach(x => {
-        if (!desiredOrder.includes(x.id)) {
-          els.experiencesPills.appendChild(createPill(x, "experience"));
-        }
-      });
-    }
-
-    function updateHints() {
-      if (!DATA.regions) return;
-
-      const selectedRegions = Array.from(state.selectedRegionIds);
-      const selectedExperiences = Array.from(state.selectedExperienceIds);
-
-      if (selectedRegions.length === 0 || selectedExperiences.length === 0) {
-        els.regionHint.textContent =
-          "Selecciona al menos una región y una experiencia. Puedes elegir varias regiones y varias experiencias para un viaje con múltiples paradas.";
-        return;
-      }
-
-      const regionMap = new Map(DATA.regions.regions.map(r => [r.id, r]));
-      const lines = selectedRegions.map(rid => {
-        const r = regionMap.get(rid);
-        const locs = (r && r.locations) ? r.locations.map(l => l.name).slice(0, 4) : [];
-        const suffix = locs.length ? ` (lugares: ${locs.join(", ")}${(r.locations.length > 4 ? ", ..." : "")})` : "";
-        return `${r ? r.name : rid}${suffix}`;
-      });
-
-      els.regionHint.textContent = "Seleccionado: " + lines.join(" · ");
-    }
-
-    function updateGenerateState() {
-      const ok = state.selectedRegionIds.size > 0 && state.selectedExperienceIds.size > 0;
-      els.generateBtn.disabled = !ok;
-    }
-
-    function regionName(id){
-      const r = DATA.regions.regions.find(x => x.id === id);
-      return r ? r.name : id;
-    }
-
-    function locationName(regionId, locationId){
-      const r = DATA.regions.regions.find(x => x.id === regionId);
-      if (!r) return "";
-      const l = (r.locations || []).find(x => x.id === locationId);
-      return l ? l.name : "";
-    }
-
-    function experienceName(id){
-      const x = DATA.experiences.experiences.find(e => e.id === id);
-      return x ? x.name : id;
-    }
-
-    function hasAnySelectedExperience(block, selectedExperienceIds){
-      return (block.experiences || []).some(e => selectedExperienceIds.has(e));
-    }
-
-    function safeNumber(n, fallback){
-      const v = Number(n);
-      return Number.isFinite(v) ? v : fallback;
-    }
-
-    function splitLongBlockIfNeeded(block){
-      const dur = safeNumber(block.duration_hours, 0);
-      if (dur <= DAY_CAPACITY_HOURS) return [block];
-
-      const parts = Math.ceil(dur / DAY_CAPACITY_HOURS);
-      const per = dur / parts;
-
-      const out = [];
-      for (let i = 0; i < parts; i++) {
-        out.push({
-          ...block,
-          id: `${block.id}__part_${i+1}_of_${parts}`,
-          title: `${block.title} (Part ${i+1} of ${parts})`,
-          duration_hours: Math.round(per * 10) / 10
-        });
-      }
-      return out;
-    }
-
-    function scoreBlock(block, selectedExperienceIds, pacePreference, usedIds, isTransferDay) {
-      if (usedIds.has(block.id)) return -999;
-
-      let score = 0;
-
-      const overlap = (block.experiences || []).filter(e => selectedExperienceIds.has(e)).length;
-      score += overlap * 3;
-
-      if (pacePreference !== "any") {
-        if (block.pace === pacePreference) score += 2;
-        if (pacePreference === "easy" && block.pace === "moderate") score += 1;
-      }
-
-      if (isTransferDay) {
-        if (block.pace === "easy") score += 2;
-        if (block.time_of_day === "afternoon") score += 1;
-      }
-
-      if (TIME_ORDER.includes(block.time_of_day)) score += 1;
-      if (block.location_id) score += 1;
-
-      const dur = safeNumber(block.duration_hours, 0);
-      if (dur > 0 && dur <= 4) score += 1;
-
-      return score;
-    }
-
-    function planOneDay(regionId, expIds, pacePref, usedIds, isTransferDay) {
-      let remaining = DAY_CAPACITY_HOURS;
-
-      const dayBlocks = [];
-      let optionalAddOn = null;
-
-      let regionBlocks = (DATA.blocks.blocks || [])
-        .filter(b => b.region_id === regionId)
-        .filter(b => hasAnySelectedExperience(b, expIds))
-        .flatMap(b => splitLongBlockIfNeeded(b));
-
-      regionBlocks = regionBlocks.filter(b => !usedIds.has(b.id));
-
-      const byTime = new Map();
-      TIME_ORDER.forEach(t => byTime.set(t, []));
-      const other = [];
-
-      regionBlocks.forEach(b => {
-        if (byTime.has(b.time_of_day)) byTime.get(b.time_of_day).push(b);
-        else other.push(b);
-      });
-
-      function pickFromList(list) {
-        const scored = list
-          .map(b => ({ b, s: scoreBlock(b, expIds, pacePref, usedIds, isTransferDay) }))
-          .filter(x => x.s > -500)
-          .sort((a,b) => b.s - a.s);
-
-        if (!scored.length) return null;
-        const top = scored.slice(0, Math.min(6, scored.length)).map(x => x.b);
-        return pickRandom(top);
-      }
-
-      function tryAdd(block) {
-        if (!block) return false;
-        const dur = safeNumber(block.duration_hours, 0);
-        if (dur <= 0) return false;
-
-        if (dur > remaining) {
-          if (!optionalAddOn && dur <= 4) optionalAddOn = block;
-          return false;
-        }
-
-        dayBlocks.push(block);
-        usedIds.add(block.id);
-        remaining -= dur;
-        return true;
-      }
-
-      const longPart = regionBlocks.find(b => safeNumber(b.duration_hours, 0) >= DAY_CAPACITY_HOURS);
-      if (longPart) {
-        tryAdd(longPart);
-        return { blocks: dayBlocks, optionalAddOn, remaining_hours: remaining };
-      }
-
-      const morningPick = pickFromList(byTime.get("morning"));
-      if (morningPick) tryAdd(morningPick);
-
-      const aftPick = pickFromList(byTime.get("afternoon"));
-      if (aftPick) tryAdd(aftPick);
-
-      if (remaining >= 2) {
-        const evePick = pickFromList(byTime.get("evening"));
-        if (evePick) tryAdd(evePick);
-      }
-
-      if (remaining >= 2 && dayBlocks.length < 2) {
-        const fillerPool = [
-          ...byTime.get("morning"),
-          ...byTime.get("afternoon"),
-          ...byTime.get("evening"),
-          ...other
-        ].filter(b => !usedIds.has(b.id));
-
-        const filler = pickFromList(fillerPool);
-        if (filler) tryAdd(filler);
-      }
-
-      if (!optionalAddOn && remaining >= 2) {
-        const addOnPool = [
-          ...byTime.get("morning"),
-          ...byTime.get("afternoon"),
-          ...byTime.get("evening"),
-          ...other
-        ].filter(b => !usedIds.has(b.id))
-         .filter(b => safeNumber(b.duration_hours, 0) > remaining && safeNumber(b.duration_hours, 0) <= 4);
-
-        const addOn = pickFromList(addOnPool);
-        if (addOn) optionalAddOn = addOn;
-      }
-
-      return { blocks: dayBlocks, optionalAddOn, remaining_hours: remaining };
-    }
-
-    function generateItinerary() {
-      const totalDays = clamp(Number(state.days), 1, 21);
-      const regionIds = Array.from(state.selectedRegionIds);
-      const expIds = state.selectedExperienceIds;
-
-      const plan = [];
-      const allocation = daysPerRegion(totalDays, regionIds);
-      const usedBlockIds = new Set();
-
-      let dayCounter = 0;
-
-      allocation.forEach((chunk, chunkIndex) => {
-        for (let d = 0; d < chunk.days; d++) {
-          const pacePref = normalizePace(dayCounter, totalDays);
-          const isTransferDay = (d === 0 && chunkIndex > 0);
-
-          const dayPlan = planOneDay(chunk.region_id, expIds, pacePref, usedBlockIds, isTransferDay);
-
-          plan.push({
-            day: dayCounter + 1,
-            region_id: chunk.region_id,
-            is_transfer_friendly: isTransferDay,
-            blocks: dayPlan.blocks,
-            optional_add_on: dayPlan.optional_add_on,
-            remaining_hours: dayPlan.remaining_hours
-          });
-
-          dayCounter++;
-        }
-      });
-
-      return plan;
-    }
-
-    function renderItinerary(plan) {
-      if (!plan || plan.length === 0) {
-        els.output.innerHTML = "<div class='hint'>No se generó un itinerario. Asegúrate de seleccionar regiones y experiencias.</div>";
-        return;
-      }
-
-      const wrap = document.createElement('div');
-
-      const disclaimer = document.createElement('div');
-      disclaimer.className = "hint";
-      disclaimer.innerHTML = "<strong>Nota:</strong> Este es un itinerario sugerido basado en tus selecciones. Los tiempos y la logística pueden variar por temporada, tráfico y puntos exactos de recogida.";
-      wrap.appendChild(disclaimer);
-
-      plan.forEach(d => {
-        const card = document.createElement('div');
-        card.className = "day-card";
-
-        const title = document.createElement('div');
-        title.className = "day-title";
-        title.innerHTML = `
-          <span>Día ${d.day}: ${regionName(d.region_id)}</span>
-          <span class="tag">${d.is_transfer_friendly ? "Ritmo amigable para traslados" : "Plan sugerido"}</span>
-        `;
-        card.appendChild(title);
-
-        const blocks = Array.isArray(d.blocks) ? d.blocks : [];
-        if (blocks.length === 0) {
-          card.appendChild(renderEmptySlot("Día", "No hay actividades que coincidan para esta región según tus experiencias seleccionadas. Agrega más bloques para esta región en itinerary_blocks.json."));
-        } else {
-          const ordered = blocks.slice().sort((a,b) => {
-            const ai = TIME_ORDER.includes(a.time_of_day) ? TIME_ORDER.indexOf(a.time_of_day) : 99;
-            const bi = TIME_ORDER.includes(b.time_of_day) ? TIME_ORDER.indexOf(b.time_of_day) : 99;
-            if (ai !== bi) return ai - bi;
-            return safeNumber(a.duration_hours, 0) - safeNumber(b.duration_hours, 0);
-          });
-
-          ordered.forEach(block => {
-            const label = block.time_of_day ? capitalizeEs(block.time_of_day) : "Día";
-            card.appendChild(renderSlotEs(label, block, d.region_id));
-          });
-        }
-
-        if (d.optional_add_on) {
-          const add = document.createElement('div');
-          add.className = "hint";
-          const dur = d.optional_add_on.duration_hours ? `${d.optional_add_on.duration_hours}h` : "";
-          add.innerHTML = `Extra opcional si aún tienes energía: <strong>${d.optional_add_on.title}</strong>${dur ? " (" + dur + ")" : ""}.`;
-          card.appendChild(add);
-        } else if (typeof d.remaining_hours === "number" && d.remaining_hours >= 2) {
-          const rest = document.createElement('div');
-          rest.className = "hint";
-          rest.innerHTML = `Todavía tienes cerca de <strong>${Math.round(d.remaining_hours * 10) / 10} horas</strong> disponibles hoy. Considera un café, un mirador o una caminata tranquila por la zona.`;
-          card.appendChild(rest);
-        }
-
-        wrap.appendChild(card);
-      });
-
-      els.output.innerHTML = "";
-      els.output.appendChild(wrap);
-    }
-
-    function extractPartLabelFromTitleOrId(block){
-      const t = String(block && block.title ? block.title : "");
-      const m1 = t.match(/\(Part\s+\d+\s+of\s+\d+\)/i);
-      if (m1) return m1[0].replace(/[()]/g, "");
-
-      const id = String(block && block.id ? block.id : "");
-      const m2 = id.match(/__part_(\d+)_of_(\d+)/i);
-      if (m2) return `Part ${m2[1]} of ${m2[2]}`;
-
-      return "Part";
-    }
-
-    function renderSlotEs(label, block, regionId){
-      const div = document.createElement('div');
-      div.className = "slot";
-
-      const loc = block.location_id ? locationName(regionId, block.location_id) : "";
-      const exp = (block.experiences || []).map(experienceName).slice(0, 3).join(" · ");
-      const dur = block.duration_hours ? `${block.duration_hours}h` : "";
-      const metaLine = [loc, exp, dur].filter(Boolean).join(" • ");
-
-      const isSplitPart = typeof block.id === "string" && block.id.includes("__part_");
-      const partLabel = isSplitPart ? extractPartLabelFromTitleOrId(block) : "";
-
-      const splitExplain = isSplitPart
-        ? `Esta experiencia se extiende por varios días. "${partLabel}" indica un día dentro de una estadía más larga (tipo lodge).`
-        : "";
-
-      const noteHtml = (() => {
-        const baseNote = block.notes ? String(block.notes) : "";
-        if (!baseNote && !splitExplain) return "";
-        if (baseNote && splitExplain) {
-          return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Nota:</strong> " + baseNote + "<br><strong>Nota:</strong> " + splitExplain + "</p>";
-        }
-        if (baseNote) {
-          return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Nota:</strong> " + baseNote + "</p>";
-        }
-        return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Nota:</strong> " + splitExplain + "</p>";
-      })();
-
-      div.innerHTML = `
-        <h4>${label}</h4>
-        <div class="title">${block.title}</div>
-        <p class="meta">${block.summary || ""}${metaLine ? "<br><span style='opacity:.9'>" + metaLine + "</span>" : ""}</p>
-        ${noteHtml}
-      `;
-      return div;
-    }
-
-    function renderEmptySlot(label, text){
-      const div = document.createElement('div');
-      div.className = "slot";
-      div.innerHTML = `
-        <h4>${label}</h4>
-        <p class="meta">${text}</p>
-      `;
-      return div;
-    }
-
-    function capitalizeEs(s){
-      const t = String(s || "");
-      if (!t) return "";
-      if (t === "morning") return "Mañana";
-      if (t === "afternoon") return "Tarde";
-      if (t === "evening") return "Noche";
-      return t.charAt(0).toUpperCase() + t.slice(1);
-    }
-
-    // ===== FLIGHTS =====
-    const REGION_TO_AIRPORT = {
-      andes: "UIO",
-      coast: "GYE",
-      amazon: "UIO",
-      galapagos: "GPS"
-    };
-
-    function syncDefaultFlightToFromRegions(){
-      const selected = Array.from(state.selectedRegionIds);
-      if (!selected.length) return;
-
-      const airport = REGION_TO_AIRPORT[selected[0]] || "UIO";
-
-      const d = flightEls.desktop;
-      const m = flightEls.mobile;
-
-      const userSet = (d.to.dataset.userSet || (m.to ? m.to.dataset.userSet : "false") || "false");
-
-      if (userSet === "false") {
-        d.to.value = airport;
-        if (m.to) m.to.value = airport;
-      }
-    }
-
-    function buildGoogleFlightsUrl({ from, to, depart, ret }){
-      let q = `Flights to ${to}`;
-      if (from) q += ` from ${from}`;
-      if (depart) q += ` on ${depart}`;
-      if (ret) q += ` return ${ret}`;
-      return "https://www.google.com/travel/flights?q=" + encodeURIComponent(q);
-    }
-
-    function normalizeAirportCode(v){
-      const s = String(v || "").trim().toUpperCase();
-      const m = s.match(/[A-Z]{3}/);
-      return m ? m[0] : "";
-    }
-
-    function openFlightsFrom(setName){
-      const s = flightEls[setName];
-      if (!s || !s.to) return;
-
-      const from = normalizeAirportCode(s.from.value);
-      const to = String(s.to.value || "").trim().toUpperCase();
-      const depart = String(s.depart.value || "").trim();
-      const ret = String(s.ret.value || "").trim();
-      if (!to) return;
-
-      const url = buildGoogleFlightsUrl({ from, to, depart, ret });
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
-
-    flightEls.desktop.btn.addEventListener('click', () => openFlightsFrom("desktop"));
-    if (flightEls.mobile.btn) flightEls.mobile.btn.addEventListener('click', () => openFlightsFrom("mobile"));
-
-    // ===== LOAD JSON =====
-    async function loadJSON(path){
-      const res = await fetch(path, { cache: "no-store" });
-      if (!res.ok) throw new Error("Failed to load " + path);
-      return await res.json();
-    }
-
-    async function init() {
-      renderDaysOptions();
-
-      try {
-        const [regions, experiences, blocks] = await Promise.all([
-          loadJSON("/assets/data/regions.json"),
-          loadJSON("/assets/data/experiences.json"),
-          loadJSON("/assets/data/itinerary_blocks.json")
-        ]);
-
-        DATA.regions = regions;
-        DATA.experiences = experiences;
-        DATA.blocks = blocks;
-
-        renderRegionPills();
-        renderExperiencePills();
-        updateHints();
-        updateGenerateState();
-
-        setUserSetAll("false");
-        flightEls.desktop.to.value = "UIO";
-        if (flightEls.mobile.to) flightEls.mobile.to.value = "UIO";
-        syncDefaultFlightToFromRegions();
-
-        syncFlights("desktop");
-
-        els.output.textContent = "Selecciona días, regiones y experiencias. Luego haz clic en “Generar itinerario”.";
-      } catch (e) {
-        els.output.innerHTML = "<div class='hint'><strong>Error al cargar datos:</strong> " + (e.message || e) + "</div>";
-      }
-    }
-
-    els.daysSelect.addEventListener('change', () => {
-      state.days = Number(els.daysSelect.value);
-    });
-
-    els.generateBtn.addEventListener('click', () => {
-      const plan = generateItinerary();
-      renderItinerary(plan);
-    });
-
-    els.resetBtn.addEventListener('click', () => {
-      state.days = 5;
-      state.selectedRegionIds.clear();
-      state.selectedExperienceIds.clear();
-
-      document.querySelectorAll('.pill').forEach(p => p.setAttribute('aria-pressed', 'false'));
-      els.daysSelect.value = "5";
-
-      flightEls.desktop.from.value = "";
-      flightEls.desktop.depart.value = "";
-      flightEls.desktop.ret.value = "";
-
-      if (flightEls.mobile.from) flightEls.mobile.from.value = "";
-      if (flightEls.mobile.depart) flightEls.mobile.depart.value = "";
-      if (flightEls.mobile.ret) flightEls.mobile.ret.value = "";
-
-      setUserSetAll("false");
-      flightEls.desktop.to.value = "UIO";
-      if (flightEls.mobile.to) flightEls.mobile.to.value = "UIO";
-
-      updateHints();
-      updateGenerateState();
-      els.output.textContent = "Selecciona días, regiones y experiencias. Luego haz clic en “Generar itinerario”.";
-    });
-
-    init();
+    })();
   </script>
 
   <script>
