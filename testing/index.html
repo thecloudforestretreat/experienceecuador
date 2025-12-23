@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transporte | Experience Ecuador</title>
+  <title>Isla Isabela | Experience Ecuador</title>
 
-  <!-- Favicons (root paths) -->
+  <!-- Favicons (approved root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -24,199 +24,53 @@
   <style>
     :root{
       --brand-blue:#034EA2;
-      --charcoal:#1F1F1F;
       --slate:#6E7B8B;
-      --ok:#0f8a5f;
-      --warn:#b65b00;
+      --text:#1F1F1F;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--charcoal);
       background:#f6f8fb;
+      color:var(--text);
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-
-    /* ===== HERO (image behind title) ===== */
-    .hero{
-      position:relative;
-      max-width:1100px;
-      margin:0 auto;
-      padding:22px 18px 12px;
-    }
-
-    .hero-banner{
-      position:relative;
-      border-radius:24px;
-      overflow:hidden;
-      box-shadow:0 22px 60px rgba(0,0,0,0.18);
-      min-height:320px;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)),
-        url("/assets/images/EE-Assets-60-Hero-Transportation-2.jpg") center/cover no-repeat;
-    }
-
-    .hero-content{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:flex-end;
-      padding:22px;
-    }
-
-    .hero-title{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:clamp(34px,4.6vw,54px);
-      letter-spacing:-0.03em;
-      color:#fff;
-      margin:0;
-      line-height:1.05;
-      text-shadow:0 10px 30px rgba(0,0,0,0.35);
-    }
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
     /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:0 18px 60px;
+      padding:40px 18px 56px;
     }
 
-    .card{
-      background:#fff;
-      border-radius:22px;
-      padding:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
-    }
-
-    .card h2{
+    h1{
       font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:22px;
-      margin:0 0 10px;
+      font-size:clamp(34px,4vw,54px);
       color:var(--brand-blue);
-      letter-spacing:-0.02em;
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
     }
 
-    .card p{
+    .lede{
+      color:var(--slate);
+      line-height:1.65;
+      max-width:92ch;
       margin:0;
-      line-height:1.75;
-      font-size:15.8px;
-      color:#2a2f36;
-      max-width:85ch;
+      font-size:16.8px;
     }
 
-    /* ===== SELECTOR CARD (matches your standardized selector layout) ===== */
-    .selector-card{
-      background:#fff;
-      border-radius:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
-      overflow:hidden;
-      margin-top:18px;
-    }
-
-    .selector-top{
-      padding:18px 18px 0;
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:12px;
-      align-items:start;
-    }
-
-    .selector-controls{
-      grid-column:2;
-      grid-row:1;
-      justify-self:end;
-
-      display:grid;
-      grid-template-columns:auto 260px;
-      gap:10px 10px;
+    .meta-row{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
       align-items:center;
-    }
-
-    .selector-controls label{
-      font-weight:800;
-      color:#0f2f62;
-      font-size:13px;
-      letter-spacing:0.02em;
-      text-align:left;
-      white-space:nowrap;
-    }
-
-    .selector-controls select{
-      appearance:none;
-      -webkit-appearance:none;
-      -moz-appearance:none;
-      border:1px solid rgba(3,78,162,0.22);
-      background:#fff;
-      color:#0f2f62;
+      color:#162b55;
       font-weight:700;
-      padding:11px 42px 11px 12px;
-      border-radius:14px;
-      font-size:14px;
-      cursor:pointer;
-      outline:none;
-      min-width:0;
-      width:260px;
-      box-shadow:0 14px 30px rgba(3,78,162,0.10);
-      background-image:
-        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
-        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
-        linear-gradient(to right, transparent, transparent);
-      background-position:
-        calc(100% - 18px) 50%,
-        calc(100% - 12px) 50%,
-        0 0;
-      background-size:6px 6px, 6px 6px, 100% 100%;
-      background-repeat:no-repeat;
-    }
-
-    .selector-controls select:focus{
-      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
-      border-color:rgba(3,78,162,0.45);
-    }
-
-    .selector-copy{
-      grid-column:1 / -1;
-      padding:0 18px 0;
-    }
-
-    .selector-body{
-      padding:22px;
-    }
-
-    @media(max-width:900px){
-      .selector-top{ grid-template-columns:1fr; }
-      .selector-controls{
-        grid-column:1;
-        justify-self:stretch;
-        grid-template-columns:1fr;
-      }
-      .selector-controls label{ margin-top:8px; }
-      .selector-controls select{ width:100%; min-width:0; }
-      .hero-banner{min-height:290px}
-    }
-
-    @media(max-width:620px){
-      .hero-content{padding:16px}
-    }
-
-    /* ===== TRANSPORT RESULTS UI ===== */
-    .results-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
-      margin-top:18px;
-    }
-
-    @media(max-width:900px){
-      .results-grid{grid-template-columns:1fr}
+      font-size:13.5px;
     }
 
     .pill{
@@ -225,84 +79,554 @@
       gap:8px;
       padding:8px 12px;
       border-radius:999px;
-      background:rgba(3,78,162,0.08);
-      border:1px solid rgba(3,78,162,0.14);
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
       color:#0f2f62;
       font-weight:800;
-      font-size:13px;
-      letter-spacing:0.01em;
     }
 
-    .muted{
-      color:#24324a;
-      opacity:.9;
-      font-size:14.6px;
-      line-height:1.6;
-      margin-top:10px;
-    }
-
-    .kv{
+    .content-grid{
       display:grid;
-      grid-template-columns:170px 1fr;
-      gap:10px 14px;
-      margin-top:14px;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      margin-top:22px;
       align-items:start;
     }
 
-    .k{
-      color:#0f2f62;
-      font-weight:900;
-      font-size:13px;
-      letter-spacing:0.02em;
+    .card{
+      background:#fff;
+      padding:22px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
     }
 
-    .v{
-      color:#1f2a3a;
-      font-weight:700;
-      font-size:14.6px;
-      line-height:1.45;
-    }
+    .card + .card{ margin-top:16px; }
 
-    .hint{
-      margin-top:14px;
-      border-radius:18px;
-      padding:14px;
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      border:1px solid rgba(3,78,162,0.12);
-    }
-
-    .hint-title{
+    .card h2{
+      margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      margin:0 0 8px;
-      color:#0f2f62;
       letter-spacing:-0.02em;
-      font-size:16px;
+      font-size:18px;
+      color:#0f2f62;
     }
 
-    .hint ul{
+    .card p{
+      margin:0 0 12px;
+      color:#1f2b3f;
+      line-height:1.75;
+      font-size:15.5px;
+      max-width:84ch;
+    }
+
+    .card p:last-child{ margin-bottom:0; }
+
+    .inline-link{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:800;
+      color:#162b55;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:10px;
+    }
+
+    .mini-card{
+      padding:14px 14px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .mini-card h3{
+      margin:0 0 6px;
+      font-size:14.5px;
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+    }
+
+    .mini-card p{
       margin:0;
-      padding-left:18px;
-      color:#24324a;
-      opacity:.95;
-      line-height:1.7;
-      font-size:14.6px;
+      color:#1f2b3f;
+      opacity:.92;
+      line-height:1.6;
+      font-size:14.4px;
     }
 
-    .status{
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .chip{
       display:inline-flex;
       align-items:center;
-      padding:6px 10px;
+      padding:7px 10px;
       border-radius:999px;
-      font-weight:900;
-      font-size:12px;
-      letter-spacing:0.02em;
-      border:1px solid rgba(0,0,0,0.08);
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
+      font-weight:800;
+      font-size:12.8px;
+    }
+
+    .side-stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .mini{
       background:#fff;
+      padding:20px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .mini h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
       color:#0f2f62;
     }
-    .status.ok{ border-color: rgba(15,138,95,0.25); background: rgba(15,138,95,0.08); color: var(--ok); }
-    .status.warn{ border-color: rgba(182,91,0,0.25); background: rgba(182,91,0,0.08); color: var(--warn); }
+
+    .mini p{
+      margin:0;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:14.8px;
+    }
+
+    .link-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .pill-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      font-weight:900;
+      color:#0f2f62;
+    }
+
+    .pill-link:hover{ background:rgba(3,78,162,.08); }
+
+    .pill-link span{
+      opacity:.9;
+      font-weight:700;
+      color:#162b55;
+      font-size:13px;
+    }
+
+    /* ===== WEATHER (same as Quito) ===== */
+    .wx-card{
+      padding:18px 18px;
+      border-radius:22px;
+      background:#fff;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .wx-title{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .wx-now{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .wx-date{
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+      font-size:13.2px;
+      opacity:.95;
+      white-space:nowrap;
+      margin-top:2px;
+    }
+
+    .wx-lines{
+      margin:0;
+      color:#1f2b3f;
+      line-height:1.55;
+      font-size:13.8px;
+      opacity:.95;
+      text-align:right;
+    }
+
+    .wx-grid7{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .wx-day{
+      border-radius:16px;
+      padding:10px 10px;
+      background:rgba(255,255,255,.9);
+      border:1px solid rgba(3,78,162,.14);
+      text-align:left;
+    }
+
+    .wx-top{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:8px;
+    }
+
+    .wx-dow{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:12.5px;
+      letter-spacing:-0.01em;
+    }
+
+    .wx-mmdd{
+      color:#162b55;
+      opacity:.75;
+      font-size:11.5px;
+    }
+
+    .wx-hi{
+      margin-top:8px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:12.8px;
+    }
+
+    .wx-lo{
+      color:#162b55;
+      opacity:.8;
+      font-size:12.3px;
+      margin-top:2px;
+    }
+
+    .wx-rain{
+      margin-top:6px;
+      color:#162b55;
+      opacity:.85;
+      font-size:11.7px;
+      white-space:nowrap;
+    }
+
+    @media(max-width:980px){
+      .wx-grid7{ grid-template-columns:repeat(2, 1fr); }
+    }
+
+    .months{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid rgba(0,0,0,.06);
+    }
+
+    .wx-sub{
+      margin:0 0 10px;
+      color:#1f2b3f;
+      opacity:.85;
+      font-size:13.5px;
+      line-height:1.5;
+    }
+
+    .legend{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+      align-items:center;
+    }
+
+    .legend-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:12.8px;
+      font-weight:800;
+      color:#162b55;
+      opacity:.9;
+    }
+
+    .swatch{
+      width:14px;
+      height:14px;
+      border-radius:6px;
+      border:1px solid rgba(3,78,162,.22);
+      background:rgba(3,78,162,.06);
+    }
+
+    .swatch.best{ background:rgba(3,78,162,.14); border-color:rgba(3,78,162,.32); }
+    .swatch.good{ background:rgba(3,78,162,.09); border-color:rgba(3,78,162,.22); }
+    .swatch.fair{ background:rgba(3,78,162,.04); border-color:rgba(3,78,162,.18); opacity:.85; }
+
+    .month-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .month-chip{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,.14);
+      background:rgba(3,78,162,.06);
+      color:#0f2f62;
+      font-weight:900;
+      font-size:12.4px;
+      min-width:46px;
+    }
+
+    .month-chip.best{
+      background:rgba(3,78,162,.14);
+      border-color:rgba(3,78,162,.32);
+    }
+
+    .month-chip.good{
+      background:rgba(3,78,162,.09);
+      border-color:rgba(3,78,162,.22);
+    }
+
+    .month-chip.fair{
+      background:rgba(3,78,162,.04);
+      border-color:rgba(3,78,162,.18);
+      opacity:.85;
+    }
+
+    /* ===== MORE GALAPAGOS DESTINATIONS (structure/classes locked for tiles) ===== */
+    .andes-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .andes-tile{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    .andes-tile:hover{
+      background:rgba(3,78,162,.07);
+      transform:translateY(-1px);
+    }
+
+    .andes-left{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
+    }
+
+    .andes-title{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:14.8px;
+      letter-spacing:-0.01em;
+      line-height:1.2;
+    }
+
+    .andes-sub{
+      color:#1f2b3f;
+      opacity:.9;
+      line-height:1.5;
+      font-size:13.4px;
+      max-width:60ch;
+    }
+
+    .andes-arrow{
+      flex:0 0 auto;
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,.18);
+      background:rgba(255,255,255,.75);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:2px;
+    }
+
+    .andes-arrow span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
+      transform:rotate(-45deg);
+      opacity:.85;
+    }
+
+    /* ===== CAROUSEL (LEFT COLUMN) ===== */
+    .carousel{
+      margin-top:18px;
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
+
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
+
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
+    }
+
+    /* ===== MOBILE ===== */
+    @media(max-width:980px){
+      .content-grid{grid-template-columns:1fr}
+    }
+
+    @media(max-width:820px){
+      .two-col{grid-template-columns:1fr}
+    }
+
+    @media(max-width:620px){
+      .carousel-slide{ aspect-ratio:16/9; }
+    }
+
+    @media(max-width:480px){
+      .carousel-btn{ width:40px; height:40px; }
+    }
   </style>
 </head>
 
@@ -310,325 +634,561 @@
   <div id="siteHeader"></div>
 
   <main>
-    <section class="hero" aria-label="Hero de transporte">
-      <div class="hero-banner" role="img" aria-label="Imagen principal de transporte">
-        <div class="hero-content">
-          <div>
-            <h1 class="hero-title">Transporte</h1>
-          </div>
-        </div>
+    <div class="wrap">
+      <h1>Isla Isabela</h1>
+      <p class="lede">
+        Isabela es la isla más grande de Galápagos y también una de las menos desarrolladas, por eso se siente más salvaje y espaciosa.
+        Si buscas paisajes enormes, energía volcánica y un ritmo más lento, aquí es donde Galápagos empieza a sentirse realmente remoto.
+        Espera menos multitudes, días más enfocados en la naturaleza y experiencias que combinan caminatas y vida silvestre en el mismo viaje.
+      </p>
+
+      <div class="meta-row" aria-label="Metadatos generales de Isabela">
+        <span class="pill">Región: Galápagos</span>
+        <span class="pill">Ideal para: Amantes de la naturaleza, viaje lento, caminatas volcánicas</span>
+        <span class="pill">Tiempo típico: 2–4 días</span>
       </div>
-    </section>
 
-    <main class="wrap">
-
-      <section class="selector-card" aria-label="Estimador de transporte">
-        <div class="selector-top">
-          <div></div>
-
-          <!-- Top-right controls block (labels left, dropdowns right, mobile stacks) -->
-          <div class="selector-controls" aria-label="Controles de transporte">
-            <label for="fromSelect">Ubicación</label>
-            <select id="fromSelect" name="from">
-              <option value="" selected>Selecciona una ubicación</option>
-            </select>
-
-            <label for="toSelect">Destino</label>
-            <select id="toSelect" name="to" disabled>
-              <option value="" selected>Selecciona un destino</option>
-            </select>
-
-            <label for="paxSelect">Pasajeros</label>
-            <select id="paxSelect" name="pax">
-              <option value="1">1</option>
-              <option value="2" selected>2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </select>
-
-            <label for="bagsSelect">Maletas</label>
-            <select id="bagsSelect" name="bags">
-              <option value="0">0</option>
-              <option value="1" selected>1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </select>
-          </div>
-
-          <div class="selector-copy" aria-label="Texto de introducción del estimador">
-            <div style="padding:14px 0 6px 0;">
-              <span class="pill">Estimaciones rápidas de traslados</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="selector-body">
-          <div class="card" style="box-shadow:none;border:0;padding:0;background:transparent;">
-            <h2 style="margin-bottom:10px;">Planifica traslados antes de aterrizar</h2>
+      <section class="content-grid" aria-label="Contenido de Isabela">
+        <!-- LEFT COLUMN -->
+        <div>
+          <div class="card">
+            <h2>Para qué es mejor Isabela</h2>
             <p>
-              Elige dónde estás y a dónde vas, luego ajusta pasajeros y maletas.
-              Esta página mostrará un tiempo estimado y un rango aproximado de costo cuando agreguemos precios.
+              Isabela es ideal para viajeros que quieren la versión más natural y menos urbanizada de Galápagos.
+              Es una excelente opción si te importan tanto los paisajes como la vida silvestre: volcanes, campos de lava y una costa larga y abierta.
+              Aquí los días se sienten más tranquilos, pero las experiencias pueden ser más inmersivas, especialmente si te gusta combinar caminatas y fauna.
             </p>
 
-            <div class="results-grid" aria-label="Cuadrícula de resultados del estimador">
-              <div class="card" style="margin:0;">
-                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-                  <h2 style="margin:0;color:#0f2f62;font-size:20px;">Tu ruta</h2>
-                  <span id="statusPill" class="status warn" aria-live="polite">Selecciona dos lugares</span>
-                </div>
-
-                <div class="kv" aria-label="Valores clave">
-                  <div class="k">Desde</div>
-                  <div class="v" id="fromOut">No seleccionado</div>
-
-                  <div class="k">Hasta</div>
-                  <div class="v" id="toOut">No seleccionado</div>
-
-                  <div class="k">Tiempo estimado</div>
-                  <div class="v" id="timeOut">Agrega datos de ruta</div>
-
-                  <div class="k">Vehículo sugerido</div>
-                  <div class="v" id="vehicleOut">Auto o SUV</div>
-
-                  <div class="k">Rango (Auto)</div>
-                  <div class="v" id="carOut">Próximamente</div>
-
-                  <div class="k">Rango (SUV)</div>
-                  <div class="v" id="suvOut">Próximamente</div>
-                </div>
-
-                <p class="muted" id="noteOut">
-                  Tip: Cuando agregues precios, puedes definir rangos distintos para día vs noche, entre semana vs fin de semana
-                  y recogida en aeropuerto vs recogida en ciudad.
+            <div class="two-col" aria-label="Destacados de Isabela">
+              <div class="mini-card">
+                <h3>La isla más grande, la menos desarrollada</h3>
+                <p>
+                  Más espacio, menos gente y un ritmo más calmado.
                 </p>
               </div>
 
-              <div class="card" style="margin:0;">
-                <h2 style="margin-bottom:10px;">Qué estimaremos</h2>
+              <div class="mini-card">
+                <h3>Volcanes y túneles de lava</h3>
                 <p>
-                  Esto está diseñado para crecer contigo. Empieza con precios simples de traslados y luego amplía.
+                  Paisajes dramáticos que hacen que las caminatas se sientan de otro planeta.
                 </p>
+              </div>
 
-                <div class="hint" aria-label="Roadmap del estimador">
-                  <div class="hint-title">Siguientes mejoras (fáciles)</div>
-                  <ul>
-                    <li>Tiempos por ruta (minutos) y distancia (km)</li>
-                    <li>Rangos de precio en USD para Auto y SUV</li>
-                    <li>Tarifa por maleta extra, equipaje sobredimensionado, silla para niños</li>
-                    <li>Add-ons opcionales: parada rápida, parada de compras, parada en mirador</li>
-                  </ul>
-                </div>
+              <div class="mini-card">
+                <h3>Iguanas marinas y pingüinos</h3>
+                <p>
+                  Una de las mejores islas para momentos únicos de vida silvestre en la costa.
+                </p>
+              </div>
 
-                <div class="hint" aria-label="Nota de transparencia">
-                  <div class="hint-title">Transparencia</div>
-                  <ul>
-                    <li>Las estimaciones pueden mostrar rangos para mantener expectativas realistas</li>
-                    <li>El precio final puede incluir una nota: tráfico y clima pueden cambiar los tiempos</li>
-                  </ul>
-                </div>
+              <div class="mini-card">
+                <h3>Caminatas + fauna en un solo día</h3>
+                <p>
+                  Días grandes de naturaleza con encuentros clásicos de Galápagos.
+                </p>
               </div>
             </div>
 
+            <div class="chips" aria-label="Temas de Isabela">
+              <span class="chip">Volcanes</span>
+              <span class="chip">Túneles de lava</span>
+              <span class="chip">Caminatas</span>
+              <span class="chip">Vida silvestre</span>
+              <span class="chip">Viaje lento</span>
+              <span class="chip">Naturaleza</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Flujo simple de planificación</h2>
+            <p>
+              Planifica Isabela como un bloque dedicado a la naturaleza dentro de tu itinerario de Galápagos.
+              Llega y mantén la primera tarde ligera: una caminata costera, una ventana de playa relajada y una cena temprana para recargar.
+              Luego reserva un día completo para una caminata grande de volcán o paisajes de lava, y otro día para mar y paradas de fauna.
+            </p>
+            <p>
+              Si tu viaje es corto, elige una gran caminata más un día más tranquilo y deja lo demás flexible.
+              Si quieres ayuda para encajar Isabela en un plan de varias islas sin sumar demasiados traslados, escríbenos desde la página de
+              <a class="inline-link" href="/es/contacto/">Contacto</a>.
+            </p>
+          </div>
+
+          <!-- CAROUSEL (LEFT, UNDER SIMPLE PLANNING FLOW) -->
+          <div id="isabelaCarousel" class="carousel" aria-label="Galería de imágenes de Isabela">
+            <button class="carousel-btn prev" type="button" aria-label="Imagen anterior">
+              <span aria-hidden="true"></span>
+            </button>
+
+            <div class="carousel-viewport">
+              <div class="carousel-track">
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-IsabelaIsland-1.jpg" alt="Isabela destacado 1"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-IsabelaIsland-2.jpg" alt="Isabela destacado 2"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-IsabelaIsland-3.jpg" alt="Isabela destacado 3"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-IsabelaIsland-4.jpg" alt="Isabela destacado 4"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-IsabelaIsland-5.jpg" alt="Isabela destacado 5"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-IsabelaIsland-6.jpg" alt="Isabela destacado 6"></div>
+              </div>
+            </div>
+
+            <button class="carousel-btn next" type="button" aria-label="Siguiente imagen">
+              <span aria-hidden="true"></span>
+            </button>
+
+            <div class="carousel-ui">
+              <div class="carousel-dots" aria-label="Paginación del carrusel"></div>
+              <div class="carousel-counter" id="isabelaCarouselCounter">1 / 6</div>
+            </div>
           </div>
         </div>
-      </section>
 
-    </main>
+        <!-- RIGHT COLUMN -->
+        <aside class="side-stack" aria-label="Contenido lateral de Isabela">
+          <div class="mini">
+            <h3>Mejor uso del tiempo</h3>
+            <p>
+              Usa Isabela cuando quieras bajar el ritmo y dejar que la isla marque la pauta.
+              Protege un día completo para un volcán o una experiencia de paisajes de lava, y usa otro día para costa, fauna y agua.
+              Si te quedas 2 días, mantenlo simple: un día grande y un día ligero.
+              Si te quedas 4 días, suma una segunda experiencia importante y deja tiempo de buffer para descansar.
+            </p>
+
+            <div class="link-list" aria-label="Enlaces rápidos">
+              <a class="pill-link" href="/es/regiones/galapagos/">
+                Volver a Islas Galápagos <span>Página de región</span>
+              </a>
+              <a class="pill-link" href="/es/regiones/galapagos/isabela-island/">
+                Isla Isabela <span>Volcán + fauna</span>
+              </a>
+              <a class="pill-link" href="/es/contacto/">
+                Contacto <span>Preguntas y alianzas</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Weather card (same behavior as Quito) -->
+          <div class="wx-card" aria-label="Clima y temporada">
+            <div class="wx-title">Clima actual</div>
+
+            <div class="wx-now">
+              <div class="wx-date" id="isabelaWxDate">--/--/----</div>
+              <p class="wx-lines" id="isabelaWxLines">Cargando…</p>
+            </div>
+
+            <div class="months" aria-label="Pronóstico y mejores meses">
+              <div class="wx-title" style="margin-top:0;">Pronóstico de 7 días</div>
+              <div class="wx-sub">Máxima / mínima y lluvia para la próxima semana.</div>
+              <div class="wx-grid7" id="isabelaWx7" aria-label="Cuadrícula de pronóstico 7 días de Isabela"></div>
+
+              <div class="wx-title" style="margin-top:14px;">Mejores meses para visitar</div>
+              <div class="wx-sub" style="margin-bottom:8px;">
+                Basado en días típicamente más soleados y condiciones cómodas para playa.
+              </div>
+
+              <div class="legend" aria-label="Leyenda de meses">
+                <div class="legend-item"><span class="swatch best" aria-hidden="true"></span>Mejor</div>
+                <div class="legend-item"><span class="swatch good" aria-hidden="true"></span>Bueno</div>
+                <div class="legend-item"><span class="swatch fair" aria-hidden="true"></span>Regular</div>
+              </div>
+
+              <div class="month-row" aria-label="Chips de 12 meses">
+                <span class="month-chip fair" aria-label="Enero">Ene</span>
+                <span class="month-chip fair" aria-label="Febrero">Feb</span>
+                <span class="month-chip good" aria-label="Marzo buen mes">Mar</span>
+                <span class="month-chip good" aria-label="Abril buen mes">Abr</span>
+                <span class="month-chip good" aria-label="Mayo buen mes">May</span>
+                <span class="month-chip best" aria-label="Junio mejor mes">Jun</span>
+                <span class="month-chip best" aria-label="Julio mejor mes">Jul</span>
+                <span class="month-chip best" aria-label="Agosto mejor mes">Ago</span>
+                <span class="month-chip best" aria-label="Septiembre mejor mes">Sep</span>
+                <span class="month-chip good" aria-label="Octubre buen mes">Oct</span>
+                <span class="month-chip fair" aria-label="Noviembre">Nov</span>
+                <span class="month-chip fair" aria-label="Diciembre">Dic</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mini">
+            <h3>Más destinos en Galápagos</h3>
+            <p>
+              Combina Isabela con una isla base para logística, o mantén el itinerario simple con menos traslados.
+            </p>
+
+            <div class="andes-grid" aria-label="Enlaces de destinos en Galápagos">
+              <a class="andes-tile" href="/es/regiones/galapagos/santa-cruz-island/" aria-label="Abrir Santa Cruz">
+                <div class="andes-left">
+                  <div class="andes-title">Santa Cruz</div>
+                  <div class="andes-sub">La base más flexible para logística y excursiones de día.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/es/regiones/galapagos/san-cristobal-island/" aria-label="Abrir San Cristóbal">
+                <div class="andes-left">
+                  <div class="andes-title">San Cristóbal</div>
+                  <div class="andes-sub">Caminatas costeras, fauna y una rutina más tranquila.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/es/regiones/galapagos/floreana-island/" aria-label="Abrir Floreana">
+                <div class="andes-left">
+                  <div class="andes-title">Floreana</div>
+                  <div class="andes-sub">Vibra de isla pequeña para días tranquilos fuera de lo común.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/es/regiones/galapagos/" aria-label="Abrir región Galápagos">
+                <div class="andes-left">
+                  <div class="andes-title">Islas Galápagos</div>
+                  <div class="andes-sub">Explora todos los destinos e ideas de viaje en Galápagos.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </div>
   </main>
 
   <div id="siteFooter"></div>
 
   <script>
-    /* =========================
-       Transportation estimator
-       ========================= */
+    /* Isabela carousel */
+    (function(){
+      const root = document.getElementById("isabelaCarousel");
+      if(!root) return;
 
-    // Locations available in dropdowns
-    const LOCATIONS = [
-      { id: "uio", name: "Aeropuerto (UIO)" },
-      { id: "quito_south", name: "Quito Sur" },
-      { id: "quito_center", name: "Quito Centro" },
-      { id: "quito_north", name: "Quito Norte" },
-      { id: "cotacachi", name: "Cotacachi" },
-      { id: "mindo", name: "Mindo" }
-    ];
+      const track = root.querySelector(".carousel-track");
+      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+      const prevBtn = root.querySelector(".carousel-btn.prev");
+      const nextBtn = root.querySelector(".carousel-btn.next");
+      const dotsWrap = root.querySelector(".carousel-dots");
+      const counter = root.querySelector("#isabelaCarouselCounter");
 
-    /*
-      ROUTE_DATA structure:
-      key = "fromId|toId"
-      value = {
-        minutes: number,
-        // Optional placeholders you can fill later:
-        carMin: number, carMax: number,
-        suvMin: number, suvMax: number
+      let index = 0;
+
+      const AUTOPLAY_MS = 5000;
+      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      let autoplayTimer = null;
+      let autoplayEnabled = !prefersReducedMotion;
+
+      function setIndex(next){
+        index = (next + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        updateDots();
+        updateCounter();
       }
 
-      Add both directions if you want different times by direction, or just mirror them.
-    */
-    const ROUTE_DATA = {
-      // Sample placeholders (replace with real data later)
-      "uio|quito_center": { minutes: 60, carMin: null, carMax: null, suvMin: null, suvMax: null },
-      "quito_center|uio": { minutes: 60, carMin: null, carMax: null, suvMin: null, suvMax: null },
-
-      "uio|mindo": { minutes: 120, carMin: null, carMax: null, suvMin: null, suvMax: null },
-      "mindo|uio": { minutes: 120, carMin: null, carMax: null, suvMin: null, suvMax: null },
-
-      "quito_center|mindo": { minutes: 105, carMin: null, carMax: null, suvMin: null, suvMax: null },
-      "mindo|quito_center": { minutes: 105, carMin: null, carMax: null, suvMin: null, suvMax: null },
-
-      "quito_north|cotacachi": { minutes: 110, carMin: null, carMax: null, suvMin: null, suvMax: null },
-      "cotacachi|quito_north": { minutes: 110, carMin: null, carMax: null, suvMin: null, suvMax: null }
-    };
-
-    function byId(id){ return document.getElementById(id); }
-
-    const fromSelect = byId("fromSelect");
-    const toSelect = byId("toSelect");
-    const paxSelect = byId("paxSelect");
-    const bagsSelect = byId("bagsSelect");
-
-    const statusPill = byId("statusPill");
-    const fromOut = byId("fromOut");
-    const toOut = byId("toOut");
-    const timeOut = byId("timeOut");
-    const vehicleOut = byId("vehicleOut");
-    const carOut = byId("carOut");
-    const suvOut = byId("suvOut");
-    const noteOut = byId("noteOut");
-
-    function formatTime(minutes){
-      if (!Number.isFinite(minutes)) return "Agrega datos de ruta";
-      if (minutes < 60) return minutes + " min";
-      const h = Math.floor(minutes / 60);
-      const m = minutes % 60;
-      return (m === 0) ? (h + " h") : (h + " h " + m + " min");
-    }
-
-    function formatUSDRange(min, max){
-      // Keep it simple for now. You will set real numbers later.
-      if (!Number.isFinite(min) || !Number.isFinite(max)) return "Próximamente";
-      return "$" + min.toFixed(0) + " a $" + max.toFixed(0);
-    }
-
-    function suggestVehicle(pax, bags){
-      // Simple rule: SUV if bigger group or lots of bags.
-      if (pax >= 4) return "Se recomienda SUV";
-      if (bags >= 4) return "Se recomienda SUV";
-      if (pax === 3 && bags >= 3) return "Se recomienda SUV";
-      return "Se recomienda auto";
-    }
-
-    function setStatus(text, type){
-      statusPill.textContent = text;
-      statusPill.classList.remove("ok","warn");
-      statusPill.classList.add(type);
-    }
-
-    function populateSelect(selectEl, includePlaceholder){
-      selectEl.innerHTML = "";
-      if (includePlaceholder){
-        const opt = document.createElement("option");
-        opt.value = "";
-        opt.textContent = selectEl === fromSelect ? "Selecciona una ubicación" : "Selecciona un destino";
-        opt.selected = true;
-        selectEl.appendChild(opt);
+      function updateCounter(){
+        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
       }
-      LOCATIONS.forEach(loc => {
-        const opt = document.createElement("option");
-        opt.value = loc.id;
-        opt.textContent = loc.name;
-        selectEl.appendChild(opt);
+
+      function updateDots(){
+        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
+        dots.forEach((d,i) => d.classList.toggle("active", i === index));
+      }
+
+      function buildDots(){
+        dotsWrap.innerHTML = "";
+        slides.forEach((_, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "dot" + (i === 0 ? " active" : "");
+          b.setAttribute("aria-label", `Ir a la imagen ${i + 1}`);
+          b.addEventListener("click", () => {
+            setIndex(i);
+            stopAutoplay();
+          });
+          dotsWrap.appendChild(b);
+        });
+      }
+
+      function next(){ setIndex(index + 1); }
+      function prev(){ setIndex(index - 1); }
+
+      function startAutoplay(){
+        if(!autoplayEnabled) return;
+        stopAutoplay();
+        autoplayTimer = setInterval(next, AUTOPLAY_MS);
+      }
+
+      function stopAutoplay(){
+        if(autoplayTimer){
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
+      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
+
+      root.addEventListener("keydown", (e) => {
+        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
+        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
       });
-    }
 
-    function getLocName(id){
-      const loc = LOCATIONS.find(x => x.id === id);
-      return loc ? loc.name : "No seleccionado";
-    }
+      let startX = 0;
+      let isDown = false;
 
-    function updateResults(){
-      const from = fromSelect.value;
-      const to = toSelect.value;
-      const pax = parseInt(paxSelect.value, 10);
-      const bags = parseInt(bagsSelect.value, 10);
+      const viewport = root.querySelector(".carousel-viewport");
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+      });
 
-      fromOut.textContent = getLocName(from);
-      toOut.textContent = getLocName(to);
+      viewport.addEventListener("pointerup", (e) => {
+        if(!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        const threshold = 40;
+        if(dx > threshold){ prev(); stopAutoplay(); }
+        if(dx < -threshold){ next(); stopAutoplay(); }
+      });
 
-      vehicleOut.textContent = suggestVehicle(pax, bags);
+      viewport.addEventListener("pointercancel", () => { isDown = false; });
 
-      // Prevent same place selection
-      if (from && to && from === to){
-        setStatus("Elige un destino diferente", "warn");
-        timeOut.textContent = "No aplica";
-        carOut.textContent = "Próximamente";
-        suvOut.textContent = "Próximamente";
-        noteOut.textContent = "Elige dos lugares diferentes para estimar tiempo y costo.";
-        return;
+      root.addEventListener("mouseenter", stopAutoplay);
+      root.addEventListener("mouseleave", startAutoplay);
+      root.addEventListener("focusin", stopAutoplay);
+      root.addEventListener("focusout", startAutoplay);
+
+      root.tabIndex = 0;
+      buildDots();
+      updateCounter();
+      setIndex(0);
+      startAutoplay();
+    })();
+
+    /* Isabela weather (Quito-style contract: /api/weather + localStorage cache + Max/Min/Rain with <br>) */
+    (function(){
+      const dateEl = document.getElementById("isabelaWxDate");
+      const linesEl = document.getElementById("isabelaWxLines");
+      const gridEl = document.getElementById("isabelaWx7");
+      if(!dateEl || !linesEl || !gridEl) return;
+
+      // Isabela Island (Puerto Villamil area), Galapagos (approx.)
+      const LAT = -0.9550;
+      const LON = -90.9670;
+
+      const CACHE_KEY = "isabela-wx-v1";
+      const TTL_MS = 30 * 60 * 1000;
+
+      function fmtDateMMDDYYYY(d){
+        const mm = String(d.getMonth()+1).padStart(2,"0");
+        const dd = String(d.getDate()).padStart(2,"0");
+        const yy = d.getFullYear();
+        return `${mm}/${dd}/${yy}`;
       }
 
-      if (!from || !to){
-        setStatus("Selecciona dos lugares", "warn");
-        timeOut.textContent = "Agrega datos de ruta";
-        carOut.textContent = "Próximamente";
-        suvOut.textContent = "Próximamente";
-        noteOut.textContent =
-          "Cuando agreguemos precios por ruta, verás rangos para auto y SUV según pasajeros y maletas.";
-        return;
+      function fmtMMDD(iso){
+        const d = new Date(iso + "T00:00:00");
+        const mm = String(d.getMonth()+1).padStart(2,"0");
+        const dd = String(d.getDate()).padStart(2,"0");
+        return `${mm}/${dd}`;
       }
 
-      const key = from + "|" + to;
-      const data = ROUTE_DATA[key];
-
-      if (!data){
-        setStatus("Ruta aún no agregada", "warn");
-        timeOut.textContent = "Agrega datos de ruta";
-        carOut.textContent = "Próximamente";
-        suvOut.textContent = "Próximamente";
-        noteOut.textContent =
-          "Puedes agregar esta ruta en ROUTE_DATA dentro del script. Define el tiempo en minutos y luego agrega rangos para auto y SUV.";
-        return;
+      function dowShort(iso){
+        const d = new Date(iso + "T00:00:00");
+        return d.toLocaleDateString("es-EC",{ weekday:"short" });
       }
 
-      setStatus("Estimación lista", "ok");
-      timeOut.textContent = formatTime(data.minutes);
-
-      // Placeholder ranges until you fill numbers
-      carOut.textContent = formatUSDRange(data.carMin, data.carMax);
-      suvOut.textContent = formatUSDRange(data.suvMin, data.suvMax);
-
-      // Friendly logic note
-      const veh = suggestVehicle(pax, bags);
-      if (veh.indexOf("SUV") >= 0){
-        noteOut.textContent =
-          "Según pasajeros y maletas, se recomienda SUV por comodidad. Aun así, puedes mostrar ambos rangos para comparar.";
-      } else {
-        noteOut.textContent =
-          "Un auto debería funcionar bien para este tamaño de grupo. Si agregas un rango de SUV, la gente puede subir de categoría por espacio extra.";
+      function cToF(c){
+        return Math.round((c * 9/5) + 32);
       }
-    }
 
-    // Init
-    populateSelect(fromSelect, true);
-    populateSelect(toSelect, true);
+      function setUnavailable(){
+        dateEl.textContent = "--/--/----";
+        linesEl.innerHTML = "El clima no está disponible en este momento.";
+        gridEl.innerHTML = "";
+      }
 
-    fromSelect.addEventListener("change", function(){
-      const hasFrom = !!fromSelect.value;
-      toSelect.disabled = !hasFrom;
-      updateResults();
+      function setLoading(){
+        dateEl.textContent = fmtDateMMDDYYYY(new Date());
+        linesEl.innerHTML = "Cargando…";
+        gridEl.innerHTML = "";
+      }
+
+      function readCache(){
+        try{
+          const raw = localStorage.getItem(CACHE_KEY);
+          if(!raw) return null;
+          const obj = JSON.parse(raw);
+          if(!obj || typeof obj !== "object") return null;
+          if(!obj.ts || !obj.data) return null;
+          if((Date.now() - obj.ts) > TTL_MS) return null;
+          return obj.data;
+        }catch(e){
+          return null;
+        }
+      }
+
+      function writeCache(data){
+        try{
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+        }catch(e){}
+      }
+
+      function normalize(api){
+        const unitsTemp =
+          (api && api.units && (api.units.temp || api.units.temperature)) ||
+          (api && api.unit && api.unit.temperature) ||
+          null;
+
+        const isC =
+          (typeof unitsTemp === "string" && unitsTemp.toUpperCase().includes("C")) ? true :
+          (typeof unitsTemp === "string" && unitsTemp.toUpperCase().includes("F")) ? false :
+          true;
+
+        if(api && api.current && Array.isArray(api.daily)){
+          const current = api.current || {};
+          const dailyArr = api.daily || [];
+          return {
+            isC,
+            current: {
+              tmax: current.tmax,
+              tmin: current.tmin,
+              rain: current.rain
+            },
+            days: dailyArr.slice(0, 7).map(d => ({
+              date: d.date,
+              tmax: d.tmax,
+              tmin: d.tmin,
+              rain: d.rain
+            }))
+          };
+        }
+
+        const daily = (api && api.daily) ? api.daily : {};
+        const days = daily.time || [];
+        const tmax = daily.temperature_2m_max || [];
+        const tmin = daily.temperature_2m_min || [];
+        const rain = daily.precipitation_probability_max || [];
+
+        return {
+          isC,
+          current: {
+            tmax: (typeof tmax[0] === "number" ? tmax[0] : null),
+            tmin: (typeof tmin[0] === "number" ? tmin[0] : null),
+            rain: (typeof rain[0] === "number" ? rain[0] : null)
+          },
+          days: days.slice(0, 7).map((iso, i) => ({
+            date: iso,
+            tmax: tmax[i],
+            tmin: tmin[i],
+            rain: rain[i]
+          }))
+        };
+      }
+
+      function render(norm){
+        dateEl.textContent = fmtDateMMDDYYYY(new Date());
+
+        const tmax = norm.current.tmax;
+        const tmin = norm.current.tmin;
+        const rain = norm.current.rain;
+
+        const maxStr = (typeof tmax === "number")
+          ? `Máx: ${norm.isC ? cToF(tmax) : Math.round(tmax)}°F`
+          : "Máx: --";
+        const minStr = (typeof tmin === "number")
+          ? `Mín: ${norm.isC ? cToF(tmin) : Math.round(tmin)}°F`
+          : "Mín: --";
+        const rainStr = (typeof rain === "number")
+          ? `Lluvia: ${Math.round(rain)}%`
+          : "Lluvia: --";
+
+        linesEl.innerHTML = `${maxStr}<br>${minStr}<br>${rainStr}`;
+
+        gridEl.innerHTML = "";
+        const count = Math.min(7, norm.days.length);
+
+        for(let i=0; i<count; i++){
+          const d = norm.days[i] || {};
+          const dayIso = d.date;
+
+          const hi = d.tmax;
+          const lo = d.tmin;
+          const r = d.rain;
+
+          const card = document.createElement("div");
+          card.className = "wx-day";
+
+          const top = document.createElement("div");
+          top.className = "wx-top";
+
+          const dow = document.createElement("div");
+          dow.className = "wx-dow";
+          dow.textContent = dayIso ? dowShort(dayIso) : "--";
+
+          const mmdd = document.createElement("div");
+          mmdd.className = "wx-mmdd";
+          mmdd.textContent = dayIso ? fmtMMDD(dayIso) : "--/--";
+
+          top.appendChild(dow);
+          top.appendChild(mmdd);
+
+          const hiEl = document.createElement("div");
+          hiEl.className = "wx-hi";
+          hiEl.textContent = (typeof hi === "number")
+            ? `Máx ${norm.isC ? cToF(hi) : Math.round(hi)}°F`
+            : "Máx --";
+
+          const loEl = document.createElement("div");
+          loEl.className = "wx-lo";
+          loEl.textContent = (typeof lo === "number")
+            ? `Mín ${norm.isC ? cToF(lo) : Math.round(lo)}°F`
+            : "Mín --";
+
+          const rainEl = document.createElement("div");
+          rainEl.className = "wx-rain";
+          rainEl.textContent = (typeof r === "number")
+            ? `Lluvia ${Math.round(r)}%`
+            : "Lluvia --";
+
+          card.appendChild(top);
+          card.appendChild(hiEl);
+          card.appendChild(loEl);
+          card.appendChild(rainEl);
+
+          gridEl.appendChild(card);
+        }
+      }
+
+      async function load(){
+        setLoading();
+
+        const cached = readCache();
+        if(cached){
+          try{
+            render(normalize(cached));
+            return;
+          }catch(e){}
+        }
+
+        try{
+          const url = `/api/weather?lat=${encodeURIComponent(LAT)}&lon=${encodeURIComponent(LON)}`;
+          const res = await fetch(url, { cache: "no-store" });
+          if(!res.ok) throw new Error("Weather fetch failed");
+          const data = await res.json();
+
+          writeCache(data);
+          render(normalize(data));
+        }catch(e){
+          setUnavailable();
+        }
+      }
+
+      load();
+    })();
+
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
     });
-
-    toSelect.addEventListener("change", updateResults);
-    paxSelect.addEventListener("change", updateResults);
-    bagsSelect.addEventListener("change", updateResults);
-
-    // First paint
-    updateResults();
   </script>
 
   <script>
