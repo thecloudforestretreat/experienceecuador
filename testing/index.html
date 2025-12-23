@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Misión | Experience Ecuador</title>
+  <title>Regiones | Experience Ecuador</title>
 
   <!-- Favicons (root) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -26,7 +26,6 @@
       --brand-blue:#034EA2;
       --charcoal:#1F1F1F;
       --slate:#6E7B8B;
-      --light-gray:#E3E5E8;
     }
 
     *{box-sizing:border-box}
@@ -34,7 +33,7 @@
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--charcoal);
-      background:linear-gradient(180deg,#ffffff 0%, #f6f8fb 100%);
+      background:#f6f8fb;
     }
 
     a{text-decoration:none;color:inherit}
@@ -44,11 +43,16 @@
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:42px 18px 0;
+      padding:44px 18px 0;
+    }
+
+    .hero{
+      text-align:center;
+      margin-bottom:36px;
     }
 
     .hero h1{
-      margin:0 0 10px;
+      margin:0 0 12px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       letter-spacing:-0.03em;
@@ -57,96 +61,85 @@
     }
 
     .hero p{
-      max-width:78ch;
+      margin:0 auto;
+      max-width:70ch;
       color:var(--slate);
-      font-size:17px;
-      line-height:1.65;
-      margin:0;
+      font-size:18px;
+      line-height:1.6;
     }
 
-    /* ===== CONTENT ===== */
-    .grid{
+    /* ===== REGIONS GRID ===== */
+    .regions-grid{
       display:grid;
-      grid-template-columns:1.15fr 0.85fr;
+      grid-template-columns:repeat(2,1fr);
       gap:28px;
-      padding:36px 0 18px;
-      align-items:center;
+      margin-bottom:60px;
     }
 
-    .card{
+    .region-card{
       background:#fff;
-      border-radius:20px;
-      padding:26px;
-      box-shadow:0 20px 50px rgba(3,78,162,0.08);
-      border:1px solid rgba(0,0,0,0.06);
-    }
-
-    .card h2{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      margin:0 0 12px;
-      font-size:22px;
-      color:#0f2f62;
-      letter-spacing:-0.02em;
-    }
-
-    .card p{
-      line-height:1.75;
-      font-size:15.5px;
-      margin:0;
-      color:#2a2f36;
-    }
-
-    .stack{
-      display:flex;
-      flex-direction:column;
-      gap:20px;
-      justify-content:center;
-    }
-
-    .mini{
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      border-radius:18px;
-      padding:20px;
-      border:1px solid rgba(3,78,162,0.10);
-    }
-
-    .mini h3{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      margin:0 0 8px;
-      color:#0f2f62;
-      font-size:16px;
-      letter-spacing:-0.02em;
-    }
-
-    .mini ul{
-      margin:0;
-      padding-left:18px;
-      line-height:1.7;
-      font-size:14.5px;
-      color:#24324a;
-    }
-
-    /* ===== IMAGE BREAK ===== */
-    .break{
-      margin:18px 0 40px;
       border-radius:22px;
       overflow:hidden;
-      background:#fff;
       border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 60px rgba(0,0,0,0.14);
+      box-shadow:0 20px 55px rgba(3,78,162,0.12);
+      transition:transform .2s ease, box-shadow .2s ease;
     }
 
-    .break img{
+    .region-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 28px 70px rgba(3,78,162,0.18);
+    }
+
+    .region-image{
+      height:260px;
+      overflow:hidden;
+    }
+
+    .region-image img{
       width:100%;
-      height:auto;
-      display:block;
+      height:100%;
+      object-fit:cover;
+      transition:transform .4s ease;
+    }
+
+    .region-card:hover .region-image img{
+      transform:scale(1.05);
+    }
+
+    .region-content{
+      padding:22px 22px 26px;
+    }
+
+    .region-content h2{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:22px;
+      color:var(--brand-blue);
+    }
+
+    .region-content p{
+      margin:0 0 18px;
+      color:#2a2f36;
+      line-height:1.6;
+      font-size:15.5px;
+    }
+
+    .region-link{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:999px;
+      background:var(--brand-blue);
+      color:#fff;
+      font-weight:600;
+      font-size:14px;
+      letter-spacing:.02em;
     }
 
     /* ===== MOBILE ===== */
     @media(max-width:900px){
-      .grid{ grid-template-columns:1fr; }
+      .regions-grid{ grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -156,51 +149,57 @@
 
   <main class="wrap">
     <section class="hero">
-      <h1>Nuestra Misión</h1>
+      <h1>Explora Ecuador por región</h1>
       <p>
-        Experience Ecuador existe para hacer que Ecuador sea más fácil de explorar,
-        más fácil de entender y más fácil de enamorarse de él.
-        Curamos lo mejor de cada región y conectamos a los viajeros con lugares,
-        experiencias y conocimiento local de confianza.
+        Desde islas prístinas hasta volcanes andinos y selva amazónica,
+        Ecuador ofrece una variedad increíble de experiencias en cada región.
       </p>
     </section>
 
-    <section class="grid">
-      <div class="card">
-        <h2>Lo que defendemos</h2>
-        <p>
-          Creemos que Ecuador merece un centro de viajes moderno que vaya más allá de
-          listas aleatorias y promoción pagada.
-          Nuestra misión es construir una guía clara, atractiva y práctica del país,
-          organizada por región y por experiencia.
-          A medida que la plataforma crece, se convierte en una comunidad y en un boletín
-          donde socios locales confiables pueden mostrar lo que ofrecen a una audiencia internacional.
-        </p>
-      </div>
-
-      <div class="stack">
-        <div class="mini">
-          <h3>Cómo curamos el contenido</h3>
-          <ul>
-            <li>Enfoque por regiones: Galápagos, Costa, Andes, Amazonía</li>
-            <li>Enfoque por experiencias: relajación, aventura, naturaleza, gastronomía, cultura</li>
-            <li>Enfoque en la claridad: qué es, por qué vale la pena y cómo planificarlo</li>
-          </ul>
+    <section class="regions-grid">
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Galapagos-02.jpg" alt="Islas Galápagos">
         </div>
-
-        <div class="mini">
-          <h3>Cómo se ve el éxito</h3>
-          <ul>
-            <li>Un centro confiable y único para todo lo relacionado con viajar por Ecuador</li>
-            <li>Un boletín que la gente espera con ganas leer</li>
-            <li>Una plataforma donde los socios se sienten orgullosos de anunciarse</li>
-          </ul>
+        <div class="region-content">
+          <h2>Islas Galápagos</h2>
+          <p>Encuentros con vida silvestre, paisajes volcánicos y experiencias naturales únicas.</p>
+          <a class="region-link" href="/es/regiones/galapagos/">Explorar Galápagos</a>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <section class="break" aria-label="Imagen de la misión de Experience Ecuador">
-      <img src="/assets/images/EE-Mission-02.jpg" alt="Inspiración de la misión de Experience Ecuador">
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Coast-02.jpg" alt="Costa del Ecuador">
+        </div>
+        <div class="region-content">
+          <h2>La Costa</h2>
+          <p>Playas, pueblos surferos, cultura marinera y escapadas costeras relajadas.</p>
+          <a class="region-link" href="/es/regiones/costa/">Explorar la Costa</a>
+        </div>
+      </article>
+
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Andes-02.jpg" alt="Andes del Ecuador">
+        </div>
+        <div class="region-content">
+          <h2>Los Andes</h2>
+          <p>Ciudades de altura, volcanes, mercados y un patrimonio cultural increíble.</p>
+          <a class="region-link" href="/es/regiones/andes/">Explorar los Andes</a>
+        </div>
+      </article>
+
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Amazon-02.jpg" alt="Amazonía del Ecuador">
+        </div>
+        <div class="region-content">
+          <h2>La Amazonía</h2>
+          <p>Selva exuberante, vida silvestre, viajes por ríos y experiencias eco inmersivas.</p>
+          <a class="region-link" href="/es/regiones/amazon/">Explorar la Amazonía</a>
+        </div>
+      </article>
     </section>
   </main>
 
