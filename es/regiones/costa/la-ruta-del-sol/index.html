@@ -1,1 +1,888 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Ruta del Sol | Experience Ecuador</title>
 
+  <!-- Favicons (approved root paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --cloud-white:#F5F7FA;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+      --light-gray:#E3E5E8;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:#f6f8fb;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    img{ user-select:none; -webkit-user-drag:none; }
+
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;
+      width:100%;
+      min-height:60vh;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      background:url("/assets/images/EE-Assets-Hero-LaRutadelSol.jpg") center / cover no-repeat;
+      color:#fff;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.10),
+        rgba(0,0,0,0.72)
+      );
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:1100px;
+      padding:54px 18px 34px;
+      text-align:left;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.38);
+      border:1px solid rgba(255,255,255,0.22);
+      font-weight:700;
+      letter-spacing:0.02em;
+      font-size:12.5px;
+      margin-bottom:14px;
+      backdrop-filter:blur(10px);
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      font-size:clamp(40px,5.4vw,72px);
+      line-height:1.03;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:74ch;
+      font-size:clamp(15px,2vw,18px);
+      line-height:1.65;
+      color:rgba(255,255,255,0.92);
+    }
+
+    /* ===== PAGE WRAP ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:36px 18px 0;
+    }
+
+    /* ===== SECTION / CARDS ===== */
+    .section{ margin-bottom:26px; }
+
+    .section h2{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:24px;
+      color:var(--brand-blue);
+    }
+
+    .section p{
+      margin:0;
+      color:#2a2f36;
+      font-size:15.8px;
+      line-height:1.75;
+      max-width:82ch;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      align-items:start;
+      margin-top:18px;
+    }
+
+    .grid.center-stack{ align-items:center; }
+
+    .stack-right{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      padding:22px;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      color:#0f2f62;
+    }
+
+    .card ul{
+      margin:0;
+      padding-left:18px;
+      color:#24324a;
+      line-height:1.75;
+      font-size:14.8px;
+    }
+
+    .mini{
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.12);
+      border-radius:20px;
+      padding:20px;
+    }
+
+    .mini h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      color:#0f2f62;
+    }
+
+    .mini p{
+      margin:0;
+      color:#24324a;
+      line-height:1.7;
+      font-size:14.8px;
+      opacity:.95;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .tag{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.12);
+      color:#0f2f62;
+      font-weight:700;
+      font-size:13px;
+    }
+
+    /* ===== CAROUSEL (GALLERY) ===== */
+    .carousel{
+      margin-top:0;
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
+
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
+
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
+    }
+
+    /* ===== BEACH STOPS GRID (4 ACROSS) ===== */
+    .places-grid-4{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+
+    .place-tile{
+      display:block;
+      padding:0;
+      border-radius:18px;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid rgba(3,78,162,0.12);
+      box-shadow:0 14px 42px rgba(3,78,162,0.10);
+      transition:transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .place-tile:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 55px rgba(3,78,162,0.14);
+    }
+
+    .place-img{
+      width:100%;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .place-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .place-body{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      background:linear-gradient(180deg, rgba(3,78,162,0.035), rgba(3,78,162,0.012));
+    }
+
+    .place-title{
+      margin:0;
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+      font-size:15px;
+      line-height:1.2;
+    }
+
+    .place-meta{
+      margin:6px 0 0;
+      color:#1f2b3f;
+      opacity:.9;
+      line-height:1.5;
+      font-size:13.6px;
+      max-width:34ch;
+    }
+
+    .place-arrow{
+      flex:0 0 auto;
+      width:36px;
+      height:36px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.18);
+      background:rgba(255,255,255,0.75);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:2px;
+    }
+
+    .place-arrow span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
+      transform:rotate(-45deg);
+      opacity:.9;
+    }
+
+    /* ===== MAP CARD (RIGHT OF CAROUSEL) ===== */
+    .map-embed{
+      margin-top:14px;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      background:#eef2f7;
+      aspect-ratio:16/9;
+    }
+    .map-embed iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+    }
+
+    /* ===== CTA ===== */
+    .cta{
+      margin:28px 0 56px;
+      background:var(--brand-blue);
+      color:#fff;
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 22px 60px rgba(3,78,162,0.22);
+    }
+
+    .cta h3{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:20px;
+    }
+
+    .cta p{
+      margin:0;
+      color:rgba(255,255,255,0.92);
+      line-height:1.7;
+      font-size:15.5px;
+      max-width:85ch;
+    }
+
+    /* ===== MOBILE ===== */
+    @media(max-width:1000px){
+      .places-grid-4{ grid-template-columns:repeat(2, 1fr); }
+    }
+
+    @media(max-width:900px){
+      .grid{ grid-template-columns:1fr; }
+      .hero-inner{ text-align:center; }
+      .hero p{ margin:0 auto; }
+      .places-grid-4{ grid-template-columns:1fr; }
+      .carousel{ margin-top:18px; }
+    }
+
+    @media(max-width:480px){
+      .hero{ min-height:56vh; }
+      .cta{ border-radius:20px; }
+      .carousel-btn{ width:40px; height:40px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="siteHeader"></div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-label="Imagen hero de La Ruta del Sol">
+      <div class="hero-inner">
+        <div class="kicker">Road trip por la Costa • Guía de ruta</div>
+        <h1>La Ruta del Sol</h1>
+        <p>
+          El road trip costero más icónico del Ecuador a lo largo del Pacífico.
+          Pueblos de playa, surf, cultura de mariscos, atardeceres y paradas de naturaleza conectadas por el corredor E15.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <div class="wrap">
+
+      <section class="section">
+        <h2>Qué es esta ruta</h2>
+        <p>
+          La Ruta del Sol es un clásico recorrido por la Costa que conecta pueblos de playa clave y experiencias costeras entre Santa Elena y Manabí.
+          Es perfecta para un viaje de ritmo tranquilo: eliges un par de bases y vas sumando paradas de playa fáciles entre medio.
+        </p>
+
+        <div class="grid center-stack">
+          <div class="card">
+            <h3>Para qué es mejor La Ruta del Sol</h3>
+            <ul>
+              <li>Recorrer playas con ritmo flexible y días de manejo cortos</li>
+              <li>Cultura surf, miradores al océano y atardeceres asegurados</li>
+              <li>Mariscos y escenas gastronómicas costeras locales</li>
+              <li>Combinar pueblos con energía y playas tranquilas para “resetear”</li>
+              <li>Sumar paradas de naturaleza y paseos en bote cuando aplique</li>
+            </ul>
+
+            <div class="pill-row" aria-label="Tags de experiencias de la ruta">
+              <span class="tag">Road trip</span>
+              <span class="tag">Playas</span>
+              <span class="tag">Surf</span>
+              <span class="tag">Comida</span>
+              <span class="tag">Atardeceres</span>
+            </div>
+          </div>
+
+          <div class="stack-right">
+            <div class="mini">
+              <h3>Ideal para</h3>
+              <p>
+                Viajeros que quieren una ruta costera simple con dos bases, manejos cortos y mucho tiempo frente al mar.
+                Si te gusta mantener las mañanas tranquilas y planear alrededor de la luz de la tarde, esta ruta te queda perfecta.
+              </p>
+            </div>
+
+            <div class="mini">
+              <h3>Tiempo típico</h3>
+              <p>
+                3 días para un “sabor” rápido de la Costa.
+                5 días para una ruta equilibrada con varias paradas de playa.
+                7 días si quieres ir más lento y sumar más naturaleza y comida.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Flujo simple de planificación</h2>
+        <p>
+          Mantén la ruta fácil.
+          Elige dos bases, agrega algunas paradas de playa entre ellas y protege tu tiempo de atardecer.
+        </p>
+
+        <!-- Row 1: Start with your vibe (left) + Build the route in 4 steps (right) -->
+        <div class="grid">
+          <div class="card">
+            <h3>Empieza por tu vibra</h3>
+            <ul>
+              <li>Playas tranquilas y silenciosas</li>
+              <li>Energía de surf town y vida nocturna</li>
+              <li>Ruta costera enfocada en comida</li>
+              <li>Naturaleza y paseos en bote</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Arma la ruta en 4 pasos</h3>
+            <ul>
+              <li>Elige una base en Santa Elena</li>
+              <li>Elige una base en Manabí</li>
+              <li>Agrega de 2 a 4 paradas de playa entre bases</li>
+              <li>Mantén livianos los días de manejo y planifica bloques de atardecer</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Full width: Beaches and towns (4 across) under the two cards -->
+        <div class="card" style="margin-top:16px;">
+          <h3>Playas y pueblos donde puedes parar</h3>
+          <p style="margin:0; color:#2a2f36; font-size:15.8px; line-height:1.75; max-width:82ch;">
+            Úsalos como bloques de construcción. Parte con una o dos bases y luego suma paradas cortas que calcen con tu vibra.
+          </p>
+
+          <div class="places-grid-4" aria-label="Tiles de paradas de playa">
+            <!-- Row 1: Salinas, La Libertad, Ballenita, Montanita -->
+            <a class="place-tile" href="/es/regiones/costa/salinas/" aria-label="Abrir página de Salinas">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-Salinas.jpg" alt="Imagen de la costa en Salinas">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Salinas</div>
+                  <div class="place-meta">Base clásica de playa, energía de malecón, punto de inicio fácil.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+
+            <a class="place-tile" href="/es/regiones/costa/la-ruta-del-sol/" aria-label="Abrir La Libertad">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-LaLibertad.jpg" alt="Imagen de la costa en La Libertad">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">La Libertad</div>
+                  <div class="place-meta">Mercados locales, vida real de la Costa, add-on rápido cerca de Salinas.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+
+            <a class="place-tile" href="/es/regiones/costa/la-ruta-del-sol/" aria-label="Abrir Ballenita">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-Ballenita.jpg" alt="Imagen de la costa en Ballenita">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Ballenita</div>
+                  <div class="place-meta">Reset simple de playa con ritmo más tranquilo y tiempo de atardecer.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+
+            <a class="place-tile" href="/es/regiones/costa/montanita/" aria-label="Abrir página de Montañita">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-Montanita.jpg" alt="Imagen de la costa en Montañita">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Montañita</div>
+                  <div class="place-meta">Cultura surf, vida nocturna, energía alta con playas calmadas cerca.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+
+            <!-- Row 2: Olon, Puerto Cayo, Ayampe, Puerto Lopez -->
+            <a class="place-tile" href="/es/regiones/costa/la-ruta-del-sol/" aria-label="Abrir Olón">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-Olon.jpg" alt="Imagen de la costa en Olón">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Olón</div>
+                  <div class="place-meta">Base de playa más tranquila, caminatas largas, estadías relajadas.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+
+            <a class="place-tile" href="/es/regiones/costa/la-ruta-del-sol/" aria-label="Abrir Puerto Cayo">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-PuertoCayo.jpg" alt="Imagen de la costa en Puerto Cayo">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Puerto Cayo</div>
+                  <div class="place-meta">Vibra de pueblo costero, parada fácil entre bases más grandes.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+
+            <a class="place-tile" href="/es/regiones/costa/la-ruta-del-sol/" aria-label="Abrir Ayampe">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-Ayampe.jpg" alt="Imagen de la costa en Ayampe">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Ayampe</div>
+                  <div class="place-meta">Vibra calma, naturaleza cerca, mañanas lentas.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+
+            <a class="place-tile" href="/es/regiones/costa/puerto-lopez/" aria-label="Abrir página de Puerto López">
+              <div class="place-img">
+                <img src="/assets/images/EE-Assets-PuertoLopez.jpg" alt="Imagen de la costa en Puerto López">
+              </div>
+              <div class="place-body">
+                <div>
+                  <div class="place-title">Puerto López</div>
+                  <div class="place-meta">Ancla de naturaleza, paseos en bote, base costera más calmada.</div>
+                </div>
+                <div class="place-arrow" aria-hidden="true"><span></span></div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Row: Carousel left, Map right -->
+        <div class="grid" style="margin-top:16px;">
+          <div>
+            <div id="rutaDelSolCarousel" class="carousel" aria-label="Galería de imágenes de La Ruta del Sol">
+              <button class="carousel-btn prev" type="button" aria-label="Imagen anterior">
+                <span aria-hidden="true"></span>
+              </button>
+
+              <div class="carousel-viewport">
+                <div class="carousel-track">
+                  <div class="carousel-slide"><img src="/assets/images/EE-Carousel-LaRutadelSol-1.jpg" alt="La Ruta del Sol destacado 1"></div>
+                  <div class="carousel-slide"><img src="/assets/images/EE-Carousel-LaRutadelSol-2.jpg" alt="La Ruta del Sol destacado 2"></div>
+                  <div class="carousel-slide"><img src="/assets/images/EE-Carousel-LaRutadelSol-3.jpg" alt="La Ruta del Sol destacado 3"></div>
+                  <div class="carousel-slide"><img src="/assets/images/EE-Carousel-LaRutadelSol-4.jpg" alt="La Ruta del Sol destacado 4"></div>
+                  <div class="carousel-slide"><img src="/assets/images/EE-Carousel-LaRutadelSol-5.jpg" alt="La Ruta del Sol destacado 5"></div>
+                  <div class="carousel-slide"><img src="/assets/images/EE-Carousel-LaRutadelSol-6.jpg" alt="La Ruta del Sol destacado 6"></div>
+                </div>
+              </div>
+
+              <button class="carousel-btn next" type="button" aria-label="Siguiente imagen">
+                <span aria-hidden="true"></span>
+              </button>
+
+              <div class="carousel-ui">
+                <div class="carousel-dots" aria-label="Paginación del carrusel"></div>
+                <div class="carousel-counter" id="rutaDelSolCarouselCounter">1 / 6</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" aria-label="Mapa típico de ruta">
+            <h3>Mapa típico de la ruta</h3>
+            <p style="margin:0; color:#2a2f36; font-size:15.8px; line-height:1.75; max-width:82ch;">
+              Úsalo como referencia del recorrido costero habitual y las paradas más comunes. Haz zoom para ver pueblos, playas y desvíos cortos.
+            </p>
+
+            <div class="map-embed">
+              <iframe
+                title="Mapa de La Ruta del Sol"
+                src="https://www.google.com/maps/d/embed?mid=1glMWm8YI7ZvM9wYrfPB8i-mB3-rdpRw&ehbc=2E312F"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" aria-label="CTA de planificación de ruta">
+        <h3>¿Quieres un plan limpio para road trip por la Costa?</h3>
+        <p>
+          Cuéntanos tus fechas, tu ritmo y tu vibra de playa preferida.
+          Te ayudamos a elegir bases, timing de paradas y una ruta que se sienta fácil.
+          Escríbenos desde la página de Contacto cuando estés listo.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script src="/assets/js/site.js"></script>
+
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
+
+  <script>
+    /* La Ruta del Sol carousel */
+    (function(){
+      const root = document.getElementById("rutaDelSolCarousel");
+      if(!root) return;
+
+      const track = root.querySelector(".carousel-track");
+      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+      const prevBtn = root.querySelector(".carousel-btn.prev");
+      const nextBtn = root.querySelector(".carousel-btn.next");
+      const dotsWrap = root.querySelector(".carousel-dots");
+      const counter = root.querySelector("#rutaDelSolCarouselCounter");
+
+      let index = 0;
+
+      const AUTOPLAY_MS = 5000;
+      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      let autoplayTimer = null;
+      let autoplayEnabled = !prefersReducedMotion;
+
+      function setIndex(next){
+        index = (next + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        updateDots();
+        updateCounter();
+      }
+
+      function updateCounter(){
+        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
+      }
+
+      function updateDots(){
+        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
+        dots.forEach((d,i) => d.classList.toggle("active", i === index));
+      }
+
+      function buildDots(){
+        dotsWrap.innerHTML = "";
+        slides.forEach((_, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "dot" + (i === 0 ? " active" : "");
+          b.setAttribute("aria-label", `Ir a la imagen ${i + 1}`);
+          b.addEventListener("click", () => {
+            setIndex(i);
+            stopAutoplay();
+          });
+          dotsWrap.appendChild(b);
+        });
+      }
+
+      function next(){ setIndex(index + 1); }
+      function prev(){ setIndex(index - 1); }
+
+      function startAutoplay(){
+        if(!autoplayEnabled) return;
+        stopAutoplay();
+        autoplayTimer = setInterval(next, AUTOPLAY_MS);
+      }
+
+      function stopAutoplay(){
+        if(autoplayTimer){
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
+      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
+
+      root.addEventListener("keydown", (e) => {
+        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
+        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
+      });
+
+      let startX = 0;
+      let isDown = false;
+
+      const viewport = root.querySelector(".carousel-viewport");
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+      });
+
+      viewport.addEventListener("pointerup", (e) => {
+        if(!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        const threshold = 40;
+        if(dx > threshold){ prev(); stopAutoplay(); }
+        if(dx < -threshold){ next(); stopAutoplay(); }
+      });
+
+      viewport.addEventListener("pointercancel", () => { isDown = false; });
+
+      root.addEventListener("mouseenter", stopAutoplay);
+      root.addEventListener("mouseleave", startAutoplay);
+      root.addEventListener("focusin", stopAutoplay);
+      root.addEventListener("focusout", startAutoplay);
+
+      root.tabIndex = 0;
+      buildDots();
+      updateCounter();
+      setIndex(0);
+      startAutoplay();
+    })();
+
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+  </script>
+</body>
+</html>
