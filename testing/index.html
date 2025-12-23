@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mindo | Experience Ecuador</title>
+  <title>Cuenca | Experience Ecuador</title>
 
-  <!-- Favicons (root paths) -->
+  <!-- Favicons (approved root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -32,14 +32,14 @@
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:#f6f8fb;
+      background:#f6f8fb; /* ✅ Site background */
       color:var(--text);
     }
 
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
-    /* ===== CONTENT ONLY ===== */
+    /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
@@ -237,160 +237,78 @@
       font-size:13px;
     }
 
-    /* ===== ITINERARY SELECTOR ===== */
-    .it-head{
+    /* ===== MORE ANDES DESTINATIONS (MATCH OTHER PAGES) ===== */
+    .andes-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .andes-tile{
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-top:10px;
-    }
-
-    .it-control{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      min-width:260px;
-      flex:0 0 auto;
-    }
-
-    .it-label{
-      font-weight:900;
-      color:#0f2f62;
-      font-size:13px;
-      letter-spacing:-0.01em;
-      opacity:.95;
-    }
-
-    .it-select{
-      width:100%;
-      appearance:none;
-      background:#fff;
-      border:1px solid rgba(3,78,162,.18);
-      border-radius:14px;
-      padding:12px 44px 12px 12px;
-      font-weight:800;
-      color:#0f2f62;
-      box-shadow:0 10px 30px rgba(3,78,162,.08);
-      cursor:pointer;
-      line-height:1.1;
-      background-image:
-        linear-gradient(45deg, transparent 50%, rgba(15,47,98,.9) 50%),
-        linear-gradient(135deg, rgba(15,47,98,.9) 50%, transparent 50%);
-      background-position:
-        calc(100% - 18px) 50%,
-        calc(100% - 12px) 50%;
-      background-size:6px 6px, 6px 6px;
-      background-repeat:no-repeat;
-    }
-
-    .it-select:focus{
-      outline:2px solid rgba(3,78,162,0.35);
-      outline-offset:2px;
-    }
-
-    .it-summary{
-      color:#1f2b3f;
-      line-height:1.65;
-      font-size:14.8px;
-      opacity:.95;
-      flex:1 1 320px;
-      max-width:70ch;
-      margin:0;
-    }
-
-    .it-plan{
-      margin-top:14px;
-      display:flex;
-      flex-direction:column;
       gap:12px;
-    }
-
-    .day-card{
-      border-radius:18px;
-      padding:14px 14px;
+      padding:12px 12px;
+      border-radius:16px;
       background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
       border:1px solid rgba(3,78,162,.12);
+      transition:transform .12s ease, background .12s ease;
     }
 
-    .day-top{
+    .andes-tile:hover{
+      background:rgba(3,78,162,.07);
+      transform:translateY(-1px);
+    }
+
+    .andes-left{
       display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom:10px;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
     }
 
-    .day-title{
+    .andes-title{
       font-weight:900;
       color:#0f2f62;
-      letter-spacing:-0.01em;
       font-size:14.8px;
+      letter-spacing:-0.01em;
       line-height:1.2;
     }
 
-    .day-pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      background:rgba(3,78,162,.06);
-      border:1px solid rgba(3,78,162,.14);
-      color:#0f2f62;
-      font-weight:900;
-      font-size:12.5px;
-      white-space:nowrap;
-    }
-
-    .slots{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
-    .slot{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      padding:10px 10px;
-      border-radius:14px;
-      background:rgba(255,255,255,.85);
-      border:1px solid rgba(3,78,162,.12);
-    }
-
-    .slot-time{
-      flex:0 0 auto;
-      min-width:88px;
-      font-weight:900;
-      color:#0f2f62;
-      font-size:12.8px;
-      opacity:.95;
-      padding-top:1px;
-      white-space:nowrap;
-    }
-
-    .slot-text{
-      margin:0;
+    .andes-sub{
       color:#1f2b3f;
-      opacity:.95;
-      line-height:1.6;
-      font-size:13.8px;
-      max-width:78ch;
+      opacity:.9;
+      line-height:1.5;
+      font-size:13.4px;
+      max-width:60ch;
     }
 
-    .it-note{
-      margin-top:12px;
-      padding-top:12px;
-      border-top:1px solid rgba(0,0,0,.06);
-      color:var(--slate);
-      font-size:13.8px;
-      line-height:1.65;
+    .andes-arrow{
+      flex:0 0 auto;
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,.18);
+      background:rgba(255,255,255,.75);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:2px;
     }
 
-    /* ===== WEATHER (same as Quito) ===== */
+    .andes-arrow span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
+      transform:rotate(-45deg);
+      opacity:.85;
+    }
+
+    /* ===== WEATHER (Quito standard) ===== */
     .wx-card{
       padding:18px 18px;
       border-radius:22px;
@@ -580,78 +498,7 @@
       opacity:.85;
     }
 
-    /* ===== MORE ANDES DESTINATIONS ===== */
-    .andes-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
-      margin-top:12px;
-    }
-
-    .andes-tile{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      padding:12px 12px;
-      border-radius:16px;
-      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
-      border:1px solid rgba(3,78,162,.12);
-      transition:transform .12s ease, background .12s ease;
-    }
-
-    .andes-tile:hover{
-      background:rgba(3,78,162,.07);
-      transform:translateY(-1px);
-    }
-
-    .andes-left{
-      display:flex;
-      flex-direction:column;
-      gap:4px;
-      min-width:0;
-    }
-
-    .andes-title{
-      font-weight:900;
-      color:#0f2f62;
-      font-size:14.8px;
-      letter-spacing:-0.01em;
-      line-height:1.2;
-    }
-
-    .andes-sub{
-      color:#1f2b3f;
-      opacity:.9;
-      line-height:1.5;
-      font-size:13.4px;
-      max-width:60ch;
-    }
-
-    .andes-arrow{
-      flex:0 0 auto;
-      width:34px;
-      height:34px;
-      border-radius:999px;
-      border:1px solid rgba(3,78,162,.18);
-      background:rgba(255,255,255,.75);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin-top:2px;
-    }
-
-    .andes-arrow span{
-      display:block;
-      width:10px;
-      height:10px;
-      border-right:2px solid #0f2f62;
-      border-bottom:2px solid #0f2f62;
-      transform:rotate(-45deg);
-      opacity:.85;
-    }
-
-    /* ===== CAROUSEL (BOTTOM) ===== */
+    /* ===== CAROUSEL (MATCH BAÑOS) ===== */
     .carousel{
       margin-top:18px;
       background:#fff;
@@ -775,12 +622,10 @@
 
     @media(max-width:620px){
       .carousel-slide{ aspect-ratio:16/9; }
-      .it-control{ min-width: 100%; }
     }
 
     @media(max-width:480px){
       .carousel-btn{ width:40px; height:40px; }
-      .slot-time{ min-width:82px; }
     }
   </style>
 </head>
@@ -788,278 +633,255 @@
 <body>
   <div id="siteHeader"></div>
 
-  <main>
-    <!-- PAGE CONTENT ONLY -->
-    <main class="wrap">
-      <h1>Mindo</h1>
-      <p class="lede">
-        Mindo es la escapada de bosque nublado de Ecuador, famosa por el avistamiento de aves de clase mundial, senderos con neblina, cascadas y un ambiente tranquilo de pueblo.
-        Es una de las escapadas de naturaleza más fáciles desde Quito y una opción top si buscas vida silvestre, aire fresco y paisajes verdes.
-      </p>
+  <main class="wrap">
+    <h1>Cuenca</h1>
+    <p class="lede">
+      Cuenca is Ecuador’s southern highlands gem, known for elegant colonial streets, artisan craft traditions, and an easy, walkable rhythm.
+      It is a top choice if you want culture, architecture, markets, and relaxed city days with great food.
+    </p>
 
-      <div class="meta-row" aria-label="Metadatos de Mindo">
-        <span class="pill">Región: Andes</span>
-        <span class="pill">Mejor para: Bosque nublado, aves, cascadas</span>
-        <span class="pill">Buen punto base: Escapada desde Quito, rutas Chocó Andino</span>
-      </div>
+    <div class="meta-row" aria-label="Cuenca overview metadata">
+      <span class="pill">Region: Southern Andes</span>
+      <span class="pill">Best for: Culture, architecture, local life</span>
+      <span class="pill">Typical time: 2 to 4 nights</span>
+    </div>
 
-      <section class="content-grid" aria-label="Contenido de Mindo">
-        <!-- LEFT COLUMN -->
-        <div>
-          <div class="card">
-            <h2>Para qué es mejor Mindo</h2>
-            <p>
-              Mindo es un lugar para bajar el ritmo y conectar con la naturaleza.
-              Los días se construyen con caminatas cortas, momentos de vida silvestre y excursiones fáciles a cascadas y miradores.
-              Las primeras horas de la mañana son ideales para aves y una luz de bosque muy tranquila.
-            </p>
+    <section class="content-grid" aria-label="Cuenca content">
+      <!-- LEFT COLUMN -->
+      <div>
+        <div class="card">
+          <h2>What Cuenca is best for</h2>
+          <p>
+            Cuenca is built for slow discovery.
+            Think morning walks through historic streets, museum stops, café breaks, and a full afternoon that is still unhurried.
+            It is also a strong base for nearby highland day trips.
+          </p>
 
-            <div class="two-col" aria-label="Highlights de Mindo">
-              <div class="mini-card">
-                <h3>Vida silvestre y avistamiento de aves</h3>
-                <p>
-                  Uno de los mejores lugares de Ecuador para colibríes y especies de bosque nublado.
-                  Funciona excelente con guía o por tu cuenta cerca del pueblo.
-                </p>
-              </div>
-
-              <div class="mini-card">
-                <h3>Cascadas y senderos de bosque</h3>
-                <p>
-                  Una ruta simple de caminatas verdes y paradas de cascadas.
-                  Fácil combinar hikes cortos con descansos.
-                </p>
-              </div>
-
-              <div class="mini-card">
-                <h3>Chocolate y cafés locales</h3>
-                <p>
-                  Ambiente acogedor de café y experiencias locales que quedan perfectas para tardes con lluvia.
-                </p>
-              </div>
-
-              <div class="mini-card">
-                <h3>Aventura suave</h3>
-                <p>
-                  Canopy, tubing o miradores en altura sin convertir el viaje en una agenda 100% adrenalina.
-                </p>
-              </div>
-            </div>
-
-            <div class="chips" aria-label="Chips de temas de Mindo">
-              <span class="chip">Bosque nublado</span>
-              <span class="chip">Aves</span>
-              <span class="chip">Cascadas</span>
-              <span class="chip">Naturaleza</span>
-              <span class="chip">Fotografía</span>
-              <span class="chip">Fácil desde Quito</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <h2>Notas rápidas para planificar</h2>
-            <p>
-              El clima en Mindo cambia rápido. Planifica tus actividades grandes al aire libre por la mañana y deja las tardes flexibles.
-              Un ritmo ideal es: un “día de cascadas”, una “mañana de aves” y un “día lento” para cafés y caminatas cortas.
-            </p>
-            <p>
-              ¿Quieres un plan curado de 1 a 4 noches con los mejores spots de aves, guías y el ritmo correcto?
-              Escríbenos desde la página de <a class="inline-link" href="/contact/">Contacto</a>.
-            </p>
-          </div>
-
-          <!-- SINGLE ITINERARY SECTION WITH DROPDOWN -->
-          <div class="card" id="mindoItinerary">
-            <h2>Elige tu plan para Mindo</h2>
-
-            <div class="it-head" aria-label="Selector de itinerario">
-              <div class="it-control">
-                <div class="it-label">Duración</div>
-                <select class="it-select" id="itDaysSelect" aria-label="Selecciona número de días">
-                  <option value="1">1 día</option>
-                  <option value="2">2 días</option>
-                  <option value="3">3 días</option>
-                  <option value="4">4 días</option>
-                </select>
-              </div>
-
-              <p class="it-summary" id="itSummary">
-                Un día rápido y efectivo: un bloque fuerte de naturaleza + tiempo fácil en el pueblo. Ideal si estás basado en Quito.
+          <div class="two-col" aria-label="Cuenca highlights">
+            <div class="mini-card">
+              <h3>Historic center and architecture</h3>
+              <p>
+                Classic plazas, churches, and photogenic streets.
+                Perfect for easy walking days and city views.
               </p>
             </div>
 
-            <div class="it-plan" id="itPlan" aria-live="polite" aria-label="Itinerario tentativo"></div>
+            <div class="mini-card">
+              <h3>Markets and artisan craft</h3>
+              <p>
+                Local markets, handmade goods, and regional specialties.
+                Great for souvenirs that feel authentic.
+              </p>
+            </div>
 
-            <div class="it-note">
-              Esta es una guía de ritmo tentativo. En el bosque nublado el clima puede cambiar rápido, por eso recomendamos dejar las tardes flexibles.
-              Si quieres esto ajustado a tus fechas e intereses, usa la página de <a class="inline-link" href="/contact/">Contacto</a>.
+            <div class="mini-card">
+              <h3>Food and café culture</h3>
+              <p>
+                A strong restaurant scene with cozy cafés and a relaxed pace.
+                Easy to build a day around food moments.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3>Day trips and scenery</h3>
+              <p>
+                Use Cuenca as a base for short drives, viewpoints, and highland landscapes nearby.
+              </p>
             </div>
           </div>
 
-          <!-- Carousel bottom -->
-          <div id="mindoCarousel" class="carousel" aria-label="Galería de imágenes de Mindo">
-            <button class="carousel-btn prev" type="button" aria-label="Imagen anterior">
-              <span aria-hidden="true"></span>
-            </button>
+          <div class="chips" aria-label="Cuenca theme chips">
+            <span class="chip">Culture</span>
+            <span class="chip">Architecture</span>
+            <span class="chip">Markets</span>
+            <span class="chip">Food</span>
+            <span class="chip">Museums</span>
+            <span class="chip">Relaxed city days</span>
+          </div>
+        </div>
 
-            <div class="carousel-viewport">
-              <div class="carousel-track">
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Mindo-1.jpg" alt="Mindo highlight 1"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Mindo-2.jpg" alt="Mindo highlight 2"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Mindo-3.jpg" alt="Mindo highlight 3"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Mindo-4.jpg" alt="Mindo highlight 4"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Mindo-5.jpg" alt="Mindo highlight 5"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Mindo-6.jpg" alt="Mindo highlight 6"></div>
-              </div>
+        <div class="card">
+          <h2>Simple planning flow</h2>
+          <p>
+            Plan Cuenca like a walkable loop.
+            Pick one landmark anchor each morning, then leave the rest open for markets, cafés, and small discoveries.
+            Add one day trip if you have 3 to 4 nights.
+          </p>
+          <p>
+            Want a curated Cuenca plan with the right walking routes, food stops, and day trip pacing?
+            Reach out via the <a class="inline-link" href="/es/contact/">Contact</a> page.
+          </p>
+        </div>
+
+        <!-- CAROUSEL (LEFT, BELOW PLANNING FLOW) -->
+        <div id="cuencaCarousel" class="carousel" aria-label="Cuenca image gallery">
+          <button class="carousel-btn prev" type="button" aria-label="Previous image">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-1.jpg" alt="Cuenca highlight 1"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-2.jpg" alt="Cuenca highlight 2"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-3.jpg" alt="Cuenca highlight 3"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-4.jpg" alt="Cuenca highlight 4"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-5.jpg" alt="Cuenca highlight 5"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuenca-6.jpg" alt="Cuenca highlight 6"></div>
+            </div>
+          </div>
+
+          <button class="carousel-btn next" type="button" aria-label="Next image">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-ui">
+            <div class="carousel-dots" aria-label="Carousel pagination"></div>
+            <div class="carousel-counter" id="cuencaCarouselCounter">1 / 6</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <aside class="side-stack" aria-label="Cuenca side content">
+        <!-- Card 1: Best use of time -->
+        <div class="mini">
+          <h3>Best use of time</h3>
+          <p>
+            Cuenca is at its best when you do not rush.
+            Prioritize one strong walking route per day, then let cafés, markets, and neighborhood streets fill the gaps naturally.
+          </p>
+
+          <div class="link-list" aria-label="Quick links">
+            <a class="pill-link" href="/es/regiones/andes/">
+              Back to Andes <span>Region page</span>
+            </a>
+            <a class="pill-link" href="/es/regiones/andes/quito/">
+              Quito <span>Main hub</span>
+            </a>
+            <a class="pill-link" href="/es/contact/">
+              Contact <span>Questions and partnerships</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2: Weather (Quito-standard wx-card) -->
+        <div class="wx-card" aria-label="Cuenca weather">
+          <div class="wx-title">Current weather</div>
+
+          <div class="wx-now" aria-label="Weather snapshot">
+            <div class="wx-date" id="cuencaWxDate">--/--/----</div>
+            <p class="wx-lines" id="cuencaWxLines">Loading…</p>
+          </div>
+
+          <div style="height:1px;background:rgba(0,0,0,.06);margin:14px 0 12px;"></div>
+
+          <div class="wx-title" style="margin:0 0 6px;">7-day forecast</div>
+          <p class="wx-sub">High / low and rain for the week ahead.</p>
+
+          <div class="wx-grid7" id="cuencaWx7" aria-label="7-day forecast grid"></div>
+
+          <div class="months" aria-label="Best months to visit">
+            <div class="wx-title" style="margin:0 0 6px;">Best months to visit</div>
+            <p class="wx-sub">Based on typically drier skies and comfort for city exploring.</p>
+
+            <div class="legend" aria-label="Month legend">
+              <div class="legend-item"><span class="swatch best" aria-hidden="true"></span> Best</div>
+              <div class="legend-item"><span class="swatch good" aria-hidden="true"></span> Good</div>
+              <div class="legend-item"><span class="swatch fair" aria-hidden="true"></span> Fair</div>
             </div>
 
-            <button class="carousel-btn next" type="button" aria-label="Siguiente imagen">
-              <span aria-hidden="true"></span>
-            </button>
-
-            <div class="carousel-ui">
-              <div class="carousel-dots" aria-label="Paginación del carrusel"></div>
-              <div class="carousel-counter" id="mindoCarouselCounter">1 / 6</div>
+            <div class="month-row" aria-label="Month chips">
+              <span class="month-chip good">Jan</span>
+              <span class="month-chip good">Feb</span>
+              <span class="month-chip good">Mar</span>
+              <span class="month-chip fair">Apr</span>
+              <span class="month-chip fair">May</span>
+              <span class="month-chip best">Jun</span>
+              <span class="month-chip best">Jul</span>
+              <span class="month-chip best">Aug</span>
+              <span class="month-chip best">Sep</span>
+              <span class="month-chip best">Oct</span>
+              <span class="month-chip good">Nov</span>
+              <span class="month-chip good">Dec</span>
             </div>
           </div>
         </div>
 
-        <!-- RIGHT COLUMN -->
-        <aside class="side-stack" aria-label="Contenido lateral de Mindo">
-          <div class="mini">
-            <h3>Ideal para estancias cortas</h3>
-            <p>
-              Mindo es uno de los viajes de bosque nublado más fáciles desde Quito. Si tienes poco tiempo, prioriza las mañanas temprano en el bosque
-              y deja las tardes flexibles para cascadas, cafés y actividades cortas.
-            </p>
+        <!-- Card 3: More Andes destinations -->
+        <div class="mini" aria-label="More Andes destinations">
+          <h3>More Andes destinations</h3>
+          <p style="margin-top:-4px;">
+            Build an Andes route with city time, markets, volcano landscapes, cloud forest, hot springs, and waterfalls.
+          </p>
 
-            <div class="link-list" aria-label="Links rápidos">
-              <a class="pill-link" href="/es/regiones/andes/">
-                Volver a Andes <span>Página región</span>
-              </a>
-              <a class="pill-link" href="/es/regiones/andes/quito/">
-                Quito <span>Hub principal</span>
-              </a>
-              <a class="pill-link" href="/es/contacto/">
-                Contacto <span>Preguntas y alianzas</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Weather card -->
-          <div class="wx-card" aria-label="Clima y estacionalidad">
-            <div class="wx-title">Clima actual</div>
-
-            <div class="wx-now">
-              <div class="wx-date" id="mindoWxDate">--/--/----</div>
-              <p class="wx-lines" id="mindoWxLines">Cargando…</p>
-            </div>
-
-            <div class="months" aria-label="Pronóstico y mejores meses">
-              <div class="wx-title" style="margin-top:0;">Pronóstico de 7 días</div>
-              <div class="wx-sub">Máxima / mínima y lluvia para la semana.</div>
-              <div class="wx-grid7" id="mindoWx7" aria-label="Grid de pronóstico 7 días (Mindo)"></div>
-
-              <div class="wx-title" style="margin-top:14px;">Mejores meses para visitar</div>
-              <div class="wx-sub" style="margin-bottom:8px;">
-                Basado en cielos típicamente más secos y comodidad para explorar el bosque nublado.
+          <div class="andes-grid" aria-label="Andes destination links">
+            <a class="andes-tile" href="/es/regiones/andes/quito/" aria-label="Open Quito page">
+              <div class="andes-left">
+                <div class="andes-title">Quito</div>
+                <div class="andes-sub">Historic center, viewpoints, and easy day trips.</div>
               </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
 
-              <div class="legend" aria-label="Leyenda mejores meses">
-                <div class="legend-item"><span class="swatch best" aria-hidden="true"></span>Mejor</div>
-                <div class="legend-item"><span class="swatch good" aria-hidden="true"></span>Bueno</div>
-                <div class="legend-item"><span class="swatch fair" aria-hidden="true"></span>Regular</div>
+            <a class="andes-tile" href="/es/regiones/andes/mindo/" aria-label="Open Mindo page">
+              <div class="andes-left">
+                <div class="andes-title">Mindo</div>
+                <div class="andes-sub">Cloud forest, birding, waterfalls, relaxed nature days.</div>
               </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
 
-              <div class="month-row" aria-label="Chips de 12 meses">
-                <span class="month-chip fair" aria-label="Enero">Ene</span>
-                <span class="month-chip fair" aria-label="Febrero">Feb</span>
-                <span class="month-chip fair" aria-label="Marzo">Mar</span>
-                <span class="month-chip fair" aria-label="Abril">Abr</span>
-                <span class="month-chip fair" aria-label="Mayo">May</span>
-                <span class="month-chip good" aria-label="Junio (bueno)">Jun</span>
-                <span class="month-chip best" aria-label="Julio (mejor)">Jul</span>
-                <span class="month-chip best" aria-label="Agosto (mejor)">Ago</span>
-                <span class="month-chip good" aria-label="Septiembre (bueno)">Sep</span>
-                <span class="month-chip fair" aria-label="Octubre">Oct</span>
-                <span class="month-chip fair" aria-label="Noviembre">Nov</span>
-                <span class="month-chip fair" aria-label="Diciembre">Dic</span>
+            <a class="andes-tile" href="/es/regiones/andes/otavalo/" aria-label="Open Otavalo page">
+              <div class="andes-left">
+                <div class="andes-title">Otavalo</div>
+                <div class="andes-sub">Markets, textiles, lakes, northern highland culture.</div>
               </div>
-            </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/es/regiones/andes/cotopaxi/" aria-label="Open Cotopaxi page">
+              <div class="andes-left">
+                <div class="andes-title">Cotopaxi</div>
+                <div class="andes-sub">Volcano scenery, hikes, páramo landscapes.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/es/regiones/andes/banos/" aria-label="Open Baños page">
+              <div class="andes-left">
+                <div class="andes-title">Baños</div>
+                <div class="andes-sub">Waterfalls, viewpoints, and soft adventure energy.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/es/regiones/andes/papallacta/" aria-label="Open Papallacta page">
+              <div class="andes-left">
+                <div class="andes-title">Papallacta</div>
+                <div class="andes-sub">Hot springs, high altitude views, easy reset days.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/es/regiones/andes/choco-andino/" aria-label="Open Chocó Andino page">
+              <div class="andes-left">
+                <div class="andes-title">Chocó Andino</div>
+                <div class="andes-sub">Biodiversity, forest reserves, birding, quiet nature routes.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
           </div>
-
-          <div class="mini" aria-label="Más destinos en los Andes">
-            <h3>Más destinos en los Andes</h3>
-
-            <div class="andes-grid" aria-label="Links de destinos Andes">
-              <a class="andes-tile" href="/es/regiones/andes/quito/" aria-label="Abrir Quito">
-                <div class="andes-left">
-                  <div class="andes-title">Quito</div>
-                  <div class="andes-sub">Cultura, miradores y excursiones rápidas desde la capital.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-
-              <a class="andes-tile" href="/es/regiones/andes/otavalo/" aria-label="Abrir Otavalo">
-                <div class="andes-left">
-                  <div class="andes-title">Otavalo</div>
-                  <div class="andes-sub">Mercados, textiles, lagos y cultura del norte andino.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-
-              <a class="andes-tile" href="/es/regiones/andes/cotopaxi/" aria-label="Abrir Cotopaxi">
-                <div class="andes-left">
-                  <div class="andes-title">Cotopaxi</div>
-                  <div class="andes-sub">Paisajes de volcán, caminatas y páramo.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-
-              <a class="andes-tile" href="/es/regiones/andes/banos/" aria-label="Abrir Baños">
-                <div class="andes-left">
-                  <div class="andes-title">Baños</div>
-                  <div class="andes-sub">Cascadas, miradores y energía de aventura suave.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-
-              <a class="andes-tile" href="/es/regiones/andes/cuenca/" aria-label="Abrir Cuenca">
-                <div class="andes-left">
-                  <div class="andes-title">Cuenca</div>
-                  <div class="andes-sub">Encanto colonial, paseos junto al río y cultura artesanal.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-
-              <a class="andes-tile" href="/es/regiones/andes/papallacta/" aria-label="Abrir Papallacta">
-                <div class="andes-left">
-                  <div class="andes-title">Papallacta</div>
-                  <div class="andes-sub">Termas, vistas de páramo y aire de montaña.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-
-              <a class="andes-tile" href="/es/regiones/andes/choco-andino/" aria-label="Abrir Chocó Andino">
-                <div class="andes-left">
-                  <div class="andes-title">Chocó Andino</div>
-                  <div class="andes-sub">Biodiversidad, bosque nublado y rutas de naturaleza.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-            </div>
-          </div>
-        </aside>
-      </section>
-    </main>
+        </div>
+      </aside>
+    </section>
   </main>
 
   <div id="siteFooter"></div>
 
-  <!-- Global behavior JS (required, bottom only) -->
+  <!-- Global behavior JS (required, at bottom) -->
   <script src="/assets/js/site.js"></script>
 
-  <!-- Required include injector (exact) -->
+  <!-- Required include injection (exact script) -->
   <script>
     (function(){
       async function inject(id, url){
@@ -1074,321 +896,9 @@
   </script>
 
   <script>
-    // Light deterrent: disable right-click on images only
-    document.addEventListener('contextmenu', (e) => {
-      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
-    });
-
-    /* ===== MINDO ITINERARY (1 page + dropdown) ===== */
+    /* Cuenca carousel (match Baños behavior) */
     (function(){
-      const selectEl = document.getElementById("itDaysSelect");
-      const planEl = document.getElementById("itPlan");
-      const summaryEl = document.getElementById("itSummary");
-      if(!selectEl || !planEl || !summaryEl) return;
-
-      const itineraries = {
-        1: {
-          summary: "Un día rápido y de alto impacto: un bloque fuerte de naturaleza + tiempo fácil en el pueblo. Ideal si estás basado en Quito.",
-          days: [
-            {
-              title: "Día 1",
-              pill: "Highlights + ritmo fácil",
-              slots: [
-                { time: "Mañana", text: "Llega y empieza con un bloque corto de bosque nublado. Si tu enfoque son aves, prioriza un jardín de colibríes o una caminata guiada temprano." },
-                { time: "Mediodía", text: "Almuerzo en el pueblo y luego elige una actividad simple según el clima: mariposario, experiencia de chocolate o un mirador corto." },
-                { time: "Tarde", text: "Opción de cascada si el cielo ayuda, o mantén esto flexible con cafés y un paseo relajado. Regresa a Quito si estás en modo day trip." }
-              ]
-            }
-          ]
-        },
-        2: {
-          summary: "La estancia corta más eficiente. Una mañana de aves, un día de cascadas y tiempo relajado en el pueblo.",
-          days: [
-            {
-              title: "Día 1",
-              pill: "Llegada + pueblo y naturaleza",
-              slots: [
-                { time: "Mañana", text: "Llega y acomódate. Haz un bloque de naturaleza suave cerca del pueblo para mantener flexibilidad." },
-                { time: "Mediodía", text: "Almuerzo y una actividad tranquila: chocolate, mariposario o visita a un jardín de colibríes." },
-                { time: "Tarde", text: "Caminata corta o mirador opcional. Noche temprana para aprovechar la mañana siguiente." }
-              ]
-            },
-            {
-              title: "Día 2",
-              pill: "Cascadas + ruta escénica",
-              slots: [
-                { time: "Temprano", text: "Empieza temprano cuando los senderos están más tranquilos. Elige un día de ruta de cascadas si el clima está estable." },
-                { time: "Mediodía", text: "Parada de almuerzo/picnic y luego una cascada más o un sendero corto adicional." },
-                { time: "Tarde", text: "Regreso al pueblo. Si sales el mismo día, mantén este bloque ligero y con buffer para el viaje." }
-              ]
-            }
-          ]
-        },
-        3: {
-          summary: "Más aire. Puedes sumar una segunda mañana de aves o una actividad de aventura suave sin apurarte.",
-          days: [
-            {
-              title: "Día 1",
-              pill: "Llegada + actividades fáciles",
-              slots: [
-                { time: "Mañana", text: "Llega, haz check-in y empieza suave cerca del pueblo para adaptarte al clima y energía." },
-                { time: "Mediodía", text: "Chocolate o mariposario, más una parada de café." },
-                { time: "Tarde", text: "Sendero corto o mirador, luego descanso. Guarda lo grande para las mañanas." }
-              ]
-            },
-            {
-              title: "Día 2",
-              pill: "Mañana de avistamiento de aves",
-              slots: [
-                { time: "Temprano", text: "Mañana enfocada en aves. Considera guía para más especies y mejor timing." },
-                { time: "Mediodía", text: "Almuerzo y descanso. Las tardes pueden ser lluviosas, así que deja esto flexible." },
-                { time: "Tarde", text: "Aventura suave opcional: canopy/zipline o tubing si las condiciones están buenas." }
-              ]
-            },
-            {
-              title: "Día 3",
-              pill: "Cascadas + cierre relajado",
-              slots: [
-                { time: "Mañana", text: "Día de ruta de cascadas o cambia por otra mañana de aves según tu prioridad." },
-                { time: "Mediodía", text: "Almuerzo y una última parada escénica." },
-                { time: "Tarde", text: "Tiempo lento en el pueblo y salida con buffer." }
-              ]
-            }
-          ]
-        },
-        4: {
-          summary: "El viaje completo y lento. Varias mañanas de bosque, cascadas y tardes relajadas en el pueblo.",
-          days: [
-            {
-              title: "Día 1",
-              pill: "Llegada + acomodarte",
-              slots: [
-                { time: "Mañana", text: "Llega y mantén todo fácil. Actividad corta de naturaleza cerca del pueblo." },
-                { time: "Mediodía", text: "Chocolate, mariposario o jardín de colibríes, luego almuerzo." },
-                { time: "Tarde", text: "Pueblo y descanso. Deja hiking más fuerte para las mañanas." }
-              ]
-            },
-            {
-              title: "Día 2",
-              pill: "Mañana de aves",
-              slots: [
-                { time: "Temprano", text: "Mañana principal de aves. Con guía si quieres la mejor variedad y ritmo." },
-                { time: "Mediodía", text: "Descanso y cafés. Buffer por clima." },
-                { time: "Tarde", text: "Aventura suave opcional o sendero corto según condiciones." }
-              ]
-            },
-            {
-              title: "Día 3",
-              pill: "Día de cascadas",
-              slots: [
-                { time: "Temprano", text: "Ruta de cascadas con la mejor probabilidad de senderos más secos temprano." },
-                { time: "Mediodía", text: "Almuerzo y un sendero corto extra si tienes energía." },
-                { time: "Tarde", text: "Vuelta al pueblo para una tarde/noche tranquila." }
-              ]
-            },
-            {
-              title: "Día 4",
-              pill: "Repite tu favorito",
-              slots: [
-                { time: "Mañana", text: "Repite tu favorito: otra mañana de aves o un set más ligero de cascadas." },
-                { time: "Mediodía", text: "Último almuerzo, compras pequeñas y tiempo lento." },
-                { time: "Tarde", text: "Salida con buffer para el viaje." }
-              ]
-            }
-          ]
-        }
-      };
-
-      function getDaysFromUrl(){
-        try{
-          const u = new URL(window.location.href);
-          const v = u.searchParams.get("days");
-          const n = Number(v);
-          if([1,2,3,4].includes(n)) return n;
-        }catch(_){}
-        return null;
-      }
-
-      function setDaysInUrl(days){
-        try{
-          const u = new URL(window.location.href);
-          u.searchParams.set("days", String(days));
-          window.history.replaceState({}, "", u.toString());
-        }catch(_){}
-      }
-
-      function render(days){
-        const data = itineraries[days] || itineraries[2];
-        summaryEl.textContent = data.summary;
-
-        planEl.innerHTML = data.days.map((d) => {
-          const slotsHtml = d.slots.map(s => {
-            return `
-              <div class="slot">
-                <div class="slot-time">${s.time}</div>
-                <p class="slot-text">${s.text}</p>
-              </div>
-            `;
-          }).join("");
-
-          return `
-            <div class="day-card" aria-label="${d.title}">
-              <div class="day-top">
-                <div class="day-title">${d.title}</div>
-                <div class="day-pill">${d.pill}</div>
-              </div>
-              <div class="slots">
-                ${slotsHtml}
-              </div>
-            </div>
-          `;
-        }).join("");
-      }
-
-      const initial = getDaysFromUrl() || 2;
-      selectEl.value = String(initial);
-      render(initial);
-
-      selectEl.addEventListener("change", () => {
-        const v = Number(selectEl.value);
-        const safe = [1,2,3,4].includes(v) ? v : 2;
-        render(safe);
-        setDaysInUrl(safe);
-      });
-    })();
-
-    /* Mindo weather: date + (max/min/rain) + 7-day forecast */
-    (function(){
-      const dateEl = document.getElementById("mindoWxDate");
-      const linesEl = document.getElementById("mindoWxLines");
-      const grid7 = document.getElementById("mindoWx7");
-      if(!dateEl || !linesEl || !grid7) return;
-
-      const PLACE = { name:"Mindo", lat:-0.0516, lon:-78.7764 };
-      const CACHE_KEY = "ee_mindo_weather_v3";
-      const CACHE_TTL_MS = 10 * 60 * 1000;
-
-      function cToF(c){ return (c * 9/5) + 32; }
-      function fmtTemp(c){
-        const cc = Math.round(c * 10) / 10;
-        const ff = Math.round(cToF(cc) * 10) / 10;
-        return `${cc}°C / ${ff}°F`;
-      }
-
-      function fmtDow(dateStr){
-        const d = new Date(dateStr + "T00:00:00");
-        return d.toLocaleDateString(undefined, { weekday:"short" });
-      }
-
-      function fmtMd(dateStr){
-        const d = new Date(dateStr + "T00:00:00");
-        return d.toLocaleDateString(undefined, { month:"short", day:"numeric" });
-      }
-
-      function fmtMMDDYYYY(dateStr){
-        const d = new Date(dateStr + "T00:00:00");
-        const mm = String(d.getMonth() + 1).padStart(2, "0");
-        const dd = String(d.getDate()).padStart(2, "0");
-        const yy = d.getFullYear();
-        return `${mm}/${dd}/${yy}`;
-      }
-
-      function readCache(){
-        try{
-          const raw = localStorage.getItem(CACHE_KEY);
-          if(!raw) return null;
-          const obj = JSON.parse(raw);
-          if(!obj || !obj.ts || !obj.data) return null;
-          if(Date.now() - obj.ts > CACHE_TTL_MS) return null;
-          return obj.data;
-        }catch(_){ return null; }
-      }
-
-      function writeCache(data){
-        try{ localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); }catch(_){}
-      }
-
-      function render(d){
-        const daily = d && d.daily ? d.daily : null;
-
-        const t0 = daily && Array.isArray(daily.time) ? daily.time[0] : null;
-        const todayMax = daily && daily.temperature_2m_max && typeof daily.temperature_2m_max[0] === "number" ? daily.temperature_2m_max[0] : null;
-        const todayMin = daily && daily.temperature_2m_min && typeof daily.temperature_2m_min[0] === "number" ? daily.temperature_2m_min[0] : null;
-        const todayRain = daily && daily.precipitation_sum && typeof daily.precipitation_sum[0] === "number" ? daily.precipitation_sum[0] : null;
-
-        dateEl.textContent = t0 ? fmtMMDDYYYY(t0) : "--/--/----";
-
-        const lines = [];
-        if(todayMax !== null) lines.push(`Max: ${fmtTemp(todayMax)}`);
-        if(todayMin !== null) lines.push(`Min: ${fmtTemp(todayMin)}`);
-        if(todayRain !== null) lines.push(`Rain: ${Math.round(todayRain * 10)/10} mm`);
-        linesEl.innerHTML = lines.length ? lines.join("<br>") : "Datos de clima no disponibles en este momento.";
-
-        const times = daily && Array.isArray(daily.time) ? daily.time : [];
-        const maxArr = daily && Array.isArray(daily.temperature_2m_max) ? daily.temperature_2m_max : [];
-        const minArr = daily && Array.isArray(daily.temperature_2m_min) ? daily.temperature_2m_min : [];
-        const rainArr = daily && Array.isArray(daily.precipitation_sum) ? daily.precipitation_sum : [];
-
-        const days = [];
-        for(let i=0; i<7; i++){
-          if(!times[i]) break;
-          days.push({
-            time: times[i],
-            max: typeof maxArr[i] === "number" ? maxArr[i] : null,
-            min: typeof minArr[i] === "number" ? minArr[i] : null,
-            rain: typeof rainArr[i] === "number" ? rainArr[i] : null
-          });
-        }
-
-        grid7.innerHTML = days.map((day) => {
-          const hi = day.max !== null ? fmtTemp(day.max) : "--";
-          const lo = day.min !== null ? fmtTemp(day.min) : "--";
-          const rain = day.rain !== null ? (Math.round(day.rain * 10)/10 + " mm") : "--";
-          return `
-            <div class="wx-day" aria-label="Pronóstico ${day.time}">
-              <div class="wx-top">
-                <div class="wx-dow">${fmtDow(day.time)}</div>
-                <div class="wx-mmdd">${fmtMd(day.time)}</div>
-              </div>
-              <div class="wx-hi">${hi}</div>
-              <div class="wx-lo">${lo}</div>
-              <div class="wx-rain">☔ ${rain}</div>
-            </div>
-          `;
-        }).join("");
-      }
-
-      async function load(){
-        const cached = readCache();
-        if(cached){
-          render(cached);
-          return;
-        }
-
-        try{
-          const url = `/api/weather?lat=${encodeURIComponent(PLACE.lat)}&lon=${encodeURIComponent(PLACE.lon)}`;
-          const res = await fetch(url, { headers: { "accept": "application/json" } });
-          const json = await res.json();
-          const d = json && json.data ? json.data : null;
-
-          if(!d || d.error){
-            linesEl.textContent = "Clima no disponible en este momento.";
-            return;
-          }
-
-          writeCache(d);
-          render(d);
-        }catch(_){
-          linesEl.textContent = "Clima no disponible en este momento.";
-        }
-      }
-
-      load();
-    })();
-
-    /* Mindo carousel */
-    (function(){
-      const root = document.getElementById("mindoCarousel");
+      const root = document.getElementById("cuencaCarousel");
       if(!root) return;
 
       const track = root.querySelector(".carousel-track");
@@ -1396,7 +906,7 @@
       const prevBtn = root.querySelector(".carousel-btn.prev");
       const nextBtn = root.querySelector(".carousel-btn.next");
       const dotsWrap = root.querySelector(".carousel-dots");
-      const counter = root.querySelector("#mindoCarouselCounter");
+      const counter = root.querySelector("#cuencaCarouselCounter");
 
       let index = 0;
 
@@ -1428,7 +938,7 @@
           const b = document.createElement("button");
           b.type = "button";
           b.className = "dot" + (i === 0 ? " active" : "");
-          b.setAttribute("aria-label", `Ir a la imagen ${i + 1}`);
+          b.setAttribute("aria-label", `Go to image ${i + 1}`);
           b.addEventListener("click", () => {
             setIndex(i);
             stopAutoplay();
@@ -1493,6 +1003,138 @@
       setIndex(0);
       startAutoplay();
     })();
+
+    /* ===== WEATHER: Cuenca (Quito-standard wx-card markup) =====
+       Uses Open-Meteo (no API key): https://open-meteo.com/
+       Cuenca (approx): lat -2.90, lon -79.004
+    */
+    (function(){
+      const dateEl  = document.getElementById("cuencaWxDate");
+      const linesEl = document.getElementById("cuencaWxLines");
+      const gridEl  = document.getElementById("cuencaWx7");
+      if(!dateEl || !linesEl || !gridEl) return;
+
+      const LAT = -2.900;
+      const LON = -79.004;
+
+      const cToF = (c) => (c * 9/5) + 32;
+
+      const codeText = (code) => {
+        const map = {
+          0:"Clear", 1:"Mostly clear", 2:"Partly cloudy", 3:"Overcast",
+          45:"Fog", 48:"Rime fog",
+          51:"Light drizzle", 53:"Drizzle", 55:"Heavy drizzle",
+          56:"Freezing drizzle", 57:"Freezing drizzle",
+          61:"Light rain", 63:"Rain", 65:"Heavy rain",
+          66:"Freezing rain", 67:"Freezing rain",
+          71:"Light snow", 73:"Snow", 75:"Heavy snow", 77:"Snow grains",
+          80:"Rain showers", 81:"Rain showers", 82:"Violent showers",
+          85:"Snow showers", 86:"Snow showers",
+          95:"Thunderstorm", 96:"Thunderstorm", 99:"Thunderstorm"
+        };
+        return map[code] || "Weather";
+      };
+
+      const dow = (iso) => {
+        const d = new Date(iso + "T00:00:00");
+        return d.toLocaleDateString("en-US", { weekday:"short" });
+      };
+
+      const mmdd = (iso) => {
+        const d = new Date(iso + "T00:00:00");
+        return d.toLocaleDateString("en-US", { month:"short", day:"numeric" });
+      };
+
+      function fmtTempPair(cVal){
+        const c = Math.round(cVal);
+        const f = Math.round(cToF(cVal));
+        return `${c}°C / ${f}°F`;
+      }
+
+      function setFallback(){
+        const now = new Date();
+        dateEl.textContent = now.toLocaleDateString("en-US");
+        linesEl.textContent = "Weather unavailable right now.";
+        gridEl.innerHTML = "";
+      }
+
+      async function load(){
+        try{
+          const url =
+            "https://api.open-meteo.com/v1/forecast" +
+            `?latitude=${encodeURIComponent(LAT)}` +
+            `&longitude=${encodeURIComponent(LON)}` +
+            "&current=temperature_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m" +
+            "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum" +
+            "&timezone=auto";
+
+          const res = await fetch(url, { cache: "no-store" });
+          if(!res.ok) throw new Error("Weather fetch failed");
+          const data = await res.json();
+
+          dateEl.textContent = new Date().toLocaleDateString("en-US");
+
+          const c = data.current || {};
+          const tempC  = (typeof c.temperature_2m === "number") ? c.temperature_2m : null;
+          const feelsC = (typeof c.apparent_temperature === "number") ? c.apparent_temperature : null;
+          const wind   = (typeof c.wind_speed_10m === "number") ? Math.round(c.wind_speed_10m) : null;
+          const wtxt   = codeText(c.weather_code);
+
+          const daily = data.daily || {};
+          const times = daily.time || [];
+          const hi    = daily.temperature_2m_max || [];
+          const lo    = daily.temperature_2m_min || [];
+          const rain  = daily.precipitation_sum || [];
+
+          const hi0 = (typeof hi[0] === "number") ? hi[0] : null;
+          const lo0 = (typeof lo[0] === "number") ? lo[0] : null;
+          const r0  = (typeof rain[0] === "number") ? Math.round(rain[0]) : null;
+
+          const parts = [];
+          if(tempC !== null) parts.push(`Now: ${fmtTempPair(tempC)}`);
+          if(feelsC !== null) parts.push(`Feels ${fmtTempPair(feelsC)}`);
+          parts.push(wtxt);
+          if(wind !== null) parts.push(`Wind ${wind} km/h`);
+          if(hi0 !== null) parts.push(`High: ${fmtTempPair(hi0)}`);
+          if(lo0 !== null) parts.push(`Low: ${fmtTempPair(lo0)}`);
+          if(r0 !== null) parts.push(`Rain: ${r0} mm`);
+
+          linesEl.textContent = parts.join(" · ");
+
+          gridEl.innerHTML = "";
+          const n = Math.min(7, times.length);
+
+          for(let i=0;i<n;i++){
+            const iso = times[i];
+            const hiV = (typeof hi[i] === "number") ? hi[i] : null;
+            const loV = (typeof lo[i] === "number") ? lo[i] : null;
+            const rV  = (typeof rain[i] === "number") ? Math.round(rain[i]) : null;
+
+            const el = document.createElement("div");
+            el.className = "wx-day";
+            el.innerHTML = `
+              <div class="wx-top">
+                <div class="wx-dow">${dow(iso)}</div>
+                <div class="wx-mmdd">${mmdd(iso)}</div>
+              </div>
+              <div class="wx-hi">${hiV !== null ? fmtTempPair(hiV) : "--"}</div>
+              <div class="wx-lo">${loV !== null ? fmtTempPair(loV) : "--"}</div>
+              <div class="wx-rain">☔ ${rV !== null ? (rV + " mm") : "--"}</div>
+            `;
+            gridEl.appendChild(el);
+          }
+        }catch(err){
+          setFallback();
+        }
+      }
+
+      load();
+    })();
+
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
   </script>
 </body>
 </html>
