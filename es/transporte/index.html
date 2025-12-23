@@ -1,1 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transporte | Experience Ecuador</title>
 
+  <!-- Favicons (root paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+      --ok:#0f8a5f;
+      --warn:#b65b00;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:#f6f8fb;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    /* ===== HERO (image behind title) ===== */
+    .hero{
+      position:relative;
+      max-width:1100px;
+      margin:0 auto;
+      padding:22px 18px 12px;
+    }
+
+    .hero-banner{
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 22px 60px rgba(0,0,0,0.18);
+      min-height:320px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)),
+        url("/assets/images/EE-Assets-60-Hero-Transportation-2.jpg") center/cover no-repeat;
+    }
+
+    .hero-content{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:flex-end;
+      padding:22px;
+    }
+
+    .hero-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:clamp(34px,4.6vw,54px);
+      letter-spacing:-0.03em;
+      color:#fff;
+      margin:0;
+      line-height:1.05;
+      text-shadow:0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    /* ===== CONTENT ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 18px 60px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:22px;
+      padding:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+    }
+
+    .card h2{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:22px;
+      margin:0 0 10px;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+    }
+
+    .card p{
+      margin:0;
+      line-height:1.75;
+      font-size:15.8px;
+      color:#2a2f36;
+      max-width:85ch;
+    }
+
+    /* ===== SELECTOR CARD (matches your standardized selector layout) ===== */
+    .selector-card{
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      overflow:hidden;
+      margin-top:18px;
+    }
+
+    .selector-top{
+      padding:18px 18px 0;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:12px;
+      align-items:start;
+    }
+
+    .selector-controls{
+      grid-column:2;
+      grid-row:1;
+      justify-self:end;
+
+      display:grid;
+      grid-template-columns:auto 260px;
+      gap:10px 10px;
+      align-items:center;
+    }
+
+    .selector-controls label{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+      text-align:left;
+      white-space:nowrap;
+    }
+
+    .selector-controls select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-weight:700;
+      padding:11px 42px 11px 12px;
+      border-radius:14px;
+      font-size:14px;
+      cursor:pointer;
+      outline:none;
+      min-width:0;
+      width:260px;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      background-image:
+        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
+        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%,
+        0 0;
+      background-size:6px 6px, 6px 6px, 100% 100%;
+      background-repeat:no-repeat;
+    }
+
+    .selector-controls select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .selector-copy{
+      grid-column:1 / -1;
+      padding:0 18px 0;
+    }
+
+    .selector-body{
+      padding:22px;
+    }
+
+    @media(max-width:900px){
+      .selector-top{ grid-template-columns:1fr; }
+      .selector-controls{
+        grid-column:1;
+        justify-self:stretch;
+        grid-template-columns:1fr;
+      }
+      .selector-controls label{ margin-top:8px; }
+      .selector-controls select{ width:100%; min-width:0; }
+      .hero-banner{min-height:290px}
+    }
+
+    @media(max-width:620px){
+      .hero-content{padding:16px}
+    }
+
+    /* ===== TRANSPORT RESULTS UI ===== */
+    .results-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      margin-top:18px;
+    }
+
+    @media(max-width:900px){
+      .results-grid{grid-template-columns:1fr}
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.14);
+      color:#0f2f62;
+      font-weight:800;
+      font-size:13px;
+      letter-spacing:0.01em;
+    }
+
+    .muted{
+      color:#24324a;
+      opacity:.9;
+      font-size:14.6px;
+      line-height:1.6;
+      margin-top:10px;
+    }
+
+    .kv{
+      display:grid;
+      grid-template-columns:170px 1fr;
+      gap:10px 14px;
+      margin-top:14px;
+      align-items:start;
+    }
+
+    .k{
+      color:#0f2f62;
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:0.02em;
+    }
+
+    .v{
+      color:#1f2a3a;
+      font-weight:700;
+      font-size:14.6px;
+      line-height:1.45;
+    }
+
+    .hint{
+      margin-top:14px;
+      border-radius:18px;
+      padding:14px;
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.12);
+    }
+
+    .hint-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      margin:0 0 8px;
+      color:#0f2f62;
+      letter-spacing:-0.02em;
+      font-size:16px;
+    }
+
+    .hint ul{
+      margin:0;
+      padding-left:18px;
+      color:#24324a;
+      opacity:.95;
+      line-height:1.7;
+      font-size:14.6px;
+    }
+
+    .status{
+      display:inline-flex;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:12px;
+      letter-spacing:0.02em;
+      border:1px solid rgba(0,0,0,0.08);
+      background:#fff;
+      color:#0f2f62;
+    }
+    .status.ok{ border-color: rgba(15,138,95,0.25); background: rgba(15,138,95,0.08); color: var(--ok); }
+    .status.warn{ border-color: rgba(182,91,0,0.25); background: rgba(182,91,0,0.08); color: var(--warn); }
+  </style>
+</head>
+
+<body>
+  <div id="siteHeader"></div>
+
+  <main>
+    <section class="hero" aria-label="Hero de transporte">
+      <div class="hero-banner" role="img" aria-label="Imagen principal de transporte">
+        <div class="hero-content">
+          <div>
+            <h1 class="hero-title">Transporte</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="wrap">
+
+      <section class="selector-card" aria-label="Estimador de transporte">
+        <div class="selector-top">
+          <div></div>
+
+          <!-- Top-right controls block (labels left, dropdowns right, mobile stacks) -->
+          <div class="selector-controls" aria-label="Controles de transporte">
+            <label for="fromSelect">Ubicación</label>
+            <select id="fromSelect" name="from">
+              <option value="" selected>Selecciona una ubicación</option>
+            </select>
+
+            <label for="toSelect">Destino</label>
+            <select id="toSelect" name="to" disabled>
+              <option value="" selected>Selecciona un destino</option>
+            </select>
+
+            <label for="paxSelect">Pasajeros</label>
+            <select id="paxSelect" name="pax">
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+
+            <label for="bagsSelect">Maletas</label>
+            <select id="bagsSelect" name="bags">
+              <option value="0">0</option>
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+          </div>
+
+          <div class="selector-copy" aria-label="Texto de introducción del estimador">
+            <div style="padding:14px 0 6px 0;">
+              <span class="pill">Estimaciones rápidas de traslados</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="selector-body">
+          <div class="card" style="box-shadow:none;border:0;padding:0;background:transparent;">
+            <h2 style="margin-bottom:10px;">Planifica traslados antes de aterrizar</h2>
+            <p>
+              Elige dónde estás y a dónde vas, luego ajusta pasajeros y maletas.
+              Esta página mostrará un tiempo estimado y un rango aproximado de costo cuando agreguemos precios.
+            </p>
+
+            <div class="results-grid" aria-label="Cuadrícula de resultados del estimador">
+              <div class="card" style="margin:0;">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+                  <h2 style="margin:0;color:#0f2f62;font-size:20px;">Tu ruta</h2>
+                  <span id="statusPill" class="status warn" aria-live="polite">Selecciona dos lugares</span>
+                </div>
+
+                <div class="kv" aria-label="Valores clave">
+                  <div class="k">Desde</div>
+                  <div class="v" id="fromOut">No seleccionado</div>
+
+                  <div class="k">Hasta</div>
+                  <div class="v" id="toOut">No seleccionado</div>
+
+                  <div class="k">Tiempo estimado</div>
+                  <div class="v" id="timeOut">Agrega datos de ruta</div>
+
+                  <div class="k">Vehículo sugerido</div>
+                  <div class="v" id="vehicleOut">Auto o SUV</div>
+
+                  <div class="k">Rango (Auto)</div>
+                  <div class="v" id="carOut">Próximamente</div>
+
+                  <div class="k">Rango (SUV)</div>
+                  <div class="v" id="suvOut">Próximamente</div>
+                </div>
+
+                <p class="muted" id="noteOut">
+                  Tip: Cuando agregues precios, puedes definir rangos distintos para día vs noche, entre semana vs fin de semana
+                  y recogida en aeropuerto vs recogida en ciudad.
+                </p>
+              </div>
+
+              <div class="card" style="margin:0;">
+                <h2 style="margin-bottom:10px;">Qué estimaremos</h2>
+                <p>
+                  Esto está diseñado para crecer contigo. Empieza con precios simples de traslados y luego amplía.
+                </p>
+
+                <div class="hint" aria-label="Roadmap del estimador">
+                  <div class="hint-title">Siguientes mejoras (fáciles)</div>
+                  <ul>
+                    <li>Tiempos por ruta (minutos) y distancia (km)</li>
+                    <li>Rangos de precio en USD para Auto y SUV</li>
+                    <li>Tarifa por maleta extra, equipaje sobredimensionado, silla para niños</li>
+                    <li>Add-ons opcionales: parada rápida, parada de compras, parada en mirador</li>
+                  </ul>
+                </div>
+
+                <div class="hint" aria-label="Nota de transparencia">
+                  <div class="hint-title">Transparencia</div>
+                  <ul>
+                    <li>Las estimaciones pueden mostrar rangos para mantener expectativas realistas</li>
+                    <li>El precio final puede incluir una nota: tráfico y clima pueden cambiar los tiempos</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script>
+    /* =========================
+       Transportation estimator
+       ========================= */
+
+    // Locations available in dropdowns
+    const LOCATIONS = [
+      { id: "uio", name: "Aeropuerto (UIO)" },
+      { id: "quito_south", name: "Quito Sur" },
+      { id: "quito_center", name: "Quito Centro" },
+      { id: "quito_north", name: "Quito Norte" },
+      { id: "cotacachi", name: "Cotacachi" },
+      { id: "mindo", name: "Mindo" }
+    ];
+
+    /*
+      ROUTE_DATA structure:
+      key = "fromId|toId"
+      value = {
+        minutes: number,
+        // Optional placeholders you can fill later:
+        carMin: number, carMax: number,
+        suvMin: number, suvMax: number
+      }
+
+      Add both directions if you want different times by direction, or just mirror them.
+    */
+    const ROUTE_DATA = {
+      // Sample placeholders (replace with real data later)
+      "uio|quito_center": { minutes: 60, carMin: null, carMax: null, suvMin: null, suvMax: null },
+      "quito_center|uio": { minutes: 60, carMin: null, carMax: null, suvMin: null, suvMax: null },
+
+      "uio|mindo": { minutes: 120, carMin: null, carMax: null, suvMin: null, suvMax: null },
+      "mindo|uio": { minutes: 120, carMin: null, carMax: null, suvMin: null, suvMax: null },
+
+      "quito_center|mindo": { minutes: 105, carMin: null, carMax: null, suvMin: null, suvMax: null },
+      "mindo|quito_center": { minutes: 105, carMin: null, carMax: null, suvMin: null, suvMax: null },
+
+      "quito_north|cotacachi": { minutes: 110, carMin: null, carMax: null, suvMin: null, suvMax: null },
+      "cotacachi|quito_north": { minutes: 110, carMin: null, carMax: null, suvMin: null, suvMax: null }
+    };
+
+    function byId(id){ return document.getElementById(id); }
+
+    const fromSelect = byId("fromSelect");
+    const toSelect = byId("toSelect");
+    const paxSelect = byId("paxSelect");
+    const bagsSelect = byId("bagsSelect");
+
+    const statusPill = byId("statusPill");
+    const fromOut = byId("fromOut");
+    const toOut = byId("toOut");
+    const timeOut = byId("timeOut");
+    const vehicleOut = byId("vehicleOut");
+    const carOut = byId("carOut");
+    const suvOut = byId("suvOut");
+    const noteOut = byId("noteOut");
+
+    function formatTime(minutes){
+      if (!Number.isFinite(minutes)) return "Agrega datos de ruta";
+      if (minutes < 60) return minutes + " min";
+      const h = Math.floor(minutes / 60);
+      const m = minutes % 60;
+      return (m === 0) ? (h + " h") : (h + " h " + m + " min");
+    }
+
+    function formatUSDRange(min, max){
+      // Keep it simple for now. You will set real numbers later.
+      if (!Number.isFinite(min) || !Number.isFinite(max)) return "Próximamente";
+      return "$" + min.toFixed(0) + " a $" + max.toFixed(0);
+    }
+
+    function suggestVehicle(pax, bags){
+      // Simple rule: SUV if bigger group or lots of bags.
+      if (pax >= 4) return "Se recomienda SUV";
+      if (bags >= 4) return "Se recomienda SUV";
+      if (pax === 3 && bags >= 3) return "Se recomienda SUV";
+      return "Se recomienda auto";
+    }
+
+    function setStatus(text, type){
+      statusPill.textContent = text;
+      statusPill.classList.remove("ok","warn");
+      statusPill.classList.add(type);
+    }
+
+    function populateSelect(selectEl, includePlaceholder){
+      selectEl.innerHTML = "";
+      if (includePlaceholder){
+        const opt = document.createElement("option");
+        opt.value = "";
+        opt.textContent = selectEl === fromSelect ? "Selecciona una ubicación" : "Selecciona un destino";
+        opt.selected = true;
+        selectEl.appendChild(opt);
+      }
+      LOCATIONS.forEach(loc => {
+        const opt = document.createElement("option");
+        opt.value = loc.id;
+        opt.textContent = loc.name;
+        selectEl.appendChild(opt);
+      });
+    }
+
+    function getLocName(id){
+      const loc = LOCATIONS.find(x => x.id === id);
+      return loc ? loc.name : "No seleccionado";
+    }
+
+    function updateResults(){
+      const from = fromSelect.value;
+      const to = toSelect.value;
+      const pax = parseInt(paxSelect.value, 10);
+      const bags = parseInt(bagsSelect.value, 10);
+
+      fromOut.textContent = getLocName(from);
+      toOut.textContent = getLocName(to);
+
+      vehicleOut.textContent = suggestVehicle(pax, bags);
+
+      // Prevent same place selection
+      if (from && to && from === to){
+        setStatus("Elige un destino diferente", "warn");
+        timeOut.textContent = "No aplica";
+        carOut.textContent = "Próximamente";
+        suvOut.textContent = "Próximamente";
+        noteOut.textContent = "Elige dos lugares diferentes para estimar tiempo y costo.";
+        return;
+      }
+
+      if (!from || !to){
+        setStatus("Selecciona dos lugares", "warn");
+        timeOut.textContent = "Agrega datos de ruta";
+        carOut.textContent = "Próximamente";
+        suvOut.textContent = "Próximamente";
+        noteOut.textContent =
+          "Cuando agreguemos precios por ruta, verás rangos para auto y SUV según pasajeros y maletas.";
+        return;
+      }
+
+      const key = from + "|" + to;
+      const data = ROUTE_DATA[key];
+
+      if (!data){
+        setStatus("Ruta aún no agregada", "warn");
+        timeOut.textContent = "Agrega datos de ruta";
+        carOut.textContent = "Próximamente";
+        suvOut.textContent = "Próximamente";
+        noteOut.textContent =
+          "Puedes agregar esta ruta en ROUTE_DATA dentro del script. Define el tiempo en minutos y luego agrega rangos para auto y SUV.";
+        return;
+      }
+
+      setStatus("Estimación lista", "ok");
+      timeOut.textContent = formatTime(data.minutes);
+
+      // Placeholder ranges until you fill numbers
+      carOut.textContent = formatUSDRange(data.carMin, data.carMax);
+      suvOut.textContent = formatUSDRange(data.suvMin, data.suvMax);
+
+      // Friendly logic note
+      const veh = suggestVehicle(pax, bags);
+      if (veh.indexOf("SUV") >= 0){
+        noteOut.textContent =
+          "Según pasajeros y maletas, se recomienda SUV por comodidad. Aun así, puedes mostrar ambos rangos para comparar.";
+      } else {
+        noteOut.textContent =
+          "Un auto debería funcionar bien para este tamaño de grupo. Si agregas un rango de SUV, la gente puede subir de categoría por espacio extra.";
+      }
+    }
+
+    // Init
+    populateSelect(fromSelect, true);
+    populateSelect(toSelect, true);
+
+    fromSelect.addEventListener("change", function(){
+      const hasFrom = !!fromSelect.value;
+      toSelect.disabled = !hasFrom;
+      updateResults();
+    });
+
+    toSelect.addEventListener("change", updateResults);
+    paxSelect.addEventListener("change", updateResults);
+    bagsSelect.addEventListener("change", updateResults);
+
+    // First paint
+    updateResults();
+  </script>
+
+  <script>
+    /* Inject global header/footer first, then load site.js (so nav JS never runs before header exists) */
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+
+      Promise.all([
+        inject("siteHeader", "/assets/includes/header.html"),
+        inject("siteFooter", "/assets/includes/footer.html")
+      ]).then(() => {
+        const s = document.createElement("script");
+        s.src = "/assets/js/site.js";
+        document.body.appendChild(s);
+      }).catch(() => {
+        const s = document.createElement("script");
+        s.src = "/assets/js/site.js";
+        document.body.appendChild(s);
+      });
+    })();
+  </script>
+</body>
+</html>
