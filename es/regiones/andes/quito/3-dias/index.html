@@ -1,1 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quito en 3 Días | Experience Ecuador</title>
 
+  <!-- Root Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Global Header / Footer CSS -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --slate:#6E7B8B;
+      --text:#1F1F1F;
+      --ink:#0f2f62;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:#f6f8fb;
+      color:var(--text);
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+
+    /* ===== CONTENT ONLY ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:40px 18px 56px;
+    }
+
+    h1{
+      font-family:Montserrat,Inter,sans-serif;
+      font-size:clamp(34px,4vw,54px);
+      color:var(--brand-blue);
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
+    }
+
+    .lede{
+      color:var(--slate);
+      line-height:1.65;
+      max-width:85ch;
+      margin:0;
+      font-size:16.8px;
+    }
+
+    .meta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .pill{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      font-weight:800;
+      color:var(--ink);
+      font-size:13px;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      margin-top:22px;
+      align-items:start;
+    }
+
+    .card{
+      background:#fff;
+      padding:22px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .card + .card{ margin-top:16px; }
+
+    .card h2{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      color:var(--ink);
+    }
+
+    .card p{
+      margin:0 0 14px;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:15.8px;
+      max-width:85ch;
+    }
+
+    .timeline{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .stop{
+      display:grid;
+      grid-template-columns:110px 1fr;
+      gap:12px;
+      padding:14px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(3,78,162,.04), rgba(3,78,162,.015));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .time{
+      font-weight:900;
+      color:var(--ink);
+      font-size:13px;
+      letter-spacing:.01em;
+    }
+
+    .stop-title{
+      font-weight:900;
+      color:var(--ink);
+      font-size:15.5px;
+      margin:0 0 6px;
+    }
+
+    .stop-text{
+      color:#1f2b3f;
+      line-height:1.65;
+      font-size:14.8px;
+      margin:0 0 10px;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .tag{
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(3,78,162,.08);
+      border:1px solid rgba(3,78,162,.14);
+      font-weight:800;
+      color:#162b55;
+      font-size:12.5px;
+    }
+
+    .note{
+      margin-top:14px;
+      padding:14px 14px;
+      border-radius:18px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      color:#1f2b3f;
+      font-weight:600;
+      line-height:1.6;
+      font-size:14.8px;
+    }
+
+    /* ===== RIGHT COLUMN ===== */
+    .side-stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .mini{
+      background:#fff;
+      padding:20px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .mini h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:var(--ink);
+    }
+
+    .mini p{
+      margin:0;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:14.8px;
+    }
+
+    .link-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .pill-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      font-weight:800;
+      color:var(--ink);
+    }
+
+    .pill-link:hover{ background:rgba(3,78,162,.08); }
+
+    .pill-link span{
+      opacity:.9;
+      font-weight:700;
+      color:#162b55;
+      font-size:13px;
+    }
+
+    .side-image{
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:0 18px 60px rgba(0,0,0,.14);
+      background:#eef2f7;
+    }
+
+    .side-image img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* ===== MOBILE ===== */
+    @media(max-width:980px){
+      .content-grid{grid-template-columns:1fr}
+      .stop{grid-template-columns:1fr}
+      .time{opacity:.9}
+    }
+  </style>
+</head>
+
+<body>
+  <div id="siteHeader"></div>
+
+  <main>
+    <!-- PAGE CONTENT ONLY -->
+    <div class="wrap">
+      <h1>Quito en 3 días</h1>
+      <p class="lede">
+        Tres días te dan la mejor versión de Quito.
+        Puedes recorrer la ciudad histórica, visitar la Mitad del Mundo y sumar un día completo de excursión por los Andes sin sentirte apretado.
+      </p>
+
+      <div class="meta-row" aria-label="Resumen del viaje">
+        <span class="pill">Mejor para: Primeras llegadas a Ecuador</span>
+        <span class="pill">Ritmo: Cómodo</span>
+        <span class="pill">Incluye: Ciudad + Ecuador + Excursión</span>
+      </div>
+
+      <section class="content-grid" aria-label="Contenido itinerario Quito 3 días">
+        <div>
+          <div class="card">
+            <h2>Día 1: Quito histórico y un reset de ciudad</h2>
+            <p>
+              Mantén el primer día suave.
+              Quito está a gran altura, así que este día se trata de orientarte, absorber cultura y entrar en el ritmo de la ciudad.
+            </p>
+
+            <div class="timeline">
+              <div class="stop">
+                <div class="time">Mañana</div>
+                <div>
+                  <div class="stop-title">Paseo por el Casco Antiguo y plazas</div>
+                  <p class="stop-text">
+                    Explora el centro histórico a pie.
+                    Elige algunos highlights y deja tiempo entre paradas para disfrutar calles, miradores y la atmósfera.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">UNESCO</span>
+                    <span class="tag">Caminable</span>
+                    <span class="tag">Arquitectura</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stop">
+                <div class="time">Mediodía</div>
+                <div>
+                  <div class="stop-title">Almuerzo y descanso</div>
+                  <p class="stop-text">
+                    Siéntate a almorzar y toma una pausa.
+                    Hidratarte y llevar buen ritmo hace que todo se sienta más fácil.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">Amigable con la altura</span>
+                    <span class="tag">Comida local</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stop">
+                <div class="time">Tarde</div>
+                <div>
+                  <div class="stop-title">Mirador + paseo relajado por un barrio</div>
+                  <p class="stop-text">
+                    Suma un mirador principal para fotos panorámicas y luego camina por una zona con cafés y buen ambiente.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">Vistas</span>
+                    <span class="tag">Fotografía</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Día 2: La Mitad del Mundo y el norte de Quito</h2>
+            <p>
+              El día dos es tu excursión clásica de Quito.
+              Visita la zona del ecuador primero y vuelve a la ciudad con tiempo suficiente para una noche tranquila.
+            </p>
+
+            <div class="timeline">
+              <div class="stop">
+                <div class="time">Mañana</div>
+                <div>
+                  <div class="stop-title">Mitad del Mundo y zona del ecuador</div>
+                  <p class="stop-text">
+                    Visita el monumento y las exhibiciones alrededor.
+                    Ir temprano ayuda a evitar los picos más llenos y te deja un regreso más fluido a la ciudad.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">Ecuador</span>
+                    <span class="tag">Imperdible</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stop">
+                <div class="time">Tarde</div>
+                <div>
+                  <div class="stop-title">Elige un add-on flexible</div>
+                  <p class="stop-text">
+                    Después del ecuador, regresa por un museo y café,
+                    o suma una parada escénica corta de camino de vuelta.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">Flexible</span>
+                    <span class="tag">Add-on ligero</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stop">
+                <div class="time">Noche</div>
+                <div>
+                  <div class="stop-title">Cena y noche temprana</div>
+                  <p class="stop-text">
+                    Mantén la noche simple.
+                    Tres días funcionan mejor cuando guardas energía para la excursión de mañana.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">Ritmo fácil</span>
+                    <span class="tag">Recargar</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Día 3: Una excursión de día completo cerca de Quito</h2>
+            <p>
+              Aquí es donde vale la pena quedarse 3 días.
+              Elige una excursión fuerte y hazla bien, sin encajarla entre vuelos o tiempo de ciudad apresurado.
+            </p>
+
+            <div class="timeline">
+              <div class="stop">
+                <div class="time">Opción A</div>
+                <div>
+                  <div class="stop-title">Paisaje andino y miradores de gran altura</div>
+                  <p class="stop-text">
+                    Una gran elección si quieres paisajes dramáticos, miradores y sentir los Andes más allá de la ciudad.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">Andes</span>
+                    <span class="tag">Escénico</span>
+                    <span class="tag">Día completo</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stop">
+                <div class="time">Opción B</div>
+                <div>
+                  <div class="stop-title">Reserva natural o experiencia tipo bosque nublado</div>
+                  <p class="stop-text">
+                    Mejor si quieres verde, senderos y energía de vida silvestre.
+                    Es un contraste perfecto después de dos días más urbanos.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">Naturaleza</span>
+                    <span class="tag">Senderos</span>
+                    <span class="tag">Aire fresco</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stop">
+                <div class="time">Opción C</div>
+                <div>
+                  <div class="stop-title">Cultura y mercados fuera del centro</div>
+                  <p class="stop-text">
+                    Ideal si quieres artesanías, mercados y cultura local.
+                    Mantiene el día activo sin volverse agotador.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">Cultura</span>
+                    <span class="tag">Mercados</span>
+                    <span class="tag">Vida local</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="note">
+              Regla de oro: elige una excursión principal y comprométete con ella.
+              Tres paradas medianas se sienten apuradas, pero un plan fuerte se siente como una experiencia real de Ecuador.
+            </div>
+          </div>
+        </div>
+
+        <aside class="side-stack" aria-label="Sidebar Quito 3 días">
+          <div class="mini">
+            <h3>Cómo usar esta página</h3>
+            <p>
+              Empieza por la ciudad y luego suma distancia.
+              Si llegas desde nivel del mar, deja el día 1 suave y guarda la excursión de día completo para el día 3.
+            </p>
+
+            <div class="link-list" aria-label="Links de itinerarios Quito">
+              <a class="pill-link" href="../">
+                Volver a Quito <span>Resumen</span>
+              </a>
+              <a class="pill-link" href="../1-dia/">
+                Quito en 1 día <span>Plan rápido</span>
+              </a>
+              <a class="pill-link" href="../2-dias/">
+                Quito en 2 días <span>Balanceado</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="side-image" aria-label="Imagen Quito 3 días">
+            <img src="/assets/images/EE-Assets-22-Quito-3-days.jpg" alt="Highlights del itinerario: Quito en 3 días">
+          </div>
+        </aside>
+      </section>
+    </div>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script src="/assets/js/site.js"></script>
+
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
+
+  <script>
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+  </script>
+</body>
+</html>
