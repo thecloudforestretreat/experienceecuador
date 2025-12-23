@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>La Costa | Experience Ecuador</title>
+  <title>Guayaquil | Experience Ecuador</title>
 
   <!-- Favicons (approved root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -24,140 +24,86 @@
   <style>
     :root{
       --brand-blue:#034EA2;
-      --cloud-white:#F5F7FA;
-      --charcoal:#1F1F1F;
       --slate:#6E7B8B;
-      --light-gray:#E3E5E8;
+      --text:#1F1F1F;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--charcoal);
       background:#f6f8fb;
+      color:var(--text);
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-    img{ user-select:none; -webkit-user-drag:none; }
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
-    /* ===== HERO ===== */
-    .hero{
-      position:relative;
-      width:100%;
-      min-height:64vh;
-      display:flex;
-      align-items:flex-end;
-      justify-content:center;
-      background:url("/assets/images/EE-Region-Coast-hero-01.jpg") center / cover no-repeat;
-      color:#fff;
-    }
-
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.12),
-        rgba(0,0,0,0.70)
-      );
-    }
-
-    .hero-inner{
-      position:relative;
-      z-index:2;
-      width:100%;
-      max-width:1100px;
-      padding:54px 18px 34px;
-      text-align:left;
-    }
-
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,0.38);
-      border:1px solid rgba(255,255,255,0.22);
-      font-weight:700;
-      letter-spacing:0.02em;
-      font-size:12.5px;
-      margin-bottom:14px;
-      backdrop-filter:blur(10px);
-    }
-
-    .hero h1{
-      margin:0 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.03em;
-      font-size:clamp(40px,5.4vw,72px);
-      line-height:1.03;
-    }
-
-    .hero p{
-      margin:0;
-      max-width:70ch;
-      font-size:clamp(15px,2vw,18px);
-      line-height:1.65;
-      color:rgba(255,255,255,0.92);
-    }
-
-    /* ===== PAGE WRAP ===== */
+    /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:36px 18px 0;
+      padding:40px 18px 56px;
     }
 
-    /* ===== SECTION / CARDS ===== */
-    .section{ margin-bottom:26px; }
-
-    .section h2{
-      margin:0 0 10px;
+    h1{
       font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:24px;
+      font-size:clamp(34px,4vw,54px);
       color:var(--brand-blue);
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
     }
 
-    .section p{
+    .lede{
+      color:var(--slate);
+      line-height:1.65;
+      max-width:92ch;
       margin:0;
-      color:#2a2f36;
-      font-size:15.8px;
-      line-height:1.75;
-      max-width:82ch;
+      font-size:16.8px;
     }
 
-    .grid{
+    .meta-row{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      color:#162b55;
+      font-weight:700;
+      font-size:13.5px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
+      font-weight:800;
+    }
+
+    .content-grid{
       display:grid;
       grid-template-columns:1.15fr 0.85fr;
       gap:22px;
+      margin-top:22px;
       align-items:start;
-      margin-top:18px;
-    }
-
-    .grid.center-stack{ align-items:center; }
-
-    .stack-right{
-      display:flex;
-      flex-direction:column;
-      gap:16px;
     }
 
     .card{
       background:#fff;
-      border-radius:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
       padding:22px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
     }
 
-    .card h3{
+    .card + .card{ margin-top:16px; }
+
+    .card h2{
       margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
@@ -166,143 +112,393 @@
       color:#0f2f62;
     }
 
-    .card ul{
-      margin:0;
-      padding-left:18px;
-      color:#24324a;
+    .card p{
+      margin:0 0 12px;
+      color:#1f2b3f;
       line-height:1.75;
-      font-size:14.8px;
+      font-size:15.5px;
+      max-width:84ch;
     }
 
-    .mini{
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      border:1px solid rgba(3,78,162,0.12);
-      border-radius:20px;
-      padding:20px;
+    .card p:last-child{ margin-bottom:0; }
+
+    .inline-link{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:800;
+      color:#162b55;
     }
 
-    .pill-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:14px;
-    }
-
-    .tag{
-      display:inline-flex;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,0.08);
-      border:1px solid rgba(3,78,162,0.12);
-      color:#0f2f62;
-      font-weight:700;
-      font-size:13px;
-    }
-
-    /* ✅ VIDEO EMBED (matches Andes pattern) */
-    .video-embed{
-      margin-top:16px;
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 14px 42px rgba(3,78,162,0.10);
-      background:#000;
-    }
-    .video-embed iframe{
-      width:100%;
-      aspect-ratio:16/9;
-      height:auto;
-      display:block;
-      border:0;
-    }
-
-    /* ===== PLACES GRID (IMAGE HEADER TILES) ===== */
-    .places-grid{
+    .two-col{
       display:grid;
-      grid-template-columns:repeat(2, 1fr);
-      gap:12px;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
       margin-top:10px;
     }
 
-    .place-tile{
-      display:block;
-      padding:0;
+    .mini-card{
+      padding:14px 14px;
       border-radius:18px;
-      overflow:hidden;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .mini-card h3{
+      margin:0 0 6px;
+      font-size:14.5px;
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+    }
+
+    .mini-card p{
+      margin:0;
+      color:#1f2b3f;
+      opacity:.92;
+      line-height:1.6;
+      font-size:14.4px;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
+      font-weight:800;
+      font-size:12.8px;
+    }
+
+    .side-stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .mini{
       background:#fff;
-      border:1px solid rgba(3,78,162,0.12);
-      box-shadow:0 14px 42px rgba(3,78,162,0.10);
-      transition:transform 160ms ease, box-shadow 160ms ease;
+      padding:20px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
     }
 
-    .place-tile:hover{
-      transform:translateY(-2px);
-      box-shadow:0 18px 55px rgba(3,78,162,0.14);
+    .mini h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
     }
 
-    .place-img{
-      width:100%;
-      aspect-ratio:16/9;
-      background:#eef2f7;
+    .mini p{
+      margin:0;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:14.8px;
     }
 
-    .place-img img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
+    .link-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
     }
 
-    .place-body{
+    .pill-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      font-weight:900;
+      color:#0f2f62;
+    }
+
+    .pill-link:hover{ background:rgba(3,78,162,.08); }
+
+    .pill-link span{
+      opacity:.9;
+      font-weight:700;
+      color:#162b55;
+      font-size:13px;
+    }
+
+    /* ===== WEATHER (same as Quito) ===== */
+    .wx-card{
+      padding:18px 18px;
+      border-radius:22px;
+      background:#fff;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .wx-title{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .wx-now{
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
       gap:12px;
       padding:14px 14px;
-      background:linear-gradient(180deg, rgba(3,78,162,0.035), rgba(3,78,162,0.012));
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
     }
 
-    .place-title{
-      margin:0;
+    .wx-date{
       font-weight:900;
       color:#0f2f62;
       letter-spacing:-0.01em;
-      font-size:15px;
+      font-size:13.2px;
+      opacity:.95;
+      white-space:nowrap;
+      margin-top:2px;
+    }
+
+    .wx-lines{
+      margin:0;
+      color:#1f2b3f;
+      line-height:1.55;
+      font-size:13.8px;
+      opacity:.95;
+      text-align:right;
+    }
+
+    .wx-grid7{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .wx-day{
+      border-radius:16px;
+      padding:10px 10px;
+      background:rgba(255,255,255,.9);
+      border:1px solid rgba(3,78,162,.14);
+      text-align:left;
+    }
+
+    .wx-top{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:8px;
+    }
+
+    .wx-dow{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:12.5px;
+      letter-spacing:-0.01em;
+    }
+
+    .wx-mmdd{
+      color:#162b55;
+      opacity:.75;
+      font-size:11.5px;
+    }
+
+    .wx-hi{
+      margin-top:8px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:12.8px;
+    }
+
+    .wx-lo{
+      color:#162b55;
+      opacity:.8;
+      font-size:12.3px;
+      margin-top:2px;
+    }
+
+    .wx-rain{
+      margin-top:6px;
+      color:#162b55;
+      opacity:.85;
+      font-size:11.7px;
+      white-space:nowrap;
+    }
+
+    @media(max-width:980px){
+      .wx-grid7{ grid-template-columns:repeat(2, 1fr); }
+    }
+
+    .months{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid rgba(0,0,0,.06);
+    }
+
+    .wx-sub{
+      margin:0 0 10px;
+      color:#1f2b3f;
+      opacity:.85;
+      font-size:13.5px;
+      line-height:1.5;
+    }
+
+    .legend{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+      align-items:center;
+    }
+
+    .legend-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:12.8px;
+      font-weight:800;
+      color:#162b55;
+      opacity:.9;
+    }
+
+    .swatch{
+      width:14px;
+      height:14px;
+      border-radius:6px;
+      border:1px solid rgba(3,78,162,.22);
+      background:rgba(3,78,162,.06);
+    }
+
+    .swatch.best{ background:rgba(3,78,162,.14); border-color:rgba(3,78,162,.32); }
+    .swatch.good{ background:rgba(3,78,162,.09); border-color:rgba(3,78,162,.22); }
+    .swatch.fair{ background:rgba(3,78,162,.04); border-color:rgba(3,78,162,.18); opacity:.85; }
+
+    .month-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .month-chip{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,.14);
+      background:rgba(3,78,162,.06);
+      color:#0f2f62;
+      font-weight:900;
+      font-size:12.4px;
+      min-width:46px;
+    }
+
+    .month-chip.best{
+      background:rgba(3,78,162,.14);
+      border-color:rgba(3,78,162,.32);
+    }
+
+    .month-chip.good{
+      background:rgba(3,78,162,.09);
+      border-color:rgba(3,78,162,.22);
+    }
+
+    .month-chip.fair{
+      background:rgba(3,78,162,.04);
+      border-color:rgba(3,78,162,.18);
+      opacity:.85;
+    }
+
+    /* ===== MORE ANDES DESTINATIONS (structure/classes locked for tiles) ===== */
+    .andes-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .andes-tile{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    .andes-tile:hover{
+      background:rgba(3,78,162,.07);
+      transform:translateY(-1px);
+    }
+
+    .andes-left{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
+    }
+
+    .andes-title{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:14.8px;
+      letter-spacing:-0.01em;
       line-height:1.2;
     }
 
-    .place-meta{
-      margin:6px 0 0;
+    .andes-sub{
       color:#1f2b3f;
       opacity:.9;
       line-height:1.5;
-      font-size:13.6px;
-      max-width:34ch;
+      font-size:13.4px;
+      max-width:60ch;
     }
 
-    .place-arrow{
+    .andes-arrow{
       flex:0 0 auto;
-      width:36px;
-      height:36px;
+      width:34px;
+      height:34px;
       border-radius:999px;
-      border:1px solid rgba(3,78,162,0.18);
-      background:rgba(255,255,255,0.75);
+      border:1px solid rgba(3,78,162,.18);
+      background:rgba(255,255,255,.75);
       display:flex;
       align-items:center;
       justify-content:center;
       margin-top:2px;
     }
 
-    .place-arrow span{
+    .andes-arrow span{
       display:block;
       width:10px;
       height:10px;
       border-right:2px solid #0f2f62;
       border-bottom:2px solid #0f2f62;
       transform:rotate(-45deg);
-      opacity:.9;
+      opacity:.85;
     }
 
-    /* ===== CAROUSEL (GALLERY) ===== */
+    /* ===== CAROUSEL (LEFT COLUMN) ===== */
     .carousel{
       margin-top:18px;
       background:#fff;
@@ -415,43 +611,20 @@
       white-space:nowrap;
     }
 
-    /* ===== CTA ===== */
-    .cta{
-      margin:28px 0 56px;
-      background:var(--brand-blue);
-      color:#fff;
-      border-radius:24px;
-      padding:22px;
-      box-shadow:0 22px 60px rgba(3,78,162,0.22);
-    }
-
-    .cta h3{
-      margin:0 0 8px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:20px;
-    }
-
-    .cta p{
-      margin:0;
-      color:rgba(255,255,255,0.92);
-      line-height:1.7;
-      font-size:15.5px;
-      max-width:85ch;
-    }
-
     /* ===== MOBILE ===== */
-    @media(max-width:900px){
-      .grid{ grid-template-columns:1fr; }
-      .places-grid{ grid-template-columns:1fr; }
-      .hero-inner{ text-align:center; }
-      .hero p{ margin:0 auto; }
+    @media(max-width:980px){
+      .content-grid{grid-template-columns:1fr}
+    }
+
+    @media(max-width:820px){
+      .two-col{grid-template-columns:1fr}
+    }
+
+    @media(max-width:620px){
+      .carousel-slide{ aspect-ratio:16/9; }
     }
 
     @media(max-width:480px){
-      .hero{ min-height:60vh; }
-      .cta{ border-radius:20px; }
       .carousel-btn{ width:40px; height:40px; }
     }
   </style>
@@ -461,258 +634,210 @@
   <div id="siteHeader"></div>
 
   <main>
-    <!-- HERO -->
-    <section class="hero" aria-label="Imagen hero de la Costa">
-      <div class="hero-inner">
-        <div class="kicker">Guía de región • En vivo</div>
-        <h1>La Costa</h1>
-        <p>
-          Sol, mar, cultura de mariscos y pueblos costeros relajados.
-          Este hub se está construyendo para ayudarte a descubrir a dónde ir, qué hacer y cómo planear la escapada perfecta a la playa.
-        </p>
-      </div>
-    </section>
-
-    <!-- CONTENT -->
     <div class="wrap">
-      <section class="section">
-        <h2>Qué hace especial a la Costa</h2>
-        <p>
-          La Costa del Ecuador combina vida de playa con una cultura local vibrante. Algunas zonas son perfectas para desconectarte y descansar,
-          mientras que otras son ideales para surf, vida nocturna y aventuras gastronómicas. Esta guía te ayudará a elegir los lugares correctos
-          según tu estilo de viaje y tus fechas.
-        </p>
+      <h1>Guayaquil</h1>
+      <p class="lede">
+        Guayaquil es la ciudad más grande del Ecuador y la principal puerta de entrada de la Costa, construida alrededor del río Guayas y un malecón con mucha vida.
+        Es una base práctica para vuelos, traslados y excursiones de un día, pero también vale la pena dedicarle un poco más de tiempo por su buena comida,
+        paseos caminables y barrios clásicos.
+        Piensa en Guayaquil como el lugar ideal para “resetear” tu ruta antes de ir a la playa, la Sierra o las islas.
+      </p>
 
-        <div class="grid center-stack">
+      <div class="meta-row" aria-label="Resumen de Guayaquil">
+        <span class="pill">Región: Costa</span>
+        <span class="pill">Ideal para: Malecón, comida, city break, conexiones fáciles</span>
+        <span class="pill">Tiempo típico: 1–2 noches</span>
+      </div>
+
+      <section class="content-grid" aria-label="Contenido de Guayaquil">
+        <!-- LEFT COLUMN -->
+        <div>
           <div class="card">
-            <h3>Imperdibles</h3>
-            <ul>
-              <li>Pueblos de playa con vibra distinta, desde tranquila hasta energética</li>
-              <li>Spots de surf, miradores al mar y atardeceres costeros</li>
-              <li>Cultura de mariscos: ceviches, mercados y favoritos locales</li>
-              <li>Excursiones de un día, reservas naturales y paseos por la costa</li>
-            </ul>
+            <h2>Para qué es mejor Guayaquil</h2>
+            <p>
+              Guayaquil es perfecta para sumar una parada urbana “suave” dentro de una ruta por la Costa.
+              Es ideal si quieres un punto de llegada cómodo, una escena gastronómica fuerte y un frente fluvial fácil de recorrer.
+              Si tu viaje incluye la Costa o Galápagos, Guayaquil normalmente simplifica la logística.
+            </p>
 
-            <div class="pill-row" aria-label="Tags de experiencias en la Costa">
-              <span class="tag">Playa</span>
-              <span class="tag">Surf</span>
-              <span class="tag">Comida</span>
-              <span class="tag">Relax</span>
+            <div class="two-col" aria-label="Highlights de Guayaquil">
+              <div class="mini-card">
+                <h3>Tardes de malecón</h3>
+                <p>
+                  Camina por el malecón, toma un café y disfruta la forma más simple (y buena) de bajar revoluciones.
+                </p>
+              </div>
+
+              <div class="mini-card">
+                <h3>Comida y sabor local</h3>
+                <p>
+                  Gran lugar para platos costeños y una probada rápida de la vida diaria urbana en Ecuador.
+                </p>
+              </div>
+
+              <div class="mini-card">
+                <h3>Barrios con carácter</h3>
+                <p>
+                  Calles clásicas y miradores que le suman historia a una parada que muchas veces es práctica.
+                </p>
+              </div>
+
+              <div class="mini-card">
+                <h3>Hub inteligente</h3>
+                <p>
+                  Conexiones fáciles por aire y carretera: un ancla sólida para planear el siguiente tramo.
+                </p>
+              </div>
+            </div>
+
+            <div class="chips" aria-label="Temas de Guayaquil">
+              <span class="chip">City break</span>
+              <span class="chip">Malecón</span>
+              <span class="chip">Comida</span>
+              <span class="chip">Puerta de entrada</span>
+              <span class="chip">Traslados</span>
+              <span class="chip">Rutas de Costa</span>
             </div>
           </div>
 
-          <div class="stack-right">
-            <div class="mini">
-              <h3>Ideal para</h3>
-              <ul>
-                <li>Escapadas relajadas y días de playa</li>
-                <li>Amantes de la comida y cultura costera</li>
-                <li>Surfistas y exploradores del océano</li>
-                <li>Viajes de fin de semana y rutas tranquilas</li>
-              </ul>
+          <div class="card">
+            <h2>Flujo simple de planificación</h2>
+            <p>
+              Usa Guayaquil como un punto limpio de “reset”.
+              Planifica un bloque fácil para caminar por el malecón y cenar, y deja el resto enfocado en la logística de tu ruta.
+              Si te mueves rápido, una noche es suficiente.
+              Si prefieres un ritmo más calmado, agrega una segunda noche para explorar un poco más y viajar sin apuros.
+            </p>
+            <p>
+              ¿Quieres un itinerario costero ajustado, con el timing de llegada correcto, traslados seguros y un handoff suave a tu siguiente destino?
+              Escríbenos desde <a class="inline-link" href="/contact/">Contacto</a>.
+            </p>
+          </div>
+
+          <!-- CAROUSEL (LEFT, UNDER SIMPLE PLANNING FLOW) -->
+          <div id="guayaquilCarousel" class="carousel" aria-label="Galería de imágenes de Guayaquil">
+            <button class="carousel-btn prev" type="button" aria-label="Imagen anterior">
+              <span aria-hidden="true"></span>
+            </button>
+
+            <div class="carousel-viewport">
+              <div class="carousel-track">
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Guayaquil-1.jpg" alt="Guayaquil destacado 1"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Guayaquil-2.jpg" alt="Guayaquil destacado 2"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Guayaquil-3.jpg" alt="Guayaquil destacado 3"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Guayaquil-4.jpg" alt="Guayaquil destacado 4"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Guayaquil-5.jpg" alt="Guayaquil destacado 5"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Guayaquil-6.jpg" alt="Guayaquil destacado 6"></div>
+              </div>
             </div>
 
-            <div class="mini">
-              <h3>Estilos de viaje que cubriremos</h3>
-              <ul>
-                <li>Playas tranquilas y escapadas wellness</li>
-                <li>Ruta por pueblos surf y días de aventura</li>
-                <li>Planificación costera para familias</li>
-                <li>Opciones lujo, media gama y presupuesto</li>
-              </ul>
+            <button class="carousel-btn next" type="button" aria-label="Siguiente imagen">
+              <span aria-hidden="true"></span>
+            </button>
+
+            <div class="carousel-ui">
+              <div class="carousel-dots" aria-label="Paginación del carrusel"></div>
+              <div class="carousel-counter" id="guayaquilCarouselCounter">1 / 6</div>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- UPDATED: COAST DESTINATIONS + ROUTE FEATURE -->
-      <section class="section">
-        <h2>Destinos en la Costa</h2>
-        <p>
-          Empieza por estos lugares y amplía tu ruta a medida que más destinos de la Costa estén en vivo.
-          Cada página incluirá notas de planificación, un carrusel de galería y una tarjeta de clima unificada.
-        </p>
+        <!-- RIGHT COLUMN -->
+        <aside class="side-stack" aria-label="Contenido lateral de Guayaquil">
+          <div class="mini">
+            <h3>Mejor uso del tiempo</h3>
+            <p>
+              Mantenlo enfocado.
+              Llega, instálate y haz un bloque fuerte de malecón o barrio + cena.
+              La mañana siguiente es para un traslado limpio al siguiente destino, sin estrés.
+            </p>
 
-        <div class="grid">
-          <div class="card">
-            <h3>Lugares destacados</h3>
-
-            <div class="places-grid" aria-label="Tarjetas de destinos de la Costa">
-              <!-- 1) Guayaquil -->
-              <a class="place-tile" href="/es/regiones/costa/guayaquil/" aria-label="Abrir página de Guayaquil">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-Guayaquil.jpg" alt="Guayaquil">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">Guayaquil</div>
-                    <div class="place-meta">Centro urbano y puerta de entrada. Ideal para llegada, comida y conexiones.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
+            <div class="link-list" aria-label="Enlaces rápidos">
+              <a class="pill-link" href="/es/regiones/costa/">
+                Volver a Costa <span>Página de región</span>
               </a>
-
-              <!-- 2) Salinas -->
-              <a class="place-tile" href="/es/regiones/costa/salinas/" aria-label="Abrir página de Salinas">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-Salinas.jpg" alt="Salinas">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">Salinas</div>
-                    <div class="place-meta">Ciudad de playa clásica con malecón, atardeceres y rutas fáciles por la península.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
+              <a class="pill-link" href="/es/regiones/costa/guayaquil/">
+                Guayaquil <span>Página actual</span>
               </a>
-
-              <!-- 3) Montañita -->
-              <a class="place-tile" href="/es/regiones/costa/montanita/" aria-label="Abrir página de Montañita">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-Montanita.jpg" alt="Montañita">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">Montañita</div>
-                    <div class="place-meta">Energía surf, atardeceres de playa y un ambiente animado para escapadas rápidas.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
-              </a>
-
-              <!-- 4) Puerto López -->
-              <a class="place-tile" href="/es/regiones/costa/puerto-lopez/" aria-label="Abrir página de Puerto López">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Assets-PuertoLopez.jpg" alt="Puerto López">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">Puerto López</div>
-                    <div class="place-meta">Base costera relajada para naturaleza, días en barco y acceso a Isla de la Plata.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
-              </a>
-            </div>
-
-            <!-- Below the 4 locations: La Ruta del Sol -->
-            <div class="pill-row" style="margin-top:16px;" aria-label="Feature de ruta costera">
-              <span class="tag">Road trip</span>
-              <span class="tag">Playas</span>
-              <span class="tag">Atardeceres</span>
-            </div>
-
-            <div style="margin-top:14px;">
-              <a class="place-tile" href="/es/regiones/costa/la-ruta-del-sol/" aria-label="Abrir página de La Ruta del Sol">
-                <div class="place-img">
-                  <img src="/assets/images/EE-Logo-Assets-35-LaRutadelSol.jpg" alt="La Ruta del Sol">
-                </div>
-                <div class="place-body">
-                  <div>
-                    <div class="place-title">La Ruta del Sol</div>
-                    <div class="place-meta">El road trip costero icónico del Ecuador. Playas, paradas de mariscos y drives dorados.</div>
-                  </div>
-                  <div class="place-arrow" aria-hidden="true"><span></span></div>
-                </div>
+              <a class="pill-link" href="/contact/">
+                Contacto <span>Preguntas y alianzas</span>
               </a>
             </div>
           </div>
 
-          <div class="card">
-            <h3>Cómo usar este hub</h3>
-            <ul>
-              <li>Primero elige una base: ciudad principal o pueblo de playa</li>
-              <li>Agrega 1–2 excursiones para mantener el itinerario simple</li>
-              <li>Planifica según condiciones del mar y temporada</li>
-              <li>Mantén traslados realistas: la Costa se disfruta lento</li>
-            </ul>
+          <!-- Weather card (same behavior as Quito) -->
+          <div class="wx-card" aria-label="Clima y temporada">
+            <div class="wx-title">Clima actual</div>
 
-            <!-- ✅ YouTube embed section under "How to use this hub" -->
-            <div class="video-embed" aria-label="Video de la Costa">
-              <iframe
-                src="https://www.youtube.com/embed/v7Mp2QC_AsQ"
-                title="Ecuador: Ruta del Sol (varias playas)"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen>
-              </iframe>
+            <div class="wx-now">
+              <div class="wx-date" id="guayaquilWxDate">--/--/----</div>
+              <p class="wx-lines" id="guayaquilWxLines">Cargando…</p>
             </div>
-          </div>
-        </div>
-      </section>
 
-      <section class="section">
-        <h2>Qué viene después en esta página</h2>
-        <p>
-          Este hub de la Costa evolucionará hacia una guía completa con perfiles de pueblos, listas de experiencias, tips de planificación
-          y highlights que hagan fácil armar un viaje.
-        </p>
+            <div class="months" aria-label="Pronóstico y mejores meses">
+              <div class="wx-title" style="margin-top:0;">Pronóstico de 7 días</div>
+              <div class="wx-sub">Máxima / mínima y lluvia para la semana.</div>
+              <div class="wx-grid7" id="guayaquilWx7" aria-label="Pronóstico 7 días Guayaquil"></div>
 
-        <div class="grid">
-          <div class="card">
-            <h3>Secciones planificadas</h3>
-            <ul>
-              <li>Top pueblos costeros y para qué es mejor cada uno</li>
-              <li>Mejores playas, miradores y excursiones</li>
-              <li>Mapa gastronómico: platos imperdibles y recomendaciones locales</li>
-              <li>Duraciones sugeridas e itinerarios</li>
-              <li>Temporada, costos y checklist de planificación</li>
-            </ul>
-          </div>
+              <div class="wx-title" style="margin-top:14px;">Mejores meses para visitar</div>
+              <div class="wx-sub" style="margin-bottom:8px;">
+                Basado en días típicamente más soleados y condiciones cómodas de playa.
+              </div>
 
-          <div class="card">
-            <h3>Mentalidad rápida de planificación</h3>
-            <ul>
-              <li>Elige tu vibra primero: chill, surf, comida o noche</li>
-              <li>Combina una base con excursiones cortas</li>
-              <li>Planifica según clima y condiciones del mar</li>
-              <li>Incluye downtime: la Costa se disfruta lento</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+              <div class="legend" aria-label="Leyenda de mejores meses">
+                <div class="legend-item"><span class="swatch best" aria-hidden="true"></span>Mejor</div>
+                <div class="legend-item"><span class="swatch good" aria-hidden="true"></span>Bueno</div>
+                <div class="legend-item"><span class="swatch fair" aria-hidden="true"></span>Regular</div>
+              </div>
 
-      <section class="section">
-        <h2>Galería y destacados</h2>
-
-        <!-- CAROUSEL -->
-        <div id="coastCarousel" class="carousel" aria-label="Galería de imágenes de la Costa">
-          <button class="carousel-btn prev" type="button" aria-label="Imagen anterior">
-            <span aria-hidden="true"></span>
-          </button>
-
-          <div class="carousel-viewport">
-            <div class="carousel-track">
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-1.jpg" alt="Costa destacado 1"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-2.jpg" alt="Costa destacado 2"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-3.jpg" alt="Costa destacado 3"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-4.jpg" alt="Costa destacado 4"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-5.jpg" alt="Costa destacado 5"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-6.jpg" alt="Costa destacado 6"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-7.jpg" alt="Costa destacado 7"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-8.jpg" alt="Costa destacado 8"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-9.jpg" alt="Costa destacado 9"></div>
-              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Coast-10.jpg" alt="Costa destacado 10"></div>
+              <div class="month-row" aria-label="Chips de 12 meses">
+                <span class="month-chip fair" aria-label="Enero">Ene</span>
+                <span class="month-chip fair" aria-label="Febrero">Feb</span>
+                <span class="month-chip fair" aria-label="Marzo">Mar</span>
+                <span class="month-chip good" aria-label="Abril buen mes">Abr</span>
+                <span class="month-chip good" aria-label="Mayo buen mes">May</span>
+                <span class="month-chip best" aria-label="Junio mejor mes">Jun</span>
+                <span class="month-chip best" aria-label="Julio mejor mes">Jul</span>
+                <span class="month-chip best" aria-label="Agosto mejor mes">Ago</span>
+                <span class="month-chip best" aria-label="Septiembre mejor mes">Sep</span>
+                <span class="month-chip good" aria-label="Octubre buen mes">Oct</span>
+                <span class="month-chip good" aria-label="Noviembre buen mes">Nov</span>
+                <span class="month-chip fair" aria-label="Diciembre">Dic</span>
+              </div>
             </div>
           </div>
 
-          <button class="carousel-btn next" type="button" aria-label="Siguiente imagen">
-            <span aria-hidden="true"></span>
-          </button>
+          <div class="mini">
+            <h3>Más destinos en la Costa</h3>
+            <p>Arma una ruta costera con pueblos de playa, atardeceres cálidos y excursiones fáciles sobre el Pacífico.</p>
 
-          <div class="carousel-ui">
-            <div class="carousel-dots" aria-label="Paginación del carrusel"></div>
-            <div class="carousel-counter" id="coastCarouselCounter">1 / 10</div>
+            <div class="andes-grid" aria-label="Enlaces a destinos de Costa">
+              <a class="andes-tile" href="/es/regiones/costa/montanita/" aria-label="Abrir página de Montañita">
+                <div class="andes-left">
+                  <div class="andes-title">Montañita</div>
+                  <div class="andes-sub">Energía surf, atardeceres de playa y vibra social.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/es/regiones/costa/guayaquil/" aria-label="Abrir página de Guayaquil">
+                <div class="andes-left">
+                  <div class="andes-title">Guayaquil</div>
+                  <div class="andes-sub">Malecón, buena comida y el principal hub de viaje de la Costa.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/es/regiones/costa/" aria-label="Abrir página de región Costa">
+                <div class="andes-left">
+                  <div class="andes-title">Costa</div>
+                  <div class="andes-sub">Explora todos los destinos de la Costa e ideas de viaje.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section class="cta" aria-label="CTA futura del boletín">
-        <h3>Pronto: actualizaciones curadas de la Costa</h3>
-        <p>
-          Este hub crecerá hacia guías curadas y un formato tipo newsletter donde viajeros descubran experiencias y partners de confianza.
-          Próximo paso: highlights estructurados por pueblo y categorías de experiencia, luego un carrusel reutilizable.
-        </p>
+        </aside>
       </section>
     </div>
   </main>
@@ -735,9 +860,9 @@
   </script>
 
   <script>
-    /* Coast carousel */
+    /* Guayaquil carousel */
     (function(){
-      const root = document.getElementById("coastCarousel");
+      const root = document.getElementById("guayaquilCarousel");
       if(!root) return;
 
       const track = root.querySelector(".carousel-track");
@@ -745,7 +870,7 @@
       const prevBtn = root.querySelector(".carousel-btn.prev");
       const nextBtn = root.querySelector(".carousel-btn.next");
       const dotsWrap = root.querySelector(".carousel-dots");
-      const counter = root.querySelector("#coastCarouselCounter");
+      const counter = root.querySelector("#guayaquilCarouselCounter");
 
       let index = 0;
 
@@ -841,6 +966,229 @@
       updateCounter();
       setIndex(0);
       startAutoplay();
+    })();
+
+    /* Guayaquil weather (Quito-style contract: /api/weather + localStorage cache + Max/Min/Rain with <br>) */
+    (function(){
+      const dateEl = document.getElementById("guayaquilWxDate");
+      const linesEl = document.getElementById("guayaquilWxLines");
+      const gridEl = document.getElementById("guayaquilWx7");
+      if(!dateEl || !linesEl || !gridEl) return;
+
+      // Guayaquil, Ecuador (approx.)
+      const LAT = -2.171;
+      const LON = -79.922;
+
+      // Cache (same pattern + TTL logic as Quito)
+      const CACHE_KEY = "guayaquil-wx-v1";
+      const TTL_MS = 30 * 60 * 1000; // 30 minutes
+
+      function fmtDateMMDDYYYY(d){
+        const mm = String(d.getMonth()+1).padStart(2,"0");
+        const dd = String(d.getDate()).padStart(2,"0");
+        const yy = d.getFullYear();
+        return `${mm}/${dd}/${yy}`;
+      }
+
+      function fmtMMDD(iso){
+        const d = new Date(iso + "T00:00:00");
+        const mm = String(d.getMonth()+1).padStart(2,"0");
+        const dd = String(d.getDate()).padStart(2,"0");
+        return `${mm}/${dd}`;
+      }
+
+      function dowShort(iso){
+        const d = new Date(iso + "T00:00:00");
+        return d.toLocaleDateString("en-US",{ weekday:"short" });
+      }
+
+      function cToF(c){
+        return Math.round((c * 9/5) + 32);
+      }
+
+      function setUnavailable(){
+        dateEl.textContent = "--/--/----";
+        linesEl.innerHTML = "Clima no disponible en este momento.";
+        gridEl.innerHTML = "";
+      }
+
+      function setLoading(){
+        dateEl.textContent = fmtDateMMDDYYYY(new Date());
+        linesEl.innerHTML = "Cargando…";
+        gridEl.innerHTML = "";
+      }
+
+      function readCache(){
+        try{
+          const raw = localStorage.getItem(CACHE_KEY);
+          if(!raw) return null;
+          const obj = JSON.parse(raw);
+          if(!obj || typeof obj !== "object") return null;
+          if(!obj.ts || !obj.data) return null;
+          if((Date.now() - obj.ts) > TTL_MS) return null;
+          return obj.data;
+        }catch(e){
+          return null;
+        }
+      }
+
+      function writeCache(data){
+        try{
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+        }catch(e){}
+      }
+
+      function normalize(api){
+        const unitsTemp =
+          (api && api.units && (api.units.temp || api.units.temperature)) ||
+          (api && api.unit && api.unit.temperature) ||
+          null;
+
+        const isC =
+          (typeof unitsTemp === "string" && unitsTemp.toUpperCase().includes("C")) ? true :
+          (typeof unitsTemp === "string" && unitsTemp.toUpperCase().includes("F")) ? false :
+          true;
+
+        if(api && api.current && Array.isArray(api.daily)){
+          const current = api.current || {};
+          const dailyArr = api.daily || [];
+          return {
+            isC,
+            current: {
+              tmax: current.tmax,
+              tmin: current.tmin,
+              rain: current.rain
+            },
+            days: dailyArr.slice(0, 7).map(d => ({
+              date: d.date,
+              tmax: d.tmax,
+              tmin: d.tmin,
+              rain: d.rain
+            }))
+          };
+        }
+
+        const daily = (api && api.daily) ? api.daily : {};
+        const days = daily.time || [];
+        const tmax = daily.temperature_2m_max || [];
+        const tmin = daily.temperature_2m_min || [];
+        const rain = daily.precipitation_probability_max || [];
+
+        return {
+          isC,
+          current: {
+            tmax: (typeof tmax[0] === "number" ? tmax[0] : null),
+            tmin: (typeof tmin[0] === "number" ? tmin[0] : null),
+            rain: (typeof rain[0] === "number" ? rain[0] : null)
+          },
+          days: days.slice(0, 7).map((iso, i) => ({
+            date: iso,
+            tmax: tmax[i],
+            tmin: tmin[i],
+            rain: rain[i]
+          }))
+        };
+      }
+
+      function render(norm){
+        dateEl.textContent = fmtDateMMDDYYYY(new Date());
+
+        const tmax = norm.current.tmax;
+        const tmin = norm.current.tmin;
+        const rain = norm.current.rain;
+
+        const maxStr = (typeof tmax === "number")
+          ? `Máx: ${norm.isC ? cToF(tmax) : Math.round(tmax)}°F`
+          : "Máx: --";
+        const minStr = (typeof tmin === "number")
+          ? `Mín: ${norm.isC ? cToF(tmin) : Math.round(tmin)}°F`
+          : "Mín: --";
+        const rainStr = (typeof rain === "number")
+          ? `Lluvia: ${Math.round(rain)}%`
+          : "Lluvia: --";
+
+        linesEl.innerHTML = `${maxStr}<br>${minStr}<br>${rainStr}`;
+
+        gridEl.innerHTML = "";
+        const count = Math.min(7, norm.days.length);
+
+        for(let i=0; i<count; i++){
+          const d = norm.days[i] || {};
+          const dayIso = d.date;
+
+          const hi = d.tmax;
+          const lo = d.tmin;
+          const r = d.rain;
+
+          const card = document.createElement("div");
+          card.className = "wx-day";
+
+          const top = document.createElement("div");
+          top.className = "wx-top";
+
+          const dow = document.createElement("div");
+          dow.className = "wx-dow";
+          dow.textContent = dayIso ? dowShort(dayIso) : "--";
+
+          const mmdd = document.createElement("div");
+          mmdd.className = "wx-mmdd";
+          mmdd.textContent = dayIso ? fmtMMDD(dayIso) : "--/--";
+
+          top.appendChild(dow);
+          top.appendChild(mmdd);
+
+          const hiEl = document.createElement("div");
+          hiEl.className = "wx-hi";
+          hiEl.textContent = (typeof hi === "number")
+            ? `Máx ${norm.isC ? cToF(hi) : Math.round(hi)}°F`
+            : "Máx --";
+
+          const loEl = document.createElement("div");
+          loEl.className = "wx-lo";
+          loEl.textContent = (typeof lo === "number")
+            ? `Mín ${norm.isC ? cToF(lo) : Math.round(lo)}°F`
+            : "Mín --";
+
+          const rainEl = document.createElement("div");
+          rainEl.className = "wx-rain";
+          rainEl.textContent = (typeof r === "number")
+            ? `Lluvia ${Math.round(r)}%`
+            : "Lluvia --";
+
+          card.appendChild(top);
+          card.appendChild(hiEl);
+          card.appendChild(loEl);
+          card.appendChild(rainEl);
+
+          gridEl.appendChild(card);
+        }
+      }
+
+      async function load(){
+        setLoading();
+
+        const cached = readCache();
+        if(cached){
+          try{
+            render(normalize(cached));
+            return;
+          }catch(e){}
+        }
+
+        try{
+          const url = `/api/weather?lat=${encodeURIComponent(LAT)}&lon=${encodeURIComponent(LON)}`;
+          const res = await fetch(url, { cache: "no-store" });
+          if(!res.ok) throw new Error("Weather fetch failed");
+          const data = await res.json();
+
+          writeCache(data);
+          render(normalize(data));
+        }catch(e){
+          setUnavailable();
+        }
+      }
+
+      load();
     })();
 
     // Light deterrent: disable right-click on images only
