@@ -1,1 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experiencias | Experience Ecuador</title>
 
+  <!-- Favicons (root paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:#f6f8fb;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    /* ===== HERO ===== */
+    .hero{
+      text-align:center;
+      padding:60px 18px 40px;
+      max-width:900px;
+      margin:0 auto;
+    }
+
+    .hero h1{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:clamp(36px,4.8vw,56px);
+      margin:0 0 12px;
+      letter-spacing:-0.03em;
+    }
+
+    .hero p{
+      max-width:72ch;
+      margin:0 auto;
+      color:var(--slate);
+      font-size:18px;
+      line-height:1.65;
+    }
+
+    /* ===== GRID ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 18px 60px;
+    }
+
+    .experiences-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:28px;
+    }
+
+    .exp-card{
+      background:#fff;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+
+    .exp-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 28px 70px rgba(3,78,162,0.18);
+    }
+
+    .exp-img{height:250px;background:#e9eef7}
+
+    .exp-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .exp-body{
+      padding:22px 22px 24px;
+    }
+
+    .exp-body h2{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:22px;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+    }
+
+    .exp-body p{
+      margin:0 0 16px;
+      color:#2a2f36;
+      line-height:1.65;
+      font-size:15.5px;
+      max-width:80ch;
+    }
+
+    .pill{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:999px;
+      background:var(--brand-blue);
+      color:#fff;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    /* ===== MOBILE ===== */
+    @media(max-width:900px){
+      .experiences-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <div id="siteHeader"></div>
+
+  <main>
+    <!-- PAGE CONTENT ONLY -->
+
+    <section class="hero">
+      <h1>Experiencias</h1>
+      <p>
+        Explora Ecuador según el tipo de viaje que quieres.
+        Cada experiencia te muestra qué significa en Ecuador, dónde encaja mejor,
+        y qué lugares y aliados valen la pena para construir un itinerario alrededor.
+      </p>
+    </section>
+
+    <div class="wrap">
+      <section class="experiences-grid" aria-label="Grid de experiencias">
+
+        <article class="exp-card">
+          <div class="exp-img">
+            <img src="/assets/images/EE-Experiences-adventure-01.jpg" alt="Aventura en Ecuador">
+          </div>
+          <div class="exp-body">
+            <h2>Aventura</h2>
+            <p>
+              Rutas de volcanes, ríos, canopy, y experiencias de alta energía guiadas por locales
+              en los Andes, Amazonía, Costa y más.
+            </p>
+            <a class="pill" href="/es/experiencias/aventura/">Explorar Aventura</a>
+          </div>
+        </article>
+
+        <article class="exp-card">
+          <div class="exp-img">
+            <img src="/assets/images/EE-Experiences-Nature-01.jpg" alt="Naturaleza en Ecuador">
+          </div>
+          <div class="exp-body">
+            <h2>Naturaleza</h2>
+            <p>
+              Bosques nublados, miradores de volcanes, lodges de selva, reservas costeras y ecosistemas protegidos
+              en un país pequeño.
+            </p>
+            <a class="pill" href="/es/experiencias/naturaleza/">Explorar Naturaleza</a>
+          </div>
+        </article>
+
+        <article class="exp-card">
+          <div class="exp-img">
+            <img src="/assets/images/EE-Experiences-wildlife-01.png" alt="Fauna y avistamiento de aves en Ecuador">
+          </div>
+          <div class="exp-body">
+            <h2>Vida silvestre &amp; Aves</h2>
+            <p>
+              Uno de los mejores países para birding del mundo.
+              Desde colibríes del bosque nublado hasta fauna amazónica e íconos de Galápagos.
+            </p>
+            <a class="pill" href="/es/experiencias/vida-silvestre-aves/">Explorar Vida silvestre &amp; Aves</a>
+          </div>
+        </article>
+
+        <article class="exp-card">
+          <div class="exp-img">
+            <img src="/assets/images/EE-Experiences-Relaxation-01.jpg" alt="Relajación en Ecuador">
+          </div>
+          <div class="exp-body">
+            <h2>Relajación</h2>
+            <p>
+              Viaje lento, lodges tranquilos, termas, escapes suaves de naturaleza y descanso integrado
+              en un itinerario bien balanceado.
+            </p>
+            <a class="pill" href="/es/experiencias/relajacion/">Explorar Relajación</a>
+          </div>
+        </article>
+
+        <article class="exp-card">
+          <div class="exp-img">
+            <img src="/assets/images/EE-Experiences-Culinary-01.jpg" alt="Experiencias culinarias en Ecuador">
+          </div>
+          <div class="exp-body">
+            <h2>Gastronomía</h2>
+            <p>
+              Mariscos en la Costa, mercados andinos, cultura del cacao y platos por región
+              que definen a qué sabe Ecuador.
+            </p>
+            <a class="pill" href="/es/experiencias/gastronomia/">Explorar Gastronomía</a>
+          </div>
+        </article>
+
+        <article class="exp-card">
+          <div class="exp-img">
+            <img src="/assets/images/EE-Experiences-Culture-01.jpg" alt="Cultura en Ecuador">
+          </div>
+          <div class="exp-body">
+            <h2>Cultura</h2>
+            <p>
+              Herencia indígena, ciudades históricas, mercados artesanales, música, festivales y
+              historias locales que hacen que cada región se sienta distinta.
+            </p>
+            <a class="pill" href="/es/experiencias/cultura/">Explorar Cultura</a>
+          </div>
+        </article>
+
+      </section>
+    </div>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script>
+    /* Inject global header/footer first, then load site.js (so nav JS never runs before header exists) */
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+
+      Promise.all([
+        inject("siteHeader", "/assets/includes/header.html"),
+        inject("siteFooter", "/assets/includes/footer.html")
+      ]).then(() => {
+        const s = document.createElement("script");
+        s.src = "/assets/js/site.js";
+        document.body.appendChild(s);
+      }).catch(() => {
+        const s = document.createElement("script");
+        s.src = "/assets/js/site.js";
+        document.body.appendChild(s);
+      });
+    })();
+  </script>
+</body>
+</html>
