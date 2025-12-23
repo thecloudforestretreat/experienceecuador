@@ -1,110 +1,220 @@
-<header class="topbar">
-  <!-- Checkbox must be a DIRECT child of .topbar -->
-  <input class="nav-toggle" type="checkbox" id="eeNavToggle" aria-label="Open menu">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Experience Ecuador</title>
 
-  <div class="topbar-inner">
-    <a class="brand" href="/">
-      <img src="/assets/icons/EE-Logo-Assets-Pin-3.png" alt="Experience Ecuador pin">
-      <span>Experience Ecuador</span>
-    </a>
+  <!-- Favicons (root) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
 
-    <!-- Hamburger button (label toggles checkbox) -->
-    <label class="nav-toggle-btn" for="eeNavToggle" aria-label="Menu">
-      <span class="nav-toggle-icon" aria-hidden="true"></span>
-      <span class="sr-only">Menu</span>
-    </label>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- DESKTOP NAV -->
-    <nav class="nav nav-desktop" aria-label="Primary navigation">
-      <a class="nav-link" href="/">Home</a>
-      <a class="nav-link" href="/about/">About</a>
-      <a class="nav-link" href="/mission/">Mission</a>
+  <!-- Shared global CSS -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
 
-      <details class="nav-dd">
-        <summary class="nav-link nav-dd-btn">Regions <span class="caret" aria-hidden="true"></span></summary>
-        <div class="nav-dd-menu" role="menu" aria-label="Regions submenu">
-          <a href="/regions/" role="menuitem">All Regions</a>
-          <a href="/regions/galapagos/" role="menuitem">Galapagos</a>
-          <a href="/regions/coast/" role="menuitem">Coast</a>
-          <a href="/regions/andes/" role="menuitem">Andes</a>
-          <a href="/regions/amazon/" role="menuitem">Amazon</a>
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:linear-gradient(180deg,#ffffff 0%, #f6f8fb 100%);
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+
+    /* ===== PAGE ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:42px 18px 0;
+    }
+
+    .hero h1{
+      font-family:Montserrat,Inter,sans-serif;
+      font-size:clamp(36px,4.5vw,56px);
+      font-weight:800;
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
+      color:var(--brand-blue);
+    }
+
+    .hero p{
+      max-width:72ch;
+      color:var(--slate);
+      font-size:17px;
+      line-height:1.65;
+      margin:0;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:28px;
+      padding:36px 0 18px;
+      align-items:center;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:22px;
+      padding:26px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+    }
+
+    .card h2{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      margin:0 0 12px;
+      font-size:22px;
+      color:#0f2f62;
+      letter-spacing:-0.02em;
+    }
+
+    .card p{
+      line-height:1.75;
+      font-size:15.5px;
+      margin:0;
+      color:#2a2f36;
+    }
+
+    .stack{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      justify-content:center;
+    }
+
+    .mini{
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border-radius:20px;
+      padding:20px;
+      border:1px solid rgba(3,78,162,0.12);
+    }
+
+    .mini h3{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      margin:0 0 8px;
+      color:#0f2f62;
+      font-size:16px;
+      letter-spacing:-0.01em;
+    }
+
+    .mini ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.7;
+      font-size:14.5px;
+      color:#24324a;
+    }
+
+    .break{
+      margin:18px 0 40px;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 60px rgba(0,0,0,0.14);
+      background:transparent;
+    }
+
+    .break img{
+      width:100%;
+      height:auto;
+      display:block;
+      user-select:none;
+      pointer-events:none;
+    }
+
+    @media(max-width:900px){
+      .grid{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="siteHeader"></div>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Sobre Experience Ecuador</h1>
+      <p>
+        Experience Ecuador se está construyendo como un centro único para ideas de viaje, puntos destacados locales
+        y rutas curadas por todo el país. De la relajación a la aventura, de lo gastronómico a lo cultural,
+        el objetivo es simple: ayudar a los viajeros a descubrir Ecuador con claridad y confianza.
+      </p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Lo que estamos construyendo</h2>
+        <p>
+          Una plataforma cuidadosamente curada que te ayuda a explorar Ecuador por región y por experiencia.
+          Queremos que sea fácil descubrir qué hacer, dónde alojarte, cómo planificar y qué vale realmente tu tiempo.
+          Con el tiempo, esto crecerá hacia una comunidad y un boletín digital donde socios locales confiables
+          podrán mostrar lo que ofrecen.
+        </p>
+      </div>
+
+      <div class="stack">
+        <div class="mini">
+          <h3>Hecho para viajeros como tú</h3>
+          <ul>
+            <li>Visitantes internacionales que buscan guía y planificación</li>
+            <li>Viajeros nacionales que quieren escapadas de fin de semana</li>
+            <li>Ecoturistas, observadores de aves, nómadas y amantes de la aventura</li>
+            <li>Huéspedes de retiros, amantes de la comida y buscadores de cultura</li>
+          </ul>
         </div>
-      </details>
 
-      <details class="nav-dd">
-        <summary class="nav-link nav-dd-btn">Experiences <span class="caret" aria-hidden="true"></span></summary>
-        <div class="nav-dd-menu" role="menu" aria-label="Experiences submenu">
-          <a href="/experiences/" role="menuitem">All Experiences</a>
-          <a href="/experiences/adventure/" role="menuitem">Adventure</a>
-          <a href="/experiences/nature/" role="menuitem">Nature</a>
-          <a href="/experiences/wildlife-birding/" role="menuitem">Wildlife &amp; Birding</a>
-          <a href="/experiences/relaxation/" role="menuitem">Relaxation</a>
-          <a href="/experiences/culinary/" role="menuitem">Culinary</a>
-          <a href="/experiences/culture/" role="menuitem">Culture</a>
+        <div class="mini">
+          <h3>Qué viene después</h3>
+          <ul>
+            <li>Centros regionales: Galápagos, Costa, Andes, Amazonía</li>
+            <li>Categorías de experiencias: relajación, aventura, naturaleza, gastronomía, cultura</li>
+            <li>Destacados del boletín y socios recomendados</li>
+          </ul>
         </div>
-      </details>
-
-      <a class="nav-link" href="/trip-builder/">Trip Builder</a>
-      <a class="nav-link" href="/contact/">Contact</a>
-
-      <!-- Language switch (JS sets href + label) -->
-      <a class="nav-link" href="#" data-lang-switch aria-label="Switch language">ES</a>
-    </nav>
-  </div>
-
-  <!-- MOBILE PANEL (hamburger-only, JS-driven, NO hash navigation) -->
-  <nav class="nav nav-mobile" aria-label="Mobile navigation">
-    <div class="m-panel">
-
-      <!-- MAIN MENU -->
-      <div class="m-view m-main">
-        <a class="m-item" href="/">Home</a>
-        <a class="m-item" href="/about/">About</a>
-        <a class="m-item" href="/mission/">Mission</a>
-
-        <button class="m-item m-next" type="button" data-target="#m-regions">
-          Regions <span class="m-arrow" aria-hidden="true"></span>
-        </button>
-
-        <button class="m-item m-next" type="button" data-target="#m-experiences">
-          Experiences <span class="m-arrow" aria-hidden="true"></span>
-        </button>
-
-        <a class="m-item" href="/trip-builder/">Trip Builder</a>
-        <a class="m-item" href="/contact/">Contact</a>
-
-        <!-- Language switch (JS sets href + label) -->
-        <a class="m-item" href="#" data-lang-switch aria-label="Switch language">Español</a>
       </div>
+    </section>
 
-      <!-- REGIONS SUBMENU -->
-      <div class="m-view m-submenu" id="m-regions" hidden>
-        <button class="m-back" type="button" data-back>
-          Back
-        </button>
+    <section class="break" aria-label="Imagen sobre nosotros">
+      <img src="/assets/images/EE-About-02.jpg" alt="Inspiración de Ecuador">
+    </section>
+  </main>
 
-        <a class="m-item" href="/regions/">All Regions</a>
-        <a class="m-item" href="/regions/galapagos/">Galapagos</a>
-        <a class="m-item" href="/regions/coast/">Coast</a>
-        <a class="m-item" href="/regions/andes/">Andes</a>
-        <a class="m-item" href="/regions/amazon/">Amazon</a>
-      </div>
+  <div id="siteFooter"></div>
 
-      <!-- EXPERIENCES SUBMENU -->
-      <div class="m-view m-submenu" id="m-experiences" hidden>
-        <button class="m-back" type="button" data-back>
-          Back
-        </button>
+  <script src="/assets/js/site.js"></script>
 
-        <a class="m-item" href="/experiences/">All Experiences</a>
-        <a class="m-item" href="/experiences/adventure/">Adventure</a>
-        <a class="m-item" href="/experiences/nature/">Nature</a>
-        <a class="m-item" href="/experiences/wildlife-birding/">Wildlife &amp; Birding</a>
-        <a class="m-item" href="/experiences/relaxation/">Relaxation</a>
-        <a class="m-item" href="/experiences/culinary/">Culinary</a>
-        <a class="m-item" href="/experiences/culture/">Culture</a>
-      </div>
-
-    </div>
-  </nav>
-</header>
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
+</body>
+</html>
