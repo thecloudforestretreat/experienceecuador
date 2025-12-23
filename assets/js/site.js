@@ -3,7 +3,7 @@
    - Works with injected /assets/includes/header.html
    - Hamburger open/close + scroll lock
    - Mobile drill-down menus (data-target / data-back)
-   - Language switch (EN <-> ES) and header link rewriting based on current language
+   - Language switch (EN <-> ES) + header link rewriting + i18n labels
 */
 (function () {
   "use strict";
@@ -21,9 +21,7 @@
   function normalizePath(p) {
     let path = String(p || "/").trim();
     if (!path.startsWith("/")) path = "/" + path;
-    // keep trailing slash style
     if (!path.endsWith("/")) path += "/";
-    // collapse doubles
     path = path.replace(/\/{2,}/g, "/");
     return path;
   }
@@ -63,39 +61,28 @@
     return m;
   })();
 
-  // Fallback rules for deeper pages so you do not have to map everything manually:
-  // - /regions/... -> /es/regiones/... (translate only the section slug if needed)
-  // - /experiences/... -> /es/experiencias/... (translate only the section slug if needed)
-  // - /es/regiones/... -> /regions/...
-  // - /es/experiencias/... -> /experiences/...
+  // Fallback rules for deeper pages
   function translatePath(pathname, toLang) {
     const from = normalizePath(pathname);
     const target = String(toLang || "en").toLowerCase() === "es" ? "es" : "en";
 
-    // Already in target language
     if (target === "es" && isSpanishPath(from)) return from;
     if (target === "en" && !isSpanishPath(from)) return from;
 
-    // Direct map
     if (target === "es" && EN_TO_ES[from]) return normalizePath(EN_TO_ES[from]);
     if (target === "en" && ES_TO_EN[from]) return normalizePath(ES_TO_EN[from]);
 
-    // Fallback section prefix mapping for deep pages
     if (target === "es") {
-      // /regions/... -> /es/regiones/...
       if (from.startsWith("/regions/")) {
         return normalizePath("/es/regiones/" + from.slice("/regions/".length));
       }
-      // /experiences/... -> /es/experiencias/...
       if (from.startsWith("/experiences/")) {
         return normalizePath("/es/experiencias/" + from.slice("/experiences/".length));
       }
-      // Other pages: prefix with /es/ and keep the rest (best-effort)
       if (from === "/") return "/es/";
       return normalizePath("/es" + from);
     }
 
-    // target === "en"
     if (from.startsWith("/es/regiones/")) {
       return normalizePath("/regions/" + from.slice("/es/regiones/".length));
     }
@@ -153,11 +140,9 @@
     const mobileNav = qs(headerEl, ".nav.nav-mobile");
     if (!mobileNav) return;
 
-    // Event delegation
     mobileNav.addEventListener("click", (e) => {
       const t = e.target;
 
-      // Drill-down forward
       const next = t.closest(".m-next");
       if (next && mobileNav.contains(next)) {
         e.preventDefault();
@@ -166,7 +151,6 @@
         return;
       }
 
-      // Back to main
       const back = t.closest("[data-back]");
       if (back && mobileNav.contains(back)) {
         e.preventDefault();
@@ -174,14 +158,31 @@
         return;
       }
 
-      // Normal link click inside mobile menu closes the menu
-      const link = t.closest("a[href]");
+      const link = t.closest('a[href]');
       if (link && mobileNav.contains(link)) {
         const href = link.getAttribute("href") || "";
         if (!href || href.charAt(0) === "#") return;
         closeMobile(headerEl);
       }
     });
+  }
+
+  function applyI18n(headerEl, onEs) {
+    // Swap visible labels
+    qsa(headerEl, ".i18n[data-en][data-es]").forEach((el) => {
+      const en = el.getAttribute("data-en") || "";
+      const es = el.getAttribute("data-es") || "";
+      const val = onEs ? es : en;
+      if (val) el.textContent = val;
+    });
+
+    // Swap hamburger aria-label (label element)
+    const burgerLabel = qs(headerEl, ".nav-toggle-btn[data-en-aria][data-es-aria]");
+    if (burgerLabel) {
+      const enA = burgerLabel.getAttribute("data-en-aria") || "Menu";
+      const esA = burgerLabel.getAttribute("data-es-aria") || "Menú";
+      burgerLabel.setAttribute("aria-label", onEs ? esA : enA);
+    }
   }
 
   function initLanguage(headerEl) {
@@ -202,7 +203,6 @@
         a.textContent = onEs ? "English" : "Español";
       }
 
-      // Click handler (in case href is blocked by other listeners)
       a.addEventListener("click", (e) => {
         const href = a.getAttribute("href") || "";
         if (!href || href === "#") return;
@@ -213,28 +213,30 @@
     });
 
     // Rewrite internal header links to match current language
-    // This keeps one shared header include working on both / and /es/
     const allLinks = qsa(headerEl, 'a[href^="/"]');
 
     allLinks.forEach((link) => {
-      // Skip the language switch itself (already handled)
       if (link.hasAttribute("data-lang-switch")) return;
 
       const hrefRaw = link.getAttribute("href") || "";
       const href = normalizePath(hrefRaw);
 
-      // Leave assets alone
-      if (href.startsWith("/assets/") || href.startsWith("/favicon") || href.startsWith("/site.webmanifest") || href.startsWith("/apple-touch-icon")) {
+      if (
+        href.startsWith("/assets/") ||
+        href.startsWith("/favicon") ||
+        href.startsWith("/site.webmanifest") ||
+        href.startsWith("/apple-touch-icon")
+      ) {
         return;
       }
 
-      // Convert link to current language
       const newHref = onEs ? translatePath(href, "es") : translatePath(href, "en");
       link.setAttribute("href", newHref);
     });
 
-    // Set document lang attribute (best-effort)
+    // Set html lang + swap labels
     document.documentElement.setAttribute("lang", onEs ? "es" : "en");
+    applyI18n(headerEl, onEs);
   }
 
   function initHeader(headerEl) {
@@ -267,7 +269,7 @@
       if (window.innerWidth >= 901) closeMobile(headerEl);
     });
 
-    // Language setup (switch + link rewriting)
+    // Language setup
     initLanguage(headerEl);
   }
 
