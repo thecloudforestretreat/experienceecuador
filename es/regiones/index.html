@@ -1,1 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regiones | Experience Ecuador</title>
 
+  <!-- Favicons (root) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Shared global CSS -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:#f6f8fb;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+
+    /* ===== PAGE ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:44px 18px 0;
+    }
+
+    .hero{
+      text-align:center;
+      margin-bottom:36px;
+    }
+
+    .hero h1{
+      margin:0 0 12px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      font-size:clamp(36px,4.5vw,56px);
+      color:var(--brand-blue);
+    }
+
+    .hero p{
+      margin:0 auto;
+      max-width:70ch;
+      color:var(--slate);
+      font-size:18px;
+      line-height:1.6;
+    }
+
+    /* ===== REGIONS GRID ===== */
+    .regions-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:28px;
+      margin-bottom:60px;
+    }
+
+    .region-card{
+      background:#fff;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 20px 55px rgba(3,78,162,0.12);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+
+    .region-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 28px 70px rgba(3,78,162,0.18);
+    }
+
+    .region-image{
+      height:260px;
+      overflow:hidden;
+    }
+
+    .region-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .4s ease;
+    }
+
+    .region-card:hover .region-image img{
+      transform:scale(1.05);
+    }
+
+    .region-content{
+      padding:22px 22px 26px;
+    }
+
+    .region-content h2{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:22px;
+      color:var(--brand-blue);
+    }
+
+    .region-content p{
+      margin:0 0 18px;
+      color:#2a2f36;
+      line-height:1.6;
+      font-size:15.5px;
+    }
+
+    .region-link{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:999px;
+      background:var(--brand-blue);
+      color:#fff;
+      font-weight:600;
+      font-size:14px;
+      letter-spacing:.02em;
+    }
+
+    /* ===== MOBILE ===== */
+    @media(max-width:900px){
+      .regions-grid{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="siteHeader"></div>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Explora Ecuador por región</h1>
+      <p>
+        Desde islas prístinas hasta volcanes andinos y selva amazónica,
+        Ecuador ofrece una variedad increíble de experiencias en cada región.
+      </p>
+    </section>
+
+    <section class="regions-grid">
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Galapagos-02.jpg" alt="Islas Galápagos">
+        </div>
+        <div class="region-content">
+          <h2>Islas Galápagos</h2>
+          <p>Encuentros con vida silvestre, paisajes volcánicos y experiencias naturales únicas.</p>
+          <a class="region-link" href="/es/regiones/galapagos/">Explorar Galápagos</a>
+        </div>
+      </article>
+
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Coast-02.jpg" alt="Costa del Ecuador">
+        </div>
+        <div class="region-content">
+          <h2>La Costa</h2>
+          <p>Playas, pueblos surferos, cultura marinera y escapadas costeras relajadas.</p>
+          <a class="region-link" href="/es/regiones/costa/">Explorar la Costa</a>
+        </div>
+      </article>
+
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Andes-02.jpg" alt="Andes del Ecuador">
+        </div>
+        <div class="region-content">
+          <h2>Los Andes</h2>
+          <p>Ciudades de altura, volcanes, mercados y un patrimonio cultural increíble.</p>
+          <a class="region-link" href="/es/regiones/andes/">Explorar los Andes</a>
+        </div>
+      </article>
+
+      <article class="region-card">
+        <div class="region-image">
+          <img src="/assets/images/EE-Region-Amazon-02.jpg" alt="Amazonía del Ecuador">
+        </div>
+        <div class="region-content">
+          <h2>La Amazonía</h2>
+          <p>Selva exuberante, vida silvestre, viajes por ríos y experiencias eco inmersivas.</p>
+          <a class="region-link" href="/es/regiones/amazon/">Explorar la Amazonía</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script src="/assets/js/site.js"></script>
+
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
+</body>
+</html>
