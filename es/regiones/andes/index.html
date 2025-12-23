@@ -1,1 +1,855 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Los Andes | Experience Ecuador</title>
 
+  <!-- Favicons (root paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --cloud-white:#F5F7FA;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+      --light-gray:#E3E5E8;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:#f6f8fb;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    img{ user-select:none; -webkit-user-drag:none; }
+
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;
+      width:100%;
+      min-height:64vh;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      background:url("/assets/images/EE-Region-Andes-hero-01.jpg") center / cover no-repeat;
+      color:#fff;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.12),
+        rgba(0,0,0,0.70)
+      );
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:1100px;
+      padding:54px 18px 34px;
+      text-align:left;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.38);
+      border:1px solid rgba(255,255,255,0.22);
+      font-weight:700;
+      letter-spacing:0.02em;
+      font-size:12.5px;
+      margin-bottom:14px;
+      backdrop-filter:blur(10px);
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      font-size:clamp(40px,5.4vw,72px);
+      line-height:1.03;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:70ch;
+      font-size:clamp(15px,2vw,18px);
+      line-height:1.65;
+      color:rgba(255,255,255,0.92);
+    }
+
+    /* ===== PAGE WRAP ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:36px 18px 0;
+    }
+
+    /* ===== SECTION / CARDS ===== */
+    .section{ margin-bottom:26px; }
+
+    .section h2{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:24px;
+      color:var(--brand-blue);
+    }
+
+    .section p{
+      margin:0;
+      color:#2a2f36;
+      font-size:15.8px;
+      line-height:1.75;
+      max-width:82ch;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      align-items:start;
+      margin-top:18px;
+    }
+
+    .grid.center-stack{ align-items:center; }
+
+    .stack-right{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      padding:22px;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      color:#0f2f62;
+    }
+
+    .card ul{
+      margin:0;
+      padding-left:18px;
+      color:#24324a;
+      line-height:1.75;
+      font-size:14.8px;
+    }
+
+    .mini{
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.12);
+      border-radius:20px;
+      padding:20px;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .tag{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.12);
+      color:#0f2f62;
+      font-weight:700;
+      font-size:13px;
+    }
+
+    /* ===== PLACES GRID ===== */
+    .places-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .place-tile{
+      display:block;
+      padding:0;
+      border-radius:18px;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid rgba(3,78,162,0.12);
+      box-shadow:0 14px 42px rgba(3,78,162,0.10);
+      transition:transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .place-tile:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 55px rgba(3,78,162,0.14);
+    }
+
+    .place-img{
+      width:100%;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .place-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .place-body{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      background:linear-gradient(180deg, rgba(3,78,162,0.035), rgba(3,78,162,0.012));
+    }
+
+    .place-title{
+      margin:0;
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+      font-size:15px;
+      line-height:1.2;
+    }
+
+    .place-meta{
+      margin:6px 0 0;
+      color:#1f2b3f;
+      opacity:.9;
+      line-height:1.5;
+      font-size:13.6px;
+      max-width:34ch;
+    }
+
+    .place-arrow{
+      flex:0 0 auto;
+      width:36px;
+      height:36px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.18);
+      background:rgba(255,255,255,0.75);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:2px;
+    }
+
+    .place-arrow span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2b62;
+      transform:rotate(-45deg);
+      opacity:.9;
+    }
+
+    /* ===== CAROUSEL (GALLERY) ===== */
+    .carousel{
+      margin-top:18px;
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
+
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
+
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
+    }
+
+    /* ===== CTA ===== */
+    .cta{
+      margin:28px 0 56px;
+      background:var(--brand-blue);
+      color:#fff;
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 22px 60px rgba(3,78,162,0.22);
+    }
+
+    .cta h3{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:20px;
+    }
+
+    .cta p{
+      margin:0;
+      color:rgba(255,255,255,0.92);
+      line-height:1.7;
+      font-size:15.5px;
+      max-width:85ch;
+    }
+
+    /* ===== MOBILE ===== */
+    @media(max-width:900px){
+      .grid{ grid-template-columns:1fr; }
+      .hero-inner{ text-align:center; }
+      .hero p{ margin:0 auto; }
+      .places-grid{ grid-template-columns:1fr; }
+    }
+
+    @media(max-width:480px){
+      .hero{ min-height:60vh; }
+      .cta{ border-radius:20px; }
+      .carousel-btn{ width:40px; height:40px; }
+    }
+
+    /* === Added only for YouTube embed responsiveness (no layout changes elsewhere) === */
+    .video-embed{
+      margin-top:14px;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 14px 42px rgba(3,78,162,0.10);
+      background:#000;
+      position:relative;
+      aspect-ratio:16/9;
+    }
+    .video-embed iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="siteHeader"></div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-label="Imagen principal de Los Andes">
+      <div class="hero-inner">
+        <div class="kicker">Guía de región • Live</div>
+        <h1>Los Andes</h1>
+        <p>
+          La Sierra de Ecuador mezcla ciudades históricas, mercados indígenas, paisajes dramáticos de volcanes y rutas escénicas.
+          Empieza aquí si Quito es tu hub de llegada o si buscas cultura, altura y vistas clásicas del país.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <div class="wrap">
+
+      <section class="section">
+        <h2>¿Qué define a los Andes?</h2>
+        <p>
+          La región andina cruza Ecuador de norte a sur. Aquí se mezclan la arquitectura colonial y la vida de la sierra,
+          y donde muchos viajeros tienen sus primeros “wow moments”: miradores, fondos de volcanes y tradiciones culturales profundas.
+        </p>
+
+        <div class="grid center-stack">
+          <div class="card">
+            <h3>Highlights principales</h3>
+            <ul>
+              <li>Centros históricos y calles coloniales (algunos con reconocimiento UNESCO)</li>
+              <li>Mercados indígenas, textiles y tradiciones vivas</li>
+              <li>Paisajes volcánicos y parques nacionales (zona Cotopaxi)</li>
+              <li>Day trips desde Quito: Mitad del Mundo, miradores y naturaleza cercana</li>
+            </ul>
+
+            <div class="pill-row" aria-label="Etiquetas de experiencias en Andes">
+              <span class="tag">Cultura</span>
+              <span class="tag">Ciudades</span>
+              <span class="tag">Volcanes</span>
+              <span class="tag">Sierra</span>
+            </div>
+          </div>
+
+          <div class="stack-right">
+            <div class="mini">
+              <h3>Mejor para</h3>
+              <ul>
+                <li>Primer viaje a Ecuador entrando por Quito</li>
+                <li>Cultura, arquitectura y caminatas históricas</li>
+                <li>Escenarios de volcanes y rutas clásicas de la sierra</li>
+                <li>Itinerarios cortos (1 a 3 días) o circuitos más largos</li>
+              </ul>
+            </div>
+
+            <div class="mini">
+              <h3>Tips de planificación</h3>
+              <ul>
+                <li>La altura afecta distinto a cada persona: empieza suave e hidrátate</li>
+                <li>Agrupa paradas por zona para reducir traslados</li>
+                <li>Planea miradores temprano para cielos más claros</li>
+                <li>Deja un bloque flexible por día para tráfico y descanso</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Bases populares y puntos clave</h2>
+        <p>
+          Usa Quito como hub principal y luego ramifica a mercados, escapes de bosque nublado y paisajes volcánicos.
+          Estos links van a guías completas por destino.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Lugares en los Andes</h3>
+
+            <div class="places-grid" aria-label="Lista de lugares en Andes">
+
+              <a class="place-tile" href="/es/regiones/andes/quito/" aria-label="Abrir Quito">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-19-Quito.jpg" alt="Quito, Ecuador">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <p class="place-title">Quito</p>
+                    <p class="place-meta">Centro histórico, miradores y principal hub de llegada.</p>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/es/regiones/andes/mindo/" aria-label="Abrir Mindo">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-Mindo.jpg" alt="Mindo, Ecuador">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <p class="place-title">Mindo</p>
+                    <p class="place-meta">Bosque nublado, birding, cascadas y días de naturaleza relajados.</p>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/es/regiones/andes/cuenca/" aria-label="Abrir Cuenca">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-Cuenca.jpg" alt="Cuenca, Ecuador">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <p class="place-title">Cuenca</p>
+                    <p class="place-meta">Encanto colonial, caminatas junto al río y barrios artesanales.</p>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/es/regiones/andes/otavalo/" aria-label="Abrir Otavalo">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-24-Otavalo.jpg" alt="Otavalo, Ecuador">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <p class="place-title">Otavalo</p>
+                    <p class="place-meta">Mercados, textiles, lagunas y cultura andina del norte.</p>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/es/regiones/andes/cotopaxi/" aria-label="Abrir Cotopaxi">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-Cotopaxi.jpg" alt="Cotopaxi, Ecuador">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <p class="place-title">Cotopaxi</p>
+                    <p class="place-meta">Paisaje volcánico, caminatas y páramo.</p>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/es/regiones/andes/banos/" aria-label="Abrir Baños">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-Banos.jpg" alt="Baños, Ecuador">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <p class="place-title">Baños</p>
+                    <p class="place-meta">Cascadas, miradores y una base divertida para aventura suave.</p>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/es/regiones/andes/papallacta/" aria-label="Abrir Papallacta">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-Papallacta.jpg" alt="Papallacta, Ecuador">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <p class="place-title">Papallacta</p>
+                    <p class="place-meta">Aguas termales, aire de montaña y un reset fácil en la sierra.</p>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/es/regiones/andes/choco-andino/" aria-label="Abrir Chocó Andino">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-ChocoAndino.jpg" alt="Choco Andino, Ecuador">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <p class="place-title">Chocó Andino</p>
+                    <p class="place-meta">Corredores de bosque nublado, vida silvestre y escapes escénicos cerca de Quito.</p>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+            </div>
+
+            <div class="pill-row" aria-label="Etiquetas de lugares en Andes">
+              <span class="tag">Day trips</span>
+              <span class="tag">Cultura</span>
+              <span class="tag">Naturaleza</span>
+              <span class="tag">Volcanes</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Cómo combinarlos</h3>
+            <ul>
+              <li><strong>2 a 3 noches en Quito</strong> como base de llegada y cultura de ciudad</li>
+              <li><strong>1 día Otavalo</strong> para mercados y sierra norte</li>
+              <li><strong>1 día Cotopaxi</strong> para vistas de volcán y caminatas cortas</li>
+              <li><strong>2 a 4 noches en Mindo</strong> para bosque nublado y birding</li>
+              <li><strong>1 a 2 noches en Baños</strong> para cascadas y energía de aventura</li>
+              <li><strong>2 a 3 noches en Cuenca</strong> para calles coloniales, comida y días tranquilos</li>
+              <li><strong>Medio día Papallacta</strong> para termas y un reset rápido</li>
+              <li><strong>Chocó Andino</strong> como add-on de naturaleza desde Quito</li>
+            </ul>
+
+            <div class="video-embed" aria-label="Video de Los Andes">
+              <iframe
+                src="https://www.youtube.com/embed/LDqW-FBML0o"
+                title="MIDDLEMOST ANDES OF ECUADOR"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Galería y highlights</h2>
+
+        <div id="andesCarousel" class="carousel" aria-label="Galería de imágenes de Los Andes">
+          <button class="carousel-btn prev" type="button" aria-label="Previous image">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-1.jpg" alt="Andes highlight 1"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-2.jpg" alt="Andes highlight 2"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-3.jpg" alt="Andes highlight 3"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-4.jpg" alt="Andes highlight 4"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-5.jpg" alt="Andes highlight 5"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-6.jpg" alt="Andes highlight 6"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-7.jpg" alt="Andes highlight 7"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-8.jpg" alt="Andes highlight 8"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-9.jpg" alt="Andes highlight 9"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Andes-10.jpg" alt="Andes highlight 10"></div>
+            </div>
+          </div>
+
+          <button class="carousel-btn next" type="button" aria-label="Next image">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-ui">
+            <div class="carousel-dots" aria-label="Carousel pagination"></div>
+            <div class="carousel-counter" id="andesCarouselCounter">1 / 10</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" aria-label="CTA para planificar viajes">
+        <h3>Siguiente: Trip builder para los Andes</h3>
+        <p>
+          Estamos conectando itinerarios de Quito (1 a 3 días) con experiencias cercanas como Otavalo, Cotopaxi, Mindo y Baños.
+          Si quieres una ruta curada, contáctanos y la armamos con el ritmo correcto.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script>
+    /* Andes carousel */
+    (function(){
+      const root = document.getElementById("andesCarousel");
+      if(!root) return;
+
+      const track = root.querySelector(".carousel-track");
+      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+      const prevBtn = root.querySelector(".carousel-btn.prev");
+      const nextBtn = root.querySelector(".carousel-btn.next");
+      const dotsWrap = root.querySelector(".carousel-dots");
+      const counter = root.querySelector("#andesCarouselCounter");
+
+      let index = 0;
+
+      const AUTOPLAY_MS = 5000;
+      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      let autoplayTimer = null;
+      let autoplayEnabled = !prefersReducedMotion;
+
+      function setIndex(next){
+        index = (next + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        updateDots();
+        updateCounter();
+      }
+
+      function updateCounter(){
+        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
+      }
+
+      function updateDots(){
+        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
+        dots.forEach((d,i) => d.classList.toggle("active", i === index));
+      }
+
+      function buildDots(){
+        dotsWrap.innerHTML = "";
+        slides.forEach((_, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "dot" + (i === 0 ? " active" : "");
+          b.setAttribute("aria-label", `Ir a la imagen ${i + 1}`);
+          b.addEventListener("click", () => {
+            setIndex(i);
+            stopAutoplay();
+          });
+          dotsWrap.appendChild(b);
+        });
+      }
+
+      function next(){ setIndex(index + 1); }
+      function prev(){ setIndex(index - 1); }
+
+      function startAutoplay(){
+        if(!autoplayEnabled) return;
+        stopAutoplay();
+        autoplayTimer = setInterval(next, AUTOPLAY_MS);
+      }
+
+      function stopAutoplay(){
+        if(autoplayTimer){
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
+      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
+
+      root.addEventListener("keydown", (e) => {
+        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
+        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
+      });
+
+      let startX = 0;
+      let isDown = false;
+
+      const viewport = root.querySelector(".carousel-viewport");
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+      });
+
+      viewport.addEventListener("pointerup", (e) => {
+        if(!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        const threshold = 40;
+        if(dx > threshold){ prev(); stopAutoplay(); }
+        if(dx < -threshold){ next(); stopAutoplay(); }
+      });
+
+      viewport.addEventListener("pointercancel", () => { isDown = false; });
+
+      root.addEventListener("mouseenter", stopAutoplay);
+      root.addEventListener("mouseleave", startAutoplay);
+      root.addEventListener("focusin", stopAutoplay);
+      root.addEventListener("focusout", startAutoplay);
+
+      root.tabIndex = 0;
+      buildDots();
+      updateCounter();
+      setIndex(0);
+      startAutoplay();
+    })();
+  </script>
+
+  <script src="/assets/js/site.js"></script>
+
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
+</body>
+</html>
