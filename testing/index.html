@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quito en 3 Días | Experience Ecuador</title>
+  <title>Mindo | Experience Ecuador</title>
 
-  <!-- Root Favicons -->
+  <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
 
-  <!-- Global Header / Footer CSS -->
+  <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
 
@@ -26,7 +26,6 @@
       --brand-blue:#034EA2;
       --slate:#6E7B8B;
       --text:#1F1F1F;
-      --ink:#0f2f62;
     }
 
     *{box-sizing:border-box}
@@ -58,26 +57,32 @@
     .lede{
       color:var(--slate);
       line-height:1.65;
-      max-width:85ch;
+      max-width:92ch;
       margin:0;
       font-size:16.8px;
     }
 
     .meta-row{
+      margin-top:14px;
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      margin-top:14px;
+      align-items:center;
+      color:#162b55;
+      font-weight:700;
+      font-size:13.5px;
     }
 
     .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
       padding:8px 12px;
       border-radius:999px;
       background:rgba(3,78,162,.06);
       border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
       font-weight:800;
-      color:var(--ink);
-      font-size:13px;
     }
 
     .content-grid{
@@ -104,84 +109,75 @@
       font-weight:800;
       letter-spacing:-0.02em;
       font-size:18px;
-      color:var(--ink);
+      color:#0f2f62;
     }
 
     .card p{
-      margin:0 0 14px;
-      color:var(--slate);
-      line-height:1.65;
-      font-size:15.8px;
-      max-width:85ch;
+      margin:0 0 12px;
+      color:#1f2b3f;
+      line-height:1.75;
+      font-size:15.5px;
+      max-width:84ch;
     }
 
-    .timeline{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
+    .card p:last-child{ margin-bottom:0; }
+
+    .inline-link{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:800;
+      color:#162b55;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
       margin-top:10px;
     }
 
-    .stop{
-      display:grid;
-      grid-template-columns:110px 1fr;
-      gap:12px;
-      padding:14px;
+    .mini-card{
+      padding:14px 14px;
       border-radius:18px;
-      background:linear-gradient(180deg, rgba(3,78,162,.04), rgba(3,78,162,.015));
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
       border:1px solid rgba(3,78,162,.12);
     }
 
-    .time{
-      font-weight:900;
-      color:var(--ink);
-      font-size:13px;
-      letter-spacing:.01em;
-    }
-
-    .stop-title{
-      font-weight:900;
-      color:var(--ink);
-      font-size:15.5px;
+    .mini-card h3{
       margin:0 0 6px;
+      font-size:14.5px;
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
     }
 
-    .stop-text{
+    .mini-card p{
+      margin:0;
       color:#1f2b3f;
-      line-height:1.65;
-      font-size:14.8px;
-      margin:0 0 10px;
+      opacity:.92;
+      line-height:1.6;
+      font-size:14.4px;
     }
 
-    .tags{
+    .chips{
       display:flex;
       flex-wrap:wrap;
       gap:8px;
+      margin-top:10px;
     }
 
-    .tag{
-      padding:6px 10px;
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 10px;
       border-radius:999px;
-      background:rgba(3,78,162,.08);
+      background:rgba(3,78,162,.06);
       border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
       font-weight:800;
-      color:#162b55;
-      font-size:12.5px;
+      font-size:12.8px;
     }
 
-    .note{
-      margin-top:14px;
-      padding:14px 14px;
-      border-radius:18px;
-      background:rgba(3,78,162,.05);
-      border:1px solid rgba(3,78,162,.12);
-      color:#1f2b3f;
-      font-weight:600;
-      line-height:1.6;
-      font-size:14.8px;
-    }
-
-    /* ===== RIGHT COLUMN ===== */
     .side-stack{
       display:flex;
       flex-direction:column;
@@ -202,7 +198,7 @@
       font-weight:800;
       letter-spacing:-0.02em;
       font-size:16px;
-      color:var(--ink);
+      color:#0f2f62;
     }
 
     .mini p{
@@ -228,8 +224,8 @@
       border-radius:16px;
       background:rgba(3,78,162,.05);
       border:1px solid rgba(3,78,162,.12);
-      font-weight:800;
-      color:var(--ink);
+      font-weight:900;
+      color:#0f2f62;
     }
 
     .pill-link:hover{ background:rgba(3,78,162,.08); }
@@ -241,25 +237,550 @@
       font-size:13px;
     }
 
-    .side-image{
+    /* ===== ITINERARY SELECTOR ===== */
+    .it-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .it-control{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-width:260px;
+      flex:0 0 auto;
+    }
+
+    .it-label{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:-0.01em;
+      opacity:.95;
+    }
+
+    .it-select{
+      width:100%;
+      appearance:none;
+      background:#fff;
+      border:1px solid rgba(3,78,162,.18);
+      border-radius:14px;
+      padding:12px 44px 12px 12px;
+      font-weight:800;
+      color:#0f2f62;
+      box-shadow:0 10px 30px rgba(3,78,162,.08);
+      cursor:pointer;
+      line-height:1.1;
+      background-image:
+        linear-gradient(45deg, transparent 50%, rgba(15,47,98,.9) 50%),
+        linear-gradient(135deg, rgba(15,47,98,.9) 50%, transparent 50%);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%;
+      background-size:6px 6px, 6px 6px;
+      background-repeat:no-repeat;
+    }
+
+    .it-select:focus{
+      outline:2px solid rgba(3,78,162,0.35);
+      outline-offset:2px;
+    }
+
+    .it-summary{
+      color:#1f2b3f;
+      line-height:1.65;
+      font-size:14.8px;
+      opacity:.95;
+      flex:1 1 320px;
+      max-width:70ch;
+      margin:0;
+    }
+
+    .it-plan{
+      margin-top:14px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .day-card{
+      border-radius:18px;
+      padding:14px 14px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .day-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+
+    .day-title{
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+      font-size:14.8px;
+      line-height:1.2;
+    }
+
+    .day-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
+      font-weight:900;
+      font-size:12.5px;
+      white-space:nowrap;
+    }
+
+    .slots{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .slot{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 10px;
+      border-radius:14px;
+      background:rgba(255,255,255,.85);
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .slot-time{
+      flex:0 0 auto;
+      min-width:88px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:12.8px;
+      opacity:.95;
+      padding-top:1px;
+      white-space:nowrap;
+    }
+
+    .slot-text{
+      margin:0;
+      color:#1f2b3f;
+      opacity:.95;
+      line-height:1.6;
+      font-size:13.8px;
+      max-width:78ch;
+    }
+
+    .it-note{
+      margin-top:12px;
+      padding-top:12px;
+      border-top:1px solid rgba(0,0,0,.06);
+      color:var(--slate);
+      font-size:13.8px;
+      line-height:1.65;
+    }
+
+    /* ===== WEATHER (same as Quito) ===== */
+    .wx-card{
+      padding:18px 18px;
       border-radius:22px;
-      overflow:hidden;
+      background:#fff;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
       border:1px solid rgba(0,0,0,.06);
-      box-shadow:0 18px 60px rgba(0,0,0,.14);
+    }
+
+    .wx-title{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .wx-now{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .wx-date{
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+      font-size:13.2px;
+      opacity:.95;
+      white-space:nowrap;
+      margin-top:2px;
+    }
+
+    .wx-lines{
+      margin:0;
+      color:#1f2b3f;
+      line-height:1.55;
+      font-size:13.8px;
+      opacity:.95;
+      text-align:right;
+    }
+
+    .wx-grid7{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .wx-day{
+      border-radius:16px;
+      padding:10px 10px;
+      background:rgba(255,255,255,.9);
+      border:1px solid rgba(3,78,162,.14);
+      text-align:left;
+    }
+
+    .wx-top{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:8px;
+    }
+
+    .wx-dow{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:12.5px;
+      letter-spacing:-0.01em;
+    }
+
+    .wx-mmdd{
+      color:#162b55;
+      opacity:.75;
+      font-size:11.5px;
+    }
+
+    .wx-hi{
+      margin-top:8px;
+      color:#162b55;
+      opacity:.8;
+      font-size:12.3px;
+    }
+
+    .wx-lo{
+      color:#162b55;
+      opacity:.8;
+      font-size:12.3px;
+      margin-top:2px;
+    }
+
+    .wx-rain{
+      margin-top:6px;
+      color:#162b55;
+      opacity:.85;
+      font-size:11.7px;
+      white-space:nowrap;
+    }
+
+    @media(max-width:980px){
+      .wx-grid7{ grid-template-columns:repeat(2, 1fr); }
+    }
+
+    .months{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid rgba(0,0,0,.06);
+    }
+
+    .wx-sub{
+      margin:0 0 10px;
+      color:#1f2b3f;
+      opacity:.85;
+      font-size:13.5px;
+      line-height:1.5;
+    }
+
+    .legend{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+      align-items:center;
+    }
+
+    .legend-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:12.8px;
+      font-weight:800;
+      color:#162b55;
+      opacity:.9;
+    }
+
+    .swatch{
+      width:14px;
+      height:14px;
+      border-radius:6px;
+      border:1px solid rgba(3,78,162,.22);
+      background:rgba(3,78,162,.06);
+    }
+
+    .swatch.best{ background:rgba(3,78,162,.14); border-color:rgba(3,78,162,.32); }
+    .swatch.good{ background:rgba(3,78,162,.09); border-color:rgba(3,78,162,.22); }
+    .swatch.fair{ background:rgba(3,78,162,.04); border-color:rgba(3,78,162,.18); opacity:.85; }
+
+    .month-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .month-chip{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,.14);
+      background:rgba(3,78,162,.06);
+      color:#0f2f62;
+      font-weight:900;
+      font-size:12.4px;
+      min-width:46px;
+    }
+
+    .month-chip.best{
+      background:rgba(3,78,162,.14);
+      border-color:rgba(3,78,162,.32);
+    }
+
+    .month-chip.good{
+      background:rgba(3,78,162,.09);
+      border-color:rgba(3,78,162,.22);
+    }
+
+    .month-chip.fair{
+      background:rgba(3,78,162,.04);
+      border-color:rgba(3,78,162,.18);
+      opacity:.85;
+    }
+
+    /* ===== MORE ANDES DESTINATIONS ===== */
+    .andes-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .andes-tile{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    .andes-tile:hover{
+      background:rgba(3,78,162,.07);
+      transform:translateY(-1px);
+    }
+
+    .andes-left{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
+    }
+
+    .andes-title{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:14.8px;
+      letter-spacing:-0.01em;
+      line-height:1.2;
+    }
+
+    .andes-sub{
+      color:#1f2b3f;
+      opacity:.9;
+      line-height:1.5;
+      font-size:13.4px;
+      max-width:60ch;
+    }
+
+    .andes-arrow{
+      flex:0 0 auto;
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,.18);
+      background:rgba(255,255,255,.75);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:2px;
+    }
+
+    .andes-arrow span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
+      transform:rotate(-45deg);
+      opacity:.85;
+    }
+
+    /* ===== CAROUSEL (BOTTOM) ===== */
+    .carousel{
+      margin-top:18px;
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
+
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
+
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/9;
       background:#eef2f7;
     }
 
-    .side-image img{
+    .carousel-slide img{
       width:100%;
-      height:auto;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
       display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
     }
 
     /* ===== MOBILE ===== */
     @media(max-width:980px){
       .content-grid{grid-template-columns:1fr}
-      .stop{grid-template-columns:1fr}
-      .time{opacity:.9}
+    }
+
+    @media(max-width:820px){
+      .two-col{grid-template-columns:1fr}
+    }
+
+    @media(max-width:620px){
+      .carousel-slide{ aspect-ratio:16/9; }
+      .it-control{ min-width: 100%; }
+    }
+
+    @media(max-width:480px){
+      .carousel-btn{ width:40px; height:40px; }
+      .slot-time{ min-width:82px; }
     }
   </style>
 </head>
@@ -269,227 +790,276 @@
 
   <main>
     <!-- PAGE CONTENT ONLY -->
-    <div class="wrap">
-      <h1>Quito en 3 días</h1>
+    <main class="wrap">
+      <h1>Mindo</h1>
       <p class="lede">
-        Tres días te dan la mejor versión de Quito.
-        Puedes recorrer la ciudad histórica, visitar la Mitad del Mundo y sumar un día completo de excursión por los Andes sin sentirte apretado.
+        Mindo es la escapada de bosque nublado de Ecuador, famosa por el avistamiento de aves de clase mundial, senderos con neblina, cascadas y un ambiente tranquilo de pueblo.
+        Es una de las escapadas de naturaleza más fáciles desde Quito y una opción top si buscas vida silvestre, aire fresco y paisajes verdes.
       </p>
 
-      <div class="meta-row" aria-label="Resumen del viaje">
-        <span class="pill">Mejor para: Primeras llegadas a Ecuador</span>
-        <span class="pill">Ritmo: Cómodo</span>
-        <span class="pill">Incluye: Ciudad + Ecuador + Excursión</span>
+      <div class="meta-row" aria-label="Metadatos de Mindo">
+        <span class="pill">Región: Andes</span>
+        <span class="pill">Mejor para: Bosque nublado, aves, cascadas</span>
+        <span class="pill">Buen punto base: Escapada desde Quito, rutas Chocó Andino</span>
       </div>
 
-      <section class="content-grid" aria-label="Contenido itinerario Quito 3 días">
+      <section class="content-grid" aria-label="Contenido de Mindo">
+        <!-- LEFT COLUMN -->
         <div>
           <div class="card">
-            <h2>Día 1: Quito histórico y un reset de ciudad</h2>
+            <h2>Para qué es mejor Mindo</h2>
             <p>
-              Mantén el primer día suave.
-              Quito está a gran altura, así que este día se trata de orientarte, absorber cultura y entrar en el ritmo de la ciudad.
+              Mindo es un lugar para bajar el ritmo y conectar con la naturaleza.
+              Los días se construyen con caminatas cortas, momentos de vida silvestre y excursiones fáciles a cascadas y miradores.
+              Las primeras horas de la mañana son ideales para aves y una luz de bosque muy tranquila.
             </p>
 
-            <div class="timeline">
-              <div class="stop">
-                <div class="time">Mañana</div>
-                <div>
-                  <div class="stop-title">Paseo por el Casco Antiguo y plazas</div>
-                  <p class="stop-text">
-                    Explora el centro histórico a pie.
-                    Elige algunos highlights y deja tiempo entre paradas para disfrutar calles, miradores y la atmósfera.
-                  </p>
-                  <div class="tags">
-                    <span class="tag">UNESCO</span>
-                    <span class="tag">Caminable</span>
-                    <span class="tag">Arquitectura</span>
-                  </div>
-                </div>
+            <div class="two-col" aria-label="Highlights de Mindo">
+              <div class="mini-card">
+                <h3>Vida silvestre y avistamiento de aves</h3>
+                <p>
+                  Uno de los mejores lugares de Ecuador para colibríes y especies de bosque nublado.
+                  Funciona excelente con guía o por tu cuenta cerca del pueblo.
+                </p>
               </div>
 
-              <div class="stop">
-                <div class="time">Mediodía</div>
-                <div>
-                  <div class="stop-title">Almuerzo y descanso</div>
-                  <p class="stop-text">
-                    Siéntate a almorzar y toma una pausa.
-                    Hidratarte y llevar buen ritmo hace que todo se sienta más fácil.
-                  </p>
-                  <div class="tags">
-                    <span class="tag">Amigable con la altura</span>
-                    <span class="tag">Comida local</span>
-                  </div>
-                </div>
+              <div class="mini-card">
+                <h3>Cascadas y senderos de bosque</h3>
+                <p>
+                  Una ruta simple de caminatas verdes y paradas de cascadas.
+                  Fácil combinar hikes cortos con descansos.
+                </p>
               </div>
 
-              <div class="stop">
-                <div class="time">Tarde</div>
-                <div>
-                  <div class="stop-title">Mirador + paseo relajado por un barrio</div>
-                  <p class="stop-text">
-                    Suma un mirador principal para fotos panorámicas y luego camina por una zona con cafés y buen ambiente.
-                  </p>
-                  <div class="tags">
-                    <span class="tag">Vistas</span>
-                    <span class="tag">Fotografía</span>
-                  </div>
-                </div>
+              <div class="mini-card">
+                <h3>Chocolate y cafés locales</h3>
+                <p>
+                  Ambiente acogedor de café y experiencias locales que quedan perfectas para tardes con lluvia.
+                </p>
               </div>
+
+              <div class="mini-card">
+                <h3>Aventura suave</h3>
+                <p>
+                  Canopy, tubing o miradores en altura sin convertir el viaje en una agenda 100% adrenalina.
+                </p>
+              </div>
+            </div>
+
+            <div class="chips" aria-label="Chips de temas de Mindo">
+              <span class="chip">Bosque nublado</span>
+              <span class="chip">Aves</span>
+              <span class="chip">Cascadas</span>
+              <span class="chip">Naturaleza</span>
+              <span class="chip">Fotografía</span>
+              <span class="chip">Fácil desde Quito</span>
             </div>
           </div>
 
           <div class="card">
-            <h2>Día 2: La Mitad del Mundo y el norte de Quito</h2>
+            <h2>Notas rápidas para planificar</h2>
             <p>
-              El día dos es tu excursión clásica de Quito.
-              Visita la zona del ecuador primero y vuelve a la ciudad con tiempo suficiente para una noche tranquila.
+              El clima en Mindo cambia rápido. Planifica tus actividades grandes al aire libre por la mañana y deja las tardes flexibles.
+              Un ritmo ideal es: un “día de cascadas”, una “mañana de aves” y un “día lento” para cafés y caminatas cortas.
             </p>
+            <p>
+              ¿Quieres un plan curado de 1 a 4 noches con los mejores spots de aves, guías y el ritmo correcto?
+              Escríbenos desde la página de <a class="inline-link" href="/contact/">Contacto</a>.
+            </p>
+          </div>
 
-            <div class="timeline">
-              <div class="stop">
-                <div class="time">Mañana</div>
-                <div>
-                  <div class="stop-title">Mitad del Mundo y zona del ecuador</div>
-                  <p class="stop-text">
-                    Visita el monumento y las exhibiciones alrededor.
-                    Ir temprano ayuda a evitar los picos más llenos y te deja un regreso más fluido a la ciudad.
-                  </p>
-                  <div class="tags">
-                    <span class="tag">Ecuador</span>
-                    <span class="tag">Imperdible</span>
-                  </div>
-                </div>
+          <!-- SINGLE ITINERARY SECTION WITH DROPDOWN -->
+          <div class="card" id="mindoItinerary">
+            <h2>Elige tu plan para Mindo</h2>
+
+            <div class="it-head" aria-label="Selector de itinerario">
+              <div class="it-control">
+                <div class="it-label">Duración</div>
+                <select class="it-select" id="itDaysSelect" aria-label="Selecciona número de días">
+                  <option value="1">1 día</option>
+                  <option value="2">2 días</option>
+                  <option value="3">3 días</option>
+                  <option value="4">4 días</option>
+                </select>
               </div>
 
-              <div class="stop">
-                <div class="time">Tarde</div>
-                <div>
-                  <div class="stop-title">Elige un add-on flexible</div>
-                  <p class="stop-text">
-                    Después del ecuador, regresa por un museo y café,
-                    o suma una parada escénica corta de camino de vuelta.
-                  </p>
-                  <div class="tags">
-                    <span class="tag">Flexible</span>
-                    <span class="tag">Add-on ligero</span>
-                  </div>
-                </div>
-              </div>
+              <p class="it-summary" id="itSummary">
+                Un día rápido y efectivo: un bloque fuerte de naturaleza + tiempo fácil en el pueblo. Ideal si estás basado en Quito.
+              </p>
+            </div>
 
-              <div class="stop">
-                <div class="time">Noche</div>
-                <div>
-                  <div class="stop-title">Cena y noche temprana</div>
-                  <p class="stop-text">
-                    Mantén la noche simple.
-                    Tres días funcionan mejor cuando guardas energía para la excursión de mañana.
-                  </p>
-                  <div class="tags">
-                    <span class="tag">Ritmo fácil</span>
-                    <span class="tag">Recargar</span>
-                  </div>
-                </div>
-              </div>
+            <div class="it-plan" id="itPlan" aria-live="polite" aria-label="Itinerario tentativo"></div>
+
+            <div class="it-note">
+              Esta es una guía de ritmo tentativo. En el bosque nublado el clima puede cambiar rápido, por eso recomendamos dejar las tardes flexibles.
+              Si quieres esto ajustado a tus fechas e intereses, usa la página de <a class="inline-link" href="/contact/">Contacto</a>.
             </div>
           </div>
 
-          <div class="card">
-            <h2>Día 3: Una excursión de día completo cerca de Quito</h2>
-            <p>
-              Aquí es donde vale la pena quedarse 3 días.
-              Elige una excursión fuerte y hazla bien, sin encajarla entre vuelos o tiempo de ciudad apresurado.
-            </p>
+          <!-- Carousel bottom -->
+          <div id="mindoCarousel" class="carousel" aria-label="Galería de imágenes de Mindo">
+            <button class="carousel-btn prev" type="button" aria-label="Imagen anterior">
+              <span aria-hidden="true"></span>
+            </button>
 
-            <div class="timeline">
-              <div class="stop">
-                <div class="time">Opción A</div>
-                <div>
-                  <div class="stop-title">Paisaje andino y miradores de gran altura</div>
-                  <p class="stop-text">
-                    Una gran elección si quieres paisajes dramáticos, miradores y sentir los Andes más allá de la ciudad.
-                  </p>
-                  <div class="tags">
-                    <span class="tag">Andes</span>
-                    <span class="tag">Escénico</span>
-                    <span class="tag">Día completo</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="stop">
-                <div class="time">Opción B</div>
-                <div>
-                  <div class="stop-title">Reserva natural o experiencia tipo bosque nublado</div>
-                  <p class="stop-text">
-                    Mejor si quieres verde, senderos y energía de vida silvestre.
-                    Es un contraste perfecto después de dos días más urbanos.
-                  </p>
-                  <div class="tags">
-                    <span class="tag">Naturaleza</span>
-                    <span class="tag">Senderos</span>
-                    <span class="tag">Aire fresco</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="stop">
-                <div class="time">Opción C</div>
-                <div>
-                  <div class="stop-title">Cultura y mercados fuera del centro</div>
-                  <p class="stop-text">
-                    Ideal si quieres artesanías, mercados y cultura local.
-                    Mantiene el día activo sin volverse agotador.
-                  </p>
-                  <div class="tags">
-                    <span class="tag">Cultura</span>
-                    <span class="tag">Mercados</span>
-                    <span class="tag">Vida local</span>
-                  </div>
-                </div>
+            <div class="carousel-viewport">
+              <div class="carousel-track">
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Mindo-1.jpg" alt="Mindo highlight 1"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Mindo-2.jpg" alt="Mindo highlight 2"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Mindo-3.jpg" alt="Mindo highlight 3"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Mindo-4.jpg" alt="Mindo highlight 4"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Mindo-5.jpg" alt="Mindo highlight 5"></div>
+                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Mindo-6.jpg" alt="Mindo highlight 6"></div>
               </div>
             </div>
 
-            <div class="note">
-              Regla de oro: elige una excursión principal y comprométete con ella.
-              Tres paradas medianas se sienten apuradas, pero un plan fuerte se siente como una experiencia real de Ecuador.
+            <button class="carousel-btn next" type="button" aria-label="Siguiente imagen">
+              <span aria-hidden="true"></span>
+            </button>
+
+            <div class="carousel-ui">
+              <div class="carousel-dots" aria-label="Paginación del carrusel"></div>
+              <div class="carousel-counter" id="mindoCarouselCounter">1 / 6</div>
             </div>
           </div>
         </div>
 
-        <aside class="side-stack" aria-label="Sidebar Quito 3 días">
+        <!-- RIGHT COLUMN -->
+        <aside class="side-stack" aria-label="Contenido lateral de Mindo">
           <div class="mini">
-            <h3>Cómo usar esta página</h3>
+            <h3>Ideal para estancias cortas</h3>
             <p>
-              Empieza por la ciudad y luego suma distancia.
-              Si llegas desde nivel del mar, deja el día 1 suave y guarda la excursión de día completo para el día 3.
+              Mindo es uno de los viajes de bosque nublado más fáciles desde Quito. Si tienes poco tiempo, prioriza las mañanas temprano en el bosque
+              y deja las tardes flexibles para cascadas, cafés y actividades cortas.
             </p>
 
-            <div class="link-list" aria-label="Links de itinerarios Quito">
-              <a class="pill-link" href="../">
-                Volver a Quito <span>Resumen</span>
+            <div class="link-list" aria-label="Links rápidos">
+              <a class="pill-link" href="/es/regiones/andes/">
+                Volver a Andes <span>Página región</span>
               </a>
-              <a class="pill-link" href="../1-dia/">
-                Quito en 1 día <span>Plan rápido</span>
+              <a class="pill-link" href="/es/regiones/andes/quito/">
+                Quito <span>Hub principal</span>
               </a>
-              <a class="pill-link" href="../2-dias/">
-                Quito en 2 días <span>Balanceado</span>
+              <a class="pill-link" href="/es/contacto/">
+                Contacto <span>Preguntas y alianzas</span>
               </a>
             </div>
           </div>
 
-          <div class="side-image" aria-label="Imagen Quito 3 días">
-            <img src="/assets/images/EE-Assets-22-Quito-3-days.jpg" alt="Highlights del itinerario: Quito en 3 días">
+          <!-- Weather card -->
+          <div class="wx-card" aria-label="Clima y estacionalidad">
+            <div class="wx-title">Clima actual</div>
+
+            <div class="wx-now">
+              <div class="wx-date" id="mindoWxDate">--/--/----</div>
+              <p class="wx-lines" id="mindoWxLines">Cargando…</p>
+            </div>
+
+            <div class="months" aria-label="Pronóstico y mejores meses">
+              <div class="wx-title" style="margin-top:0;">Pronóstico de 7 días</div>
+              <div class="wx-sub">Máxima / mínima y lluvia para la semana.</div>
+              <div class="wx-grid7" id="mindoWx7" aria-label="Grid de pronóstico 7 días (Mindo)"></div>
+
+              <div class="wx-title" style="margin-top:14px;">Mejores meses para visitar</div>
+              <div class="wx-sub" style="margin-bottom:8px;">
+                Basado en cielos típicamente más secos y comodidad para explorar el bosque nublado.
+              </div>
+
+              <div class="legend" aria-label="Leyenda mejores meses">
+                <div class="legend-item"><span class="swatch best" aria-hidden="true"></span>Mejor</div>
+                <div class="legend-item"><span class="swatch good" aria-hidden="true"></span>Bueno</div>
+                <div class="legend-item"><span class="swatch fair" aria-hidden="true"></span>Regular</div>
+              </div>
+
+              <div class="month-row" aria-label="Chips de 12 meses">
+                <span class="month-chip fair" aria-label="Enero">Ene</span>
+                <span class="month-chip fair" aria-label="Febrero">Feb</span>
+                <span class="month-chip fair" aria-label="Marzo">Mar</span>
+                <span class="month-chip fair" aria-label="Abril">Abr</span>
+                <span class="month-chip fair" aria-label="Mayo">May</span>
+                <span class="month-chip good" aria-label="Junio (bueno)">Jun</span>
+                <span class="month-chip best" aria-label="Julio (mejor)">Jul</span>
+                <span class="month-chip best" aria-label="Agosto (mejor)">Ago</span>
+                <span class="month-chip good" aria-label="Septiembre (bueno)">Sep</span>
+                <span class="month-chip fair" aria-label="Octubre">Oct</span>
+                <span class="month-chip fair" aria-label="Noviembre">Nov</span>
+                <span class="month-chip fair" aria-label="Diciembre">Dic</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mini" aria-label="Más destinos en los Andes">
+            <h3>Más destinos en los Andes</h3>
+
+            <div class="andes-grid" aria-label="Links de destinos Andes">
+              <a class="andes-tile" href="/es/regiones/andes/quito/" aria-label="Abrir Quito">
+                <div class="andes-left">
+                  <div class="andes-title">Quito</div>
+                  <div class="andes-sub">Cultura, miradores y excursiones rápidas desde la capital.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/es/regiones/andes/otavalo/" aria-label="Abrir Otavalo">
+                <div class="andes-left">
+                  <div class="andes-title">Otavalo</div>
+                  <div class="andes-sub">Mercados, textiles, lagos y cultura del norte andino.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/es/regiones/andes/cotopaxi/" aria-label="Abrir Cotopaxi">
+                <div class="andes-left">
+                  <div class="andes-title">Cotopaxi</div>
+                  <div class="andes-sub">Paisajes de volcán, caminatas y páramo.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/es/regiones/andes/banos/" aria-label="Abrir Baños">
+                <div class="andes-left">
+                  <div class="andes-title">Baños</div>
+                  <div class="andes-sub">Cascadas, miradores y energía de aventura suave.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/es/regiones/andes/cuenca/" aria-label="Abrir Cuenca">
+                <div class="andes-left">
+                  <div class="andes-title">Cuenca</div>
+                  <div class="andes-sub">Encanto colonial, paseos junto al río y cultura artesanal.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/es/regiones/andes/papallacta/" aria-label="Abrir Papallacta">
+                <div class="andes-left">
+                  <div class="andes-title">Papallacta</div>
+                  <div class="andes-sub">Termas, vistas de páramo y aire de montaña.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+
+              <a class="andes-tile" href="/es/regiones/andes/choco-andino/" aria-label="Abrir Chocó Andino">
+                <div class="andes-left">
+                  <div class="andes-title">Chocó Andino</div>
+                  <div class="andes-sub">Biodiversidad, bosque nublado y rutas de naturaleza.</div>
+                </div>
+                <div class="andes-arrow" aria-hidden="true"><span></span></div>
+              </a>
+            </div>
           </div>
         </aside>
       </section>
-    </div>
+    </main>
   </main>
 
   <div id="siteFooter"></div>
 
+  <!-- Global behavior JS (required, bottom only) -->
   <script src="/assets/js/site.js"></script>
 
+  <!-- Required include injector (exact) -->
   <script>
     (function(){
       async function inject(id, url){
@@ -508,6 +1078,421 @@
     document.addEventListener('contextmenu', (e) => {
       if (e.target && e.target.tagName === 'IMG') e.preventDefault();
     });
+
+    /* ===== MINDO ITINERARY (1 page + dropdown) ===== */
+    (function(){
+      const selectEl = document.getElementById("itDaysSelect");
+      const planEl = document.getElementById("itPlan");
+      const summaryEl = document.getElementById("itSummary");
+      if(!selectEl || !planEl || !summaryEl) return;
+
+      const itineraries = {
+        1: {
+          summary: "Un día rápido y de alto impacto: un bloque fuerte de naturaleza + tiempo fácil en el pueblo. Ideal si estás basado en Quito.",
+          days: [
+            {
+              title: "Día 1",
+              pill: "Highlights + ritmo fácil",
+              slots: [
+                { time: "Mañana", text: "Llega y empieza con un bloque corto de bosque nublado. Si tu enfoque son aves, prioriza un jardín de colibríes o una caminata guiada temprano." },
+                { time: "Mediodía", text: "Almuerzo en el pueblo y luego elige una actividad simple según el clima: mariposario, experiencia de chocolate o un mirador corto." },
+                { time: "Tarde", text: "Opción de cascada si el cielo ayuda, o mantén esto flexible con cafés y un paseo relajado. Regresa a Quito si estás en modo day trip." }
+              ]
+            }
+          ]
+        },
+        2: {
+          summary: "La estancia corta más eficiente. Una mañana de aves, un día de cascadas y tiempo relajado en el pueblo.",
+          days: [
+            {
+              title: "Día 1",
+              pill: "Llegada + pueblo y naturaleza",
+              slots: [
+                { time: "Mañana", text: "Llega y acomódate. Haz un bloque de naturaleza suave cerca del pueblo para mantener flexibilidad." },
+                { time: "Mediodía", text: "Almuerzo y una actividad tranquila: chocolate, mariposario o visita a un jardín de colibríes." },
+                { time: "Tarde", text: "Caminata corta o mirador opcional. Noche temprana para aprovechar la mañana siguiente." }
+              ]
+            },
+            {
+              title: "Día 2",
+              pill: "Cascadas + ruta escénica",
+              slots: [
+                { time: "Temprano", text: "Empieza temprano cuando los senderos están más tranquilos. Elige un día de ruta de cascadas si el clima está estable." },
+                { time: "Mediodía", text: "Parada de almuerzo/picnic y luego una cascada más o un sendero corto adicional." },
+                { time: "Tarde", text: "Regreso al pueblo. Si sales el mismo día, mantén este bloque ligero y con buffer para el viaje." }
+              ]
+            }
+          ]
+        },
+        3: {
+          summary: "Más aire. Puedes sumar una segunda mañana de aves o una actividad de aventura suave sin apurarte.",
+          days: [
+            {
+              title: "Día 1",
+              pill: "Llegada + actividades fáciles",
+              slots: [
+                { time: "Mañana", text: "Llega, haz check-in y empieza suave cerca del pueblo para adaptarte al clima y energía." },
+                { time: "Mediodía", text: "Chocolate o mariposario, más una parada de café." },
+                { time: "Tarde", text: "Sendero corto o mirador, luego descanso. Guarda lo grande para las mañanas." }
+              ]
+            },
+            {
+              title: "Día 2",
+              pill: "Mañana de avistamiento de aves",
+              slots: [
+                { time: "Temprano", text: "Mañana enfocada en aves. Considera guía para más especies y mejor timing." },
+                { time: "Mediodía", text: "Almuerzo y descanso. Las tardes pueden ser lluviosas, así que deja esto flexible." },
+                { time: "Tarde", text: "Aventura suave opcional: canopy/zipline o tubing si las condiciones están buenas." }
+              ]
+            },
+            {
+              title: "Día 3",
+              pill: "Cascadas + cierre relajado",
+              slots: [
+                { time: "Mañana", text: "Día de ruta de cascadas o cambia por otra mañana de aves según tu prioridad." },
+                { time: "Mediodía", text: "Almuerzo y una última parada escénica." },
+                { time: "Tarde", text: "Tiempo lento en el pueblo y salida con buffer." }
+              ]
+            }
+          ]
+        },
+        4: {
+          summary: "El viaje completo y lento. Varias mañanas de bosque, cascadas y tardes relajadas en el pueblo.",
+          days: [
+            {
+              title: "Día 1",
+              pill: "Llegada + acomodarte",
+              slots: [
+                { time: "Mañana", text: "Llega y mantén todo fácil. Actividad corta de naturaleza cerca del pueblo." },
+                { time: "Mediodía", text: "Chocolate, mariposario o jardín de colibríes, luego almuerzo." },
+                { time: "Tarde", text: "Pueblo y descanso. Deja hiking más fuerte para las mañanas." }
+              ]
+            },
+            {
+              title: "Día 2",
+              pill: "Mañana de aves",
+              slots: [
+                { time: "Temprano", text: "Mañana principal de aves. Con guía si quieres la mejor variedad y ritmo." },
+                { time: "Mediodía", text: "Descanso y cafés. Buffer por clima." },
+                { time: "Tarde", text: "Aventura suave opcional o sendero corto según condiciones." }
+              ]
+            },
+            {
+              title: "Día 3",
+              pill: "Día de cascadas",
+              slots: [
+                { time: "Temprano", text: "Ruta de cascadas con la mejor probabilidad de senderos más secos temprano." },
+                { time: "Mediodía", text: "Almuerzo y un sendero corto extra si tienes energía." },
+                { time: "Tarde", text: "Vuelta al pueblo para una tarde/noche tranquila." }
+              ]
+            },
+            {
+              title: "Día 4",
+              pill: "Repite tu favorito",
+              slots: [
+                { time: "Mañana", text: "Repite tu favorito: otra mañana de aves o un set más ligero de cascadas." },
+                { time: "Mediodía", text: "Último almuerzo, compras pequeñas y tiempo lento." },
+                { time: "Tarde", text: "Salida con buffer para el viaje." }
+              ]
+            }
+          ]
+        }
+      };
+
+      function getDaysFromUrl(){
+        try{
+          const u = new URL(window.location.href);
+          const v = u.searchParams.get("days");
+          const n = Number(v);
+          if([1,2,3,4].includes(n)) return n;
+        }catch(_){}
+        return null;
+      }
+
+      function setDaysInUrl(days){
+        try{
+          const u = new URL(window.location.href);
+          u.searchParams.set("days", String(days));
+          window.history.replaceState({}, "", u.toString());
+        }catch(_){}
+      }
+
+      function render(days){
+        const data = itineraries[days] || itineraries[2];
+        summaryEl.textContent = data.summary;
+
+        planEl.innerHTML = data.days.map((d) => {
+          const slotsHtml = d.slots.map(s => {
+            return `
+              <div class="slot">
+                <div class="slot-time">${s.time}</div>
+                <p class="slot-text">${s.text}</p>
+              </div>
+            `;
+          }).join("");
+
+          return `
+            <div class="day-card" aria-label="${d.title}">
+              <div class="day-top">
+                <div class="day-title">${d.title}</div>
+                <div class="day-pill">${d.pill}</div>
+              </div>
+              <div class="slots">
+                ${slotsHtml}
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      const initial = getDaysFromUrl() || 2;
+      selectEl.value = String(initial);
+      render(initial);
+
+      selectEl.addEventListener("change", () => {
+        const v = Number(selectEl.value);
+        const safe = [1,2,3,4].includes(v) ? v : 2;
+        render(safe);
+        setDaysInUrl(safe);
+      });
+    })();
+
+    /* Mindo weather: date + (max/min/rain) + 7-day forecast */
+    (function(){
+      const dateEl = document.getElementById("mindoWxDate");
+      const linesEl = document.getElementById("mindoWxLines");
+      const grid7 = document.getElementById("mindoWx7");
+      if(!dateEl || !linesEl || !grid7) return;
+
+      const PLACE = { name:"Mindo", lat:-0.0516, lon:-78.7764 };
+      const CACHE_KEY = "ee_mindo_weather_v3";
+      const CACHE_TTL_MS = 10 * 60 * 1000;
+
+      function cToF(c){ return (c * 9/5) + 32; }
+      function fmtTemp(c){
+        const cc = Math.round(c * 10) / 10;
+        const ff = Math.round(cToF(cc) * 10) / 10;
+        return `${cc}°C / ${ff}°F`;
+      }
+
+      function fmtDow(dateStr){
+        const d = new Date(dateStr + "T00:00:00");
+        return d.toLocaleDateString(undefined, { weekday:"short" });
+      }
+
+      function fmtMd(dateStr){
+        const d = new Date(dateStr + "T00:00:00");
+        return d.toLocaleDateString(undefined, { month:"short", day:"numeric" });
+      }
+
+      function fmtMMDDYYYY(dateStr){
+        const d = new Date(dateStr + "T00:00:00");
+        const mm = String(d.getMonth() + 1).padStart(2, "0");
+        const dd = String(d.getDate()).padStart(2, "0");
+        const yy = d.getFullYear();
+        return `${mm}/${dd}/${yy}`;
+      }
+
+      function readCache(){
+        try{
+          const raw = localStorage.getItem(CACHE_KEY);
+          if(!raw) return null;
+          const obj = JSON.parse(raw);
+          if(!obj || !obj.ts || !obj.data) return null;
+          if(Date.now() - obj.ts > CACHE_TTL_MS) return null;
+          return obj.data;
+        }catch(_){ return null; }
+      }
+
+      function writeCache(data){
+        try{ localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); }catch(_){}
+      }
+
+      function render(d){
+        const daily = d && d.daily ? d.daily : null;
+
+        const t0 = daily && Array.isArray(daily.time) ? daily.time[0] : null;
+        const todayMax = daily && daily.temperature_2m_max && typeof daily.temperature_2m_max[0] === "number" ? daily.temperature_2m_max[0] : null;
+        const todayMin = daily && daily.temperature_2m_min && typeof daily.temperature_2m_min[0] === "number" ? daily.temperature_2m_min[0] : null;
+        const todayRain = daily && daily.precipitation_sum && typeof daily.precipitation_sum[0] === "number" ? daily.precipitation_sum[0] : null;
+
+        dateEl.textContent = t0 ? fmtMMDDYYYY(t0) : "--/--/----";
+
+        const lines = [];
+        if(todayMax !== null) lines.push(`Max: ${fmtTemp(todayMax)}`);
+        if(todayMin !== null) lines.push(`Min: ${fmtTemp(todayMin)}`);
+        if(todayRain !== null) lines.push(`Rain: ${Math.round(todayRain * 10)/10} mm`);
+        linesEl.innerHTML = lines.length ? lines.join("<br>") : "Datos de clima no disponibles en este momento.";
+
+        const times = daily && Array.isArray(daily.time) ? daily.time : [];
+        const maxArr = daily && Array.isArray(daily.temperature_2m_max) ? daily.temperature_2m_max : [];
+        const minArr = daily && Array.isArray(daily.temperature_2m_min) ? daily.temperature_2m_min : [];
+        const rainArr = daily && Array.isArray(daily.precipitation_sum) ? daily.precipitation_sum : [];
+
+        const days = [];
+        for(let i=0; i<7; i++){
+          if(!times[i]) break;
+          days.push({
+            time: times[i],
+            max: typeof maxArr[i] === "number" ? maxArr[i] : null,
+            min: typeof minArr[i] === "number" ? minArr[i] : null,
+            rain: typeof rainArr[i] === "number" ? rainArr[i] : null
+          });
+        }
+
+        grid7.innerHTML = days.map((day) => {
+          const hi = day.max !== null ? fmtTemp(day.max) : "--";
+          const lo = day.min !== null ? fmtTemp(day.min) : "--";
+          const rain = day.rain !== null ? (Math.round(day.rain * 10)/10 + " mm") : "--";
+          return `
+            <div class="wx-day" aria-label="Pronóstico ${day.time}">
+              <div class="wx-top">
+                <div class="wx-dow">${fmtDow(day.time)}</div>
+                <div class="wx-mmdd">${fmtMd(day.time)}</div>
+              </div>
+              <div class="wx-hi">${hi}</div>
+              <div class="wx-lo">${lo}</div>
+              <div class="wx-rain">☔ ${rain}</div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      async function load(){
+        const cached = readCache();
+        if(cached){
+          render(cached);
+          return;
+        }
+
+        try{
+          const url = `/api/weather?lat=${encodeURIComponent(PLACE.lat)}&lon=${encodeURIComponent(PLACE.lon)}`;
+          const res = await fetch(url, { headers: { "accept": "application/json" } });
+          const json = await res.json();
+          const d = json && json.data ? json.data : null;
+
+          if(!d || d.error){
+            linesEl.textContent = "Clima no disponible en este momento.";
+            return;
+          }
+
+          writeCache(d);
+          render(d);
+        }catch(_){
+          linesEl.textContent = "Clima no disponible en este momento.";
+        }
+      }
+
+      load();
+    })();
+
+    /* Mindo carousel */
+    (function(){
+      const root = document.getElementById("mindoCarousel");
+      if(!root) return;
+
+      const track = root.querySelector(".carousel-track");
+      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+      const prevBtn = root.querySelector(".carousel-btn.prev");
+      const nextBtn = root.querySelector(".carousel-btn.next");
+      const dotsWrap = root.querySelector(".carousel-dots");
+      const counter = root.querySelector("#mindoCarouselCounter");
+
+      let index = 0;
+
+      const AUTOPLAY_MS = 5000;
+      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      let autoplayTimer = null;
+      let autoplayEnabled = !prefersReducedMotion;
+
+      function setIndex(next){
+        index = (next + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        updateDots();
+        updateCounter();
+      }
+
+      function updateCounter(){
+        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
+      }
+
+      function updateDots(){
+        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
+        dots.forEach((d,i) => d.classList.toggle("active", i === index));
+      }
+
+      function buildDots(){
+        dotsWrap.innerHTML = "";
+        slides.forEach((_, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "dot" + (i === 0 ? " active" : "");
+          b.setAttribute("aria-label", `Ir a la imagen ${i + 1}`);
+          b.addEventListener("click", () => {
+            setIndex(i);
+            stopAutoplay();
+          });
+          dotsWrap.appendChild(b);
+        });
+      }
+
+      function next(){ setIndex(index + 1); }
+      function prev(){ setIndex(index - 1); }
+
+      function startAutoplay(){
+        if(!autoplayEnabled) return;
+        stopAutoplay();
+        autoplayTimer = setInterval(next, AUTOPLAY_MS);
+      }
+
+      function stopAutoplay(){
+        if(autoplayTimer){
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
+      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
+
+      root.addEventListener("keydown", (e) => {
+        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
+        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
+      });
+
+      let startX = 0;
+      let isDown = false;
+
+      const viewport = root.querySelector(".carousel-viewport");
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+      });
+
+      viewport.addEventListener("pointerup", (e) => {
+        if(!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        const threshold = 40;
+        if(dx > threshold){ prev(); stopAutoplay(); }
+        if(dx < -threshold){ next(); stopAutoplay(); }
+      });
+
+      viewport.addEventListener("pointercancel", () => { isDown = false; });
+
+      root.addEventListener("mouseenter", stopAutoplay);
+      root.addEventListener("mouseleave", startAutoplay);
+      root.addEventListener("focusin", stopAutoplay);
+      root.addEventListener("focusout", startAutoplay);
+
+      root.tabIndex = 0;
+      buildDots();
+      updateCounter();
+      setIndex(0);
+      startAutoplay();
+    })();
   </script>
 </body>
 </html>
