@@ -1,1 +1,1165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cotopaxi | Experience Ecuador</title>
 
+  <!-- Favicons (approved root paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --slate:#6E7B8B;
+      --text:#1F1F1F;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:#f6f8fb;
+      color:var(--text);
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+
+    /* ===== CONTENT ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:40px 18px 56px;
+    }
+
+    h1{
+      font-family:Montserrat,Inter,sans-serif;
+      font-size:clamp(34px,4vw,54px);
+      color:var(--brand-blue);
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
+    }
+
+    .lede{
+      color:var(--slate);
+      line-height:1.65;
+      max-width:92ch;
+      margin:0;
+      font-size:16.8px;
+    }
+
+    .meta-row{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      color:#162b55;
+      font-weight:700;
+      font-size:13.5px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
+      font-weight:800;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      margin-top:22px;
+      align-items:start;
+    }
+
+    .card{
+      background:#fff;
+      padding:22px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .card + .card{ margin-top:16px; }
+
+    .card h2{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      color:#0f2f62;
+    }
+
+    .card p{
+      margin:0 0 12px;
+      color:#1f2b3f;
+      line-height:1.75;
+      font-size:15.5px;
+      max-width:84ch;
+    }
+
+    .card p:last-child{ margin-bottom:0; }
+
+    .inline-link{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:800;
+      color:#162b55;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:10px;
+    }
+
+    .mini-card{
+      padding:14px 14px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .mini-card h3{
+      margin:0 0 6px;
+      font-size:14.5px;
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+    }
+
+    .mini-card p{
+      margin:0;
+      color:#1f2b3f;
+      opacity:.92;
+      line-height:1.6;
+      font-size:14.4px;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(3,78,162,.06);
+      border:1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
+      font-weight:800;
+      font-size:12.8px;
+    }
+
+    .side-stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .mini{
+      background:#fff;
+      padding:20px;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .mini h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .mini p{
+      margin:0;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:14.8px;
+    }
+
+    .link-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .pill-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      font-weight:900;
+      color:#0f2f62;
+    }
+
+    .pill-link:hover{ background:rgba(3,78,162,.08); }
+
+    .pill-link span{
+      opacity:.9;
+      font-weight:700;
+      color:#162b55;
+      font-size:13px;
+    }
+
+    /* ===== WEATHER (same as Quito/Mindo) ===== */
+    .wx-card{
+      padding:18px 18px;
+      border-radius:22px;
+      background:#fff;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .wx-title{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .wx-now{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .wx-date{
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+      font-size:13.2px;
+      opacity:.95;
+      white-space:nowrap;
+      margin-top:2px;
+    }
+
+    .wx-lines{
+      margin:0;
+      color:#1f2b3f;
+      line-height:1.55;
+      font-size:13.8px;
+      opacity:.95;
+      text-align:right;
+    }
+
+    .wx-grid7{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .wx-day{
+      border-radius:16px;
+      padding:10px 10px;
+      background:rgba(255,255,255,.9);
+      border:1px solid rgba(3,78,162,.14);
+      text-align:left;
+    }
+
+    .wx-top{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:8px;
+    }
+
+    .wx-dow{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:12.5px;
+      letter-spacing:-0.01em;
+    }
+
+    .wx-mmdd{
+      color:#162b55;
+      opacity:.75;
+      font-size:11.5px;
+    }
+
+    .wx-hi{
+      margin-top:8px;
+      color:#162b55;
+      opacity:.8;
+      font-size:12.3px;
+    }
+
+    .wx-lo{
+      color:#162b55;
+      opacity:.8;
+      font-size:12.3px;
+      margin-top:2px;
+    }
+
+    .wx-rain{
+      margin-top:6px;
+      color:#162b55;
+      opacity:.85;
+      font-size:11.7px;
+      white-space:nowrap;
+    }
+
+    @media(max-width:980px){
+      .wx-grid7{ grid-template-columns:repeat(2, 1fr); }
+    }
+
+    .months{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid rgba(0,0,0,.06);
+    }
+
+    .wx-sub{
+      margin:0 0 10px;
+      color:#1f2b3f;
+      opacity:.85;
+      font-size:13.5px;
+      line-height:1.5;
+    }
+
+    .legend{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+      align-items:center;
+    }
+
+    .legend-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:12.8px;
+      font-weight:800;
+      color:#162b55;
+      opacity:.9;
+    }
+
+    .swatch{
+      width:14px;
+      height:14px;
+      border-radius:6px;
+      border:1px solid rgba(3,78,162,.22);
+      background:rgba(3,78,162,.06);
+    }
+
+    .swatch.best{ background:rgba(3,78,162,.14); border-color:rgba(3,78,162,.32); }
+    .swatch.good{ background:rgba(3,78,162,.09); border-color:rgba(3,78,162,.22); }
+    .swatch.fair{ background:rgba(3,78,162,.04); border-color:rgba(3,78,162,.18); opacity:.85; }
+
+    .month-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .month-chip{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,.14);
+      background:rgba(3,78,162,.06);
+      color:#0f2f62;
+      font-weight:900;
+      font-size:12.4px;
+      min-width:46px;
+    }
+
+    .month-chip.best{
+      background:rgba(3,78,162,.14);
+      border-color:rgba(3,78,162,.32);
+    }
+
+    .month-chip.good{
+      background:rgba(3,78,162,.09);
+      border-color:rgba(3,78,162,.22);
+    }
+
+    .month-chip.fair{
+      background:rgba(3,78,162,.04);
+      border-color:rgba(3,78,162,.18);
+      opacity:.85;
+    }
+
+    /* ===== MORE ANDES DESTINATIONS (MATCH QUITO/MINDO) ===== */
+    .andes-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .andes-tile{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
+      border:1px solid rgba(3,78,162,.12);
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    .andes-tile:hover{
+      background:rgba(3,78,162,.07);
+      transform:translateY(-1px);
+    }
+
+    .andes-left{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
+    }
+
+    .andes-title{
+      font-weight:900;
+      color:#0f2f62;
+      font-size:14.8px;
+      letter-spacing:-0.01em;
+      line-height:1.2;
+    }
+
+    .andes-sub{
+      color:#1f2b3f;
+      opacity:.9;
+      line-height:1.5;
+      font-size:13.4px;
+      max-width:60ch;
+    }
+
+    .andes-arrow{
+      flex:0 0 auto;
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,.18);
+      background:rgba(255,255,255,.75);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:2px;
+    }
+
+    .andes-arrow span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
+      transform:rotate(-45deg);
+      opacity:.85;
+    }
+
+    /* ===== CAROUSEL (LOCKED) ===== */
+    .carousel{
+      margin-top:18px;
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
+
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
+
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
+    }
+
+    /* ===== MOBILE ===== */
+    @media(max-width:980px){
+      .content-grid{grid-template-columns:1fr}
+    }
+
+    @media(max-width:820px){
+      .two-col{grid-template-columns:1fr}
+    }
+
+    @media(max-width:620px){
+      .carousel-slide{ aspect-ratio:16/9; }
+    }
+
+    @media(max-width:480px){
+      .carousel-btn{ width:40px; height:40px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="siteHeader"></div>
+
+  <main class="wrap">
+    <h1>Cotopaxi</h1>
+    <p class="lede">
+      Cotopaxi is the Andes’ classic volcano landscape: wide open páramo, big skies, and one of the world’s highest active volcanoes.
+      It is an easy add-on from Quito and ideal for a day trip or an overnight stay if you want more time outdoors.
+    </p>
+
+    <div class="meta-row" aria-label="Cotopaxi overview metadata">
+      <span class="pill">Region: Andes</span>
+      <span class="pill">Best for: Volcano views, hiking, nature</span>
+      <span class="pill">Typical time: Day trip to 1 night</span>
+    </div>
+
+    <section class="content-grid" aria-label="Cotopaxi content">
+      <!-- LEFT COLUMN -->
+      <div>
+        <div class="card">
+          <h2>What Cotopaxi is best for</h2>
+          <p>
+            Cotopaxi is all about high-altitude scenery.
+            The experience is simple: dramatic views, fresh air, short hikes, and a sense of scale that makes Ecuador feel huge.
+          </p>
+
+          <div class="two-col" aria-label="Cotopaxi highlights">
+            <div class="mini-card">
+              <h3>Volcano viewpoints</h3>
+              <p>
+                Wide open landscapes with iconic Cotopaxi views.
+                Best in the morning when skies are clearest.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3>Short hikes and trails</h3>
+              <p>
+                Easy-to-moderate walks that give you the páramo feel without needing technical gear.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3>Lagoon and photo stops</h3>
+              <p>
+                Scenic water and reflection moments are common on clear days.
+                Keep your plan flexible for weather.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <h3>High-altitude nature</h3>
+              <p>
+                Birdlife, open grasslands, and big cloud movement.
+                Dress for wind and fast-changing conditions.
+              </p>
+            </div>
+          </div>
+
+          <div class="chips" aria-label="Cotopaxi theme chips">
+            <span class="chip">Volcano</span>
+            <span class="chip">Hiking</span>
+            <span class="chip">Nature</span>
+            <span class="chip">Páramo</span>
+            <span class="chip">Photography</span>
+            <span class="chip">Day trip</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Simple planning flow</h2>
+          <p>
+            Cotopaxi is easiest when you keep expectations realistic about altitude and weather.
+            Start early, bring layers, and build your day around one main outdoor block plus a few scenic stops.
+          </p>
+          <p>
+            Want a curated route from Quito or help choosing the best stop based on season and conditions?
+            Reach out via the <a class="inline-link" href="/contact/">Contact</a> page.
+          </p>
+        </div>
+
+        <!-- CAROUSEL (LEFT COLUMN) -->
+        <div id="cotopaxiCarousel" class="carousel" aria-label="Cotopaxi image gallery">
+          <button class="carousel-btn prev" type="button" aria-label="Previous image">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-1.jpg" alt="Cotopaxi highlight 1"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-2.jpg" alt="Cotopaxi highlight 2"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-3.jpg" alt="Cotopaxi highlight 3"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-4.jpg" alt="Cotopaxi highlight 4"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-5.jpg" alt="Cotopaxi highlight 5"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cotopaxi-6.jpg" alt="Cotopaxi highlight 6"></div>
+            </div>
+          </div>
+
+          <button class="carousel-btn next" type="button" aria-label="Next image">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-ui">
+            <div class="carousel-dots" aria-label="Carousel pagination"></div>
+            <div class="carousel-counter" id="cotopaxiCarouselCounter">1 / 6</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <aside class="side-stack" aria-label="Cotopaxi side content">
+        <div class="mini">
+          <h3>Best use of time</h3>
+          <p>
+            Cotopaxi is one of the easiest big-nature experiences to add from Quito.
+            If you only have one outdoor day near the capital, this is a strong choice.
+          </p>
+
+          <div class="link-list" aria-label="Andes quick links">
+            <a class="pill-link" href="/es/regiones/andes/">
+              Back to Andes <span>Region page</span>
+            </a>
+            <a class="pill-link" href="/es/regiones/andes/quito/">
+              Quito <span>Main hub</span>
+            </a>
+            <a class="pill-link" href="/contact/">
+              Contact <span>Questions and partnerships</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- WEATHER CARD -->
+        <div class="wx-card" aria-label="Weather and seasonality">
+          <div class="wx-title">Current weather</div>
+
+          <div class="wx-now">
+            <div class="wx-date" id="cotopaxiWxDate">--/--/----</div>
+            <p class="wx-lines" id="cotopaxiWxLines">Loading…</p>
+          </div>
+
+          <div class="months" aria-label="Forecast and best months section">
+            <div class="wx-title" style="margin-top:0;">7-day forecast</div>
+            <div class="wx-sub">High / low and rain for the week ahead.</div>
+            <div class="wx-grid7" id="cotopaxiWx7" aria-label="Cotopaxi 7-day forecast grid"></div>
+
+            <div class="wx-title" style="margin-top:14px;">Best months to visit</div>
+            <div class="wx-sub" style="margin-bottom:8px;">
+              Based on typically clearer skies and comfort for high-altitude exploring.
+            </div>
+
+            <div class="legend" aria-label="Best months legend">
+              <div class="legend-item"><span class="swatch best" aria-hidden="true"></span>Best</div>
+              <div class="legend-item"><span class="swatch good" aria-hidden="true"></span>Good</div>
+              <div class="legend-item"><span class="swatch fair" aria-hidden="true"></span>Fair</div>
+            </div>
+
+            <div class="month-row" aria-label="12-month seasonality chips">
+              <span class="month-chip fair" aria-label="January">Jan</span>
+              <span class="month-chip fair" aria-label="February">Feb</span>
+              <span class="month-chip fair" aria-label="March">Mar</span>
+              <span class="month-chip fair" aria-label="April">Apr</span>
+              <span class="month-chip fair" aria-label="May">May</span>
+              <span class="month-chip good" aria-label="June good month">Jun</span>
+              <span class="month-chip best" aria-label="July best month">Jul</span>
+              <span class="month-chip best" aria-label="August best month">Aug</span>
+              <span class="month-chip good" aria-label="September good month">Sep</span>
+              <span class="month-chip fair" aria-label="October">Oct</span>
+              <span class="month-chip fair" aria-label="November">Nov</span>
+              <span class="month-chip fair" aria-label="December">Dec</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mini" aria-label="More Andes destinations card">
+          <h3>More Andes destinations</h3>
+          <p style="margin-top:-4px;">
+            Combine volcano landscapes with city time, cloud forest, and a market town.
+          </p>
+
+          <div class="andes-grid" aria-label="Andes destination links">
+            <a class="andes-tile" href="/es/regiones/andes/quito/" aria-label="Open Quito page">
+              <div class="andes-left">
+                <div class="andes-title">Quito</div>
+                <div class="andes-sub">Historic center, viewpoints, and easy day trips.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/es/regiones/andes/mindo/" aria-label="Open Mindo page">
+              <div class="andes-left">
+                <div class="andes-title">Mindo</div>
+                <div class="andes-sub">Cloud forest, birding, waterfalls, relaxed nature days.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/es/regiones/andes/cuenca/" aria-label="Open Cuenca page">
+              <div class="andes-left">
+                <div class="andes-title">Cuenca</div>
+                <div class="andes-sub">Architecture, riverside walks, and relaxed city rhythm.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/es/regiones/andes/otavalo/" aria-label="Open Otavalo page">
+              <div class="andes-left">
+                <div class="andes-title">Otavalo</div>
+                <div class="andes-sub">Indigenous markets, textiles, crafts, and lake country.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/es/regiones/andes/banos/" aria-label="Open Baños page">
+              <div class="andes-left">
+                <div class="andes-title">Baños</div>
+                <div class="andes-sub">Waterfalls, viewpoints, and soft adventure energy.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/es/regiones/andes/papallacta/" aria-label="Open Papallacta page">
+              <div class="andes-left">
+                <div class="andes-title">Papallacta</div>
+                <div class="andes-sub">Hot springs, mountain air, and an easy reset day.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+
+            <a class="andes-tile" href="/es/regiones/andes/choco-andino/" aria-label="Open Chocó Andino page">
+              <div class="andes-left">
+                <div class="andes-title">Chocó Andino</div>
+                <div class="andes-sub">Cloud forest edges, nature routes, and local communities.</div>
+              </div>
+              <div class="andes-arrow" aria-hidden="true"><span></span></div>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script>
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+
+    /* Cotopaxi weather (same parser style as Otavalo) */
+    (function () {
+      const PREFIX = "cotopaxi";
+      const LAT = -0.6808;
+      const LON = -78.4370;
+
+      const dateEl = document.getElementById(PREFIX + "WxDate");
+      const linesEl = document.getElementById(PREFIX + "WxLines");
+      const gridEl = document.getElementById(PREFIX + "Wx7");
+
+      if (!dateEl || !linesEl || !gridEl) return;
+
+      const CACHE_KEY = PREFIX + "_wx_v1";
+      const CACHE_TTL_MS = 30 * 60 * 1000;
+
+      function pad2(n){ return String(n).padStart(2,"0"); }
+      function toMMDDYYYY(d){
+        const dt = (d instanceof Date) ? d : new Date(d);
+        const mm = pad2(dt.getMonth() + 1);
+        const dd = pad2(dt.getDate());
+        const yyyy = dt.getFullYear();
+        return mm + "/" + dd + "/" + yyyy;
+      }
+      function toDow(d){
+        return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][new Date(d).getDay()];
+      }
+      function toMMDD(d){
+        const dt = new Date(d);
+        return pad2(dt.getMonth() + 1) + "/" + pad2(dt.getDate());
+      }
+      function cToF(c){ return (c * 9/5) + 32; }
+
+      function fmtTempLine(label, c){
+        if (typeof c !== "number" || Number.isNaN(c)) return label + ": --";
+        const f = cToF(c);
+        return label + ": " + c.toFixed(1) + "°C / " + f.toFixed(1) + "°F";
+      }
+      function fmtRain(mm){
+        if (typeof mm !== "number" || Number.isNaN(mm)) return "Rain: -- mm";
+        return "Rain: " + (mm % 1 === 0 ? mm.toFixed(0) : mm.toFixed(1)) + " mm";
+      }
+
+      function renderNow(payload){
+        const now = payload && (payload.now || payload.current || payload.today || payload);
+        const d = (now && (now.date || now.date_iso || now.time || now.datetime)) || new Date();
+        dateEl.textContent = toMMDDYYYY(d);
+
+        const tmax = now && (now.tmax_c ?? now.max_c ?? now.high_c ?? now.temp_max_c);
+        const tmin = now && (now.tmin_c ?? now.min_c ?? now.low_c ?? now.temp_min_c);
+        const rain = now && (now.rain_mm ?? now.precip_mm ?? now.rain ?? now.precip);
+
+        linesEl.innerHTML =
+          fmtTempLine("Max", tmax) + "<br>" +
+          fmtTempLine("Min", tmin) + "<br>" +
+          fmtRain(rain);
+      }
+
+      function render7(payload){
+        const days = (payload && (payload.daily || payload.days || payload.forecast)) || [];
+        const list = Array.isArray(days) ? days.slice(0,7) : [];
+        if (!list.length){
+          gridEl.innerHTML = "";
+          return;
+        }
+
+        gridEl.innerHTML = list.map(day => {
+          const d = day.date || day.date_iso || day.time || day.datetime;
+          const tmax = (day.tmax_c ?? day.max_c ?? day.high_c ?? day.temp_max_c);
+          const tmin = (day.tmin_c ?? day.min_c ?? day.low_c ?? day.temp_min_c);
+          const rain = (day.rain_mm ?? day.precip_mm ?? day.rain ?? day.precip);
+
+          const hi = (typeof tmax === "number" && !Number.isNaN(tmax))
+            ? (tmax.toFixed(1) + "°C / " + cToF(tmax).toFixed(1) + "°F")
+            : "--°C / --°F";
+
+          const lo = (typeof tmin === "number" && !Number.isNaN(tmin))
+            ? (tmin.toFixed(1) + "°C / " + cToF(tmin).toFixed(1) + "°F")
+            : "--°C / --°F";
+
+          const rainTxt = (typeof rain === "number" && !Number.isNaN(rain))
+            ? ((rain % 1 === 0 ? rain.toFixed(0) : rain.toFixed(1)) + " mm")
+            : "-- mm";
+
+          return (
+            '<div class="wx-day" aria-label="Forecast ' + d + '">' +
+              '<div class="wx-top">' +
+                '<div class="wx-dow">' + toDow(d) + '</div>' +
+                '<div class="wx-mmdd">' + toMMDD(d) + '</div>' +
+              '</div>' +
+              '<div class="wx-hi">' + hi + '</div>' +
+              '<div class="wx-lo">' + lo + '</div>' +
+              '<div class="wx-rain">☔ ' + rainTxt + '</div>' +
+            '</div>'
+          );
+        }).join("");
+      }
+
+      function setFallbackDateOnly(){
+        dateEl.textContent = toMMDDYYYY(new Date());
+      }
+
+      function readCache(){
+        try{
+          const raw = localStorage.getItem(CACHE_KEY);
+          if(!raw) return null;
+          const parsed = JSON.parse(raw);
+          if(!parsed || !parsed.ts || !parsed.data) return null;
+          if((Date.now() - parsed.ts) > CACHE_TTL_MS) return null;
+          return parsed.data;
+        }catch(_e){
+          return null;
+        }
+      }
+
+      function writeCache(data){
+        try{
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+        }catch(_e){}
+      }
+
+      async function load(){
+        setFallbackDateOnly();
+
+        const cached = readCache();
+        if (cached){
+          renderNow(cached);
+          render7(cached);
+          return;
+        }
+
+        try{
+          const res = await fetch(`/api/weather?lat=${encodeURIComponent(LAT)}&lon=${encodeURIComponent(LON)}`, {
+            method: "GET",
+            headers: { "Accept": "application/json" }
+          });
+          if(!res.ok) throw new Error("weather_http_" + res.status);
+          const data = await res.json();
+
+          writeCache(data);
+          renderNow(data);
+          render7(data);
+        }catch(_e){
+          // keep placeholders
+        }
+      }
+
+      load();
+    })();
+
+    /* Cotopaxi carousel (match Andes behavior) */
+    (function(){
+      const root = document.getElementById("cotopaxiCarousel");
+      if(!root) return;
+
+      const track = root.querySelector(".carousel-track");
+      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+      const prevBtn = root.querySelector(".carousel-btn.prev");
+      const nextBtn = root.querySelector(".carousel-btn.next");
+      const dotsWrap = root.querySelector(".carousel-dots");
+      const counter = root.querySelector("#cotopaxiCarouselCounter");
+
+      let index = 0;
+
+      const AUTOPLAY_MS = 5000;
+      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      let autoplayTimer = null;
+      let autoplayEnabled = !prefersReducedMotion;
+
+      function setIndex(next){
+        index = (next + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        updateDots();
+        updateCounter();
+      }
+
+      function updateCounter(){
+        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
+      }
+
+      function updateDots(){
+        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
+        dots.forEach((d,i) => d.classList.toggle("active", i === index));
+      }
+
+      function buildDots(){
+        dotsWrap.innerHTML = "";
+        slides.forEach((_, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "dot" + (i === 0 ? " active" : "");
+          b.setAttribute("aria-label", `Go to image ${i + 1}`);
+          b.addEventListener("click", () => {
+            setIndex(i);
+            stopAutoplay();
+          });
+          dotsWrap.appendChild(b);
+        });
+      }
+
+      function next(){ setIndex(index + 1); }
+      function prev(){ setIndex(index - 1); }
+
+      function startAutoplay(){
+        if(!autoplayEnabled) return;
+        stopAutoplay();
+        autoplayTimer = setInterval(next, AUTOPLAY_MS);
+      }
+
+      function stopAutoplay(){
+        if(autoplayTimer){
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
+      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
+
+      root.addEventListener("keydown", (e) => {
+        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
+        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
+      });
+
+      let startX = 0;
+      let isDown = false;
+
+      const viewport = root.querySelector(".carousel-viewport");
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+      });
+
+      viewport.addEventListener("pointerup", (e) => {
+        if(!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        const threshold = 40;
+        if(dx > threshold){ prev(); stopAutoplay(); }
+        if(dx < -threshold){ next(); stopAutoplay(); }
+      });
+
+      viewport.addEventListener("pointercancel", () => { isDown = false; });
+
+      root.addEventListener("mouseenter", stopAutoplay);
+      root.addEventListener("mouseleave", startAutoplay);
+      root.addEventListener("focusin", stopAutoplay);
+      root.addEventListener("focusout", startAutoplay);
+
+      root.tabIndex = 0;
+      buildDots();
+      updateCounter();
+      setIndex(0);
+      startAutoplay();
+    })();
+  </script>
+
+  <!-- Required include injection (loads header/footer first, then loads site.js) -->
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+
+      Promise.all([
+        inject("siteHeader", "/assets/includes/header.html"),
+        inject("siteFooter", "/assets/includes/footer.html")
+      ]).then(() => {
+        const s = document.createElement("script");
+        s.src = "/assets/js/site.js";
+        document.body.appendChild(s);
+      }).catch(() => {
+        const s = document.createElement("script");
+        s.src = "/assets/js/site.js";
+        document.body.appendChild(s);
+      });
+    })();
+  </script>
+</body>
+</html>
