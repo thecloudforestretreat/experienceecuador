@@ -1,1 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Imperdibles | Experience Ecuador</title>
 
+  <!-- Favicons (root paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:#f6f8fb;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    /* ===== HERO (image behind title) ===== */
+    .hero{
+      position:relative;
+      max-width:1100px;
+      margin:0 auto;
+      padding:22px 18px 12px;
+    }
+
+    .hero-banner{
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 22px 60px rgba(0,0,0,0.18);
+      min-height:320px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)),
+        url("/assets/images/EE-Assets-17-Hero-Culinary.jpg") center/cover no-repeat;
+    }
+
+    .hero-content{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:flex-end;
+      padding:22px;
+    }
+
+    .hero-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:clamp(34px,4.6vw,54px);
+      letter-spacing:-0.03em;
+      color:#fff;
+      margin:0;
+      line-height:1.05;
+      text-shadow:0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    /* ===== CONTENT ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 18px 60px;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:28px;
+      margin-top:18px;
+      align-items:start;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:22px;
+      padding:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+    }
+
+    .card h2{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:22px;
+      margin:0 0 10px;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+    }
+
+    .card p{
+      margin:0;
+      line-height:1.75;
+      font-size:15.8px;
+      color:#2a2f36;
+      max-width:85ch;
+    }
+
+    .mini{
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border-radius:20px;
+      padding:20px;
+      border:1px solid rgba(3,78,162,0.12);
+    }
+
+    .mini + .mini{margin-top:16px}
+
+    .mini h3{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      margin:0 0 8px;
+      color:#0f2f62;
+      letter-spacing:-0.02em;
+      font-size:18px;
+    }
+
+    .mini p{
+      margin:0 0 12px;
+      color:#24324a;
+      opacity:.95;
+      line-height:1.6;
+      font-size:14.6px;
+    }
+
+    /* ===== SELECTOR CARD (Experiences only) ===== */
+    .selector-card{
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      overflow:hidden;
+    }
+
+    .selector-top{
+      padding:18px 18px 0;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:12px;
+      align-items:start;
+    }
+
+    /* Experiences-only control, matches the other pages' control sizing */
+    .selector-controls{
+      grid-column:2;
+      grid-row:1;
+      justify-self:end;
+
+      display:grid;
+      grid-template-columns:auto 260px;
+      gap:10px 10px;
+      align-items:center;
+    }
+
+    .selector-controls label{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+      text-align:left;
+    }
+
+    .selector-controls select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-weight:700;
+      padding:11px 42px 11px 12px;
+      border-radius:14px;
+      font-size:14px;
+      cursor:pointer;
+      outline:none;
+      min-width:0;
+      width:260px;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      background-image:
+        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
+        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%,
+        0 0;
+      background-size:6px 6px, 6px 6px, 100% 100%;
+      background-repeat:no-repeat;
+    }
+
+    .selector-controls select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .selector-body{ padding:22px; }
+
+    @media(max-width:900px){
+      .selector-top{ grid-template-columns:1fr; }
+      .selector-controls{
+        grid-column:1;
+        justify-self:stretch;
+        grid-template-columns:1fr;
+      }
+      .selector-controls label{ margin-top:8px; }
+      .selector-controls select{
+        width:100%;
+        min-width:0;
+      }
+    }
+
+    /* ===== MUST EATS GRID ===== */
+    .section-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:24px;
+      margin:0 0 14px;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+    }
+
+    .must-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:18px;
+    }
+
+    /* ===== CAROUSEL (simple, auto-rotate + buttons) ===== */
+    .carousel{
+      position:relative;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 14px 34px rgba(3,78,162,0.10);
+      background:#fff;
+      margin-top:14px;
+    }
+
+    .carousel-track{
+      display:flex;
+      transition:transform .45s ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      aspect-ratio: 16 / 10;
+      position:relative;
+      background:linear-gradient(180deg, rgba(3,78,162,0.10), rgba(3,78,162,0.02));
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .slide-caption{
+      position:absolute;
+      left:12px;
+      right:12px;
+      bottom:12px;
+      padding:10px 12px;
+      border-radius:14px;
+      background:rgba(0,0,0,0.35);
+      backdrop-filter:saturate(140%) blur(8px);
+      border:1px solid rgba(255,255,255,0.18);
+      color:#fff;
+      font-weight:900;
+      letter-spacing:-0.01em;
+      line-height:1.25;
+      font-size:14px;
+      text-shadow:0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(0,0,0,0.25);
+      backdrop-filter:saturate(140%) blur(8px);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{background:rgba(0,0,0,0.32)}
+    .carousel-btn.prev{left:10px}
+    .carousel-btn.next{right:10px}
+
+    .chev{
+      width:10px;height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+    .prev .chev{transform:rotate(135deg)}
+    .next .chev{transform:rotate(-45deg)}
+
+    .carousel-dots{
+      position:absolute;
+      bottom:10px;
+      left:0;
+      right:0;
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      z-index:6;
+      padding:0 12px;
+    }
+
+    .dot{
+      width:8px;height:8px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.55);
+      border:1px solid rgba(0,0,0,0.10);
+      cursor:pointer;
+    }
+    .dot.active{background:#fff}
+
+    /* ===== MOBILE ===== */
+    @media(max-width:900px){
+      .content-grid{grid-template-columns:1fr}
+      .must-grid{grid-template-columns:1fr}
+      .hero-banner{min-height:290px}
+    }
+
+    @media(max-width:620px){
+      .hero-content{padding:16px}
+    }
+  </style>
+</head>
+
+<body>
+  <div id="siteHeader"></div>
+
+  <main>
+    <!-- PAGE CONTENT ONLY -->
+
+    <section class="hero" aria-label="Hero de Imperdibles">
+      <div class="hero-banner" role="img" aria-label="Imagen de hero de Imperdibles">
+        <div class="hero-content">
+          <div>
+            <h1 class="hero-title">Imperdibles</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <!-- Experiences selector (dropdown like the other pages) -->
+      <section class="selector-card" aria-label="Selector de experiencias" style="margin-top:18px;">
+        <div class="selector-top">
+          <div></div>
+
+          <div class="selector-controls" aria-label="Controles del selector">
+            <label for="experienceSelect">Experiencias</label>
+            <select id="experienceSelect" name="experience" aria-label="Navegar a una experiencia">
+              <option value="/es/experiencias/">Todas las experiencias</option>
+              <option value="/es/experiencias/aventura/">Aventura</option>
+              <option value="/es/experiencias/naturaleza/">Naturaleza</option>
+              <option value="/es/experiencias/vida-silvestre-y-avistamiento-de-aves/">Vida silvestre y aves</option>
+              <option value="/es/experiencias/relajacion/">Relajación</option>
+              <option value="/es/experiencias/gastronomia/" selected>Gastronomía</option>
+              <option value="/es/experiencias/cultura/">Cultura</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="selector-body">
+          <div class="card" style="box-shadow:none;border:0;padding:0;background:transparent;">
+            <h2 style="margin-bottom:10px;">Cómo sabe diferente cada región</h2>
+            <p>
+              Ecuador es pequeño, pero su comida cambia rápido. En los Andes dominan los sabores reconfortantes y tradicionales,
+              con papas, cerdo y salsas intensas. La Costa es fresca y cítrica, con plátano en todas partes y mariscos que aparecen
+              en cada esquina. La Amazonía trae notas ahumadas, herbales e ingredientes que casi no se ven fuera de la selva.
+              En Galápagos gana la simpleza: pescado fresco, guarniciones clásicas y lo que el océano dejó ese día.
+              Elige una región, prueba al menos un plato y vas a entender la cultura al instante.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top:34px" aria-label="Imperdibles por región">
+        <h2 class="section-title">Imperdibles por región</h2>
+
+        <div class="must-grid">
+          <!-- ANDES -->
+          <div class="card" aria-label="Imperdibles de los Andes">
+            <h2>Andes</h2>
+            <p>Comida de altura y de casa: sopas calientes, cerdo y acompañamientos clásicos.</p>
+
+            <div class="carousel" data-carousel="andes" aria-label="Carrusel de platos de los Andes">
+              <button class="carousel-btn prev" type="button" aria-label="Slide anterior"><span class="chev" aria-hidden="true"></span></button>
+              <button class="carousel-btn next" type="button" aria-label="Siguiente slide"><span class="chev" aria-hidden="true"></span></button>
+
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Locro.jpg" alt="Locro de papa">
+                  <div class="slide-caption">Locro de papa</div>
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Fritada.jpg" alt="Fritada con llapingachos">
+                  <div class="slide-caption">Fritada + llapingachos</div>
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Hornado.jpg" alt="Hornado">
+                  <div class="slide-caption">Hornado</div>
+                </div>
+              </div>
+
+              <div class="carousel-dots" aria-label="Puntos del carrusel"></div>
+            </div>
+
+            <p style="margin-top:14px">
+              <strong>Imprescindibles:</strong> Locro de papa · Fritada + llapingachos · Hornado
+            </p>
+          </div>
+
+          <!-- COAST -->
+          <div class="card" aria-label="Imperdibles de la Costa">
+            <h2>Costa</h2>
+            <p>Brillante, cítrica y marinera, con plátano por todas partes. Ideal para comidas rápidas y sabrosas.</p>
+
+            <div class="carousel" data-carousel="coast" aria-label="Carrusel de platos de la Costa">
+              <button class="carousel-btn prev" type="button" aria-label="Slide anterior"><span class="chev" aria-hidden="true"></span></button>
+              <button class="carousel-btn next" type="button" aria-label="Siguiente slide"><span class="chev" aria-hidden="true"></span></button>
+
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Ceviche.jpg" alt="Ceviche ecuatoriano">
+                  <div class="slide-caption">Ceviche ecuatoriano</div>
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Encebollado.jpg" alt="Encebollado">
+                  <div class="slide-caption">Encebollado</div>
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Bolon.jpg" alt="Bolón de verde">
+                  <div class="slide-caption">Bolón de verde</div>
+                </div>
+              </div>
+
+              <div class="carousel-dots" aria-label="Puntos del carrusel"></div>
+            </div>
+
+            <p style="margin-top:14px">
+              <strong>Imprescindibles:</strong> Ceviche ecuatoriano · Encebollado · Bolón de verde
+            </p>
+          </div>
+
+          <!-- AMAZON -->
+          <div class="card" aria-label="Imperdibles de la Amazonía">
+            <h2>Amazonía</h2>
+            <p>Ahumado, herbal y con raíces en la selva. Platos que se sienten cerca del bosque y del río.</p>
+
+            <div class="carousel" data-carousel="amazon" aria-label="Carrusel de platos de la Amazonía">
+              <button class="carousel-btn prev" type="button" aria-label="Slide anterior"><span class="chev" aria-hidden="true"></span></button>
+              <button class="carousel-btn next" type="button" aria-label="Siguiente slide"><span class="chev" aria-hidden="true"></span></button>
+
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Maito.jpg" alt="Maito">
+                  <div class="slide-caption">Maito</div>
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-GuayusaTea.jpg" alt="Té de guayusa">
+                  <div class="slide-caption">Té de guayusa</div>
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-CacaoCafe.jpg" alt="Bebidas de cacao y chocolate">
+                  <div class="slide-caption">Bebidas de cacao y chocolate</div>
+                </div>
+              </div>
+
+              <div class="carousel-dots" aria-label="Puntos del carrusel"></div>
+            </div>
+
+            <p style="margin-top:14px">
+              <strong>Imprescindibles:</strong> Maito · Té de guayusa · Bebidas de cacao y chocolate
+            </p>
+          </div>
+
+          <!-- GALAPAGOS -->
+          <div class="card" aria-label="Imperdibles de Galápagos">
+            <h2>Galápagos</h2>
+            <p>Simpleza isleña con enfoque en mariscos. Pescado fresco, guarniciones clásicas y sabor del océano.</p>
+
+            <div class="carousel" data-carousel="galapagos" aria-label="Carrusel de platos de Galápagos">
+              <button class="carousel-btn prev" type="button" aria-label="Slide anterior"><span class="chev" aria-hidden="true"></span></button>
+              <button class="carousel-btn next" type="button" aria-label="Siguiente slide"><span class="chev" aria-hidden="true"></span></button>
+
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-ArrozMarinero.jpg" alt="Arroz marinero">
+                  <div class="slide-caption">Arroz marinero</div>
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-FreshCatch.jpg" alt="Pesca fresca del día">
+                  <div class="slide-caption">Pesca del día</div>
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Patacones.jpg" alt="Patacones">
+                  <div class="slide-caption">Patacones</div>
+                </div>
+              </div>
+
+              <div class="carousel-dots" aria-label="Puntos del carrusel"></div>
+            </div>
+
+            <p style="margin-top:14px">
+              <strong>Imprescindibles:</strong> Arroz marinero · Pesca del día · Patacones
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top:34px" aria-label="Sección Para valientes">
+        <h2 class="section-title">Para valientes</h2>
+
+        <div class="must-grid">
+          <div class="card" aria-label="Bocados de desafío">
+            <h2>Bocados de desafío</h2>
+            <p>
+              Son clásicos de “pruébalo una vez” que vas a ver en Ecuador. Si quieres una historia, pide uno y atrévete.
+              Más adelante, esta sección puede incluir “dónde probarlo” y lugares recomendados.
+            </p>
+
+            <div class="carousel" data-carousel="brave" aria-label="Carrusel de Para valientes">
+              <button class="carousel-btn prev" type="button" aria-label="Slide anterior"><span class="chev" aria-hidden="true"></span></button>
+              <button class="carousel-btn next" type="button" aria-label="Siguiente slide"><span class="chev" aria-hidden="true"></span></button>
+
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Cuy.jpg" alt="Cuy asado">
+                  <div class="slide-caption">Cuy asado</div>
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Chontacuro.jpg" alt="Chontacuro">
+                  <div class="slide-caption">Chontacuro</div>
+                </div>
+              </div>
+
+              <div class="carousel-dots" aria-label="Puntos del carrusel"></div>
+            </div>
+
+            <p style="margin-top:14px">
+              <strong>Imprescindibles:</strong> Cuy asado · Chontacuro
+            </p>
+          </div>
+
+          <div class="card" aria-label="Próximamente">
+            <h2>Dónde probarlo (próximamente)</h2>
+            <p>
+              Este espacio queda reservado para recomendaciones curadas: barrios, mercados, restaurantes y
+              “la mejor versión del plato” por región.
+            </p>
+            <div class="carousel" data-carousel="comingsoon" aria-label="Carrusel de Dónde probarlo">
+              <button class="carousel-btn prev" type="button" aria-label="Slide anterior"><span class="chev" aria-hidden="true"></span></button>
+              <button class="carousel-btn next" type="button" aria-label="Siguiente slide"><span class="chev" aria-hidden="true"></span></button>
+
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Market.jpg" alt="Mercado">
+                  <div class="slide-caption">Foto de mercado (placeholder)</div>
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Restaurant.jpg" alt="Restaurante">
+                  <div class="slide-caption">Foto de restaurante (placeholder)</div>
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-StreetFood.jpg" alt="Comida callejera">
+                  <div class="slide-caption">Foto de comida callejera (placeholder)</div>
+                </div>
+              </div>
+
+              <div class="carousel-dots" aria-label="Puntos del carrusel"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script>
+    (function () {
+      const carousels = document.querySelectorAll('.carousel');
+
+      function setupCarousel(root) {
+        const track = root.querySelector('.carousel-track');
+        const slides = Array.from(root.querySelectorAll('.carousel-slide'));
+        const prevBtn = root.querySelector('.carousel-btn.prev');
+        const nextBtn = root.querySelector('.carousel-btn.next');
+        const dotsWrap = root.querySelector('.carousel-dots');
+
+        if (!track || slides.length === 0 || !prevBtn || !nextBtn || !dotsWrap) return;
+
+        let index = 0;
+        let timer = null;
+
+        dotsWrap.innerHTML = '';
+        const dots = slides.map((_, i) => {
+          const d = document.createElement('button');
+          d.className = 'dot' + (i === 0 ? ' active' : '');
+          d.type = 'button';
+          d.setAttribute('aria-label', 'Ir al slide ' + (i + 1));
+          d.addEventListener('click', () => goTo(i, true));
+          dotsWrap.appendChild(d);
+          return d;
+        });
+
+        function render() {
+          track.style.transform = 'translateX(' + (-index * 100) + '%)';
+          dots.forEach((d, i) => d.classList.toggle('active', i === index));
+        }
+
+        function goTo(i, userAction) {
+          index = (i + slides.length) % slides.length;
+          render();
+          if (userAction) restart();
+        }
+
+        function next(userAction){ goTo(index + 1, userAction); }
+        function prev(userAction){ goTo(index - 1, userAction); }
+
+        function start() {
+          stop();
+          timer = setInterval(() => next(false), 4200);
+        }
+
+        function stop() {
+          if (timer) clearInterval(timer);
+          timer = null;
+        }
+
+        function restart() {
+          stop();
+          start();
+        }
+
+        nextBtn.addEventListener('click', () => next(true));
+        prevBtn.addEventListener('click', () => prev(true));
+
+        root.addEventListener('mouseenter', stop);
+        root.addEventListener('mouseleave', start);
+        root.addEventListener('focusin', stop);
+        root.addEventListener('focusout', start);
+
+        render();
+        start();
+      }
+
+      carousels.forEach(setupCarousel);
+    })();
+
+    (function(){
+      const experienceSelect = document.getElementById('experienceSelect');
+      if (!experienceSelect) return;
+
+      experienceSelect.addEventListener('change', function(){
+        const url = this.value;
+        if (url) window.location.href = url;
+      });
+    })();
+  </script>
+
+  <script src="/assets/js/site.js"></script>
+
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
+</body>
+</html>
