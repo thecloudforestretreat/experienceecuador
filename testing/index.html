@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Naturaleza | Experience Ecuador</title>
+  <title>Vida Silvestre y Aves | Experience Ecuador</title>
 
   <!-- Favicons (approved root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -47,7 +47,7 @@
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
 
-    /* ===== HERO ===== */
+    /* ===== HERO (GALAPAGOS PATTERN) ===== */
     .hero{
       position:relative;
       width:100%;
@@ -55,7 +55,7 @@
       display:flex;
       align-items:flex-end;
       justify-content:center;
-      background:url("/assets/images/EE-Experiences-Nature-01.jpg") center / cover no-repeat;
+      background:url("/assets/images/EE-AssetsHero-Experiences-Wildlife-Birding-02.jpg") center / cover no-repeat;
       color:#fff;
     }
 
@@ -141,10 +141,10 @@
     }
 
     .card{
-      background:var(--card);
+      background:#fff;
       border-radius:22px;
       padding:22px;
-      border:1px solid var(--border);
+      border:1px solid rgba(0,0,0,0.06);
       box-shadow:var(--shadow);
     }
 
@@ -165,7 +165,7 @@
 
     .mini + .mini{margin-top:16px}
 
-    /* ===== NATURE SELECTOR (UPDATED TO MATCH CULTURE MOBILE) ===== */
+    /* ===== SELECTOR (SAME SYSTEM AS ADVENTURE) ===== */
     .selector{
       background:#fff;
       border:1px solid var(--border);
@@ -175,14 +175,18 @@
     }
 
     .selector-top{
-      display:flex;
-      flex-direction:column;
-      align-items:stretch;
-      justify-content:flex-start;
+      display:grid;
+      grid-template-columns:1fr auto;
+      grid-template-rows:auto auto;
+      align-items:start;
       gap:16px;
       padding:22px;
       border-bottom:1px solid rgba(0,0,0,0.06);
       background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+    }
+
+    .selector-copy{
+      grid-column:1 / -1;
     }
 
     .selector-copy h3{
@@ -203,14 +207,14 @@
       max-width:70ch;
     }
 
-    /* IMPORTANT: this grid makes labels sit above selects on mobile, consistent with culinary/culture */
     .selector-controls{
+      grid-column:2;
+      justify-self:end;
       display:grid;
       grid-template-columns:auto 260px;
-      gap:10px 12px;
-      justify-content:end;
+      column-gap:12px;
+      row-gap:10px;
       align-items:center;
-      align-self:flex-end;
     }
 
     .selector-controls label{
@@ -218,8 +222,6 @@
       color:#0f2f62;
       font-size:13px;
       letter-spacing:0.02em;
-      justify-self:end;
-      white-space:nowrap;
     }
 
     .selector-controls select{
@@ -236,6 +238,7 @@
       cursor:pointer;
       outline:none;
       width:260px;
+      min-width:260px;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
       background-image:
         linear-gradient(45deg, transparent 50%, #0f2f62 50%),
@@ -269,7 +272,7 @@
       padding:16px;
       box-shadow:0 16px 45px rgba(0,0,0,0.08);
       transition:transform .2s ease, box-shadow .2s ease;
-      min-height:178px;
+      min-height:182px;
       display:flex;
       flex-direction:column;
       gap:10px;
@@ -375,9 +378,9 @@
       font-weight:700;
     }
 
-    /* ===== CAROUSEL (GALLERY) - FIXED HOOKUP ===== */
+    /* ===== CAROUSEL (REGIONS-STYLE, SAME AS ADVENTURE) ===== */
     .carousel{
-      margin-top:40px;
+      margin-top:18px;
       background:#fff;
       border-radius:22px;
       border:1px solid rgba(0,0,0,0.06);
@@ -463,8 +466,6 @@
       gap:8px;
       flex-wrap:wrap;
       align-items:center;
-      justify-content:center;
-      flex:1;
     }
 
     .dot{
@@ -494,25 +495,23 @@
     @media(max-width:900px){
       .grid{grid-template-columns:1fr}
       .recs-grid{grid-template-columns:1fr}
+      .selector-top{grid-template-columns:1fr;}
+      .selector-controls{
+        grid-column:1;
+        justify-self:start;
+        grid-template-columns:1fr;
+        row-gap:10px;
+        column-gap:0;
+        width:100%;
+      }
+      .selector-controls select{width:100%; min-width:0;}
 
       .hero-inner{ text-align:center; }
       .hero p{ margin:0 auto; }
-
-      /* Keep labels above selects on mobile (matches culinary/culture) */
-      .selector-controls{
-        display:flex;
-        flex-direction:column;
-        align-items:flex-start;
-        justify-content:flex-start;
-        width:100%;
-      }
-      .selector-controls label{width:100%; justify-self:auto;}
-      .selector-controls select{width:100%; min-width:260px;}
     }
 
     @media (prefers-reduced-motion: reduce){
-      .rec { transition:none !important; }
-      .carousel-track{ transition:none !important; }
+      .rec, .carousel-track { transition:none !important; }
     }
   </style>
 </head>
@@ -523,13 +522,13 @@
   <main>
     <!-- PAGE CONTENT ONLY -->
 
-    <section class="hero" aria-label="Imagen principal de Naturaleza">
+    <section class="hero" aria-label="Imagen principal de Vida silvestre y aves">
       <div class="hero-inner">
-        <div class="kicker">Experiencias • Naturaleza</div>
-        <h1>Naturaleza</h1>
+        <div class="kicker">Experiencias • Vida Silvestre y Aves</div>
+        <h1>Vida Silvestre y Aves</h1>
         <p>
-          La variedad natural de Ecuador es enorme: volcanes, bosque nublado, ríos amazónicos, playas e islas.
-          Elige tu ritmo abajo y empieza con las regiones que mejor encajan.
+          Ecuador es uno de los países con mayor vida silvestre del planeta. Desde colibríes y tucanes hasta monos, ranas y vida marina,
+          los encuentros son posibles en todas las regiones. Usa el selector para elegir tu estilo de viaje enfocado en biodiversidad.
         </p>
       </div>
     </section>
@@ -538,62 +537,61 @@
       <section class="section">
         <h2>De qué se trata esta experiencia</h2>
         <p>
-          Viajar por naturaleza en Ecuador significa acceso fácil a ecosistemas totalmente distintos. En un solo itinerario puedes pasar
-          de miradores andinos y paisajes volcánicos a senderos húmedos de bosque nublado y ríos de selva. Muchas de las mejores experiencias
-          son guiadas o lideradas por comunidades, así que tienes logística más segura, contexto local y una conexión más profunda con los lugares.
+          La vida silvestre y el avistamiento de aves en Ecuador no se limitan a expediciones remotas. Las distancias cortas, guías locales expertos
+          y ecosistemas protegidos lo convierten en uno de los destinos más accesibles del mundo para viajar por biodiversidad. Seas un observador casual
+          o un pajarero serio, Ecuador ofrece encuentros excepcionales durante todo el año.
         </p>
       </section>
 
-      <!-- Nature Pace Selector -->
-      <section class="section selector" aria-label="Selector de ritmo de naturaleza">
+      <!-- Wildlife Selector -->
+      <section class="section selector" aria-label="Selector de vida silvestre y aves">
         <div class="selector-top">
-          <!-- UPDATED: controls first (so mobile stacks label above select like culinary/culture) -->
           <div class="selector-controls">
             <label for="ee_exp_nav">Experiencias</label>
-            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Ir a una experiencia">
+            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Seleccionar experiencia">
               <option value="/es/experiencias/aventura/">Aventura</option>
-              <option value="/es/experiencias/naturaleza/" selected>Naturaleza</option>
-              <option value="/es/experiencias/vida-silvestre-y-avistamiento/">Vida Silvestre y Avistamiento</option>
+              <option value="/es/experiencias/naturaleza/">Naturaleza</option>
+              <option value="/es/experiencias/vida-silvestre-y-aves/" selected>Vida Silvestre y Aves</option>
               <option value="/es/experiencias/relajacion/">Relajación</option>
               <option value="/es/experiencias/gastronomia/">Gastronomía</option>
               <option value="/es/experiencias/cultura/">Cultura</option>
             </select>
 
-            <label for="ee_nature_pace">Ritmo</label>
-            <select id="ee_nature_pace" name="ee_nature_pace" aria-label="Seleccionar ritmo de naturaleza">
-              <option value="easy">Fácil y escénico (naturaleza tranquila)</option>
-              <option value="active" selected>Exploración activa (senderos y miradores)</option>
-              <option value="immersive">Ecosistemas inmersivos (naturaleza profunda)</option>
-              <option value="iconic">Paisajes icónicos (imperdibles)</option>
+            <label for="ee_wildlife_focus">Enfoque</label>
+            <select id="ee_wildlife_focus" name="ee_wildlife_focus" aria-label="Seleccionar enfoque de vida silvestre">
+              <option value="casual">Encuentros casuales (fácil y rápido)</option>
+              <option value="birding" selected>Aves primero (especies objetivo)</option>
+              <option value="amazon">Vida silvestre amazónica (selva profunda)</option>
+              <option value="marine">Vida marina (océano e islas)</option>
             </select>
           </div>
 
           <div class="selector-copy">
-            <h3>Elige tu ritmo de naturaleza</h3>
+            <h3>Elige tu enfoque de vida silvestre</h3>
             <p>
-              Selecciona el estilo de naturaleza que quieres y te mostraremos tres puntos de partida fuertes, cada uno ligado a la mejor región para empezar.
+              Selecciona lo que quieres priorizar y te mostraremos tres puntos de partida fuertes, cada uno ligado a la mejor región para empezar.
               (Puedes afinar esto a medida que expandas tus páginas de destinos.)
             </p>
           </div>
         </div>
 
         <div class="selector-body">
-          <div class="recs-grid" id="ee_nature_recs" aria-live="polite"></div>
+          <div class="recs-grid" id="ee_wildlife_recs" aria-live="polite"></div>
           <div style="margin-top:12px;">
-            <span class="hint" id="ee_nature_hint">Tip: Empieza con Exploración activa y luego sube la inmersión o ve a lo más icónico.</span>
+            <span class="hint" id="ee_wildlife_hint">Tip: “Aves primero” es la opción más popular. Combínala con una base en bosque nublado.</span>
           </div>
         </div>
       </section>
 
       <section class="section grid">
         <div class="card">
-          <h2>Experiencias de naturaleza destacadas</h2>
+          <h2>Experiencias de vida silvestre destacadas</h2>
           <ul>
-            <li>Senderos en bosque nublado, cascadas y miradores</li>
-            <li>Eco-lodges en selva, canoa en ríos y caminatas guiadas</li>
-            <li>Miradores volcánicos, páramo y lagunas altoandinas</li>
-            <li>Reservas costeras, manglares y ecosistemas de playa</li>
-            <li>Áreas protegidas y parques nacionales en varias regiones</li>
+            <li>Avistamiento de aves en bosque nublado y reservas</li>
+            <li>Vida silvestre amazónica y exploración de canopy</li>
+            <li>Encuentros con vida marina en la costa</li>
+            <li>Especies endémicas y caminatas guiadas</li>
+            <li>Experiencias enfocadas en fotografía de naturaleza</li>
           </ul>
         </div>
 
@@ -601,53 +599,74 @@
           <div class="mini">
             <h2>Ideal para</h2>
             <ul>
-              <li>Viajeros que buscan paisaje y calma</li>
-              <li>Senderistas y exploradores casuales</li>
-              <li>Fotógrafos y itinerarios centrados en naturaleza</li>
-              <li>Parejas, familias y grupos pequeños</li>
+              <li>Pajareros y amantes de la vida silvestre</li>
+              <li>Fotógrafos de naturaleza</li>
+              <li>Eco viajeros y viajeros con enfoque de conservación</li>
+              <li>Viaje lento e inmersión</li>
             </ul>
           </div>
 
           <div class="mini">
             <h2>Regiones que brillan</h2>
             <ul>
-              <li>Andes: volcanes, lagunas y miradores de altura</li>
-              <li>Amazonía: biodiversidad de selva y sistemas de ríos</li>
-              <li>Costa: reservas, playas y bosques costeros</li>
-              <li>Galápagos: ecosistemas únicos y vida marina</li>
+              <li>Andes: bosque nublado y especies endémicas</li>
+              <li>Amazonía: vida silvestre de selva y biodiversidad</li>
+              <li>Costa: ecosistemas marinos y bosques costeros</li>
+              <li>Galápagos: endemismo icónico</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <!-- Bottom Carousel -->
-      <section class="carousel" aria-label="Carrusel de galería de Naturaleza">
-        <button class="carousel-btn prev" type="button" aria-label="Diapositiva anterior" id="ee_car_prev">
-          <span aria-hidden="true"></span>
-        </button>
-        <button class="carousel-btn next" type="button" aria-label="Siguiente diapositiva" id="ee_car_next">
-          <span aria-hidden="true"></span>
-        </button>
+      <!-- Bottom Carousel (Regions-style) -->
+      <section class="section" aria-label="Galería de vida silvestre y aves">
+        <div class="carousel" id="wildlifeCarousel">
+          <button class="carousel-btn prev" type="button" aria-label="Diapositiva anterior">
+            <span aria-hidden="true"></span>
+          </button>
+          <button class="carousel-btn next" type="button" aria-label="Siguiente diapositiva">
+            <span aria-hidden="true"></span>
+          </button>
 
-        <!-- FIXED: add required ids so JS can hook up -->
-        <div class="carousel-viewport" id="ee_car_viewport" aria-label="Vista del carrusel">
-          <div class="carousel-track" id="ee_car_track" aria-label="Pista del carrusel">
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-1.jpg" alt="Imagen de galería de naturaleza 1"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-2.jpg" alt="Imagen de galería de naturaleza 2"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-3.jpg" alt="Imagen de galería de naturaleza 3"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-4.jpg" alt="Imagen de galería de naturaleza 4"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-5.jpg" alt="Imagen de galería de naturaleza 5"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-6.jpg" alt="Imagen de galería de naturaleza 6"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-7.jpg" alt="Imagen de galería de naturaleza 7"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-8.jpg" alt="Imagen de galería de naturaleza 8"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-9.jpg" alt="Imagen de galería de naturaleza 9"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-10.jpg" alt="Imagen de galería de naturaleza 10"></div>
+          <div class="carousel-viewport" aria-label="Vista del carrusel">
+            <div class="carousel-track" aria-label="Pista del carrusel">
+              <div class="carousel-slide">
+                <img src="/assets/images/EE-Carousel-Wildlife-1.jpg" alt="Imagen de galería de vida silvestre 1">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE-Carousel-Wildlife-2.jpg" alt="Imagen de galería de vida silvestre 2">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE-Carousel-Wildlife-3.jpg" alt="Imagen de galería de vida silvestre 3">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE-Carousel-Wildlife-4.jpg" alt="Imagen de galería de vida silvestre 4">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE-Carousel-Wildlife-5.jpg" alt="Imagen de galería de vida silvestre 5">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE-Carousel-Wildlife-6.jpg" alt="Imagen de galería de vida silvestre 6">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE-Carousel-Wildlife-7.jpg" alt="Imagen de galería de vida silvestre 7">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE-Carousel-Wildlife-8.jpg" alt="Imagen de galería de vida silvestre 8">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE-Carousel-Wildlife-9.jpg" alt="Imagen de galería de vida silvestre 9">
+              </div>
+              <div class="carousel-slide">
+                <img src="/assets/images/EE-Carousel-Wildlife-10.jpg" alt="Imagen de galería de vida silvestre 10">
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="carousel-ui">
-          <div class="carousel-dots" id="ee_car_dots" aria-label="Paginación del carrusel"></div>
-          <div class="carousel-counter" id="ee_car_counter">1 / 10</div>
+          <div class="carousel-ui" aria-label="Controles del carrusel">
+            <div class="carousel-dots" id="wildlifeDots" aria-label="Puntos del carrusel"></div>
+            <div class="carousel-counter" id="wildlifeCounter" aria-label="Contador del carrusel">1 / 10</div>
+          </div>
         </div>
       </section>
     </div>
@@ -671,32 +690,29 @@
   </script>
 
   <script>
-    /* ===== Experiences selector quick nav (universal) ===== */
+    /* ===== Experiences dropdown (auto-navigate) ===== */
     (function(){
-      const expNav = document.getElementById("ee_exp_nav");
-      if (!expNav) return;
-
-      expNav.addEventListener("change", function(){
-        const url = String(this.value || "").trim();
-        if (!url) return;
-        if (url === window.location.pathname || url === window.location.pathname + "/") return;
-        window.location.href = url;
+      const expEl = document.getElementById("ee_exp_nav");
+      if (!expEl) return;
+      expEl.addEventListener("change", function(){
+        const url = this.value;
+        if (url) window.location.href = url;
       });
     })();
 
-    /* ===== Nature Pace Selector (3 recommendations) ===== */
+    /* ===== Wildlife Focus Selector (3 recommendations) ===== */
     (function(){
-      const paceEl = document.getElementById("ee_nature_pace");
-      const recsEl = document.getElementById("ee_nature_recs");
-      const hintEl = document.getElementById("ee_nature_hint");
+      const focusEl = document.getElementById("ee_wildlife_focus");
+      const recsEl = document.getElementById("ee_wildlife_recs");
+      const hintEl = document.getElementById("ee_wildlife_hint");
 
       const data = {
-        easy: {
-          hint: "Fácil y escénico = días tranquilos, caminatas cortas y grandes vistas sin prisas.",
+        casual: {
+          hint: "Los encuentros casuales son más fáciles con una base en bosque nublado. Muchas observaciones con logística mínima.",
           recs: [
             {
-              title: "Cascadas en bosque nublado y senderos suaves",
-              desc: "Caminatas fáciles, verde intenso y miradores de cascadas. Ideal para un día relajado de naturaleza.",
+              title: "Jardines de colibríes y caminatas fáciles en reserva",
+              desc: "Senderos cortos, avistamientos frecuentes y una gran introducción a la biodiversidad sin irte lejos.",
               badges: ["Fácil", "Medio día a día completo"],
               chips: [
                 { label: "Mejor en: Andes (Mindo)", href: "/es/regiones/andes/mindo/" },
@@ -706,19 +722,18 @@
               ctaHref: "/es/regiones/andes/mindo/"
             },
             {
-              title: "Lagunas altoandinas y miradores panorámicos",
-              desc: "Aire limpio, paisajes abiertos y horizontes dramáticos. Un plan ganador con poco esfuerzo.",
-              badges: ["Fácil", "Medio día a día completo"],
+              title: "Caminata guiada para especies endémicas",
+              desc: "Un guía te ayuda a ver lo que se te escaparía. Ideal para tu primera experiencia de vida silvestre.",
+              badges: ["Fácil", "Medio día"],
               chips: [
-                { label: "Mejor en: Andes (zona Quito)", href: "/es/regiones/andes/quito/" },
-                { label: "Explorar Andes", href: "/es/regiones/andes/" }
+                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
               ],
-              ctaLabel: "Ver Quito",
-              ctaHref: "/es/regiones/andes/quito/"
+              ctaLabel: "Explorar Andes",
+              ctaHref: "/es/regiones/andes/"
             },
             {
-              title: "Día de naturaleza en playa y atardeceres costeros",
-              desc: "Un día costero más lento: caminatas por la orilla, brisa del mar y naturaleza sin presión.",
+              title: "Día en reserva costera con sorpresas de fauna",
+              desc: "Combina playa y naturaleza: manglares, bosques costeros y mucha actividad de aves.",
               badges: ["Fácil", "Día completo"],
               chips: [
                 { label: "Mejor en: Costa", href: "/es/regiones/costa/" }
@@ -729,24 +744,13 @@
           ]
         },
 
-        active: {
-          hint: "Exploración activa = senderos más largos, más miradores y días completos bien equilibrados.",
+        birding: {
+          hint: "Los viajes de aves primero funcionan mejor con guías locales y salidas al amanecer. El bosque nublado es el punto ideal.",
           recs: [
             {
-              title: "Paisajes de Cotopaxi y senderos de páramo",
-              desc: "Terreno altoandino, escenario volcánico y naturaleza icónica. Perfecto para caminatas activas de día.",
-              badges: ["Activo", "Día completo"],
-              chips: [
-                { label: "Mejor en: Andes (Cotopaxi)", href: "/es/regiones/andes/cotopaxi/" },
-                { label: "Explorar Andes", href: "/es/regiones/andes/" }
-              ],
-              ctaLabel: "Ver Cotopaxi",
-              ctaHref: "/es/regiones/andes/cotopaxi/"
-            },
-            {
-              title: "Miradores de bosque nublado y senderos con variedad",
-              desc: "Un día completo con neblina, cascadas y vistas elevadas. Naturaleza clásica con ritmo.",
-              badges: ["Activo", "Día completo"],
+              title: "Aves en bosque nublado (mañanas de especies objetivo)",
+              desc: "Amaneceres tempranos, reservas bien elegidas y gran variedad de especies en un área compacta.",
+              badges: ["Aves primero", "Día completo"],
               chips: [
                 { label: "Mejor en: Andes (Mindo)", href: "/es/regiones/andes/mindo/" },
                 { label: "Explorar Andes", href: "/es/regiones/andes/" }
@@ -755,25 +759,34 @@
               ctaHref: "/es/regiones/andes/mindo/"
             },
             {
-              title: "Ruta de termas y paisajes de río",
-              desc: "Combina naturaleza con recuperación en agua tibia. Ideal para quienes prefieren moverse y descansar bien.",
-              badges: ["Activo", "Medio día a día completo"],
+              title: "Rutas de endemismos (hotspots andinos)",
+              desc: "Arma tu itinerario por endémicas y bandas de altitud para maximizar variedad.",
+              badges: ["Aves primero", "Día completo"],
               chips: [
-                { label: "Mejor en: Andes (Baños)", href: "/es/regiones/andes/banos/" },
-                { label: "Explorar Andes", href: "/es/regiones/andes/" }
+                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
               ],
-              ctaLabel: "Ver Baños",
-              ctaHref: "/es/regiones/andes/banos/"
+              ctaLabel: "Explorar Andes",
+              ctaHref: "/es/regiones/andes/"
+            },
+            {
+              title: "Paradas de aves para fotografía (muy buenas para close-ups)",
+              desc: "Comederos conocidos, buenos ángulos y avistamientos constantes. Perfecto para fotos de cerca.",
+              badges: ["Aves primero", "Medio día a día completo"],
+              chips: [
+                { label: "Mejor en: Andes (Mindo)", href: "/es/regiones/andes/mindo/" }
+              ],
+              ctaLabel: "Ver Mindo",
+              ctaHref: "/es/regiones/andes/mindo/"
             }
           ]
         },
 
-        immersive: {
-          hint: "Ecosistemas inmersivos = naturaleza más profunda, logística más larga y biodiversidad más intensa.",
+        amazon: {
+          hint: "La vida silvestre amazónica es inmersiva. Planifica varios días para aumentar avistamientos y reducir estrés de traslados.",
           recs: [
             {
-              title: "Lodge en selva y caminatas guiadas",
-              desc: "Despierta dentro del ecosistema: senderos guiados, orillas de río y sonidos nocturnos inolvidables.",
+              title: "Lodge en selva y caminatas guiadas de fauna",
+              desc: "Maximiza encuentros con caminatas guiadas, bordes de río y sesiones nocturnas de escucha.",
               badges: ["Inmersivo", "Varios días"],
               chips: [
                 { label: "Mejor en: Amazonía", href: "/es/regiones/amazonia/" }
@@ -782,8 +795,8 @@
               ctaHref: "/es/regiones/amazonia/"
             },
             {
-              title: "Canoa en el río y bordes de bosque",
-              desc: "Viaje lento por corredores de río para máxima inmersión y oportunidades de fotografía.",
+              title: "Canopy y sistemas de río (gran biodiversidad)",
+              desc: "Los hotspots aparecen en bordes de ecosistemas. Corredores de río y zonas de canopy son clave.",
               badges: ["Inmersivo", "Día completo a varios días"],
               chips: [
                 { label: "Mejor en: Amazonía", href: "/es/regiones/amazonia/" }
@@ -792,36 +805,24 @@
               ctaHref: "/es/regiones/amazonia/"
             },
             {
-              title: "Senderos profundos en bosque nublado y cascadas escondidas",
-              desc: "Más allá de las paradas rápidas: recorridos más largos, menos gente y más ritmo real de bosque.",
-              badges: ["Inmersivo", "Día completo"],
+              title: "Caminatas nocturnas y anfibios e insectos",
+              desc: "Parte de la fauna más memorable aparece de noche. Los guías lo hacen seguro y valioso.",
+              badges: ["Inmersivo", "Noche"],
               chips: [
-                { label: "Mejor en: Andes (Mindo)", href: "/es/regiones/andes/mindo/" },
-                { label: "Explorar Andes", href: "/es/regiones/andes/" }
+                { label: "Mejor en: Amazonía", href: "/es/regiones/amazonia/" }
               ],
-              ctaLabel: "Ver Mindo",
-              ctaHref: "/es/regiones/andes/mindo/"
+              ctaLabel: "Explorar Amazonía",
+              ctaHref: "/es/regiones/amazonia/"
             }
           ]
         },
 
-        iconic: {
-          hint: "Paisajes icónicos = la lista imperdible: volcanes, islas y escenarios inolvidables.",
+        marine: {
+          hint: "La vida marina depende de sitios y timing. Islas y áreas costeras protegidas ofrecen los mejores encuentros.",
           recs: [
             {
-              title: "Miradores volcánicos y paisajes de gran escala",
-              desc: "Escenario andino clásico donde la escala es la experiencia. Ideal para tu primer viaje a Ecuador.",
-              badges: ["Icónico", "Día completo"],
-              chips: [
-                { label: "Mejor en: Andes (Cotopaxi)", href: "/es/regiones/andes/cotopaxi/" },
-                { label: "Explorar Andes", href: "/es/regiones/andes/" }
-              ],
-              ctaLabel: "Ver Cotopaxi",
-              ctaHref: "/es/regiones/andes/cotopaxi/"
-            },
-            {
-              title: "Ecosistemas de Galápagos y senderos costeros",
-              desc: "Naturaleza insular única. Planifica según rutas, tiempos y sitios permitidos.",
+              title: "Fauna endémica de Galápagos (encuentros icónicos)",
+              desc: "El destino de vida silvestre más famoso del mundo. Planifica rutas con cuidado para maximizar variedad.",
               badges: ["Icónico", "Varios días"],
               chips: [
                 { label: "Mejor en: Galápagos", href: "/es/regiones/galapagos/" }
@@ -830,15 +831,24 @@
               ctaHref: "/es/regiones/galapagos/"
             },
             {
-              title: "Lagunas altoandinas y crestas dramáticas",
-              desc: "Miradores abiertos, aire limpio y paradas fotográficas clásicas de la Sierra ecuatoriana.",
-              badges: ["Icónico", "Día completo"],
+              title: "Reservas marinas costeras y día en bote",
+              desc: "Una gran opción si quieres fauna oceánica sin un itinerario completo de islas.",
+              badges: ["Marino", "Día completo"],
               chips: [
-                { label: "Mejor en: Andes (zona Quito)", href: "/es/regiones/andes/quito/" },
-                { label: "Explorar Andes", href: "/es/regiones/andes/" }
+                { label: "Mejor en: Costa", href: "/es/regiones/costa/" }
               ],
-              ctaLabel: "Ver Quito",
-              ctaHref: "/es/regiones/andes/quito/"
+              ctaLabel: "Explorar Costa",
+              ctaHref: "/es/regiones/costa/"
+            },
+            {
+              title: "Manglares y actividad de aves costeras",
+              desc: "Ideal para birders que también quieren ecosistemas costeros. Aguas más calmadas y avistamientos constantes.",
+              badges: ["Marino", "Medio día a día completo"],
+              chips: [
+                { label: "Mejor en: Costa", href: "/es/regiones/costa/" }
+              ],
+              ctaLabel: "Explorar Costa",
+              ctaHref: "/es/regiones/costa/"
             }
           ]
         }
@@ -854,10 +864,10 @@
       }
 
       function render(key){
-        const block = data[key] || data.active;
+        const block = data[key] || data.birding;
         if (hintEl) hintEl.textContent = block.hint || "";
 
-        const html = block.recs.map((r) => {
+        const html = (block.recs || []).map((r) => {
           const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
           const chips = (r.chips || []).map(c => `
             <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
@@ -882,60 +892,65 @@
         recsEl.innerHTML = html;
       }
 
-      render(paceEl ? paceEl.value : "active");
+      render(focusEl ? focusEl.value : "birding");
 
-      if (paceEl) {
-        paceEl.addEventListener("change", function(){
+      if (focusEl) {
+        focusEl.addEventListener("change", function(){
           render(this.value);
         });
       }
     })();
 
-    /* ===== Carousel (fixed hookup) ===== */
+    /* ===== Carousel (Regions-style, same as Adventure) ===== */
     (function(){
-      const track = document.getElementById("ee_car_track");
-      const viewport = document.getElementById("ee_car_viewport");
-      const prevBtn = document.getElementById("ee_car_prev");
-      const nextBtn = document.getElementById("ee_car_next");
-      const dotsWrap = document.getElementById("ee_car_dots");
-      const counter = document.getElementById("ee_car_counter");
+      const root = document.getElementById("wildlifeCarousel");
+      if (!root) return;
 
-      if (!track || !viewport) return;
+      const track = root.querySelector(".carousel-track");
+      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+      const prevBtn = root.querySelector(".carousel-btn.prev");
+      const nextBtn = root.querySelector(".carousel-btn.next");
+      const dotsWrap = document.getElementById("wildlifeDots");
+      const counter = document.getElementById("wildlifeCounter");
 
-      const slides = Array.from(track.children);
-      const total = slides.length;
       let index = 0;
-      let startX = 0;
-      let currentX = 0;
-      let dragging = false;
+      const total = slides.length;
 
-      function setCounter(){
-        if (!counter) return;
-        counter.textContent = `${index + 1} / ${total}`;
-      }
-
-      function setDots(){
-        if (!dotsWrap) return;
+      const dots = [];
+      if (dotsWrap) {
         dotsWrap.innerHTML = "";
         for (let i = 0; i < total; i++){
           const b = document.createElement("button");
-          b.className = "dot" + (i === index ? " active" : "");
           b.type = "button";
-          b.setAttribute("aria-label", `Ir a la diapositiva ${i + 1}`);
+          b.className = "dot" + (i === 0 ? " active" : "");
+          b.setAttribute("aria-label", `Ir a la diapositiva ${i+1}`);
           b.addEventListener("click", () => goTo(i));
           dotsWrap.appendChild(b);
+          dots.push(b);
         }
       }
 
-      function update(){
-        track.style.transform = `translateX(${-index * 100}%)`;
-        setCounter();
-        setDots();
+      function updateUI(){
+        const x = -index * 100;
+        track.style.transform = `translateX(${x}%)`;
+
+        if (counter) counter.textContent = `${index + 1} / ${total}`;
+
+        dots.forEach((d, i) => {
+          if (i === index) d.classList.add("active");
+          else d.classList.remove("active");
+        });
+      }
+
+      function clamp(i){
+        if (i < 0) return total - 1;
+        if (i >= total) return 0;
+        return i;
       }
 
       function goTo(i){
-        index = (i + total) % total;
-        update();
+        index = clamp(i);
+        updateUI();
       }
 
       function next(){ goTo(index + 1); }
@@ -944,37 +959,37 @@
       if (nextBtn) nextBtn.addEventListener("click", next);
       if (prevBtn) prevBtn.addEventListener("click", prev);
 
-      viewport.addEventListener("touchstart", (e) => {
-        if (e.touches.length !== 1) return;
-        dragging = true;
-        startX = e.touches[0].clientX;
-        currentX = startX;
-      }, { passive:true });
-
-      viewport.addEventListener("touchmove", (e) => {
-        if (!dragging || e.touches.length !== 1) return;
-        currentX = e.touches[0].clientX;
-      }, { passive:true });
-
-      viewport.addEventListener("touchend", () => {
-        if (!dragging) return;
-        const dx = currentX - startX;
-        dragging = false;
-        if (Math.abs(dx) > 45){
-          if (dx < 0) next();
-          else prev();
-        }
-      });
-
-      // Make viewport focusable for arrow keys
-      viewport.tabIndex = 0;
-
-      viewport.addEventListener("keydown", (e) => {
+      root.addEventListener("keydown", (e) => {
         if (e.key === "ArrowRight") next();
         if (e.key === "ArrowLeft") prev();
       });
 
-      update();
+      let startX = 0;
+      let isDown = false;
+
+      const viewport = root.querySelector(".carousel-viewport");
+      if (viewport) {
+        viewport.addEventListener("pointerdown", (e) => {
+          isDown = true;
+          startX = e.clientX;
+          viewport.setPointerCapture(e.pointerId);
+        });
+
+        viewport.addEventListener("pointerup", (e) => {
+          if (!isDown) return;
+          isDown = false;
+          const dx = e.clientX - startX;
+          if (Math.abs(dx) > 45) {
+            if (dx < 0) next();
+            else prev();
+          }
+        });
+
+        viewport.addEventListener("pointercancel", () => { isDown = false; });
+        viewport.addEventListener("pointerleave", () => { isDown = false; });
+      }
+
+      updateUI();
     })();
   </script>
 </body>
