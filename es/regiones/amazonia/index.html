@@ -1,1 +1,831 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazonía (Oriente) | Experience Ecuador</title>
 
+  <!-- Favicons (root paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --cloud-white:#F5F7FA;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+      --light-gray:#E3E5E8;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:#f6f8fb;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    img{ user-select:none; -webkit-user-drag:none; }
+
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;
+      width:100%;
+      min-height:64vh;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      background:url("/assets/images/EE-Region-Amazon-hero-01.jpg") center / cover no-repeat;
+      color:#fff;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.14),
+        rgba(0,0,0,0.72)
+      );
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:1100px;
+      padding:54px 18px 34px;
+      text-align:left;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.38);
+      border:1px solid rgba(255,255,255,0.22);
+      font-weight:700;
+      letter-spacing:0.02em;
+      font-size:12.5px;
+      margin-bottom:14px;
+      backdrop-filter:blur(10px);
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      font-size:clamp(40px,5.4vw,72px);
+      line-height:1.03;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:70ch;
+      font-size:clamp(15px,2vw,18px);
+      line-height:1.65;
+      color:rgba(255,255,255,0.92);
+    }
+
+    /* ===== PAGE WRAP ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:36px 18px 0;
+    }
+
+    /* ===== SECTION / CARDS ===== */
+    .section{ margin-bottom:26px; }
+
+    .section h2{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:24px;
+      color:var(--brand-blue);
+    }
+
+    .section p{
+      margin:0;
+      color:#2a2f36;
+      font-size:15.8px;
+      line-height:1.75;
+      max-width:82ch;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      align-items:start;
+      margin-top:18px;
+    }
+
+    .grid.center-stack{ align-items:center; }
+
+    .stack-right{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      padding:22px;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      color:#0f2f62;
+    }
+
+    .card ul{
+      margin:0;
+      padding-left:18px;
+      color:#24324a;
+      line-height:1.75;
+      font-size:14.8px;
+    }
+
+    .mini{
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.12);
+      border-radius:20px;
+      padding:20px;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .tag{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.12);
+      color:#0f2f62;
+      font-weight:700;
+      font-size:13px;
+    }
+
+    /* ===== PLACES GRID (IMAGE HEADER TILES) ===== */
+    .places-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .place-tile{
+      display:block;
+      padding:0;
+      border-radius:18px;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid rgba(3,78,162,0.12);
+      box-shadow:0 14px 42px rgba(3,78,162,0.10);
+      transition:transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .place-tile:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 55px rgba(3,78,162,0.14);
+    }
+
+    .place-img{
+      width:100%;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .place-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .place-body{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      background:linear-gradient(180deg, rgba(3,78,162,0.035), rgba(3,78,162,0.012));
+    }
+
+    .place-title{
+      margin:0;
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+      font-size:15px;
+      line-height:1.2;
+    }
+
+    .place-meta{
+      margin:6px 0 0;
+      color:#1f2b3f;
+      opacity:.9;
+      line-height:1.5;
+      font-size:13.6px;
+      max-width:34ch;
+    }
+
+    .place-arrow{
+      flex:0 0 auto;
+      width:36px;
+      height:36px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.18);
+      background:rgba(255,255,255,0.75);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:2px;
+    }
+
+    .place-arrow span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #0f2f62;
+      border-bottom:2px solid #0f2f62;
+      transform:rotate(-45deg);
+      opacity:.9;
+    }
+
+    /* ===== VIDEO EMBED (MATCH ANDES STYLE) ===== */
+    .video-embed{
+      margin-top:16px;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      background:#000;
+    }
+
+    .video-embed iframe{
+      width:100%;
+      aspect-ratio:16/9;
+      height:auto;
+      display:block;
+      border:0;
+    }
+
+    /* ===== CAROUSEL (GALLERY) ===== */
+    .carousel{
+      margin-top:18px;
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
+
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
+
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
+    }
+
+    /* ===== CTA ===== */
+    .cta{
+      margin:28px 0 56px;
+      background:var(--brand-blue);
+      color:#fff;
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 22px 60px rgba(3,78,162,0.22);
+    }
+
+    .cta h3{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:20px;
+    }
+
+    .cta p{
+      margin:0;
+      color:rgba(255,255,255,0.92);
+      line-height:1.7;
+      font-size:15.5px;
+      max-width:85ch;
+    }
+
+    /* ===== MOBILE ===== */
+    @media(max-width:900px){
+      .grid{ grid-template-columns:1fr; }
+      .places-grid{ grid-template-columns:1fr; }
+      .hero-inner{ text-align:center; }
+      .hero p{ margin:0 auto; }
+    }
+
+    @media(max-width:480px){
+      .hero{ min-height:60vh; }
+      .cta{ border-radius:20px; }
+      .carousel-btn{ width:40px; height:40px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="siteHeader"></div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-label="Imagen principal de la Amazonía">
+      <div class="hero-inner">
+        <div class="kicker">Guía de región • En progreso</div>
+        <h1>Amazonía (Oriente)</h1>
+        <p>
+          La región amazónica del Ecuador se vive a través de entradas (gateways) y experiencias tipo lodge, no de grandes ciudades.
+          Este hub te ayudará a elegir la puerta de entrada correcta, la reserva adecuada y el estilo de viaje ideal según tu tiempo y comodidad.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <div class="wrap">
+
+      <section class="section">
+        <h2>Qué hace especial a la Amazonía</h2>
+        <p>
+          La Amazonía es inmersiva. Los días giran alrededor de ríos, senderos, paseos en canoa, vida silvestre y experiencias guiadas.
+          La decisión clave no es “qué ciudad”, sino “qué tan profundo quieres ir” y “cuántos días tienes”.
+        </p>
+
+        <div class="grid center-stack">
+          <div class="card">
+            <h3>Imperdibles</h3>
+            <ul>
+              <li>Caminatas guiadas en selva, canoa y excursiones nocturnas de vida silvestre</li>
+              <li>Pueblos ribereños como entrada a lodges y reservas amazónicas</li>
+              <li>Avistamientos: monos, caimanes, aves, ranas y mucho más</li>
+              <li>Altísima biodiversidad en áreas protegidas y territorios indígenas</li>
+            </ul>
+
+            <div class="pill-row" aria-label="Tags de experiencias en la Amazonía">
+              <span class="tag">Selva</span>
+              <span class="tag">Vida silvestre</span>
+              <span class="tag">Lodges</span>
+              <span class="tag">Guiado</span>
+            </div>
+          </div>
+
+          <div class="stack-right">
+            <div class="mini">
+              <h3>Ideal para</h3>
+              <ul>
+                <li>Primera vez en la Amazonía (estancias cortas tipo gateway)</li>
+                <li>Amantes de la naturaleza y viajes enfocados en fauna</li>
+                <li>Aventura: rafting, ríos y caminatas en selva</li>
+                <li>Viajes más largos, inmersivos y basados en lodge</li>
+              </ul>
+            </div>
+
+            <div class="mini">
+              <h3>Estilos de viaje que cubriremos</h3>
+              <ul>
+                <li>Introducciones de 2–4 días</li>
+                <li>Aventuras de varios días basadas en lodge</li>
+                <li>Opciones familiares y logística sencilla</li>
+                <li>Fotografía y enfoque fuerte en vida silvestre</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AMAZON DESTINATIONS (TILES) -->
+      <section class="section">
+        <h2>Gateways y reservas amazónicas</h2>
+        <p>
+          Estas cuatro opciones te dan una base sólida: dos puertas de entrada fáciles desde Quito y dos áreas protegidas icónicas.
+          Cada página incluirá notas de planificación, un carrusel de galería y la misma tarjeta de clima unificada usada en páginas de ubicaciones.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Lugares destacados</h3>
+
+            <div class="places-grid" aria-label="Tiles de destinos amazónicos">
+              <a class="place-tile" href="/es/regiones/amazonia/tena/" aria-label="Abrir página de Tena">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-46-Tena.jpg" alt="Tena">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Tena</div>
+                    <div class="place-meta">Puerta de entrada desde Quito. Capital del rafting y acceso fácil a selva.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/es/regiones/amazonia/misahualli/" aria-label="Abrir página de Misahuallí">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-47-Misahualli.jpg" alt="Misahuallí">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Misahuallí</div>
+                    <div class="place-meta">Pueblito ribereño, centros de rescate y una intro amazónica relajada.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/es/regiones/amazonia/parque-nacional-yasuni/" aria-label="Abrir página del Parque Nacional Yasuní">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-48-YasuniNationalPark.jpg" alt="Parque Nacional Yasuní">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Parque Nacional Yasuní</div>
+                    <div class="place-meta">Amazonía profunda, biodiversidad extrema, viajes tipo lodge centrados en experiencia.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/es/regiones/amazonia/reserva-faunistica-cuyabeno/" aria-label="Abrir página de la Reserva Faunística Cuyabeno">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-49-Cuyabeno.jpg" alt="Reserva Faunística Cuyabeno">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Reserva Faunística Cuyabeno</div>
+                    <div class="place-meta">Sistema de lagunas, exploración en canoa y excelentes avistamientos de fauna.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+            </div>
+
+            <div class="pill-row" aria-label="Tags de destinos en la Amazonía">
+              <span class="tag">Pueblos gateway</span>
+              <span class="tag">Áreas protegidas</span>
+              <span class="tag">Lodges guiados</span>
+              <span class="tag">Fauna</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Cómo usar este hub</h3>
+            <ul>
+              <li>Si tienes 2–4 días: empieza con Tena o Misahuallí para logística fácil</li>
+              <li>Si buscas inmersión profunda: usa Yasuní o Cuyabeno como ancla del viaje</li>
+              <li>Es normal tener madrugadas, horarios guiados y ritmo marcado por la naturaleza</li>
+              <li>Prepárate para humedad, lluvia y senderos con lodo</li>
+            </ul>
+
+            <!-- YouTube embed -->
+            <div class="video-embed" aria-label="Video de la Amazonía">
+              <iframe
+                src="https://www.youtube.com/embed/ATSm3IdETuc"
+                title="Reserva Faunística Cuyabeno"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Qué viene en esta guía</h2>
+        <p>
+          Estamos construyendo este hub como una guía completa con planificación de lodges, plantillas por duración,
+          y decisiones claras para viajeros de primera vez vs. experiencias amazónicas profundas.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Secciones planificadas</h3>
+            <ul>
+              <li>Cómo elegir: gateway corto vs. viaje basado en lodge</li>
+              <li>Experiencias top: canoa, caminatas nocturnas, fauna y cultura</li>
+              <li>Duraciones sugeridas (2–4 días vs. 5–8 días)</li>
+              <li>Estacionalidad, costos y checklist de equipaje</li>
+              <li>Socios confiables y recomendaciones curadas</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Modelo simple de decisión</h3>
+            <ul>
+              <li>Primero elige “profundidad”, luego elige tu puerta de entrada</li>
+              <li>Más días = más fauna, más inmersión</li>
+              <li>Lo guiado es la forma más segura y rica de vivir la selva</li>
+              <li>La naturaleza es impredecible — y ese es el punto</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Galería</h2>
+
+        <!-- CAROUSEL -->
+        <div id="amazonCarousel" class="carousel" aria-label="Galería de imágenes de la Amazonía">
+          <button class="carousel-btn prev" type="button" aria-label="Imagen anterior">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-1.jpg" alt="Amazonía: destacado 1"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-2.jpg" alt="Amazonía: destacado 2"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-3.jpg" alt="Amazonía: destacado 3"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-4.jpg" alt="Amazonía: destacado 4"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-5.jpg" alt="Amazonía: destacado 5"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-6.jpg" alt="Amazonía: destacado 6"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-7.jpg" alt="Amazonía: destacado 7"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-8.jpg" alt="Amazonía: destacado 8"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-9.jpg" alt="Amazonía: destacado 9"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-10.jpg" alt="Amazonía: destacado 10"></div>
+            </div>
+          </div>
+
+          <button class="carousel-btn next" type="button" aria-label="Siguiente imagen">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-ui">
+            <div class="carousel-dots" aria-label="Paginación del carrusel"></div>
+            <div class="carousel-counter" id="amazonCarouselCounter">1 / 10</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" aria-label="Próximamente: actualizaciones de Amazonía">
+        <h3>Próximamente: actualizaciones curadas de la Amazonía</h3>
+        <p>
+          Este hub evolucionará hacia guías curadas y un formato tipo newsletter donde los viajeros descubren experiencias y socios confiables.
+          Siguiente paso: guías de decisión de lodges, itinerarios ejemplo y un carrusel reutilizable para cada página de destino.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script src="/assets/js/site.js"></script>
+
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
+
+  <script>
+    /* Amazon carousel */
+    (function(){
+      const root = document.getElementById("amazonCarousel");
+      if(!root) return;
+
+      const track = root.querySelector(".carousel-track");
+      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+      const prevBtn = root.querySelector(".carousel-btn.prev");
+      const nextBtn = root.querySelector(".carousel-btn.next");
+      const dotsWrap = root.querySelector(".carousel-dots");
+      const counter = root.querySelector("#amazonCarouselCounter");
+
+      let index = 0;
+
+      const AUTOPLAY_MS = 5000;
+      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      let autoplayTimer = null;
+      let autoplayEnabled = !prefersReducedMotion;
+
+      function setIndex(next){
+        index = (next + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        updateDots();
+        updateCounter();
+      }
+
+      function updateCounter(){
+        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
+      }
+
+      function updateDots(){
+        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
+        dots.forEach((d,i) => d.classList.toggle("active", i === index));
+      }
+
+      function buildDots(){
+        dotsWrap.innerHTML = "";
+        slides.forEach((_, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "dot" + (i === 0 ? " active" : "");
+          b.setAttribute("aria-label", `Ir a la imagen ${i + 1}`);
+          b.addEventListener("click", () => {
+            setIndex(i);
+            stopAutoplay();
+          });
+          dotsWrap.appendChild(b);
+        });
+      }
+
+      function next(){ setIndex(index + 1); }
+      function prev(){ setIndex(index - 1); }
+
+      function startAutoplay(){
+        if(!autoplayEnabled) return;
+        stopAutoplay();
+        autoplayTimer = setInterval(next, AUTOPLAY_MS);
+      }
+
+      function stopAutoplay(){
+        if(autoplayTimer){
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
+      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
+
+      root.addEventListener("keydown", (e) => {
+        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
+        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
+      });
+
+      let startX = 0;
+      let isDown = false;
+
+      const viewport = root.querySelector(".carousel-viewport");
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+      });
+
+      viewport.addEventListener("pointerup", (e) => {
+        if(!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        const threshold = 40;
+        if(dx > threshold){ prev(); stopAutoplay(); }
+        if(dx < -threshold){ next(); stopAutoplay(); }
+      });
+
+      viewport.addEventListener("pointercancel", () => { isDown = false; });
+
+      root.addEventListener("mouseenter", stopAutoplay);
+      root.addEventListener("mouseleave", startAutoplay);
+      root.addEventListener("focusin", stopAutoplay);
+      root.addEventListener("focusout", startAutoplay);
+
+      root.tabIndex = 0;
+      buildDots();
+      updateCounter();
+      setIndex(0);
+      startAutoplay();
+    })();
+  </script>
+
+</body>
+</html>
