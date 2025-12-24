@@ -1,1 +1,981 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cultura | Experience Ecuador</title>
 
+  <!-- Favicons (approved root paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+
+      --card:#ffffff;
+      --border:rgba(0,0,0,0.06);
+      --shadow:0 18px 55px rgba(3,78,162,0.12);
+
+      --chipBg: rgba(3,78,162,0.10);
+      --chipText:#0f2f62;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:#f6f8fb;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    /* ===== HERO (Galapagos pattern) ===== */
+    .hero{
+      position:relative;
+      width:100%;
+      min-height:64vh;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      background:url("/assets/images/EE-Experiences-Culture-01.jpg") center / cover no-repeat;
+      color:#fff;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.70));
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:1100px;
+      padding:54px 18px 34px;
+      text-align:left;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.38);
+      border:1px solid rgba(255,255,255,0.22);
+      font-weight:700;
+      letter-spacing:0.02em;
+      font-size:12.5px;
+      margin-bottom:14px;
+      backdrop-filter:blur(10px);
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      font-size:clamp(40px,5.4vw,72px);
+      line-height:1.03;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:68ch;
+      font-size:clamp(15px,2vw,18px);
+      line-height:1.65;
+      color:rgba(255,255,255,0.92);
+    }
+
+    /* ===== CONTENT ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:36px 18px 60px;
+    }
+
+    .section{margin-bottom:36px}
+
+    .section h2{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:24px;
+      margin:0 0 10px;
+      color:var(--brand-blue);
+    }
+
+    .section p{
+      max-width:85ch;
+      line-height:1.75;
+      font-size:15.8px;
+      color:#2a2f36;
+      margin:0;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:28px;
+      margin-top:18px;
+      align-items:start;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:22px;
+      padding:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:var(--shadow);
+    }
+
+    .card ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.75;
+      font-size:14.8px;
+      color:#24324a;
+    }
+
+    .mini{
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border-radius:20px;
+      padding:20px;
+      border:1px solid rgba(3,78,162,0.12);
+    }
+
+    .mini + .mini{margin-top:16px}
+
+    /* ===== CULTURE SELECTOR ===== */
+    .selector{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .selector-top{
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      justify-content:flex-start;
+      gap:16px;
+      padding:22px;
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+    }
+
+    .selector-copy h3{
+      margin:0 0 6px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:20px;
+      color:#0f2f62;
+    }
+
+    .selector-copy p{
+      margin:0;
+      color:#24324a;
+      opacity:0.92;
+      line-height:1.65;
+      font-size:14.8px;
+      max-width:70ch;
+    }
+
+    .selector-controls{
+      display:grid;
+      grid-template-columns:auto 260px;
+      gap:10px 12px;
+      justify-content:end;
+      align-items:center;
+      align-self:flex-end;
+    }
+
+    .selector-controls label{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+      justify-self:start;
+      text-align:left;
+      white-space:nowrap;
+    }
+
+    .selector-controls select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-weight:700;
+      padding:11px 42px 11px 12px;
+      border-radius:14px;
+      font-size:14px;
+      cursor:pointer;
+      outline:none;
+      width:260px;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      background-image:
+        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
+        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%,
+        0 0;
+      background-size:6px 6px, 6px 6px, 100% 100%;
+      background-repeat:no-repeat;
+    }
+
+    .selector-controls select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .selector-body{ padding:22px; }
+
+    .recs-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:16px;
+    }
+
+    .rec{
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.06);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 16px 45px rgba(0,0,0,0.08);
+      transition:transform .2s ease, box-shadow .2s ease;
+      min-height:192px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .rec:hover{
+      transform:translateY(-5px);
+      box-shadow:0 24px 60px rgba(0,0,0,0.12);
+    }
+
+    .rec h4{
+      margin:0;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .rec p{
+      margin:0;
+      color:#2a2f36;
+      line-height:1.6;
+      font-size:14px;
+      opacity:0.95;
+      flex:1;
+    }
+
+    .chips{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      background:var(--chipBg);
+      color:var(--chipText);
+      font-weight:800;
+      font-size:12.5px;
+      letter-spacing:0.01em;
+      border:1px solid rgba(3,78,162,0.16);
+      transition:transform .15s ease, background .15s ease;
+    }
+
+    .chip:hover{
+      transform:translateY(-1px);
+      background:rgba(3,78,162,0.14);
+    }
+
+    .meta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:-2px;
+    }
+
+    .badge{
+      font-size:12px;
+      font-weight:800;
+      color:#0f2f62;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.14);
+      padding:6px 8px;
+      border-radius:999px;
+      line-height:1;
+    }
+
+    .rec-actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:4px;
+    }
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:900;
+      font-size:13px;
+      background:var(--brand-blue);
+      color:#fff;
+      border:0;
+      cursor:pointer;
+      min-width:120px;
+    }
+
+    .cta:hover{ filter:brightness(0.95); }
+
+    .hint{
+      font-size:12.5px;
+      color:#24324a;
+      opacity:0.85;
+      font-weight:700;
+    }
+
+    /* ===== CAROUSEL (GALLERY) ===== */
+    .carousel{
+      margin-top:40px;
+      background:#fff;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
+
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
+
+    .carousel-track{
+      display:flex;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
+      will-change:transform;
+    }
+
+    .carousel-slide{
+      min-width:100%;
+      position:relative;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5;
+    }
+
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
+
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      opacity:.95;
+    }
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
+      flex:1;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
+    }
+
+    /* ===== MOBILE ===== */
+    @media(max-width:900px){
+      .hero-inner{ text-align:center; }
+      .hero p{ margin:0 auto; }
+
+      .grid{grid-template-columns:1fr}
+      .recs-grid{grid-template-columns:1fr}
+      .selector-controls{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        justify-content:flex-start;
+        width:100%;
+      }
+      .selector-controls label{width:100%; justify-self:auto;}
+      .selector-controls select{width:100%; min-width:260px;}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .rec { transition:none !important; }
+      .carousel-track{ transition:none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="siteHeader"></div>
+
+  <main>
+    <section class="hero" aria-label="Hero de Cultura">
+      <div class="hero-inner">
+        <div class="kicker">Experiencia: Cultura</div>
+        <h1>Cultura</h1>
+        <p>
+          Las tradiciones indígenas, la historia colonial y una fuerte identidad regional moldean la vida diaria en Ecuador.
+          Viajar por cultura aquí se trata de cómo vive la gente, cómo celebra y cómo preserva su herencia.
+        </p>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <section class="section">
+        <h2>De qué se trata esta experiencia</h2>
+        <p>
+          Las experiencias culturales en Ecuador van desde mercados y festivales hasta comunidades artesanas, pueblos históricos,
+          música y tradiciones del día a día. Esta categoría se enfoca en encuentros significativos, no en turismo superficial.
+        </p>
+      </section>
+
+      <!-- Culture Selector -->
+      <section class="section selector" aria-label="Selector de Cultura">
+        <div class="selector-top">
+          <div class="selector-controls">
+            <label for="ee_exp_nav">Experiencias</label>
+            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Navegar a una experiencia">
+              <option value="/es/experiencias/aventura/">Aventura</option>
+              <option value="/es/experiencias/naturaleza/">Naturaleza</option>
+              <option value="/es/experiencias/vida-silvestre-y-avistamiento-de-aves/">Vida silvestre y avistamiento de aves</option>
+              <option value="/es/experiencias/relajacion/">Relajación</option>
+              <option value="/es/experiencias/gastronomia/">Gastronomía</option>
+              <option value="/es/experiencias/cultura/" selected>Cultura</option>
+            </select>
+
+            <label for="ee_cult_focus">Enfoque</label>
+            <select id="ee_cult_focus" name="ee_cult_focus" aria-label="Seleccionar enfoque cultural">
+              <option value="markets" selected>Mercados y pueblos artesanos</option>
+              <option value="history">Ciudades históricas y arquitectura</option>
+              <option value="communities">Comunidades indígenas y artes</option>
+              <option value="festivals">Festivales y tradiciones locales</option>
+            </select>
+          </div>
+
+          <div class="selector-copy">
+            <h3>Elige tu enfoque cultural</h3>
+            <p>
+              Elige lo que quieres vivir y te mostraremos tres puntos de partida fuertes, además de la mejor región para construir tu plan.
+              Manténlo práctico y deja que el ritmo local guíe el día.
+            </p>
+          </div>
+        </div>
+
+        <div class="selector-body">
+          <div class="recs-grid" id="ee_cult_recs" aria-live="polite"></div>
+          <div style="margin-top:12px;">
+            <span class="hint" id="ee_cult_hint">Tip: Empieza con un mercado. Es la forma más rápida de sentir una región.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section grid">
+        <div class="card">
+          <h2>Experiencias culturales clave</h2>
+          <ul>
+            <li>Mercados tradicionales y pueblos artesanos</li>
+            <li>Comunidades indígenas y oficios patrimoniales</li>
+            <li>Ciudades históricas y arquitectura colonial</li>
+            <li>Festivales, rituales y celebraciones locales</li>
+            <li>Música, danza y tradiciones de relato oral</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="mini card" style="padding:20px;">
+            <h2 style="margin:0 0 10px; font-family:Montserrat,Inter,sans-serif; font-weight:800; color:var(--brand-blue); font-size:20px;">Ideal para</h2>
+            <ul style="margin:0; padding-left:18px; line-height:1.75; font-size:14.8px; color:#24324a;">
+              <li>Exploradores culturales</li>
+              <li>Viajeros de ritmo lento</li>
+              <li>Amantes de la historia y la antropología</li>
+              <li>Viajeros que buscan conexión auténtica</li>
+            </ul>
+          </div>
+
+          <div class="mini card" style="padding:20px; margin-top:16px;">
+            <h2 style="margin:0 0 10px; font-family:Montserrat,Inter,sans-serif; font-weight:800; color:var(--brand-blue); font-size:20px;">Regiones recomendadas</h2>
+            <ul style="margin:0; padding-left:18px; line-height:1.75; font-size:14.8px; color:#24324a;">
+              <li>Andes: mercados, pueblos patrimoniales, cultura indígena</li>
+              <li>Costa: música, cultura local, tradiciones costeras</li>
+              <li>Amazonía: saberes ancestrales y vida comunitaria</li>
+              <li>Galápagos: historia isleña y cultura de conservación</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Carousel -->
+      <section class="carousel" aria-label="Carrusel de galería cultural">
+        <button class="carousel-btn prev" type="button" aria-label="Diapositiva anterior" id="ee_car_prev">
+          <span aria-hidden="true"></span>
+        </button>
+        <button class="carousel-btn next" type="button" aria-label="Siguiente diapositiva" id="ee_car_next">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <div class="carousel-viewport" id="ee_car_viewport">
+          <div class="carousel-track" id="ee_car_track">
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-1.jpg" alt="Imagen de galería cultural 1"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-2.jpg" alt="Imagen de galería cultural 2"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-3.jpg" alt="Imagen de galería cultural 3"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-4.jpg" alt="Imagen de galería cultural 4"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-5.jpg" alt="Imagen de galería cultural 5"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-6.jpg" alt="Imagen de galería cultural 6"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-7.jpg" alt="Imagen de galería cultural 7"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-8.jpg" alt="Imagen de galería cultural 8"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-9.jpg" alt="Imagen de galería cultural 9"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-10.jpg" alt="Imagen de galería cultural 10"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-11.jpg" alt="Imagen de galería cultural 11"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-12.jpg" alt="Imagen de galería cultural 12"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-13.jpg" alt="Imagen de galería cultural 13"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-14.jpg" alt="Imagen de galería cultural 14"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-15.jpg" alt="Imagen de galería cultural 15"></div>
+          </div>
+        </div>
+
+        <div class="carousel-ui">
+          <div class="carousel-dots" id="ee_car_dots" aria-label="Paginación del carrusel"></div>
+          <div class="carousel-counter" id="ee_car_counter">1 / 15</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
+
+  <script>
+    /* ===== Experiences selector quick nav (universal) ===== */
+    (function(){
+      const expNav = document.getElementById("ee_exp_nav");
+      if (!expNav) return;
+
+      expNav.addEventListener("change", function(){
+        const url = String(this.value || "").trim();
+        if (!url) return;
+        if (url === window.location.pathname || url === window.location.pathname + "/") return;
+        window.location.href = url;
+      });
+    })();
+
+    /* ===== Culture Selector ===== */
+    (function(){
+      const focusEl = document.getElementById("ee_cult_focus");
+      const recsEl = document.getElementById("ee_cult_recs");
+      const hintEl = document.getElementById("ee_cult_hint");
+
+      const data = {
+        markets: {
+          hint: "Los mercados y pueblos artesanos son la mejor entrada. Ve temprano y mantén el ritmo lento.",
+          recs: [
+            {
+              title: "Mañana de mercado y artesanías",
+              desc: "Empieza en un mercado tradicional y luego visita tiendas artesanas cercanas con textiles, cerámica y pequeñas piezas.",
+              badges: ["Fácil", "Medio día"],
+              chips: [
+                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
+              ],
+              ctaLabel: "Explorar Andes",
+              ctaHref: "/es/regiones/andes/"
+            },
+            {
+              title: "Taller práctico (corto y local)",
+              desc: "Una clase o demostración pequeña para entender el proceso y a la gente, sin convertirlo en compra de souvenirs.",
+              badges: ["Fácil", "2 a 3 horas"],
+              chips: [
+                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
+              ],
+              ctaLabel: "Explorar Andes",
+              ctaHref: "/es/regiones/andes/"
+            },
+            {
+              title: "Comida y paseo cultural (loop simple)",
+              desc: "Combina un plato local con una caminata corta por calles históricas y barrios de vida diaria.",
+              badges: ["Fácil", "2 a 4 horas"],
+              chips: [
+                { label: "Buen match: Andes", href: "/es/regiones/andes/" },
+                { label: "También: Costa", href: "/es/regiones/costa/" }
+              ],
+              ctaLabel: "Explorar Regiones",
+              ctaHref: "/es/regiones/"
+            }
+          ]
+        },
+
+        history: {
+          hint: "Las ciudades históricas se disfrutan por capas: un barrio, un museo, un café. Sin correr.",
+          recs: [
+            {
+              title: "Caminata colonial (un distrito)",
+              desc: "Elige un área histórica y explórala despacio con paradas para miradores, plazas y detalles arquitectónicos.",
+              badges: ["Fácil", "2 a 4 horas"],
+              chips: [
+                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
+              ],
+              ctaLabel: "Explorar Andes",
+              ctaHref: "/es/regiones/andes/"
+            },
+            {
+              title: "Museo y pausa en café",
+              desc: "Un día cultural simple: un museo y luego descanso. Funciona bien en días de traslado.",
+              badges: ["Fácil", "Medio día"],
+              chips: [
+                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
+              ],
+              ctaLabel: "Explorar Andes",
+              ctaHref: "/es/regiones/andes/"
+            },
+            {
+              title: "Pueblo patrimonial como base + salidas cortas",
+              desc: "Hospédate en un pueblo con encanto y haz salidas culturales cortas, sin convertir el día en una lista.",
+              badges: ["Fácil", "Día completo"],
+              chips: [
+                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
+              ],
+              ctaLabel: "Explorar Andes",
+              ctaHref: "/es/regiones/andes/"
+            }
+          ]
+        },
+
+        communities: {
+          hint: "Para visitas comunitarias, prioriza respeto y contexto. Un buen guía marca la diferencia.",
+          recs: [
+            {
+              title: "Visita comunitaria y contexto artesanal",
+              desc: "Conoce la historia detrás del tejido, tallado o pintura y cómo se conecta con identidad y vida diaria.",
+              badges: ["Moderado", "Medio día"],
+              chips: [
+                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
+              ],
+              ctaLabel: "Explorar Andes",
+              ctaHref: "/es/regiones/andes/"
+            },
+            {
+              title: "Día de intercambio cultural (ritmo lento)",
+              desc: "Un día más tranquilo enfocado en conversación, demostraciones pequeñas y comidas compartidas cuando sea posible.",
+              badges: ["Moderado", "Día completo"],
+              chips: [
+                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
+              ],
+              ctaLabel: "Explorar Andes",
+              ctaHref: "/es/regiones/andes/"
+            },
+            {
+              title: "Vida comunitaria amazónica (cuando aplique)",
+              desc: "Un enfoque más profundo basado en conocimientos locales, vida de río y tradiciones sostenibles.",
+              badges: ["Moderado", "Día completo"],
+              chips: [
+                { label: "Mejor en: Amazonía", href: "/es/regiones/amazonia/" }
+              ],
+              ctaLabel: "Explorar Amazonía",
+              ctaHref: "/es/regiones/amazonia/"
+            }
+          ]
+        },
+
+        festivals: {
+          hint: "Los festivales son estacionales. Si no hay festival, elige música y tradiciones del día a día.",
+          recs: [
+            {
+              title: "Plan de festival (ligero y flexible)",
+              desc: "Llega temprano, mantén expectativas abiertas y enfócate en uno o dos momentos clave, no en todo.",
+              badges: ["Fácil", "Medio día a día completo"],
+              chips: [
+                { label: "Mejor en: Andes", href: "/es/regiones/andes/" },
+                { label: "También: Costa", href: "/es/regiones/costa/" }
+              ],
+              ctaLabel: "Explorar Regiones",
+              ctaHref: "/es/regiones/"
+            },
+            {
+              title: "Música, danza y cultura nocturna",
+              desc: "Si el timing encaja, arma una noche con música local, pequeñas presentaciones y energía comunitaria.",
+              badges: ["Fácil", "Noche"],
+              chips: [
+                { label: "Buen match: Costa", href: "/es/regiones/costa/" }
+              ],
+              ctaLabel: "Explorar Costa",
+              ctaHref: "/es/regiones/costa/"
+            },
+            {
+              title: "Día de tradiciones (mercados y rituales)",
+              desc: "Alternativa sin festival que igual se siente cultural: mercados, artes y ritmos locales.",
+              badges: ["Fácil", "Medio día"],
+              chips: [
+                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
+              ],
+              ctaLabel: "Explorar Andes",
+              ctaHref: "/es/regiones/andes/"
+            }
+          ]
+        }
+      };
+
+      function escapeHtml(str){
+        return String(str)
+          .replaceAll("&","&amp;")
+          .replaceAll("<","&lt;")
+          .replaceAll(">","&gt;")
+          .replaceAll('"',"&quot;")
+          .replaceAll("'","&#039;");
+      }
+
+      function render(key){
+        const block = data[key] || data.markets;
+        if (hintEl) hintEl.textContent = block.hint || "";
+
+        const html = block.recs.map((r) => {
+          const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
+          const chips = (r.chips || []).map(c => `
+            <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
+          `).join("");
+
+          return `
+            <article class="rec">
+              <div class="meta">${badges}</div>
+              <h4>${escapeHtml(r.title)}</h4>
+              <p>${escapeHtml(r.desc)}</p>
+
+              <div class="chips">${chips}</div>
+
+              <div class="rec-actions">
+                <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
+                <span class="hint">Punto de partida recomendado</span>
+              </div>
+            </article>
+          `;
+        }).join("");
+
+        recsEl.innerHTML = html;
+      }
+
+      render(focusEl ? focusEl.value : "markets");
+
+      if (focusEl) {
+        focusEl.addEventListener("change", function(){
+          render(this.value);
+        });
+      }
+    })();
+
+    /* ===== Carousel ===== */
+    (function(){
+      const track = document.getElementById("ee_car_track");
+      const viewport = document.getElementById("ee_car_viewport");
+      const prevBtn = document.getElementById("ee_car_prev");
+      const nextBtn = document.getElementById("ee_car_next");
+      const dotsWrap = document.getElementById("ee_car_dots");
+      const counter = document.getElementById("ee_car_counter");
+
+      if (!track || !viewport) return;
+
+      const slides = Array.from(track.children);
+      const total = slides.length;
+      let index = 0;
+      let startX = 0;
+      let currentX = 0;
+      let dragging = false;
+
+      function setCounter(){
+        if (!counter) return;
+        counter.textContent = `${index + 1} / ${total}`;
+      }
+
+      function setDots(){
+        if (!dotsWrap) return;
+        dotsWrap.innerHTML = "";
+        for (let i = 0; i < total; i++){
+          const b = document.createElement("button");
+          b.className = "dot" + (i === index ? " active" : "");
+          b.type = "button";
+          b.setAttribute("aria-label", `Ir a la diapositiva ${i + 1}`);
+          b.addEventListener("click", () => goTo(i));
+          dotsWrap.appendChild(b);
+        }
+      }
+
+      function update(){
+        track.style.transform = `translateX(${-index * 100}%)`;
+        setCounter();
+        setDots();
+      }
+
+      function goTo(i){
+        index = (i + total) % total;
+        update();
+      }
+
+      function next(){ goTo(index + 1); }
+      function prev(){ goTo(index - 1); }
+
+      if (nextBtn) nextBtn.addEventListener("click", next);
+      if (prevBtn) prevBtn.addEventListener("click", prev);
+
+      viewport.addEventListener("touchstart", (e) => {
+        if (e.touches.length !== 1) return;
+        dragging = true;
+        startX = e.touches[0].clientX;
+        currentX = startX;
+      }, { passive:true });
+
+      viewport.addEventListener("touchmove", (e) => {
+        if (!dragging || e.touches.length !== 1) return;
+        currentX = e.touches[0].clientX;
+      }, { passive:true });
+
+      viewport.addEventListener("touchend", () => {
+        if (!dragging) return;
+        const dx = currentX - startX;
+        dragging = false;
+        if (Math.abs(dx) > 45){
+          if (dx < 0) next();
+          else prev();
+        }
+      });
+
+      viewport.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") next();
+        if (e.key === "ArrowLeft") prev();
+      });
+
+      update();
+    })();
+  </script>
+
+  <script src="/assets/js/site.js"></script>
+
+  <script>
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
+</body>
+</html>
