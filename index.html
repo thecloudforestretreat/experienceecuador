@@ -3,405 +3,765 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experience Ecuador | Plan Ecuador with Confidence</title>
+  <meta name="description" content="Discover Ecuador by region and experience. Build a realistic trip plan with clear, local-aware guidance across the Andes, Amazon, Coast, and Galapagos." />
 
-  <title>Experience Ecuador | Curated Travel Experiences & Journeys</title>
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://experienceecuador.com/" />
-
-  <!-- SEO -->
-  <meta name="description" content="Experience Ecuador is launching soon. Discover curated travel experiences across Ecuador — nature, culture, wildlife, eco-retreats, and slow travel journeys." />
-
-  <!-- Open Graph (Facebook / WhatsApp / LinkedIn) -->
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Experience Ecuador" />
-  <meta property="og:title" content="Experience Ecuador | Curated Travel Experiences & Journeys" />
-  <meta property="og:description" content="Experience Ecuador is launching soon. Discover curated travel experiences across Ecuador — nature, culture, wildlife, eco-retreats, and slow travel journeys." />
-  <meta property="og:url" content="https://experienceecuador.com/" />
-  <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-social-preview-2.jpg" />
-  <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-social-preview-2.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Experience Ecuador — curated travel experiences across Ecuador" />
-
-  <!-- Twitter / X -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Experience Ecuador | Curated Travel Experiences & Journeys" />
-  <meta name="twitter:description" content="Experience Ecuador is launching soon. Discover curated travel experiences across Ecuador — nature, culture, wildlife, eco-retreats, and slow travel journeys." />
-  <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-social-preview-2.jpg" />
-
-  <!-- Favicons -->
-  <link rel="icon" href="assets/favicons/favicon.ico" sizes="any">
-  <link rel="icon" href="assets/favicons/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/favicons/apple-touch-icon.png">
-  <link rel="manifest" href="assets/favicons/site.webmanifest">
+  <!-- Favicons (root) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3EDLVGV2HD"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-3EDLVGV2HD');
-  </script>
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --brand-blue: #034EA2;
-      --cloud-white: #F5F7FA;
+    :root{
+      --brand-blue:#034EA2;
+      --charcoal:#1F1F1F;
+
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --border:rgba(0,0,0,0.06);
+      --shadow:0 18px 55px rgba(3,78,162,0.12);
+      --shadowSoft:0 14px 34px rgba(3,78,162,0.10);
+
+      --radius-xl:24px;
+      --radius-lg:18px;
+      --radius-md:14px;
+
+      --max:1100px;
     }
 
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: #000;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:var(--bg);
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+    .section{padding:44px 0}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius-xl);
+      box-shadow:var(--shadow);
     }
 
-    /* ===== HERO ===== */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      width: 100%;
-      background: url("assets/images/EE-HeroImage-01.jpg") center / cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+    /* HERO */
+    .hero{ padding:24px 0 10px; }
+    .heroShell{
+      display:grid;
+      grid-template-columns:1.05fr 0.95fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    .heroLeft{
+      padding:28px 26px;
+      border-radius:var(--radius-xl);
+      background:#fff;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      min-height:360px;
+    }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.14);
+      color:#0f2f62;
+      font-weight:800;
+      font-size:12.5px;
+      letter-spacing:0.02em;
+      width:max-content;
+      margin-bottom:14px;
+    }
+    .heroTitle{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      line-height:1.05;
+      font-size:clamp(38px,4.4vw,58px);
+      margin:0 0 12px;
+      color:#0f2f62;
+      max-width:20ch;
+    }
+    .heroTitle .line2{
+      display:block;
+      max-width:18ch;
+    }
+    .heroLead{
+      margin:0 0 18px;
+      max-width:64ch;
+      color:#2a2f36;
+      line-height:1.75;
+      font-size:16px;
+    }
+    .heroActions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:4px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      font-weight:900;
+      font-size:14px;
+      border:1px solid transparent;
+      cursor:pointer;
+      transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
+      user-select:none;
+    }
+    .btnPrimary{
+      background:var(--brand-blue);
+      color:#fff;
+      box-shadow:0 18px 40px rgba(3,78,162,0.18);
+    }
+    .btnPrimary:hover{filter:brightness(.97); transform:translateY(-1px)}
+    .btnGhost{
+      background:#fff;
+      color:#0f2f62;
+      border-color:rgba(3,78,162,0.22);
+      box-shadow:0 12px 26px rgba(3,78,162,0.08);
+    }
+    .btnGhost:hover{transform:translateY(-1px)}
+    .heroRight{
+      border-radius:var(--radius-xl);
+      overflow:hidden;
+      position:relative;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      min-height:360px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.32), rgba(0,0,0,0.10)),
+        url("/assets/images/EE-Assets-24-Homepage-hero-2.jpg") center/cover no-repeat;
+    }
+    .heroRightBadge{
+      position:absolute;
+      left:16px; right:16px; bottom:16px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(255,255,255,0.14);
+      border:1px solid rgba(255,255,255,0.22);
+      backdrop-filter:saturate(140%) blur(10px);
+      color:#fff;
+      box-shadow:0 20px 60px rgba(0,0,0,0.20);
+    }
+    .heroRightBadge strong{
+      display:block;
+      font-weight:900;
+      letter-spacing:-0.02em;
+      margin-bottom:4px;
+    }
+    .heroRightBadge span{
+      display:block;
+      opacity:.92;
+      line-height:1.4;
+      font-size:13.5px;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.55),
-        rgba(0,0,0,0.55)
-      );
+    /* HOW IT WORKS */
+    .hTitle{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      color:var(--brand-blue);
+      font-size:24px;
+      margin:0 0 10px;
+    }
+    .hSub{
+      margin:0;
+      color:#2a2f36;
+      line-height:1.7;
+      max-width:85ch;
+      font-size:15.8px;
+    }
+    .cards3{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+    .miniCard{
+      padding:18px;
+      border-radius:20px;
+      background:#fff;
+      border:1px solid var(--border);
+      box-shadow:var(--shadowSoft);
+      min-height:180px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .miniCard h3{
+      margin:0;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      color:#0f2f62;
+      font-size:17px;
+    }
+    .miniCard p{
+      margin:0;
+      color:#2a2f36;
+      line-height:1.65;
+      font-size:14.6px;
+      opacity:.96;
+      flex:1;
+    }
+    .miniCard a{
+      color:var(--brand-blue);
+      font-weight:900;
+      font-size:13.5px;
+      width:max-content;
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 960px;
-      padding: 32px;
-      color: #ffffff;
+    /* REGIONS STRIP */
+    .regionGrid{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+    .regionCard{
+      overflow:hidden;
+      border-radius:20px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadowSoft);
+      background:#fff;
+      transition:transform .18s ease, box-shadow .18s ease;
+      min-height:250px;
+      display:flex;
+      flex-direction:column;
+    }
+    .regionCard:hover{
+      transform:translateY(-4px);
+      box-shadow:0 26px 70px rgba(0,0,0,0.12);
+    }
+    .regionImg{
+      height:140px;
+      background:#eef2f7;
+      background-size:cover;
+      background-position:center;
+    }
+    .regionBody{
+      padding:14px 14px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      flex:1;
+    }
+    .regionBody h4{
+      margin:0;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      color:#0f2f62;
+      font-size:16px;
+    }
+    .regionBody p{
+      margin:0;
+      color:#2a2f36;
+      line-height:1.55;
+      font-size:13.8px;
+      opacity:.95;
+      flex:1;
+    }
+    .regionBody .go{
+      font-weight:900;
+      color:var(--brand-blue);
+      font-size:13.5px;
+      width:max-content;
     }
 
-    .hero-logo {
-      width: 140px;
-      margin-bottom: 24px;
+    /* VIDEO BAND */
+    .videoBand{
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.12);
+      border-radius:var(--radius-xl);
+      padding:18px;
+      box-shadow:var(--shadowSoft);
+    }
+    .videoGrid{
+      display:grid;
+      grid-template-columns:1.2fr 0.8fr;
+      gap:18px;
+      align-items:stretch;
     }
 
-    .hero h1 {
-      font-family: Montserrat, Inter, sans-serif;
-      font-size: clamp(42px, 6vw, 80px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin: 0 0 12px;
+    /* YouTube: make it truly flush (and crop tiny top/bottom bars by slightly scaling the iframe) */
+    .embed{
+      border-radius:18px;
+      overflow:hidden;
+      border:0;
+      outline:0;
+      box-shadow:none;
+      background:transparent;
+      position:relative;
+      padding:0;
+      margin:0;
+      line-height:0;
+      aspect-ratio:16/9;
+    }
+    .embed iframe{
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:100%;
+      height:100%;
+      transform:translate(-50%, -50%) scale(1.04); /* crops any visible top/bottom band */
+      transform-origin:center;
+      border:0 !important;
+      outline:0 !important;
+      display:block;
+      margin:0;
+      padding:0;
+      background:transparent;
     }
 
-    .hero .tagline {
-      font-family: Montserrat, Inter, sans-serif;
-      font-size: clamp(18px, 2.4vw, 26px);
-      font-weight: 700;
-      margin-bottom: 32px;
+    .videoCopy{
+      background:#fff;
+      border-radius:18px;
+      border:1px solid var(--border);
+      padding:18px;
+      box-shadow:0 16px 45px rgba(3,78,162,0.10);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .videoCopy h3{
+      margin:0;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      color:#0f2f62;
+      font-size:18px;
+    }
+    .videoCopy p{
+      margin:0;
+      color:#2a2f36;
+      line-height:1.65;
+      font-size:14.6px;
+      opacity:.96;
+      flex:1;
+    }
+    .videoCopy .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:4px;
     }
 
-    .coming-soon {
-      display: inline-block;
-      padding: 14px 36px;
-      border-radius: 999px;
-      background: #ffffff;
-      color: var(--brand-blue);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      font-size: 14px;
-      margin-bottom: 36px;
+    /* ACCESS SECTION */
+    .accessGrid{
+      display:grid;
+      grid-template-columns:1.05fr 0.95fr;
+      gap:18px;
+      margin-top:18px;
+      align-items:start;
+    }
+    .accessCard{
+      padding:20px;
+      border-radius:22px;
+      background:#fff;
+      border:1px solid var(--border);
+      box-shadow:var(--shadowSoft);
+    }
+    .bullets{
+      margin:0;
+      padding-left:18px;
+      line-height:1.75;
+      color:#24324a;
+      font-size:14.8px;
+    }
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:12px;
+    }
+    .stat{
+      border-radius:18px;
+      padding:14px;
+      border:1px solid rgba(3,78,162,0.14);
+      background:rgba(3,78,162,0.06);
+    }
+    .stat strong{
+      display:block;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      color:#0f2f62;
+      font-size:18px;
+      margin-bottom:4px;
+    }
+    .stat span{
+      display:block;
+      color:#24324a;
+      opacity:.92;
+      font-weight:700;
+      font-size:12.8px;
+      line-height:1.4;
     }
 
-    /* ===== SOCIAL ICONS ===== */
-    .social {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
+    /* TRUST + CTA */
+    .trust{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      padding:22px;
+    }
+    .trust p{margin:0; line-height:1.75; color:#2a2f36; font-size:15.2px; max-width:90ch}
+    .ctaBand{
+      margin-top:18px;
+      border-radius:var(--radius-xl);
+      border:1px solid rgba(3,78,162,0.14);
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      padding:20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      box-shadow:var(--shadowSoft);
+    }
+    .ctaBand h3{
+      margin:0;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      color:#0f2f62;
+      font-size:18px;
+    }
+    .ctaBand p{
+      margin:6px 0 0;
+      color:#2a2f36;
+      opacity:.95;
+      line-height:1.6;
+      font-size:14.4px;
+      max-width:70ch;
+    }
+    .ctaLeft{min-width:260px; flex:1}
+    .ctaRight{display:flex; gap:10px; flex-wrap:wrap}
+
+    /* ECUADOR TOURISM LOGO STRIP */
+    .tourismStrip{
+      margin-top:26px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      padding-top:18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .tourismStrip .note{
+      color:#24324a;
+      opacity:.85;
+      font-weight:700;
+      font-size:13px;
+      line-height:1.5;
+      max-width:78ch;
+    }
+    .tourismLogo{
+      width:150px;   /* reduced to half */
+      height:150px;  /* reduced to half */
+      border:0;
+      background:transparent;
+      border-radius:0;
+      padding:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:visible;
+    }
+    .tourismLogo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding:0;
     }
 
-    .icon-btn {
-      width: 68px;
-      height: 68px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    /* MOBILE */
+    @media(max-width:950px){
+      .heroShell{grid-template-columns:1fr}
+      .heroLeft{min-height:auto}
+      .heroRight{min-height:320px}
+      .cards3{grid-template-columns:1fr}
+      .regionGrid{grid-template-columns:1fr}
+      .videoGrid{grid-template-columns:1fr}
+      .accessGrid{grid-template-columns:1fr}
+      .heroTitle{max-width:none}
+      .heroTitle .line2{max-width:none}
+      .tourismLogo{width:120px;height:120px;}
     }
 
-    .icon-btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 45px rgba(0,0,0,0.4);
-    }
-
-    .icon-btn img {
-      width: 42px;
-      height: 42px;
-      display: block;
-    }
-
-    /* ===== SUBTLE HERO ENTRANCE ANIMATION ===== */
-    @keyframes eeFadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .ee-animate {
-      opacity: 0;
-      animation: eeFadeUp 700ms ease-out forwards;
-      will-change: transform, opacity;
-    }
-
-    .ee-delay-1 { animation-delay: 0.10s; }
-    .ee-delay-2 { animation-delay: 0.22s; }
-    .ee-delay-3 { animation-delay: 0.34s; }
-    .ee-delay-4 { animation-delay: 0.46s; }
-    .ee-delay-5 { animation-delay: 0.58s; }
-
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .ee-animate {
-        opacity: 1;
-        animation: none !important;
-        transform: none !important;
-      }
-    }
-
-    /* ===== MOBILE ===== */
-    @media (max-width: 480px) {
-      .hero-logo { width: 110px; }
-      .coming-soon { padding: 12px 28px; }
-
-      .icon-btn {
-        width: 60px;
-        height: 60px;
-      }
-
-      .icon-btn img {
-        width: 38px;
-        height: 38px;
-      }
-    }
-
-    /* ===== PASSWORD GATE (QA) ===== */
-    .gate {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      background: rgba(0,0,0,0.72);
-      backdrop-filter: blur(10px);
-    }
-
-    .gate-card {
-      width: min(520px, 100%);
-      background: rgba(255,255,255,0.92);
-      border: 1px solid rgba(255,255,255,0.20);
-      border-radius: 22px;
-      box-shadow: 0 24px 70px rgba(0,0,0,0.45);
-      padding: 22px;
-      text-align: left;
-    }
-
-    .gate-title {
-      font-family: Montserrat, Inter, sans-serif;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: #0f2f62;
-      font-size: 20px;
-      margin: 0 0 6px;
-    }
-
-    .gate-sub {
-      margin: 0 0 16px;
-      color: rgba(15,47,98,0.85);
-      font-size: 14.5px;
-      line-height: 1.55;
-    }
-
-    .gate-row {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      margin-top: 10px;
-    }
-
-    .gate-input {
-      flex: 1 1 auto;
-      appearance: none;
-      border: 1px solid rgba(3,78,162,0.22);
-      border-radius: 14px;
-      padding: 12px 14px;
-      font-size: 15px;
-      outline: none;
-      background: #fff;
-    }
-
-    .gate-input:focus {
-      border-color: rgba(3,78,162,0.55);
-      box-shadow: 0 0 0 4px rgba(3,78,162,0.12);
-    }
-
-    .gate-btn {
-      flex: 0 0 auto;
-      appearance: none;
-      border: 0;
-      border-radius: 14px;
-      padding: 12px 14px;
-      font-weight: 800;
-      cursor: pointer;
-      background: var(--brand-blue);
-      color: #fff;
-    }
-
-    .gate-btn:hover { filter: brightness(1.05); }
-
-    .gate-error {
-      margin-top: 10px;
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #b00020;
-      display: none;
-    }
-
-    .gate-hint {
-      margin-top: 12px;
-      font-size: 12.5px;
-      color: rgba(27,43,74,0.75);
+    @media (prefers-reduced-motion: reduce){
+      .btn, .regionCard{transition:none !important}
     }
   </style>
-
-  <script>
-    // Front-end QA gate (NOT secure). If unlocked, redirect to About.
-    (function () {
-      const KEY = "ee_qa_access";
-      try {
-        if (localStorage.getItem(KEY) === "true") {
-          window.location.replace("/about/");
-        }
-      } catch (e) {}
-    })();
-  </script>
 </head>
 
 <body>
-  <!-- Password Gate Overlay -->
-  <div class="gate" id="qaGate" role="dialog" aria-modal="true" aria-label="QA Access Gate">
-    <div class="gate-card">
-      <h2 class="gate-title">QA Access</h2>
-      <p class="gate-sub">Enter the password to access the site for review. You’ll be redirected to the About page.</p>
+  <div id="siteHeader"></div>
 
-      <form id="qaForm" autocomplete="off">
-        <div class="gate-row">
-          <input
-            class="gate-input"
-            id="qaPassword"
-            type="password"
-            inputmode="numeric"
-            placeholder="Enter password"
-            aria-label="Password"
-            required
-          />
-          <button class="gate-btn" type="submit">Enter</button>
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-label="Homepage hero">
+      <div class="wrap">
+        <div class="heroShell">
+          <div class="heroLeft">
+            <div class="kicker">Plan Ecuador with Confidence</div>
+
+            <h1 class="heroTitle">
+              Discover Ecuador,<span class="line2">one region and experience at a time</span>
+            </h1>
+
+            <p class="heroLead">
+              Experience Ecuador helps you explore the country by region, travel style, and pace.
+              Build a realistic plan for the Andes, Amazon, Coast, and Galapagos without turning your trip into a checklist.
+            </p>
+
+            <div class="heroActions">
+              <a class="btn btnPrimary" href="/trip-builder/">Start Planning</a>
+              <a class="btn btnGhost" href="/regions/">Explore Regions</a>
+            </div>
+          </div>
+
+          <div class="heroRight" role="img" aria-label="Ecuador landscape hero image">
+            <div class="heroRightBadge">
+              <strong>Built for clarity, not noise</strong>
+              <span>Practical planning across regions, with experience-led suggestions and realistic pacing.</span>
+            </div>
+          </div>
         </div>
-        <div class="gate-error" id="qaError">Incorrect password. Try again.</div>
-        <div class="gate-hint">QA note: This is a lightweight front-end gate, not a secure login.</div>
-      </form>
-    </div>
-  </div>
-
-  <section class="hero" aria-label="Experience Ecuador hero">
-    <div class="hero-content">
-      <img
-        src="assets/logo-experience-ecuador-small.png"
-        alt="Experience Ecuador"
-        class="hero-logo ee-animate ee-delay-1"
-      />
-
-      <h1 class="ee-animate ee-delay-2">Experience Ecuador</h1>
-      <div class="tagline ee-animate ee-delay-3">Curated travel experiences across Ecuador</div>
-
-      <div class="coming-soon ee-animate ee-delay-4">COMING SOON</div>
-
-      <div class="social ee-animate ee-delay-5">
-        <a class="icon-btn" href="https://www.facebook.com/ExperienceEcuador/" target="_blank" rel="noopener">
-          <img src="assets/icons/EE-SociaIcon-Facebook.png" alt="Facebook">
-        </a>
-        <a class="icon-btn" href="https://www.instagram.com/experience.ecuador" target="_blank" rel="noopener">
-          <img src="assets/icons/EE-SociaIcon-Instagram.png" alt="Instagram">
-        </a>
-        <a class="icon-btn" href="https://www.tiktok.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="assets/icons/EE-SociaIcon-TikTok.png" alt="TikTok">
-        </a>
-        <a class="icon-btn" href="https://www.youtube.com/@experienceecuador" target="_blank" rel="noopener">
-          <img src="assets/icons/EE-SociaIcon-YouTube.png" alt="YouTube">
-        </a>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" aria-label="How the site works">
+      <div class="wrap">
+        <h2 class="hTitle">How This Site Works</h2>
+        <p class="hSub">
+          Start from the big decision first. Pick a region. Choose an experience style. Then build a trip that fits your time.
+        </p>
+
+        <div class="cards3" style="margin-top:18px;">
+          <div class="miniCard">
+            <h3>Plan by Region</h3>
+            <p>Andes, Amazon, Coast, and Galapagos. Each region has a different rhythm. We help you match place and pace.</p>
+            <a href="/regions/" aria-label="Explore regions">Explore Regions</a>
+          </div>
+
+          <div class="miniCard">
+            <h3>Choose Experiences</h3>
+            <p>Wildlife, culture, adventure, relaxation, and food. Mix what matters and ignore the rest.</p>
+            <a href="/experiences/" aria-label="Explore experiences">Explore Experiences</a>
+          </div>
+
+          <div class="miniCard">
+            <h3>Build Your Trip</h3>
+            <p>Use the Trip Builder to shape time-based, realistic travel days that stay flexible.</p>
+            <a href="/trip-builder/" aria-label="Open trip builder">Open Trip Builder</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED REGIONS -->
+    <section class="section" aria-label="Featured regions">
+      <div class="wrap">
+        <h2 class="hTitle">Featured Regions</h2>
+        <p class="hSub">Four regions. Four completely different trips. Start with the one that fits your style.</p>
+
+        <div class="regionGrid">
+          <a class="regionCard" href="/regions/galapagos/" aria-label="Explore Galapagos region">
+            <div class="regionImg" style="background-image:url('/assets/images/EE-Assets-25-Homepage-card-galapagos.jpg');"></div>
+            <div class="regionBody">
+              <h4>Galapagos</h4>
+              <p>Conservation-first travel with iconic wildlife and slow island days.</p>
+              <div class="go">Explore Galapagos</div>
+            </div>
+          </a>
+
+          <a class="regionCard" href="/regions/coast/" aria-label="Explore Coast region">
+            <div class="regionImg" style="background-image:url('/assets/images/EE-Assets-26-Homepage-card-costa.jpg');"></div>
+            <div class="regionBody">
+              <h4>Coast</h4>
+              <p>Beach towns, food culture, warm weather, and coastal rhythm.</p>
+              <div class="go">Explore Coast</div>
+            </div>
+          </a>
+
+          <a class="regionCard" href="/regions/andes/" aria-label="Explore Andes region">
+            <div class="regionImg" style="background-image:url('/assets/images/EE-Assets-27-Homepage-card-andes.jpg');"></div>
+            <div class="regionBody">
+              <h4>Andes</h4>
+              <p>High-altitude cities, markets, heritage towns, and dramatic landscapes.</p>
+              <div class="go">Explore Andes</div>
+            </div>
+          </a>
+
+          <a class="regionCard" href="/regions/amazon/" aria-label="Explore Amazon region">
+            <div class="regionImg" style="background-image:url('/assets/images/EE-Assets-28-Homepage-card-amazon.jpg');"></div>
+            <div class="regionBody">
+              <h4>Amazon</h4>
+              <p>Wildlife, rivers, rainforest lodges, and deep nature immersion.</p>
+              <div class="go">Explore Amazon</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO BAND -->
+    <section class="section" aria-label="Planning video">
+      <div class="wrap">
+        <div class="videoBand">
+          <div class="videoGrid">
+            <div class="embed" aria-label="YouTube video embed">
+              <iframe
+                src="https://www.youtube.com/embed/l9Ol9s-lbAY"
+                title="This is why Ecuador"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+
+            <div class="videoCopy">
+              <h3>See How to Plan Ecuador the Right Way</h3>
+              <p>
+                Ecuador is compact but wildly diverse. This short video explains how to think in regions, time, and experiences
+                so your trip flows naturally instead of feeling rushed.
+              </p>
+              <div class="row">
+                <a class="btn btnPrimary" href="/trip-builder/">Try Trip Builder</a>
+                <a class="btn btnGhost" href="/regions/">Explore Regions</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT YOU CAN ACCESS -->
+    <section class="section" aria-label="What you can access on the site">
+      <div class="wrap">
+        <h2 class="hTitle">What You Can Access on This Site</h2>
+        <p class="hSub">
+          Everything here is designed to help you make better travel decisions, faster. No filler. No overwhelm.
+        </p>
+
+        <div class="accessGrid">
+          <div class="accessCard">
+            <h3 style="margin:0 0 10px; font-family:Montserrat,Inter,sans-serif; font-weight:800; letter-spacing:-0.02em; color:#0f2f62; font-size:18px;">
+              Planning Building Blocks
+            </h3>
+            <ul class="bullets">
+              <li>Region overviews with practical travel logic</li>
+              <li>Experience pages that help you choose what matters</li>
+              <li>Time-based suggestions for realistic trip pacing</li>
+              <li>Local context that helps you avoid common mistakes</li>
+              <li>Visual guides and curated highlights as the site grows</li>
+            </ul>
+          </div>
+
+          <div class="accessCard">
+            <h3 style="margin:0 0 12px; font-family:Montserrat,Inter,sans-serif; font-weight:800; letter-spacing:-0.02em; color:#0f2f62; font-size:18px;">
+              Snapshot
+            </h3>
+            <div class="stats">
+              <div class="stat">
+                <strong>4</strong>
+                <span>Core regions with distinct travel styles</span>
+              </div>
+              <div class="stat">
+                <strong>6+</strong>
+                <span>Experience categories to mix and match</span>
+              </div>
+              <div class="stat">
+                <strong>Trip Builder</strong>
+                <span>Time-based planning flow (no checklist travel)</span>
+              </div>
+              <div class="stat">
+                <strong>Local-Aware</strong>
+                <span>Built for clarity and realistic pacing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card trust" style="margin-top:18px;">
+          <h2 class="hTitle" style="margin:0;">Built for Travelers Who Want Clarity</h2>
+          <p>
+            Experience Ecuador is a planning layer, not a booking funnel. The goal is simple: help you match regions, time, and experiences
+            so your trip feels smooth, confident, and worth the flight.
+          </p>
+
+          <div class="ctaBand" aria-label="Primary call to action">
+            <div class="ctaLeft">
+              <h3>Start Exploring Ecuador with Confidence</h3>
+              <p>Choose a region, then shape your plan around experiences and time.</p>
+            </div>
+            <div class="ctaRight">
+              <a class="btn btnPrimary" href="/regions/">Explore Regions</a>
+              <a class="btn btnGhost" href="/trip-builder/">Start Planning</a>
+            </div>
+          </div>
+
+          <div class="tourismStrip" aria-label="Ecuador tourism logo placement">
+            <div class="note">
+              Supporting responsible travel and regional discovery across Ecuador.
+            </div>
+
+            <div class="tourismLogo" aria-label="Ecuador Tourism logo">
+              <img src="/assets/images/EE-Assets-Ecuador-Tourism-Logo-29.jpg" alt="Ecuador Tourism logo" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script src="/assets/js/site.js"></script>
 
   <script>
-    (function () {
-      const KEY = "ee_qa_access";
-      const CORRECT = "1982";
-
-      const gate = document.getElementById("qaGate");
-      const form = document.getElementById("qaForm");
-      const input = document.getElementById("qaPassword");
-      const err = document.getElementById("qaError");
-
-      function unlockAndGo() {
-        try { localStorage.setItem(KEY, "true"); } catch (e) {}
-        window.location.href = "/about/";
+    (function(){
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
       }
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const val = (input.value || "").trim();
-
-        if (val === CORRECT) {
-          err.style.display = "none";
-          unlockAndGo();
-          return;
-        }
-
-        err.style.display = "block";
-        input.value = "";
-        input.focus();
-      });
-
-      // Focus on load
-      window.addEventListener("load", function () {
-        input.focus();
-      });
-
-      // If localStorage already has access (double-check), hide gate and redirect
-      try {
-        if (localStorage.getItem(KEY) === "true") {
-          gate.style.display = "none";
-          window.location.replace("/about/");
-        }
-      } catch (e) {}
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
     })();
   </script>
 </body>
