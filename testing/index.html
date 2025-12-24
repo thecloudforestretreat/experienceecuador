@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chocó Andino de Pichincha | Experience Ecuador</title>
+  <title>Amazonía (Oriente) | Experience Ecuador</title>
 
   <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -12,7 +12,7 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
 
-  <!-- Global header/footer CSS -->
+  <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
 
@@ -24,86 +24,140 @@
   <style>
     :root{
       --brand-blue:#034EA2;
+      --cloud-white:#F5F7FA;
+      --charcoal:#1F1F1F;
       --slate:#6E7B8B;
-      --text:#1F1F1F;
+      --light-gray:#E3E5E8;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
       background:#f6f8fb;
-      color:var(--text);
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+    img{max-width:100%;display:block}
+    img{ user-select:none; -webkit-user-drag:none; }
 
-    /* ===== CONTENT ===== */
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;
+      width:100%;
+      min-height:64vh;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      background:url("/assets/images/EE-Region-Amazon-hero-01.jpg") center / cover no-repeat;
+      color:#fff;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.14),
+        rgba(0,0,0,0.72)
+      );
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:1100px;
+      padding:54px 18px 34px;
+      text-align:left;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.38);
+      border:1px solid rgba(255,255,255,0.22);
+      font-weight:700;
+      letter-spacing:0.02em;
+      font-size:12.5px;
+      margin-bottom:14px;
+      backdrop-filter:blur(10px);
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      font-size:clamp(40px,5.4vw,72px);
+      line-height:1.03;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:70ch;
+      font-size:clamp(15px,2vw,18px);
+      line-height:1.65;
+      color:rgba(255,255,255,0.92);
+    }
+
+    /* ===== PAGE WRAP ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:40px 18px 56px;
+      padding:36px 18px 0;
     }
 
-    h1{
-      font-family:Montserrat,Inter,sans-serif;
-      font-size:clamp(34px,4vw,54px);
-      color:var(--brand-blue);
+    /* ===== SECTION / CARDS ===== */
+    .section{ margin-bottom:26px; }
+
+    .section h2{
       margin:0 0 10px;
-      letter-spacing:-0.03em;
-    }
-
-    .lede{
-      color:var(--slate);
-      line-height:1.65;
-      max-width:92ch;
-      margin:0;
-      font-size:16.8px;
-    }
-
-    .meta-row{
-      margin-top:14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-      color:#162b55;
-      font-weight:700;
-      font-size:13.5px;
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,.06);
-      border:1px solid rgba(3,78,162,.14);
-      color:#0f2f62;
+      font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:24px;
+      color:var(--brand-blue);
     }
 
-    .content-grid{
+    .section p{
+      margin:0;
+      color:#2a2f36;
+      font-size:15.8px;
+      line-height:1.75;
+      max-width:82ch;
+    }
+
+    .grid{
       display:grid;
       grid-template-columns:1.15fr 0.85fr;
       gap:22px;
-      margin-top:22px;
       align-items:start;
+      margin-top:18px;
+    }
+
+    .grid.center-stack{ align-items:center; }
+
+    .stack-right{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
     }
 
     .card{
       background:#fff;
-      padding:22px;
       border-radius:22px;
-      box-shadow:0 18px 55px rgba(3,78,162,.12);
-      border:1px solid rgba(0,0,0,.06);
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      padding:22px;
     }
 
-    .card + .card{ margin-top:16px; }
-
-    .card h2{
+    .card h3{
       margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
@@ -112,277 +166,144 @@
       color:#0f2f62;
     }
 
-    .card p{
-      margin:0 0 12px;
-      color:#1f2b3f;
-      line-height:1.75;
-      font-size:15.5px;
-      max-width:84ch;
-    }
-
-    .card p:last-child{ margin-bottom:0; }
-
-    .inline-link{
-      text-decoration:underline;
-      text-underline-offset:3px;
-      font-weight:800;
-      color:#162b55;
-    }
-
-    .two-col{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-      margin-top:10px;
-    }
-
-    .mini-card{
-      padding:14px 14px;
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
-      border:1px solid rgba(3,78,162,.12);
-    }
-
-    .mini-card h3{
-      margin:0 0 6px;
-      font-size:14.5px;
-      font-weight:900;
-      color:#0f2f62;
-      letter-spacing:-0.01em;
-    }
-
-    .mini-card p{
+    .card ul{
       margin:0;
-      color:#1f2b3f;
-      opacity:.92;
-      line-height:1.6;
-      font-size:14.4px;
-    }
-
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:10px;
-    }
-
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      padding:7px 10px;
-      border-radius:999px;
-      background:rgba(3,78,162,.06);
-      border:1px solid rgba(3,78,162,.14);
-      color:#0f2f62;
-      font-weight:800;
-      font-size:12.8px;
-    }
-
-    .side-stack{
-      display:flex;
-      flex-direction:column;
-      gap:16px;
+      padding-left:18px;
+      color:#24324a;
+      line-height:1.75;
+      font-size:14.8px;
     }
 
     .mini{
-      background:#fff;
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.12);
+      border-radius:20px;
       padding:20px;
-      border-radius:22px;
-      box-shadow:0 18px 55px rgba(3,78,162,.12);
-      border:1px solid rgba(0,0,0,.06);
     }
 
-    .mini h3{
-      margin:0 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:16px;
-      color:#0f2f62;
-    }
-
-    .mini p{
-      margin:0;
-      color:var(--slate);
-      line-height:1.65;
-      font-size:14.8px;
-    }
-
-    .link-list{
+    .pill-row{
       display:flex;
-      flex-direction:column;
+      flex-wrap:wrap;
       gap:10px;
-      margin-top:12px;
+      margin-top:14px;
     }
 
-    .pill-link{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:12px 12px;
-      border-radius:16px;
-      background:rgba(3,78,162,.05);
-      border:1px solid rgba(3,78,162,.12);
-      font-weight:900;
+    .tag{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.12);
       color:#0f2f62;
-    }
-
-    .pill-link:hover{ background:rgba(3,78,162,.08); }
-
-    .pill-link span{
-      opacity:.9;
       font-weight:700;
-      color:#162b55;
       font-size:13px;
     }
 
-    /* ===== WEATHER (Quito-style wx-card) ===== */
-    .wx-card{
-      padding:18px 18px;
-      border-radius:22px;
+    /* ===== PLACES GRID (IMAGE HEADER TILES) ===== */
+    .places-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .place-tile{
+      display:block;
+      padding:0;
+      border-radius:18px;
+      overflow:hidden;
       background:#fff;
-      box-shadow:0 18px 55px rgba(3,78,162,.12);
-      border:1px solid rgba(0,0,0,.06);
+      border:1px solid rgba(3,78,162,0.12);
+      box-shadow:0 14px 42px rgba(3,78,162,0.10);
+      transition:transform 160ms ease, box-shadow 160ms ease;
     }
 
-    .wx-title{
-      margin:0 0 8px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:16px;
-      color:#0f2f62;
+    .place-tile:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 55px rgba(3,78,162,0.14);
     }
 
-    .wx-now{
+    .place-img{
+      width:100%;
+      aspect-ratio:16/9;
+      background:#eef2f7;
+    }
+
+    .place-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .place-body{
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
       gap:12px;
       padding:14px 14px;
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
-      border:1px solid rgba(3,78,162,.12);
+      background:linear-gradient(180deg, rgba(3,78,162,0.035), rgba(3,78,162,0.012));
     }
 
-    .wx-date{
-      font-weight:900;
-      color:#0f2f62;
-      letter-spacing:-0.01em;
-      font-size:13.2px;
-      opacity:.95;
-      white-space:nowrap;
-      margin-top:2px;
-    }
-
-    .wx-lines{
+    .place-title{
       margin:0;
-      color:#1f2b3f;
-      line-height:1.55;
-      font-size:13.8px;
-      opacity:.95;
-      text-align:right;
-    }
-
-    .months{
-      margin-top:14px;
-      padding-top:14px;
-      border-top:1px solid rgba(0,0,0,.06);
-    }
-
-    .wx-sub{
-      margin:0 0 10px;
-      color:#1f2b3f;
-      opacity:.85;
-      font-size:13.5px;
-      line-height:1.5;
-    }
-
-    /* Choco override blocks */
-    .wx-varies{
-      padding:12px 12px;
-      border-radius:16px;
-      background:rgba(3,78,162,.06);
-      border:1px solid rgba(3,78,162,.14);
-      color:#0f2f62;
-      font-weight:900;
-      font-size:13.6px;
-      line-height:1.5;
-    }
-
-    /* ===== MORE ANDES DESTINATIONS ===== */
-    .andes-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
-      margin-top:12px;
-    }
-
-    .andes-tile{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      padding:12px 12px;
-      border-radius:16px;
-      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
-      border:1px solid rgba(3,78,162,.12);
-      transition:transform .12s ease, background .12s ease;
-    }
-
-    .andes-tile:hover{
-      background:rgba(3,78,162,.07);
-      transform:translateY(-1px);
-    }
-
-    .andes-left{
-      display:flex;
-      flex-direction:column;
-      gap:4px;
-      min-width:0;
-    }
-
-    .andes-title{
       font-weight:900;
       color:#0f2f62;
-      font-size:14.8px;
       letter-spacing:-0.01em;
+      font-size:15px;
       line-height:1.2;
     }
 
-    .andes-sub{
+    .place-meta{
+      margin:6px 0 0;
       color:#1f2b3f;
       opacity:.9;
       line-height:1.5;
-      font-size:13.4px;
-      max-width:60ch;
+      font-size:13.6px;
+      max-width:34ch;
     }
 
-    .andes-arrow{
+    .place-arrow{
       flex:0 0 auto;
-      width:34px;
-      height:34px;
+      width:36px;
+      height:36px;
       border-radius:999px;
-      border:1px solid rgba(3,78,162,.18);
-      background:rgba(255,255,255,.75);
+      border:1px solid rgba(3,78,162,0.18);
+      background:rgba(255,255,255,0.75);
       display:flex;
       align-items:center;
       justify-content:center;
       margin-top:2px;
     }
 
-    .andes-arrow span{
+    .place-arrow span{
       display:block;
       width:10px;
       height:10px;
       border-right:2px solid #0f2f62;
       border-bottom:2px solid #0f2f62;
       transform:rotate(-45deg);
-      opacity:.85;
+      opacity:.9;
     }
 
-    /* ===== CAROUSEL (LEFT COLUMN) ===== */
+    /* ===== VIDEO EMBED (MATCH ANDES STYLE) ===== */
+    .video-embed{
+      margin-top:16px;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      background:#000;
+    }
+
+    .video-embed iframe{
+      width:100%;
+      aspect-ratio:16/9;
+      height:auto;
+      display:block;
+      border:0;
+    }
+
+    /* ===== CAROUSEL (GALLERY) ===== */
     .carousel{
       margin-top:18px;
       background:#fff;
@@ -495,20 +416,43 @@
       white-space:nowrap;
     }
 
+    /* ===== CTA ===== */
+    .cta{
+      margin:28px 0 56px;
+      background:var(--brand-blue);
+      color:#fff;
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 22px 60px rgba(3,78,162,0.22);
+    }
+
+    .cta h3{
+      margin:0 0 8px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:20px;
+    }
+
+    .cta p{
+      margin:0;
+      color:rgba(255,255,255,0.92);
+      line-height:1.7;
+      font-size:15.5px;
+      max-width:85ch;
+    }
+
     /* ===== MOBILE ===== */
-    @media(max-width:980px){
-      .content-grid{grid-template-columns:1fr}
-    }
-
-    @media(max-width:820px){
-      .two-col{grid-template-columns:1fr}
-    }
-
-    @media(max-width:620px){
-      .carousel-slide{ aspect-ratio:16/9; }
+    @media(max-width:900px){
+      .grid{ grid-template-columns:1fr; }
+      .places-grid{ grid-template-columns:1fr; }
+      .hero-inner{ text-align:center; }
+      .hero p{ margin:0 auto; }
     }
 
     @media(max-width:480px){
+      .hero{ min-height:60vh; }
+      .cta{ border-radius:20px; }
       .carousel-btn{ width:40px; height:40px; }
     }
   </style>
@@ -518,221 +462,241 @@
   <div id="siteHeader"></div>
 
   <main>
-    <div class="wrap">
-      <h1>Chocó Andino de Pichincha</h1>
-      <p class="lede">
-        El Chocó Andino de Pichincha es un corredor de bosque nublado en las laderas occidentales de Quito.
-        Es perfecto para días de naturaleza: colibríes, cascadas, senderos con neblina y pequeñas comunidades entre valles verdes.
-        Elígelo si buscas biodiversidad y aire fresco sin alejarte demasiado de la capital.
-      </p>
-
-      <div class="meta-row" aria-label="Resumen rápido de Chocó Andino">
-        <span class="pill">Región: Estribaciones andinas</span>
-        <span class="pill">Ideal para: Bosque nublado, vida silvestre, cascadas</span>
-        <span class="pill">Tiempo típico: 1 a 3 noches</span>
+    <!-- HERO -->
+    <section class="hero" aria-label="Imagen principal de la Amazonía">
+      <div class="hero-inner">
+        <div class="kicker">Guía de región • En progreso</div>
+        <h1>Amazonía (Oriente)</h1>
+        <p>
+          La región amazónica del Ecuador se vive a través de entradas (gateways) y experiencias tipo lodge, no de grandes ciudades.
+          Este hub te ayudará a elegir la puerta de entrada correcta, la reserva adecuada y el estilo de viaje ideal según tu tiempo y comodidad.
+        </p>
       </div>
+    </section>
 
-      <section class="content-grid" aria-label="Contenido de Chocó Andino">
-        <!-- LEFT COLUMN -->
-        <div>
+    <!-- CONTENT -->
+    <div class="wrap">
+
+      <section class="section">
+        <h2>Qué hace especial a la Amazonía</h2>
+        <p>
+          La Amazonía es inmersiva. Los días giran alrededor de ríos, senderos, paseos en canoa, vida silvestre y experiencias guiadas.
+          La decisión clave no es “qué ciudad”, sino “qué tan profundo quieres ir” y “cuántos días tienes”.
+        </p>
+
+        <div class="grid center-stack">
           <div class="card">
-            <h2>Lo mejor del Chocó Andino</h2>
-            <p>
-              Esta zona es biodiversidad + atmósfera.
-              Espera mañanas con neblina, verde intenso y una mezcla de caminatas cortas con paradas en miradores.
-              Ideal para birding, fotografía y naturaleza con ritmo flexible.
-            </p>
+            <h3>Imperdibles</h3>
+            <ul>
+              <li>Caminatas guiadas en selva, canoa y excursiones nocturnas de vida silvestre</li>
+              <li>Pueblos ribereños como entrada a lodges y reservas amazónicas</li>
+              <li>Avistamientos: monos, caimanes, aves, ranas y mucho más</li>
+              <li>Altísima biodiversidad en áreas protegidas y territorios indígenas</li>
+            </ul>
 
-            <div class="two-col" aria-label="Highlights de Chocó Andino">
-              <div class="mini-card">
-                <h3>Aves y biodiversidad</h3>
-                <p>
-                  Una de las zonas más ricas para aves de bosque nublado, colibríes y especies de borde.
-                  Con guía se multiplican las probabilidades de buenos avistamientos.
-                </p>
-              </div>
-
-              <div class="mini-card">
-                <h3>Cascadas y caminatas</h3>
-                <p>
-                  Senderos cortos y paradas en cascadas que funcionan incluso en planes de medio día.
-                  Fácil de combinar con cafés y miradores.
-                </p>
-              </div>
-
-              <div class="mini-card">
-                <h3>Rutas escénicas y miradores</h3>
-                <p>
-                  Carreteras de montaña y vistas de valle con el “verde Ecuador” clásico.
-                  Mejor en la mañana si buscas cielos más claros.
-                </p>
-              </div>
-
-              <div class="mini-card">
-                <h3>Day trips desde Quito</h3>
-                <p>
-                  Excelente opción si quieres bosque nublado sin un traslado largo.
-                  Funciona como día completo o una noche.
-                </p>
-              </div>
-            </div>
-
-            <div class="chips" aria-label="Temas de Chocó Andino">
-              <span class="chip">Bosque nublado</span>
-              <span class="chip">Birding</span>
-              <span class="chip">Cascadas</span>
-              <span class="chip">Biodiversidad</span>
-              <span class="chip">Fotografía</span>
-              <span class="chip">Cerca de Quito</span>
+            <div class="pill-row" aria-label="Tags de experiencias en la Amazonía">
+              <span class="tag">Selva</span>
+              <span class="tag">Vida silvestre</span>
+              <span class="tag">Lodges</span>
+              <span class="tag">Guiado</span>
             </div>
           </div>
 
-          <div class="card">
-            <h2>Flujo simple de planificación</h2>
-            <p>
-              Mantén el plan simple: un foco por día.
-              Empieza temprano para aves, luego elige un bloque de cascada o sendero, y deja margen para cambios de clima y paradas lentas.
-            </p>
-            <p>
-              ¿Quieres una ruta curada de 1 a 3 noches según tu ritmo e intereses?
-              Escríbenos en <a class="inline-link" href="/es/contacto/">Contacto</a>.
-            </p>
-          </div>
-
-          <!-- CAROUSEL (LEFT, UNDER SIMPLE PLANNING FLOW) -->
-          <div id="chocoAndinoCarousel" class="carousel" aria-label="Galería de imágenes del Chocó Andino">
-            <button class="carousel-btn prev" type="button" aria-label="Imagen anterior">
-              <span aria-hidden="true"></span>
-            </button>
-
-            <div class="carousel-viewport">
-              <div class="carousel-track">
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-1.jpg" alt="Chocó Andino – imagen destacada 1"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-2.jpg" alt="Chocó Andino – imagen destacada 2"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-3.jpg" alt="Chocó Andino – imagen destacada 3"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-4.jpg" alt="Chocó Andino – imagen destacada 4"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-5.jpg" alt="Chocó Andino – imagen destacada 5"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-ChocoAndino-6.jpg" alt="Chocó Andino – imagen destacada 6"></div>
-              </div>
+          <div class="stack-right">
+            <div class="mini">
+              <h3>Ideal para</h3>
+              <ul>
+                <li>Primera vez en la Amazonía (estancias cortas tipo gateway)</li>
+                <li>Amantes de la naturaleza y viajes enfocados en fauna</li>
+                <li>Aventura: rafting, ríos y caminatas en selva</li>
+                <li>Viajes más largos, inmersivos y basados en lodge</li>
+              </ul>
             </div>
 
-            <button class="carousel-btn next" type="button" aria-label="Imagen siguiente">
-              <span aria-hidden="true"></span>
-            </button>
-
-            <div class="carousel-ui">
-              <div class="carousel-dots" aria-label="Paginación del carrusel"></div>
-              <div class="carousel-counter" id="chocoAndinoCarouselCounter">1 / 6</div>
+            <div class="mini">
+              <h3>Estilos de viaje que cubriremos</h3>
+              <ul>
+                <li>Introducciones de 2–4 días</li>
+                <li>Aventuras de varios días basadas en lodge</li>
+                <li>Opciones familiares y logística sencilla</li>
+                <li>Fotografía y enfoque fuerte en vida silvestre</li>
+              </ul>
             </div>
           </div>
         </div>
-
-        <!-- RIGHT COLUMN -->
-        <aside class="side-stack" aria-label="Contenido lateral de Chocó Andino">
-          <div class="mini">
-            <h3>Mejor uso del tiempo</h3>
-            <p>
-              Prioriza las mañanas para vida silvestre y buena luz, y arma las tardes con senderos fáciles, miradores y paradas relajadas.
-              Esta región rinde más cuando mantienes el plan flexible.
-            </p>
-
-            <div class="link-list" aria-label="Enlaces rápidos">
-              <a class="pill-link" href="/es/regiones/andes/">
-                Volver a Andes <span>Página de región</span>
-              </a>
-              <a class="pill-link" href="/es/regiones/andes/quito/">
-                Quito <span>Hub principal</span>
-              </a>
-              <a class="pill-link" href="/es/contacto/">
-                Contacto <span>Preguntas y alianzas</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Weather card (Quito-style structure, but varies) -->
-          <div class="wx-card" aria-label="Clima y temporada">
-            <div class="wx-title">Clima actual</div>
-
-            <div class="wx-now">
-              <div class="wx-date">Varía</div>
-              <p class="wx-lines">Varía según la zona específica</p>
-            </div>
-
-            <div class="months" aria-label="Pronóstico y mejores meses">
-              <div class="wx-title" style="margin-top:0;">Pronóstico de 7 días</div>
-              <div class="wx-varies">Varía según la zona específica</div>
-
-              <div class="wx-title" style="margin-top:14px;">Mejores meses para visitar</div>
-              <div class="wx-varies">Varía según la zona específica</div>
-            </div>
-          </div>
-
-          <div class="mini">
-            <h3>Más destinos en Andes</h3>
-            <p>
-              Combina bosque nublado con ciudad, mercados y paisajes volcánicos.
-            </p>
-
-            <div class="andes-grid" aria-label="Links de destinos andinos">
-              <a class="andes-tile" href="/es/regiones/andes/quito/" aria-label="Abrir Quito">
-                <div class="andes-left">
-                  <div class="andes-title">Quito</div>
-                  <div class="andes-sub">Centro histórico, miradores y day trips.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-
-              <a class="andes-tile" href="/es/regiones/andes/mindo/" aria-label="Abrir Mindo">
-                <div class="andes-left">
-                  <div class="andes-title">Mindo</div>
-                  <div class="andes-sub">Bosque nublado, aves, cascadas y días de naturaleza.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-
-              <a class="andes-tile" href="/es/regiones/andes/cuenca/" aria-label="Abrir Cuenca">
-                <div class="andes-left">
-                  <div class="andes-title">Cuenca</div>
-                  <div class="andes-sub">Arquitectura, paseos junto al río y ritmo relajado.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-
-              <a class="andes-tile" href="/es/regiones/andes/otavalo/" aria-label="Abrir Otavalo">
-                <div class="andes-left">
-                  <div class="andes-title">Otavalo</div>
-                  <div class="andes-sub">Mercados, textiles, artesanías y zona de lagos.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-
-              <a class="andes-tile" href="/es/regiones/andes/cotopaxi/" aria-label="Abrir Cotopaxi">
-                <div class="andes-left">
-                  <div class="andes-title">Cotopaxi</div>
-                  <div class="andes-sub">Paisaje volcánico, caminatas y páramo.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-
-              <a class="andes-tile" href="/es/regiones/andes/banos/" aria-label="Abrir Baños">
-                <div class="andes-left">
-                  <div class="andes-title">Baños</div>
-                  <div class="andes-sub">Cascadas, miradores y energía de aventura suave.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-
-              <a class="andes-tile" href="/es/regiones/andes/papallacta/" aria-label="Abrir Papallacta">
-                <div class="andes-left">
-                  <div class="andes-title">Papallacta</div>
-                  <div class="andes-sub">Termas, aire de montaña y un reset fácil.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-            </div>
-          </div>
-        </aside>
       </section>
+
+      <!-- AMAZON DESTINATIONS (TILES) -->
+      <section class="section">
+        <h2>Gateways y reservas amazónicas</h2>
+        <p>
+          Estas cuatro opciones te dan una base sólida: dos puertas de entrada fáciles desde Quito y dos áreas protegidas icónicas.
+          Cada página incluirá notas de planificación, un carrusel de galería y la misma tarjeta de clima unificada usada en páginas de ubicaciones.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Lugares destacados</h3>
+
+            <div class="places-grid" aria-label="Tiles de destinos amazónicos">
+              <a class="place-tile" href="/es/regiones/amazonia/tena/" aria-label="Abrir página de Tena">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-46-Tena.jpg" alt="Tena">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Tena</div>
+                    <div class="place-meta">Puerta de entrada desde Quito. Capital del rafting y acceso fácil a selva.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/es/regiones/amazonia/misahualli/" aria-label="Abrir página de Misahuallí">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-47-Misahualli.jpg" alt="Misahuallí">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Misahuallí</div>
+                    <div class="place-meta">Pueblito ribereño, centros de rescate y una intro amazónica relajada.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/es/regiones/amazonia/parque-nacional-yasuni/" aria-label="Abrir página del Parque Nacional Yasuní">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-48-YasuniNationalPark.jpg" alt="Parque Nacional Yasuní">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Parque Nacional Yasuní</div>
+                    <div class="place-meta">Amazonía profunda, biodiversidad extrema, viajes tipo lodge centrados en experiencia.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+
+              <a class="place-tile" href="/es/regiones/amazonia/reserva-faunistica-cuyabeno/" aria-label="Abrir página de la Reserva Faunística Cuyabeno">
+                <div class="place-img">
+                  <img src="/assets/images/EE-Assets-49-Cuyabeno.jpg" alt="Reserva Faunística Cuyabeno">
+                </div>
+                <div class="place-body">
+                  <div>
+                    <div class="place-title">Reserva Faunística Cuyabeno</div>
+                    <div class="place-meta">Sistema de lagunas, exploración en canoa y excelentes avistamientos de fauna.</div>
+                  </div>
+                  <div class="place-arrow" aria-hidden="true"><span></span></div>
+                </div>
+              </a>
+            </div>
+
+            <div class="pill-row" aria-label="Tags de destinos en la Amazonía">
+              <span class="tag">Pueblos gateway</span>
+              <span class="tag">Áreas protegidas</span>
+              <span class="tag">Lodges guiados</span>
+              <span class="tag">Fauna</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Cómo usar este hub</h3>
+            <ul>
+              <li>Si tienes 2–4 días: empieza con Tena o Misahuallí para logística fácil</li>
+              <li>Si buscas inmersión profunda: usa Yasuní o Cuyabeno como ancla del viaje</li>
+              <li>Es normal tener madrugadas, horarios guiados y ritmo marcado por la naturaleza</li>
+              <li>Prepárate para humedad, lluvia y senderos con lodo</li>
+            </ul>
+
+            <!-- YouTube embed -->
+            <div class="video-embed" aria-label="Video de la Amazonía">
+              <iframe
+                src="https://www.youtube.com/embed/ATSm3IdETuc"
+                title="Reserva Faunística Cuyabeno"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Qué viene en esta guía</h2>
+        <p>
+          Estamos construyendo este hub como una guía completa con planificación de lodges, plantillas por duración,
+          y decisiones claras para viajeros de primera vez vs. experiencias amazónicas profundas.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Secciones planificadas</h3>
+            <ul>
+              <li>Cómo elegir: gateway corto vs. viaje basado en lodge</li>
+              <li>Experiencias top: canoa, caminatas nocturnas, fauna y cultura</li>
+              <li>Duraciones sugeridas (2–4 días vs. 5–8 días)</li>
+              <li>Estacionalidad, costos y checklist de equipaje</li>
+              <li>Socios confiables y recomendaciones curadas</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Modelo simple de decisión</h3>
+            <ul>
+              <li>Primero elige “profundidad”, luego elige tu puerta de entrada</li>
+              <li>Más días = más fauna, más inmersión</li>
+              <li>Lo guiado es la forma más segura y rica de vivir la selva</li>
+              <li>La naturaleza es impredecible — y ese es el punto</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Galería</h2>
+
+        <!-- CAROUSEL -->
+        <div id="amazonCarousel" class="carousel" aria-label="Galería de imágenes de la Amazonía">
+          <button class="carousel-btn prev" type="button" aria-label="Imagen anterior">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-1.jpg" alt="Amazonía: destacado 1"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-2.jpg" alt="Amazonía: destacado 2"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-3.jpg" alt="Amazonía: destacado 3"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-4.jpg" alt="Amazonía: destacado 4"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-5.jpg" alt="Amazonía: destacado 5"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-6.jpg" alt="Amazonía: destacado 6"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-7.jpg" alt="Amazonía: destacado 7"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-8.jpg" alt="Amazonía: destacado 8"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-9.jpg" alt="Amazonía: destacado 9"></div>
+              <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Amazon-10.jpg" alt="Amazonía: destacado 10"></div>
+            </div>
+          </div>
+
+          <button class="carousel-btn next" type="button" aria-label="Siguiente imagen">
+            <span aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-ui">
+            <div class="carousel-dots" aria-label="Paginación del carrusel"></div>
+            <div class="carousel-counter" id="amazonCarouselCounter">1 / 10</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" aria-label="Próximamente: actualizaciones de Amazonía">
+        <h3>Próximamente: actualizaciones curadas de la Amazonía</h3>
+        <p>
+          Este hub evolucionará hacia guías curadas y un formato tipo newsletter donde los viajeros descubren experiencias y socios confiables.
+          Siguiente paso: guías de decisión de lodges, itinerarios ejemplo y un carrusel reutilizable para cada página de destino.
+        </p>
+      </section>
+
     </div>
   </main>
 
@@ -741,9 +705,22 @@
   <script src="/assets/js/site.js"></script>
 
   <script>
-    /* Chocó Andino carousel (match Andes behavior) */
     (function(){
-      const root = document.getElementById("chocoAndinoCarousel");
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
+
+  <script>
+    /* Amazon carousel */
+    (function(){
+      const root = document.getElementById("amazonCarousel");
       if(!root) return;
 
       const track = root.querySelector(".carousel-track");
@@ -751,7 +728,7 @@
       const prevBtn = root.querySelector(".carousel-btn.prev");
       const nextBtn = root.querySelector(".carousel-btn.next");
       const dotsWrap = root.querySelector(".carousel-dots");
-      const counter = root.querySelector("#chocoAndinoCarouselCounter");
+      const counter = root.querySelector("#amazonCarouselCounter");
 
       let index = 0;
 
@@ -848,24 +825,7 @@
       setIndex(0);
       startAutoplay();
     })();
-
-    // Light deterrent: disable right-click on images only
-    document.addEventListener('contextmenu', (e) => {
-      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
-    });
   </script>
 
-  <script>
-    (function(){
-      async function inject(id, url){
-        const el = document.getElementById(id);
-        if(!el) return;
-        const res = await fetch(url, { cache: "no-store" });
-        el.innerHTML = await res.text();
-      }
-      inject("siteHeader", "/assets/includes/header.html");
-      inject("siteFooter", "/assets/includes/footer.html");
-    })();
-  </script>
 </body>
 </html>
