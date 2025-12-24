@@ -37,7 +37,7 @@
     "/about/": "/es/sobre-nosotros/",
     "/mission/": "/es/mision/",
     "/contact/": "/es/contacto/",
-    "/trip-builder/": "/es/planificador-de-viaje/",
+    "/trip-builder/": "/es/planificador-de-viajes/",
     "/regions/": "/es/regiones/",
     "/experiences/": "/es/experiencias/",
     "/experiences/adventure/": "/es/experiencias/aventura/",
