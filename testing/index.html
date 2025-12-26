@@ -3,124 +3,333 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Experience Ecuador | Plan Ecuador with Confidence</title>
-  <meta name="description" content="Discover Ecuador by region and experience. Build a realistic trip plan with clear, local-aware guidance across the Andes, Amazon, Coast, and Galapagos." />
-
-  <!-- Favicons (root) -->
+  <title>Contact | Experience Ecuador</title>
+  <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
-
   <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
-
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --brand-blue:#034EA2;
-      --charcoal:#1F1F1F;
-
+      --slate:#6E7B8B;
+      --text:#1F1F1F;
       --bg:#f6f8fb;
-      --card:#ffffff;
-      --border:rgba(0,0,0,0.06);
-      --shadow:0 18px 55px rgba(3,78,162,0.12);
-      --shadowSoft:0 14px 34px rgba(3,78,162,0.10);
-
-      --radius-xl:24px;
-      --radius-lg:18px;
-      --radius-md:14px;
-
-      --max:1100px;
+      --card:#fff;
+      --border:rgba(0,0,0,.06);
+      --shadow:0 18px 55px rgba(3,78,162,.12);
+      --soft:rgba(3,78,162,.06);
+      --softBorder:rgba(3,78,162,.14);
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--charcoal);
       background:var(--bg);
-    }
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
-    .section{padding:44px 0}
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius-xl);
-      box-shadow:var(--shadow);
+      color:var(--text);
     }
 
-    /* HERO */
-    .hero{ padding:24px 0 10px; }
-    .heroShell{
-      display:grid;
-      grid-template-columns:1.05fr 0.95fr;
-      gap:22px;
-      align-items:stretch;
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:40px 18px;
     }
-    .heroLeft{
-      padding:28px 26px;
-      border-radius:var(--radius-xl);
-      background:#fff;
-      border:1px solid var(--border);
+
+    h1{
+      font-family:Montserrat,Inter,sans-serif;
+      font-size:clamp(34px,4vw,54px);
+      color:var(--brand-blue);
+      margin:0 0 10px;
+      letter-spacing:-0.03em;
+    }
+
+    p{
+      color:var(--slate);
+      line-height:1.65;
+      max-width:75ch;
+      margin:0;
+      font-size:16.8px;
+    }
+
+    .lede{ margin-top:0; max-width:80ch; }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:22px;
+      margin-top:22px;
+      align-items:start;
+    }
+
+    .card{
+      background:var(--card);
+      padding:22px;
+      border-radius:22px;
       box-shadow:var(--shadow);
+      border:1px solid var(--border);
+    }
+
+    .card p{margin:0 0 14px}
+
+    .info-item{
+      margin-top:16px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+    }
+
+    .label{
+      font-weight:800;
+      font-size:13px;
+      margin-bottom:6px;
+      color:#0f2f62;
+      letter-spacing:.01em;
+    }
+
+    .partners-lines{
       display:flex;
       flex-direction:column;
-      justify-content:center;
-      min-height:360px;
+      gap:8px;
+      color:#162b55;
+      font-weight:600;
+      line-height:1.5;
+      font-size:14.7px;
     }
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,0.08);
-      border:1px solid rgba(3,78,162,0.14);
-      color:#0f2f62;
-      font-weight:800;
-      font-size:12.5px;
-      letter-spacing:0.02em;
-      width:max-content;
-      margin-bottom:14px;
+
+    .partners-lines .muted{
+      color:var(--slate);
+      font-weight:600;
+      font-size:13.8px;
+      line-height:1.6;
     }
-    .heroTitle{
+
+    .side-stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .mini{
+      background:#fff;
+      padding:20px;
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      border:1px solid var(--border);
+    }
+
+    .mini h3{
+      margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      letter-spacing:-0.03em;
-      line-height:1.05;
-      font-size:clamp(38px,4.4vw,58px);
-      margin:0 0 12px;
-      color:#0f2f62;
-      max-width:20ch;
-    }
-    .heroTitle .line2{
-      display:block;
-      max-width:18ch;
-    }
-    .heroLead{
-      margin:0 0 18px;
-      max-width:64ch;
-      color:#2a2f36;
-      line-height:1.75;
+      letter-spacing:-0.02em;
       font-size:16px;
+      color:#0f2f62;
     }
-    .heroActions{
+
+    .mini p{
+      margin:0;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:14.8px;
+    }
+
+    .link-list{
       display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:center;
-      margin-top:4px;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
     }
+
+    .pill-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(3,78,162,.05);
+      border:1px solid rgba(3,78,162,.12);
+      font-weight:800;
+      color:#0f2f62;
+    }
+
+    .pill-link:hover{ background:rgba(3,78,162,.08); }
+
+    .pill-link span{
+      opacity:.9;
+      font-weight:700;
+      color:#162b55;
+      font-size:13px;
+    }
+
+    .side-image{
+      border-radius:22px;
+      overflow:hidden;
+      background:transparent;
+      border:1px solid var(--border);
+      box-shadow:0 18px 60px rgba(0,0,0,.14);
+    }
+
+    .side-image img{ width:100%; height:auto; display:block; }
+
+    /* Copy icon button */
+    .value{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .value a{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-size:15px;
+      font-weight:600;
+      color:#162b55;
+    }
+
+    .copy-icon-btn{
+      width:36px;
+      height:36px;
+      border-radius:12px;
+      border:1px solid rgba(3,78,162,.22);
+      background:#fff;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+      flex:0 0 auto;
+    }
+    .copy-icon-btn:hover{ background:rgba(3,78,162,.06); }
+    .copy-icon-btn:active{ transform:scale(0.98); }
+    .copy-icon-btn.copied{
+      background:rgba(3,78,162,.10);
+      border-color:rgba(3,78,162,.35);
+    }
+
+    .copy-ico{
+      width:18px;
+      height:18px;
+      fill:none;
+      stroke:#0f2f62;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .copy-toast{
+      display:none;
+      margin-top:10px;
+      width:fit-content;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,.08);
+      border:1px solid rgba(3,78,162,.18);
+      color:#0f2f62;
+      font-weight:800;
+      font-size:13px;
+    }
+    .copy-toast.show{ display:inline-flex; }
+
+    /* ===== FORM ===== */
+    .formWrap{
+      margin-top:18px;
+      padding-top:16px;
+      border-top:1px solid rgba(0,0,0,.06);
+    }
+
+    .formTitle{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .formNote{
+      margin:0 0 14px;
+      color:var(--slate);
+      font-size:14.6px;
+      line-height:1.6;
+      max-width:none;
+    }
+
+    form{ margin:0; }
+
+    .grid2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .field{ display:flex; flex-direction:column; gap:7px; margin-top:12px; }
+    .grid2 .field{ margin-top:0; }
+
+    .field label{
+      font-weight:800;
+      font-size:13px;
+      color:#0f2f62;
+      letter-spacing:.01em;
+    }
+
+    .input, .select, .textarea{
+      width:100%;
+      border-radius:14px;
+      border:1px solid rgba(3,78,162,.18);
+      background:#fff;
+      padding:12px 12px;
+      font-size:15px;
+      font-weight:600;
+      color:#162b55;
+      outline:none;
+      box-shadow:0 10px 26px rgba(3,78,162,.06);
+    }
+
+    .select{
+      appearance:none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
+        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 13px) 50%,
+        0 0;
+      background-size:
+        6px 6px,
+        6px 6px,
+        100% 100%;
+      background-repeat:no-repeat;
+      padding-right:40px;
+    }
+
+    .textarea{ min-height:110px; resize:vertical; }
+
+    .req{ color:#b42318; font-weight:900; }
+
+    .actionsRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+      align-items:center;
+    }
+
     .btn{
       display:inline-flex;
       align-items:center;
@@ -135,12 +344,14 @@
       transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
       user-select:none;
     }
+
     .btnPrimary{
       background:var(--brand-blue);
       color:#fff;
       box-shadow:0 18px 40px rgba(3,78,162,0.18);
     }
     .btnPrimary:hover{filter:brightness(.97); transform:translateY(-1px)}
+
     .btnGhost{
       background:#fff;
       color:#0f2f62;
@@ -148,599 +359,235 @@
       box-shadow:0 12px 26px rgba(3,78,162,0.08);
     }
     .btnGhost:hover{transform:translateY(-1px)}
-    .heroRight{
-      border-radius:var(--radius-xl);
-      overflow:hidden;
-      position:relative;
-      border:1px solid var(--border);
-      box-shadow:var(--shadow);
-      min-height:360px;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.32), rgba(0,0,0,0.10)),
-        url("/assets/images/EE-Assets-24-Homepage-hero-1.jpg") center/cover no-repeat;
-    }
-    .heroRightBadge{
-      position:absolute;
-      left:16px; right:16px; bottom:16px;
-      padding:12px 12px;
-      border-radius:16px;
-      background:rgba(255,255,255,0.14);
-      border:1px solid rgba(255,255,255,0.22);
-      backdrop-filter:saturate(140%) blur(10px);
-      color:#fff;
-      box-shadow:0 20px 60px rgba(0,0,0,0.20);
-    }
-    .heroRightBadge strong{
-      display:block;
+
+    .statusPill{
+      display:none;
+      margin-top:14px;
+      width:fit-content;
+      padding:9px 12px;
+      border-radius:999px;
       font-weight:900;
-      letter-spacing:-0.02em;
-      margin-bottom:4px;
-    }
-    .heroRightBadge span{
-      display:block;
-      opacity:.92;
-      line-height:1.4;
-      font-size:13.5px;
-    }
-
-    /* HOW IT WORKS */
-    .hTitle{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      color:var(--brand-blue);
-      font-size:24px;
-      margin:0 0 10px;
-    }
-    .hSub{
-      margin:0;
-      color:#2a2f36;
-      line-height:1.7;
-      max-width:85ch;
-      font-size:15.8px;
-    }
-    .cards3{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:16px;
-      margin-top:18px;
-    }
-    .miniCard{
-      padding:18px;
-      border-radius:20px;
-      background:#fff;
-      border:1px solid var(--border);
-      box-shadow:var(--shadowSoft);
-      min-height:180px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-    .miniCard h3{
-      margin:0;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      color:#0f2f62;
-      font-size:17px;
-    }
-    .miniCard p{
-      margin:0;
-      color:#2a2f36;
-      line-height:1.65;
-      font-size:14.6px;
-      opacity:.96;
-      flex:1;
-    }
-    .miniCard a{
-      color:var(--brand-blue);
-      font-weight:900;
-      font-size:13.5px;
-      width:max-content;
-    }
-
-    /* REGIONS STRIP */
-    .regionGrid{
-      display:grid;
-      grid-template-columns:repeat(4, 1fr);
-      gap:16px;
-      margin-top:18px;
-    }
-    .regionCard{
-      overflow:hidden;
-      border-radius:20px;
-      border:1px solid var(--border);
-      box-shadow:var(--shadowSoft);
-      background:#fff;
-      transition:transform .18s ease, box-shadow .18s ease;
-      min-height:250px;
-      display:flex;
-      flex-direction:column;
-    }
-    .regionCard:hover{
-      transform:translateY(-4px);
-      box-shadow:0 26px 70px rgba(0,0,0,0.12);
-    }
-    .regionImg{
-      height:140px;
-      background:#eef2f7;
-      background-size:cover;
-      background-position:center;
-    }
-    .regionBody{
-      padding:14px 14px 16px;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      flex:1;
-    }
-    .regionBody h4{
-      margin:0;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      color:#0f2f62;
-      font-size:16px;
-    }
-    .regionBody p{
-      margin:0;
-      color:#2a2f36;
-      line-height:1.55;
-      font-size:13.8px;
-      opacity:.95;
-      flex:1;
-    }
-    .regionBody .go{
-      font-weight:900;
-      color:var(--brand-blue);
-      font-size:13.5px;
-      width:max-content;
-    }
-
-    /* VIDEO BAND */
-    .videoBand{
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      border:1px solid rgba(3,78,162,0.12);
-      border-radius:var(--radius-xl);
-      padding:18px;
-      box-shadow:var(--shadowSoft);
-    }
-    .videoGrid{
-      display:grid;
-      grid-template-columns:1.2fr 0.8fr;
-      gap:18px;
-      align-items:stretch;
-    }
-    .embed{
-      border-radius:18px;
-      overflow:hidden;
-      border:0;                 /* remove any border */
-      outline:0;                /* remove any outline */
-      box-shadow:none;          /* remove any shadow */
-      background:transparent;   /* avoid black frame */
-      position:relative;
-      aspect-ratio:16/9;
-    }
-    .embed iframe{
-      width:100%;
-      height:100%;
-      border:0 !important;
-      outline:0 !important;
-      display:block;
-      background:transparent;
-    }
-    .videoCopy{
-      background:#fff;
-      border-radius:18px;
-      border:1px solid var(--border);
-      padding:18px;
-      box-shadow:0 16px 45px rgba(3,78,162,0.10);
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-    .videoCopy h3{
-      margin:0;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      color:#0f2f62;
-      font-size:18px;
-    }
-    .videoCopy p{
-      margin:0;
-      color:#2a2f36;
-      line-height:1.65;
-      font-size:14.6px;
-      opacity:.96;
-      flex:1;
-    }
-    .videoCopy .row{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:4px;
-    }
-
-    /* ACCESS SECTION */
-    .accessGrid{
-      display:grid;
-      grid-template-columns:1.05fr 0.95fr;
-      gap:18px;
-      margin-top:18px;
-      align-items:start;
-    }
-    .accessCard{
-      padding:20px;
-      border-radius:22px;
-      background:#fff;
-      border:1px solid var(--border);
-      box-shadow:var(--shadowSoft);
-    }
-    .bullets{
-      margin:0;
-      padding-left:18px;
-      line-height:1.75;
-      color:#24324a;
-      font-size:14.8px;
-    }
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(2, 1fr);
-      gap:12px;
-    }
-    .stat{
-      border-radius:18px;
-      padding:14px;
-      border:1px solid rgba(3,78,162,0.14);
-      background:rgba(3,78,162,0.06);
-    }
-    .stat strong{
-      display:block;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      color:#0f2f62;
-      font-size:18px;
-      margin-bottom:4px;
-    }
-    .stat span{
-      display:block;
-      color:#24324a;
-      opacity:.92;
-      font-weight:700;
-      font-size:12.8px;
-      line-height:1.4;
-    }
-
-    /* TRUST + CTA */
-    .trust{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:14px;
-      padding:22px;
-    }
-    .trust p{margin:0; line-height:1.75; color:#2a2f36; font-size:15.2px; max-width:90ch}
-    .ctaBand{
-      margin-top:18px;
-      border-radius:var(--radius-xl);
-      border:1px solid rgba(3,78,162,0.14);
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      padding:20px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-      box-shadow:var(--shadowSoft);
-    }
-    .ctaBand h3{
-      margin:0;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      color:#0f2f62;
-      font-size:18px;
-    }
-    .ctaBand p{
-      margin:6px 0 0;
-      color:#2a2f36;
-      opacity:.95;
-      line-height:1.6;
-      font-size:14.4px;
-      max-width:70ch;
-    }
-    .ctaLeft{min-width:260px; flex:1}
-    .ctaRight{display:flex; gap:10px; flex-wrap:wrap}
-
-    /* ECUADOR TOURISM LOGO STRIP */
-    .tourismStrip{
-      margin-top:26px;
-      border-top:1px solid rgba(0,0,0,0.06);
-      padding-top:18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-    .tourismStrip .note{
-      color:#24324a;
-      opacity:.85;
-      font-weight:700;
       font-size:13px;
-      line-height:1.5;
-      max-width:78ch;
-    }
-    .tourismLogo{
-      width:220px;
-      height:64px;
-      border-radius:14px;
-      border:1px dashed rgba(3,78,162,0.25);
-      background:rgba(255,255,255,0.6);
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      border:1px solid rgba(3,78,162,.18);
+      background:rgba(3,78,162,.06);
       color:#0f2f62;
-      font-weight:900;
-      font-size:12.5px;
-      letter-spacing:0.02em;
-      overflow:hidden;
     }
-    .tourismLogo img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      padding:8px 10px;
+    .statusPill.show{ display:inline-flex; }
+    .statusPill.error{
+      border-color:rgba(180,35,24,.22);
+      background:rgba(180,35,24,.06);
+      color:#7a1a14;
     }
 
-    /* MOBILE */
-    @media(max-width:950px){
-      .heroShell{grid-template-columns:1fr}
-      .heroLeft{min-height:auto}
-      .heroRight{min-height:320px}
-      .cards3{grid-template-columns:1fr}
-      .regionGrid{grid-template-columns:1fr}
-      .videoGrid{grid-template-columns:1fr}
-      .accessGrid{grid-template-columns:1fr}
-      .heroTitle{max-width:none}
-      .heroTitle .line2{max-width:none}
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      .btn, .regionCard{transition:none !important}
+    /* ===== MOBILE ===== */
+    @media(max-width:980px){
+      .content-grid{grid-template-columns:1fr}
+      .grid2{grid-template-columns:1fr}
     }
   </style>
 </head>
-
 <body>
   <div id="siteHeader"></div>
+  <main class="wrap">
+    <h1>Contact</h1>
+    <p class="lede">
+      Want to collaborate, feature an experience, or be part of our future newsletter and regional guides?
+      Share a short note and we will route it to the right place.
+    </p>
+<section class="content-grid" aria-label="Contact content">
+  <div class="card">
+    <p>
+      Experience Ecuador is a curated travel hub built to make planning feel simple, clear, and inspiring.
+      If you represent a lodge, restaurant, tour operator, retreat, guide, or local business, we would love to hear from you.
+    </p>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero" aria-label="Homepage hero">
-      <div class="wrap">
-        <div class="heroShell">
-          <div class="heroLeft">
-            <div class="kicker">Plan Ecuador with Confidence</div>
-
-            <h1 class="heroTitle">
-              Discover Ecuador,<span class="line2">one region and experience at a time</span>
-            </h1>
-
-            <p class="heroLead">
-              Experience Ecuador helps you explore the country by region, travel style, and pace.
-              Build a realistic plan for the Andes, Amazon, Coast, and Galapagos without turning your trip into a checklist.
-            </p>
-
-            <div class="heroActions">
-              <a class="btn btnPrimary" href="/trip-builder/">Start Planning</a>
-              <a class="btn btnGhost" href="/regions/">Explore Regions</a>
-            </div>
-          </div>
-
-          <div class="heroRight" role="img" aria-label="Ecuador landscape hero image">
-            <div class="heroRightBadge">
-              <strong>Built for clarity, not noise</strong>
-              <span>Practical planning across regions, with experience-led suggestions and realistic pacing.</span>
-            </div>
-          </div>
+    <div class="info-item">
+      <div class="label">Partnership Interests</div>
+      <div class="partners-lines" aria-label="Partnership interests list">
+        <div><strong>Lodging</strong> • boutique hotels, eco-lodges, haciendas, retreats</div>
+        <div><strong>Experiences</strong> • tours, excursions, guides, adventure operators</div>
+        <div><strong>Food</strong> • restaurants, culinary experiences, coffee and cacao</div>
+        <div class="muted">
+          Include your location, website, and the best contact person. If you have photos or a media kit, add a link.
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- HOW IT WORKS -->
-    <section class="section" aria-label="How the site works">
-      <div class="wrap">
-        <h2 class="hTitle">How This Site Works</h2>
-        <p class="hSub">
-          Start from the big decision first. Pick a region. Choose an experience style. Then build a trip that fits your time.
-        </p>
+    <div class="formWrap" aria-label="Contact form">
+      <h2 class="formTitle">Send a Note</h2>
+      <p class="formNote">
+        For trip questions or partnerships, this form goes directly to our team.
+        Fields marked <span class="req">*</span> are required.
+      </p>
 
-        <div class="cards3" style="margin-top:18px;">
-          <div class="miniCard">
-            <h3>Plan by Region</h3>
-            <p>Andes, Amazon, Coast, and Galapagos. Each region has a different rhythm. We help you match place and pace.</p>
-            <a href="/regions/" aria-label="Explore regions">Explore Regions</a>
+      <form method="POST" action="https://script.google.com/macros/s/AKfycbwkEieBoxiVmuSVQi-KXrMOtt875Rwx_bdOgEHI4kWcI-w5IUGeKSiH5BmxZbVmA5Qj/exec">
+        <input type="hidden" name="status" value="New">
+        <input type="hidden" name="language" value="en">
+        <input type="hidden" name="redirect_to" value="/contact/?submitted=1">
+
+        <div class="grid2">
+          <div class="field">
+            <label for="first_name">First Name <span class="req">*</span></label>
+            <input class="input" id="first_name" name="first_name" type="text" autocomplete="given-name" required>
           </div>
 
-          <div class="miniCard">
-            <h3>Choose Experiences</h3>
-            <p>Wildlife, culture, adventure, relaxation, and food. Mix what matters and ignore the rest.</p>
-            <a href="/experiences/" aria-label="Explore experiences">Explore Experiences</a>
-          </div>
-
-          <div class="miniCard">
-            <h3>Build Your Trip</h3>
-            <p>Use the Trip Builder to shape time-based, realistic travel days that stay flexible.</p>
-            <a href="/trip-builder/" aria-label="Open trip builder">Open Trip Builder</a>
+          <div class="field">
+            <label for="last_name">Last Name <span class="req">*</span></label>
+            <input class="input" id="last_name" name="last_name" type="text" autocomplete="family-name" required>
           </div>
         </div>
+
+        <div class="field">
+          <label for="email">Email <span class="req">*</span></label>
+          <input class="input" id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input class="input" id="phone" name="phone" type="tel" autocomplete="tel">
+        </div>
+
+        <div class="field">
+          <label for="interests">Interests <span class="req">*</span></label>
+          <select class="select" id="interests" name="interests" required>
+            <option value="" selected disabled>Select an option</option>
+            <option>Trip Planning</option>
+            <option>Exploring</option>
+            <option>Partnerships</option>
+            <option>Media</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="notes">Notes</label>
+          <textarea class="textarea" id="notes" name="notes" placeholder="Share a quick message, plus any links (website, media kit, itinerary ideas, etc.)"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="how_did_you_hear_about_us">How Did You Hear About Us <span class="req">*</span></label>
+          <select class="select" id="how_did_you_hear_about_us" name="how_did_you_hear_about_us" required>
+            <option value="" selected disabled>Select an option</option>
+            <option>Google</option>
+            <option>Social Media</option>
+            <option>Friend / Referral</option>
+            <option>Newsletter</option>
+            <option>Partner</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="actionsRow">
+          <button class="btn btnPrimary" type="submit">Submit</button>
+          <button class="btn btnGhost" type="reset">Reset</button>
+          <div class="statusPill" id="formStatusPill" role="status" aria-live="polite"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <aside class="side-stack" aria-label="Contact side content">
+    <div class="mini">
+      <h3>Reach Us</h3>
+      <p>Send partnerships, features, and collaboration inquiries here.</p>
+
+      <div class="link-list" aria-label="Email">
+        <div class="value">
+          <a class="email-link" href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
+          <button class="copy-icon-btn" id="copyContactEmail" type="button" aria-label="Copy email">
+            <svg class="copy-ico" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V9z"></path>
+              <path d="M7 15H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div class="copy-toast" id="contactCopyToast" role="status" aria-live="polite">Copied</div>
       </div>
-    </section>
+    </div>
 
-    <!-- FEATURED REGIONS -->
-    <section class="section" aria-label="Featured regions">
-      <div class="wrap">
-        <h2 class="hTitle">Featured Regions</h2>
-        <p class="hSub">Four regions. Four completely different trips. Start with the one that fits your style.</p>
+    <div class="mini">
+      <h3>Related Pages</h3>
+      <p>Helpful links for policies and site details.</p>
 
-        <div class="regionGrid">
-          <a class="regionCard" href="/regions/galapagos/" aria-label="Explore Galapagos region">
-            <div class="regionImg" style="background-image:url('/assets/images/EE-Assets-25-Homepage-card-galapagos.jpg');"></div>
-            <div class="regionBody">
-              <h4>Galapagos</h4>
-              <p>Conservation-first travel with iconic wildlife and slow island days.</p>
-              <div class="go">Explore Galapagos</div>
-            </div>
-          </a>
-
-          <a class="regionCard" href="/regions/coast/" aria-label="Explore Coast region">
-            <div class="regionImg" style="background-image:url('/assets/images/EE-Assets-26-Homepage-card-costa.jpg');"></div>
-            <div class="regionBody">
-              <h4>Coast</h4>
-              <p>Beach towns, food culture, warm weather, and coastal rhythm.</p>
-              <div class="go">Explore Coast</div>
-            </div>
-          </a>
-
-          <a class="regionCard" href="/regions/andes/" aria-label="Explore Andes region">
-            <div class="regionImg" style="background-image:url('/assets/images/EE-Assets-27-Homepage-card-andes.jpg');"></div>
-            <div class="regionBody">
-              <h4>Andes</h4>
-              <p>High-altitude cities, markets, heritage towns, and dramatic landscapes.</p>
-              <div class="go">Explore Andes</div>
-            </div>
-          </a>
-
-          <a class="regionCard" href="/regions/amazon/" aria-label="Explore Amazon region">
-            <div class="regionImg" style="background-image:url('/assets/images/EE-Assets-28-Homepage-card-amazon.jpg');"></div>
-            <div class="regionBody">
-              <h4>Amazon</h4>
-              <p>Wildlife, rivers, rainforest lodges, and deep nature immersion.</p>
-              <div class="go">Explore Amazon</div>
-            </div>
-          </a>
-        </div>
+      <div class="link-list" aria-label="Related pages">
+        <a class="pill-link" href="/faq/">FAQ <span>Common Questions</span></a>
+        <a class="pill-link" href="/privacy-policy/">Privacy Policy <span>How We Handle Data</span></a>
+        <a class="pill-link" href="/terms/">Terms &amp; Conditions <span>General Terms</span></a>
+        <a class="pill-link" href="/terms-of-service/">Terms of Service <span>Service Rules</span></a>
       </div>
-    </section>
+    </div>
 
-    <!-- VIDEO BAND -->
-    <section class="section" aria-label="Planning video">
-      <div class="wrap">
-        <div class="videoBand">
-          <div class="videoGrid">
-            <div class="embed" aria-label="YouTube video embed">
-              <iframe
-                src="https://www.youtube.com/embed/l9Ol9s-lbAY"
-                title="This is why Ecuador"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
-            </div>
-
-            <div class="videoCopy">
-              <h3>See How to Plan Ecuador the Right Way</h3>
-              <p>
-                Ecuador is compact but wildly diverse. This short video explains how to think in regions, time, and experiences
-                so your trip flows naturally instead of feeling rushed.
-              </p>
-              <div class="row">
-                <a class="btn btnPrimary" href="/trip-builder/">Try Trip Builder</a>
-                <a class="btn btnGhost" href="/regions/">Explore Regions</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHAT YOU CAN ACCESS -->
-    <section class="section" aria-label="What you can access on the site">
-      <div class="wrap">
-        <h2 class="hTitle">What You Can Access on This Site</h2>
-        <p class="hSub">
-          Everything here is designed to help you make better travel decisions, faster. No filler. No overwhelm.
-        </p>
-
-        <div class="accessGrid">
-          <div class="accessCard">
-            <h3 style="margin:0 0 10px; font-family:Montserrat,Inter,sans-serif; font-weight:800; letter-spacing:-0.02em; color:#0f2f62; font-size:18px;">
-              Planning Building Blocks
-            </h3>
-            <ul class="bullets">
-              <li>Region overviews with practical travel logic</li>
-              <li>Experience pages that help you choose what matters</li>
-              <li>Time-based suggestions for realistic trip pacing</li>
-              <li>Local context that helps you avoid common mistakes</li>
-              <li>Visual guides and curated highlights as the site grows</li>
-            </ul>
-          </div>
-
-          <div class="accessCard">
-            <h3 style="margin:0 0 12px; font-family:Montserrat,Inter,sans-serif; font-weight:800; letter-spacing:-0.02em; color:#0f2f62; font-size:18px;">
-              Snapshot
-            </h3>
-            <div class="stats">
-              <div class="stat">
-                <strong>4</strong>
-                <span>Core regions with distinct travel styles</span>
-              </div>
-              <div class="stat">
-                <strong>6+</strong>
-                <span>Experience categories to mix and match</span>
-              </div>
-              <div class="stat">
-                <strong>Trip Builder</strong>
-                <span>Time-based planning flow (no checklist travel)</span>
-              </div>
-              <div class="stat">
-                <strong>Local-Aware</strong>
-                <span>Built for clarity and realistic pacing</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card trust" style="margin-top:18px;">
-          <h2 class="hTitle" style="margin:0;">Built for Travelers Who Want Clarity</h2>
-          <p>
-            Experience Ecuador is a planning layer, not a booking funnel. The goal is simple: help you match regions, time, and experiences
-            so your trip feels smooth, confident, and worth the flight.
-          </p>
-
-          <div class="ctaBand" aria-label="Primary call to action">
-            <div class="ctaLeft">
-              <h3>Start Exploring Ecuador with Confidence</h3>
-              <p>Choose a region, then shape your plan around experiences and time.</p>
-            </div>
-            <div class="ctaRight">
-              <a class="btn btnPrimary" href="/regions/">Explore Regions</a>
-              <a class="btn btnGhost" href="/trip-builder/">Start Planning</a>
-            </div>
-          </div>
-
-          <div class="tourismStrip" aria-label="Ecuador tourism logo placement">
-            <div class="note">
-              Supporting responsible travel and regional discovery across Ecuador.
-            </div>
-
-            <div class="tourismLogo" aria-label="Ecuador Tourism logo">
-              <img src="/assets/images/EE-Assets-Ecuador-Tourism-Logo-29.jpg" alt="Ecuador Tourism logo" />
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
+    <div class="side-image" aria-label="Contact image">
+      <img src="/assets/images/EE-contact-image-02.jpg" alt="Ecuador travel collage">
+    </div>
+  </aside>
+</section>
   </main>
-
   <div id="siteFooter"></div>
+  <script>
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
 
+    // Copy email icon button
+    (function(){
+      const email = 'info@experienceecuador.com';
+      const btn = document.getElementById('copyContactEmail');
+      const toast = document.getElementById('contactCopyToast');
+      if(!btn) return;
+
+      function showCopied(){
+        btn.classList.add('copied');
+        if(toast) toast.classList.add('show');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          if(toast) toast.classList.remove('show');
+        }, 1600);
+      }
+
+      btn.addEventListener('click', async () => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(email);
+            showCopied();
+            return;
+          }
+          const ta = document.createElement('textarea');
+          ta.value = email;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          ta.style.top = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showCopied();
+        } catch (e) {}
+      });
+    })();
+
+    // Form status pill based on redirect query
+    (function(){
+      const pill = document.getElementById('formStatusPill');
+      if(!pill) return;
+
+      const qs = new URLSearchParams(window.location.search);
+      const submitted = qs.get('submitted');
+      const error = qs.get('error');
+
+      if(submitted === '1'){
+        pill.textContent = 'Submitted. Thank you.';
+        pill.classList.add('show');
+      } else if(error === '1'){
+        pill.textContent = 'Something went wrong. Please try again.';
+        pill.classList.add('show','error');
+      }
+    })();
+  </script>
   <script src="/assets/js/site.js"></script>
-
   <script>
     (function(){
       async function inject(id, url){
