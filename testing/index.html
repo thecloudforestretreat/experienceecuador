@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact | Experience Ecuador</title>
+  <title>Contacto | Experience Ecuador</title>
   <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -39,6 +39,7 @@
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
+    /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
@@ -61,7 +62,10 @@
       font-size:16.8px;
     }
 
-    .lede{ margin-top:0; max-width:80ch; }
+    .lede{
+      margin-top:0;
+      max-width:80ch;
+    }
 
     .content-grid{
       display:grid;
@@ -96,6 +100,67 @@
       color:#0f2f62;
       letter-spacing:.01em;
     }
+
+    .value{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .value a{
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-size:15px;
+      font-weight:600;
+      color:#162b55;
+    }
+
+    /* Copy icon button */
+    .copy-icon-btn{
+      width:36px;
+      height:36px;
+      border-radius:12px;
+      border:1px solid rgba(3,78,162,.22);
+      background:#fff;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+      flex:0 0 auto;
+    }
+    .copy-icon-btn:hover{ background:rgba(3,78,162,.06); }
+    .copy-icon-btn:active{ transform:scale(0.98); }
+    .copy-icon-btn.copied{
+      background:rgba(3,78,162,.10);
+      border-color:rgba(3,78,162,.35);
+    }
+
+    .copy-ico{
+      width:18px;
+      height:18px;
+      fill:none;
+      stroke:#0f2f62;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .copy-toast{
+      display:none;
+      margin-top:10px;
+      width:fit-content;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,.08);
+      border:1px solid rgba(3,78,162,.18);
+      color:#0f2f62;
+      font-weight:800;
+      font-size:13px;
+    }
+    .copy-toast.show{ display:inline-flex; }
 
     .partners-lines{
       display:flex;
@@ -181,67 +246,11 @@
       box-shadow:0 18px 60px rgba(0,0,0,.14);
     }
 
-    .side-image img{ width:100%; height:auto; display:block; }
-
-    /* Copy icon button */
-    .value{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:10px;
+    .side-image img{
+      width:100%;
+      height:auto;
+      display:block;
     }
-    .value a{
-      text-decoration:underline;
-      text-underline-offset:3px;
-      font-size:15px;
-      font-weight:600;
-      color:#162b55;
-    }
-
-    .copy-icon-btn{
-      width:36px;
-      height:36px;
-      border-radius:12px;
-      border:1px solid rgba(3,78,162,.22);
-      background:#fff;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      transition:transform .12s ease, background .12s ease, border-color .12s ease;
-      flex:0 0 auto;
-    }
-    .copy-icon-btn:hover{ background:rgba(3,78,162,.06); }
-    .copy-icon-btn:active{ transform:scale(0.98); }
-    .copy-icon-btn.copied{
-      background:rgba(3,78,162,.10);
-      border-color:rgba(3,78,162,.35);
-    }
-
-    .copy-ico{
-      width:18px;
-      height:18px;
-      fill:none;
-      stroke:#0f2f62;
-      stroke-width:2;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
-
-    .copy-toast{
-      display:none;
-      margin-top:10px;
-      width:fit-content;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,.08);
-      border:1px solid rgba(3,78,162,.18);
-      color:#0f2f62;
-      font-weight:800;
-      font-size:13px;
-    }
-    .copy-toast.show{ display:inline-flex; }
 
     /* ===== FORM ===== */
     .formWrap{
@@ -267,6 +276,14 @@
       max-width:none;
     }
 
+    .help{
+      margin-top:2px;
+      color:var(--slate);
+      font-size:13.2px;
+      line-height:1.45;
+      font-weight:600;
+    }
+
     form{ margin:0; }
 
     .grid2{
@@ -283,14 +300,6 @@
       font-size:13px;
       color:#0f2f62;
       letter-spacing:.01em;
-    }
-
-    .help{
-      margin-top:2px;
-      color:var(--slate);
-      font-size:13.2px;
-      line-height:1.45;
-      font-weight:600;
     }
 
     .input, .select, .textarea{
@@ -434,6 +443,7 @@
       clip-path:inset(50%);
     }
 
+    /* ===== MOBILE ===== */
     @media(max-width:980px){
       .content-grid{grid-template-columns:1fr}
       .grid2{grid-template-columns:1fr}
@@ -444,125 +454,126 @@
 <body>
   <div id="siteHeader"></div>
   <main class="wrap">
-    <h1>Contact</h1>
+    <h1>Contacto</h1>
     <p class="lede">
-      Want to collaborate, feature an experience, or be part of our future newsletter and regional guides?
-      Share a short note and we will route it to the right place.
+      ¿Quieres colaborar, destacar una experiencia o formar parte de nuestro boletín y guías regionales?
+      Comparte una nota breve y la enviaremos al lugar correcto.
     </p>
-<section class="content-grid" aria-label="Contact content">
+<section class="content-grid" aria-label="Contenido de contacto">
   <div class="card">
     <p>
-      Experience Ecuador is a curated travel hub built to make planning feel simple, clear, and inspiring.
-      If you represent a lodge, restaurant, tour operator, retreat, guide, or local business, we would love to hear from you.
+      Experience Ecuador es un hub de viajes curado para que planificar se sienta simple, claro e inspirador.
+      Si representas un lodge, restaurante, operador turístico, retiro, guía o negocio local, nos encantaría escucharte.
     </p>
 
     <div class="info-item">
-      <div class="label">Partnership Interests</div>
-      <div class="partners-lines" aria-label="Partnership interests list">
-        <div><strong>Lodging</strong> • boutique hotels, eco-lodges, haciendas, retreats</div>
-        <div><strong>Experiences</strong> • tours, excursions, guides, adventure operators</div>
-        <div><strong>Food</strong> • restaurants, culinary experiences, coffee and cacao</div>
+      <div class="label">Intereses de colaboración</div>
+      <div class="partners-lines" aria-label="Lista de intereses de colaboración">
+        <div><strong>Alojamiento</strong> • hoteles boutique, eco-lodges, haciendas, retiros</div>
+        <div><strong>Experiencias</strong> • tours, excursiones, guías, operadores de aventura</div>
+        <div><strong>Gastronomía</strong> • restaurantes, experiencias culinarias, café y cacao</div>
         <div class="muted">
-          Include your location, website, and the best contact person. If you have photos or a media kit, add a link.
+          Incluye tu ubicación, sitio web y el mejor contacto. Si tienes fotos o un media kit, agrega un enlace.
         </div>
       </div>
     </div>
 
-    <div class="formWrap" aria-label="Contact form">
-      <h2 class="formTitle">Send a Note</h2>
+    <div class="formWrap" aria-label="Formulario de contacto">
+      <h2 class="formTitle">Enviar un mensaje</h2>
       <p class="formNote">
-        For trip questions or partnerships, this form goes directly to our team.<br>
-        Fields marked <span class="req">*</span> are required.
+        Para preguntas de viaje o alianzas, este formulario llega directamente a nuestro equipo.<br>
+        Los campos marcados con <span class="req">*</span> son obligatorios.
       </p>
 
       <form id="eeContactForm" method="POST" target="ee_hidden_iframe" action="https://script.google.com/macros/s/AKfycbwkEieBoxiVmuSVQi-KXrMOtt875Rwx_bdOgEHI4kWcI-w5IUGeKSiH5BmxZbVmA5Qj/exec">
         <input type="hidden" name="status" value="New">
-        <input type="hidden" name="language" value="en">
+        <input type="hidden" name="language" value="es">
 
-        <!-- We store WhatsApp-compatible E.164 style in this hidden field (e.g., +17862057920) -->
+        <!-- Guardamos el teléfono como +<código><número> (compatible con WhatsApp) -->
         <input type="hidden" id="phone_full" name="phone" value="">
 
         <div class="grid2">
           <div class="field">
-            <label for="first_name">First Name <span class="req">*</span></label>
+            <label for="first_name">Nombre <span class="req">*</span></label>
             <input class="input" id="first_name" name="first_name" type="text" autocomplete="given-name" required>
           </div>
 
           <div class="field">
-            <label for="last_name">Last Name <span class="req">*</span></label>
+            <label for="last_name">Apellido <span class="req">*</span></label>
             <input class="input" id="last_name" name="last_name" type="text" autocomplete="family-name" required>
           </div>
         </div>
 
         <div class="field">
-          <label for="email">Email <span class="req">*</span></label>
+          <label for="email">Correo electrónico <span class="req">*</span></label>
           <input class="input" id="email" name="email" type="email" autocomplete="email" required>
         </div>
 
         <div class="field">
-          <label>Phone Number</label>
-          <div class="help">Include country code (we store it with + for WhatsApp compatibility).</div>
+          <label>Número de teléfono</label>
+          <div class="help">Incluye el código de país. Lo guardamos con + para compatibilidad con WhatsApp.</div>
 
           <div class="phoneRow" style="margin-top:8px;">
-            <div class="ccWrap" aria-label="Country code">
+            <div class="ccWrap" aria-label="Código de país">
               <span class="ccPlus">+</span>
-              <input class="ccInput" id="phone_cc" type="text" inputmode="numeric" autocomplete="tel-country-code" aria-label="Country code">
+              <input class="ccInput" id="phone_cc" type="text" inputmode="numeric" autocomplete="tel-country-code" aria-label="Código de país">
             </div>
-            <input class="input numInput" id="phone_num" type="text" inputmode="tel" autocomplete="tel-national" aria-label="Phone number">
+            <input class="input numInput" id="phone_num" type="text" inputmode="tel" autocomplete="tel-national" aria-label="Número de teléfono">
           </div>
         </div>
 
         <div class="field">
-          <label for="interests">Interests <span class="req">*</span></label>
+          <label for="interests">Intereses <span class="req">*</span></label>
           <select class="select" id="interests" name="interests" required>
-            <option value="" selected disabled>Select an option</option>
-            <option>Trip Planning</option>
-            <option>Exploring</option>
-            <option>Partnerships</option>
-            <option>Media</option>
-            <option>Other</option>
+            <option value="" selected disabled>Selecciona una opción</option>
+            <option>Planificación de viaje</option>
+            <option>Explorar</option>
+            <option>Alianzas</option>
+            <option>Medios</option>
+            <option>Otro</option>
           </select>
         </div>
 
         <div class="field">
-          <label for="notes">Notes</label>
-          <textarea class="textarea" id="notes" name="notes" placeholder="Share a quick message, plus any links (website, media kit, itinerary ideas, etc.)"></textarea>
+          <label for="notes">Notas</label>
+          <textarea class="textarea" id="notes" name="notes" placeholder="Comparte un mensaje breve y cualquier enlace (sitio web, media kit, ideas de itinerario, etc.)"></textarea>
         </div>
 
         <div class="field">
-          <label for="how_did_you_hear_about_us">How Did You Hear About Us <span class="req">*</span></label>
+          <label for="how_did_you_hear_about_us">¿Cómo supiste de nosotros? <span class="req">*</span></label>
           <select class="select" id="how_did_you_hear_about_us" name="how_did_you_hear_about_us" required>
-            <option value="" selected disabled>Select an option</option>
+            <option value="" selected disabled>Selecciona una opción</option>
             <option>Google</option>
-            <option>Social Media</option>
-            <option>Friend / Referral</option>
-            <option>Newsletter</option>
-            <option>Partner</option>
-            <option>Other</option>
+            <option>Redes sociales</option>
+            <option>Amigo / Referido</option>
+            <option>Boletín</option>
+            <option>Socio</option>
+            <option>Otro</option>
           </select>
         </div>
 
         <div class="actionsRow">
-          <button class="btn btnPrimary" type="submit">Submit</button>
-          <button class="btn btnGhost" type="reset">Reset</button>
+          <button class="btn btnPrimary" type="submit">Enviar</button>
+          <button class="btn btnGhost" type="reset">Restablecer</button>
         </div>
 
         <div class="statusPill" id="formStatusPill" role="status" aria-live="polite"></div>
       </form>
 
-      <iframe class="hiddenFrame" name="ee_hidden_iframe" title="Hidden submission frame"></iframe>
+      <iframe class="hiddenFrame" name="ee_hidden_iframe" title="Marco oculto de envío"></iframe>
     </div>
   </div>
 
-  <aside class="side-stack" aria-label="Contact side content">
+  <aside class="side-stack" aria-label="Contenido lateral de contacto">
+    <!-- KEEP EMAIL ONLY ON RIGHT SIDE ABOVE IMAGE -->
     <div class="mini">
-      <h3>Reach Us</h3>
-      <p>Send partnerships, features, and collaboration inquiries here.</p>
+      <h3>Escríbenos</h3>
+      <p>Envía aquí consultas de alianzas, features y colaboraciones.</p>
 
       <div class="link-list" aria-label="Email">
         <div class="value">
           <a class="email-link" href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
-          <button class="copy-icon-btn" id="copyContactEmail" type="button" aria-label="Copy email">
+          <button class="copy-icon-btn" id="copyContactEmail" type="button" aria-label="Copiar email">
             <svg class="copy-ico" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M9 9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V9z"></path>
               <path d="M7 15H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
@@ -570,24 +581,24 @@
           </button>
         </div>
 
-        <div class="copy-toast" id="contactCopyToast" role="status" aria-live="polite">Copied</div>
+        <div class="copy-toast" id="contactCopyToast" role="status" aria-live="polite">Copiado</div>
       </div>
     </div>
 
     <div class="mini">
-      <h3>Related Pages</h3>
-      <p>Helpful links for policies and site details.</p>
+      <h3>Páginas relacionadas</h3>
+      <p>Enlaces útiles para políticas y detalles del sitio.</p>
 
-      <div class="link-list" aria-label="Related pages">
-        <a class="pill-link" href="/faq/">FAQ <span>Common Questions</span></a>
-        <a class="pill-link" href="/privacy-policy/">Privacy Policy <span>How We Handle Data</span></a>
-        <a class="pill-link" href="/terms/">Terms &amp; Conditions <span>General Terms</span></a>
-        <a class="pill-link" href="/terms-of-service/">Terms of Service <span>Service Rules</span></a>
+      <div class="link-list" aria-label="Páginas relacionadas">
+        <a class="pill-link" href="/es/faq/">FAQ <span>Preguntas comunes</span></a>
+        <a class="pill-link" href="/es/politica-de-privacidad/">Política de privacidad <span>Cómo manejamos los datos</span></a>
+        <a class="pill-link" href="/es/terminos/">Términos y condiciones <span>Términos generales</span></a>
+        <a class="pill-link" href="/es/terminos-de-servicio/">Términos del servicio <span>Reglas del servicio</span></a>
       </div>
     </div>
 
-    <div class="side-image" aria-label="Contact image">
-      <img src="/assets/images/EE-contact-image-02.jpg" alt="Ecuador travel collage">
+    <div class="side-image" aria-label="Imagen de contacto">
+      <img src="/assets/images/EE-contact-image-02.jpg" alt="Collage de viaje en Ecuador">
     </div>
   </aside>
 </section>
@@ -638,16 +649,16 @@
     })();
 
     // Phone UX:
-    // - Country code field (digits only, no + typed)
-    // - Number field (digits, spaces, dashes allowed)
-    // - Stored value becomes +<countrycode><digits> (E.164-ish) in hidden input "phone"
+    // - Código de país (solo dígitos, sin escribir +)
+    // - Número (dígitos, espacios, guiones)
+    // - Se guarda como +<código><dígitos> en el input oculto "phone"
     (function(){
       const cc = document.getElementById('phone_cc');
       const num = document.getElementById('phone_num');
       const full = document.getElementById('phone_full');
       if(!cc || !num || !full) return;
 
-      // Default to US if user leaves it blank (you can remove this if you want no default)
+      // Default a EE. UU. si el usuario lo deja vacío (puedes quitarlo si prefieres sin valor por defecto)
       cc.value = cc.value || '1';
 
       function digitsOnly(v){ return String(v || '').replace(/\D/g,''); }
@@ -655,7 +666,6 @@
       function formatNationalBasic(v){
         const d = digitsOnly(v);
         if(!d) return '';
-        // Friendly formatting when it looks like a 10-digit number; otherwise leave as grouped digits
         if(d.length <= 3) return d;
         if(d.length <= 6) return d.slice(0,3) + '-' + d.slice(3);
         return d.slice(0,3) + '-' + d.slice(3,6) + '-' + d.slice(6,10) + (d.length > 10 ? ' ' + d.slice(10) : '');
@@ -676,13 +686,12 @@
       }
 
       cc.addEventListener('input', () => {
-        cc.value = digitsOnly(cc.value).slice(0,4); // keep it sane
+        cc.value = digitsOnly(cc.value).slice(0,4);
         updateFull();
       });
 
       num.addEventListener('input', () => {
-        const before = num.value;
-        const formatted = formatNationalBasic(before);
+        const formatted = formatNationalBasic(num.value);
         num.value = formatted;
         updateFull();
       });
@@ -693,20 +702,18 @@
       updateFull();
     })();
 
-    // Submitted confirmation (without leaving the page):
-    // We submit to Apps Script in a hidden iframe, then show a confirmation message immediately.
+    // Submitted confirmation (sin salir de la página)
     (function(){
       const form = document.getElementById('eeContactForm');
       const pill = document.getElementById('formStatusPill');
       if(!form || !pill) return;
 
       form.addEventListener('submit', () => {
-        pill.textContent = 'Submitted. We received your message and will get back to you soon.';
+        pill.textContent = 'Enviado. Recibimos tu mensaje y te responderemos pronto.';
         pill.classList.add('show');
-        // Optional: clear fields after a short moment so it feels confirmed
+
         setTimeout(() => {
           try { form.reset(); } catch(e) {}
-          // keep default country code after reset if it existed
           const cc = document.getElementById('phone_cc');
           if(cc && !cc.value) cc.value = '1';
           const full = document.getElementById('phone_full');
@@ -715,8 +722,8 @@
       });
     })();
   </script>
-  <script src="/assets/js/site.js"></script>
   <script>
+    /* Inject global header/footer first, then load site.js (so nav JS never runs before header exists) */
     (function(){
       async function inject(id, url){
         const el = document.getElementById(id);
@@ -724,8 +731,19 @@
         const res = await fetch(url, { cache: "no-store" });
         el.innerHTML = await res.text();
       }
-      inject("siteHeader", "/assets/includes/header.html");
-      inject("siteFooter", "/assets/includes/footer.html");
+
+      Promise.all([
+        inject("siteHeader", "/assets/includes/header.html"),
+        inject("siteFooter", "/assets/includes/footer.html")
+      ]).then(() => {
+        const s = document.createElement("script");
+        s.src = "/assets/js/site.js";
+        document.body.appendChild(s);
+      }).catch(() => {
+        const s = document.createElement("script");
+        s.src = "/assets/js/site.js";
+        document.body.appendChild(s);
+      });
     })();
   </script>
 </body>
