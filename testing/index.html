@@ -464,7 +464,7 @@
       line-height:1.6;
     }
 
-    /* ===== EMAIL ITINERARY SECTION (NEW) ===== */
+    /* ===== EMAIL ITINERARY SECTION ===== */
     .email-divider{
       margin-top:16px;
       padding-top:16px;
@@ -543,6 +543,7 @@
     }
     .statusPill.show{ display:inline-flex; }
 
+    /* ===== MOBILE: stack layout + reorder sections via markup (itinerary above flights) ===== */
     @media(max-width:900px){
       .hero-banner{min-height:290px}
 
@@ -579,6 +580,7 @@
         text-align:center;
       }
 
+      /* Regions pills: full width across, 4 columns, aligned with Experiences container */
       #regionsPills{
         display:grid;
         grid-template-columns:repeat(4, 1fr);
@@ -611,6 +613,7 @@
 
       .pill-row.experiences-grid{ grid-template-columns:1fr; }
 
+      /* Keep regions in one row on small screens too */
       #regionsPills{
         grid-template-columns:repeat(4, 1fr);
         gap:8px;
@@ -713,7 +716,7 @@
           <h2 class="section-title" style="margin:0 0 12px;">Your Suggested Itinerary</h2>
           <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate Itinerary.”</div>
 
-          <!-- NEW: Email itinerary -->
+          <!-- Email itinerary -->
           <div class="email-divider" aria-label="Email itinerary section">
             <h3 class="email-title">Email this itinerary</h3>
             <p class="email-sub">
@@ -783,8 +786,8 @@
   <div id="siteFooter"></div>
 
   <script>
-    // ===== CONFIG: paste your Apps Script Web App URL here =====
-    const TRIP_EMAIL_WEBAPP_URL = "PASTE_YOUR_WEB_APP_URL_HERE";
+    // ===== CONFIG: your Apps Script Web App URL =====
+    const TRIP_EMAIL_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxUGlWoLwj5wlYXhqNa4fh4FZjBhQr_QOVbA8MhSfJwC_IV_6hqC5_leMG6RskFXTkj/exec";
 
     // ===== TRIP BUILDER =====
     const DATA = { regions: null, experiences: null, blocks: null };
@@ -1343,7 +1346,7 @@
       return t.charAt(0).toUpperCase() + t.slice(1);
     }
 
-    // ===== PLAIN TEXT EMAIL VERSION OF ITINERARY (NEW) =====
+    // ===== PLAIN TEXT EMAIL VERSION OF ITINERARY =====
     function buildItineraryText(plan){
       if (!plan || !plan.length) return "";
 
@@ -1487,7 +1490,6 @@
 
         els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
 
-        // Email button should be disabled until a plan exists
         enableEmailButtonIfReady();
       } catch (e) {
         els.output.innerHTML = "<div class='hint'><strong>Data load error:</strong> " + (e.message || e) + "</div>";
@@ -1538,7 +1540,7 @@
       els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
     });
 
-    // ===== EMAIL SUBMIT (NEW) =====
+    // ===== EMAIL SUBMIT =====
     if (tripEmailEls.form) {
       tripEmailEls.form.addEventListener('submit', async (ev) => {
         ev.preventDefault();
@@ -1575,10 +1577,10 @@
         tripEmailEls.btn.textContent = "Sending...";
 
         try {
+          // IMPORTANT: form-encoded body to avoid Apps Script CORS issues
           const res = await fetch(TRIP_EMAIL_WEBAPP_URL, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
+            body: new URLSearchParams(payload)
           });
 
           const json = await res.json().catch(() => ({}));
@@ -1590,10 +1592,7 @@
 
           setEmailStatus("Sent. Check your inbox in a minute.", "ok");
 
-          // Optional: keep names but clear email
-          try {
-            tripEmailEls.email.value = "";
-          } catch (e) {}
+          try { tripEmailEls.email.value = ""; } catch (e) {}
         } catch (err) {
           setEmailStatus("Network error. Please try again.", "error");
         } finally {
