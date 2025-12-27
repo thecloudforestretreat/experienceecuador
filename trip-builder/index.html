@@ -464,6 +464,85 @@
       line-height:1.6;
     }
 
+    /* ===== EMAIL ITINERARY SECTION ===== */
+    .email-divider{
+      margin-top:16px;
+      padding-top:16px;
+      border-top:1px solid rgba(0,0,0,0.06);
+    }
+
+    .email-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:18px;
+      margin:0 0 6px;
+      color:#0f2f62;
+      letter-spacing:-0.02em;
+    }
+
+    .email-sub{
+      margin:0 0 12px;
+      color:#6E7B8B;
+      font-size:14.6px;
+      line-height:1.55;
+      max-width:none;
+    }
+
+    .email-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr 1.3fr auto;
+      gap:10px;
+      align-items:end;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+      margin:0;
+    }
+
+    .field label{
+      font-weight:800;
+      font-size:13px;
+      color:#0f2f62;
+      letter-spacing:.01em;
+    }
+
+    .input{
+      width:100%;
+      border-radius:14px;
+      border:1px solid rgba(3,78,162,.18);
+      background:#fff;
+      padding:12px 12px;
+      font-size:15px;
+      font-weight:600;
+      color:#162b55;
+      outline:none;
+      box-shadow:0 10px 26px rgba(3,78,162,.06);
+      font-family:inherit;
+      height:44px;
+    }
+
+    .input:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .statusPill{
+      display:none;
+      margin-top:12px;
+      width:fit-content;
+      padding:9px 12px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:13px;
+      border:1px solid rgba(3,78,162,.18);
+      background:rgba(3,78,162,.06);
+      color:#0f2f62;
+    }
+    .statusPill.show{ display:inline-flex; }
+
     /* ===== MOBILE: stack layout + reorder sections via markup (itinerary above flights) ===== */
     @media(max-width:900px){
       .hero-banner{min-height:290px}
@@ -512,6 +591,14 @@
         width:100%;
         text-align:center;
         white-space:nowrap;
+      }
+
+      /* Email form stacks cleanly on mobile */
+      .email-grid{
+        grid-template-columns:1fr;
+      }
+      .email-grid .btn{
+        width:100%;
       }
     }
 
@@ -628,6 +715,37 @@
         <div class="itinerary-shell" aria-label="Itinerary output container">
           <h2 class="section-title" style="margin:0 0 12px;">Your Suggested Itinerary</h2>
           <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate Itinerary.”</div>
+
+          <!-- Email itinerary -->
+          <div class="email-divider" aria-label="Email itinerary section">
+            <h3 class="email-title">Email this itinerary</h3>
+            <p class="email-sub">
+              Generate an itinerary first, then enter your details and we will email it to you.
+            </p>
+
+            <form id="eeTripEmailForm" autocomplete="on">
+              <div class="email-grid">
+                <div class="field">
+                  <label for="tb_first_name">First Name</label>
+                  <input class="input" id="tb_first_name" name="first_name" type="text" autocomplete="given-name" required>
+                </div>
+
+                <div class="field">
+                  <label for="tb_last_name">Last Name</label>
+                  <input class="input" id="tb_last_name" name="last_name" type="text" autocomplete="family-name" required>
+                </div>
+
+                <div class="field">
+                  <label for="tb_email">Email</label>
+                  <input class="input" id="tb_email" name="email" type="email" autocomplete="email" required>
+                </div>
+
+                <button class="btn primary" id="tb_send_btn" type="submit" disabled>Email itinerary</button>
+              </div>
+
+              <div class="statusPill" id="tb_status" role="status" aria-live="polite"></div>
+            </form>
+          </div>
         </div>
       </section>
 
@@ -668,13 +786,18 @@
   <div id="siteFooter"></div>
 
   <script>
+    // ===== CONFIG: your Apps Script Web App URL =====
+    const TRIP_EMAIL_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxUGlWoLwj5wlYXhqNa4fh4FZjBhQr_QOVbA8MhSfJwC_IV_6hqC5_leMG6RskFXTkj/exec";
+
     // ===== TRIP BUILDER =====
     const DATA = { regions: null, experiences: null, blocks: null };
 
     const state = {
       days: 5,
       selectedRegionIds: new Set(),
-      selectedExperienceIds: new Set()
+      selectedExperienceIds: new Set(),
+      lastPlan: null,
+      lastItineraryText: ""
     };
 
     const els = {
@@ -685,6 +808,15 @@
       resetBtn: document.getElementById('resetBtn'),
       output: document.getElementById('output'),
       regionHint: document.getElementById('regionHint')
+    };
+
+    const tripEmailEls = {
+      form: document.getElementById('eeTripEmailForm'),
+      first: document.getElementById('tb_first_name'),
+      last: document.getElementById('tb_last_name'),
+      email: document.getElementById('tb_email'),
+      btn: document.getElementById('tb_send_btn'),
+      status: document.getElementById('tb_status')
     };
 
     const flightEls = {
@@ -703,6 +835,27 @@
         btn: document.getElementById('flightSearchBtnMobile')
       }
     };
+
+    function setEmailStatus(text, kind){
+      if (!tripEmailEls.status) return;
+      tripEmailEls.status.textContent = text;
+      tripEmailEls.status.classList.add('show');
+      tripEmailEls.status.style.borderColor = kind === "error" ? "rgba(180,35,24,.25)" : "rgba(3,78,162,.18)";
+      tripEmailEls.status.style.background = kind === "error" ? "rgba(180,35,24,.06)" : "rgba(3,78,162,.06)";
+      tripEmailEls.status.style.color = kind === "error" ? "#7a1f16" : "#0f2f62";
+    }
+
+    function clearEmailStatus(){
+      if (!tripEmailEls.status) return;
+      tripEmailEls.status.classList.remove('show');
+      tripEmailEls.status.textContent = "";
+    }
+
+    function enableEmailButtonIfReady(){
+      if (!tripEmailEls.btn) return;
+      const ready = !!(state.lastPlan && state.lastItineraryText && state.lastItineraryText.trim().length > 0);
+      tripEmailEls.btn.disabled = !ready;
+    }
 
     function syncFlights(fromSet){
       const d = flightEls.desktop;
@@ -1193,6 +1346,59 @@
       return t.charAt(0).toUpperCase() + t.slice(1);
     }
 
+    // ===== PLAIN TEXT EMAIL VERSION OF ITINERARY =====
+    function buildItineraryText(plan){
+      if (!plan || !plan.length) return "";
+
+      const lines = [];
+      lines.push("Experience Ecuador Trip Builder");
+      lines.push("");
+      lines.push(`Trip length: ${state.days} days`);
+      lines.push(`Regions: ${Array.from(state.selectedRegionIds).map(regionName).join(", ") || "N/A"}`);
+      lines.push(`Experiences: ${Array.from(state.selectedExperienceIds).map(experienceName).join(", ") || "N/A"}`);
+      lines.push("");
+      lines.push("Suggested itinerary");
+      lines.push("");
+
+      plan.forEach(d => {
+        lines.push(`Day ${d.day}: ${regionName(d.region_id)}${d.is_transfer_friendly ? " (transfer-friendly pace)" : ""}`);
+
+        const blocks = Array.isArray(d.blocks) ? d.blocks : [];
+        if (!blocks.length) {
+          lines.push("  - No matching activity blocks found for this region based on your selected experiences.");
+        } else {
+          const ordered = blocks.slice().sort((a,b) => {
+            const ai = TIME_ORDER.includes(a.time_of_day) ? TIME_ORDER.indexOf(a.time_of_day) : 99;
+            const bi = TIME_ORDER.includes(b.time_of_day) ? TIME_ORDER.indexOf(b.time_of_day) : 99;
+            return ai - bi;
+          });
+
+          ordered.forEach(b => {
+            const when = b.time_of_day ? capitalize(b.time_of_day) : "Day";
+            const dur = b.duration_hours ? ` (${b.duration_hours}h)` : "";
+            const loc = b.location_id ? locationName(d.region_id, b.location_id) : "";
+            const metaBits = [];
+            if (loc) metaBits.push(loc);
+            if (dur) metaBits.push(dur.replace(/[()]/g,""));
+            const meta = metaBits.length ? ` | ${metaBits.join(" | ")}` : "";
+            lines.push(`  - ${when}: ${b.title}${meta}`);
+            if (b.summary) lines.push(`    ${String(b.summary).trim()}`);
+          });
+        }
+
+        if (d.optional_add_on) {
+          const dur = d.optional_add_on.duration_hours ? ` (${d.optional_add_on.duration_hours}h)` : "";
+          lines.push(`  Optional add-on: ${d.optional_add_on.title}${dur}`);
+        } else if (typeof d.remaining_hours === "number" && d.remaining_hours >= 2) {
+          lines.push(`  Extra time: about ${Math.round(d.remaining_hours * 10) / 10} hours`);
+        }
+
+        lines.push("");
+      });
+
+      return lines.join("\n").trim();
+    }
+
     // ===== FLIGHTS =====
     const REGION_TO_AIRPORT = {
       andes: "UIO",
@@ -1283,6 +1489,8 @@
         syncFlights("desktop");
 
         els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
+
+        enableEmailButtonIfReady();
       } catch (e) {
         els.output.innerHTML = "<div class='hint'><strong>Data load error:</strong> " + (e.message || e) + "</div>";
       }
@@ -1294,7 +1502,12 @@
 
     els.generateBtn.addEventListener('click', () => {
       const plan = generateItinerary();
+      state.lastPlan = plan;
       renderItinerary(plan);
+
+      state.lastItineraryText = buildItineraryText(plan);
+      enableEmailButtonIfReady();
+      clearEmailStatus();
     });
 
     els.resetBtn.addEventListener('click', () => {
@@ -1317,10 +1530,77 @@
       flightEls.desktop.to.value = "UIO";
       if (flightEls.mobile.to) flightEls.mobile.to.value = "UIO";
 
+      state.lastPlan = null;
+      state.lastItineraryText = "";
+      enableEmailButtonIfReady();
+      clearEmailStatus();
+
       updateHints();
       updateGenerateState();
       els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
     });
+
+    // ===== EMAIL SUBMIT =====
+    if (tripEmailEls.form) {
+      tripEmailEls.form.addEventListener('submit', async (ev) => {
+        ev.preventDefault();
+        clearEmailStatus();
+
+        if (!TRIP_EMAIL_WEBAPP_URL || TRIP_EMAIL_WEBAPP_URL.indexOf("http") !== 0) {
+          setEmailStatus("Missing Web App URL. Paste your Apps Script deployment URL into TRIP_EMAIL_WEBAPP_URL.", "error");
+          return;
+        }
+
+        if (!state.lastPlan || !state.lastItineraryText) {
+          setEmailStatus("Generate an itinerary first, then email it.", "error");
+          return;
+        }
+
+        const payload = {
+          first_name: (tripEmailEls.first.value || "").trim(),
+          last_name: (tripEmailEls.last.value || "").trim(),
+          email: (tripEmailEls.email.value || "").trim(),
+          trip_days: String(state.days || ""),
+          regions: Array.from(state.selectedRegionIds).map(regionName).join(", "),
+          experiences: Array.from(state.selectedExperienceIds).map(experienceName).join(", "),
+          itinerary_text: state.lastItineraryText,
+          page_url: window.location.href,
+          user_agent: navigator.userAgent
+        };
+
+        if (!payload.first_name || !payload.last_name || !payload.email) {
+          setEmailStatus("Please fill first name, last name, and email.", "error");
+          return;
+        }
+
+        tripEmailEls.btn.disabled = true;
+        tripEmailEls.btn.textContent = "Sending...";
+
+        try {
+          // IMPORTANT: form-encoded body to avoid Apps Script CORS issues
+          const res = await fetch(TRIP_EMAIL_WEBAPP_URL, {
+            method: "POST",
+            body: new URLSearchParams(payload)
+          });
+
+          const json = await res.json().catch(() => ({}));
+
+          if (!res.ok || !json || json.ok !== true) {
+            setEmailStatus("Something went wrong sending your itinerary. Please try again.", "error");
+            return;
+          }
+
+          setEmailStatus("Sent. Check your inbox in a minute.", "ok");
+
+          try { tripEmailEls.email.value = ""; } catch (e) {}
+        } catch (err) {
+          setEmailStatus("Network error. Please try again.", "error");
+        } finally {
+          tripEmailEls.btn.textContent = "Email itinerary";
+          enableEmailButtonIfReady();
+        }
+      });
+    }
 
     init();
   </script>
