@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Planificador de Viajes | Experience Ecuador</title>
+  <meta name="description" content="Crea un itinerario personalizado por Ecuador. Elige días, regiones y experiencias, y genera un itinerario sugerido." />
+
+  <link rel="alternate" hreflang="en" href="/trip-builder/" />
+  <link rel="alternate" hreflang="es" href="/es/planificador-de-viajes/" />
+  <link rel="alternate" hreflang="x-default" href="/trip-builder/" />
 
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -464,6 +469,85 @@
       line-height:1.6;
     }
 
+    /* ===== EMAIL ITINERARY SECTION ===== */
+    .email-divider{
+      margin-top:16px;
+      padding-top:16px;
+      border-top:1px solid rgba(0,0,0,0.06);
+    }
+
+    .email-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:18px;
+      margin:0 0 6px;
+      color:#0f2f62;
+      letter-spacing:-0.02em;
+    }
+
+    .email-sub{
+      margin:0 0 12px;
+      color:#6E7B8B;
+      font-size:14.6px;
+      line-height:1.55;
+      max-width:none;
+    }
+
+    .email-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr 1.3fr auto;
+      gap:10px;
+      align-items:end;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+      margin:0;
+    }
+
+    .field label{
+      font-weight:800;
+      font-size:13px;
+      color:#0f2f62;
+      letter-spacing:.01em;
+    }
+
+    .input{
+      width:100%;
+      border-radius:14px;
+      border:1px solid rgba(3,78,162,.18);
+      background:#fff;
+      padding:12px 12px;
+      font-size:15px;
+      font-weight:600;
+      color:#162b55;
+      outline:none;
+      box-shadow:0 10px 26px rgba(3,78,162,.06);
+      font-family:inherit;
+      height:44px;
+    }
+
+    .input:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .statusPill{
+      display:none;
+      margin-top:12px;
+      width:fit-content;
+      padding:9px 12px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:13px;
+      border:1px solid rgba(3,78,162,.18);
+      background:rgba(3,78,162,.06);
+      color:#0f2f62;
+    }
+    .statusPill.show{ display:inline-flex; }
+
     /* ===== MOBILE: stack layout + reorder sections via markup (itinerary above flights) ===== */
     @media(max-width:900px){
       .hero-banner{min-height:290px}
@@ -512,6 +596,14 @@
         width:100%;
         text-align:center;
         white-space:nowrap;
+      }
+
+      /* Email form stacks cleanly on mobile */
+      .email-grid{
+        grid-template-columns:1fr;
+      }
+      .email-grid .btn{
+        width:100%;
       }
     }
 
@@ -570,7 +662,7 @@
           </div>
 
           <div style="margin-top:16px;">
-            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Elige Regiones</div>
+            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Elige regiones</div>
 
             <div class="regions-tip">
               Consejo: si seleccionas varias regiones, la herramienta dividirá los días automáticamente y sugerirá un ritmo más ligero para traslados.
@@ -581,12 +673,12 @@
           </div>
 
           <div style="margin-top:18px;">
-            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Elige Experiencias</div>
+            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Elige experiencias</div>
             <div class="pill-row experiences-grid" id="experiencesPills" aria-label="Selección de experiencias"></div>
           </div>
 
           <div class="actions">
-            <button class="btn primary" id="generateBtn" type="button" disabled>Generar Itinerario</button>
+            <button class="btn primary" id="generateBtn" type="button" disabled>Generar itinerario</button>
             <button class="btn" id="resetBtn" type="button">Reiniciar</button>
           </div>
         </section>
@@ -628,6 +720,37 @@
         <div class="itinerary-shell" aria-label="Contenedor de salida del itinerario">
           <h2 class="section-title" style="margin:0 0 12px;">Tu itinerario sugerido</h2>
           <div id="output" class="hint">Selecciona días, regiones y experiencias. Luego haz clic en “Generar itinerario”.</div>
+
+          <!-- Email itinerary -->
+          <div class="email-divider" aria-label="Sección para enviar el itinerario por email">
+            <h3 class="email-title">Enviar este itinerario por email</h3>
+            <p class="email-sub">
+              Primero genera un itinerario, luego ingresa tus datos y te lo enviaremos por correo.
+            </p>
+
+            <form id="eeTripEmailForm" autocomplete="on">
+              <div class="email-grid">
+                <div class="field">
+                  <label for="tb_first_name">Nombre</label>
+                  <input class="input" id="tb_first_name" name="first_name" type="text" autocomplete="given-name" required>
+                </div>
+
+                <div class="field">
+                  <label for="tb_last_name">Apellido</label>
+                  <input class="input" id="tb_last_name" name="last_name" type="text" autocomplete="family-name" required>
+                </div>
+
+                <div class="field">
+                  <label for="tb_email">Email</label>
+                  <input class="input" id="tb_email" name="email" type="email" autocomplete="email" required>
+                </div>
+
+                <button class="btn primary" id="tb_send_btn" type="submit" disabled>Enviar por email</button>
+              </div>
+
+              <div class="statusPill" id="tb_status" role="status" aria-live="polite"></div>
+            </form>
+          </div>
         </div>
       </section>
 
@@ -668,13 +791,18 @@
   <div id="siteFooter"></div>
 
   <script>
+    // ===== CONFIG: your Apps Script Web App URL =====
+    const TRIP_EMAIL_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxUGlWoLwj5wlYXhqNa4fh4FZjBhQr_QOVbA8MhSfJwC_IV_6hqC5_leMG6RskFXTkj/exec";
+
     // ===== TRIP BUILDER =====
     const DATA = { regions: null, experiences: null, blocks: null };
 
     const state = {
       days: 5,
       selectedRegionIds: new Set(),
-      selectedExperienceIds: new Set()
+      selectedExperienceIds: new Set(),
+      lastPlan: null,
+      lastItineraryText: ""
     };
 
     const els = {
@@ -685,6 +813,15 @@
       resetBtn: document.getElementById('resetBtn'),
       output: document.getElementById('output'),
       regionHint: document.getElementById('regionHint')
+    };
+
+    const tripEmailEls = {
+      form: document.getElementById('eeTripEmailForm'),
+      first: document.getElementById('tb_first_name'),
+      last: document.getElementById('tb_last_name'),
+      email: document.getElementById('tb_email'),
+      btn: document.getElementById('tb_send_btn'),
+      status: document.getElementById('tb_status')
     };
 
     const flightEls = {
@@ -703,6 +840,27 @@
         btn: document.getElementById('flightSearchBtnMobile')
       }
     };
+
+    function setEmailStatus(text, kind){
+      if (!tripEmailEls.status) return;
+      tripEmailEls.status.textContent = text;
+      tripEmailEls.status.classList.add('show');
+      tripEmailEls.status.style.borderColor = kind === "error" ? "rgba(180,35,24,.25)" : "rgba(3,78,162,.18)";
+      tripEmailEls.status.style.background = kind === "error" ? "rgba(180,35,24,.06)" : "rgba(3,78,162,.06)";
+      tripEmailEls.status.style.color = kind === "error" ? "#7a1f16" : "#0f2f62";
+    }
+
+    function clearEmailStatus(){
+      if (!tripEmailEls.status) return;
+      tripEmailEls.status.classList.remove('show');
+      tripEmailEls.status.textContent = "";
+    }
+
+    function enableEmailButtonIfReady(){
+      if (!tripEmailEls.btn) return;
+      const ready = !!(state.lastPlan && state.lastItineraryText && state.lastItineraryText.trim().length > 0);
+      tripEmailEls.btn.disabled = !ready;
+    }
 
     function syncFlights(fromSet){
       const d = flightEls.desktop;
@@ -823,7 +981,7 @@
     function renderExperiencePills() {
       els.experiencesPills.innerHTML = "";
 
-      const desiredOrder = ["Aventura","Naturaleza","Vida Silvestre y Avisamiento de Aves","Relajacion","Gastronomia","Cultura"];
+      const desiredOrder = ["adventure","nature","wildlife-birding","relaxation","culinary","culture"];
       const map = new Map((DATA.experiences.experiences || []).map(x => [x.id, x]));
 
       desiredOrder.forEach(id => {
@@ -904,7 +1062,7 @@
         out.push({
           ...block,
           id: `${block.id}__part_${i+1}_of_${parts}`,
-          title: `${block.title} (Part ${i+1} of ${parts})`,
+          title: `${block.title} (Parte ${i+1} de ${parts})`,
           duration_hours: Math.round(per * 10) / 10
         });
       }
@@ -1130,14 +1288,14 @@
 
     function extractPartLabelFromTitleOrId(block){
       const t = String(block && block.title ? block.title : "");
-      const m1 = t.match(/\(Part\s+\d+\s+of\s+\d+\)/i);
+      const m1 = t.match(/\(Parte\s+\d+\s+de\s+\d+\)/i);
       if (m1) return m1[0].replace(/[()]/g, "");
 
       const id = String(block && block.id ? block.id : "");
       const m2 = id.match(/__part_(\d+)_of_(\d+)/i);
-      if (m2) return `Part ${m2[1]} of ${m2[2]}`;
+      if (m2) return `Parte ${m2[1]} de ${m2[2]}`;
 
-      return "Part";
+      return "Parte";
     }
 
     function renderSlotEs(label, block, regionId){
@@ -1194,6 +1352,59 @@
       if (t === "afternoon") return "Tarde";
       if (t === "evening") return "Noche";
       return t.charAt(0).toUpperCase() + t.slice(1);
+    }
+
+    // ===== PLAIN TEXT EMAIL VERSION OF ITINERARY (ES) =====
+    function buildItineraryTextEs(plan){
+      if (!plan || !plan.length) return "";
+
+      const lines = [];
+      lines.push("Experience Ecuador - Planificador de Viajes");
+      lines.push("");
+      lines.push(`Duración del viaje: ${state.days} días`);
+      lines.push(`Regiones: ${Array.from(state.selectedRegionIds).map(regionName).join(", ") || "N/D"}`);
+      lines.push(`Experiencias: ${Array.from(state.selectedExperienceIds).map(experienceName).join(", ") || "N/D"}`);
+      lines.push("");
+      lines.push("Itinerario sugerido");
+      lines.push("");
+
+      plan.forEach(d => {
+        lines.push(`Día ${d.day}: ${regionName(d.region_id)}${d.is_transfer_friendly ? " (ritmo amigable para traslados)" : ""}`);
+
+        const blocks = Array.isArray(d.blocks) ? d.blocks : [];
+        if (!blocks.length) {
+          lines.push("  - No hay actividades que coincidan para esta región según tus experiencias seleccionadas.");
+        } else {
+          const ordered = blocks.slice().sort((a,b) => {
+            const ai = TIME_ORDER.includes(a.time_of_day) ? TIME_ORDER.indexOf(a.time_of_day) : 99;
+            const bi = TIME_ORDER.includes(b.time_of_day) ? TIME_ORDER.indexOf(b.time_of_day) : 99;
+            return ai - bi;
+          });
+
+          ordered.forEach(b => {
+            const when = b.time_of_day ? capitalizeEs(b.time_of_day) : "Día";
+            const dur = b.duration_hours ? ` (${b.duration_hours}h)` : "";
+            const loc = b.location_id ? locationName(d.region_id, b.location_id) : "";
+            const metaBits = [];
+            if (loc) metaBits.push(loc);
+            if (dur) metaBits.push(dur.replace(/[()]/g,""));
+            const meta = metaBits.length ? ` | ${metaBits.join(" | ")}` : "";
+            lines.push(`  - ${when}: ${b.title}${meta}`);
+            if (b.summary) lines.push(`    ${String(b.summary).trim()}`);
+          });
+        }
+
+        if (d.optional_add_on) {
+          const dur = d.optional_add_on.duration_hours ? ` (${d.optional_add_on.duration_hours}h)` : "";
+          lines.push(`  Extra opcional: ${d.optional_add_on.title}${dur}`);
+        } else if (typeof d.remaining_hours === "number" && d.remaining_hours >= 2) {
+          lines.push(`  Tiempo extra: cerca de ${Math.round(d.remaining_hours * 10) / 10} horas`);
+        }
+
+        lines.push("");
+      });
+
+      return lines.join("\n").trim();
     }
 
     // ===== FLIGHTS =====
@@ -1286,6 +1497,8 @@
         syncFlights("desktop");
 
         els.output.textContent = "Selecciona días, regiones y experiencias. Luego haz clic en “Generar itinerario”.";
+
+        enableEmailButtonIfReady();
       } catch (e) {
         els.output.innerHTML = "<div class='hint'><strong>Error al cargar datos:</strong> " + (e.message || e) + "</div>";
       }
@@ -1297,7 +1510,12 @@
 
     els.generateBtn.addEventListener('click', () => {
       const plan = generateItinerary();
+      state.lastPlan = plan;
       renderItinerary(plan);
+
+      state.lastItineraryText = buildItineraryTextEs(plan);
+      enableEmailButtonIfReady();
+      clearEmailStatus();
     });
 
     els.resetBtn.addEventListener('click', () => {
@@ -1320,16 +1538,85 @@
       flightEls.desktop.to.value = "UIO";
       if (flightEls.mobile.to) flightEls.mobile.to.value = "UIO";
 
+      state.lastPlan = null;
+      state.lastItineraryText = "";
+      enableEmailButtonIfReady();
+      clearEmailStatus();
+
       updateHints();
       updateGenerateState();
       els.output.textContent = "Selecciona días, regiones y experiencias. Luego haz clic en “Generar itinerario”.";
     });
 
+    // ===== EMAIL SUBMIT =====
+    if (tripEmailEls.form) {
+      tripEmailEls.form.addEventListener('submit', async (ev) => {
+        ev.preventDefault();
+        clearEmailStatus();
+
+        if (!TRIP_EMAIL_WEBAPP_URL || TRIP_EMAIL_WEBAPP_URL.indexOf("http") !== 0) {
+          setEmailStatus("Falta la URL del Web App. Pega la URL de despliegue de Apps Script en TRIP_EMAIL_WEBAPP_URL.", "error");
+          return;
+        }
+
+        if (!state.lastPlan || !state.lastItineraryText) {
+          setEmailStatus("Primero genera un itinerario, luego envíalo por email.", "error");
+          return;
+        }
+
+        const payload = {
+          first_name: (tripEmailEls.first.value || "").trim(),
+          last_name: (tripEmailEls.last.value || "").trim(),
+          email: (tripEmailEls.email.value || "").trim(),
+          trip_days: String(state.days || ""),
+          regions: Array.from(state.selectedRegionIds).map(regionName).join(", "),
+          experiences: Array.from(state.selectedExperienceIds).map(experienceName).join(", "),
+          itinerary_text: state.lastItineraryText,
+          page_url: window.location.href,
+          user_agent: navigator.userAgent,
+          lang: "es"
+        };
+
+        if (!payload.first_name || !payload.last_name || !payload.email) {
+          setEmailStatus("Por favor completa nombre, apellido y email.", "error");
+          return;
+        }
+
+        tripEmailEls.btn.disabled = true;
+        tripEmailEls.btn.textContent = "Enviando...";
+
+        try {
+          // IMPORTANT: form-encoded body to avoid Apps Script CORS issues
+          const res = await fetch(TRIP_EMAIL_WEBAPP_URL, {
+            method: "POST",
+            body: new URLSearchParams(payload)
+          });
+
+          const json = await res.json().catch(() => ({}));
+
+          if (!res.ok || !json || json.ok !== true) {
+            setEmailStatus("Hubo un problema al enviar tu itinerario. Inténtalo de nuevo.", "error");
+            return;
+          }
+
+          setEmailStatus("Enviado. Revisa tu bandeja de entrada en un minuto.", "ok");
+
+          try { tripEmailEls.email.value = ""; } catch (e) {}
+        } catch (err) {
+          setEmailStatus("Error de red. Inténtalo de nuevo.", "error");
+        } finally {
+          tripEmailEls.btn.textContent = "Enviar por email";
+          enableEmailButtonIfReady();
+        }
+      });
+    }
+
     init();
   </script>
 
+  <script src="/assets/js/site.js"></script>
+
   <script>
-    /* Inject global header/footer first, then load site.js (so nav JS never runs before header exists) */
     (function(){
       async function inject(id, url){
         const el = document.getElementById(id);
@@ -1337,19 +1624,8 @@
         const res = await fetch(url, { cache: "no-store" });
         el.innerHTML = await res.text();
       }
-
-      Promise.all([
-        inject("siteHeader", "/assets/includes/header.html"),
-        inject("siteFooter", "/assets/includes/footer.html")
-      ]).then(() => {
-        const s = document.createElement("script");
-        s.src = "/assets/js/site.js";
-        document.body.appendChild(s);
-      }).catch(() => {
-        const s = document.createElement("script");
-        s.src = "/assets/js/site.js";
-        document.body.appendChild(s);
-      });
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
     })();
   </script>
 </body>
