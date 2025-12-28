@@ -490,7 +490,7 @@
 
     .email-grid{
       display:grid;
-      grid-template-columns:1fr 1fr 1.3fr auto;
+      grid-template-columns:1fr 1fr 1.3fr;
       gap:10px;
       align-items:end;
     }
@@ -529,6 +529,64 @@
       border-color:rgba(3,78,162,0.45);
     }
 
+    .traveler-box{
+      margin-top:12px;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
+
+    .traveler-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .traveler-title{
+      font-weight:900;
+      color:#0f2f62;
+      margin:0;
+      font-size:14.5px;
+      letter-spacing:-0.01em;
+    }
+
+    .traveler-list{
+      margin-top:10px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .traveler-row{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1.3fr auto;
+      gap:10px;
+      align-items:end;
+    }
+
+    .btn.small{
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:900;
+      font-size:13.5px;
+    }
+
+    .recipients{
+      margin-top:12px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:13.5px;
+    }
+
+    .email-actions{
+      margin-top:10px;
+      display:flex;
+      justify-content:flex-start;
+    }
+
     .statusPill{
       display:none;
       margin-top:12px;
@@ -543,66 +601,7 @@
     }
     .statusPill.show{ display:inline-flex; }
 
-    /* ===== ADDITIONAL TRAVELERS ===== */
-    .traveler-divider{
-      margin-top:14px;
-      padding-top:14px;
-      border-top:1px dashed rgba(0,0,0,0.10);
-    }
-
-    .traveler-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:10px;
-    }
-
-    .traveler-title{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:16px;
-      margin:0;
-      color:#0f2f62;
-      letter-spacing:-0.02em;
-    }
-
-    .traveler-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .traveler-help{
-      margin:8px 0 0;
-      color:#6E7B8B;
-      font-size:13.6px;
-      line-height:1.5;
-    }
-
-    .traveler-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr 1.3fr auto;
-      gap:10px;
-      align-items:end;
-      margin-top:10px;
-    }
-
-    .btn.danger{
-      border-color:rgba(180,35,24,.25);
-      color:#7a1f16;
-      background:rgba(180,35,24,.06);
-      box-shadow:0 14px 30px rgba(180,35,24,.08);
-    }
-
-    .btn.small{
-      padding:10px 12px;
-      border-radius:14px;
-      font-size:13px;
-    }
-
-    /* ===== MOBILE: stack layout + reorder sections via markup (itinerary above flights) ===== */
+    /* ===== MOBILE ===== */
     @media(max-width:900px){
       .hero-banner{min-height:290px}
 
@@ -639,7 +638,6 @@
         text-align:center;
       }
 
-      /* Regions pills: full width across, 4 columns, aligned with Experiences container */
       #regionsPills{
         display:grid;
         grid-template-columns:repeat(4, 1fr);
@@ -652,18 +650,15 @@
         white-space:nowrap;
       }
 
-      /* Email form stacks cleanly on mobile */
       .email-grid{
         grid-template-columns:1fr;
       }
-      .email-grid .btn{
-        width:100%;
-      }
 
-      .traveler-grid{
+      .traveler-row{
         grid-template-columns:1fr;
       }
-      .traveler-grid .btn{
+
+      .email-actions .btn{
         width:100%;
       }
     }
@@ -679,7 +674,6 @@
 
       .pill-row.experiences-grid{ grid-template-columns:1fr; }
 
-      /* Keep regions in one row on small screens too */
       #regionsPills{
         grid-template-columns:repeat(4, 1fr);
         gap:8px;
@@ -786,7 +780,7 @@
           <div class="email-divider" aria-label="Email itinerary section">
             <h3 class="email-title">Email this itinerary</h3>
             <p class="email-sub">
-              Generate an itinerary first, then enter your details and we will email it to you. You can also invite up to 3 additional people to receive the same itinerary.
+              Generate an itinerary first, then enter your details. You can invite up to 3 additional travelers.
             </p>
 
             <form id="eeTripEmailForm" autocomplete="on">
@@ -805,25 +799,26 @@
                   <label for="tb_email">Email</label>
                   <input class="input" id="tb_email" name="email" type="email" autocomplete="email" required>
                 </div>
-
-                <button class="btn primary" id="tb_send_btn" type="submit" disabled>Email itinerary</button>
               </div>
 
-              <!-- Additional travelers -->
-              <div class="traveler-divider" aria-label="Additional travelers">
+              <div class="traveler-box" aria-label="Invite travelers">
                 <div class="traveler-top">
-                  <h4 class="traveler-title">Invite additional travelers (optional)</h4>
-                  <div class="traveler-actions">
-                    <button class="btn small" id="tb_add_traveler" type="button">Add traveler</button>
-                    <button class="btn small danger" id="tb_clear_travelers" type="button" title="Remove all additional travelers">Clear</button>
-                  </div>
+                  <p class="traveler-title">Invite travelers (optional)</p>
+                  <button class="btn small" id="tb_add_traveler_btn" type="button">Add traveler</button>
                 </div>
 
-                <p class="traveler-help">
-                  Add up to 3 more people (4 total including you). They will receive the itinerary and an invite email.
-                </p>
+                <div class="traveler-list" id="tb_traveler_list"></div>
+                <div class="hint" style="margin-top:10px;font-size:13.5px;">
+                  Invited travelers receive one email with the itinerary and a short invitation line.
+                </div>
+              </div>
 
-                <div id="tb_travelers_wrap"></div>
+              <div class="recipients" id="tb_recipients_line">
+                Recipients: <span id="tb_recipient_count">1</span> email(s)
+              </div>
+
+              <div class="email-actions">
+                <button class="btn primary" id="tb_send_btn" type="submit" disabled>Email itinerary</button>
               </div>
 
               <div class="statusPill" id="tb_status" role="status" aria-live="polite"></div>
@@ -845,7 +840,7 @@
             <option value="GYE">Guayaquil (GYE)</option>
             <option value="GPS">Galapagos (GPS)</option>
             <option value="CUE">Cuenca (CUE)</option>
-            </select>
+          </select>
 
           <label for="flightDepartMobile">Depart</label>
           <input id="flightDepartMobile" type="date">
@@ -900,9 +895,9 @@
       email: document.getElementById('tb_email'),
       btn: document.getElementById('tb_send_btn'),
       status: document.getElementById('tb_status'),
-      addTravelerBtn: document.getElementById('tb_add_traveler'),
-      clearTravelersBtn: document.getElementById('tb_clear_travelers'),
-      travelersWrap: document.getElementById('tb_travelers_wrap')
+      addTravelerBtn: document.getElementById('tb_add_traveler_btn'),
+      travelerList: document.getElementById('tb_traveler_list'),
+      recipientCount: document.getElementById('tb_recipient_count')
     };
 
     const flightEls = {
@@ -922,11 +917,125 @@
       }
     };
 
-    // ===== ADDITIONAL TRAVELERS LOGIC =====
-    const MAX_TRAVELERS_TOTAL = 4; // including primary
-    const MAX_ADDITIONAL_TRAVELERS = MAX_TRAVELERS_TOTAL - 1;
+    // ===== TRAVELERS (max 4 total: primary + 3) =====
+    const MAX_TRAVELERS_TOTAL = 4; // includes primary
+    let travelerRows = []; // {id, first, last, email}
 
-    let additionalTravelers = []; // {first_name,last_name,email}
+    function uid(){
+      return "t_" + Math.random().toString(16).slice(2) + "_" + Date.now().toString(16);
+    }
+
+    function isValidEmail(s){
+      const v = String(s || "").trim();
+      if (!v) return false;
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    }
+
+    function capFirstLetter(v){
+      const s = String(v || "");
+      if (!s) return "";
+      const trimmed = s.trimStart();
+      if (!trimmed) return "";
+      const firstChar = trimmed.charAt(0).toUpperCase();
+      return firstChar + trimmed.slice(1);
+    }
+
+    function attachCapitalize(inputEl){
+      if (!inputEl) return;
+      inputEl.addEventListener("blur", () => {
+        inputEl.value = capFirstLetter(inputEl.value);
+      });
+    }
+
+    attachCapitalize(tripEmailEls.first);
+    attachCapitalize(tripEmailEls.last);
+
+    function renderTravelerRows(){
+      if (!tripEmailEls.travelerList) return;
+      tripEmailEls.travelerList.innerHTML = "";
+
+      travelerRows.forEach((t, idx) => {
+        const row = document.createElement("div");
+        row.className = "traveler-row";
+        row.dataset.id = t.id;
+
+        row.innerHTML = `
+          <div class="field">
+            <label>First Name</label>
+            <input class="input" type="text" inputmode="text" autocomplete="off" data-k="first" value="${escapeHtml(t.first || "")}">
+          </div>
+          <div class="field">
+            <label>Last Name</label>
+            <input class="input" type="text" inputmode="text" autocomplete="off" data-k="last" value="${escapeHtml(t.last || "")}">
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input class="input" type="email" inputmode="email" autocomplete="off" data-k="email" value="${escapeHtml(t.email || "")}">
+          </div>
+          <button class="btn small" type="button" data-remove="1">Remove</button>
+        `;
+
+        const inputs = row.querySelectorAll("input[data-k]");
+        inputs.forEach(inp => {
+          const k = inp.getAttribute("data-k");
+          inp.addEventListener("input", () => {
+            const id = row.dataset.id;
+            const item = travelerRows.find(x => x.id === id);
+            if (!item) return;
+            item[k] = inp.value;
+            updateRecipientCount();
+            enableEmailButtonIfReady();
+          });
+
+          if (k === "first" || k === "last") {
+            attachCapitalize(inp);
+          }
+        });
+
+        const rm = row.querySelector("button[data-remove]");
+        rm.addEventListener("click", () => {
+          travelerRows = travelerRows.filter(x => x.id !== row.dataset.id);
+          renderTravelerRows();
+          updateRecipientCount();
+          enableEmailButtonIfReady();
+          updateAddTravelerState();
+        });
+
+        tripEmailEls.travelerList.appendChild(row);
+      });
+
+      updateAddTravelerState();
+    }
+
+    function updateAddTravelerState(){
+      const maxInvitees = MAX_TRAVELERS_TOTAL - 1;
+      const canAdd = travelerRows.length < maxInvitees;
+      if (tripEmailEls.addTravelerBtn) tripEmailEls.addTravelerBtn.disabled = !canAdd;
+      if (tripEmailEls.addTravelerBtn) tripEmailEls.addTravelerBtn.textContent = canAdd ? "Add traveler" : "Max travelers reached";
+    }
+
+    function getInvitedEmails(){
+      return travelerRows
+        .map(t => String(t.email || "").trim())
+        .filter(e => isValidEmail(e));
+    }
+
+    function updateRecipientCount(){
+      const invited = getInvitedEmails();
+      const total = 1 + invited.length;
+      if (tripEmailEls.recipientCount) tripEmailEls.recipientCount.textContent = String(total);
+    }
+
+    if (tripEmailEls.addTravelerBtn) {
+      tripEmailEls.addTravelerBtn.addEventListener("click", () => {
+        const maxInvitees = MAX_TRAVELERS_TOTAL - 1;
+        if (travelerRows.length >= maxInvitees) return;
+        travelerRows.push({ id: uid(), first: "", last: "", email: "" });
+        renderTravelerRows();
+        updateRecipientCount();
+        enableEmailButtonIfReady();
+      });
+    }
 
     function setEmailStatus(text, kind){
       if (!tripEmailEls.status) return;
@@ -945,139 +1054,33 @@
 
     function enableEmailButtonIfReady(){
       if (!tripEmailEls.btn) return;
-      const ready = !!(state.lastPlan && state.lastItineraryText && state.lastItineraryText.trim().length > 0);
+
+      const hasItinerary = !!(state.lastPlan && state.lastItineraryText && state.lastItineraryText.trim().length > 0);
+
+      const primaryOk =
+        (tripEmailEls.first.value || "").trim().length > 0 &&
+        (tripEmailEls.last.value || "").trim().length > 0 &&
+        isValidEmail(tripEmailEls.email.value || "");
+
+      // If traveler rows exist, only count travelers with valid emails as recipients.
+      // We do not block sending if someone typed a traveler name but left email blank.
+      // We do block if they typed a traveler email that is invalid.
+      const invalidTravelerEmailExists = travelerRows.some(t => {
+        const e = String(t.email || "").trim();
+        return e.length > 0 && !isValidEmail(e);
+      });
+
+      const ready = hasItinerary && primaryOk && !invalidTravelerEmailExists;
+
       tripEmailEls.btn.disabled = !ready;
     }
 
-    function normalizeEmail(v){
-      return String(v || "").trim().toLowerCase();
-    }
+    ["input","change","blur"].forEach(evt => {
+      if (tripEmailEls.first) tripEmailEls.first.addEventListener(evt, () => { updateRecipientCount(); enableEmailButtonIfReady(); });
+      if (tripEmailEls.last) tripEmailEls.last.addEventListener(evt, () => { updateRecipientCount(); enableEmailButtonIfReady(); });
+      if (tripEmailEls.email) tripEmailEls.email.addEventListener(evt, () => { updateRecipientCount(); enableEmailButtonIfReady(); });
+    });
 
-    function isValidEmail(v){
-      const s = String(v || "").trim();
-      // simple, safe email check
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
-    }
-
-    function dedupeEmails(primaryEmail, extras){
-      const seen = new Set();
-      const out = [];
-      const p = normalizeEmail(primaryEmail);
-      if (p) seen.add(p);
-
-      extras.forEach(t => {
-        const e = normalizeEmail(t.email);
-        if (!e) return;
-        if (seen.has(e)) return;
-        seen.add(e);
-        out.push(t);
-      });
-      return out;
-    }
-
-    function renderAdditionalTravelers(){
-      if (!tripEmailEls.travelersWrap) return;
-      tripEmailEls.travelersWrap.innerHTML = "";
-
-      // clamp array size
-      if (additionalTravelers.length > MAX_ADDITIONAL_TRAVELERS) {
-        additionalTravelers = additionalTravelers.slice(0, MAX_ADDITIONAL_TRAVELERS);
-      }
-
-      additionalTravelers.forEach((t, idx) => {
-        const n = idx + 2; // traveler2..4
-        const row = document.createElement("div");
-        row.className = "traveler-grid";
-        row.setAttribute("data-index", String(idx));
-
-        row.innerHTML = `
-          <div class="field">
-            <label for="tb_traveler_${n}_first">First Name</label>
-            <input class="input" id="tb_traveler_${n}_first" type="text" autocomplete="given-name" value="${escapeHtml(t.first_name || "")}">
-          </div>
-
-          <div class="field">
-            <label for="tb_traveler_${n}_last">Last Name</label>
-            <input class="input" id="tb_traveler_${n}_last" type="text" autocomplete="family-name" value="${escapeHtml(t.last_name || "")}">
-          </div>
-
-          <div class="field">
-            <label for="tb_traveler_${n}_email">Email</label>
-            <input class="input" id="tb_traveler_${n}_email" type="email" autocomplete="email" value="${escapeHtml(t.email || "")}">
-          </div>
-
-          <button class="btn small danger" type="button" aria-label="Remove traveler ${n}">Remove</button>
-        `;
-
-        const firstEl = row.querySelector(`#tb_traveler_${n}_first`);
-        const lastEl = row.querySelector(`#tb_traveler_${n}_last`);
-        const emailEl = row.querySelector(`#tb_traveler_${n}_email`);
-        const removeBtn = row.querySelector("button");
-
-        const syncBack = () => {
-          additionalTravelers[idx] = {
-            first_name: (firstEl.value || "").trim(),
-            last_name: (lastEl.value || "").trim(),
-            email: (emailEl.value || "").trim()
-          };
-        };
-
-        ["input","change","blur"].forEach(evt => {
-          firstEl.addEventListener(evt, syncBack);
-          lastEl.addEventListener(evt, syncBack);
-          emailEl.addEventListener(evt, syncBack);
-        });
-
-        removeBtn.addEventListener("click", () => {
-          additionalTravelers.splice(idx, 1);
-          renderAdditionalTravelers();
-          updateTravelerButtons();
-        });
-
-        tripEmailEls.travelersWrap.appendChild(row);
-      });
-
-      updateTravelerButtons();
-    }
-
-    function updateTravelerButtons(){
-      if (tripEmailEls.addTravelerBtn) {
-        tripEmailEls.addTravelerBtn.disabled = additionalTravelers.length >= MAX_ADDITIONAL_TRAVELERS;
-      }
-      if (tripEmailEls.clearTravelersBtn) {
-        tripEmailEls.clearTravelersBtn.disabled = additionalTravelers.length === 0;
-      }
-    }
-
-    function addTraveler(){
-      if (additionalTravelers.length >= MAX_ADDITIONAL_TRAVELERS) return;
-      additionalTravelers.push({ first_name: "", last_name: "", email: "" });
-      renderAdditionalTravelers();
-      clearEmailStatus();
-    }
-
-    function clearTravelers(){
-      additionalTravelers = [];
-      renderAdditionalTravelers();
-      clearEmailStatus();
-    }
-
-    function escapeHtml(s){
-      return String(s || "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-    }
-
-    if (tripEmailEls.addTravelerBtn) tripEmailEls.addTravelerBtn.addEventListener("click", addTraveler);
-    if (tripEmailEls.clearTravelersBtn) tripEmailEls.clearTravelersBtn.addEventListener("click", clearTravelers);
-
-    // initial render
-    renderAdditionalTravelers();
-
-    // ===== FLIGHTS SYNC =====
     function syncFlights(fromSet){
       const d = flightEls.desktop;
       const m = flightEls.mobile;
@@ -1685,6 +1688,9 @@
 
     async function init() {
       renderDaysOptions();
+      renderTravelerRows();
+      updateRecipientCount();
+      enableEmailButtonIfReady();
 
       try {
         const [regions, experiences, blocks] = await Promise.all([
@@ -1712,7 +1718,6 @@
         els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
 
         enableEmailButtonIfReady();
-        updateTravelerButtons();
       } catch (e) {
         els.output.innerHTML = "<div class='hint'><strong>Data load error:</strong> " + (e.message || e) + "</div>";
       }
@@ -1754,12 +1759,13 @@
 
       state.lastPlan = null;
       state.lastItineraryText = "";
+
+      travelerRows = [];
+      renderTravelerRows();
+      updateRecipientCount();
+
       enableEmailButtonIfReady();
       clearEmailStatus();
-
-      // reset extra travelers
-      additionalTravelers = [];
-      renderAdditionalTravelers();
 
       updateHints();
       updateGenerateState();
@@ -1782,80 +1788,45 @@
           return;
         }
 
-        const primaryEmail = (tripEmailEls.email.value || "").trim();
-
-        const primary = {
-          first_name: (tripEmailEls.first.value || "").trim(),
-          last_name: (tripEmailEls.last.value || "").trim(),
-          email: primaryEmail
-        };
-
-        if (!primary.first_name || !primary.last_name || !primary.email) {
-          setEmailStatus("Please fill first name, last name, and email.", "error");
-          return;
-        }
-
-        if (!isValidEmail(primary.email)) {
-          setEmailStatus("Please enter a valid email address.", "error");
-          return;
-        }
-
-        // clean + validate extras
-        const extrasRaw = additionalTravelers
-          .map(t => ({
-            first_name: (t.first_name || "").trim(),
-            last_name: (t.last_name || "").trim(),
-            email: (t.email || "").trim()
-          }))
-          .filter(t => t.first_name || t.last_name || t.email); // keep if any field touched
-
-        // If they started a row, require email to send invites
-        for (const t of extrasRaw) {
-          if ((t.first_name || t.last_name) && !t.email) {
-            setEmailStatus("One of the added travelers is missing an email. Add the email or remove that traveler.", "error");
-            return;
-          }
-          if (t.email && !isValidEmail(t.email)) {
-            setEmailStatus("One of the added traveler emails is invalid. Fix it or remove that traveler.", "error");
-            return;
-          }
-        }
-
-        const extras = dedupeEmails(primary.email, extrasRaw);
+        const invitedEmails = getInvitedEmails();
 
         const payload = {
-          // primary (traveler1)
-          first_name: primary.first_name,
-          last_name: primary.last_name,
-          email: primary.email,
-
-          // trip meta
+          first_name: capFirstLetter((tripEmailEls.first.value || "").trim()),
+          last_name: capFirstLetter((tripEmailEls.last.value || "").trim()),
+          email: (tripEmailEls.email.value || "").trim(),
+          invited_emails: invitedEmails.join(", "),
           trip_days: String(state.days || ""),
           regions: Array.from(state.selectedRegionIds).map(regionName).join(", "),
           experiences: Array.from(state.selectedExperienceIds).map(experienceName).join(", "),
           itinerary_text: state.lastItineraryText,
           page_url: window.location.href,
-          user_agent: navigator.userAgent,
-
-          // traveler2..4 (Option A columns)
-          traveler2_first: extras[0] ? extras[0].first_name : "",
-          traveler2_last:  extras[0] ? extras[0].last_name  : "",
-          traveler2_email: extras[0] ? extras[0].email      : "",
-
-          traveler3_first: extras[1] ? extras[1].first_name : "",
-          traveler3_last:  extras[1] ? extras[1].last_name  : "",
-          traveler3_email: extras[1] ? extras[1].email      : "",
-
-          traveler4_first: extras[2] ? extras[2].first_name : "",
-          traveler4_last:  extras[2] ? extras[2].last_name  : "",
-          traveler4_email: extras[2] ? extras[2].email      : ""
+          user_agent: navigator.userAgent
         };
+
+        if (!payload.first_name || !payload.last_name || !payload.email) {
+          setEmailStatus("Please fill first name, last name, and email.", "error");
+          return;
+        }
+
+        if (!isValidEmail(payload.email)) {
+          setEmailStatus("Please enter a valid email address.", "error");
+          return;
+        }
+
+        const invalidTravelerEmailExists = travelerRows.some(t => {
+          const e = String(t.email || "").trim();
+          return e.length > 0 && !isValidEmail(e);
+        });
+
+        if (invalidTravelerEmailExists) {
+          setEmailStatus("One of the invited traveler emails is invalid. Fix it or remove that traveler.", "error");
+          return;
+        }
 
         tripEmailEls.btn.disabled = true;
         tripEmailEls.btn.textContent = "Sending...";
 
         try {
-          // IMPORTANT: form-encoded body to avoid Apps Script CORS issues
           const res = await fetch(TRIP_EMAIL_WEBAPP_URL, {
             method: "POST",
             body: new URLSearchParams(payload)
@@ -1868,10 +1839,12 @@
             return;
           }
 
-          // message depends on invites
-          const inviteCount = [payload.traveler2_email, payload.traveler3_email, payload.traveler4_email].filter(Boolean).length;
-          if (inviteCount > 0) setEmailStatus(`Sent. Check your inbox. Invitations sent to ${inviteCount} additional traveler${inviteCount === 1 ? "" : "s"}.`, "ok");
-          else setEmailStatus("Sent. Check your inbox in a minute.", "ok");
+          const invitedCount = Number(json.invited_count || invitedEmails.length || 0);
+          const msg = invitedCount > 0
+            ? `Sent. Check your inbox. Invites sent to ${invitedCount} traveler(s).`
+            : "Sent. Check your inbox in a minute.";
+
+          setEmailStatus(msg, "ok");
 
           try { tripEmailEls.email.value = ""; } catch (e) {}
         } catch (err) {
@@ -1883,9 +1856,20 @@
       });
     }
 
+    // ===== HELPERS =====
+    function escapeHtml(s){
+      return String(s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
     init();
   </script>
 
+  <!-- Keep global nav behavior -->
   <script src="/assets/js/site.js"></script>
 
   <script>
