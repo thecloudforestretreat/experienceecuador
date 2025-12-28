@@ -272,6 +272,11 @@
       cursor:pointer;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
       letter-spacing:-0.01em;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
     }
 
     .btn.primary{
@@ -495,7 +500,7 @@
 
     .email-grid{
       display:grid;
-      grid-template-columns:1fr 1fr 1.3fr auto;
+      grid-template-columns:1fr 1fr 1.3fr;
       gap:10px;
       align-items:end;
     }
@@ -534,6 +539,68 @@
       border-color:rgba(3,78,162,0.45);
     }
 
+    .invite-card{
+      margin-top:14px;
+      border-radius:18px;
+      border:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.015));
+      padding:14px;
+    }
+
+    .invite-card-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:12px;
+    }
+
+    .invite-title{
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+    }
+
+    .invite-hint{
+      margin-top:10px;
+      color:#24324a;
+      opacity:.95;
+      font-size:13.6px;
+      line-height:1.45;
+    }
+
+    .invite-row{
+      display:grid;
+      grid-template-columns:1fr 1fr 1.3fr;
+      gap:10px;
+      align-items:end;
+    }
+
+    .invite-row + .invite-row{ margin-top:14px; }
+
+    .invite-row-actions{
+      display:flex;
+      justify-content:flex-end;
+      margin-top:10px;
+    }
+
+    .recipients-wrap{
+      margin-top:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:flex-start;
+    }
+
+    .recipient-count{
+      font-weight:900;
+      color:#0f2f62;
+    }
+
+    .send-btn{
+      width:auto;
+    }
+
     .statusPill{
       display:none;
       margin-top:12px;
@@ -548,7 +615,7 @@
     }
     .statusPill.show{ display:inline-flex; }
 
-    /* ===== MOBILE: stack layout + reorder sections via markup (itinerary above flights) ===== */
+    /* ===== MOBILE ===== */
     @media(max-width:900px){
       .hero-banner{min-height:290px}
 
@@ -585,7 +652,6 @@
         text-align:center;
       }
 
-      /* Regions pills: full width across, 4 columns, aligned with Experiences container */
       #regionsPills{
         display:grid;
         grid-template-columns:repeat(4, 1fr);
@@ -598,11 +664,30 @@
         white-space:nowrap;
       }
 
-      /* Email form stacks cleanly on mobile */
+      /* Email stacks */
       .email-grid{
         grid-template-columns:1fr;
       }
-      .email-grid .btn{
+
+      .invite-row{
+        grid-template-columns:1fr;
+      }
+
+      .invite-card-head .btn{
+        padding:12px 14px;
+        border-radius:16px;
+      }
+
+      .invite-row-actions .btn{
+        padding:12px 14px;
+        border-radius:16px;
+      }
+
+      .send-btn{
+        width:100%;
+      }
+
+      .recipients-wrap{
         width:100%;
       }
     }
@@ -618,7 +703,6 @@
 
       .pill-row.experiences-grid{ grid-template-columns:1fr; }
 
-      /* Keep regions in one row on small screens too */
       #regionsPills{
         grid-template-columns:repeat(4, 1fr);
         gap:8px;
@@ -725,7 +809,7 @@
           <div class="email-divider" aria-label="Sección para enviar el itinerario por email">
             <h3 class="email-title">Enviar este itinerario por email</h3>
             <p class="email-sub">
-              Primero genera un itinerario, luego ingresa tus datos y te lo enviaremos por correo.
+              Primero genera un itinerario, luego ingresa tus datos. Puedes invitar hasta 3 viajeros adicionales.
             </p>
 
             <form id="eeTripEmailForm" autocomplete="on">
@@ -744,8 +828,24 @@
                   <label for="tb_email">Email</label>
                   <input class="input" id="tb_email" name="email" type="email" autocomplete="email" required>
                 </div>
+              </div>
 
-                <button class="btn primary" id="tb_send_btn" type="submit" disabled>Enviar por email</button>
+              <div class="invite-card" aria-label="Invitar viajeros">
+                <div class="invite-card-head">
+                  <div class="invite-title">Invitar viajeros (opcional)</div>
+                  <button class="btn" id="tb_add_traveler" type="button">Agregar viajero</button>
+                </div>
+
+                <div id="tb_invite_list"></div>
+
+                <div class="invite-hint">
+                  Los viajeros invitados reciben un solo email con el itinerario y una línea corta de invitación.
+                </div>
+              </div>
+
+              <div class="recipients-wrap">
+                <div class="recipient-count" id="tb_recipient_count">Destinatarios: 1 email(s)</div>
+                <button class="btn primary send-btn" id="tb_send_btn" type="submit" disabled>Enviar itinerario</button>
               </div>
 
               <div class="statusPill" id="tb_status" role="status" aria-live="polite"></div>
@@ -821,7 +921,10 @@
       last: document.getElementById('tb_last_name'),
       email: document.getElementById('tb_email'),
       btn: document.getElementById('tb_send_btn'),
-      status: document.getElementById('tb_status')
+      status: document.getElementById('tb_status'),
+      addTravelerBtn: document.getElementById('tb_add_traveler'),
+      inviteList: document.getElementById('tb_invite_list'),
+      recipientCount: document.getElementById('tb_recipient_count')
     };
 
     const flightEls = {
@@ -862,6 +965,173 @@
       tripEmailEls.btn.disabled = !ready;
     }
 
+    // ===== Name auto-capitalize =====
+    function capFirstLetter(s){
+      const t = String(s || "");
+      if (!t) return "";
+      const trimmed = t.trimStart();
+      if (!trimmed) return "";
+      return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+    }
+
+    function attachCapitalize(el){
+      if (!el) return;
+      el.addEventListener("input", () => {
+        const v = el.value;
+        const c = capFirstLetter(v);
+        if (c !== v) el.value = c;
+      });
+      el.addEventListener("blur", () => {
+        const v = el.value;
+        const c = capFirstLetter(v);
+        if (c !== v) el.value = c;
+      });
+    }
+
+    attachCapitalize(tripEmailEls.first);
+    attachCapitalize(tripEmailEls.last);
+
+    // ===== Invite travelers UI =====
+    const MAX_INVITES = 3;
+    const inviteRows = []; // {wrap, first, last, email}
+
+    function isValidEmail(s){
+      const t = String(s || "").trim();
+      if (!t) return false;
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t);
+    }
+
+    function getInvitees(){
+      return inviteRows
+        .map(r => ({
+          first_name: (r.first.value || "").trim(),
+          last_name: (r.last.value || "").trim(),
+          email: (r.email.value || "").trim()
+        }))
+        .filter(x => x.first_name || x.last_name || x.email);
+    }
+
+    function getAllRecipientEmails(){
+      const primary = (tripEmailEls.email.value || "").trim();
+      const invitees = getInvitees().map(x => x.email).filter(Boolean);
+      const all = [primary, ...invitees].filter(Boolean);
+      const seen = new Set();
+      return all.filter(e => {
+        const k = e.toLowerCase();
+        if (seen.has(k)) return false;
+        seen.add(k);
+        return true;
+      });
+    }
+
+    function updateRecipientCount(){
+      const emails = getAllRecipientEmails();
+      const n = emails.length || 0;
+      if (tripEmailEls.recipientCount) tripEmailEls.recipientCount.textContent = `Destinatarios: ${n} email(s)`;
+    }
+
+    function buildInviteRow(){
+      const wrap = document.createElement("div");
+
+      const row = document.createElement("div");
+      row.className = "invite-row";
+
+      const f = document.createElement("div");
+      f.className = "field";
+      f.innerHTML = `<label>Nombre</label>`;
+      const fInput = document.createElement("input");
+      fInput.className = "input";
+      fInput.type = "text";
+      fInput.autocomplete = "given-name";
+      f.appendChild(fInput);
+
+      const l = document.createElement("div");
+      l.className = "field";
+      l.innerHTML = `<label>Apellido</label>`;
+      const lInput = document.createElement("input");
+      lInput.className = "input";
+      lInput.type = "text";
+      lInput.autocomplete = "family-name";
+      l.appendChild(lInput);
+
+      const e = document.createElement("div");
+      e.className = "field";
+      e.innerHTML = `<label>Email</label>`;
+      const eInput = document.createElement("input");
+      eInput.className = "input";
+      eInput.type = "email";
+      eInput.autocomplete = "email";
+      e.appendChild(eInput);
+
+      row.appendChild(f);
+      row.appendChild(l);
+      row.appendChild(e);
+
+      const actions = document.createElement("div");
+      actions.className = "invite-row-actions";
+      const removeBtn = document.createElement("button");
+      removeBtn.type = "button";
+      removeBtn.className = "btn";
+      removeBtn.textContent = "Quitar";
+      actions.appendChild(removeBtn);
+
+      wrap.appendChild(row);
+      wrap.appendChild(actions);
+
+      attachCapitalize(fInput);
+      attachCapitalize(lInput);
+
+      function onAnyChange(){
+        updateRecipientCount();
+        clearEmailStatus();
+      }
+
+      [fInput, lInput, eInput].forEach(inp => {
+        inp.addEventListener("input", onAnyChange);
+        inp.addEventListener("change", onAnyChange);
+        inp.addEventListener("blur", onAnyChange);
+      });
+
+      removeBtn.addEventListener("click", () => {
+        const idx = inviteRows.findIndex(x => x.wrap === wrap);
+        if (idx >= 0) inviteRows.splice(idx, 1);
+        wrap.remove();
+        updateInviteControls();
+        updateRecipientCount();
+        clearEmailStatus();
+      });
+
+      return { wrap, first: fInput, last: lInput, email: eInput };
+    }
+
+    function updateInviteControls(){
+      if (!tripEmailEls.addTravelerBtn) return;
+      tripEmailEls.addTravelerBtn.disabled = inviteRows.length >= MAX_INVITES;
+      tripEmailEls.addTravelerBtn.textContent = inviteRows.length >= MAX_INVITES ? "Límite alcanzado" : "Agregar viajero";
+    }
+
+    if (tripEmailEls.addTravelerBtn && tripEmailEls.inviteList) {
+      tripEmailEls.addTravelerBtn.addEventListener("click", () => {
+        clearEmailStatus();
+        if (inviteRows.length >= MAX_INVITES) return;
+        const r = buildInviteRow();
+        inviteRows.push(r);
+        tripEmailEls.inviteList.appendChild(r.wrap);
+        updateInviteControls();
+        updateRecipientCount();
+      });
+    }
+
+    if (tripEmailEls.email) {
+      ["input","change","blur"].forEach(evt => {
+        tripEmailEls.email.addEventListener(evt, () => {
+          updateRecipientCount();
+          clearEmailStatus();
+        });
+      });
+    }
+
+    // ===== Flights sync =====
     function syncFlights(fromSet){
       const d = flightEls.desktop;
       const m = flightEls.mobile;
@@ -1270,12 +1540,12 @@
           const add = document.createElement('div');
           add.className = "hint";
           const dur = d.optional_add_on.duration_hours ? `${d.optional_add_on.duration_hours}h` : "";
-          add.innerHTML = `Extra opcional si aún tienes energía: <strong>${d.optional_add_on.title}</strong>${dur ? " (" + dur + ")" : ""}.`;
+          add.innerHTML = `Extra opcional si todavía tienes energía: <strong>${d.optional_add_on.title}</strong>${dur ? " (" + dur + ")" : ""}.`;
           card.appendChild(add);
         } else if (typeof d.remaining_hours === "number" && d.remaining_hours >= 2) {
           const rest = document.createElement('div');
           rest.className = "hint";
-          rest.innerHTML = `Todavía tienes cerca de <strong>${Math.round(d.remaining_hours * 10) / 10} horas</strong> disponibles hoy. Considera un café, un mirador o una caminata tranquila por la zona.`;
+          rest.innerHTML = `Aún tienes aproximadamente <strong>${Math.round(d.remaining_hours * 10) / 10} horas</strong> disponibles hoy. Considera una cafetería, un mirador o una caminata tranquila.`;
           card.appendChild(rest);
         }
 
@@ -1311,7 +1581,7 @@
       const partLabel = isSplitPart ? extractPartLabelFromTitleOrId(block) : "";
 
       const splitExplain = isSplitPart
-        ? `Esta experiencia se extiende por varios días. "${partLabel}" indica un día dentro de una estadía más larga (tipo lodge).`
+        ? `Esta experiencia se extiende por varios días. "${partLabel}" indica un día dentro de una estadía más larga.`
         : "";
 
       const noteHtml = (() => {
@@ -1348,22 +1618,20 @@
     function capitalizeEs(s){
       const t = String(s || "");
       if (!t) return "";
-      if (t === "morning") return "Mañana";
-      if (t === "afternoon") return "Tarde";
-      if (t === "evening") return "Noche";
-      return t.charAt(0).toUpperCase() + t.slice(1);
+      const map = { morning:"Mañana", afternoon:"Tarde", evening:"Noche" };
+      return map[t] || (t.charAt(0).toUpperCase() + t.slice(1));
     }
 
-    // ===== PLAIN TEXT EMAIL VERSION OF ITINERARY (ES) =====
-    function buildItineraryTextEs(plan){
+    // ===== PLAIN TEXT EMAIL VERSION OF ITINERARY =====
+    function buildItineraryText(plan){
       if (!plan || !plan.length) return "";
 
       const lines = [];
-      lines.push("Experience Ecuador - Planificador de Viajes");
+      lines.push("Experience Ecuador Planificador de Viajes");
       lines.push("");
-      lines.push(`Duración del viaje: ${state.days} días`);
-      lines.push(`Regiones: ${Array.from(state.selectedRegionIds).map(regionName).join(", ") || "N/D"}`);
-      lines.push(`Experiencias: ${Array.from(state.selectedExperienceIds).map(experienceName).join(", ") || "N/D"}`);
+      lines.push(`Duración del viaje: ${state.days} día(s)`);
+      lines.push(`Regiones: ${Array.from(state.selectedRegionIds).map(regionName).join(", ") || "N/A"}`);
+      lines.push(`Experiencias: ${Array.from(state.selectedExperienceIds).map(experienceName).join(", ") || "N/A"}`);
       lines.push("");
       lines.push("Itinerario sugerido");
       lines.push("");
@@ -1398,7 +1666,7 @@
           const dur = d.optional_add_on.duration_hours ? ` (${d.optional_add_on.duration_hours}h)` : "";
           lines.push(`  Extra opcional: ${d.optional_add_on.title}${dur}`);
         } else if (typeof d.remaining_hours === "number" && d.remaining_hours >= 2) {
-          lines.push(`  Tiempo extra: cerca de ${Math.round(d.remaining_hours * 10) / 10} horas`);
+          lines.push(`  Tiempo extra: aproximadamente ${Math.round(d.remaining_hours * 10) / 10} horas`);
         }
 
         lines.push("");
@@ -1499,6 +1767,8 @@
         els.output.textContent = "Selecciona días, regiones y experiencias. Luego haz clic en “Generar itinerario”.";
 
         enableEmailButtonIfReady();
+        updateInviteControls();
+        updateRecipientCount();
       } catch (e) {
         els.output.innerHTML = "<div class='hint'><strong>Error al cargar datos:</strong> " + (e.message || e) + "</div>";
       }
@@ -1513,7 +1783,7 @@
       state.lastPlan = plan;
       renderItinerary(plan);
 
-      state.lastItineraryText = buildItineraryTextEs(plan);
+      state.lastItineraryText = buildItineraryText(plan);
       enableEmailButtonIfReady();
       clearEmailStatus();
     });
@@ -1538,6 +1808,11 @@
       flightEls.desktop.to.value = "UIO";
       if (flightEls.mobile.to) flightEls.mobile.to.value = "UIO";
 
+      // Clear invites
+      inviteRows.splice(0, inviteRows.length);
+      if (tripEmailEls.inviteList) tripEmailEls.inviteList.innerHTML = "";
+      updateInviteControls();
+
       state.lastPlan = null;
       state.lastItineraryText = "";
       enableEmailButtonIfReady();
@@ -1546,6 +1821,7 @@
       updateHints();
       updateGenerateState();
       els.output.textContent = "Selecciona días, regiones y experiencias. Luego haz clic en “Generar itinerario”.";
+      updateRecipientCount();
     });
 
     // ===== EMAIL SUBMIT =====
@@ -1555,30 +1831,61 @@
         clearEmailStatus();
 
         if (!TRIP_EMAIL_WEBAPP_URL || TRIP_EMAIL_WEBAPP_URL.indexOf("http") !== 0) {
-          setEmailStatus("Falta la URL del Web App. Pega la URL de despliegue de Apps Script en TRIP_EMAIL_WEBAPP_URL.", "error");
+          setEmailStatus("Falta la URL del Web App. Pega tu URL de Apps Script en TRIP_EMAIL_WEBAPP_URL.", "error");
           return;
         }
 
         if (!state.lastPlan || !state.lastItineraryText) {
-          setEmailStatus("Primero genera un itinerario, luego envíalo por email.", "error");
+          setEmailStatus("Primero genera un itinerario y luego envíalo por email.", "error");
           return;
+        }
+
+        const primaryEmail = (tripEmailEls.email.value || "").trim();
+        if (!primaryEmail || !isValidEmail(primaryEmail)) {
+          setEmailStatus("Ingresa un email válido para el viajero principal.", "error");
+          return;
+        }
+
+        const invitees = getInvitees().slice(0, MAX_INVITES);
+
+        for (const inv of invitees) {
+          if (inv.email && !isValidEmail(inv.email)) {
+            setEmailStatus("Uno de los emails invitados parece inválido. Corrígelo o quita ese viajero.", "error");
+            return;
+          }
         }
 
         const payload = {
           first_name: (tripEmailEls.first.value || "").trim(),
           last_name: (tripEmailEls.last.value || "").trim(),
-          email: (tripEmailEls.email.value || "").trim(),
+          email: primaryEmail,
+
           trip_days: String(state.days || ""),
           regions: Array.from(state.selectedRegionIds).map(regionName).join(", "),
           experiences: Array.from(state.selectedExperienceIds).map(experienceName).join(", "),
           itinerary_text: state.lastItineraryText,
           page_url: window.location.href,
           user_agent: navigator.userAgent,
-          lang: "es"
+
+          // Invitees
+          invitees_json: JSON.stringify(invitees),
+          invited_count: String(invitees.length || 0),
+
+          invited_1_first_name: invitees[0] ? (invitees[0].first_name || "") : "",
+          invited_1_last_name:  invitees[0] ? (invitees[0].last_name || "") : "",
+          invited_1_email:      invitees[0] ? (invitees[0].email || "") : "",
+
+          invited_2_first_name: invitees[1] ? (invitees[1].first_name || "") : "",
+          invited_2_last_name:  invitees[1] ? (invitees[1].last_name || "") : "",
+          invited_2_email:      invitees[1] ? (invitees[1].email || "") : "",
+
+          invited_3_first_name: invitees[2] ? (invitees[2].first_name || "") : "",
+          invited_3_last_name:  invitees[2] ? (invitees[2].last_name || "") : "",
+          invited_3_email:      invitees[2] ? (invitees[2].email || "") : ""
         };
 
-        if (!payload.first_name || !payload.last_name || !payload.email) {
-          setEmailStatus("Por favor completa nombre, apellido y email.", "error");
+        if (!payload.first_name || !payload.last_name) {
+          setEmailStatus("Completa nombre y apellido del viajero principal.", "error");
           return;
         }
 
@@ -1586,27 +1893,39 @@
         tripEmailEls.btn.textContent = "Enviando...";
 
         try {
-          // IMPORTANT: form-encoded body to avoid Apps Script CORS issues
           const res = await fetch(TRIP_EMAIL_WEBAPP_URL, {
             method: "POST",
             body: new URLSearchParams(payload)
           });
 
-          const json = await res.json().catch(() => ({}));
+          const ct = (res.headers.get("content-type") || "").toLowerCase();
+          let json = null;
 
-          if (!res.ok || !json || json.ok !== true) {
-            setEmailStatus("Hubo un problema al enviar tu itinerario. Inténtalo de nuevo.", "error");
+          if (ct.includes("application/json")) {
+            json = await res.json().catch(() => null);
+          } else {
+            await res.text().catch(() => "");
+            setEmailStatus("Falló el envío. Tu Web App de Apps Script probablemente no está configurado como acceso para cualquiera. Actualiza Deploy y vuelve a intentar.", "error");
+            tripEmailEls.btn.textContent = "Enviar itinerario";
+            enableEmailButtonIfReady();
             return;
           }
 
-          setEmailStatus("Enviado. Revisa tu bandeja de entrada en un minuto.", "ok");
+          if (!res.ok || !json || json.ok !== true) {
+            setEmailStatus("Hubo un error al enviar tu itinerario. Inténtalo de nuevo.", "error");
+            return;
+          }
 
-          try { tripEmailEls.email.value = ""; } catch (e) {}
+          const total = (json.total_recipients || 1);
+          setEmailStatus(`Enviado a ${total} destinatario(s). Revisa las bandejas en un minuto.`, "ok");
+
+          try { tripEmailEls.email.value = primaryEmail; } catch (e) {}
         } catch (err) {
           setEmailStatus("Error de red. Inténtalo de nuevo.", "error");
         } finally {
-          tripEmailEls.btn.textContent = "Enviar por email";
+          tripEmailEls.btn.textContent = "Enviar itinerario";
           enableEmailButtonIfReady();
+          updateRecipientCount();
         }
       });
     }
@@ -1614,8 +1933,10 @@
     init();
   </script>
 
+  <!-- Keep global mobile nav behavior -->
   <script src="/assets/js/site.js"></script>
 
+  <!-- Global header/footer injection -->
   <script>
     (function(){
       async function inject(id, url){
