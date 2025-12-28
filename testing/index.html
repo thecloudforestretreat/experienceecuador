@@ -267,6 +267,11 @@
       cursor:pointer;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
       letter-spacing:-0.01em;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
     }
 
     .btn.primary{
@@ -529,62 +534,67 @@
       border-color:rgba(3,78,162,0.45);
     }
 
-    .traveler-box{
-      margin-top:12px;
-      padding:14px;
-      border-radius:16px;
+    .invite-card{
+      margin-top:14px;
+      border-radius:18px;
       border:1px solid rgba(0,0,0,0.06);
-      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.015));
+      padding:14px;
     }
 
-    .traveler-top{
+    .invite-card-head{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:12px;
     }
 
-    .traveler-title{
+    .invite-title{
       font-weight:900;
       color:#0f2f62;
-      margin:0;
-      font-size:14.5px;
       letter-spacing:-0.01em;
     }
 
-    .traveler-list{
+    .invite-hint{
       margin-top:10px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+      color:#24324a;
+      opacity:.95;
+      font-size:13.6px;
+      line-height:1.45;
     }
 
-    .traveler-row{
+    .invite-row{
       display:grid;
-      grid-template-columns: 1fr 1fr 1.3fr auto;
+      grid-template-columns:1fr 1fr 1.3fr;
       gap:10px;
       align-items:end;
     }
 
-    .btn.small{
-      padding:10px 12px;
-      border-radius:14px;
-      font-weight:900;
-      font-size:13.5px;
+    .invite-row + .invite-row{ margin-top:14px; }
+
+    /* Remove button sits UNDER the row, aligned right */
+    .invite-row-actions{
+      display:flex;
+      justify-content:flex-end;
+      margin-top:10px;
     }
 
-    .recipients{
-      margin-top:12px;
+    .recipients-wrap{
+      margin-top:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:flex-start;
+    }
+
+    .recipient-count{
       font-weight:900;
       color:#0f2f62;
-      font-size:13.5px;
     }
 
-    .email-actions{
-      margin-top:10px;
-      display:flex;
-      justify-content:flex-start;
+    .send-btn{
+      width:auto;
     }
 
     .statusPill{
@@ -650,15 +660,32 @@
         white-space:nowrap;
       }
 
+      /* Email stacks */
       .email-grid{
         grid-template-columns:1fr;
       }
 
-      .traveler-row{
+      .invite-row{
         grid-template-columns:1fr;
       }
 
-      .email-actions .btn{
+      /* Add + Remove aligned right, same size feel */
+      .invite-card-head .btn{
+        padding:12px 14px;
+        border-radius:16px;
+      }
+
+      .invite-row-actions .btn{
+        padding:12px 14px;
+        border-radius:16px;
+      }
+
+      /* Send button full width under recipient count */
+      .send-btn{
+        width:100%;
+      }
+
+      .recipients-wrap{
         width:100%;
       }
     }
@@ -801,24 +828,22 @@
                 </div>
               </div>
 
-              <div class="traveler-box" aria-label="Invite travelers">
-                <div class="traveler-top">
-                  <p class="traveler-title">Invite travelers (optional)</p>
-                  <button class="btn small" id="tb_add_traveler_btn" type="button">Add traveler</button>
+              <div class="invite-card" aria-label="Invite travelers">
+                <div class="invite-card-head">
+                  <div class="invite-title">Invite travelers (optional)</div>
+                  <button class="btn" id="tb_add_traveler" type="button">Add traveler</button>
                 </div>
 
-                <div class="traveler-list" id="tb_traveler_list"></div>
-                <div class="hint" style="margin-top:10px;font-size:13.5px;">
+                <div id="tb_invite_list"></div>
+
+                <div class="invite-hint">
                   Invited travelers receive one email with the itinerary and a short invitation line.
                 </div>
               </div>
 
-              <div class="recipients" id="tb_recipients_line">
-                Recipients: <span id="tb_recipient_count">1</span> email(s)
-              </div>
-
-              <div class="email-actions">
-                <button class="btn primary" id="tb_send_btn" type="submit" disabled>Email itinerary</button>
+              <div class="recipients-wrap">
+                <div class="recipient-count" id="tb_recipient_count">Recipients: 1 email(s)</div>
+                <button class="btn primary send-btn" id="tb_send_btn" type="submit" disabled>Email itinerary</button>
               </div>
 
               <div class="statusPill" id="tb_status" role="status" aria-live="polite"></div>
@@ -895,8 +920,8 @@
       email: document.getElementById('tb_email'),
       btn: document.getElementById('tb_send_btn'),
       status: document.getElementById('tb_status'),
-      addTravelerBtn: document.getElementById('tb_add_traveler_btn'),
-      travelerList: document.getElementById('tb_traveler_list'),
+      addTravelerBtn: document.getElementById('tb_add_traveler'),
+      inviteList: document.getElementById('tb_invite_list'),
       recipientCount: document.getElementById('tb_recipient_count')
     };
 
@@ -917,126 +942,6 @@
       }
     };
 
-    // ===== TRAVELERS (max 4 total: primary + 3) =====
-    const MAX_TRAVELERS_TOTAL = 4; // includes primary
-    let travelerRows = []; // {id, first, last, email}
-
-    function uid(){
-      return "t_" + Math.random().toString(16).slice(2) + "_" + Date.now().toString(16);
-    }
-
-    function isValidEmail(s){
-      const v = String(s || "").trim();
-      if (!v) return false;
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-    }
-
-    function capFirstLetter(v){
-      const s = String(v || "");
-      if (!s) return "";
-      const trimmed = s.trimStart();
-      if (!trimmed) return "";
-      const firstChar = trimmed.charAt(0).toUpperCase();
-      return firstChar + trimmed.slice(1);
-    }
-
-    function attachCapitalize(inputEl){
-      if (!inputEl) return;
-      inputEl.addEventListener("blur", () => {
-        inputEl.value = capFirstLetter(inputEl.value);
-      });
-    }
-
-    attachCapitalize(tripEmailEls.first);
-    attachCapitalize(tripEmailEls.last);
-
-    function renderTravelerRows(){
-      if (!tripEmailEls.travelerList) return;
-      tripEmailEls.travelerList.innerHTML = "";
-
-      travelerRows.forEach((t, idx) => {
-        const row = document.createElement("div");
-        row.className = "traveler-row";
-        row.dataset.id = t.id;
-
-        row.innerHTML = `
-          <div class="field">
-            <label>First Name</label>
-            <input class="input" type="text" inputmode="text" autocomplete="off" data-k="first" value="${escapeHtml(t.first || "")}">
-          </div>
-          <div class="field">
-            <label>Last Name</label>
-            <input class="input" type="text" inputmode="text" autocomplete="off" data-k="last" value="${escapeHtml(t.last || "")}">
-          </div>
-          <div class="field">
-            <label>Email</label>
-            <input class="input" type="email" inputmode="email" autocomplete="off" data-k="email" value="${escapeHtml(t.email || "")}">
-          </div>
-          <button class="btn small" type="button" data-remove="1">Remove</button>
-        `;
-
-        const inputs = row.querySelectorAll("input[data-k]");
-        inputs.forEach(inp => {
-          const k = inp.getAttribute("data-k");
-          inp.addEventListener("input", () => {
-            const id = row.dataset.id;
-            const item = travelerRows.find(x => x.id === id);
-            if (!item) return;
-            item[k] = inp.value;
-            updateRecipientCount();
-            enableEmailButtonIfReady();
-          });
-
-          if (k === "first" || k === "last") {
-            attachCapitalize(inp);
-          }
-        });
-
-        const rm = row.querySelector("button[data-remove]");
-        rm.addEventListener("click", () => {
-          travelerRows = travelerRows.filter(x => x.id !== row.dataset.id);
-          renderTravelerRows();
-          updateRecipientCount();
-          enableEmailButtonIfReady();
-          updateAddTravelerState();
-        });
-
-        tripEmailEls.travelerList.appendChild(row);
-      });
-
-      updateAddTravelerState();
-    }
-
-    function updateAddTravelerState(){
-      const maxInvitees = MAX_TRAVELERS_TOTAL - 1;
-      const canAdd = travelerRows.length < maxInvitees;
-      if (tripEmailEls.addTravelerBtn) tripEmailEls.addTravelerBtn.disabled = !canAdd;
-      if (tripEmailEls.addTravelerBtn) tripEmailEls.addTravelerBtn.textContent = canAdd ? "Add traveler" : "Max travelers reached";
-    }
-
-    function getInvitedEmails(){
-      return travelerRows
-        .map(t => String(t.email || "").trim())
-        .filter(e => isValidEmail(e));
-    }
-
-    function updateRecipientCount(){
-      const invited = getInvitedEmails();
-      const total = 1 + invited.length;
-      if (tripEmailEls.recipientCount) tripEmailEls.recipientCount.textContent = String(total);
-    }
-
-    if (tripEmailEls.addTravelerBtn) {
-      tripEmailEls.addTravelerBtn.addEventListener("click", () => {
-        const maxInvitees = MAX_TRAVELERS_TOTAL - 1;
-        if (travelerRows.length >= maxInvitees) return;
-        travelerRows.push({ id: uid(), first: "", last: "", email: "" });
-        renderTravelerRows();
-        updateRecipientCount();
-        enableEmailButtonIfReady();
-      });
-    }
-
     function setEmailStatus(text, kind){
       if (!tripEmailEls.status) return;
       tripEmailEls.status.textContent = text;
@@ -1054,33 +959,179 @@
 
     function enableEmailButtonIfReady(){
       if (!tripEmailEls.btn) return;
-
-      const hasItinerary = !!(state.lastPlan && state.lastItineraryText && state.lastItineraryText.trim().length > 0);
-
-      const primaryOk =
-        (tripEmailEls.first.value || "").trim().length > 0 &&
-        (tripEmailEls.last.value || "").trim().length > 0 &&
-        isValidEmail(tripEmailEls.email.value || "");
-
-      // If traveler rows exist, only count travelers with valid emails as recipients.
-      // We do not block sending if someone typed a traveler name but left email blank.
-      // We do block if they typed a traveler email that is invalid.
-      const invalidTravelerEmailExists = travelerRows.some(t => {
-        const e = String(t.email || "").trim();
-        return e.length > 0 && !isValidEmail(e);
-      });
-
-      const ready = hasItinerary && primaryOk && !invalidTravelerEmailExists;
-
+      const ready = !!(state.lastPlan && state.lastItineraryText && state.lastItineraryText.trim().length > 0);
       tripEmailEls.btn.disabled = !ready;
     }
 
-    ["input","change","blur"].forEach(evt => {
-      if (tripEmailEls.first) tripEmailEls.first.addEventListener(evt, () => { updateRecipientCount(); enableEmailButtonIfReady(); });
-      if (tripEmailEls.last) tripEmailEls.last.addEventListener(evt, () => { updateRecipientCount(); enableEmailButtonIfReady(); });
-      if (tripEmailEls.email) tripEmailEls.email.addEventListener(evt, () => { updateRecipientCount(); enableEmailButtonIfReady(); });
-    });
+    // ===== Name auto-capitalize (desktop + mobile) =====
+    function capFirstLetter(s){
+      const t = String(s || "");
+      if (!t) return "";
+      const trimmed = t.trimStart();
+      if (!trimmed) return "";
+      return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+    }
 
+    function attachCapitalize(el){
+      if (!el) return;
+      el.addEventListener("input", () => {
+        const v = el.value;
+        const c = capFirstLetter(v);
+        if (c !== v) el.value = c;
+      });
+      el.addEventListener("blur", () => {
+        const v = el.value;
+        const c = capFirstLetter(v);
+        if (c !== v) el.value = c;
+      });
+    }
+
+    attachCapitalize(tripEmailEls.first);
+    attachCapitalize(tripEmailEls.last);
+
+    // ===== Invite travelers UI =====
+    const MAX_INVITES = 3;
+    const inviteRows = []; // {wrap, first, last, email}
+
+    function isValidEmail(s){
+      const t = String(s || "").trim();
+      if (!t) return false;
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t);
+    }
+
+    function getInvitees(){
+      return inviteRows
+        .map(r => ({
+          first_name: (r.first.value || "").trim(),
+          last_name: (r.last.value || "").trim(),
+          email: (r.email.value || "").trim()
+        }))
+        .filter(x => x.first_name || x.last_name || x.email);
+    }
+
+    function getAllRecipientEmails(){
+      const primary = (tripEmailEls.email.value || "").trim();
+      const invitees = getInvitees().map(x => x.email).filter(Boolean);
+      const all = [primary, ...invitees].filter(Boolean);
+      // de-dupe
+      const seen = new Set();
+      return all.filter(e => {
+        const k = e.toLowerCase();
+        if (seen.has(k)) return false;
+        seen.add(k);
+        return true;
+      });
+    }
+
+    function updateRecipientCount(){
+      const emails = getAllRecipientEmails();
+      const n = emails.length || 0;
+      if (tripEmailEls.recipientCount) tripEmailEls.recipientCount.textContent = `Recipients: ${n} email(s)`;
+    }
+
+    function buildInviteRow(){
+      const wrap = document.createElement("div");
+
+      const row = document.createElement("div");
+      row.className = "invite-row";
+
+      const f = document.createElement("div");
+      f.className = "field";
+      f.innerHTML = `<label>First Name</label>`;
+      const fInput = document.createElement("input");
+      fInput.className = "input";
+      fInput.type = "text";
+      fInput.autocomplete = "given-name";
+      f.appendChild(fInput);
+
+      const l = document.createElement("div");
+      l.className = "field";
+      l.innerHTML = `<label>Last Name</label>`;
+      const lInput = document.createElement("input");
+      lInput.className = "input";
+      lInput.type = "text";
+      lInput.autocomplete = "family-name";
+      l.appendChild(lInput);
+
+      const e = document.createElement("div");
+      e.className = "field";
+      e.innerHTML = `<label>Email</label>`;
+      const eInput = document.createElement("input");
+      eInput.className = "input";
+      eInput.type = "email";
+      eInput.autocomplete = "email";
+      e.appendChild(eInput);
+
+      row.appendChild(f);
+      row.appendChild(l);
+      row.appendChild(e);
+
+      const actions = document.createElement("div");
+      actions.className = "invite-row-actions";
+      const removeBtn = document.createElement("button");
+      removeBtn.type = "button";
+      removeBtn.className = "btn";
+      removeBtn.textContent = "Remove";
+      actions.appendChild(removeBtn);
+
+      wrap.appendChild(row);
+      wrap.appendChild(actions);
+
+      attachCapitalize(fInput);
+      attachCapitalize(lInput);
+
+      function onAnyChange(){
+        updateRecipientCount();
+        clearEmailStatus();
+      }
+
+      [fInput, lInput, eInput].forEach(inp => {
+        inp.addEventListener("input", onAnyChange);
+        inp.addEventListener("change", onAnyChange);
+        inp.addEventListener("blur", onAnyChange);
+      });
+
+      removeBtn.addEventListener("click", () => {
+        const idx = inviteRows.findIndex(x => x.wrap === wrap);
+        if (idx >= 0) inviteRows.splice(idx, 1);
+        wrap.remove();
+        updateInviteControls();
+        updateRecipientCount();
+        clearEmailStatus();
+      });
+
+      return { wrap, first: fInput, last: lInput, email: eInput };
+    }
+
+    function updateInviteControls(){
+      if (!tripEmailEls.addTravelerBtn) return;
+      tripEmailEls.addTravelerBtn.disabled = inviteRows.length >= MAX_INVITES;
+      tripEmailEls.addTravelerBtn.textContent = inviteRows.length >= MAX_INVITES ? "Limit reached" : "Add traveler";
+    }
+
+    if (tripEmailEls.addTravelerBtn && tripEmailEls.inviteList) {
+      tripEmailEls.addTravelerBtn.addEventListener("click", () => {
+        clearEmailStatus();
+        if (inviteRows.length >= MAX_INVITES) return;
+        const r = buildInviteRow();
+        inviteRows.push(r);
+        tripEmailEls.inviteList.appendChild(r.wrap);
+        updateInviteControls();
+        updateRecipientCount();
+      });
+    }
+
+    // Primary email changes affect recipient count
+    if (tripEmailEls.email) {
+      ["input","change","blur"].forEach(evt => {
+        tripEmailEls.email.addEventListener(evt, () => {
+          updateRecipientCount();
+          clearEmailStatus();
+        });
+      });
+    }
+
+    // ===== Flights sync =====
     function syncFlights(fromSet){
       const d = flightEls.desktop;
       const m = flightEls.mobile;
@@ -1688,9 +1739,6 @@
 
     async function init() {
       renderDaysOptions();
-      renderTravelerRows();
-      updateRecipientCount();
-      enableEmailButtonIfReady();
 
       try {
         const [regions, experiences, blocks] = await Promise.all([
@@ -1718,6 +1766,8 @@
         els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
 
         enableEmailButtonIfReady();
+        updateInviteControls();
+        updateRecipientCount();
       } catch (e) {
         els.output.innerHTML = "<div class='hint'><strong>Data load error:</strong> " + (e.message || e) + "</div>";
       }
@@ -1757,19 +1807,20 @@
       flightEls.desktop.to.value = "UIO";
       if (flightEls.mobile.to) flightEls.mobile.to.value = "UIO";
 
+      // Clear invites
+      inviteRows.splice(0, inviteRows.length);
+      if (tripEmailEls.inviteList) tripEmailEls.inviteList.innerHTML = "";
+      updateInviteControls();
+
       state.lastPlan = null;
       state.lastItineraryText = "";
-
-      travelerRows = [];
-      renderTravelerRows();
-      updateRecipientCount();
-
       enableEmailButtonIfReady();
       clearEmailStatus();
 
       updateHints();
       updateGenerateState();
       els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
+      updateRecipientCount();
     });
 
     // ===== EMAIL SUBMIT =====
@@ -1788,38 +1839,54 @@
           return;
         }
 
-        const invitedEmails = getInvitedEmails();
+        const primaryEmail = (tripEmailEls.email.value || "").trim();
+        if (!primaryEmail || !isValidEmail(primaryEmail)) {
+          setEmailStatus("Please enter a valid email for the main traveler.", "error");
+          return;
+        }
+
+        const invitees = getInvitees().slice(0, MAX_INVITES);
+
+        // Validate invitees if user typed something
+        for (const inv of invitees) {
+          if (inv.email && !isValidEmail(inv.email)) {
+            setEmailStatus("One invited traveler email looks invalid. Please fix it or remove that traveler.", "error");
+            return;
+          }
+        }
 
         const payload = {
-          first_name: capFirstLetter((tripEmailEls.first.value || "").trim()),
-          last_name: capFirstLetter((tripEmailEls.last.value || "").trim()),
-          email: (tripEmailEls.email.value || "").trim(),
-          invited_emails: invitedEmails.join(", "),
+          first_name: (tripEmailEls.first.value || "").trim(),
+          last_name: (tripEmailEls.last.value || "").trim(),
+          email: primaryEmail,
+
           trip_days: String(state.days || ""),
           regions: Array.from(state.selectedRegionIds).map(regionName).join(", "),
           experiences: Array.from(state.selectedExperienceIds).map(experienceName).join(", "),
           itinerary_text: state.lastItineraryText,
           page_url: window.location.href,
-          user_agent: navigator.userAgent
+          user_agent: navigator.userAgent,
+
+          // Invitees
+          invitees_json: JSON.stringify(invitees),
+          invited_count: String(invitees.length || 0),
+
+          // Also send explicit columns (Option A style)
+          invited_1_first_name: invitees[0] ? (invitees[0].first_name || "") : "",
+          invited_1_last_name:  invitees[0] ? (invitees[0].last_name || "") : "",
+          invited_1_email:      invitees[0] ? (invitees[0].email || "") : "",
+
+          invited_2_first_name: invitees[1] ? (invitees[1].first_name || "") : "",
+          invited_2_last_name:  invitees[1] ? (invitees[1].last_name || "") : "",
+          invited_2_email:      invitees[1] ? (invitees[1].email || "") : "",
+
+          invited_3_first_name: invitees[2] ? (invitees[2].first_name || "") : "",
+          invited_3_last_name:  invitees[2] ? (invitees[2].last_name || "") : "",
+          invited_3_email:      invitees[2] ? (invitees[2].email || "") : ""
         };
 
-        if (!payload.first_name || !payload.last_name || !payload.email) {
-          setEmailStatus("Please fill first name, last name, and email.", "error");
-          return;
-        }
-
-        if (!isValidEmail(payload.email)) {
-          setEmailStatus("Please enter a valid email address.", "error");
-          return;
-        }
-
-        const invalidTravelerEmailExists = travelerRows.some(t => {
-          const e = String(t.email || "").trim();
-          return e.length > 0 && !isValidEmail(e);
-        });
-
-        if (invalidTravelerEmailExists) {
-          setEmailStatus("One of the invited traveler emails is invalid. Fix it or remove that traveler.", "error");
+        if (!payload.first_name || !payload.last_name) {
+          setEmailStatus("Please fill first name and last name for the main traveler.", "error");
           return;
         }
 
@@ -1832,46 +1899,46 @@
             body: new URLSearchParams(payload)
           });
 
-          const json = await res.json().catch(() => ({}));
+          const ct = (res.headers.get("content-type") || "").toLowerCase();
+          let json = null;
+
+          if (ct.includes("application/json")) {
+            json = await res.json().catch(() => null);
+          } else {
+            // If Apps Script is not public, it often returns HTML. Read it so we can show a useful error.
+            const text = await res.text().catch(() => "");
+            setEmailStatus("Email failed. Your Apps Script Web App access is likely not set to Anyone. Update Deploy settings and try again.", "error");
+            tripEmailEls.btn.textContent = "Email itinerary";
+            enableEmailButtonIfReady();
+            return;
+          }
 
           if (!res.ok || !json || json.ok !== true) {
             setEmailStatus("Something went wrong sending your itinerary. Please try again.", "error");
             return;
           }
 
-          const invitedCount = Number(json.invited_count || invitedEmails.length || 0);
-          const msg = invitedCount > 0
-            ? `Sent. Check your inbox. Invites sent to ${invitedCount} traveler(s).`
-            : "Sent. Check your inbox in a minute.";
+          const total = (json.total_recipients || 1);
+          setEmailStatus(`Sent to ${total} recipient(s). Check inboxes in a minute.`, "ok");
 
-          setEmailStatus(msg, "ok");
-
-          try { tripEmailEls.email.value = ""; } catch (e) {}
+          try { tripEmailEls.email.value = primaryEmail; } catch (e) {}
         } catch (err) {
           setEmailStatus("Network error. Please try again.", "error");
         } finally {
           tripEmailEls.btn.textContent = "Email itinerary";
           enableEmailButtonIfReady();
+          updateRecipientCount();
         }
       });
-    }
-
-    // ===== HELPERS =====
-    function escapeHtml(s){
-      return String(s || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
     }
 
     init();
   </script>
 
-  <!-- Keep global nav behavior -->
+  <!-- Keep global mobile nav behavior -->
   <script src="/assets/js/site.js"></script>
 
+  <!-- Global header/footer injection -->
   <script>
     (function(){
       async function inject(id, url){
