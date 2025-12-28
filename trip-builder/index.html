@@ -27,6 +27,9 @@
       --charcoal:#1F1F1F;
       --slate:#6E7B8B;
       --soft:#f6f8fb;
+
+      /* Forces the Flights form "input column" to start at a consistent left edge */
+      --mini-label-col: 78px;
     }
 
     *{box-sizing:border-box}
@@ -298,7 +301,7 @@
 
     .mini-grid{
       display:grid;
-      grid-template-columns:auto 1fr;
+      grid-template-columns:var(--mini-label-col) 1fr;
       gap:10px 10px;
       align-items:center;
       width:100%;
@@ -353,12 +356,23 @@
       border-color:rgba(3,78,162,0.45);
     }
 
+    /* Align Search flights button to the SAME input column as the fields above */
     .mini-actions{
       margin-top:12px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
+      display:grid;
+      grid-template-columns:var(--mini-label-col) 1fr;
+      gap:10px 10px;
+      align-items:center;
+      width:100%;
+    }
+    .mini-actions .btn{
+      width:100%;
+      justify-self:stretch;
+    }
+    .mini-actions .mini-spacer{
+      display:block;
+      width:100%;
+      height:1px;
     }
 
     .mini-hint{
@@ -633,7 +647,13 @@
       .controls-grid select{ width:100%; }
 
       .mini-grid{ grid-template-columns:1fr; }
-      .mini-actions{ justify-content:flex-start; }
+
+      /* mini-actions becomes a single column on mobile */
+      .mini-actions{
+        grid-template-columns:1fr;
+        justify-content:start;
+      }
+      .mini-actions .mini-spacer{ display:none; }
 
       .itinerary-shell{
         padding:18px;
@@ -687,12 +707,6 @@
 
       .recipients-wrap{
         width:100%;
-      }
-    }
-
-    @media(min-width:901px){
-      .flights-card .mini-actions{
-        justify-content:center;
       }
     }
 
@@ -788,6 +802,7 @@
           </div>
 
           <div class="mini-actions">
+            <span class="mini-spacer" aria-hidden="true"></span>
             <button class="btn primary" id="flightSearchBtnDesktop" type="button">Search flights</button>
           </div>
 
@@ -875,7 +890,8 @@
         </div>
 
         <div class="mini-actions">
-          <button class="btn primary" id="flightSearchBtnMobile" type="button">Search Flights</button>
+          <span class="mini-spacer" aria-hidden="true"></span>
+          <button class="btn primary" id="flightSearchBtnMobile" type="button">Search flights</button>
         </div>
 
         <div class="mini-hint">
@@ -1013,7 +1029,6 @@
       const primary = (tripEmailEls.email.value || "").trim();
       const invitees = getInvitees().map(x => x.email).filter(Boolean);
       const all = [primary, ...invitees].filter(Boolean);
-      // de-dupe
       const seen = new Set();
       return all.filter(e => {
         const k = e.toLowerCase();
@@ -1121,7 +1136,6 @@
       });
     }
 
-    // Primary email changes affect recipient count
     if (tripEmailEls.email) {
       ["input","change","blur"].forEach(evt => {
         tripEmailEls.email.addEventListener(evt, () => {
@@ -1773,6 +1787,11 @@
       }
     }
 
+    function setUserSetAll(val){
+      flightEls.desktop.to.dataset.userSet = val;
+      if (flightEls.mobile.to) flightEls.mobile.to.dataset.userSet = val;
+    }
+
     els.daysSelect.addEventListener('change', () => {
       state.days = Number(els.daysSelect.value);
     });
@@ -1807,7 +1826,6 @@
       flightEls.desktop.to.value = "UIO";
       if (flightEls.mobile.to) flightEls.mobile.to.value = "UIO";
 
-      // Clear invites
       inviteRows.splice(0, inviteRows.length);
       if (tripEmailEls.inviteList) tripEmailEls.inviteList.innerHTML = "";
       updateInviteControls();
@@ -1847,7 +1865,6 @@
 
         const invitees = getInvitees().slice(0, MAX_INVITES);
 
-        // Validate invitees if user typed something
         for (const inv of invitees) {
           if (inv.email && !isValidEmail(inv.email)) {
             setEmailStatus("One invited traveler email looks invalid. Please fix it or remove that traveler.", "error");
@@ -1867,11 +1884,9 @@
           page_url: window.location.href,
           user_agent: navigator.userAgent,
 
-          // Invitees
           invitees_json: JSON.stringify(invitees),
           invited_count: String(invitees.length || 0),
 
-          // Also send explicit columns (Option A style)
           invited_1_first_name: invitees[0] ? (invitees[0].first_name || "") : "",
           invited_1_last_name:  invitees[0] ? (invitees[0].last_name || "") : "",
           invited_1_email:      invitees[0] ? (invitees[0].email || "") : "",
@@ -1905,8 +1920,7 @@
           if (ct.includes("application/json")) {
             json = await res.json().catch(() => null);
           } else {
-            // If Apps Script is not public, it often returns HTML. Read it so we can show a useful error.
-            const text = await res.text().catch(() => "");
+            await res.text().catch(() => "");
             setEmailStatus("Email failed. Your Apps Script Web App access is likely not set to Anyone. Update Deploy settings and try again.", "error");
             tripEmailEls.btn.textContent = "Email itinerary";
             enableEmailButtonIfReady();
