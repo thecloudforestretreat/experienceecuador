@@ -358,12 +358,19 @@
       border-color:rgba(3,78,162,0.45);
     }
 
+    /* Button row aligned to the SAME width as the input column (desktop) */
     .mini-actions{
       margin-top:12px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:10px 10px;
+      align-items:center;
+    }
+    .mini-actions-spacer{ height:1px; }
+
+    .mini-actions .btn{
+      width:100%;
+      min-width:0;
     }
 
     .mini-hint{
@@ -637,7 +644,10 @@
       .controls-grid select{ width:100%; }
 
       .mini-grid{ grid-template-columns:1fr; }
-      .mini-actions{ justify-content:flex-start; }
+      .mini-actions{
+        grid-template-columns:1fr;
+      }
+      .mini-actions-spacer{ display:none; }
 
       .itinerary-shell{
         padding:18px;
@@ -692,9 +702,29 @@
       }
     }
 
+    /* Desktop-only: make ALL region/experience pills same height */
     @media(min-width:901px){
-      .flights-card .mini-actions{
+      .pill-row{ align-items:stretch; }
+      .pill-row.experiences-grid{ align-items:stretch; }
+
+      .pill{
+        height:44px;
+        display:inline-flex;
+        align-items:center;
         justify-content:center;
+        line-height:1;
+        white-space:nowrap;
+      }
+
+      /* If any label gets too long on desktop, keep height consistent */
+      .pill{
+        overflow:hidden;
+        text-overflow:ellipsis;
+      }
+
+      /* keep the flights button centered vertically but width aligned to inputs via grid */
+      .flights-card .mini-actions{
+        justify-items:stretch;
       }
     }
 
@@ -790,6 +820,7 @@
           </div>
 
           <div class="mini-actions">
+            <span class="mini-actions-spacer" aria-hidden="true"></span>
             <button class="btn primary" id="flightSearchBtnDesktop" type="button">Buscar vuelos</button>
           </div>
 
@@ -877,6 +908,7 @@
         </div>
 
         <div class="mini-actions">
+          <span class="mini-actions-spacer" aria-hidden="true"></span>
           <button class="btn primary" id="flightSearchBtnMobile" type="button">Buscar vuelos</button>
         </div>
 
