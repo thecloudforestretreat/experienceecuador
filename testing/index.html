@@ -197,6 +197,16 @@
       border-color:rgba(3,78,162,0.45);
     }
 
+    /* Desktop only: make "Number of days" bubble tighter (max is double digits) */
+    @media(min-width:901px){
+      #daysSelect{
+        width:120px;
+      }
+      .controls-grid{
+        grid-template-columns:auto 120px;
+      }
+    }
+
     .pill-row{
       margin-top:14px;
       display:flex;
@@ -1432,7 +1442,7 @@
       const longPart = regionBlocks.find(b => safeNumber(b.duration_hours, 0) >= DAY_CAPACITY_HOURS);
       if (longPart) {
         tryAdd(longPart);
-        return { blocks: dayBlocks, optionalAddOn, remaining_hours: remaining };
+        return { blocks: dayBlocks, optional_add_on: optionalAddOn, remaining_hours: remaining };
       }
 
       const morningPick = pickFromList(byTime.get("morning"));
@@ -1471,7 +1481,7 @@
         if (addOn) optionalAddOn = addOn;
       }
 
-      return { blocks: dayBlocks, optionalAddOn, remaining_hours: remaining };
+      return { blocks: dayBlocks, optional_add_on: optionalAddOn, remaining_hours: remaining };
     }
 
     function generateItinerary() {
