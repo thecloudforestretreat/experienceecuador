@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trip Builder | Experience Ecuador</title>
+  <title>Planificador de Viajes | Experience Ecuador</title>
+  <meta name="description" content="Crea un itinerario personalizado por Ecuador. Elige días, regiones y experiencias, y genera un itinerario sugerido." />
+
+  <link rel="alternate" hreflang="en" href="/trip-builder/" />
+  <link rel="alternate" hreflang="es" href="/es/planificador-de-viajes/" />
+  <link rel="alternate" hreflang="x-default" href="/trip-builder/" />
 
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -573,7 +578,6 @@
 
     .invite-row + .invite-row{ margin-top:14px; }
 
-    /* Remove button sits UNDER the row, aligned right */
     .invite-row-actions{
       display:flex;
       justify-content:flex-end;
@@ -669,7 +673,6 @@
         grid-template-columns:1fr;
       }
 
-      /* Add + Remove aligned right, same size feel */
       .invite-card-head .btn{
         padding:12px 14px;
         border-radius:16px;
@@ -680,7 +683,6 @@
         border-radius:16px;
       }
 
-      /* Send button full width under recipient count */
       .send-btn{
         width:100%;
       }
@@ -717,108 +719,108 @@
   <div id="siteHeader"></div>
 
   <main>
-    <section class="hero" aria-label="Trip Builder hero">
-      <div class="hero-banner" role="img" aria-label="Trip Builder hero image placeholder">
+    <section class="hero" aria-label="Hero del planificador de viajes">
+      <div class="hero-banner" role="img" aria-label="Imagen del hero del planificador de viajes">
         <div class="hero-content">
           <div>
-            <h1 class="hero-title">Trip Builder</h1>
+            <h1 class="hero-title">Planificador de Viajes</h1>
           </div>
         </div>
       </div>
     </section>
 
     <div class="wrap">
-      <section class="builder-layout" aria-label="Trip builder and flights">
-        <section class="card builder-card" aria-label="Trip builder wizard">
-          <h2 style="margin-bottom:10px;">Build A Custom Ecuador Itinerary</h2>
+      <section class="builder-layout" aria-label="Planificador de viaje y vuelos">
+        <section class="card builder-card" aria-label="Asistente del planificador">
+          <h2 style="margin-bottom:10px;">Crea un itinerario personalizado por Ecuador</h2>
           <p>
-            Choose your trip length, regions, and experiences. Then generate a suggested itinerary you can customize.
-            This version is rules-based and runs entirely in your browser.
+            Elige la duración del viaje, regiones y experiencias. Luego genera un itinerario sugerido que puedes ajustar.
+            Esta versión funciona por reglas y corre completamente en tu navegador.
           </p>
 
           <div class="builder-top" style="margin-top:14px;">
-            <div class="controls-grid" aria-label="Builder controls">
-              <label for="daysSelect">Number of days</label>
+            <div class="controls-grid" aria-label="Controles del planificador">
+              <label for="daysSelect">Número de días</label>
               <select id="daysSelect"></select>
             </div>
           </div>
 
           <div style="margin-top:16px;">
-            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick Regions</div>
+            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Elige regiones</div>
 
             <div class="regions-tip">
-              Tip: If you select multiple regions, the tool will automatically split days and add lighter transfer-friendly pacing.
+              Consejo: si seleccionas varias regiones, la herramienta dividirá los días automáticamente y sugerirá un ritmo más ligero para traslados.
             </div>
 
-            <div class="pill-row" id="regionsPills" aria-label="Region selection"></div>
+            <div class="pill-row" id="regionsPills" aria-label="Selección de regiones"></div>
             <div class="region-hint" id="regionHint"></div>
           </div>
 
           <div style="margin-top:18px;">
-            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick Experiences</div>
-            <div class="pill-row experiences-grid" id="experiencesPills" aria-label="Experience selection"></div>
+            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Elige experiencias</div>
+            <div class="pill-row experiences-grid" id="experiencesPills" aria-label="Selección de experiencias"></div>
           </div>
 
           <div class="actions">
-            <button class="btn primary" id="generateBtn" type="button" disabled>Generate Itinerary</button>
-            <button class="btn" id="resetBtn" type="button">Reset</button>
+            <button class="btn primary" id="generateBtn" type="button" disabled>Generar itinerario</button>
+            <button class="btn" id="resetBtn" type="button">Reiniciar</button>
           </div>
         </section>
 
-        <aside class="card flights-card" id="flightsDesktop" aria-label="Flights (desktop)">
-          <p class="mini-title">Flights</p>
+        <aside class="card flights-card" id="flightsDesktop" aria-label="Vuelos (escritorio)">
+          <p class="mini-title">Vuelos</p>
 
           <div class="mini-grid">
-            <label for="flightFromDesktop">From</label>
-            <input id="flightFromDesktop" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
+            <label for="flightFromDesktop">Desde</label>
+            <input id="flightFromDesktop" type="text" inputmode="latin" autocomplete="off" placeholder="ej., JFK" maxlength="6">
 
-            <label for="flightToDesktop">To</label>
-            <select id="flightToDesktop" aria-label="Destination airport">
+            <label for="flightToDesktop">Hacia</label>
+            <select id="flightToDesktop" aria-label="Aeropuerto de destino">
               <option value="UIO">Quito (UIO)</option>
               <option value="GYE">Guayaquil (GYE)</option>
-              <option value="GPS">Galapagos (GPS)</option>
+              <option value="GPS">Galápagos (GPS)</option>
               <option value="CUE">Cuenca (CUE)</option>
             </select>
 
-            <label for="flightDepartDesktop">Depart</label>
+            <label for="flightDepartDesktop">Salida</label>
             <input id="flightDepartDesktop" type="date">
 
-            <label for="flightReturnDesktop">Return</label>
+            <label for="flightReturnDesktop">Regreso</label>
             <input id="flightReturnDesktop" type="date">
           </div>
 
           <div class="mini-actions">
-            <button class="btn primary" id="flightSearchBtnDesktop" type="button">Search flights</button>
+            <button class="btn primary" id="flightSearchBtnDesktop" type="button">Buscar vuelos</button>
           </div>
 
           <div class="mini-hint">
-            When flights and itinerary are confirmed, check out local safe transportation:
-            <a class="mini-link" href="/transportation/">Transportation</a>
+            Cuando confirmes vuelos e itinerario, revisa transporte local seguro:
+            <a class="mini-link" href="/es/transporte/">Transporte</a>
           </div>
         </aside>
       </section>
 
-      <section class="itinerary" aria-label="Generated itinerary">
-        <div class="itinerary-shell" aria-label="Itinerary output container">
-          <h2 class="section-title" style="margin:0 0 12px;">Your Suggested Itinerary</h2>
-          <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate Itinerary.”</div>
+      <section class="itinerary" aria-label="Itinerario generado">
+        <div class="itinerary-shell" aria-label="Contenedor de salida del itinerario">
+          <h2 class="section-title" style="margin:0 0 12px;">Tu itinerario sugerido</h2>
+          <div id="output" class="hint">Selecciona días, regiones y experiencias. Luego haz clic en “Generar itinerario”.</div>
 
           <!-- Email itinerary -->
-          <div class="email-divider" aria-label="Email itinerary section">
-            <h3 class="email-title">Email this itinerary</h3>
+          <div class="email-divider" aria-label="Sección para enviar el itinerario por email">
+            <h3 class="email-title">Enviar este itinerario por email</h3>
             <p class="email-sub">
-              Generate an itinerary first, then enter your details. You can invite up to 3 additional travelers.
+              Primero genera un itinerario, luego ingresa tus datos. Puedes invitar hasta 3 viajeros adicionales.
             </p>
 
             <form id="eeTripEmailForm" autocomplete="on">
               <div class="email-grid">
                 <div class="field">
-                  <label for="tb_first_name">First Name</label>
+                  <label for="tb_first_name">Nombre</label>
                   <input class="input" id="tb_first_name" name="first_name" type="text" autocomplete="given-name" required>
                 </div>
 
                 <div class="field">
-                  <label for="tb_last_name">Last Name</label>
+                  <label for="tb_last_name">Apellido</label>
                   <input class="input" id="tb_last_name" name="last_name" type="text" autocomplete="family-name" required>
                 </div>
 
@@ -828,22 +830,22 @@
                 </div>
               </div>
 
-              <div class="invite-card" aria-label="Invite travelers">
+              <div class="invite-card" aria-label="Invitar viajeros">
                 <div class="invite-card-head">
-                  <div class="invite-title">Invite travelers (optional)</div>
-                  <button class="btn" id="tb_add_traveler" type="button">Add traveler</button>
+                  <div class="invite-title">Invitar viajeros (opcional)</div>
+                  <button class="btn" id="tb_add_traveler" type="button">Agregar viajero</button>
                 </div>
 
                 <div id="tb_invite_list"></div>
 
                 <div class="invite-hint">
-                  Invited travelers receive one email with the itinerary and a short invitation line.
+                  Los viajeros invitados reciben un solo email con el itinerario y una línea corta de invitación.
                 </div>
               </div>
 
               <div class="recipients-wrap">
-                <div class="recipient-count" id="tb_recipient_count">Recipients: 1 email(s)</div>
-                <button class="btn primary send-btn" id="tb_send_btn" type="submit" disabled>Email itinerary</button>
+                <div class="recipient-count" id="tb_recipient_count">Destinatarios: 1 email(s)</div>
+                <button class="btn primary send-btn" id="tb_send_btn" type="submit" disabled>Enviar itinerario</button>
               </div>
 
               <div class="statusPill" id="tb_status" role="status" aria-live="polite"></div>
@@ -852,35 +854,35 @@
         </div>
       </section>
 
-      <aside class="card flights-card" id="flightsMobile" aria-label="Flights (mobile)" style="display:none;">
-        <p class="mini-title">Flights</p>
+      <aside class="card flights-card" id="flightsMobile" aria-label="Vuelos (móvil)" style="display:none;">
+        <p class="mini-title">Vuelos</p>
 
         <div class="mini-grid">
-          <label for="flightFromMobile">From</label>
-          <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
+          <label for="flightFromMobile">Desde</label>
+          <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="ej., JFK" maxlength="6">
 
-          <label for="flightToMobile">To</label>
-          <select id="flightToMobile" aria-label="Destination airport">
+          <label for="flightToMobile">Hacia</label>
+          <select id="flightToMobile" aria-label="Aeropuerto de destino">
             <option value="UIO">Quito (UIO)</option>
             <option value="GYE">Guayaquil (GYE)</option>
-            <option value="GPS">Galapagos (GPS)</option>
+            <option value="GPS">Galápagos (GPS)</option>
             <option value="CUE">Cuenca (CUE)</option>
           </select>
 
-          <label for="flightDepartMobile">Depart</label>
+          <label for="flightDepartMobile">Salida</label>
           <input id="flightDepartMobile" type="date">
 
-          <label for="flightReturnMobile">Return</label>
+          <label for="flightReturnMobile">Regreso</label>
           <input id="flightReturnMobile" type="date">
         </div>
 
         <div class="mini-actions">
-          <button class="btn primary" id="flightSearchBtnMobile" type="button">Search Flights</button>
+          <button class="btn primary" id="flightSearchBtnMobile" type="button">Buscar vuelos</button>
         </div>
 
         <div class="mini-hint">
-          When flights and itinerary are confirmed, check out local safe transportation:
-          <a class="mini-link" href="/transportation/">Transportation</a>
+          Cuando confirmes vuelos e itinerario, revisa transporte local seguro:
+          <a class="mini-link" href="/es/transporte/">Transporte</a>
         </div>
       </aside>
     </div>
@@ -963,7 +965,7 @@
       tripEmailEls.btn.disabled = !ready;
     }
 
-    // ===== Name auto-capitalize (desktop + mobile) =====
+    // ===== Name auto-capitalize =====
     function capFirstLetter(s){
       const t = String(s || "");
       if (!t) return "";
@@ -1013,7 +1015,6 @@
       const primary = (tripEmailEls.email.value || "").trim();
       const invitees = getInvitees().map(x => x.email).filter(Boolean);
       const all = [primary, ...invitees].filter(Boolean);
-      // de-dupe
       const seen = new Set();
       return all.filter(e => {
         const k = e.toLowerCase();
@@ -1026,7 +1027,7 @@
     function updateRecipientCount(){
       const emails = getAllRecipientEmails();
       const n = emails.length || 0;
-      if (tripEmailEls.recipientCount) tripEmailEls.recipientCount.textContent = `Recipients: ${n} email(s)`;
+      if (tripEmailEls.recipientCount) tripEmailEls.recipientCount.textContent = `Destinatarios: ${n} email(s)`;
     }
 
     function buildInviteRow(){
@@ -1037,7 +1038,7 @@
 
       const f = document.createElement("div");
       f.className = "field";
-      f.innerHTML = `<label>First Name</label>`;
+      f.innerHTML = `<label>Nombre</label>`;
       const fInput = document.createElement("input");
       fInput.className = "input";
       fInput.type = "text";
@@ -1046,7 +1047,7 @@
 
       const l = document.createElement("div");
       l.className = "field";
-      l.innerHTML = `<label>Last Name</label>`;
+      l.innerHTML = `<label>Apellido</label>`;
       const lInput = document.createElement("input");
       lInput.className = "input";
       lInput.type = "text";
@@ -1071,7 +1072,7 @@
       const removeBtn = document.createElement("button");
       removeBtn.type = "button";
       removeBtn.className = "btn";
-      removeBtn.textContent = "Remove";
+      removeBtn.textContent = "Quitar";
       actions.appendChild(removeBtn);
 
       wrap.appendChild(row);
@@ -1106,7 +1107,7 @@
     function updateInviteControls(){
       if (!tripEmailEls.addTravelerBtn) return;
       tripEmailEls.addTravelerBtn.disabled = inviteRows.length >= MAX_INVITES;
-      tripEmailEls.addTravelerBtn.textContent = inviteRows.length >= MAX_INVITES ? "Limit reached" : "Add traveler";
+      tripEmailEls.addTravelerBtn.textContent = inviteRows.length >= MAX_INVITES ? "Límite alcanzado" : "Agregar viajero";
     }
 
     if (tripEmailEls.addTravelerBtn && tripEmailEls.inviteList) {
@@ -1121,7 +1122,6 @@
       });
     }
 
-    // Primary email changes affect recipient count
     if (tripEmailEls.email) {
       ["input","change","blur"].forEach(evt => {
         tripEmailEls.email.addEventListener(evt, () => {
@@ -1274,7 +1274,7 @@
 
       if (selectedRegions.length === 0 || selectedExperiences.length === 0) {
         els.regionHint.textContent =
-          "Select at least one region and one experience. You can choose multiple regions and multiple experiences for a multi-stop trip.";
+          "Selecciona al menos una región y una experiencia. Puedes elegir varias regiones y varias experiencias para un viaje con múltiples paradas.";
         return;
       }
 
@@ -1282,11 +1282,11 @@
       const lines = selectedRegions.map(rid => {
         const r = regionMap.get(rid);
         const locs = (r && r.locations) ? r.locations.map(l => l.name).slice(0, 4) : [];
-        const suffix = locs.length ? ` (locations: ${locs.join(", ")}${(r.locations.length > 4 ? ", ..." : "")})` : "";
+        const suffix = locs.length ? ` (lugares: ${locs.join(", ")}${(r.locations.length > 4 ? ", ..." : "")})` : "";
         return `${r ? r.name : rid}${suffix}`;
       });
 
-      els.regionHint.textContent = "Selected: " + lines.join(" · ");
+      els.regionHint.textContent = "Seleccionado: " + lines.join(" · ");
     }
 
     function updateGenerateState() {
@@ -1332,7 +1332,7 @@
         out.push({
           ...block,
           id: `${block.id}__part_${i+1}_of_${parts}`,
-          title: `${block.title} (Part ${i+1} of ${parts})`,
+          title: `${block.title} (Parte ${i+1} de ${parts})`,
           duration_hours: Math.round(per * 10) / 10
         });
       }
@@ -1496,7 +1496,7 @@
 
     function renderItinerary(plan) {
       if (!plan || plan.length === 0) {
-        els.output.innerHTML = "<div class='hint'>No itinerary generated. Make sure you selected regions and experiences.</div>";
+        els.output.innerHTML = "<div class='hint'>No se generó un itinerario. Asegúrate de seleccionar regiones y experiencias.</div>";
         return;
       }
 
@@ -1504,7 +1504,7 @@
 
       const disclaimer = document.createElement('div');
       disclaimer.className = "hint";
-      disclaimer.innerHTML = "<strong>Note:</strong> This is a suggested itinerary generated from your selections. Times and logistics can vary by season, traffic, and exact pickup locations.";
+      disclaimer.innerHTML = "<strong>Nota:</strong> Este es un itinerario sugerido basado en tus selecciones. Los tiempos y la logística pueden variar por temporada, tráfico y puntos exactos de recogida.";
       wrap.appendChild(disclaimer);
 
       plan.forEach(d => {
@@ -1514,14 +1514,14 @@
         const title = document.createElement('div');
         title.className = "day-title";
         title.innerHTML = `
-          <span>Day ${d.day}: ${regionName(d.region_id)}</span>
-          <span class="tag">${d.is_transfer_friendly ? "Transfer-friendly pace" : "Suggested day plan"}</span>
+          <span>Día ${d.day}: ${regionName(d.region_id)}</span>
+          <span class="tag">${d.is_transfer_friendly ? "Ritmo amigable para traslados" : "Plan sugerido"}</span>
         `;
         card.appendChild(title);
 
         const blocks = Array.isArray(d.blocks) ? d.blocks : [];
         if (blocks.length === 0) {
-          card.appendChild(renderEmptySlot("Day", "No matching activity blocks found for this region based on your selected experiences. Add more blocks to this region in itinerary_blocks.json."));
+          card.appendChild(renderEmptySlot("Día", "No hay actividades que coincidan para esta región según tus experiencias seleccionadas. Agrega más bloques para esta región en itinerary_blocks.json."));
         } else {
           const ordered = blocks.slice().sort((a,b) => {
             const ai = TIME_ORDER.includes(a.time_of_day) ? TIME_ORDER.indexOf(a.time_of_day) : 99;
@@ -1531,8 +1531,8 @@
           });
 
           ordered.forEach(block => {
-            const label = block.time_of_day ? capitalize(block.time_of_day) : "Day";
-            card.appendChild(renderSlot(label, block, d.region_id));
+            const label = block.time_of_day ? capitalizeEs(block.time_of_day) : "Día";
+            card.appendChild(renderSlotEs(label, block, d.region_id));
           });
         }
 
@@ -1540,12 +1540,12 @@
           const add = document.createElement('div');
           add.className = "hint";
           const dur = d.optional_add_on.duration_hours ? `${d.optional_add_on.duration_hours}h` : "";
-          add.innerHTML = `Optional add-on if you still have energy: <strong>${d.optional_add_on.title}</strong>${dur ? " (" + dur + ")" : ""}.`;
+          add.innerHTML = `Extra opcional si todavía tienes energía: <strong>${d.optional_add_on.title}</strong>${dur ? " (" + dur + ")" : ""}.`;
           card.appendChild(add);
         } else if (typeof d.remaining_hours === "number" && d.remaining_hours >= 2) {
           const rest = document.createElement('div');
           rest.className = "hint";
-          rest.innerHTML = `You still have about <strong>${Math.round(d.remaining_hours * 10) / 10} hours</strong> available today. Consider a café stop, a viewpoint, or a relaxed neighborhood walk.`;
+          rest.innerHTML = `Aún tienes aproximadamente <strong>${Math.round(d.remaining_hours * 10) / 10} horas</strong> disponibles hoy. Considera una cafetería, un mirador o una caminata tranquila.`;
           card.appendChild(rest);
         }
 
@@ -1558,17 +1558,17 @@
 
     function extractPartLabelFromTitleOrId(block){
       const t = String(block && block.title ? block.title : "");
-      const m1 = t.match(/\(Part\s+\d+\s+of\s+\d+\)/i);
+      const m1 = t.match(/\(Parte\s+\d+\s+de\s+\d+\)/i);
       if (m1) return m1[0].replace(/[()]/g, "");
 
       const id = String(block && block.id ? block.id : "");
       const m2 = id.match(/__part_(\d+)_of_(\d+)/i);
-      if (m2) return `Part ${m2[1]} of ${m2[2]}`;
+      if (m2) return `Parte ${m2[1]} de ${m2[2]}`;
 
-      return "Part";
+      return "Parte";
     }
 
-    function renderSlot(label, block, regionId){
+    function renderSlotEs(label, block, regionId){
       const div = document.createElement('div');
       div.className = "slot";
 
@@ -1581,19 +1581,19 @@
       const partLabel = isSplitPart ? extractPartLabelFromTitleOrId(block) : "";
 
       const splitExplain = isSplitPart
-        ? `This experience spans multiple days. "${partLabel}" indicates one day within a longer lodge-based stay.`
+        ? `Esta experiencia se extiende por varios días. "${partLabel}" indica un día dentro de una estadía más larga.`
         : "";
 
       const noteHtml = (() => {
         const baseNote = block.notes ? String(block.notes) : "";
         if (!baseNote && !splitExplain) return "";
         if (baseNote && splitExplain) {
-          return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Note:</strong> " + baseNote + "<br><strong>Note:</strong> " + splitExplain + "</p>";
+          return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Nota:</strong> " + baseNote + "<br><strong>Nota:</strong> " + splitExplain + "</p>";
         }
         if (baseNote) {
-          return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Note:</strong> " + baseNote + "</p>";
+          return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Nota:</strong> " + baseNote + "</p>";
         }
-        return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Note:</strong> " + splitExplain + "</p>";
+        return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Nota:</strong> " + splitExplain + "</p>";
       })();
 
       div.innerHTML = `
@@ -1615,10 +1615,11 @@
       return div;
     }
 
-    function capitalize(s){
+    function capitalizeEs(s){
       const t = String(s || "");
       if (!t) return "";
-      return t.charAt(0).toUpperCase() + t.slice(1);
+      const map = { morning:"Mañana", afternoon:"Tarde", evening:"Noche" };
+      return map[t] || (t.charAt(0).toUpperCase() + t.slice(1));
     }
 
     // ===== PLAIN TEXT EMAIL VERSION OF ITINERARY =====
@@ -1626,21 +1627,21 @@
       if (!plan || !plan.length) return "";
 
       const lines = [];
-      lines.push("Experience Ecuador Trip Builder");
+      lines.push("Experience Ecuador Planificador de Viajes");
       lines.push("");
-      lines.push(`Trip length: ${state.days} days`);
-      lines.push(`Regions: ${Array.from(state.selectedRegionIds).map(regionName).join(", ") || "N/A"}`);
-      lines.push(`Experiences: ${Array.from(state.selectedExperienceIds).map(experienceName).join(", ") || "N/A"}`);
+      lines.push(`Duración del viaje: ${state.days} día(s)`);
+      lines.push(`Regiones: ${Array.from(state.selectedRegionIds).map(regionName).join(", ") || "N/A"}`);
+      lines.push(`Experiencias: ${Array.from(state.selectedExperienceIds).map(experienceName).join(", ") || "N/A"}`);
       lines.push("");
-      lines.push("Suggested itinerary");
+      lines.push("Itinerario sugerido");
       lines.push("");
 
       plan.forEach(d => {
-        lines.push(`Day ${d.day}: ${regionName(d.region_id)}${d.is_transfer_friendly ? " (transfer-friendly pace)" : ""}`);
+        lines.push(`Día ${d.day}: ${regionName(d.region_id)}${d.is_transfer_friendly ? " (ritmo amigable para traslados)" : ""}`);
 
         const blocks = Array.isArray(d.blocks) ? d.blocks : [];
         if (!blocks.length) {
-          lines.push("  - No matching activity blocks found for this region based on your selected experiences.");
+          lines.push("  - No hay actividades que coincidan para esta región según tus experiencias seleccionadas.");
         } else {
           const ordered = blocks.slice().sort((a,b) => {
             const ai = TIME_ORDER.includes(a.time_of_day) ? TIME_ORDER.indexOf(a.time_of_day) : 99;
@@ -1649,7 +1650,7 @@
           });
 
           ordered.forEach(b => {
-            const when = b.time_of_day ? capitalize(b.time_of_day) : "Day";
+            const when = b.time_of_day ? capitalizeEs(b.time_of_day) : "Día";
             const dur = b.duration_hours ? ` (${b.duration_hours}h)` : "";
             const loc = b.location_id ? locationName(d.region_id, b.location_id) : "";
             const metaBits = [];
@@ -1663,9 +1664,9 @@
 
         if (d.optional_add_on) {
           const dur = d.optional_add_on.duration_hours ? ` (${d.optional_add_on.duration_hours}h)` : "";
-          lines.push(`  Optional add-on: ${d.optional_add_on.title}${dur}`);
+          lines.push(`  Extra opcional: ${d.optional_add_on.title}${dur}`);
         } else if (typeof d.remaining_hours === "number" && d.remaining_hours >= 2) {
-          lines.push(`  Extra time: about ${Math.round(d.remaining_hours * 10) / 10} hours`);
+          lines.push(`  Tiempo extra: aproximadamente ${Math.round(d.remaining_hours * 10) / 10} horas`);
         }
 
         lines.push("");
@@ -1763,13 +1764,13 @@
 
         syncFlights("desktop");
 
-        els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
+        els.output.textContent = "Selecciona días, regiones y experiencias. Luego haz clic en “Generar itinerario”.";
 
         enableEmailButtonIfReady();
         updateInviteControls();
         updateRecipientCount();
       } catch (e) {
-        els.output.innerHTML = "<div class='hint'><strong>Data load error:</strong> " + (e.message || e) + "</div>";
+        els.output.innerHTML = "<div class='hint'><strong>Error al cargar datos:</strong> " + (e.message || e) + "</div>";
       }
     }
 
@@ -1819,7 +1820,7 @@
 
       updateHints();
       updateGenerateState();
-      els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
+      els.output.textContent = "Selecciona días, regiones y experiencias. Luego haz clic en “Generar itinerario”.";
       updateRecipientCount();
     });
 
@@ -1830,27 +1831,26 @@
         clearEmailStatus();
 
         if (!TRIP_EMAIL_WEBAPP_URL || TRIP_EMAIL_WEBAPP_URL.indexOf("http") !== 0) {
-          setEmailStatus("Missing Web App URL. Paste your Apps Script deployment URL into TRIP_EMAIL_WEBAPP_URL.", "error");
+          setEmailStatus("Falta la URL del Web App. Pega tu URL de Apps Script en TRIP_EMAIL_WEBAPP_URL.", "error");
           return;
         }
 
         if (!state.lastPlan || !state.lastItineraryText) {
-          setEmailStatus("Generate an itinerary first, then email it.", "error");
+          setEmailStatus("Primero genera un itinerario y luego envíalo por email.", "error");
           return;
         }
 
         const primaryEmail = (tripEmailEls.email.value || "").trim();
         if (!primaryEmail || !isValidEmail(primaryEmail)) {
-          setEmailStatus("Please enter a valid email for the main traveler.", "error");
+          setEmailStatus("Ingresa un email válido para el viajero principal.", "error");
           return;
         }
 
         const invitees = getInvitees().slice(0, MAX_INVITES);
 
-        // Validate invitees if user typed something
         for (const inv of invitees) {
           if (inv.email && !isValidEmail(inv.email)) {
-            setEmailStatus("One invited traveler email looks invalid. Please fix it or remove that traveler.", "error");
+            setEmailStatus("Uno de los emails invitados parece inválido. Corrígelo o quita ese viajero.", "error");
             return;
           }
         }
@@ -1871,7 +1871,6 @@
           invitees_json: JSON.stringify(invitees),
           invited_count: String(invitees.length || 0),
 
-          // Also send explicit columns (Option A style)
           invited_1_first_name: invitees[0] ? (invitees[0].first_name || "") : "",
           invited_1_last_name:  invitees[0] ? (invitees[0].last_name || "") : "",
           invited_1_email:      invitees[0] ? (invitees[0].email || "") : "",
@@ -1886,12 +1885,12 @@
         };
 
         if (!payload.first_name || !payload.last_name) {
-          setEmailStatus("Please fill first name and last name for the main traveler.", "error");
+          setEmailStatus("Completa nombre y apellido del viajero principal.", "error");
           return;
         }
 
         tripEmailEls.btn.disabled = true;
-        tripEmailEls.btn.textContent = "Sending...";
+        tripEmailEls.btn.textContent = "Enviando...";
 
         try {
           const res = await fetch(TRIP_EMAIL_WEBAPP_URL, {
@@ -1905,27 +1904,26 @@
           if (ct.includes("application/json")) {
             json = await res.json().catch(() => null);
           } else {
-            // If Apps Script is not public, it often returns HTML. Read it so we can show a useful error.
-            const text = await res.text().catch(() => "");
-            setEmailStatus("Email failed. Your Apps Script Web App access is likely not set to Anyone. Update Deploy settings and try again.", "error");
-            tripEmailEls.btn.textContent = "Email itinerary";
+            await res.text().catch(() => "");
+            setEmailStatus("Falló el envío. Tu Web App de Apps Script probablemente no está configurado como acceso para cualquiera. Actualiza Deploy y vuelve a intentar.", "error");
+            tripEmailEls.btn.textContent = "Enviar itinerario";
             enableEmailButtonIfReady();
             return;
           }
 
           if (!res.ok || !json || json.ok !== true) {
-            setEmailStatus("Something went wrong sending your itinerary. Please try again.", "error");
+            setEmailStatus("Hubo un error al enviar tu itinerario. Inténtalo de nuevo.", "error");
             return;
           }
 
           const total = (json.total_recipients || 1);
-          setEmailStatus(`Sent to ${total} recipient(s). Check inboxes in a minute.`, "ok");
+          setEmailStatus(`Enviado a ${total} destinatario(s). Revisa las bandejas en un minuto.`, "ok");
 
           try { tripEmailEls.email.value = primaryEmail; } catch (e) {}
         } catch (err) {
-          setEmailStatus("Network error. Please try again.", "error");
+          setEmailStatus("Error de red. Inténtalo de nuevo.", "error");
         } finally {
-          tripEmailEls.btn.textContent = "Email itinerary";
+          tripEmailEls.btn.textContent = "Enviar itinerario";
           enableEmailButtonIfReady();
           updateRecipientCount();
         }
