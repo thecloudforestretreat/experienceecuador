@@ -6,12 +6,28 @@
   <title>Trip Builder | Experience Ecuador</title>
   <meta name="description" content="Build a realistic Ecuador itinerary in your browser. Choose trip length, regions, and experiences, then generate a flexible day-by-day plan with transfer-friendly pacing." />
   <link rel="canonical" href="https://experienceecuador.com/trip-builder/" />
+  <!-- Open Graph (OG) -->
+  <meta property="og:site_name" content="Experience Ecuador" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Trip Builder | Experience Ecuador" />
+  <meta property="og:description" content="Build a realistic Ecuador itinerary in your browser. Choose trip length, regions, and experiences, then generate a flexible day-by-day plan with transfer-friendly pacing." />
+  <meta property="og:url" content="https://experienceecuador.com/trip-builder/" />
+  <meta property="og:image" content="https://experienceecuador.com/assets/logo-experience-ecuador-High.png" />
+  <meta property="og:image:alt" content="Experience Ecuador logo" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Trip Builder | Experience Ecuador" />
+  <meta name="twitter:description" content="Build a realistic Ecuador itinerary in your browser. Choose trip length, regions, and experiences, then generate a flexible day-by-day plan with transfer-friendly pacing." />
+  <meta name="twitter:image" content="https://experienceecuador.com/assets/logo-experience-ecuador-High.png" />
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
+  <!-- Optional: iOS pinned / app-ish behavior -->
+  <meta name="apple-mobile-web-app-title" content="Experience Ecuador">
+  <meta name="application-name" content="Experience Ecuador">
   <!-- Global header/footer CSS -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
@@ -1575,7 +1591,7 @@
 
     function extractPartLabelFromTitleOrId(block){
       const t = String(block && block.title ? block.title : "");
-      const m1 = t.match(/$begin:math:text$Part\\s\+\\d\+\\s\+of\\s\+\\d\+$end:math:text$/i);
+      const m1 = t.match(/Part\s+\d+\s+of\s+\d+/i);
       if (m1) return m1[0].replace(/[()]/g, "");
 
       const id = String(block && block.id ? block.id : "");
