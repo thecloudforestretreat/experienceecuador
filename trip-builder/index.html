@@ -4,23 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trip Builder | Experience Ecuador</title>
-
+  <meta name="description" content="Build a custom Ecuador itinerary in minutes. Pick trip length, regions, and experiences, then generate a suggested day-by-day plan you can refine and share." />
+  <link rel="canonical" href="https://experienceecuador.com/trip-builder/" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Experience Ecuador" />
+  <meta property="og:title" content="Trip Builder | Experience Ecuador" />
+  <meta property="og:description" content="Build a custom Ecuador itinerary in minutes. Pick trip length, regions, and experiences, then generate a suggested day-by-day plan you can refine and share." />
+  <meta property="og:url" content="https://experienceecuador.com/trip-builder/" />
+  <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Trip Builder for planning an Ecuador itinerary by regions and experiences" />
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Trip Builder | Experience Ecuador" />
+  <meta name="twitter:description" content="Build a custom Ecuador itinerary in minutes. Pick trip length, regions, and experiences, then generate a suggested day-by-day plan you can refine and share." />
+  <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
-
   <!-- Global header/footer CSS -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
-
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --brand-blue:#034EA2;
@@ -736,10 +750,8 @@
     }
   </style>
 </head>
-
 <body>
   <div id="siteHeader"></div>
-
   <main>
     <section class="hero" aria-label="Trip Builder hero">
       <div class="hero-banner" role="img" aria-label="Trip Builder hero image placeholder">
@@ -750,170 +762,167 @@
         </div>
       </div>
     </section>
+<div class="wrap">
+  <section class="builder-layout" aria-label="Trip builder and flights">
+    <section class="card builder-card" aria-label="Trip builder wizard">
+      <h2 style="margin-bottom:10px;">Build A Custom Ecuador Itinerary</h2>
+      <p>
+        Choose your trip length, regions, and experiences. Then generate a suggested itinerary you can customize.
+        This version is rules-based and runs entirely in your browser.
+      </p>
 
-    <div class="wrap">
-      <section class="builder-layout" aria-label="Trip builder and flights">
-        <section class="card builder-card" aria-label="Trip builder wizard">
-          <h2 style="margin-bottom:10px;">Build A Custom Ecuador Itinerary</h2>
-          <p>
-            Choose your trip length, regions, and experiences. Then generate a suggested itinerary you can customize.
-            This version is rules-based and runs entirely in your browser.
-          </p>
+      <div class="builder-top" style="margin-top:14px;">
+        <div class="controls-grid" aria-label="Builder controls">
+          <label for="daysSelect">Number of days</label>
+          <select id="daysSelect"></select>
+        </div>
+      </div>
 
-          <div class="builder-top" style="margin-top:14px;">
-            <div class="controls-grid" aria-label="Builder controls">
-              <label for="daysSelect">Number of days</label>
-              <select id="daysSelect"></select>
+      <div style="margin-top:16px;">
+        <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick Regions</div>
+
+        <div class="regions-tip">
+          Tip: If you select multiple regions, the tool will automatically split days and add lighter transfer-friendly pacing.
+        </div>
+
+        <div class="pill-row" id="regionsPills" aria-label="Region selection"></div>
+        <div class="region-hint" id="regionHint"></div>
+      </div>
+
+      <div style="margin-top:18px;">
+        <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick Experiences</div>
+        <div class="pill-row experiences-grid" id="experiencesPills" aria-label="Experience selection"></div>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="generateBtn" type="button" disabled>Generate Itinerary</button>
+        <button class="btn" id="resetBtn" type="button">Reset</button>
+      </div>
+    </section>
+
+    <aside class="card flights-card" id="flightsDesktop" aria-label="Flights (desktop)">
+      <p class="mini-title">Flights</p>
+
+      <div class="mini-grid">
+        <label for="flightFromDesktop">From</label>
+        <input id="flightFromDesktop" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
+
+        <label for="flightToDesktop">To</label>
+        <select id="flightToDesktop" aria-label="Destination airport">
+          <option value="UIO">Quito (UIO)</option>
+          <option value="GYE">Guayaquil (GYE)</option>
+          <option value="GPS">Galapagos (GPS)</option>
+          <option value="CUE">Cuenca (CUE)</option>
+        </select>
+
+        <label for="flightDepartDesktop">Depart</label>
+        <input id="flightDepartDesktop" type="date">
+
+        <label for="flightReturnDesktop">Return</label>
+        <input id="flightReturnDesktop" type="date">
+      </div>
+
+      <div class="mini-actions">
+        <span class="mini-spacer" aria-hidden="true"></span>
+        <button class="btn primary" id="flightSearchBtnDesktop" type="button">Search flights</button>
+      </div>
+
+      <div class="mini-hint">
+        When flights and itinerary are confirmed, check out local safe transportation:
+        <a class="mini-link" href="/transportation/">Transportation</a>
+      </div>
+    </aside>
+  </section>
+
+  <section class="itinerary" aria-label="Generated itinerary">
+    <div class="itinerary-shell" aria-label="Itinerary output container">
+      <h2 class="section-title" style="margin:0 0 12px;">Your Suggested Itinerary</h2>
+      <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate Itinerary.”</div>
+
+      <!-- Email itinerary -->
+      <div class="email-divider" aria-label="Email itinerary section">
+        <h3 class="email-title">Email this itinerary</h3>
+        <p class="email-sub">
+          Generate an itinerary first, then enter your details. You can invite up to 3 additional travelers.
+        </p>
+
+        <form id="eeTripEmailForm" autocomplete="on">
+          <div class="email-grid">
+            <div class="field">
+              <label for="tb_first_name">First Name</label>
+              <input class="input" id="tb_first_name" name="first_name" type="text" autocomplete="given-name" required>
+            </div>
+
+            <div class="field">
+              <label for="tb_last_name">Last Name</label>
+              <input class="input" id="tb_last_name" name="last_name" type="text" autocomplete="family-name" required>
+            </div>
+
+            <div class="field">
+              <label for="tb_email">Email</label>
+              <input class="input" id="tb_email" name="email" type="email" autocomplete="email" required>
             </div>
           </div>
 
-          <div style="margin-top:16px;">
-            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick Regions</div>
-
-            <div class="regions-tip">
-              Tip: If you select multiple regions, the tool will automatically split days and add lighter transfer-friendly pacing.
+          <div class="invite-card" aria-label="Invite travelers">
+            <div class="invite-card-head">
+              <div class="invite-title">Invite travelers (optional)</div>
+              <button class="btn" id="tb_add_traveler" type="button">Add traveler</button>
             </div>
 
-            <div class="pill-row" id="regionsPills" aria-label="Region selection"></div>
-            <div class="region-hint" id="regionHint"></div>
+            <div id="tb_invite_list"></div>
+
+            <div class="invite-hint">
+              Invited travelers receive one email with the itinerary and a short invitation line.
+            </div>
           </div>
 
-          <div style="margin-top:18px;">
-            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Pick Experiences</div>
-            <div class="pill-row experiences-grid" id="experiencesPills" aria-label="Experience selection"></div>
+          <div class="recipients-wrap">
+            <div class="recipient-count" id="tb_recipient_count">Recipients: 1 email(s)</div>
+            <button class="btn primary send-btn" id="tb_send_btn" type="submit" disabled>Email itinerary</button>
           </div>
 
-          <div class="actions">
-            <button class="btn primary" id="generateBtn" type="button" disabled>Generate Itinerary</button>
-            <button class="btn" id="resetBtn" type="button">Reset</button>
-          </div>
-        </section>
-
-        <aside class="card flights-card" id="flightsDesktop" aria-label="Flights (desktop)">
-          <p class="mini-title">Flights</p>
-
-          <div class="mini-grid">
-            <label for="flightFromDesktop">From</label>
-            <input id="flightFromDesktop" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
-
-            <label for="flightToDesktop">To</label>
-            <select id="flightToDesktop" aria-label="Destination airport">
-              <option value="UIO">Quito (UIO)</option>
-              <option value="GYE">Guayaquil (GYE)</option>
-              <option value="GPS">Galapagos (GPS)</option>
-              <option value="CUE">Cuenca (CUE)</option>
-            </select>
-
-            <label for="flightDepartDesktop">Depart</label>
-            <input id="flightDepartDesktop" type="date">
-
-            <label for="flightReturnDesktop">Return</label>
-            <input id="flightReturnDesktop" type="date">
-          </div>
-
-          <div class="mini-actions">
-            <span class="mini-spacer" aria-hidden="true"></span>
-            <button class="btn primary" id="flightSearchBtnDesktop" type="button">Search flights</button>
-          </div>
-
-          <div class="mini-hint">
-            When flights and itinerary are confirmed, check out local safe transportation:
-            <a class="mini-link" href="/transportation/">Transportation</a>
-          </div>
-        </aside>
-      </section>
-
-      <section class="itinerary" aria-label="Generated itinerary">
-        <div class="itinerary-shell" aria-label="Itinerary output container">
-          <h2 class="section-title" style="margin:0 0 12px;">Your Suggested Itinerary</h2>
-          <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate Itinerary.”</div>
-
-          <!-- Email itinerary -->
-          <div class="email-divider" aria-label="Email itinerary section">
-            <h3 class="email-title">Email this itinerary</h3>
-            <p class="email-sub">
-              Generate an itinerary first, then enter your details. You can invite up to 3 additional travelers.
-            </p>
-
-            <form id="eeTripEmailForm" autocomplete="on">
-              <div class="email-grid">
-                <div class="field">
-                  <label for="tb_first_name">First Name</label>
-                  <input class="input" id="tb_first_name" name="first_name" type="text" autocomplete="given-name" required>
-                </div>
-
-                <div class="field">
-                  <label for="tb_last_name">Last Name</label>
-                  <input class="input" id="tb_last_name" name="last_name" type="text" autocomplete="family-name" required>
-                </div>
-
-                <div class="field">
-                  <label for="tb_email">Email</label>
-                  <input class="input" id="tb_email" name="email" type="email" autocomplete="email" required>
-                </div>
-              </div>
-
-              <div class="invite-card" aria-label="Invite travelers">
-                <div class="invite-card-head">
-                  <div class="invite-title">Invite travelers (optional)</div>
-                  <button class="btn" id="tb_add_traveler" type="button">Add traveler</button>
-                </div>
-
-                <div id="tb_invite_list"></div>
-
-                <div class="invite-hint">
-                  Invited travelers receive one email with the itinerary and a short invitation line.
-                </div>
-              </div>
-
-              <div class="recipients-wrap">
-                <div class="recipient-count" id="tb_recipient_count">Recipients: 1 email(s)</div>
-                <button class="btn primary send-btn" id="tb_send_btn" type="submit" disabled>Email itinerary</button>
-              </div>
-
-              <div class="statusPill" id="tb_status" role="status" aria-live="polite"></div>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      <aside class="card flights-card" id="flightsMobile" aria-label="Flights (mobile)" style="display:none;">
-        <p class="mini-title">Flights</p>
-
-        <div class="mini-grid">
-          <label for="flightFromMobile">From</label>
-          <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
-
-          <label for="flightToMobile">To</label>
-          <select id="flightToMobile" aria-label="Destination airport">
-            <option value="UIO">Quito (UIO)</option>
-            <option value="GYE">Guayaquil (GYE)</option>
-            <option value="GPS">Galapagos (GPS)</option>
-            <option value="CUE">Cuenca (CUE)</option>
-          </select>
-
-          <label for="flightDepartMobile">Depart</label>
-          <input id="flightDepartMobile" type="date">
-
-          <label for="flightReturnMobile">Return</label>
-          <input id="flightReturnMobile" type="date">
-        </div>
-
-        <div class="mini-actions">
-          <span class="mini-spacer" aria-hidden="true"></span>
-          <button class="btn primary" id="flightSearchBtnMobile" type="button">Search flights</button>
-        </div>
-
-        <div class="mini-hint">
-          When flights and itinerary are confirmed, check out local safe transportation:
-          <a class="mini-link" href="/transportation/">Transportation</a>
-        </div>
-      </aside>
+          <div class="statusPill" id="tb_status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
     </div>
+  </section>
+
+  <aside class="card flights-card" id="flightsMobile" aria-label="Flights (mobile)" style="display:none;">
+    <p class="mini-title">Flights</p>
+
+    <div class="mini-grid">
+      <label for="flightFromMobile">From</label>
+      <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="e.g., JFK" maxlength="6">
+
+      <label for="flightToMobile">To</label>
+      <select id="flightToMobile" aria-label="Destination airport">
+        <option value="UIO">Quito (UIO)</option>
+        <option value="GYE">Guayaquil (GYE)</option>
+        <option value="GPS">Galapagos (GPS)</option>
+        <option value="CUE">Cuenca (CUE)</option>
+      </select>
+
+      <label for="flightDepartMobile">Depart</label>
+      <input id="flightDepartMobile" type="date">
+
+      <label for="flightReturnMobile">Return</label>
+      <input id="flightReturnMobile" type="date">
+    </div>
+
+    <div class="mini-actions">
+      <span class="mini-spacer" aria-hidden="true"></span>
+      <button class="btn primary" id="flightSearchBtnMobile" type="button">Search flights</button>
+    </div>
+
+    <div class="mini-hint">
+      When flights and itinerary are confirmed, check out local safe transportation:
+      <a class="mini-link" href="/transportation/">Transportation</a>
+    </div>
+  </aside>
+</div>
   </main>
-
   <div id="siteFooter"></div>
-
   <script>
     // ===== CONFIG: your Apps Script Web App URL =====
     const TRIP_EMAIL_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxUGlWoLwj5wlYXhqNa4fh4FZjBhQr_QOVbA8MhSfJwC_IV_6hqC5_leMG6RskFXTkj/exec";
@@ -989,7 +998,6 @@
       tripEmailEls.btn.disabled = !ready;
     }
 
-    // ===== Name auto-capitalize (desktop + mobile) =====
     function capFirstLetter(s){
       const t = String(s || "");
       if (!t) return "";
@@ -1015,9 +1023,8 @@
     attachCapitalize(tripEmailEls.first);
     attachCapitalize(tripEmailEls.last);
 
-    // ===== Invite travelers UI =====
     const MAX_INVITES = 3;
-    const inviteRows = []; // {wrap, first, last, email}
+    const inviteRows = [];
 
     function isValidEmail(s){
       const t = String(s || "").trim();
@@ -1155,7 +1162,6 @@
       });
     }
 
-    // ===== Flights sync =====
     function syncFlights(fromSet){
       const d = flightEls.desktop;
       const m = flightEls.mobile;
@@ -1582,7 +1588,7 @@
 
     function extractPartLabelFromTitleOrId(block){
       const t = String(block && block.title ? block.title : "");
-      const m1 = t.match(/\(Part\s+\d+\s+of\s+\d+\)/i);
+      const m1 = t.match(/$begin:math:text$Part\\s\+\\d\+\\s\+of\\s\+\\d\+$end:math:text$/i);
       if (m1) return m1[0].replace(/[()]/g, "");
 
       const id = String(block && block.id ? block.id : "");
@@ -1645,7 +1651,6 @@
       return t.charAt(0).toUpperCase() + t.slice(1);
     }
 
-    // ===== PLAIN TEXT EMAIL VERSION OF ITINERARY =====
     function buildItineraryText(plan){
       if (!plan || !plan.length) return "";
 
@@ -1698,7 +1703,6 @@
       return lines.join("\n").trim();
     }
 
-    // ===== FLIGHTS =====
     const REGION_TO_AIRPORT = {
       andes: "UIO",
       coast: "GYE",
@@ -1754,7 +1758,6 @@
     flightEls.desktop.btn.addEventListener('click', () => openFlightsFrom("desktop"));
     if (flightEls.mobile.btn) flightEls.mobile.btn.addEventListener('click', () => openFlightsFrom("mobile"));
 
-    // ===== LOAD JSON =====
     async function loadJSON(path){
       const res = await fetch(path, { cache: "no-store" });
       if (!res.ok) throw new Error("Failed to load " + path);
@@ -1795,11 +1798,6 @@
       } catch (e) {
         els.output.innerHTML = "<div class='hint'><strong>Data load error:</strong> " + (e.message || e) + "</div>";
       }
-    }
-
-    function setUserSetAll(val){
-      flightEls.desktop.to.dataset.userSet = val;
-      if (flightEls.mobile.to) flightEls.mobile.to.dataset.userSet = val;
     }
 
     els.daysSelect.addEventListener('change', () => {
@@ -1851,7 +1849,6 @@
       updateRecipientCount();
     });
 
-    // ===== EMAIL SUBMIT =====
     if (tripEmailEls.form) {
       tripEmailEls.form.addEventListener('submit', async (ev) => {
         ev.preventDefault();
@@ -1944,8 +1941,6 @@
 
           const total = (json.total_recipients || 1);
           setEmailStatus(`Sent to ${total} recipient(s). Check inboxes in a minute.`, "ok");
-
-          try { tripEmailEls.email.value = primaryEmail; } catch (e) {}
         } catch (err) {
           setEmailStatus("Network error. Please try again.", "error");
         } finally {
@@ -1958,11 +1953,7 @@
 
     init();
   </script>
-
-  <!-- Keep global mobile nav behavior -->
   <script src="/assets/js/site.js"></script>
-
-  <!-- Global header/footer injection -->
   <script>
     (function(){
       async function inject(id, url){
