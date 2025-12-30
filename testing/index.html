@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Regions | Experience Ecuador</title>
-  <meta name="description" content="Explore Ecuador by region with practical planning context. Compare Galapagos, Coast, Andes, and Amazon and choose the trip rhythm that fits your time." />
+  <title>Experiences | Experience Ecuador</title>
+  <meta name="description" content="Explore Ecuador by experience style. Compare adventure, nature, wildlife and birding, relaxation, culinary, and culture to build a trip that fits your pace." />
   <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://experienceecuador.com/regions/" />
+  <link rel="canonical" href="https://experienceecuador.com/experiences/" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
-  <meta property="og:title" content="Regions | Experience Ecuador" />
-  <meta property="og:description" content="Explore Ecuador by region with practical planning context. Compare Galapagos, Coast, Andes, and Amazon and choose the trip rhythm that fits your time." />
-  <meta property="og:url" content="https://experienceecuador.com/regions/" />
+  <meta property="og:title" content="Experiences | Experience Ecuador" />
+  <meta property="og:description" content="Explore Ecuador by experience style. Compare adventure, nature, wildlife and birding, relaxation, culinary, and culture to build a trip that fits your pace." />
+  <meta property="og:url" content="https://experienceecuador.com/experiences/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -20,22 +20,22 @@
   <meta property="og:image:alt" content="Experience Ecuador travel planning by regions and experiences" />
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Regions | Experience Ecuador" />
-  <meta name="twitter:description" content="Explore Ecuador by region with practical planning context. Compare Galapagos, Coast, Andes, and Amazon and choose the trip rhythm that fits your time." />
+  <meta name="twitter:title" content="Experiences | Experience Ecuador" />
+  <meta name="twitter:description" content="Explore Ecuador by experience style. Compare adventure, nature, wildlife and birding, relaxation, culinary, and culture to build a trip that fits your pace." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
-  <!-- Favicons (root) -->
+  <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
+  <!-- Global header/footer CSS (required) -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <!-- Shared global CSS -->
-  <link rel="stylesheet" href="/assets/css/header.css">
-  <link rel="stylesheet" href="/assets/css/footer.css">
   <style>
     :root{
       --brand-blue:#034EA2;
@@ -52,167 +52,202 @@
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+    img{max-width:100%;display:block}
 
-    /* ===== PAGE ===== */
-    .wrap{
-      max-width:1100px;
-      margin:0 auto;
-      padding:44px 18px 0;
-    }
-
+    /* ===== HERO ===== */
     .hero{
       text-align:center;
-      margin-bottom:36px;
+      padding:60px 18px 40px;
+      max-width:900px;
+      margin:0 auto;
     }
 
     .hero h1{
-      margin:0 0 12px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
+      font-size:clamp(36px,4.8vw,56px);
+      margin:0 0 12px;
       letter-spacing:-0.03em;
-      font-size:clamp(36px,4.5vw,56px);
-      color:var(--brand-blue);
     }
 
     .hero p{
+      max-width:72ch;
       margin:0 auto;
-      max-width:70ch;
       color:var(--slate);
       font-size:18px;
-      line-height:1.6;
+      line-height:1.65;
     }
 
-    /* ===== REGIONS GRID ===== */
-    .regions-grid{
+    /* ===== GRID ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 18px 60px;
+    }
+
+    .experiences-grid{
       display:grid;
       grid-template-columns:repeat(2,1fr);
       gap:28px;
-      margin-bottom:60px;
     }
 
-    .region-card{
+    .exp-card{
       background:#fff;
       border-radius:22px;
       overflow:hidden;
       border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 20px 55px rgba(3,78,162,0.12);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
       transition:transform .2s ease, box-shadow .2s ease;
     }
 
-    .region-card:hover{
+    .exp-card:hover{
       transform:translateY(-6px);
       box-shadow:0 28px 70px rgba(3,78,162,0.18);
     }
 
-    .region-image{
-      height:260px;
-      overflow:hidden;
-    }
+    .exp-img{height:250px;background:#e9eef7}
 
-    .region-image img{
+    .exp-img img{
       width:100%;
       height:100%;
       object-fit:cover;
-      transition:transform .4s ease;
     }
 
-    .region-card:hover .region-image img{
-      transform:scale(1.05);
+    .exp-body{
+      padding:22px 22px 24px;
     }
 
-    .region-content{
-      padding:22px 22px 26px;
-    }
-
-    .region-content h2{
+    .exp-body h2{
       margin:0 0 8px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      letter-spacing:-0.02em;
       font-size:22px;
       color:var(--brand-blue);
+      letter-spacing:-0.02em;
     }
 
-    .region-content p{
-      margin:0 0 18px;
+    .exp-body p{
+      margin:0 0 16px;
       color:#2a2f36;
-      line-height:1.6;
+      line-height:1.65;
       font-size:15.5px;
+      max-width:80ch;
     }
 
-    .region-link{
+    .pill{
       display:inline-block;
       padding:10px 18px;
       border-radius:999px;
       background:var(--brand-blue);
       color:#fff;
-      font-weight:600;
+      font-weight:700;
       font-size:14px;
-      letter-spacing:.02em;
     }
 
     /* ===== MOBILE ===== */
     @media(max-width:900px){
-      .regions-grid{ grid-template-columns:1fr; }
+      .experiences-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
   <div id="siteHeader"></div>
-  <main class="wrap">
-    <section class="hero">
-      <h1>Explore Ecuador by Region</h1>
-      <p>
-        From pristine islands to highland volcanoes and deep rainforest,
-        Ecuador offers an incredible range of experiences in every region.
-      </p>
-    </section>
-<section class="regions-grid">
-  <article class="region-card">
-    <div class="region-image">
-      <img src="/assets/images/EE-Region-Galapagos-02.jpg" alt="Galapagos Islands">
-    </div>
-    <div class="region-content">
-      <h2>Galapagos Islands</h2>
-      <p>Wildlife encounters, volcanic landscapes, and once-in-a-lifetime natural experiences.</p>
-      <a class="region-link" href="/regions/galapagos/">Explore Galapagos</a>
-    </div>
-  </article>
-
-  <article class="region-card">
-    <div class="region-image">
-      <img src="/assets/images/EE-Region-Coast-02.jpg" alt="Ecuador Coast">
-    </div>
-    <div class="region-content">
-      <h2>The Coast</h2>
-      <p>Beaches, surf towns, seafood culture, and laid-back coastal escapes.</p>
-      <a class="region-link" href="/regions/coast/">Explore The Coast</a>
-    </div>
-  </article>
-
-  <article class="region-card">
-    <div class="region-image">
-      <img src="/assets/images/EE-Region-Andes-02.jpg" alt="Ecuador Andes">
-    </div>
-    <div class="region-content">
-      <h2>The Andes</h2>
-      <p>High-altitude cities, volcanoes, markets, and rich cultural heritage.</p>
-      <a class="region-link" href="/regions/andes/">Explore The Andes</a>
-    </div>
-  </article>
-
-  <article class="region-card">
-    <div class="region-image">
-      <img src="/assets/images/EE-Region-Amazon-02.jpg" alt="Ecuador Amazon">
-    </div>
-    <div class="region-content">
-      <h2>The Amazon</h2>
-      <p>Lush rainforest, wildlife, river journeys, and immersive eco experiences.</p>
-      <a class="region-link" href="/regions/amazon/">Explore The Amazon</a>
-    </div>
-  </article>
+  <main>
+    <!-- PAGE CONTENT ONLY -->
+<section class="hero">
+  <h1>Experiences</h1>
+  <p>
+    Explore Ecuador by the kind of trip you want. Each experience page highlights what it means in Ecuador,
+    where it fits best, and the types of places and partners worth building an itinerary around.
+  </p>
 </section>
+
+<div class="wrap">
+  <section class="experiences-grid" aria-label="Experiences grid">
+
+    <article class="exp-card">
+      <div class="exp-img">
+        <img src="/assets/images/EE-Experiences-adventure-01.jpg" alt="Adventure in Ecuador">
+      </div>
+      <div class="exp-body">
+        <h2>Adventure</h2>
+        <p>
+          Volcano routes, rivers, canopy tours, and high-energy experiences guided by locals across the Andes,
+          Amazon, Coast, and beyond.
+        </p>
+        <a class="pill" href="/experiences/adventure/">Explore Adventure</a>
+      </div>
+    </article>
+
+    <article class="exp-card">
+      <div class="exp-img">
+        <img src="/assets/images/EE-Experiences-Nature-01.jpg" alt="Nature in Ecuador">
+      </div>
+      <div class="exp-body">
+        <h2>Nature</h2>
+        <p>
+          Cloud forests, volcano viewpoints, rainforest lodges, coastal reserves, and protected ecosystems
+          packed into a small country.
+        </p>
+        <a class="pill" href="/experiences/nature/">Explore Nature</a>
+      </div>
+    </article>
+
+    <article class="exp-card">
+      <div class="exp-img">
+        <img src="/assets/images/EE-Experiences-wildlife-01.png" alt="Wildlife and birding in Ecuador">
+      </div>
+      <div class="exp-body">
+        <h2>Wildlife &amp; Birding</h2>
+        <p>
+          One of the best birding countries on Earth. From cloud forest hummingbirds to Amazon wildlife
+          and Galapagos icons.
+        </p>
+        <a class="pill" href="/experiences/wildlife-birding/">Explore Wildlife &amp; Birding</a>
+      </div>
+    </article>
+
+    <article class="exp-card">
+      <div class="exp-img">
+        <img src="/assets/images/EE-Experiences-Relaxation-01.jpg" alt="Relaxation in Ecuador">
+      </div>
+      <div class="exp-body">
+        <h2>Relaxation</h2>
+        <p>
+          Slow travel, peaceful lodges, hot springs, soft nature escapes, and downtime built into a well-paced itinerary.
+        </p>
+        <a class="pill" href="/experiences/relaxation/">Explore Relaxation</a>
+      </div>
+    </article>
+
+    <article class="exp-card">
+      <div class="exp-img">
+        <img src="/assets/images/EE-Experiences-Culinary-01.jpg" alt="Culinary experiences in Ecuador">
+      </div>
+      <div class="exp-body">
+        <h2>Culinary</h2>
+        <p>
+          Seafood on the Coast, Andean markets, cacao culture, and region-specific dishes that define how Ecuador tastes.
+        </p>
+        <a class="pill" href="/experiences/culinary/">Explore Culinary</a>
+      </div>
+    </article>
+
+    <article class="exp-card">
+      <div class="exp-img">
+        <img src="/assets/images/EE-Experiences-Culture-01.jpg" alt="Culture in Ecuador">
+      </div>
+      <div class="exp-body">
+        <h2>Culture</h2>
+        <p>
+          Indigenous heritage, historic cities, artisan markets, music, festivals, and local stories that make each region feel distinct.
+        </p>
+        <a class="pill" href="/experiences/culture/">Explore Culture</a>
+      </div>
+    </article>
+
+  </section>
+</div>
   </main>
   <div id="siteFooter"></div>
   <script src="/assets/js/site.js"></script>
