@@ -3,7 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Transporte | Experience Ecuador</title>
+  <meta name="description" content="Estima tiempos de traslado en Ecuador. Elige origen y destino, ajusta pasajeros y maletas, y planifica transporte antes de llegar." />
+  <link rel="canonical" href="https://experienceecuador.com/es/transporte/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Experience Ecuador" />
+  <meta property="og:title" content="Transporte | Experience Ecuador" />
+  <meta property="og:description" content="Estima tiempos de traslado en Ecuador. Elige origen y destino, ajusta pasajeros y maletas, y planifica transporte antes de llegar." />
+  <meta property="og:url" content="https://experienceecuador.com/es/transporte/" />
+  <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Experience Ecuador: experiencias y planificación de viajes en Ecuador" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Transporte | Experience Ecuador" />
+  <meta name="twitter:description" content="Estima tiempos de traslado en Ecuador. Elige origen y destino, ajusta pasajeros y maletas, y planifica transporte antes de llegar." />
+  <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
   <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -111,7 +132,7 @@
       max-width:85ch;
     }
 
-    /* ===== SELECTOR CARD (matches your standardized selector layout) ===== */
+    /* ===== SELECTOR CARD ===== */
     .selector-card{
       background:#fff;
       border-radius:22px;
@@ -207,7 +228,7 @@
       .hero-content{padding:16px}
     }
 
-    /* ===== TRANSPORT RESULTS UI ===== */
+    /* ===== RESULTS UI ===== */
     .results-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -321,12 +342,10 @@
     </section>
 
     <main class="wrap">
-
       <section class="selector-card" aria-label="Estimador de transporte">
         <div class="selector-top">
           <div></div>
 
-          <!-- Top-right controls block (labels left, dropdowns right, mobile stacks) -->
           <div class="selector-controls" aria-label="Controles de transporte">
             <label for="fromSelect">Ubicación</label>
             <select id="fromSelect" name="from">
@@ -437,7 +456,6 @@
           </div>
         </div>
       </section>
-
     </main>
   </main>
 
@@ -445,10 +463,9 @@
 
   <script>
     /* =========================
-       Transportation estimator
+       Estimador de transporte
        ========================= */
 
-    // Locations available in dropdowns
     const LOCATIONS = [
       { id: "uio", name: "Aeropuerto (UIO)" },
       { id: "quito_south", name: "Quito Sur" },
@@ -458,20 +475,7 @@
       { id: "mindo", name: "Mindo" }
     ];
 
-    /*
-      ROUTE_DATA structure:
-      key = "fromId|toId"
-      value = {
-        minutes: number,
-        // Optional placeholders you can fill later:
-        carMin: number, carMax: number,
-        suvMin: number, suvMax: number
-      }
-
-      Add both directions if you want different times by direction, or just mirror them.
-    */
     const ROUTE_DATA = {
-      // Sample placeholders (replace with real data later)
       "uio|quito_center": { minutes: 60, carMin: null, carMax: null, suvMin: null, suvMax: null },
       "quito_center|uio": { minutes: 60, carMin: null, carMax: null, suvMin: null, suvMax: null },
 
@@ -510,13 +514,11 @@
     }
 
     function formatUSDRange(min, max){
-      // Keep it simple for now. You will set real numbers later.
       if (!Number.isFinite(min) || !Number.isFinite(max)) return "Próximamente";
       return "$" + min.toFixed(0) + " a $" + max.toFixed(0);
     }
 
     function suggestVehicle(pax, bags){
-      // Simple rule: SUV if bigger group or lots of bags.
       if (pax >= 4) return "Se recomienda SUV";
       if (bags >= 4) return "Se recomienda SUV";
       if (pax === 3 && bags >= 3) return "Se recomienda SUV";
@@ -562,7 +564,6 @@
 
       vehicleOut.textContent = suggestVehicle(pax, bags);
 
-      // Prevent same place selection
       if (from && to && from === to){
         setStatus("Elige un destino diferente", "warn");
         timeOut.textContent = "No aplica";
@@ -598,11 +599,9 @@
       setStatus("Estimación lista", "ok");
       timeOut.textContent = formatTime(data.minutes);
 
-      // Placeholder ranges until you fill numbers
       carOut.textContent = formatUSDRange(data.carMin, data.carMax);
       suvOut.textContent = formatUSDRange(data.suvMin, data.suvMax);
 
-      // Friendly logic note
       const veh = suggestVehicle(pax, bags);
       if (veh.indexOf("SUV") >= 0){
         noteOut.textContent =
@@ -613,7 +612,6 @@
       }
     }
 
-    // Init
     populateSelect(fromSelect, true);
     populateSelect(toSelect, true);
 
@@ -627,7 +625,6 @@
     paxSelect.addEventListener("change", updateResults);
     bagsSelect.addEventListener("change", updateResults);
 
-    // First paint
     updateResults();
   </script>
 
