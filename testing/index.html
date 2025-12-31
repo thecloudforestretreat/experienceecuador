@@ -1,40 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transportation | Experience Ecuador</title>
-  <meta name="description" content="Estimate transfer times across Ecuador. Pick a start and destination, adjust passengers and bags, and plan airport and city transport before you arrive." />
-  <link rel="canonical" href="https://experienceecuador.com/transportation/" />
+
+  <title>Transporte | Experience Ecuador</title>
+  <meta name="description" content="Estima tiempos de traslado en Ecuador. Elige origen y destino, ajusta pasajeros y maletas, y planifica transporte antes de llegar." />
+  <link rel="canonical" href="https://experienceecuador.com/es/transporte/" />
+
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
-  <meta property="og:title" content="Transportation | Experience Ecuador" />
-  <meta property="og:description" content="Estimate transfer times across Ecuador. Pick a start and destination, adjust passengers and bags, and plan airport and city transport before you arrive." />
-  <meta property="og:url" content="https://experienceecuador.com/transportation/" />
+  <meta property="og:title" content="Transporte | Experience Ecuador" />
+  <meta property="og:description" content="Estima tiempos de traslado en Ecuador. Elige origen y destino, ajusta pasajeros y maletas, y planifica transporte antes de llegar." />
+  <meta property="og:url" content="https://experienceecuador.com/es/transporte/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Experience Ecuador: experiences and trip planning across Ecuador" />
+  <meta property="og:image:alt" content="Experience Ecuador: experiencias y planificación de viajes en Ecuador" />
+
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Transportation | Experience Ecuador" />
-  <meta name="twitter:description" content="Estimate transfer times across Ecuador. Pick a start and destination, adjust passengers and bags, and plan airport and city transport before you arrive." />
+  <meta name="twitter:title" content="Transporte | Experience Ecuador" />
+  <meta name="twitter:description" content="Estima tiempos de traslado en Ecuador. Elige origen y destino, ajusta pasajeros y maletas, y planifica transporte antes de llegar." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+
   <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
+
   <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --brand-blue:#034EA2;
@@ -125,7 +132,7 @@
       max-width:85ch;
     }
 
-    /* ===== SELECTOR CARD (matches your standardized selector layout) ===== */
+    /* ===== SELECTOR CARD ===== */
     .selector-card{
       background:#fff;
       border-radius:22px;
@@ -221,7 +228,7 @@
       .hero-content{padding:16px}
     }
 
-    /* ===== TRANSPORT RESULTS UI ===== */
+    /* ===== RESULTS UI ===== */
     .results-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -319,148 +326,151 @@
     .status.warn{ border-color: rgba(182,91,0,0.25); background: rgba(182,91,0,0.08); color: var(--warn); }
   </style>
 </head>
+
 <body>
   <div id="siteHeader"></div>
+
   <main>
-    <section class="hero" aria-label="Transportation hero">
-      <div class="hero-banner" role="img" aria-label="Transportation hero image placeholder">
+    <section class="hero" aria-label="Hero de transporte">
+      <div class="hero-banner" role="img" aria-label="Imagen principal de transporte">
         <div class="hero-content">
           <div>
-            <h1 class="hero-title">Transportation</h1>
+            <h1 class="hero-title">Transporte</h1>
           </div>
         </div>
       </div>
     </section>
-<main class="wrap">
 
-  <section class="selector-card" aria-label="Transportation estimator">
-    <div class="selector-top">
-      <div></div>
+    <main class="wrap">
+      <section class="selector-card" aria-label="Estimador de transporte">
+        <div class="selector-top">
+          <div></div>
 
-      <div class="selector-controls" aria-label="Transportation controls">
-        <label for="fromSelect">Location</label>
-        <select id="fromSelect" name="from">
-          <option value="" selected>Select a Location</option>
-        </select>
+          <div class="selector-controls" aria-label="Controles de transporte">
+            <label for="fromSelect">Ubicación</label>
+            <select id="fromSelect" name="from">
+              <option value="" selected>Selecciona una ubicación</option>
+            </select>
 
-        <label for="toSelect">Destination</label>
-        <select id="toSelect" name="to" disabled>
-          <option value="" selected>Select a Destination</option>
-        </select>
+            <label for="toSelect">Destino</label>
+            <select id="toSelect" name="to" disabled>
+              <option value="" selected>Selecciona un destino</option>
+            </select>
 
-        <label for="paxSelect">Passengers</label>
-        <select id="paxSelect" name="pax">
-          <option value="1">1</option>
-          <option value="2" selected>2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
+            <label for="paxSelect">Pasajeros</label>
+            <select id="paxSelect" name="pax">
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
 
-        <label for="bagsSelect">Bags</label>
-        <select id="bagsSelect" name="bags">
-          <option value="0">0</option>
-          <option value="1" selected>1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-      </div>
-
-      <div class="selector-copy" aria-label="Estimator intro copy">
-        <div style="padding:14px 0 6px 0;">
-          <span class="pill">Quick Ride Estimates</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="selector-body">
-      <div class="card" style="box-shadow:none;border:0;padding:0;background:transparent;">
-        <h2 style="margin-bottom:10px;">Plan Transfers Before You Land</h2>
-        <p>
-          Choose where you are and where you are going, then adjust passengers and bags.
-          This page will show estimated travel time plus a rough transport cost range once pricing is added.
-        </p>
-
-        <div class="results-grid" aria-label="Estimator results grid">
-          <div class="card" style="margin:0;">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-              <h2 style="margin:0;color:#0f2f62;font-size:20px;">Your Route</h2>
-              <span id="statusPill" class="status warn" aria-live="polite">Select two places</span>
-            </div>
-
-            <div class="kv" aria-label="Key values">
-              <div class="k">From</div>
-              <div class="v" id="fromOut">Not selected</div>
-
-              <div class="k">To</div>
-              <div class="v" id="toOut">Not selected</div>
-
-              <div class="k">Estimated time</div>
-              <div class="v" id="timeOut">Add route data</div>
-
-              <div class="k">Suggested vehicle</div>
-              <div class="v" id="vehicleOut">Car or SUV</div>
-
-              <div class="k">Car range</div>
-              <div class="v" id="carOut">Coming soon</div>
-
-              <div class="k">SUV range</div>
-              <div class="v" id="suvOut">Coming soon</div>
-            </div>
-
-            <p class="muted" id="noteOut">
-              Tip: When you add pricing later, you can set different ranges for day vs night, weekday vs weekend,
-              and airport pickup vs city pickup.
-            </p>
+            <label for="bagsSelect">Maletas</label>
+            <select id="bagsSelect" name="bags">
+              <option value="0">0</option>
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
           </div>
 
-          <div class="card" style="margin:0;">
-            <h2 style="margin-bottom:10px;">What We Will Estimate</h2>
+          <div class="selector-copy" aria-label="Texto de introducción del estimador">
+            <div style="padding:14px 0 6px 0;">
+              <span class="pill">Estimaciones rápidas de traslados</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="selector-body">
+          <div class="card" style="box-shadow:none;border:0;padding:0;background:transparent;">
+            <h2 style="margin-bottom:10px;">Planifica traslados antes de aterrizar</h2>
             <p>
-              This is designed to grow with you. Start with simple transfer prices, then expand.
+              Elige dónde estás y a dónde vas, luego ajusta pasajeros y maletas.
+              Esta página mostrará un tiempo estimado y un rango aproximado de costo cuando agreguemos precios.
             </p>
 
-            <div class="hint" aria-label="Estimator roadmap">
-              <div class="hint-title">Next Upgrades (Easy)</div>
-              <ul>
-                <li>Per route travel times (minutes) and distance (km)</li>
-                <li>Car and SUV price ranges in USD</li>
-                <li>Extra bag fee, oversized luggage, child seat</li>
-                <li>Optional add-ons: quick stop, grocery stop, viewpoint stop</li>
-              </ul>
+            <div class="results-grid" aria-label="Cuadrícula de resultados del estimador">
+              <div class="card" style="margin:0;">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+                  <h2 style="margin:0;color:#0f2f62;font-size:20px;">Tu ruta</h2>
+                  <span id="statusPill" class="status warn" aria-live="polite">Selecciona dos lugares</span>
+                </div>
+
+                <div class="kv" aria-label="Valores clave">
+                  <div class="k">Desde</div>
+                  <div class="v" id="fromOut">No seleccionado</div>
+
+                  <div class="k">Hasta</div>
+                  <div class="v" id="toOut">No seleccionado</div>
+
+                  <div class="k">Tiempo estimado</div>
+                  <div class="v" id="timeOut">Agrega datos de ruta</div>
+
+                  <div class="k">Vehículo sugerido</div>
+                  <div class="v" id="vehicleOut">Auto o SUV</div>
+
+                  <div class="k">Rango (Auto)</div>
+                  <div class="v" id="carOut">Próximamente</div>
+
+                  <div class="k">Rango (SUV)</div>
+                  <div class="v" id="suvOut">Próximamente</div>
+                </div>
+
+                <p class="muted" id="noteOut">
+                  Tip: Cuando agregues precios, puedes definir rangos distintos para día vs noche, entre semana vs fin de semana
+                  y recogida en aeropuerto vs recogida en ciudad.
+                </p>
+              </div>
+
+              <div class="card" style="margin:0;">
+                <h2 style="margin-bottom:10px;">Qué estimaremos</h2>
+                <p>
+                  Esto está diseñado para crecer contigo. Empieza con precios simples de traslados y luego amplía.
+                </p>
+
+                <div class="hint" aria-label="Roadmap del estimador">
+                  <div class="hint-title">Siguientes mejoras (fáciles)</div>
+                  <ul>
+                    <li>Tiempos por ruta (minutos) y distancia (km)</li>
+                    <li>Rangos de precio en USD para Auto y SUV</li>
+                    <li>Tarifa por maleta extra, equipaje sobredimensionado, silla para niños</li>
+                    <li>Add-ons opcionales: parada rápida, parada de compras, parada en mirador</li>
+                  </ul>
+                </div>
+
+                <div class="hint" aria-label="Nota de transparencia">
+                  <div class="hint-title">Transparencia</div>
+                  <ul>
+                    <li>Las estimaciones pueden mostrar rangos para mantener expectativas realistas</li>
+                    <li>El precio final puede incluir una nota: tráfico y clima pueden cambiar los tiempos</li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
-            <div class="hint" aria-label="Transparency note">
-              <div class="hint-title">Transparency</div>
-              <ul>
-                <li>All estimates can show a range so expectations stay realistic</li>
-                <li>Final pricing can include a note: traffic and weather may change times</li>
-              </ul>
-            </div>
           </div>
         </div>
-
-      </div>
-    </div>
-  </section>
-
-</main>
+      </section>
+    </main>
   </main>
+
   <div id="siteFooter"></div>
+
   <script>
     /* =========================
-       Transportation estimator
+       Estimador de transporte
        ========================= */
 
     const LOCATIONS = [
-      { id: "uio", name: "Airport (UIO)" },
-      { id: "quito_south", name: "Quito South" },
-      { id: "quito_center", name: "Quito Center" },
-      { id: "quito_north", name: "Quito North" },
+      { id: "uio", name: "Aeropuerto (UIO)" },
+      { id: "quito_south", name: "Quito Sur" },
+      { id: "quito_center", name: "Quito Centro" },
+      { id: "quito_north", name: "Quito Norte" },
       { id: "cotacachi", name: "Cotacachi" },
       { id: "mindo", name: "Mindo" }
     ];
@@ -496,23 +506,23 @@
     const noteOut = byId("noteOut");
 
     function formatTime(minutes){
-      if (!Number.isFinite(minutes)) return "Add route data";
+      if (!Number.isFinite(minutes)) return "Agrega datos de ruta";
       if (minutes < 60) return minutes + " min";
       const h = Math.floor(minutes / 60);
       const m = minutes % 60;
-      return (m === 0) ? (h + " hr") : (h + " hr " + m + " min");
+      return (m === 0) ? (h + " h") : (h + " h " + m + " min");
     }
 
     function formatUSDRange(min, max){
-      if (!Number.isFinite(min) || !Number.isFinite(max)) return "Coming soon";
-      return "$" + min.toFixed(0) + " to $" + max.toFixed(0);
+      if (!Number.isFinite(min) || !Number.isFinite(max)) return "Próximamente";
+      return "$" + min.toFixed(0) + " a $" + max.toFixed(0);
     }
 
     function suggestVehicle(pax, bags){
-      if (pax >= 4) return "SUV recommended";
-      if (bags >= 4) return "SUV recommended";
-      if (pax === 3 && bags >= 3) return "SUV recommended";
-      return "Car recommended";
+      if (pax >= 4) return "Se recomienda SUV";
+      if (bags >= 4) return "Se recomienda SUV";
+      if (pax === 3 && bags >= 3) return "Se recomienda SUV";
+      return "Se recomienda auto";
     }
 
     function setStatus(text, type){
@@ -526,7 +536,7 @@
       if (includePlaceholder){
         const opt = document.createElement("option");
         opt.value = "";
-        opt.textContent = selectEl === fromSelect ? "Select a Location" : "Select a Destination";
+        opt.textContent = selectEl === fromSelect ? "Selecciona una ubicación" : "Selecciona un destino";
         opt.selected = true;
         selectEl.appendChild(opt);
       }
@@ -540,7 +550,7 @@
 
     function getLocName(id){
       const loc = LOCATIONS.find(x => x.id === id);
-      return loc ? loc.name : "Not selected";
+      return loc ? loc.name : "No seleccionado";
     }
 
     function updateResults(){
@@ -555,21 +565,21 @@
       vehicleOut.textContent = suggestVehicle(pax, bags);
 
       if (from && to && from === to){
-        setStatus("Pick a different destination", "warn");
-        timeOut.textContent = "Not applicable";
-        carOut.textContent = "Coming soon";
-        suvOut.textContent = "Coming soon";
-        noteOut.textContent = "Choose two different places to estimate travel time and cost.";
+        setStatus("Elige un destino diferente", "warn");
+        timeOut.textContent = "No aplica";
+        carOut.textContent = "Próximamente";
+        suvOut.textContent = "Próximamente";
+        noteOut.textContent = "Elige dos lugares diferentes para estimar tiempo y costo.";
         return;
       }
 
       if (!from || !to){
-        setStatus("Select two places", "warn");
-        timeOut.textContent = "Add route data";
-        carOut.textContent = "Coming soon";
-        suvOut.textContent = "Coming soon";
+        setStatus("Selecciona dos lugares", "warn");
+        timeOut.textContent = "Agrega datos de ruta";
+        carOut.textContent = "Próximamente";
+        suvOut.textContent = "Próximamente";
         noteOut.textContent =
-          "Once you add route pricing, this will show car and SUV ranges based on passengers and bags.";
+          "Cuando agreguemos precios por ruta, verás rangos para auto y SUV según pasajeros y maletas.";
         return;
       }
 
@@ -577,27 +587,28 @@
       const data = ROUTE_DATA[key];
 
       if (!data){
-        setStatus("Route not added yet", "warn");
-        timeOut.textContent = "Add route data";
-        carOut.textContent = "Coming soon";
-        suvOut.textContent = "Coming soon";
+        setStatus("Ruta aún no agregada", "warn");
+        timeOut.textContent = "Agrega datos de ruta";
+        carOut.textContent = "Próximamente";
+        suvOut.textContent = "Próximamente";
         noteOut.textContent =
-          "You can add this route to ROUTE_DATA in the script. Keep travel time in minutes, then add car and SUV ranges.";
+          "Puedes agregar esta ruta en ROUTE_DATA dentro del script. Define el tiempo en minutos y luego agrega rangos para auto y SUV.";
         return;
       }
 
-      setStatus("Estimate ready", "ok");
+      setStatus("Estimación lista", "ok");
       timeOut.textContent = formatTime(data.minutes);
+
       carOut.textContent = formatUSDRange(data.carMin, data.carMax);
       suvOut.textContent = formatUSDRange(data.suvMin, data.suvMax);
 
       const veh = suggestVehicle(pax, bags);
       if (veh.indexOf("SUV") >= 0){
         noteOut.textContent =
-          "Based on passengers and bags, SUV is recommended for comfort. You can still show both ranges if you want users to compare.";
+          "Según pasajeros y maletas, se recomienda SUV por comodidad. Aun así, puedes mostrar ambos rangos para comparar.";
       } else {
         noteOut.textContent =
-          "A car should work well for this group size. If you add an SUV range too, users can upgrade if they want extra space.";
+          "Un auto debería funcionar bien para este tamaño de grupo. Si agregas un rango de SUV, la gente puede subir de categoría por espacio extra.";
       }
     }
 
@@ -616,7 +627,9 @@
 
     updateResults();
   </script>
+
   <script>
+    /* Inject global header/footer first, then load site.js (so nav JS never runs before header exists) */
     (function(){
       async function inject(id, url){
         const el = document.getElementById(id);
