@@ -4,28 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Planificador de Viajes | Experience Ecuador</title>
-  <meta name="description" content="Crea un itinerario personalizado por Ecuador. Elige días, regiones y experiencias, y genera un itinerario sugerido." />
-
+  <meta name="description" content="Crea un itinerario personalizado por Ecuador: selecciona días, regiones y experiencias, y genera un plan sugerido para ajustar fácilmente." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://experienceecuador.com/es/planificador-de-viajes/" />
   <link rel="alternate" hreflang="en" href="/trip-builder/" />
   <link rel="alternate" hreflang="es" href="/es/planificador-de-viajes/" />
   <link rel="alternate" hreflang="x-default" href="/trip-builder/" />
-
-  <!-- Favicons -->
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Experience Ecuador" />
+  <meta property="og:title" content="Planificador de Viajes | Experience Ecuador" />
+  <meta property="og:description" content="Crea un itinerario personalizado por Ecuador: selecciona días, regiones y experiencias, y genera un plan sugerido para ajustar fácilmente." />
+  <meta property="og:url" content="https://experienceecuador.com/es/planificador-de-viajes/" />
+  <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Experience Ecuador — Planificador de Viajes" />
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Planificador de Viajes | Experience Ecuador" />
+  <meta name="twitter:description" content="Crea un itinerario personalizado por Ecuador: selecciona días, regiones y experiencias, y genera un plan sugerido para ajustar fácilmente." />
+  <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
-
-  <!-- Global header/footer CSS -->
+  <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
-
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --brand-blue:#034EA2;
@@ -748,10 +761,8 @@
     }
   </style>
 </head>
-
 <body>
   <div id="siteHeader"></div>
-
   <main>
     <section class="hero" aria-label="Hero del planificador de viajes">
       <div class="hero-banner" role="img" aria-label="Imagen del hero del planificador de viajes">
@@ -762,170 +773,167 @@
         </div>
       </div>
     </section>
+<div class="wrap">
+  <section class="builder-layout" aria-label="Planificador de viaje y vuelos">
+    <section class="card builder-card" aria-label="Asistente del planificador">
+      <h2 style="margin-bottom:10px;">Crea un itinerario personalizado por Ecuador</h2>
+      <p>
+        Elige la duración del viaje, regiones y experiencias. Luego genera un itinerario sugerido que puedes ajustar.
+        Esta versión funciona por reglas y corre completamente en tu navegador.
+      </p>
 
-    <div class="wrap">
-      <section class="builder-layout" aria-label="Planificador de viaje y vuelos">
-        <section class="card builder-card" aria-label="Asistente del planificador">
-          <h2 style="margin-bottom:10px;">Crea un itinerario personalizado por Ecuador</h2>
-          <p>
-            Elige la duración del viaje, regiones y experiencias. Luego genera un itinerario sugerido que puedes ajustar.
-            Esta versión funciona por reglas y corre completamente en tu navegador.
-          </p>
+      <div class="builder-top" style="margin-top:14px;">
+        <div class="controls-grid" aria-label="Controles del planificador">
+          <label for="daysSelect">Número de días</label>
+          <select id="daysSelect"></select>
+        </div>
+      </div>
 
-          <div class="builder-top" style="margin-top:14px;">
-            <div class="controls-grid" aria-label="Controles del planificador">
-              <label for="daysSelect">Número de días</label>
-              <select id="daysSelect"></select>
+      <div style="margin-top:16px;">
+        <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Elige Regiones</div>
+
+        <div class="regions-tip">
+          Consejo: si seleccionas varias regiones, la herramienta dividirá los días automáticamente y sugerirá un ritmo más ligero para traslados.
+        </div>
+
+        <div class="pill-row" id="regionsPills" aria-label="Selección de regiones"></div>
+        <div class="region-hint" id="regionHint"></div>
+      </div>
+
+      <div style="margin-top:18px;">
+        <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Elige Experiencias</div>
+        <div class="pill-row experiences-grid" id="experiencesPills" aria-label="Selección de experiencias"></div>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="generateBtn" type="button" disabled>Generar Itinerario</button>
+        <button class="btn" id="resetBtn" type="button">Reiniciar</button>
+      </div>
+    </section>
+
+    <aside class="card flights-card" id="flightsDesktop" aria-label="Vuelos (escritorio)">
+      <p class="mini-title">Vuelos</p>
+
+      <div class="mini-grid">
+        <label for="flightFromDesktop">Desde</label>
+        <input id="flightFromDesktop" type="text" inputmode="latin" autocomplete="off" placeholder="ej., JFK" maxlength="6">
+
+        <label for="flightToDesktop">Hacia</label>
+        <select id="flightToDesktop" aria-label="Aeropuerto de destino">
+          <option value="UIO">Quito (UIO)</option>
+          <option value="GYE">Guayaquil (GYE)</option>
+          <option value="GPS">Galápagos (GPS)</option>
+          <option value="CUE">Cuenca (CUE)</option>
+        </select>
+
+        <label for="flightDepartDesktop">Salida</label>
+        <input id="flightDepartDesktop" type="date">
+
+        <label for="flightReturnDesktop">Regreso</label>
+        <input id="flightReturnDesktop" type="date">
+      </div>
+
+      <div class="mini-actions">
+        <span class="mini-spacer" aria-hidden="true"></span>
+        <button class="btn primary" id="flightSearchBtnDesktop" type="button">Buscar vuelos</button>
+      </div>
+
+      <div class="mini-hint">
+        Cuando confirmes vuelos e itinerario, revisa transporte local seguro:
+        <a class="mini-link" href="/es/transporte/">Transporte</a>
+      </div>
+    </aside>
+  </section>
+
+  <section class="itinerary" aria-label="Itinerario generado">
+    <div class="itinerary-shell" aria-label="Contenedor de salida del itinerario">
+      <h2 class="section-title" style="margin:0 0 12px;">Tu Itinerario Sugerido</h2>
+      <div id="output" class="hint">Selecciona días, regiones y experiencias. Luego haz clic en “Generar itinerario”.</div>
+
+      <!-- Email itinerary -->
+      <div class="email-divider" aria-label="Sección para enviar el itinerario por email">
+        <h3 class="email-title">Enviar este itinerario por email</h3>
+        <p class="email-sub">
+          Primero genera un itinerario, luego ingresa tus datos. Puedes invitar hasta 3 viajeros adicionales.
+        </p>
+
+        <form id="eeTripEmailForm" autocomplete="on">
+          <div class="email-grid">
+            <div class="field">
+              <label for="tb_first_name">Nombre</label>
+              <input class="input" id="tb_first_name" name="first_name" type="text" autocomplete="given-name" required>
+            </div>
+
+            <div class="field">
+              <label for="tb_last_name">Apellido</label>
+              <input class="input" id="tb_last_name" name="last_name" type="text" autocomplete="family-name" required>
+            </div>
+
+            <div class="field">
+              <label for="tb_email">Email</label>
+              <input class="input" id="tb_email" name="email" type="email" autocomplete="email" required>
             </div>
           </div>
 
-          <div style="margin-top:16px;">
-            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Elige Regiones</div>
-
-            <div class="regions-tip">
-              Consejo: si seleccionas varias regiones, la herramienta dividirá los días automáticamente y sugerirá un ritmo más ligero para traslados.
+          <div class="invite-card" aria-label="Invitar viajeros">
+            <div class="invite-card-head">
+              <div class="invite-title">Invitar viajeros (opcional)</div>
+              <button class="btn" id="tb_add_traveler" type="button">Agregar viajero</button>
             </div>
 
-            <div class="pill-row" id="regionsPills" aria-label="Selección de regiones"></div>
-            <div class="region-hint" id="regionHint"></div>
+            <div id="tb_invite_list"></div>
+
+            <div class="invite-hint">
+              Los viajeros invitados reciben un solo email con el itinerario y una línea corta de invitación.
+            </div>
           </div>
 
-          <div style="margin-top:18px;">
-            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Elige Experiencias</div>
-            <div class="pill-row experiences-grid" id="experiencesPills" aria-label="Selección de experiencias"></div>
+          <div class="recipients-wrap">
+            <div class="recipient-count" id="tb_recipient_count">Destinatarios: 1 email(s)</div>
+            <button class="btn primary send-btn" id="tb_send_btn" type="submit" disabled>Enviar Itinerario</button>
           </div>
 
-          <div class="actions">
-            <button class="btn primary" id="generateBtn" type="button" disabled>Generar Itinerario</button>
-            <button class="btn" id="resetBtn" type="button">Reiniciar</button>
-          </div>
-        </section>
-
-        <aside class="card flights-card" id="flightsDesktop" aria-label="Vuelos (escritorio)">
-          <p class="mini-title">Vuelos</p>
-
-          <div class="mini-grid">
-            <label for="flightFromDesktop">Desde</label>
-            <input id="flightFromDesktop" type="text" inputmode="latin" autocomplete="off" placeholder="ej., JFK" maxlength="6">
-
-            <label for="flightToDesktop">Hacia</label>
-            <select id="flightToDesktop" aria-label="Aeropuerto de destino">
-              <option value="UIO">Quito (UIO)</option>
-              <option value="GYE">Guayaquil (GYE)</option>
-              <option value="GPS">Galápagos (GPS)</option>
-              <option value="CUE">Cuenca (CUE)</option>
-            </select>
-
-            <label for="flightDepartDesktop">Salida</label>
-            <input id="flightDepartDesktop" type="date">
-
-            <label for="flightReturnDesktop">Regreso</label>
-            <input id="flightReturnDesktop" type="date">
-          </div>
-
-          <div class="mini-actions">
-            <span class="mini-spacer" aria-hidden="true"></span>
-            <button class="btn primary" id="flightSearchBtnDesktop" type="button">Buscar vuelos</button>
-          </div>
-
-          <div class="mini-hint">
-            Cuando confirmes vuelos e itinerario, revisa transporte local seguro:
-            <a class="mini-link" href="/es/transporte/">Transporte</a>
-          </div>
-        </aside>
-      </section>
-
-      <section class="itinerary" aria-label="Itinerario generado">
-        <div class="itinerary-shell" aria-label="Contenedor de salida del itinerario">
-          <h2 class="section-title" style="margin:0 0 12px;">Tu Itinerario Sugerido</h2>
-          <div id="output" class="hint">Selecciona días, regiones y experiencias. Luego haz clic en “Generar itinerario”.</div>
-
-          <!-- Email itinerary -->
-          <div class="email-divider" aria-label="Sección para enviar el itinerario por email">
-            <h3 class="email-title">Enviar este itinerario por email</h3>
-            <p class="email-sub">
-              Primero genera un itinerario, luego ingresa tus datos. Puedes invitar hasta 3 viajeros adicionales.
-            </p>
-
-            <form id="eeTripEmailForm" autocomplete="on">
-              <div class="email-grid">
-                <div class="field">
-                  <label for="tb_first_name">Nombre</label>
-                  <input class="input" id="tb_first_name" name="first_name" type="text" autocomplete="given-name" required>
-                </div>
-
-                <div class="field">
-                  <label for="tb_last_name">Apellido</label>
-                  <input class="input" id="tb_last_name" name="last_name" type="text" autocomplete="family-name" required>
-                </div>
-
-                <div class="field">
-                  <label for="tb_email">Email</label>
-                  <input class="input" id="tb_email" name="email" type="email" autocomplete="email" required>
-                </div>
-              </div>
-
-              <div class="invite-card" aria-label="Invitar viajeros">
-                <div class="invite-card-head">
-                  <div class="invite-title">Invitar viajeros (opcional)</div>
-                  <button class="btn" id="tb_add_traveler" type="button">Agregar viajero</button>
-                </div>
-
-                <div id="tb_invite_list"></div>
-
-                <div class="invite-hint">
-                  Los viajeros invitados reciben un solo email con el itinerario y una línea corta de invitación.
-                </div>
-              </div>
-
-              <div class="recipients-wrap">
-                <div class="recipient-count" id="tb_recipient_count">Destinatarios: 1 email(s)</div>
-                <button class="btn primary send-btn" id="tb_send_btn" type="submit" disabled>Enviar Itinerario</button>
-              </div>
-
-              <div class="statusPill" id="tb_status" role="status" aria-live="polite"></div>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      <aside class="card flights-card" id="flightsMobile" aria-label="Vuelos (móvil)" style="display:none;">
-        <p class="mini-title">Vuelos</p>
-
-        <div class="mini-grid">
-          <label for="flightFromMobile">Desde</label>
-          <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="ej., JFK" maxlength="6">
-
-          <label for="flightToMobile">Hacia</label>
-          <select id="flightToMobile" aria-label="Aeropuerto de destino">
-            <option value="UIO">Quito (UIO)</option>
-            <option value="GYE">Guayaquil (GYE)</option>
-            <option value="GPS">Galápagos (GPS)</option>
-            <option value="CUE">Cuenca (CUE)</option>
-          </select>
-
-          <label for="flightDepartMobile">Salida</label>
-          <input id="flightDepartMobile" type="date">
-
-          <label for="flightReturnMobile">Regreso</label>
-          <input id="flightReturnMobile" type="date">
-        </div>
-
-        <div class="mini-actions">
-          <span class="mini-spacer" aria-hidden="true"></span>
-          <button class="btn primary" id="flightSearchBtnMobile" type="button">Buscar vuelos</button>
-        </div>
-
-        <div class="mini-hint">
-          Cuando confirmes vuelos e itinerario, revisa transporte local seguro:
-          <a class="mini-link" href="/es/transporte/">Transporte</a>
-        </div>
-      </aside>
+          <div class="statusPill" id="tb_status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
     </div>
+  </section>
+
+  <aside class="card flights-card" id="flightsMobile" aria-label="Vuelos (móvil)" style="display:none;">
+    <p class="mini-title">Vuelos</p>
+
+    <div class="mini-grid">
+      <label for="flightFromMobile">Desde</label>
+      <input id="flightFromMobile" type="text" inputmode="latin" autocomplete="off" placeholder="ej., JFK" maxlength="6">
+
+      <label for="flightToMobile">Hacia</label>
+      <select id="flightToMobile" aria-label="Aeropuerto de destino">
+        <option value="UIO">Quito (UIO)</option>
+        <option value="GYE">Guayaquil (GYE)</option>
+        <option value="GPS">Galápagos (GPS)</option>
+        <option value="CUE">Cuenca (CUE)</option>
+      </select>
+
+      <label for="flightDepartMobile">Salida</label>
+      <input id="flightDepartMobile" type="date">
+
+      <label for="flightReturnMobile">Regreso</label>
+      <input id="flightReturnMobile" type="date">
+    </div>
+
+    <div class="mini-actions">
+      <span class="mini-spacer" aria-hidden="true"></span>
+      <button class="btn primary" id="flightSearchBtnMobile" type="button">Buscar vuelos</button>
+    </div>
+
+    <div class="mini-hint">
+      Cuando confirmes vuelos e itinerario, revisa transporte local seguro:
+      <a class="mini-link" href="/es/transporte/">Transporte</a>
+    </div>
+  </aside>
+</div>
   </main>
-
   <div id="siteFooter"></div>
-
   <script>
     // ===== CONFIG: your Apps Script Web App URL =====
     const TRIP_EMAIL_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxUGlWoLwj5wlYXhqNa4fh4FZjBhQr_QOVbA8MhSfJwC_IV_6hqC5_leMG6RskFXTkj/exec";
@@ -1593,7 +1601,7 @@
 
     function extractPartLabelFromTitleOrId(block){
       const t = String(block && block.title ? block.title : "");
-      const m1 = t.match(/\(Parte\s+\d+\s+de\s+\d+\)/i);
+      const m1 = t.match(/$begin:math:text$Parte\\s\+\\d\+\\s\+de\\s\+\\d\+$end:math:text$/i);
       if (m1) return m1[0].replace(/[()]/g, "");
 
       const id = String(block && block.id ? block.id : "");
@@ -1960,11 +1968,7 @@
 
     init();
   </script>
-
-  <!-- Keep global mobile nav behavior -->
-  <script src="/assets/js/site.js"></script>
-
-  <!-- Global header/footer injection -->
+  <!-- Inject global header/footer first, then load site.js (so nav JS never runs before header exists) -->
   <script>
     (function(){
       async function inject(id, url){
@@ -1973,8 +1977,19 @@
         const res = await fetch(url, { cache: "no-store" });
         el.innerHTML = await res.text();
       }
-      inject("siteHeader", "/assets/includes/header.html");
-      inject("siteFooter", "/assets/includes/footer.html");
+
+      Promise.all([
+        inject("siteHeader", "/assets/includes/header.html"),
+        inject("siteFooter", "/assets/includes/footer.html")
+      ]).then(() => {
+        const s = document.createElement("script");
+        s.src = "/assets/js/site.js";
+        document.body.appendChild(s);
+      }).catch(() => {
+        const s = document.createElement("script");
+        s.src = "/assets/js/site.js";
+        document.body.appendChild(s);
+      });
     })();
   </script>
 </body>
