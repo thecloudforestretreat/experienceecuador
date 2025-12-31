@@ -1,47 +1,40 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Términos de Servicio | Experience Ecuador</title>
-  <meta name="description" content="Consulta los Términos de Servicio de Experience Ecuador, incluyendo uso aceptable, enlaces a terceros, propiedad intelectual y limitaciones de responsabilidad." />
-  <link rel="canonical" href="https://experienceecuador.com/es/terminos-de-servicio/" />
-
+  <title>Terms &amp; Conditions | Experience Ecuador</title>
+  <meta name="description" content="Read the Terms &amp; Conditions for Experience Ecuador, including acceptable use, third-party links, content rights, disclaimers, and liability limitations." />
+  <link rel="canonical" href="https://experienceecuador.com/terms/" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
-  <meta property="og:title" content="Términos de Servicio | Experience Ecuador" />
-  <meta property="og:description" content="Consulta los Términos de Servicio de Experience Ecuador, incluyendo uso aceptable, enlaces a terceros, propiedad intelectual y limitaciones de responsabilidad." />
-  <meta property="og:url" content="https://experienceecuador.com/es/terminos-de-servicio/" />
+  <meta property="og:title" content="Terms &amp; Conditions | Experience Ecuador" />
+  <meta property="og:description" content="Read the Terms &amp; Conditions for Experience Ecuador, including acceptable use, third-party links, content rights, disclaimers, and liability limitations." />
+  <meta property="og:url" content="https://experienceecuador.com/terms/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Experience Ecuador — viajes y experiencias auténticas" />
-
+  <meta property="og:image:alt" content="Experience Ecuador — curated travel experiences across Ecuador" />
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Términos de Servicio | Experience Ecuador" />
-  <meta name="twitter:description" content="Consulta los Términos de Servicio de Experience Ecuador, incluyendo uso aceptable, enlaces a terceros y limitaciones de responsabilidad." />
+  <meta name="twitter:title" content="Terms &amp; Conditions | Experience Ecuador" />
+  <meta name="twitter:description" content="Read the Terms &amp; Conditions for Experience Ecuador, including acceptable use, third-party links, disclaimers, and liability limitations." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
-
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
-
-  <!-- Global styles -->
+  <!-- Global header/footer styles -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
-
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --brand-blue:#034EA2;
@@ -60,6 +53,7 @@
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
+    /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
@@ -77,7 +71,7 @@
     .lede{
       color:var(--slate);
       line-height:1.65;
-      max-width:90ch;
+      max-width:85ch;
       margin:0;
       font-size:16.8px;
     }
@@ -137,8 +131,10 @@
       color:#1f2b3f;
       line-height:1.75;
       font-size:15.5px;
-      max-width:82ch;
+      max-width:80ch;
     }
+
+    .card p:last-child{ margin-bottom:0; }
 
     .card ul{
       margin:10px 0 0;
@@ -219,7 +215,7 @@
 
     .email-row{
       margin-top:10px;
-      padding:12px;
+      padding:12px 12px;
       border-radius:16px;
       background:rgba(3,78,162,.05);
       border:1px solid rgba(3,78,162,.12);
@@ -248,22 +244,40 @@
       align-items:center;
       justify-content:center;
       cursor:pointer;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+      flex:0 0 auto;
     }
 
     .copy-icon-btn:hover{ background:rgba(3,78,162,.06); }
+    .copy-icon-btn:active{ transform:scale(0.98); }
+
+    .copy-icon-btn.copied{
+      background:rgba(3,78,162,.10);
+      border-color:rgba(3,78,162,.35);
+    }
+
+    .copy-ico{
+      width:18px;
+      height:18px;
+      fill:none;
+      stroke:#0f2f62;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
 
     .copy-toast{
       display:none;
       margin-top:10px;
+      width:fit-content;
       padding:8px 12px;
       border-radius:999px;
       background:rgba(3,78,162,.08);
       border:1px solid rgba(3,78,162,.18);
+      color:#0f2f62;
       font-weight:900;
       font-size:13px;
-      color:#0f2f62;
     }
-
     .copy-toast.show{ display:inline-flex; }
 
     .policy-image{
@@ -282,196 +296,197 @@
       display:block;
     }
 
+    /* ===== MOBILE ===== */
     @media(max-width:980px){
       .content-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
-
 <body>
+  <!-- Global Header -->
   <div id="siteHeader"></div>
-
   <main class="wrap">
-    <h1>Términos de Servicio</h1>
+    <h1>Terms &amp; Conditions</h1>
     <p class="lede">
-      Estos Términos de Servicio describen las reglas para usar Experience Ecuador. Al acceder o utilizar este sitio, aceptas estos términos.
+      These Terms &amp; Conditions govern your use of Experience Ecuador. By using this website, you agree to these terms.
     </p>
+<div class="meta-row" aria-label="Terms metadata">
+  <span class="pill">Effective date: December 14, 2025</span>
+  <span class="pill">Contact: info@experienceecuador.com</span>
+</div>
 
-    <div class="meta-row">
-      <span class="pill">Vigente desde: 14 de diciembre de 2025</span>
-      <span class="pill">Contacto: info@experienceecuador.com</span>
+<section class="content-grid" aria-label="Terms content">
+  <div>
+    <div class="card">
+      <h2>About the site</h2>
+      <p>
+        Experience Ecuador is an informational and editorial travel guide. We publish region and experience content to help travelers
+        discover Ecuador, plan with more clarity, and connect with trusted partners.
+      </p>
+      <p>
+        We do not guarantee that any specific listing, operator, pricing, availability, or itinerary detail will be current at all times.
+        Travel conditions can change quickly and you should always verify details directly with the provider.
+      </p>
     </div>
 
-    <section class="content-grid">
-      <div>
-        <div class="card">
-          <h2>Alcance</h2>
-          <p>
-            Experience Ecuador es una guía editorial de viajes enfocada en Ecuador. El sitio ofrece contenido curado, ideas de planificación
-            y descubrimiento de experiencias. No garantizamos disponibilidad, precios ni la calidad de servicios ofrecidos por terceros.
-          </p>
-        </div>
+    <div class="card">
+      <h2>Use of content</h2>
+      <ul>
+        <li>You may view, download, and print pages for personal, non-commercial use</li>
+        <li>You may not copy, republish, sell, or redistribute content without written permission</li>
+        <li>Logos, images, and brand assets belong to their respective owners and may be protected by copyright</li>
+      </ul>
+    </div>
 
-        <div class="card">
-          <h2>Tus responsabilidades</h2>
-          <ul>
-            <li>Usar el sitio de forma legal y respetuosa</li>
-            <li>Verificar información directamente con proveedores antes de reservar o viajar</li>
-            <li>Tomar precauciones relacionadas con seguridad, salud y seguros de viaje</li>
-            <li>Proporcionar información veraz al contactarnos o enviar solicitudes</li>
-          </ul>
-        </div>
+    <div class="card">
+      <h2>Partner listings and third-party links</h2>
+      <p>
+        The site may include links to third-party websites, services, or booking channels. We are not responsible for third-party content,
+        policies, pricing, or performance. Any interaction you have with a third party is between you and that party.
+      </p>
+    </div>
 
-        <div class="card">
-          <h2>Uso aceptable</h2>
-          <ul>
-            <li>No intentar dañar, interrumpir o sobrecargar el sitio</li>
-            <li>No extraer datos de forma automatizada ni realizar ingeniería inversa</li>
-            <li>No intentar acceder sin autorización a sistemas o información</li>
-            <li>No enviar información falsa o engañosa</li>
-          </ul>
-        </div>
+    <div class="card">
+      <h2>Accuracy and updates</h2>
+      <p>
+        We aim for clarity and accuracy, but information may be incomplete or become outdated. We may update, remove, or change content at any time
+        without notice as the site evolves.
+      </p>
+    </div>
 
-        <div class="card">
-          <h2>Servicios y proveedores externos</h2>
-          <p>
-            Algunas páginas pueden enlazar a servicios de terceros como alojamientos, operadores turísticos o restaurantes.
-            Experience Ecuador no es responsable por contenidos, políticas ni resultados derivados de estos servicios.
-          </p>
-        </div>
+    <div class="card">
+      <h2>Prohibited use</h2>
+      <ul>
+        <li>Attempting to harm, disrupt, or overload the site or its infrastructure</li>
+        <li>Scraping content at scale, reverse engineering, or automated extraction without permission</li>
+        <li>Using the site in any way that violates applicable laws or infringes rights</li>
+        <li>Submitting false information in partnership inquiries or communications</li>
+      </ul>
+    </div>
 
-        <div class="card">
-          <h2>Propiedad intelectual</h2>
-          <p>
-            El contenido, diseño y materiales del sitio pertenecen a Experience Ecuador o se utilizan con permiso.
-            Puedes visualizar y descargar contenido para uso personal y no comercial.
-            No está permitido reproducir o distribuir contenido sin autorización escrita.
-          </p>
-        </div>
+    <div class="card">
+      <h2>Disclaimers</h2>
+      <p>
+        The site is provided “as is” and “as available” without warranties of any kind. Experience Ecuador does not provide legal, medical,
+        or safety advice. You are responsible for planning decisions, bookings, and travel safety.
+      </p>
+    </div>
 
-        <div class="card">
-          <h2>Cambios y disponibilidad</h2>
-          <p>
-            Podemos actualizar el sitio o su contenido en cualquier momento. No garantizamos disponibilidad continua
-            ni ausencia de errores. Pueden ocurrir interrupciones por mantenimiento o mejoras.
-          </p>
-        </div>
+    <div class="card">
+      <h2>Limitation of liability</h2>
+      <p>
+        To the maximum extent permitted by law, Experience Ecuador and its owners are not liable for any direct or indirect damages
+        resulting from your use of the website, reliance on content, or interactions with third-party providers.
+      </p>
+    </div>
 
-        <div class="card">
-          <h2>Exención de responsabilidad</h2>
-          <p>
-            El sitio se proporciona “tal cual” y “según disponibilidad”. La información no constituye asesoramiento profesional.
-            El uso del sitio y las decisiones de viaje son responsabilidad del usuario.
-          </p>
-        </div>
+    <div class="card">
+      <h2>Changes to these terms</h2>
+      <p>
+        We may update these Terms &amp; Conditions as the site grows. Any updates will be posted on this page with a revised effective date.
+      </p>
+    </div>
 
-        <div class="card">
-          <h2>Limitación de responsabilidad</h2>
-          <p>
-            En la máxima medida permitida por la ley, Experience Ecuador no será responsable por pérdidas o daños derivados
-            del uso del sitio o de la confianza depositada en su contenido.
-          </p>
-        </div>
+    <div class="card">
+      <h2>Contact</h2>
+      <p>
+        For questions about these terms, contact us at
+        <a class="inline-link" href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>.
+      </p>
+    </div>
+  </div>
 
-        <div class="card">
-          <h2>Cambios en estos términos</h2>
-          <p>
-            Podemos actualizar estos Términos de Servicio cuando sea necesario. Los cambios se publicarán en esta página.
-            El uso continuo del sitio implica la aceptación de los términos actualizados.
-          </p>
-        </div>
+  <aside class="side-stack" aria-label="Terms side content">
+    <div class="mini">
+      <h3>Need help</h3>
+      <p>
+        Questions about these terms, content usage, or partner listings. Reach out anytime.
+      </p>
 
-        <div class="card">
-          <h2>Contacto</h2>
-          <p>
-            Si tienes preguntas sobre estos Términos de Servicio, escríbenos a
-            <a class="inline-link" href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>.
-          </p>
-        </div>
+      <div class="link-list" aria-label="Related pages">
+        <a class="pill-link" href="/faq/">
+          FAQ <span>Read</span>
+        </a>
+        <a class="pill-link" href="/privacy-policy/">
+          Privacy Policy <span>Read</span>
+        </a>
+        <a class="pill-link" href="/terms-of-service/">
+          Terms of Service <span>Read</span>
+        </a>
       </div>
 
-      <aside class="side-stack">
-        <div class="mini">
-          <h3>¿Necesitas ayuda?</h3>
-          <p>
-            Para consultas sobre contenido, uso del sitio o colaboraciones, contáctanos cuando quieras.
-          </p>
+      <div class="link-list" aria-label="Terms quick links">
+        <a class="pill-link" href="/contact/">
+          Contact page <span>Write us</span>
+        </a>
 
-          <div class="link-list">
-            <a class="pill-link" href="/faq/">FAQ <span>Leer</span></a>
-            <a class="pill-link" href="/privacy-policy/">Política de Privacidad <span>Leer</span></a>
-            <a class="pill-link" href="/terms/">Términos y Condiciones <span>Leer</span></a>
-          </div>
+        <div class="email-row" aria-label="Email row">
+          <a class="email-link" href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
 
-          <div class="link-list">
-            <a class="pill-link" href="/contact/">Página de contacto <span>Escribir</span></a>
-
-            <div class="email-row">
-              <a class="email-link" href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
-
-              <button class="copy-icon-btn" id="copyTosEmail" type="button" aria-label="Copiar correo">
-                <svg class="copy-ico" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M9 9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V9z"></path>
-                  <path d="M7 15H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
-                </svg>
-              </button>
-            </div>
-
-            <div class="copy-toast" id="tosCopyToast" role="status" aria-live="polite">Copiado</div>
-          </div>
+          <button class="copy-icon-btn" id="copyTermsEmail" type="button" aria-label="Copy email">
+            <svg class="copy-ico" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V9z"></path>
+              <path d="M7 15H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
         </div>
 
-        <div class="policy-image">
-          <img src="/assets/images/EE-Logo-Assets-18-Terms-of-Service.jpg" alt="Términos de servicio Experience Ecuador">
-        </div>
-      </aside>
-    </section>
+        <div class="copy-toast" id="termsCopyToast" role="status" aria-live="polite">Copied</div>
+      </div>
+    </div>
+
+    <div class="policy-image" aria-label="Terms image">
+      <img src="/assets/images/EE-Logo-Assets-17-Terms.jpg" alt="Terms and conditions graphic">
+    </div>
+  </aside>
+</section>
   </main>
-
+  <!-- Global Footer -->
   <div id="siteFooter"></div>
-
+  <!-- Global site JS (required for header/footer + mobile menu) -->
   <script src="/assets/js/site.js"></script>
-
   <script>
+    // Light deterrent: disable right-click on images only
     document.addEventListener('contextmenu', (e) => {
       if (e.target && e.target.tagName === 'IMG') e.preventDefault();
     });
 
+    // Copy email icon button (Terms)
     (function(){
       const email = 'info@experienceecuador.com';
-      const btn = document.getElementById('copyTosEmail');
-      const toast = document.getElementById('tosCopyToast');
+      const btn = document.getElementById('copyTermsEmail');
+      const toast = document.getElementById('termsCopyToast');
       if(!btn) return;
+
+      function showCopied(){
+        btn.classList.add('copied');
+        if(toast) toast.classList.add('show');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          if(toast) toast.classList.remove('show');
+        }, 1600);
+      }
 
       btn.addEventListener('click', async () => {
         try {
           if (navigator.clipboard && window.isSecureContext) {
             await navigator.clipboard.writeText(email);
-          } else {
-            const ta = document.createElement('textarea');
-            ta.value = email;
-            ta.style.position = 'fixed';
-            ta.style.left = '-9999px';
-            document.body.appendChild(ta);
-            ta.select();
-            document.execCommand('copy');
-            document.body.removeChild(ta);
+            showCopied();
+            return;
           }
-          toast.classList.add('show');
-          setTimeout(() => toast.classList.remove('show'), 1600);
-        } catch {}
+          const ta = document.createElement('textarea');
+          ta.value = email;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          ta.style.top = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showCopied();
+        } catch (e) {}
       });
-    })();
-
-    (function(){
-      async function inject(id, url){
-        const el = document.getElementById(id);
-        if(!el) return;
-        const res = await fetch(url, { cache: "no-store" });
-        el.innerHTML = await res.text();
-      }
-      inject("siteHeader", "/assets/includes/header.html");
-      inject("siteFooter", "/assets/includes/footer.html");
     })();
   </script>
 </body>
