@@ -9,6 +9,11 @@
   <meta name="description" content="Salinas es la ciudad playera clasica de Ecuador en la Peninsula de Santa Elena. Planea 2 a 3 noches en la Costa con malecon, playa facil y excursiones simples." />
   <link rel="canonical" href="https://experienceecuador.com/es/regiones/costa/salinas/" />
 
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="es" href="https://experienceecuador.com/es/regiones/costa/salinas/" />
+  <link rel="alternate" hreflang="en" href="https://experienceecuador.com/regions/coast/salinas/" />
+  <link rel="alternate" hreflang="x-default" href="https://experienceecuador.com/regions/coast/salinas/" />
+
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
@@ -652,7 +657,6 @@
   <div id="siteHeader"></div>
 
   <main>
-    <!-- PAGE CONTENT ONLY -->
     <div class="wrap">
       <h1>Salinas</h1>
       <p class="lede">
@@ -731,7 +735,6 @@
             </p>
           </div>
 
-          <!-- CAROUSEL (LEFT, UNDER SIMPLE PLANNING FLOW) -->
           <div id="salinasCarousel" class="carousel" aria-label="Galeria de imagenes de Salinas">
             <button class="carousel-btn prev" type="button" aria-label="Imagen anterior">
               <span aria-hidden="true"></span>
@@ -785,7 +788,6 @@
             </div>
           </div>
 
-          <!-- Weather card (same behavior as Quito) -->
           <div class="wx-card" aria-label="Clima y estacionalidad">
             <div class="wx-title">Clima Actual</div>
 
@@ -882,355 +884,382 @@
 
   <div id="siteFooter"></div>
 
-  <script src="/assets/js/site.js"></script>
-
   <script>
     (function(){
-      async function inject(id, url){
-        const el = document.getElementById(id);
-        if(!el) return;
-        const res = await fetch(url, { cache: "no-store" });
-        el.innerHTML = await res.text();
-      }
-      inject("siteHeader", "/assets/includes/header-es.html");
-      inject("siteFooter", "/assets/includes/footer-es.html");
-    })();
-  </script>
-
-  <script>
-    /* Salinas carousel */
-    (function(){
-      const root = document.getElementById("salinasCarousel");
-      if(!root) return;
-
-      const track = root.querySelector(".carousel-track");
-      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
-      const prevBtn = root.querySelector(".carousel-btn.prev");
-      const nextBtn = root.querySelector(".carousel-btn.next");
-      const dotsWrap = root.querySelector(".carousel-dots");
-      const counter = root.querySelector("#salinasCarouselCounter");
-
-      let index = 0;
-
-      const AUTOPLAY_MS = 5000;
-      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      let autoplayTimer = null;
-      let autoplayEnabled = !prefersReducedMotion;
-
-      function setIndex(next){
-        index = (next + slides.length) % slides.length;
-        track.style.transform = `translateX(-${index * 100}%)`;
-        updateDots();
-        updateCounter();
-      }
-
-      function updateCounter(){
-        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
-      }
-
-      function updateDots(){
-        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
-        dots.forEach((d,i) => d.classList.toggle("active", i === index));
-      }
-
-      function buildDots(){
-        dotsWrap.innerHTML = "";
-        slides.forEach((_, i) => {
-          const b = document.createElement("button");
-          b.type = "button";
-          b.className = "dot" + (i === 0 ? " active" : "");
-          b.setAttribute("aria-label", `Ir a la imagen ${i + 1}`);
-          b.addEventListener("click", () => {
-            setIndex(i);
-            stopAutoplay();
-          });
-          dotsWrap.appendChild(b);
+      function loadScript(src){
+        return new Promise(function(resolve, reject){
+          var s = document.createElement("script");
+          s.src = src;
+          s.onload = resolve;
+          s.onerror = reject;
+          document.body.appendChild(s);
         });
       }
 
-      function next(){ setIndex(index + 1); }
-      function prev(){ setIndex(index - 1); }
-
-      function startAutoplay(){
-        if(!autoplayEnabled) return;
-        stopAutoplay();
-        autoplayTimer = setInterval(next, AUTOPLAY_MS);
+      async function fetchText(url){
+        var res = await fetch(url, { cache: "no-store" });
+        if(!res.ok) throw new Error("Fetch failed: " + url);
+        return await res.text();
       }
 
-      function stopAutoplay(){
-        if(autoplayTimer){
-          clearInterval(autoplayTimer);
-          autoplayTimer = null;
-        }
-      }
+      async function injectWithFallback(targetId, primaryUrl, fallbackUrl){
+        var el = document.getElementById(targetId);
+        if(!el) return;
 
-      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
-      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
-
-      root.addEventListener("keydown", (e) => {
-        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
-        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
-      });
-
-      let startX = 0;
-      let isDown = false;
-
-      const viewport = root.querySelector(".carousel-viewport");
-      viewport.addEventListener("pointerdown", (e) => {
-        isDown = true;
-        startX = e.clientX;
-        viewport.setPointerCapture(e.pointerId);
-      });
-
-      viewport.addEventListener("pointerup", (e) => {
-        if(!isDown) return;
-        isDown = false;
-        const dx = e.clientX - startX;
-        const threshold = 40;
-        if(dx > threshold){ prev(); stopAutoplay(); }
-        if(dx < -threshold){ next(); stopAutoplay(); }
-      });
-
-      viewport.addEventListener("pointercancel", () => { isDown = false; });
-
-      root.addEventListener("mouseenter", stopAutoplay);
-      root.addEventListener("mouseleave", startAutoplay);
-      root.addEventListener("focusin", stopAutoplay);
-      root.addEventListener("focusout", startAutoplay);
-
-      root.tabIndex = 0;
-      buildDots();
-      updateCounter();
-      setIndex(0);
-      startAutoplay();
-    })();
-
-    /* Salinas weather (Quito-style contract: /api/weather + localStorage cache + Max/Min/Rain with <br>) */
-    (function(){
-      const dateEl = document.getElementById("salinasWxDate");
-      const linesEl = document.getElementById("salinasWxLines");
-      const gridEl = document.getElementById("salinasWx7");
-      if(!dateEl || !linesEl || !gridEl) return;
-
-      // Salinas, Ecuador (approx.)
-      const LAT = -2.214;
-      const LON = -80.955;
-
-      const CACHE_KEY = "salinas-wx-v1";
-      const TTL_MS = 30 * 60 * 1000;
-
-      function fmtDateMMDDYYYY(d){
-        const mm = String(d.getMonth()+1).padStart(2,"0");
-        const dd = String(d.getDate()).padStart(2,"0");
-        const yy = d.getFullYear();
-        return `${mm}/${dd}/${yy}`;
-      }
-
-      function fmtMMDD(iso){
-        const d = new Date(iso + "T00:00:00");
-        const mm = String(d.getMonth()+1).padStart(2,"0");
-        const dd = String(d.getDate()).padStart(2,"0");
-        return `${mm}/${dd}`;
-      }
-
-      function dowShort(iso){
-        const d = new Date(iso + "T00:00:00");
-        return d.toLocaleDateString("es-EC",{ weekday:"short" });
-      }
-
-      function cToF(c){
-        return Math.round((c * 9/5) + 32);
-      }
-
-      function setUnavailable(){
-        dateEl.textContent = "--/--/----";
-        linesEl.innerHTML = "Clima no disponible en este momento.";
-        gridEl.innerHTML = "";
-      }
-
-      function setLoading(){
-        dateEl.textContent = fmtDateMMDDYYYY(new Date());
-        linesEl.innerHTML = "Cargando...";
-        gridEl.innerHTML = "";
-      }
-
-      function readCache(){
         try{
-          const raw = localStorage.getItem(CACHE_KEY);
-          if(!raw) return null;
-          const obj = JSON.parse(raw);
-          if(!obj || typeof obj !== "object") return null;
-          if(!obj.ts || !obj.data) return null;
-          if((Date.now() - obj.ts) > TTL_MS) return null;
-          return obj.data;
+          el.innerHTML = await fetchText(primaryUrl);
+          return;
         }catch(e){
-          return null;
-        }
-      }
-
-      function writeCache(data){
-        try{
-          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
-        }catch(e){}
-      }
-
-      function normalize(api){
-        const unitsTemp =
-          (api && api.units && (api.units.temp || api.units.temperature)) ||
-          (api && api.unit && api.unit.temperature) ||
-          null;
-
-        const isC =
-          (typeof unitsTemp === "string" && unitsTemp.toUpperCase().includes("C")) ? true :
-          (typeof unitsTemp === "string" && unitsTemp.toUpperCase().includes("F")) ? false :
-          true;
-
-        if(api && api.current && Array.isArray(api.daily)){
-          const current = api.current || {};
-          const dailyArr = api.daily || [];
-          return {
-            isC,
-            current: {
-              tmax: current.tmax,
-              tmin: current.tmin,
-              rain: current.rain
-            },
-            days: dailyArr.slice(0, 7).map(d => ({
-              date: d.date,
-              tmax: d.tmax,
-              tmin: d.tmin,
-              rain: d.rain
-            }))
-          };
-        }
-
-        const daily = (api && api.daily) ? api.daily : {};
-        const days = daily.time || [];
-        const tmax = daily.temperature_2m_max || [];
-        const tmin = daily.temperature_2m_min || [];
-        const rain = daily.precipitation_probability_max || [];
-
-        return {
-          isC,
-          current: {
-            tmax: (typeof tmax[0] === "number" ? tmax[0] : null),
-            tmin: (typeof tmin[0] === "number" ? tmin[0] : null),
-            rain: (typeof rain[0] === "number" ? rain[0] : null)
-          },
-          days: days.slice(0, 7).map((iso, i) => ({
-            date: iso,
-            tmax: tmax[i],
-            tmin: tmin[i],
-            rain: rain[i]
-          }))
-        };
-      }
-
-      function render(norm){
-        dateEl.textContent = fmtDateMMDDYYYY(new Date());
-
-        const tmax = norm.current.tmax;
-        const tmin = norm.current.tmin;
-        const rain = norm.current.rain;
-
-        const maxStr = (typeof tmax === "number")
-          ? `Max: ${norm.isC ? cToF(tmax) : Math.round(tmax)}°F`
-          : "Max: --";
-        const minStr = (typeof tmin === "number")
-          ? `Min: ${norm.isC ? cToF(tmin) : Math.round(tmin)}°F`
-          : "Min: --";
-        const rainStr = (typeof rain === "number")
-          ? `Lluvia: ${Math.round(rain)}%`
-          : "Lluvia: --";
-
-        linesEl.innerHTML = `${maxStr}<br>${minStr}<br>${rainStr}`;
-
-        gridEl.innerHTML = "";
-        const count = Math.min(7, norm.days.length);
-
-        for(let i=0; i<count; i++){
-          const d = norm.days[i] || {};
-          const dayIso = d.date;
-
-          const hi = d.tmax;
-          const lo = d.tmin;
-          const r = d.rain;
-
-          const card = document.createElement("div");
-          card.className = "wx-day";
-
-          const top = document.createElement("div");
-          top.className = "wx-top";
-
-          const dow = document.createElement("div");
-          dow.className = "wx-dow";
-          dow.textContent = dayIso ? dowShort(dayIso) : "--";
-
-          const mmdd = document.createElement("div");
-          mmdd.className = "wx-mmdd";
-          mmdd.textContent = dayIso ? fmtMMDD(dayIso) : "--/--";
-
-          top.appendChild(dow);
-          top.appendChild(mmdd);
-
-          const hiEl = document.createElement("div");
-          hiEl.className = "wx-hi";
-          hiEl.textContent = (typeof hi === "number")
-            ? `Max ${norm.isC ? cToF(hi) : Math.round(hi)}°F`
-            : "Max --";
-
-          const loEl = document.createElement("div");
-          loEl.className = "wx-lo";
-          loEl.textContent = (typeof lo === "number")
-            ? `Min ${norm.isC ? cToF(lo) : Math.round(lo)}°F`
-            : "Min --";
-
-          const rainEl = document.createElement("div");
-          rainEl.className = "wx-rain";
-          rainEl.textContent = (typeof r === "number")
-            ? `Lluvia ${Math.round(r)}%`
-            : "Lluvia --";
-
-          card.appendChild(top);
-          card.appendChild(hiEl);
-          card.appendChild(loEl);
-          card.appendChild(rainEl);
-
-          gridEl.appendChild(card);
-        }
-      }
-
-      async function load(){
-        setLoading();
-
-        const cached = readCache();
-        if(cached){
           try{
-            render(normalize(cached));
+            el.innerHTML = await fetchText(fallbackUrl);
             return;
+          }catch(e2){
+            el.innerHTML = "";
+          }
+        }
+      }
+
+      async function boot(){
+        // Try Spanish includes first; fall back to EN includes if ES files do not exist.
+        await injectWithFallback("siteHeader", "/assets/includes/header-es.html", "/assets/includes/header.html");
+        await injectWithFallback("siteFooter", "/assets/includes/footer-es.html", "/assets/includes/footer.html");
+
+        // Load global site JS AFTER header/footer are in the DOM.
+        try{ await loadScript("/assets/js/site.js"); }catch(e){}
+
+        // Now run page scripts (carousel + weather) after everything is ready.
+        initSalinasCarousel();
+        initSalinasWeather();
+      }
+
+      function initSalinasCarousel(){
+        var root = document.getElementById("salinasCarousel");
+        if(!root) return;
+
+        var track = root.querySelector(".carousel-track");
+        var slides = Array.prototype.slice.call(root.querySelectorAll(".carousel-slide"));
+        var prevBtn = root.querySelector(".carousel-btn.prev");
+        var nextBtn = root.querySelector(".carousel-btn.next");
+        var dotsWrap = root.querySelector(".carousel-dots");
+        var counter = root.querySelector("#salinasCarouselCounter");
+
+        var index = 0;
+
+        var AUTOPLAY_MS = 5000;
+        var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        var autoplayTimer = null;
+        var autoplayEnabled = !prefersReducedMotion;
+
+        function setIndex(next){
+          index = (next + slides.length) % slides.length;
+          track.style.transform = "translateX(-" + (index * 100) + "%)";
+          updateDots();
+          updateCounter();
+        }
+
+        function updateCounter(){
+          if(counter) counter.textContent = (index + 1) + " / " + slides.length;
+        }
+
+        function updateDots(){
+          var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll(".dot"));
+          dots.forEach(function(d,i){
+            if(i === index) d.classList.add("active");
+            else d.classList.remove("active");
+          });
+        }
+
+        function buildDots(){
+          dotsWrap.innerHTML = "";
+          slides.forEach(function(_, i){
+            var b = document.createElement("button");
+            b.type = "button";
+            b.className = "dot" + (i === 0 ? " active" : "");
+            b.setAttribute("aria-label", "Ir a la imagen " + (i + 1));
+            b.addEventListener("click", function(){
+              setIndex(i);
+              stopAutoplay();
+            });
+            dotsWrap.appendChild(b);
+          });
+        }
+
+        function next(){ setIndex(index + 1); }
+        function prev(){ setIndex(index - 1); }
+
+        function startAutoplay(){
+          if(!autoplayEnabled) return;
+          stopAutoplay();
+          autoplayTimer = setInterval(next, AUTOPLAY_MS);
+        }
+
+        function stopAutoplay(){
+          if(autoplayTimer){
+            clearInterval(autoplayTimer);
+            autoplayTimer = null;
+          }
+        }
+
+        if(prevBtn) prevBtn.addEventListener("click", function(){ prev(); stopAutoplay(); });
+        if(nextBtn) nextBtn.addEventListener("click", function(){ next(); stopAutoplay(); });
+
+        root.addEventListener("keydown", function(e){
+          if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
+          if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
+        });
+
+        var startX = 0;
+        var isDown = false;
+
+        var viewport = root.querySelector(".carousel-viewport");
+        if(viewport){
+          viewport.addEventListener("pointerdown", function(e){
+            isDown = true;
+            startX = e.clientX;
+            viewport.setPointerCapture(e.pointerId);
+          });
+
+          viewport.addEventListener("pointerup", function(e){
+            if(!isDown) return;
+            isDown = false;
+            var dx = e.clientX - startX;
+            var threshold = 40;
+            if(dx > threshold){ prev(); stopAutoplay(); }
+            if(dx < -threshold){ next(); stopAutoplay(); }
+          });
+
+          viewport.addEventListener("pointercancel", function(){ isDown = false; });
+        }
+
+        root.addEventListener("mouseenter", stopAutoplay);
+        root.addEventListener("mouseleave", startAutoplay);
+        root.addEventListener("focusin", stopAutoplay);
+        root.addEventListener("focusout", startAutoplay);
+
+        root.tabIndex = 0;
+        buildDots();
+        updateCounter();
+        setIndex(0);
+        startAutoplay();
+      }
+
+      function initSalinasWeather(){
+        var dateEl = document.getElementById("salinasWxDate");
+        var linesEl = document.getElementById("salinasWxLines");
+        var gridEl = document.getElementById("salinasWx7");
+        if(!dateEl || !linesEl || !gridEl) return;
+
+        var LAT = -2.214;
+        var LON = -80.955;
+
+        var CACHE_KEY = "salinas-wx-v1";
+        var TTL_MS = 30 * 60 * 1000;
+
+        function fmtDateMMDDYYYY(d){
+          var mm = String(d.getMonth()+1).padStart(2,"0");
+          var dd = String(d.getDate()).padStart(2,"0");
+          var yy = d.getFullYear();
+          return mm + "/" + dd + "/" + yy;
+        }
+
+        function fmtMMDD(iso){
+          var d = new Date(iso + "T00:00:00");
+          var mm = String(d.getMonth()+1).padStart(2,"0");
+          var dd = String(d.getDate()).padStart(2,"0");
+          return mm + "/" + dd;
+        }
+
+        function dowShort(iso){
+          var d = new Date(iso + "T00:00:00");
+          return d.toLocaleDateString("es-EC",{ weekday:"short" });
+        }
+
+        function cToF(c){
+          return Math.round((c * 9/5) + 32);
+        }
+
+        function setUnavailable(){
+          dateEl.textContent = "--/--/----";
+          linesEl.innerHTML = "Clima no disponible en este momento.";
+          gridEl.innerHTML = "";
+        }
+
+        function setLoading(){
+          dateEl.textContent = fmtDateMMDDYYYY(new Date());
+          linesEl.innerHTML = "Cargando...";
+          gridEl.innerHTML = "";
+        }
+
+        function readCache(){
+          try{
+            var raw = localStorage.getItem(CACHE_KEY);
+            if(!raw) return null;
+            var obj = JSON.parse(raw);
+            if(!obj || typeof obj !== "object") return null;
+            if(!obj.ts || !obj.data) return null;
+            if((Date.now() - obj.ts) > TTL_MS) return null;
+            return obj.data;
+          }catch(e){
+            return null;
+          }
+        }
+
+        function writeCache(data){
+          try{
+            localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: data }));
           }catch(e){}
         }
 
-        try{
-          const url = `/api/weather?lat=${encodeURIComponent(LAT)}&lon=${encodeURIComponent(LON)}`;
-          const res = await fetch(url, { cache: "no-store" });
-          if(!res.ok) throw new Error("Weather fetch failed");
-          const data = await res.json();
+        function normalize(api){
+          var unitsTemp =
+            (api && api.units && (api.units.temp || api.units.temperature)) ||
+            (api && api.unit && api.unit.temperature) ||
+            null;
 
-          writeCache(data);
-          render(normalize(data));
-        }catch(e){
-          setUnavailable();
+          var isC =
+            (typeof unitsTemp === "string" && unitsTemp.toUpperCase().indexOf("C") >= 0) ? true :
+            (typeof unitsTemp === "string" && unitsTemp.toUpperCase().indexOf("F") >= 0) ? false :
+            true;
+
+          if(api && api.current && Array.isArray(api.daily)){
+            var current = api.current || {};
+            var dailyArr = api.daily || [];
+            return {
+              isC: isC,
+              current: { tmax: current.tmax, tmin: current.tmin, rain: current.rain },
+              days: dailyArr.slice(0, 7).map(function(d){
+                return { date: d.date, tmax: d.tmax, tmin: d.tmin, rain: d.rain };
+              })
+            };
+          }
+
+          var daily = (api && api.daily) ? api.daily : {};
+          var days = daily.time || [];
+          var tmax = daily.temperature_2m_max || [];
+          var tmin = daily.temperature_2m_min || [];
+          var rain = daily.precipitation_probability_max || [];
+
+          return {
+            isC: isC,
+            current: {
+              tmax: (typeof tmax[0] === "number" ? tmax[0] : null),
+              tmin: (typeof tmin[0] === "number" ? tmin[0] : null),
+              rain: (typeof rain[0] === "number" ? rain[0] : null)
+            },
+            days: days.slice(0, 7).map(function(iso, i){
+              return { date: iso, tmax: tmax[i], tmin: tmin[i], rain: rain[i] };
+            })
+          };
         }
+
+        function render(norm){
+          dateEl.textContent = fmtDateMMDDYYYY(new Date());
+
+          var tmax = norm.current.tmax;
+          var tmin = norm.current.tmin;
+          var rain = norm.current.rain;
+
+          var maxStr = (typeof tmax === "number")
+            ? ("Max: " + (norm.isC ? cToF(tmax) : Math.round(tmax)) + "°F")
+            : "Max: --";
+          var minStr = (typeof tmin === "number")
+            ? ("Min: " + (norm.isC ? cToF(tmin) : Math.round(tmin)) + "°F")
+            : "Min: --";
+          var rainStr = (typeof rain === "number")
+            ? ("Lluvia: " + Math.round(rain) + "%")
+            : "Lluvia: --";
+
+          linesEl.innerHTML = maxStr + "<br>" + minStr + "<br>" + rainStr;
+
+          gridEl.innerHTML = "";
+          var count = Math.min(7, norm.days.length);
+
+          for(var i=0; i<count; i++){
+            var d = norm.days[i] || {};
+            var dayIso = d.date;
+
+            var hi = d.tmax;
+            var lo = d.tmin;
+            var r = d.rain;
+
+            var card = document.createElement("div");
+            card.className = "wx-day";
+
+            var top = document.createElement("div");
+            top.className = "wx-top";
+
+            var dow = document.createElement("div");
+            dow.className = "wx-dow";
+            dow.textContent = dayIso ? dowShort(dayIso) : "--";
+
+            var mmdd = document.createElement("div");
+            mmdd.className = "wx-mmdd";
+            mmdd.textContent = dayIso ? fmtMMDD(dayIso) : "--/--";
+
+            top.appendChild(dow);
+            top.appendChild(mmdd);
+
+            var hiEl = document.createElement("div");
+            hiEl.className = "wx-hi";
+            hiEl.textContent = (typeof hi === "number")
+              ? ("Max " + (norm.isC ? cToF(hi) : Math.round(hi)) + "°F")
+              : "Max --";
+
+            var loEl = document.createElement("div");
+            loEl.className = "wx-lo";
+            loEl.textContent = (typeof lo === "number")
+              ? ("Min " + (norm.isC ? cToF(lo) : Math.round(lo)) + "°F")
+              : "Min --";
+
+            var rainEl = document.createElement("div");
+            rainEl.className = "wx-rain";
+            rainEl.textContent = (typeof r === "number")
+              ? ("Lluvia " + Math.round(r) + "%")
+              : "Lluvia --";
+
+            card.appendChild(top);
+            card.appendChild(hiEl);
+            card.appendChild(loEl);
+            card.appendChild(rainEl);
+
+            gridEl.appendChild(card);
+          }
+        }
+
+        async function load(){
+          setLoading();
+
+          var cached = readCache();
+          if(cached){
+            try{
+              render(normalize(cached));
+              return;
+            }catch(e){}
+          }
+
+          try{
+            var url = "/api/weather?lat=" + encodeURIComponent(LAT) + "&lon=" + encodeURIComponent(LON);
+            var res = await fetch(url, { cache: "no-store" });
+            if(!res.ok) throw new Error("Weather fetch failed");
+            var data = await res.json();
+
+            writeCache(data);
+            render(normalize(data));
+          }catch(e){
+            setUnavailable();
+          }
+        }
+
+        load();
       }
 
-      load();
+      boot();
     })();
 
     // Light deterrent: disable right-click on images only
-    document.addEventListener('contextmenu', (e) => {
-      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    document.addEventListener("contextmenu", function(e){
+      if(e.target && e.target.tagName === "IMG") e.preventDefault();
     });
   </script>
 </body>
