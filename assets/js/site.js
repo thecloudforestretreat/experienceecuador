@@ -49,7 +49,7 @@
     "/regions/galapagos/": "/es/regiones/galapagos/",
     "/regions/coast/": "/es/regiones/costa/",
     "/regions/andes/": "/es/regiones/andes/",
-    "/regions/amazon/": "/es/regiones/amazon/"
+    "/regions/amazon/": "/es/regiones/amazonia/"
   };
 
   // Build reverse map automatically
