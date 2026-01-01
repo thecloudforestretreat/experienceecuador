@@ -3,7 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Parque Nacional Yasuní | Experience Ecuador</title>
+  <meta name="description" content="Guia para visitar el Parque Nacional Yasuní: que es lo mejor, como planificar un viaje en lodge, clima actual y pronostico de 7 dias en la Amazonia." />
+  <link rel="canonical" href="https://experienceecuador.com/es/regiones/amazonia/parque-nacional-yasuni/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Experience Ecuador" />
+  <meta property="og:title" content="Parque Nacional Yasuní | Experience Ecuador" />
+  <meta property="og:description" content="Guia para visitar el Parque Nacional Yasuní: que es lo mejor, como planificar un viaje en lodge, clima actual y pronostico de 7 dias en la Amazonia." />
+  <meta property="og:url" content="https://experienceecuador.com/es/regiones/amazonia/parque-nacional-yasuni/" />
+  <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Experience Ecuador - inspiracion de viaje por Ecuador" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Parque Nacional Yasuní | Experience Ecuador" />
+  <meta name="twitter:description" content="Guia para visitar el Parque Nacional Yasuní: que es lo mejor, como planificar un viaje en lodge, clima actual y pronostico de 7 dias en la Amazonia." />
+  <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
   <!-- Favicons (approved root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -1008,7 +1029,7 @@
 
       function dowShort(iso){
         const d = new Date(iso + "T00:00:00");
-        return d.toLocaleDateString("en-US",{ weekday:"short" });
+        return d.toLocaleDateString("es-EC",{ weekday:"short" });
       }
 
       function cToF(c){
@@ -1017,13 +1038,13 @@
 
       function setUnavailable(){
         dateEl.textContent = "--/--/----";
-        linesEl.innerHTML = "Weather unavailable right now.";
+        linesEl.innerHTML = "Clima no disponible en este momento.";
         gridEl.innerHTML = "";
       }
 
       function setLoading(){
         dateEl.textContent = fmtDateMMDDYYYY(new Date());
-        linesEl.innerHTML = "Loading…";
+        linesEl.innerHTML = "Cargando…";
         gridEl.innerHTML = "";
       }
 
@@ -1113,8 +1134,8 @@
           ? `Min: ${norm.isC ? cToF(tmin) : Math.round(tmin)}°F`
           : "Min: --";
         const rainStr = (typeof rain === "number")
-          ? `Rain: ${Math.round(rain)}%`
-          : "Rain: --";
+          ? `Lluvia: ${Math.round(rain)}%`
+          : "Lluvia: --";
 
         linesEl.innerHTML = `${maxStr}<br>${minStr}<br>${rainStr}`;
 
@@ -1149,20 +1170,20 @@
           const hiEl = document.createElement("div");
           hiEl.className = "wx-hi";
           hiEl.textContent = (typeof hi === "number")
-            ? `High ${norm.isC ? cToF(hi) : Math.round(hi)}°F`
-            : "High --";
+            ? `Alta ${norm.isC ? cToF(hi) : Math.round(hi)}°F`
+            : "Alta --";
 
           const loEl = document.createElement("div");
           loEl.className = "wx-lo";
           loEl.textContent = (typeof lo === "number")
-            ? `Low ${norm.isC ? cToF(lo) : Math.round(lo)}°F`
-            : "Low --";
+            ? `Baja ${norm.isC ? cToF(lo) : Math.round(lo)}°F`
+            : "Baja --";
 
           const rainEl = document.createElement("div");
           rainEl.className = "wx-rain";
           rainEl.textContent = (typeof r === "number")
-            ? `Rain ${Math.round(r)}%`
-            : "Rain --";
+            ? `Lluvia ${Math.round(r)}%`
+            : "Lluvia --";
 
           card.appendChild(top);
           card.appendChild(hiEl);
