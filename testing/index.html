@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Reserva Faunistica Cuyabeno | Experience Ecuador</title>
-  <meta name="description" content="Explora la Reserva Faunistica Cuyabeno con una experiencia amazónica basada en lagunas: canoa, alta vida silvestre, fotografia y lodge en 3 a 5+ dias." />
+  <title>Adventure | Experience Ecuador</title>
+  <meta name="description" content="Explore Ecuador adventures by energy level: volcano hikes, rafting, ziplining, and surf. Find the best-fit regions and build an active itinerary fast." />
 
-  <link rel="canonical" href="https://experienceecuador.com/es/regiones/amazonia/cuyabeno-reserva-faunistica/" />
+  <link rel="canonical" href="https://experienceecuador.com/experiences/adventure/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
-  <meta property="og:title" content="Reserva Faunistica Cuyabeno | Experience Ecuador" />
-  <meta property="og:description" content="Explora la Reserva Faunistica Cuyabeno con una experiencia amazónica basada en lagunas: canoa, alta vida silvestre, fotografia y lodge en 3 a 5+ dias." />
-  <meta property="og:url" content="https://experienceecuador.com/es/regiones/amazonia/cuyabeno-reserva-faunistica/" />
+  <meta property="og:title" content="Adventure | Experience Ecuador" />
+  <meta property="og:description" content="Explore Ecuador adventures by energy level: volcano hikes, rafting, ziplining, and surf. Find the best-fit regions and build an active itinerary fast." />
+  <meta property="og:url" content="https://experienceecuador.com/experiences/adventure/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -23,18 +23,18 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Reserva Faunistica Cuyabeno | Experience Ecuador" />
-  <meta name="twitter:description" content="Explora la Reserva Faunistica Cuyabeno con una experiencia amazónica basada en lagunas: canoa, alta vida silvestre, fotografia y lodge en 3 a 5+ dias." />
+  <meta name="twitter:title" content="Adventure | Experience Ecuador" />
+  <meta name="twitter:description" content="Explore Ecuador adventures by energy level: volcano hikes, rafting, ziplining, and surf. Find the best-fit regions and build an active itinerary fast." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
-  <!-- Favicons (root) -->
+  <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
 
-  <!-- Global header/footer CSS -->
+  <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
 
@@ -46,483 +46,363 @@
   <style>
     :root{
       --brand-blue:#034EA2;
+      --charcoal:#1F1F1F;
       --slate:#6E7B8B;
-      --text:#1F1F1F;
+
+      --card:#ffffff;
+      --border:rgba(0,0,0,0.06);
+      --shadow:0 18px 55px rgba(3,78,162,0.12);
+      --shadowHover:0 28px 70px rgba(3,78,162,0.18);
+
+      --chipBg: rgba(3,78,162,0.10);
+      --chipText:#0f2f62;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
       background:#f6f8fb;
-      color:var(--text);
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+    img{max-width:100%;display:block}
+
+    /* ===== HERO (GALAPAGOS PATTERN) ===== */
+    .hero{
+      position:relative;
+      width:100%;
+      min-height:64vh;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      background:url("/assets/images/EE-Experiences-adventure-01.jpg") center / cover no-repeat;
+      color:#fff;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.70));
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:1100px;
+      padding:54px 18px 34px;
+      text-align:left;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.38);
+      border:1px solid rgba(255,255,255,0.22);
+      font-weight:700;
+      letter-spacing:0.02em;
+      font-size:12.5px;
+      margin-bottom:14px;
+      backdrop-filter:blur(10px);
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      font-size:clamp(40px,5.4vw,72px);
+      line-height:1.03;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:68ch;
+      font-size:clamp(15px,2vw,18px);
+      line-height:1.65;
+      color:rgba(255,255,255,0.92);
+    }
 
     /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:40px 18px 56px;
+      padding:36px 18px 60px;
     }
 
-    h1{
+    .section{margin-bottom:36px}
+
+    .section h2{
       font-family:Montserrat,Inter,sans-serif;
-      font-size:clamp(34px,4vw,54px);
-      color:var(--brand-blue);
-      margin:0 0 10px;
-      letter-spacing:-0.03em;
-    }
-
-    .lede{
-      color:var(--slate);
-      line-height:1.65;
-      max-width:92ch;
-      margin:0;
-      font-size:16.8px;
-    }
-
-    .meta-row{
-      margin-top:14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-      color:#162b55;
-      font-weight:700;
-      font-size:13.5px;
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,.06);
-      border:1px solid rgba(3,78,162,.14);
-      color:#0f2f62;
       font-weight:800;
+      font-size:24px;
+      margin:0 0 10px;
+      color:var(--brand-blue);
     }
 
-    .content-grid{
+    .section p{
+      max-width:85ch;
+      line-height:1.75;
+      font-size:15.8px;
+      color:#2a2f36;
+      margin:0;
+    }
+
+    .grid{
       display:grid;
       grid-template-columns:1.15fr 0.85fr;
-      gap:22px;
-      margin-top:22px;
+      gap:28px;
+      margin-top:18px;
       align-items:start;
     }
 
     .card{
-      background:#fff;
-      padding:22px;
+      background:var(--card);
       border-radius:22px;
-      box-shadow:0 18px 55px rgba(3,78,162,.12);
-      border:1px solid rgba(0,0,0,.06);
+      padding:22px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
     }
 
-    .card + .card{ margin-top:16px; }
+    .card ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.75;
+      font-size:14.8px;
+      color:#24324a;
+    }
 
-    .card h2{
-      margin:0 0 10px;
+    .mini{
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      border-radius:20px;
+      padding:20px;
+      border:1px solid rgba(3,78,162,0.12);
+    }
+
+    .mini + .mini{margin-top:16px}
+
+    /* ===== ADVENTURE LEVEL SELECTOR ===== */
+    .selector{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .selector-top{
+      display:grid;
+      grid-template-columns:1fr auto;
+      grid-template-rows:auto auto;
+      align-items:start;
+      gap:16px;
+      padding:22px;
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+    }
+
+    .selector-copy{
+      grid-column:1 / -1;
+    }
+
+    .selector-copy h3{
+      margin:0 0 6px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
       letter-spacing:-0.02em;
-      font-size:18px;
+      font-size:20px;
       color:#0f2f62;
     }
 
-    .card p{
-      margin:0 0 12px;
-      color:#1f2b3f;
-      line-height:1.75;
-      font-size:15.5px;
-      max-width:84ch;
-    }
-
-    .card p:last-child{ margin-bottom:0; }
-
-    .inline-link{
-      text-decoration:underline;
-      text-underline-offset:3px;
-      font-weight:800;
-      color:#162b55;
-    }
-
-    .two-col{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-      margin-top:10px;
-    }
-
-    .mini-card{
-      padding:14px 14px;
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
-      border:1px solid rgba(3,78,162,.12);
-    }
-
-    .mini-card h3{
-      margin:0 0 6px;
-      font-size:14.5px;
-      font-weight:900;
-      color:#0f2f62;
-      letter-spacing:-0.01em;
-    }
-
-    .mini-card p{
+    .selector-copy p{
       margin:0;
-      color:#1f2b3f;
-      opacity:.92;
+      color:#24324a;
+      opacity:0.92;
+      line-height:1.65;
+      font-size:14.8px;
+      max-width:70ch;
+    }
+
+    .selector-controls{
+      grid-column:2;
+      justify-self:end;
+      display:grid;
+      grid-template-columns:auto 260px;
+      column-gap:12px;
+      row-gap:10px;
+      align-items:center;
+    }
+
+    .selector-controls label{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+    }
+
+    .selector-controls select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-weight:700;
+      padding:11px 42px 11px 12px;
+      border-radius:14px;
+      font-size:14px;
+      cursor:pointer;
+      outline:none;
+      width:260px;
+      min-width:260px;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      background-image:
+        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
+        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%,
+        0 0;
+      background-size:6px 6px, 6px 6px, 100% 100%;
+      background-repeat:no-repeat;
+    }
+
+    .selector-controls select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .selector-body{ padding:22px; }
+
+    .recs-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:16px;
+    }
+
+    .rec{
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.06);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 16px 45px rgba(0,0,0,0.08);
+      transition:transform .2s ease, box-shadow .2s ease;
+      min-height:178px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .rec:hover{
+      transform:translateY(-5px);
+      box-shadow:0 24px 60px rgba(0,0,0,0.12);
+    }
+
+    .rec h4{
+      margin:0;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
+    }
+
+    .rec p{
+      margin:0;
+      color:#2a2f36;
       line-height:1.6;
-      font-size:14.4px;
+      font-size:14px;
+      opacity:0.95;
+      flex:1;
     }
 
     .chips{
       display:flex;
-      flex-wrap:wrap;
       gap:8px;
-      margin-top:10px;
+      flex-wrap:wrap;
+      align-items:center;
     }
 
     .chip{
       display:inline-flex;
       align-items:center;
-      padding:7px 10px;
+      gap:8px;
+      padding:8px 10px;
       border-radius:999px;
-      background:rgba(3,78,162,.06);
-      border:1px solid rgba(3,78,162,.14);
-      color:#0f2f62;
+      background:var(--chipBg);
+      color:var(--chipText);
       font-weight:800;
-      font-size:12.8px;
-    }
-
-    .side-stack{
-      display:flex;
-      flex-direction:column;
-      gap:16px;
-    }
-
-    .mini{
-      background:#fff;
-      padding:20px;
-      border-radius:22px;
-      box-shadow:0 18px 55px rgba(3,78,162,.12);
-      border:1px solid rgba(0,0,0,.06);
-    }
-
-    .mini h3{
-      margin:0 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:16px;
-      color:#0f2f62;
-    }
-
-    .mini p{
-      margin:0;
-      color:var(--slate);
-      line-height:1.65;
-      font-size:14.8px;
-    }
-
-    .link-list{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      margin-top:12px;
-    }
-
-    .pill-link{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:12px 12px;
-      border-radius:16px;
-      background:rgba(3,78,162,.05);
-      border:1px solid rgba(3,78,162,.12);
-      font-weight:900;
-      color:#0f2f62;
-    }
-
-    .pill-link:hover{ background:rgba(3,78,162,.08); }
-
-    .pill-link span{
-      opacity:.9;
-      font-weight:700;
-      color:#162b55;
-      font-size:13px;
-    }
-
-    /* ===== WEATHER (same as Quito) ===== */
-    .wx-card{
-      padding:18px 18px;
-      border-radius:22px;
-      background:#fff;
-      box-shadow:0 18px 55px rgba(3,78,162,.12);
-      border:1px solid rgba(0,0,0,.06);
-    }
-
-    .wx-title{
-      margin:0 0 8px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:16px;
-      color:#0f2f62;
-    }
-
-    .wx-now{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      padding:14px 14px;
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
-      border:1px solid rgba(3,78,162,.12);
-    }
-
-    .wx-date{
-      font-weight:900;
-      color:#0f2f62;
-      letter-spacing:-0.01em;
-      font-size:13.2px;
-      opacity:.95;
-      white-space:nowrap;
-      margin-top:2px;
-    }
-
-    .wx-lines{
-      margin:0;
-      color:#1f2b3f;
-      line-height:1.55;
-      font-size:13.8px;
-      opacity:.95;
-      text-align:right;
-    }
-
-    .wx-grid7{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:10px;
-      margin-top:12px;
-    }
-
-    .wx-day{
-      border-radius:16px;
-      padding:10px 10px;
-      background:rgba(255,255,255,.9);
-      border:1px solid rgba(3,78,162,.14);
-      text-align:left;
-    }
-
-    .wx-top{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap:8px;
-    }
-
-    .wx-dow{
-      font-weight:900;
-      color:#0f2f62;
       font-size:12.5px;
-      letter-spacing:-0.01em;
+      letter-spacing:0.01em;
+      border:1px solid rgba(3,78,162,0.16);
+      transition:transform .15s ease, background .15s ease;
     }
 
-    .wx-mmdd{
-      color:#162b55;
-      opacity:.75;
-      font-size:11.5px;
+    .chip:hover{
+      transform:translateY(-1px);
+      background:rgba(3,78,162,0.14);
     }
 
-    .wx-hi{
-      margin-top:8px;
-      font-weight:900;
-      color:#0f2f62;
-      font-size:12.8px;
-    }
-
-    .wx-lo{
-      color:#162b55;
-      opacity:.8;
-      font-size:12.3px;
-      margin-top:2px;
-    }
-
-    .wx-rain{
-      margin-top:6px;
-      color:#162b55;
-      opacity:.85;
-      font-size:11.7px;
-      white-space:nowrap;
-    }
-
-    @media(max-width:980px){
-      .wx-grid7{ grid-template-columns:repeat(2, 1fr); }
-    }
-
-    .months{
-      margin-top:14px;
-      padding-top:14px;
-      border-top:1px solid rgba(0,0,0,.06);
-    }
-
-    .wx-sub{
-      margin:0 0 10px;
-      color:#1f2b3f;
-      opacity:.85;
-      font-size:13.5px;
-      line-height:1.5;
-    }
-
-    .legend{
+    .meta{
       display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:10px;
-      align-items:center;
-    }
-
-    .legend-item{
-      display:flex;
-      align-items:center;
       gap:8px;
-      font-size:12.8px;
+      flex-wrap:wrap;
+      margin-top:-2px;
+    }
+
+    .badge{
+      font-size:12px;
       font-weight:800;
-      color:#162b55;
-      opacity:.9;
+      color:#0f2f62;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.14);
+      padding:6px 8px;
+      border-radius:999px;
+      line-height:1;
     }
 
-    .swatch{
-      width:14px;
-      height:14px;
-      border-radius:6px;
-      border:1px solid rgba(3,78,162,.22);
-      background:rgba(3,78,162,.06);
-    }
-
-    .swatch.best{ background:rgba(3,78,162,.14); border-color:rgba(3,78,162,.32); }
-    .swatch.good{ background:rgba(3,78,162,.09); border-color:rgba(3,78,162,.22); }
-    .swatch.fair{ background:rgba(3,78,162,.04); border-color:rgba(3,78,162,.18); opacity:.85; }
-
-    .month-row{
+    .rec-actions{
       display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:10px;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:4px;
     }
 
-    .month-chip{
+    .cta{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(3,78,162,.14);
-      background:rgba(3,78,162,.06);
-      color:#0f2f62;
+      padding:10px 12px;
+      border-radius:12px;
       font-weight:900;
-      font-size:12.4px;
-      min-width:46px;
+      font-size:13px;
+      background:var(--brand-blue);
+      color:#fff;
+      border:0;
+      cursor:pointer;
+      min-width:120px;
     }
 
-    .month-chip.best{
-      background:rgba(3,78,162,.14);
-      border-color:rgba(3,78,162,.32);
+    .cta:hover{ filter:brightness(0.95); }
+
+    .hint{
+      font-size:12.5px;
+      color:#24324a;
+      opacity:0.85;
+      font-weight:700;
     }
 
-    .month-chip.good{
-      background:rgba(3,78,162,.09);
-      border-color:rgba(3,78,162,.22);
-    }
-
-    .month-chip.fair{
-      background:rgba(3,78,162,.04);
-      border-color:rgba(3,78,162,.18);
-      opacity:.85;
-    }
-
-    /* ===== MORE AMAZON DESTINATIONS (structure/classes locked for tiles) ===== */
-    .andes-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
-      margin-top:12px;
-    }
-
-    .andes-tile{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      padding:12px 12px;
-      border-radius:16px;
-      background:linear-gradient(180deg, rgba(3,78,162,.045), rgba(3,78,162,.02));
-      border:1px solid rgba(3,78,162,.12);
-      transition:transform .12s ease, background .12s ease;
-    }
-
-    .andes-tile:hover{
-      background:rgba(3,78,162,.07);
-      transform:translateY(-1px);
-    }
-
-    .andes-left{
-      display:flex;
-      flex-direction:column;
-      gap:4px;
-      min-width:0;
-    }
-
-    .andes-title{
-      font-weight:900;
-      color:#0f2f62;
-      font-size:14.8px;
-      letter-spacing:-0.01em;
-      line-height:1.2;
-    }
-
-    .andes-sub{
-      color:#1f2b3f;
-      opacity:.9;
-      line-height:1.5;
-      font-size:13.4px;
-      max-width:60ch;
-    }
-
-    .andes-arrow{
-      flex:0 0 auto;
-      width:34px;
-      height:34px;
-      border-radius:999px;
-      border:1px solid rgba(3,78,162,.18);
-      background:rgba(255,255,255,.75);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin-top:2px;
-    }
-
-    .andes-arrow span{
-      display:block;
-      width:10px;
-      height:10px;
-      border-right:2px solid #0f2f62;
-      border-bottom:2px solid #0f2f62;
-      transform:rotate(-45deg);
-      opacity:.85;
-    }
-
-    /* ===== CAROUSEL (LEFT COLUMN) ===== */
+    /* ===== CAROUSEL (GALLERY) - REGIONS STYLE (MATCH NATURE) ===== */
     .carousel{
-      margin-top:18px;
+      margin-top:40px;
       background:#fff;
       border-radius:22px;
       border:1px solid rgba(0,0,0,0.06);
@@ -536,6 +416,7 @@
       overflow:hidden;
       width:100%;
       touch-action:pan-y;
+      outline:none;
     }
 
     .carousel-track{
@@ -608,6 +489,8 @@
       gap:8px;
       flex-wrap:wrap;
       align-items:center;
+      justify-content:center;
+      flex:1;
     }
 
     .dot{
@@ -634,16 +517,35 @@
     }
 
     /* ===== MOBILE ===== */
-    @media(max-width:980px){
-      .content-grid{grid-template-columns:1fr}
+    @media(max-width:900px){
+      .grid{grid-template-columns:1fr}
+      .recs-grid{grid-template-columns:1fr}
+      .selector-top{
+        grid-template-columns:1fr;
+      }
+      .selector-controls{
+        grid-column:1;
+        justify-self:start;
+        grid-template-columns:1fr;
+        row-gap:10px;
+        column-gap:0;
+        width:100%;
+      }
+      .selector-controls label{
+        margin:0;
+      }
+      .selector-controls select{
+        width:100%;
+        min-width:0;
+      }
+
+      .hero-inner{ text-align:center; }
+      .hero p{ margin:0 auto; }
     }
 
-    @media(max-width:820px){
-      .two-col{grid-template-columns:1fr}
-    }
-
-    @media(max-width:480px){
-      .carousel-btn{ width:40px; height:40px; }
+    @media (prefers-reduced-motion: reduce){
+      .rec { transition:none !important; }
+      .carousel-track{ transition:none !important; }
     }
   </style>
 </head>
@@ -652,221 +554,156 @@
   <div id="siteHeader"></div>
 
   <main>
-    <div class="wrap">
-      <h1>Reserva Faunistica Cuyabeno</h1>
-      <p class="lede">
-        Cuyabeno es una experiencia amazonica construida alrededor del agua.
-        En lugar de largos traslados por carretera, aqui el ritmo es en canoa: deslizamientos lentos por lagunas de aguas negras, avistamiento de vida silvestre desde el rio y encuentros al atardecer que parecen hechos para la fotografia.
-        Si buscas dias de selva inmersivos, alto potencial de fauna y un lodge que organice todo el plan, Cuyabeno es una de las mejores opciones en Ecuador.
-      </p>
+    <!-- PAGE CONTENT ONLY -->
 
-      <div class="meta-row" aria-label="Resumen de Cuyabeno">
-        <span class="pill">Region: Amazonia</span>
-        <span class="pill">Ideal para: Avistamiento de fauna, exploracion en canoa, inmersion en lodge</span>
-        <span class="pill">Tiempo tipico: 3 a 5+ dias</span>
+    <section class="hero" aria-label="Adventure hero image">
+      <div class="hero-inner">
+        <div class="kicker">Experience Guide</div>
+        <h1>Adventure</h1>
+        <p>
+          Ecuador is built for adventure — volcanoes, rivers, coastlines, and cloud forests all within a few hours of each other.
+          Use the selector below to match your energy level with the best-fit adventures and regions.
+        </p>
       </div>
+    </section>
 
-      <section class="content-grid" aria-label="Contenido de Cuyabeno">
-        <!-- LEFT COLUMN -->
+    <div class="wrap">
+
+      <section class="section">
+        <h2>What this experience is about</h2>
+        <p>
+          Adventure in Ecuador is compact, diverse, and surprisingly accessible. You can combine high-altitude volcano routes,
+          cloud forest canopy days, whitewater rivers, and coastal adventure into a single itinerary without losing days in transit.
+          Whether you want something easy and scenic or full-throttle challenge, the country makes it simple to build an “active trip”
+          that still feels balanced.
+        </p>
+      </section>
+
+      <!-- Adventure Level Selector -->
+      <section class="section selector" aria-label="Adventure level selector">
+        <div class="selector-top">
+          <div class="selector-controls">
+            <label for="ee_exp_nav">Experiences</label>
+            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Select experience">
+              <option value="/experiences/adventure/" selected>Adventure</option>
+              <option value="/experiences/nature/">Nature</option>
+              <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
+              <option value="/experiences/relaxation/">Relaxation</option>
+              <option value="/experiences/culinary/">Culinary</option>
+              <option value="/experiences/culture/">Culture</option>
+            </select>
+
+            <label for="ee_level">Level</label>
+            <select id="ee_level" name="ee_level" aria-label="Select level">
+              <option value="beginner">Beginner (easy + scenic)</option>
+              <option value="intermediate" selected>Intermediate (active days)</option>
+              <option value="advanced">Advanced (big days)</option>
+              <option value="thrill">Thrill Seeker (bucket-list)</option>
+            </select>
+          </div>
+
+          <div class="selector-copy">
+            <h3>Pick your adventure level</h3>
+            <p>
+              Choose your pace and we’ll show three strong starting points — each with the best region to explore it.
+              (You can adjust later as you add more location pages and partners.)
+            </p>
+          </div>
+        </div>
+
+        <div class="selector-body">
+          <div class="recs-grid" id="ee_recs" aria-live="polite"></div>
+          <div style="margin-top:12px;">
+            <span class="hint" id="ee_hint">Tip: Start with Intermediate — then dial up or down.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section grid">
+        <div class="card">
+          <h2>Signature activities</h2>
+          <ul>
+            <li>Volcano hikes, ridgelines, and high-altitude viewpoints</li>
+            <li>Rafting, canyoning, and river adventure days</li>
+            <li>Ziplining and canopy tours in cloud forest terrain</li>
+            <li>Trail rides, mountain biking, and off-road excursions</li>
+            <li>Coastal surf days and ocean-forward adventures</li>
+          </ul>
+        </div>
+
         <div>
-          <div class="card">
-            <h2>Para que es mejor Cuyabeno</h2>
-            <p>
-              Cuyabeno es ideal para viajeros que quieren una estadia de varios dias en un lodge, con momentos frecuentes de vida silvestre y una forma tranquila, guiada por el agua, de explorar la selva.
-              El sistema de lagunas crea una sensacion diferente a las caminatas de selva pura: mas tiempo en canoas, mayor visibilidad y buenas oportunidades para ver aves y mamiferos.
-              Si vienes por fotografia, esta es una de las configuraciones mas "amigables para camara" en la Amazonia ecuatoriana.
-            </p>
-
-            <div class="two-col" aria-label="Aspectos destacados de Cuyabeno">
-              <div class="mini-card">
-                <h3>Sistema de lagunas</h3>
-                <p>
-                  Canales y lagunas crean habitats ricos y facil observacion.
-                </p>
-              </div>
-
-              <div class="mini-card">
-                <h3>Exploracion en canoa</h3>
-                <p>
-                  Desplazamiento silencioso que aumenta la probabilidad de encuentros cercanos.
-                </p>
-              </div>
-
-              <div class="mini-card">
-                <h3>Alto potencial de fauna</h3>
-                <p>
-                  Una gran opcion para avistamientos frecuentes a lo largo de varios dias.
-                </p>
-              </div>
-
-              <div class="mini-card">
-                <h3>Ritmo ideal para fotografia</h3>
-                <p>
-                  Salidas al amanecer y al atardecer coinciden con los mejores picos de luz y actividad.
-                </p>
-              </div>
-            </div>
-
-            <div class="chips" aria-label="Temas de Cuyabeno">
-              <span class="chip">Vida silvestre</span>
-              <span class="chip">Canoa</span>
-              <span class="chip">Lagunas</span>
-              <span class="chip">Fotografia</span>
-              <span class="chip">Lodge</span>
-              <span class="chip">Inmersion</span>
-            </div>
+          <div class="mini">
+            <h2>Best for</h2>
+            <ul>
+              <li>Active travelers who like “do something every day” itineraries</li>
+              <li>Couples and small groups who want variety in a short trip</li>
+              <li>People who prefer local guides for safety + efficiency</li>
+              <li>Travelers who want to combine multiple regions without hassle</li>
+            </ul>
           </div>
 
-          <div class="card">
-            <h2>Flujo simple de planificacion</h2>
-            <p>
-              Planifica Cuyabeno alrededor de una estadia en lodge y deja que la reserva haga el trabajo.
-              Elige un lodge que encaje con tu estilo y compromete varios dias para que la observacion de fauna se construya de forma natural.
-              Las mejores experiencias vienen de repetir el ritmo: canoa temprano, descanso al mediodia, canoa tarde y sonidos nocturnos.
-            </p>
-            <p>
-              Para fotografos, pide mas tiempo de luz dorada en el agua y un guia que entienda el ritmo para lograr tomas.
-              Si quieres ayuda para elegir el lodge adecuado e integrar un tramo amazonico fluido en un itinerario mas amplio por Ecuador, escribe por la pagina de
-              <a class="inline-link" href="/es/contacto/">Contacto</a>.
-            </p>
+          <div class="mini">
+            <h2>Regions that shine</h2>
+            <ul>
+              <li>Andes: volcano routes, altitude trails, adventure hubs</li>
+              <li>Amazon: river + jungle exploration with guide support</li>
+              <li>Coast: surf, ocean activities, beach adventure days</li>
+              <li>Galapagos: controlled exploration and iconic wildlife</li>
+            </ul>
           </div>
+        </div>
+      </section>
 
-          <!-- CAROUSEL -->
-          <div id="cuyabenoCarousel" class="carousel" aria-label="Galeria de imagenes de Cuyabeno">
-            <button class="carousel-btn prev" type="button" aria-label="Imagen anterior">
-              <span aria-hidden="true"></span>
-            </button>
+      <!-- Bottom Carousel (MATCH NATURE IDs + SCRIPT) -->
+      <section class="carousel" aria-label="Adventure gallery carousel">
+        <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
+          <span aria-hidden="true"></span>
+        </button>
+        <button class="carousel-btn next" type="button" aria-label="Next slide" id="ee_car_next">
+          <span aria-hidden="true"></span>
+        </button>
 
-            <div class="carousel-viewport">
-              <div class="carousel-track">
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuyabeno-1.jpg" alt="Cuyabeno destacado 1"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuyabeno-2.jpg" alt="Cuyabeno destacado 2"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuyabeno-3.jpg" alt="Cuyabeno destacado 3"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuyabeno-4.jpg" alt="Cuyabeno destacado 4"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuyabeno-5.jpg" alt="Cuyabeno destacado 5"></div>
-                <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Cuyabeno-6.jpg" alt="Cuyabeno destacado 6"></div>
-              </div>
+        <div class="carousel-viewport" id="ee_car_viewport" aria-label="Carousel viewport" tabindex="0">
+          <div class="carousel-track" id="ee_car_track" aria-label="Carousel track">
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Adventure-1.jpg" alt="Adventure gallery image 1">
             </div>
-
-            <button class="carousel-btn next" type="button" aria-label="Siguiente imagen">
-              <span aria-hidden="true"></span>
-            </button>
-
-            <div class="carousel-ui">
-              <div class="carousel-dots" aria-label="Paginacion del carrusel"></div>
-              <div class="carousel-counter" id="cuyabenoCarouselCounter">1 / 6</div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Adventure-2.jpg" alt="Adventure gallery image 2">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Adventure-3.jpg" alt="Adventure gallery image 3">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Adventure-4.jpg" alt="Adventure gallery image 4">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Adventure-5.jpg" alt="Adventure gallery image 5">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Adventure-6.jpg" alt="Adventure gallery image 6">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Adventure-7.jpg" alt="Adventure gallery image 7">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Adventure-8.jpg" alt="Adventure gallery image 8">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Adventure-9.jpg" alt="Adventure gallery image 9">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Adventure-10.jpg" alt="Adventure gallery image 10">
             </div>
           </div>
         </div>
 
-        <!-- RIGHT COLUMN -->
-        <aside class="side-stack" aria-label="Contenido lateral de Cuyabeno">
-          <div class="mini">
-            <h3>Mejor uso del tiempo</h3>
-            <p>
-              La magia de Cuyabeno aparece cuando te quedas el tiempo suficiente para que se formen patrones.
-              Si puedes, dale al menos tres noches.
-              Los avistamientos mejoran cuando los guias ajustan las rutas segun lo visto ayer, y tus mejores momentos de fotografia suelen llegar cuando te adaptas al ritmo de las lagunas.
-            </p>
-
-            <div class="link-list" aria-label="Enlaces rapidos">
-              <a class="pill-link" href="/es/regiones/amazonia/">
-                Volver a Amazon <span>Pagina de region</span>
-              </a>
-              <a class="pill-link" href="/es/regiones/amazonia/cuyabeno-reserva-faunistica/">
-                Cuyabeno <span>Experiencia de lagunas</span>
-              </a>
-              <a class="pill-link" href="/es/contacto/">
-                Contacto <span>Preguntas y alianzas</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Weather card -->
-          <div class="wx-card" aria-label="Clima y estacionalidad">
-            <div class="wx-title">Clima actual</div>
-
-            <div class="wx-now">
-              <div class="wx-date" id="cuyabenoWxDate">--/--/----</div>
-              <p class="wx-lines" id="cuyabenoWxLines">Cargando...</p>
-            </div>
-
-            <div class="months" aria-label="Pronostico y mejores meses">
-              <div class="wx-title" style="margin-top:0;">Pronostico de 7 dias</div>
-              <div class="wx-sub">Maxima / minima y lluvia para la semana.</div>
-              <div class="wx-grid7" id="cuyabenoWx7" aria-label="Cuadricula del pronostico de 7 dias"></div>
-
-              <div class="wx-title" style="margin-top:14px;">Mejores meses para visitar</div>
-              <div class="wx-sub" style="margin-bottom:8px;">
-                Basado en periodos tipicamente mas secos y condiciones mas faciles para navegar en laguna.
-              </div>
-
-              <div class="legend" aria-label="Leyenda de mejores meses">
-                <div class="legend-item"><span class="swatch best" aria-hidden="true"></span>Mejor</div>
-                <div class="legend-item"><span class="swatch good" aria-hidden="true"></span>Bueno</div>
-                <div class="legend-item"><span class="swatch fair" aria-hidden="true"></span>Regular</div>
-              </div>
-
-              <div class="month-row" aria-label="Chips de estacionalidad de 12 meses">
-                <span class="month-chip fair" aria-label="Enero">Ene</span>
-                <span class="month-chip fair" aria-label="Febrero">Feb</span>
-                <span class="month-chip good" aria-label="Marzo mes bueno">Mar</span>
-                <span class="month-chip good" aria-label="Abril mes bueno">Abr</span>
-                <span class="month-chip good" aria-label="Mayo mes bueno">May</span>
-                <span class="month-chip best" aria-label="Junio mejor mes">Jun</span>
-                <span class="month-chip best" aria-label="Julio mejor mes">Jul</span>
-                <span class="month-chip best" aria-label="Agosto mejor mes">Ago</span>
-                <span class="month-chip best" aria-label="Septiembre mejor mes">Sep</span>
-                <span class="month-chip good" aria-label="Octubre mes bueno">Oct</span>
-                <span class="month-chip fair" aria-label="Noviembre">Nov</span>
-                <span class="month-chip fair" aria-label="Diciembre">Dic</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="mini">
-            <h3>Mas destinos en la Amazonia</h3>
-            <p>
-              Elige tu Amazonia segun el estilo de viaje.
-              Cuyabeno es de lagunas y avistamientos, mientras que otras zonas son mas de senderos y bosque.
-            </p>
-
-            <div class="andes-grid" aria-label="Enlaces a destinos amazonicos">
-              <a class="andes-tile" href="/es/regiones/amazonia/tena/" aria-label="Abrir pagina de Tena">
-                <div class="andes-left">
-                  <div class="andes-title">Tena</div>
-                  <div class="andes-sub">Base de acceso con rafting y entrada flexible a la selva.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-
-              <a class="andes-tile" href="/es/regiones/amazonia/misahualli/" aria-label="Abrir pagina de Misahualli">
-                <div class="andes-left">
-                  <div class="andes-title">Misahualli</div>
-                  <div class="andes-sub">Pueblo ribereno tranquilo para familias y una introduccion facil a la Amazonia.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-
-              <a class="andes-tile" href="/es/regiones/amazonia/parque-nacional-yasuni/" aria-label="Abrir pagina de Yasuni">
-                <div class="andes-left">
-                  <div class="andes-title">Parque Nacional Yasuni</div>
-                  <div class="andes-sub">Inmersion profunda con exploracion guiada desde lodge.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-
-              <a class="andes-tile" href="/es/regiones/amazonia/" aria-label="Abrir pagina de la region Amazonia">
-                <div class="andes-left">
-                  <div class="andes-title">Amazonia</div>
-                  <div class="andes-sub">Explora todos los destinos e ideas de viaje en la Amazonia.</div>
-                </div>
-                <div class="andes-arrow" aria-hidden="true"><span></span></div>
-              </a>
-            </div>
-          </div>
-        </aside>
+        <div class="carousel-ui">
+          <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
+          <div class="carousel-counter" id="ee_car_counter">1 / 10</div>
+        </div>
       </section>
+
     </div>
   </main>
 
@@ -891,340 +728,308 @@
 
   <!-- Page scripts -->
   <script>
-    /* Cuyabeno carousel */
+    /* ===== Experiences dropdown (auto-navigate) ===== */
     (function(){
-      const root = document.getElementById("cuyabenoCarousel");
-      if(!root) return;
+      const expEl = document.getElementById("ee_exp_nav");
+      if (!expEl) return;
+      expEl.addEventListener("change", function(){
+        const url = this.value;
+        if (url) window.location.href = url;
+      });
+    })();
 
-      const track = root.querySelector(".carousel-track");
-      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
-      const prevBtn = root.querySelector(".carousel-btn.prev");
-      const nextBtn = root.querySelector(".carousel-btn.next");
-      const dotsWrap = root.querySelector(".carousel-dots");
-      const counter = root.querySelector("#cuyabenoCarouselCounter");
+    /* ===== Adventure Level Selector (3 recommendations) ===== */
+    (function(){
+      const levelEl = document.getElementById("ee_level");
+      const recsEl = document.getElementById("ee_recs");
+      const hintEl = document.getElementById("ee_hint");
 
-      let index = 0;
+      const data = {
+        beginner: {
+          hint: "Beginner = scenic + low commitment. Perfect if you want adventure without feeling “extreme.”",
+          recs: [
+            {
+              title: "Waterfalls + easy cloud forest trails",
+              desc: "Short hikes, viewpoints, and lush jungle scenery — a perfect intro day that still feels like Ecuador.",
+              badges: ["Beginner", "Half day–Full day"],
+              chips: [
+                { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Mindo",
+              ctaHref: "/regions/andes/mindo/"
+            },
+            {
+              title: "Hot springs + light canyon walks",
+              desc: "Relaxation meets adventure — warm pools, easy trails, and optional add-ons if you want more.",
+              badges: ["Beginner", "Half day–Full day"],
+              chips: [
+                { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Baños",
+              ctaHref: "/regions/andes/banos/"
+            },
+            {
+              title: "First surf lesson + beach adventure day",
+              desc: "A fun, beginner-friendly way to add energy to your itinerary without needing advanced skills.",
+              badges: ["Beginner", "Full day"],
+              chips: [
+                { label: "Best in: Coast", href: "/regions/coast/" }
+              ],
+              ctaLabel: "Explore Coast",
+              ctaHref: "/regions/coast/"
+            }
+          ]
+        },
 
-      const AUTOPLAY_MS = 5000;
-      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        intermediate: {
+          hint: "Intermediate = active days. You’ll do more, move more, and still keep the trip balanced.",
+          recs: [
+            {
+              title: "Cotopaxi day hike (refugio + viewpoints)",
+              desc: "One of the best “big day” adventures — high-altitude landscapes without committing to a summit climb.",
+              badges: ["Intermediate", "Full day"],
+              chips: [
+                { label: "Best in: Andes (Cotopaxi)", href: "/regions/andes/cotopaxi/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Cotopaxi",
+              ctaHref: "/regions/andes/cotopaxi/"
+            },
+            {
+              title: "Rafting day (class depends on river)",
+              desc: "A classic Ecuador adventure — rivers range from fun + splashy to serious, depending on the route.",
+              badges: ["Intermediate", "Half day–Full day"],
+              chips: [
+                { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Baños",
+              ctaHref: "/regions/andes/banos/"
+            },
+            {
+              title: "Canopy zipline + cloud forest combo",
+              desc: "A high-energy day with iconic scenery — zipline circuits paired with trails, waterfalls, and viewpoints.",
+              badges: ["Intermediate", "Full day"],
+              chips: [
+                { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Mindo",
+              ctaHref: "/regions/andes/mindo/"
+            }
+          ]
+        },
 
-      let autoplayTimer = null;
-      let autoplayEnabled = !prefersReducedMotion;
+        advanced: {
+          hint: "Advanced = demanding days. Expect long routes, altitude, and more technical effort.",
+          recs: [
+            {
+              title: "High-altitude ridgelines + long volcanic routes",
+              desc: "Longer hikes at altitude where weather and pacing matter — the Andes is the playground here.",
+              badges: ["Advanced", "Full day"],
+              chips: [
+                { label: "Best in: Andes (Quito area)", href: "/regions/andes/quito/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Quito",
+              ctaHref: "/regions/andes/quito/"
+            },
+            {
+              title: "Serious canyoning routes",
+              desc: "Bigger rappels, faster water, and higher intensity lines — best done with experienced guides.",
+              badges: ["Advanced", "Half day–Full day"],
+              chips: [
+                { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Baños",
+              ctaHref: "/regions/andes/banos/"
+            },
+            {
+              title: "Remote jungle days (long boat + trekking)",
+              desc: "Multi-hour river travel, humid trails, and longer days — rewarding, but physically demanding.",
+              badges: ["Advanced", "Multi-day"],
+              chips: [
+                { label: "Best in: Amazon", href: "/regions/amazon/" }
+              ],
+              ctaLabel: "Explore Amazon",
+              ctaHref: "/regions/amazon/"
+            }
+          ]
+        },
 
-      function setIndex(next){
-        index = (next + slides.length) % slides.length;
-        track.style.transform = `translateX(-${index * 100}%)`;
-        updateDots();
-        updateCounter();
+        thrill: {
+          hint: "Thrill Seeker = bucket-list intensity. These are the “tell everyone about it” days.",
+          recs: [
+            {
+              title: "Cotopaxi summit climb",
+              desc: "A true mountaineering objective — altitude, glacier conditions, and a serious achievement.",
+              badges: ["Thrill Seeker", "Overnight"],
+              chips: [
+                { label: "Best in: Andes (Cotopaxi)", href: "/regions/andes/cotopaxi/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Cotopaxi",
+              ctaHref: "/regions/andes/cotopaxi/"
+            },
+            {
+              title: "Galapagos dive trips (iconic marine life)",
+              desc: "World-class diving with big wildlife moments — plan around conditions and permitted sites.",
+              badges: ["Thrill Seeker", "Multi-day"],
+              chips: [
+                { label: "Best in: Galapagos", href: "/regions/galapagos/" }
+              ],
+              ctaLabel: "Explore Galapagos",
+              ctaHref: "/regions/galapagos/"
+            },
+            {
+              title: "High-intensity rafting or extreme canyoning day",
+              desc: "If you want adrenaline on water — choose routes that match your skills and conditions.",
+              badges: ["Thrill Seeker", "Full day"],
+              chips: [
+                { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
+                { label: "Explore Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "View Baños",
+              ctaHref: "/regions/andes/banos/"
+            }
+          ]
+        }
+      };
+
+      function escapeHtml(str){
+        return String(str)
+          .replaceAll("&","&amp;")
+          .replaceAll("<","&lt;")
+          .replaceAll(">","&gt;")
+          .replaceAll('"',"&quot;")
+          .replaceAll("'","&#039;");
       }
 
-      function updateCounter(){
-        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
+      function render(levelKey){
+        const block = data[levelKey] || data.intermediate;
+        if (hintEl) hintEl.textContent = block.hint || "";
+
+        const html = block.recs.map((r) => {
+          const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
+          const chips = (r.chips || []).map(c => `
+            <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
+          `).join("");
+
+          return `
+            <article class="rec">
+              <div class="meta">${badges}</div>
+              <h4>${escapeHtml(r.title)}</h4>
+              <p>${escapeHtml(r.desc)}</p>
+
+              <div class="chips">${chips}</div>
+
+              <div class="rec-actions">
+                <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
+                <span class="hint">Best-fit starting point</span>
+              </div>
+            </article>
+          `;
+        }).join("");
+
+        recsEl.innerHTML = html;
       }
 
-      function updateDots(){
-        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
-        dots.forEach((d,i) => d.classList.toggle("active", i === index));
-      }
+      render(levelEl ? levelEl.value : "intermediate");
 
-      function buildDots(){
-        dotsWrap.innerHTML = "";
-        slides.forEach((_, i) => {
-          const b = document.createElement("button");
-          b.type = "button";
-          b.className = "dot" + (i === 0 ? " active" : "");
-          b.setAttribute("aria-label", `Ir a la imagen ${i + 1}`);
-          b.addEventListener("click", () => {
-            setIndex(i);
-            stopAutoplay();
-          });
-          dotsWrap.appendChild(b);
+      if (levelEl) {
+        levelEl.addEventListener("change", function(){
+          render(this.value);
         });
       }
-
-      function next(){ setIndex(index + 1); }
-      function prev(){ setIndex(index - 1); }
-
-      function startAutoplay(){
-        if(!autoplayEnabled) return;
-        stopAutoplay();
-        autoplayTimer = setInterval(next, AUTOPLAY_MS);
-      }
-
-      function stopAutoplay(){
-        if(autoplayTimer){
-          clearInterval(autoplayTimer);
-          autoplayTimer = null;
-        }
-      }
-
-      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
-      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
-
-      root.addEventListener("keydown", (e) => {
-        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
-        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
-      });
-
-      let startX = 0;
-      let isDown = false;
-
-      const viewport = root.querySelector(".carousel-viewport");
-      viewport.addEventListener("pointerdown", (e) => {
-        isDown = true;
-        startX = e.clientX;
-        viewport.setPointerCapture(e.pointerId);
-      });
-
-      viewport.addEventListener("pointerup", (e) => {
-        if(!isDown) return;
-        isDown = false;
-        const dx = e.clientX - startX;
-        const threshold = 40;
-        if(dx > threshold){ prev(); stopAutoplay(); }
-        if(dx < -threshold){ next(); stopAutoplay(); }
-      });
-
-      viewport.addEventListener("pointercancel", () => { isDown = false; });
-
-      root.addEventListener("mouseenter", stopAutoplay);
-      root.addEventListener("mouseleave", startAutoplay);
-      root.addEventListener("focusin", stopAutoplay);
-      root.addEventListener("focusout", startAutoplay);
-
-      root.tabIndex = 0;
-      buildDots();
-      updateCounter();
-      setIndex(0);
-      startAutoplay();
     })();
 
-    /* Cuyabeno weather (Quito-style contract: /api/weather + localStorage cache + Max/Min/Rain with <br>) */
+    /* ===== Carousel (regions-style) - MATCH NATURE ===== */
     (function(){
-      const dateEl = document.getElementById("cuyabenoWxDate");
-      const linesEl = document.getElementById("cuyabenoWxLines");
-      const gridEl = document.getElementById("cuyabenoWx7");
-      if(!dateEl || !linesEl || !gridEl) return;
+      const track = document.getElementById("ee_car_track");
+      const viewport = document.getElementById("ee_car_viewport");
+      const prevBtn = document.getElementById("ee_car_prev");
+      const nextBtn = document.getElementById("ee_car_next");
+      const dotsWrap = document.getElementById("ee_car_dots");
+      const counter = document.getElementById("ee_car_counter");
 
-      // Cuyabeno Wildlife Reserve, Ecuador (approx. lagoon area)
-      const LAT = 0.0000;
-      const LON = -76.1500;
+      if (!track || !viewport) return;
 
-      const CACHE_KEY = "cuyabeno-wx-v1";
-      const TTL_MS = 30 * 60 * 1000;
+      const slides = Array.from(track.children);
+      const total = slides.length;
+      let index = 0;
+      let startX = 0;
+      let currentX = 0;
+      let dragging = false;
 
-      function fmtDateMMDDYYYY(d){
-        const mm = String(d.getMonth()+1).padStart(2,"0");
-        const dd = String(d.getDate()).padStart(2,"0");
-        const yy = d.getFullYear();
-        return `${mm}/${dd}/${yy}`;
+      function setCounter(){
+        if (!counter) return;
+        counter.textContent = `${index + 1} / ${total}`;
       }
 
-      function fmtMMDD(iso){
-        const d = new Date(iso + "T00:00:00");
-        const mm = String(d.getMonth()+1).padStart(2,"0");
-        const dd = String(d.getDate()).padStart(2,"0");
-        return `${mm}/${dd}`;
-      }
-
-      function dowShort(iso){
-        const d = new Date(iso + "T00:00:00");
-        return d.toLocaleDateString("es-EC",{ weekday:"short" });
-      }
-
-      function cToF(c){
-        return Math.round((c * 9/5) + 32);
-      }
-
-      function setUnavailable(){
-        dateEl.textContent = "--/--/----";
-        linesEl.innerHTML = "Clima no disponible por ahora.";
-        gridEl.innerHTML = "";
-      }
-
-      function setLoading(){
-        dateEl.textContent = fmtDateMMDDYYYY(new Date());
-        linesEl.innerHTML = "Cargando...";
-        gridEl.innerHTML = "";
-      }
-
-      function readCache(){
-        try{
-          const raw = localStorage.getItem(CACHE_KEY);
-          if(!raw) return null;
-          const obj = JSON.parse(raw);
-          if(!obj || typeof obj !== "object") return null;
-          if(!obj.ts || !obj.data) return null;
-          if((Date.now() - obj.ts) > TTL_MS) return null;
-          return obj.data;
-        }catch(e){
-          return null;
+      function setDots(){
+        if (!dotsWrap) return;
+        dotsWrap.innerHTML = "";
+        for (let i = 0; i < total; i++){
+          const b = document.createElement("button");
+          b.className = "dot" + (i === index ? " active" : "");
+          b.type = "button";
+          b.setAttribute("aria-label", `Go to slide ${i + 1}`);
+          b.addEventListener("click", () => goTo(i));
+          dotsWrap.appendChild(b);
         }
       }
 
-      function writeCache(data){
-        try{
-          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
-        }catch(e){}
+      function update(){
+        track.style.transform = `translateX(${-index * 100}%)`;
+        setCounter();
+        setDots();
       }
 
-      function normalize(api){
-        const unitsTemp =
-          (api && api.units && (api.units.temp || api.units.temperature)) ||
-          (api && api.unit && api.unit.temperature) ||
-          null;
-
-        const isC =
-          (typeof unitsTemp === "string" && unitsTemp.toUpperCase().includes("C")) ? true :
-          (typeof unitsTemp === "string" && unitsTemp.toUpperCase().includes("F")) ? false :
-          true;
-
-        if(api && api.current && Array.isArray(api.daily)){
-          const current = api.current || {};
-          const dailyArr = api.daily || [];
-          return {
-            isC,
-            current: {
-              tmax: current.tmax,
-              tmin: current.tmin,
-              rain: current.rain
-            },
-            days: dailyArr.slice(0, 7).map(d => ({
-              date: d.date,
-              tmax: d.tmax,
-              tmin: d.tmin,
-              rain: d.rain
-            }))
-          };
-        }
-
-        const daily = (api && api.daily) ? api.daily : {};
-        const days = daily.time || [];
-        const tmax = daily.temperature_2m_max || [];
-        const tmin = daily.temperature_2m_min || [];
-        const rain = daily.precipitation_probability_max || [];
-
-        return {
-          isC,
-          current: {
-            tmax: (typeof tmax[0] === "number" ? tmax[0] : null),
-            tmin: (typeof tmin[0] === "number" ? tmin[0] : null),
-            rain: (typeof rain[0] === "number" ? rain[0] : null)
-          },
-          days: days.slice(0, 7).map((iso, i) => ({
-            date: iso,
-            tmax: tmax[i],
-            tmin: tmin[i],
-            rain: rain[i]
-          }))
-        };
+      function goTo(i){
+        index = (i + total) % total;
+        update();
       }
 
-      function render(norm){
-        dateEl.textContent = fmtDateMMDDYYYY(new Date());
+      function next(){ goTo(index + 1); }
+      function prev(){ goTo(index - 1); }
 
-        const tmax = norm.current.tmax;
-        const tmin = norm.current.tmin;
-        const rain = norm.current.rain;
+      if (nextBtn) nextBtn.addEventListener("click", next);
+      if (prevBtn) prevBtn.addEventListener("click", prev);
 
-        const maxStr = (typeof tmax === "number")
-          ? `Max: ${norm.isC ? cToF(tmax) : Math.round(tmax)}°F`
-          : "Max: --";
-        const minStr = (typeof tmin === "number")
-          ? `Min: ${norm.isC ? cToF(tmin) : Math.round(tmin)}°F`
-          : "Min: --";
-        const rainStr = (typeof rain === "number")
-          ? `Lluvia: ${Math.round(rain)}%`
-          : "Lluvia: --";
+      // Touch swipe
+      viewport.addEventListener("touchstart", (e) => {
+        if (e.touches.length !== 1) return;
+        dragging = true;
+        startX = e.touches[0].clientX;
+        currentX = startX;
+      }, { passive:true });
 
-        linesEl.innerHTML = `${maxStr}<br>${minStr}<br>${rainStr}`;
+      viewport.addEventListener("touchmove", (e) => {
+        if (!dragging || e.touches.length !== 1) return;
+        currentX = e.touches[0].clientX;
+      }, { passive:true });
 
-        gridEl.innerHTML = "";
-        const count = Math.min(7, norm.days.length);
-
-        for(let i=0; i<count; i++){
-          const d = norm.days[i] || {};
-          const dayIso = d.date;
-
-          const hi = d.tmax;
-          const lo = d.tmin;
-          const r = d.rain;
-
-          const card = document.createElement("div");
-          card.className = "wx-day";
-
-          const top = document.createElement("div");
-          top.className = "wx-top";
-
-          const dow = document.createElement("div");
-          dow.className = "wx-dow";
-          dow.textContent = dayIso ? dowShort(dayIso) : "--";
-
-          const mmdd = document.createElement("div");
-          mmdd.className = "wx-mmdd";
-          mmdd.textContent = dayIso ? fmtMMDD(dayIso) : "--/--";
-
-          top.appendChild(dow);
-          top.appendChild(mmdd);
-
-          const hiEl = document.createElement("div");
-          hiEl.className = "wx-hi";
-          hiEl.textContent = (typeof hi === "number")
-            ? `Max ${norm.isC ? cToF(hi) : Math.round(hi)}°F`
-            : "Max --";
-
-          const loEl = document.createElement("div");
-          loEl.className = "wx-lo";
-          loEl.textContent = (typeof lo === "number")
-            ? `Min ${norm.isC ? cToF(lo) : Math.round(lo)}°F`
-            : "Min --";
-
-          const rainEl = document.createElement("div");
-          rainEl.className = "wx-rain";
-          rainEl.textContent = (typeof r === "number")
-            ? `Lluvia ${Math.round(r)}%`
-            : "Lluvia --";
-
-          card.appendChild(top);
-          card.appendChild(hiEl);
-          card.appendChild(loEl);
-          card.appendChild(rainEl);
-
-          gridEl.appendChild(card);
+      viewport.addEventListener("touchend", () => {
+        if (!dragging) return;
+        const dx = currentX - startX;
+        dragging = false;
+        if (Math.abs(dx) > 45){
+          if (dx < 0) next();
+          else prev();
         }
-      }
+      });
 
-      async function load(){
-        setLoading();
+      // Keyboard (viewport has tabindex="0")
+      viewport.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") next();
+        if (e.key === "ArrowLeft") prev();
+      });
 
-        const cached = readCache();
-        if(cached){
-          try{
-            render(normalize(cached));
-            return;
-          }catch(e){}
-        }
-
-        try{
-          const url = `/api/weather?lat=${encodeURIComponent(LAT)}&lon=${encodeURIComponent(LON)}`;
-          const res = await fetch(url, { cache: "no-store" });
-          if(!res.ok) throw new Error("Weather fetch failed");
-          const data = await res.json();
-
-          writeCache(data);
-          render(normalize(data));
-        }catch(e){
-          setUnavailable();
-        }
-      }
-
-      load();
+      update();
     })();
-
-    // Light deterrent: disable right-click on images only
-    document.addEventListener('contextmenu', (e) => {
-      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
-    });
   </script>
 </body>
 </html>
