@@ -3,7 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>The Andes | Experience Ecuador</title>
+  <meta name="description" content="Explore Ecuador’s Andes: Quito, volcano scenery, markets, and cloud forest escapes. Use this region guide for the best bases, highlights, and trip pairing." />
+
+  <!-- Canonical (must match page URL) -->
+  <link rel="canonical" href="https://experienceecuador.com/regions/andes/" />
+
+  <!-- Open Graph (use the same OG image site-wide) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Experience Ecuador" />
+  <meta property="og:title" content="The Andes | Experience Ecuador" />
+  <meta property="og:description" content="Explore Ecuador’s Andes: Quito, volcano scenery, markets, and cloud forest escapes. Use this region guide for the best bases, highlights, and trip pairing." />
+  <meta property="og:url" content="https://experienceecuador.com/regions/andes/" />
+  <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Experience Ecuador travel inspiration cover image" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Andes | Experience Ecuador" />
+  <meta name="twitter:description" content="Explore Ecuador’s Andes: Quito, volcano scenery, markets, and cloud forest escapes. Use this region guide for the best bases, highlights, and trip pairing." />
+  <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
   <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -280,7 +303,7 @@
       width:10px;
       height:10px;
       border-right:2px solid #0f2f62;
-      border-bottom:2px solid #0f2b62;
+      border-bottom:2px solid #0f2f62;
       transform:rotate(-45deg);
       opacity:.9;
     }
@@ -438,7 +461,7 @@
       .carousel-btn{ width:40px; height:40px; }
     }
 
-    /* === Added only for YouTube embed responsiveness (no layout changes elsewhere) === */
+    /* === YouTube embed responsiveness === */
     .video-embed{
       margin-top:14px;
       border-radius:18px;
@@ -599,7 +622,7 @@
                 <div class="place-body">
                   <div>
                     <p class="place-title">Cotopaxi</p>
-                    <p class="place-meta">Volcano scenery, hikes, and páramo landscapes.</p>
+                    <p class="place-meta">Volcano scenery, hikes, and paramo landscapes.</p>
                   </div>
                   <div class="place-arrow" aria-hidden="true"><span></span></div>
                 </div>
@@ -637,7 +660,7 @@
                 </div>
                 <div class="place-body">
                   <div>
-                    <p class="place-title">Chocó Andino</p>
+                    <p class="place-title">Choco Andino</p>
                     <p class="place-meta">Cloud forest corridors, wildlife, and scenic nature escapes near Quito.</p>
                   </div>
                   <div class="place-arrow" aria-hidden="true"><span></span></div>
@@ -664,7 +687,7 @@
               <li><strong>1 to 2 nights Baños</strong> for waterfalls and adventure energy</li>
               <li><strong>2 to 3 nights Cuenca</strong> for colonial streets, food, and relaxed city days</li>
               <li><strong>Half day Papallacta</strong> for hot springs and a quick reset</li>
-              <li><strong>Chocó Andino</strong> as a nearby nature add on from Quito</li>
+              <li><strong>Choco Andino</strong> as a nearby nature add on from Quito</li>
             </ul>
 
             <div class="video-embed" aria-label="Andes video">
@@ -750,13 +773,13 @@
 
       function setIndex(next){
         index = (next + slides.length) % slides.length;
-        track.style.transform = `translateX(-${index * 100}%)`;
+        track.style.transform = "translateX(-" + (index * 100) + "%)";
         updateDots();
         updateCounter();
       }
 
       function updateCounter(){
-        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
+        if(counter) counter.textContent = (index + 1) + " / " + slides.length;
       }
 
       function updateDots(){
@@ -770,7 +793,7 @@
           const b = document.createElement("button");
           b.type = "button";
           b.className = "dot" + (i === 0 ? " active" : "");
-          b.setAttribute("aria-label", `Go to image ${i + 1}`);
+          b.setAttribute("aria-label", "Go to image " + (i + 1));
           b.addEventListener("click", () => {
             setIndex(i);
             stopAutoplay();
