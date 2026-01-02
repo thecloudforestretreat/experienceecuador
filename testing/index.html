@@ -4,27 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Adventure | Experience Ecuador</title>
-  <meta name="description" content="Explore Ecuador adventures by energy level: volcano hikes, rafting, ziplining, and surf. Find the best-fit regions and build an active itinerary fast." />
+  <title>Culinary | Experience Ecuador</title>
+  <meta name="description" content="Explore Ecuador through food with markets, seafood, cacao, and coffee. Use this culinary guide to pick a focus and build the best region-first itinerary." />
 
-  <link rel="canonical" href="https://experienceecuador.com/experiences/adventure/" />
+  <!-- Canonical -->
+  <link rel="canonical" href="https://experienceecuador.com/experiences/culinary/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
-  <meta property="og:title" content="Adventure | Experience Ecuador" />
-  <meta property="og:description" content="Explore Ecuador adventures by energy level: volcano hikes, rafting, ziplining, and surf. Find the best-fit regions and build an active itinerary fast." />
-  <meta property="og:url" content="https://experienceecuador.com/experiences/adventure/" />
+  <meta property="og:title" content="Culinary | Experience Ecuador" />
+  <meta property="og:description" content="Explore Ecuador through food with markets, seafood, cacao, and coffee. Use this culinary guide to pick a focus and build the best region-first itinerary." />
+  <meta property="og:url" content="https://experienceecuador.com/experiences/culinary/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Experience Ecuador travel planning and destination guide" />
+  <meta property="og:image:alt" content="Experience Ecuador travel inspiration" />
 
-  <!-- Twitter -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Adventure | Experience Ecuador" />
-  <meta name="twitter:description" content="Explore Ecuador adventures by energy level: volcano hikes, rafting, ziplining, and surf. Find the best-fit regions and build an active itinerary fast." />
+  <meta name="twitter:title" content="Culinary | Experience Ecuador" />
+  <meta name="twitter:description" content="Explore Ecuador through food with markets, seafood, cacao, and coffee. Use this culinary guide to pick a focus and build the best region-first itinerary." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
   <!-- Favicons (root paths) -->
@@ -34,7 +35,7 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
 
-  <!-- Global header/footer CSS (required) -->
+  <!-- Global header/footer CSS -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
 
@@ -52,7 +53,6 @@
       --card:#ffffff;
       --border:rgba(0,0,0,0.06);
       --shadow:0 18px 55px rgba(3,78,162,0.12);
-      --shadowHover:0 28px 70px rgba(3,78,162,0.18);
 
       --chipBg: rgba(3,78,162,0.10);
       --chipText:#0f2f62;
@@ -77,7 +77,7 @@
       display:flex;
       align-items:flex-end;
       justify-content:center;
-      background:url("/assets/images/experiences/EE-Assets-Exp-Hero-Adventure.jpg") center / cover no-repeat;
+      background:url("/assets/images/EE-Experiences-Culinary-01.jpg") center / cover no-repeat;
       color:#fff;
     }
 
@@ -163,10 +163,10 @@
     }
 
     .card{
-      background:var(--card);
+      background:#fff;
       border-radius:22px;
       padding:22px;
-      border:1px solid var(--border);
+      border:1px solid rgba(0,0,0,0.06);
       box-shadow:var(--shadow);
     }
 
@@ -187,7 +187,7 @@
 
     .mini + .mini{margin-top:16px}
 
-    /* ===== ADVENTURE LEVEL SELECTOR ===== */
+    /* ===== CULINARY SELECTOR (TEMPLATE READY) ===== */
     .selector{
       background:#fff;
       border:1px solid var(--border);
@@ -196,19 +196,20 @@
       overflow:hidden;
     }
 
+    /* UPDATED: controls are right-aligned on top, copy sits below full width */
     .selector-top{
       display:grid;
       grid-template-columns:1fr auto;
-      grid-template-rows:auto auto;
-      align-items:start;
       gap:16px;
       padding:22px;
       border-bottom:1px solid rgba(0,0,0,0.06);
       background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      align-items:start;
     }
 
     .selector-copy{
       grid-column:1 / -1;
+      grid-row:2;
     }
 
     .selector-copy h3{
@@ -229,13 +230,15 @@
       max-width:70ch;
     }
 
+    /* UPDATED: Experiences + Focus in two stacked rows, same width, right aligned */
     .selector-controls{
       grid-column:2;
+      grid-row:1;
       justify-self:end;
+
       display:grid;
       grid-template-columns:auto 260px;
-      column-gap:12px;
-      row-gap:10px;
+      gap:10px 10px;
       align-items:center;
     }
 
@@ -259,8 +262,8 @@
       font-size:14px;
       cursor:pointer;
       outline:none;
+      min-width:0;
       width:260px;
-      min-width:260px;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
       background-image:
         linear-gradient(45deg, transparent 50%, #0f2f62 50%),
@@ -294,7 +297,7 @@
       padding:16px;
       box-shadow:0 16px 45px rgba(0,0,0,0.08);
       transition:transform .2s ease, box-shadow .2s ease;
-      min-height:178px;
+      min-height:182px;
       display:flex;
       flex-direction:column;
       gap:10px;
@@ -333,7 +336,6 @@
     .chip{
       display:inline-flex;
       align-items:center;
-      gap:8px;
       padding:8px 10px;
       border-radius:999px;
       background:var(--chipBg);
@@ -400,7 +402,7 @@
       font-weight:700;
     }
 
-    /* ===== CAROUSEL (GALLERY) - REGIONS STYLE (MATCH NATURE) ===== */
+    /* ===== CAROUSEL (GALLERY) - PLACEHOLDERS ===== */
     .carousel{
       margin-top:40px;
       background:#fff;
@@ -416,7 +418,6 @@
       overflow:hidden;
       width:100%;
       touch-action:pan-y;
-      outline:none;
     }
 
     .carousel-track{
@@ -438,6 +439,27 @@
       width:100%;
       height:100%;
       object-fit:cover;
+    }
+
+    .ph{
+      width:100%;
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:18px;
+      color:#0f2f62;
+      font-weight:900;
+      letter-spacing:-0.02em;
+      background:linear-gradient(180deg, rgba(3,78,162,0.08), rgba(3,78,162,0.02));
+    }
+    .ph small{
+      display:block;
+      margin-top:8px;
+      font-weight:800;
+      opacity:0.85;
+      letter-spacing:0.01em;
     }
 
     .carousel-btn{
@@ -520,25 +542,9 @@
     @media(max-width:900px){
       .grid{grid-template-columns:1fr}
       .recs-grid{grid-template-columns:1fr}
-      .selector-top{
-        grid-template-columns:1fr;
-      }
-      .selector-controls{
-        grid-column:1;
-        justify-self:start;
-        grid-template-columns:1fr;
-        row-gap:10px;
-        column-gap:0;
-        width:100%;
-      }
-      .selector-controls label{
-        margin:0;
-      }
-      .selector-controls select{
-        width:100%;
-        min-width:0;
-      }
-
+      .selector-top{display:flex; flex-direction:column; align-items:flex-start;}
+      .selector-controls{display:flex; flex-wrap:wrap; justify-content:flex-start;}
+      .selector-controls select{min-width:260px; width:100%;}
       .hero-inner{ text-align:center; }
       .hero p{ margin:0 auto; }
     }
@@ -556,106 +562,114 @@
   <main>
     <!-- PAGE CONTENT ONLY -->
 
-    <section class="hero" aria-label="Adventure hero image">
+    <section class="hero" aria-label="Culinary hero image">
       <div class="hero-inner">
         <div class="kicker">Experience Guide</div>
-        <h1>Adventure</h1>
-        <p>
-          Ecuador is built for adventure — volcanoes, rivers, coastlines, and cloud forests all within a few hours of each other.
-          Use the selector below to match your energy level with the best-fit adventures and regions.
-        </p>
+        <h1>Culinary</h1>
+        <p>Ecuador’s cuisine is deeply regional and rooted in culture. Taste the Coast, Andes, Amazon, and islands through markets, cacao, coffee, and slow meals.</p>
       </div>
     </section>
 
     <div class="wrap">
-
       <section class="section">
         <h2>What this experience is about</h2>
         <p>
-          Adventure in Ecuador is compact, diverse, and surprisingly accessible. You can combine high-altitude volcano routes,
-          cloud forest canopy days, whitewater rivers, and coastal adventure into a single itinerary without losing days in transit.
-          Whether you want something easy and scenic or full-throttle challenge, the country makes it simple to build an “active trip”
-          that still feels balanced.
+          Culinary travel in Ecuador goes far beyond restaurants. It includes market visits, family-run kitchens, regional specialties,
+          coffee and cacao culture, and meals that tell a story about where you are. This page will grow into curated food experiences,
+          trusted spots, and region-based culinary highlights.
         </p>
       </section>
 
-      <!-- Adventure Level Selector -->
-      <section class="section selector" aria-label="Adventure level selector">
+      <!-- Culinary Selector -->
+      <section class="section selector" aria-label="Culinary selector">
         <div class="selector-top">
+          <div class="selector-copy">
+            <h3>Pick your food focus</h3>
+            <p>
+              Choose what you want to taste and we’ll show three strong starting points plus the best region to build from.
+              Keep it simple and let the meals do the travel planning.
+            </p>
+          </div>
+
           <div class="selector-controls">
+            <!-- Universal Experiences quick nav (template) -->
             <label for="ee_exp_nav">Experiences</label>
-            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Select experience">
-              <option value="/experiences/adventure/" selected>Adventure</option>
+            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Navigate to an experience">
+              <option value="/experiences">All Experiences</option>
+              <option value="/experiences/adventure/">Adventure</option>
               <option value="/experiences/nature/">Nature</option>
               <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
               <option value="/experiences/relaxation/">Relaxation</option>
-              <option value="/experiences/culinary/">Culinary</option>
+              <option value="/experiences/culinary/" selected>Culinary</option>
               <option value="/experiences/culture/">Culture</option>
             </select>
 
-            <label for="ee_level">Level</label>
-            <select id="ee_level" name="ee_level" aria-label="Select level">
-              <option value="beginner">Beginner (easy + scenic)</option>
-              <option value="intermediate" selected>Intermediate (active days)</option>
-              <option value="advanced">Advanced (big days)</option>
-              <option value="thrill">Thrill Seeker (bucket-list)</option>
+            <label for="ee_cul_focus">Focus</label>
+            <select id="ee_cul_focus" name="ee_cul_focus" aria-label="Select culinary focus">
+              <option value="markets" selected>Markets + local classics</option>
+              <option value="seafood">Seafood + ceviche culture</option>
+              <option value="cacao">Cacao + chocolate experiences</option>
+              <option value="coffee">Coffee culture + cafes</option>
             </select>
-          </div>
-
-          <div class="selector-copy">
-            <h3>Pick your adventure level</h3>
-            <p>
-              Choose your pace and we’ll show three strong starting points — each with the best region to explore it.
-              (You can adjust later as you add more location pages and partners.)
-            </p>
           </div>
         </div>
 
         <div class="selector-body">
-          <div class="recs-grid" id="ee_recs" aria-live="polite"></div>
+          <div class="recs-grid" id="ee_cul_recs" aria-live="polite"></div>
           <div style="margin-top:12px;">
-            <span class="hint" id="ee_hint">Tip: Start with Intermediate — then dial up or down.</span>
+            <span class="hint" id="ee_cul_hint">Tip: Markets are the fastest way to understand a region’s food culture.</span>
           </div>
         </div>
       </section>
 
       <section class="section grid">
-        <div class="card">
-          <h2>Signature activities</h2>
-          <ul>
-            <li>Volcano hikes, ridgelines, and high-altitude viewpoints</li>
-            <li>Rafting, canyoning, and river adventure days</li>
-            <li>Ziplining and canopy tours in cloud forest terrain</li>
-            <li>Trail rides, mountain biking, and off-road excursions</li>
-            <li>Coastal surf days and ocean-forward adventures</li>
-          </ul>
+        <div>
+          <div class="card">
+            <h2>Signature culinary experiences</h2>
+            <ul>
+              <li>Coastal seafood and ceviche culture</li>
+              <li>Highland markets and traditional dishes</li>
+              <li>Amazon ingredients and indigenous food traditions</li>
+              <li>Coffee, cacao, and chocolate experiences</li>
+              <li>Local kitchens, bakeries, and family-run restaurants</li>
+            </ul>
+          </div>
+
+          <!-- Must Eats intro (new) -->
+          <div class="card" style="margin-top:16px;">
+            <h2>Must Eats</h2>
+            <p style="margin:0 0 12px; color:#24324a; line-height:1.7; font-size:14.8px;">
+              Want the short list? Jump into our Must Eats page for the dishes, snacks, and local favorites worth planning around.
+            </p>
+            <a class="cta" href="/experiences/culinary/must-eats/">Explore Must Eats</a>
+          </div>
         </div>
 
         <div>
           <div class="mini">
             <h2>Best for</h2>
             <ul>
-              <li>Active travelers who like “do something every day” itineraries</li>
-              <li>Couples and small groups who want variety in a short trip</li>
-              <li>People who prefer local guides for safety + efficiency</li>
-              <li>Travelers who want to combine multiple regions without hassle</li>
+              <li>Food-first travelers</li>
+              <li>Cultural explorers</li>
+              <li>Slow travelers and planners</li>
+              <li>People who want to eat like locals</li>
             </ul>
           </div>
 
           <div class="mini">
-            <h2>Regions that shine</h2>
+            <h2>Good region matches</h2>
             <ul>
-              <li>Andes: volcano routes, altitude trails, adventure hubs</li>
-              <li>Amazon: river + jungle exploration with guide support</li>
-              <li>Coast: surf, ocean activities, beach adventure days</li>
-              <li>Galapagos: controlled exploration and iconic wildlife</li>
+              <li>Coast: seafood, plantain-based dishes, fresh flavors</li>
+              <li>Andes: markets, soups, grains, and comfort food</li>
+              <li>Amazon: native ingredients and traditional preparation</li>
+              <li>Galapagos: fresh fish and island dining</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <!-- Bottom Carousel (MATCH NATURE IDs + SCRIPT) -->
-      <section class="carousel" aria-label="Adventure gallery carousel">
+      <!-- Bottom Carousel (placeholders) -->
+      <section class="carousel" aria-label="Culinary gallery carousel">
         <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
           <span aria-hidden="true"></span>
         </button>
@@ -663,37 +677,37 @@
           <span aria-hidden="true"></span>
         </button>
 
-        <div class="carousel-viewport" id="ee_car_viewport" aria-label="Carousel viewport" tabindex="0">
-          <div class="carousel-track" id="ee_car_track" aria-label="Carousel track">
+        <div class="carousel-viewport" aria-label="Carousel viewport">
+          <div class="carousel-track" aria-label="Carousel track">
             <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-1.jpg" alt="Adventure gallery image 1">
+              <img src="/assets/images/EE-Carousel-Culinary-1.jpg" alt="Culinary gallery image 1">
             </div>
             <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-2.jpg" alt="Adventure gallery image 2">
+              <img src="/assets/images/EE-Carousel-Culinary-2.jpg" alt="Culinary gallery image 2">
             </div>
             <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-3.jpg" alt="Adventure gallery image 3">
+              <img src="/assets/images/EE-Carousel-Culinary-3.jpg" alt="Culinary gallery image 3">
             </div>
             <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-4.jpg" alt="Adventure gallery image 4">
+              <img src="/assets/images/EE-Carousel-Culinary-4.jpg" alt="Culinary gallery image 4">
             </div>
             <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-5.jpg" alt="Adventure gallery image 5">
+              <img src="/assets/images/EE-Carousel-Culinary-5.jpg" alt="Culinary gallery image 5">
             </div>
             <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-6.jpg" alt="Adventure gallery image 6">
+              <img src="/assets/images/EE-Carousel-Culinary-6.jpg" alt="Culinary gallery image 6">
             </div>
             <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-7.jpg" alt="Adventure gallery image 7">
+              <img src="/assets/images/EE-Carousel-Culinary-7.jpg" alt="Culinary gallery image 7">
             </div>
             <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-8.jpg" alt="Adventure gallery image 8">
+              <img src="/assets/images/EE-Carousel-Culinary-8.jpg" alt="Culinary gallery image 8">
             </div>
             <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-9.jpg" alt="Adventure gallery image 9">
+              <img src="/assets/images/EE-Carousel-Culinary-9.jpg" alt="Culinary gallery image 9">
             </div>
             <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-10.jpg" alt="Adventure gallery image 10">
+              <img src="/assets/images/EE-Carousel-Culinary-10.jpg" alt="Culinary gallery image 10">
             </div>
           </div>
         </div>
@@ -703,7 +717,6 @@
           <div class="carousel-counter" id="ee_car_counter">1 / 10</div>
         </div>
       </section>
-
     </div>
   </main>
 
@@ -726,54 +739,91 @@
   <!-- Global site JS (drill-down mobile nav, etc.) -->
   <script src="/assets/js/site.js"></script>
 
-  <!-- Page scripts -->
   <script>
-    /* ===== Experiences dropdown (auto-navigate) ===== */
+    /* ===== Experiences selector quick nav (universal) ===== */
     (function(){
-      const expEl = document.getElementById("ee_exp_nav");
-      if (!expEl) return;
-      expEl.addEventListener("change", function(){
-        const url = this.value;
-        if (url) window.location.href = url;
+      const expNav = document.getElementById("ee_exp_nav");
+      if (!expNav) return;
+
+      expNav.addEventListener("change", function(){
+        const url = String(this.value || "").trim();
+        if (!url) return;
+        if (url === window.location.pathname || url === window.location.pathname + "/") return;
+        window.location.href = url;
       });
     })();
 
-    /* ===== Adventure Level Selector (3 recommendations) ===== */
+    /* ===== Culinary Selector (3 recommendations) ===== */
     (function(){
-      const levelEl = document.getElementById("ee_level");
-      const recsEl = document.getElementById("ee_recs");
-      const hintEl = document.getElementById("ee_hint");
+      const focusEl = document.getElementById("ee_cul_focus");
+      const recsEl = document.getElementById("ee_cul_recs");
+      const hintEl = document.getElementById("ee_cul_hint");
 
       const data = {
-        beginner: {
-          hint: "Beginner = scenic + low commitment. Perfect if you want adventure without feeling “extreme.”",
+        markets: {
+          hint: "Markets are the quickest way to learn local food. Go early, snack slowly, and keep it simple.",
           recs: [
             {
-              title: "Waterfalls + easy cloud forest trails",
-              desc: "Short hikes, viewpoints, and lush jungle scenery — a perfect intro day that still feels like Ecuador.",
-              badges: ["Beginner", "Half day–Full day"],
+              title: "Highland market morning + comfort lunch",
+              desc: "Browse stalls, try local snacks, then finish with a classic soup or hearty plate in a family-run spot.",
+              badges: ["Easy", "Half day"],
               chips: [
-                { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
+                { label: "Best in: Andes", href: "/regions/andes/" }
               ],
-              ctaLabel: "View Mindo",
-              ctaHref: "/regions/andes/mindo/"
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
             },
             {
-              title: "Hot springs + light canyon walks",
-              desc: "Relaxation meets adventure — warm pools, easy trails, and optional add-ons if you want more.",
-              badges: ["Beginner", "Half day–Full day"],
+              title: "Street food sampling (small bites only)",
+              desc: "A slow walk, a few tasting stops, and a relaxed pace. Perfect for first-timers.",
+              badges: ["Easy", "2-4 hours"],
               chips: [
-                { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
+                { label: "Best in: Andes", href: "/regions/andes/" },
+                { label: "Also good: Coast", href: "/regions/coast/" }
               ],
-              ctaLabel: "View Baños",
-              ctaHref: "/regions/andes/banos/"
+              ctaLabel: "Explore Regions",
+              ctaHref: "/regions/"
             },
             {
-              title: "First surf lesson + beach adventure day",
-              desc: "A fun, beginner-friendly way to add energy to your itinerary without needing advanced skills.",
-              badges: ["Beginner", "Full day"],
+              title: "Traditional meal + local bakery stop",
+              desc: "Pair one signature dish with something sweet. Keep the day light and food-forward.",
+              badges: ["Easy", "Half day-Full day"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            }
+          ]
+        },
+
+        seafood: {
+          hint: "For seafood, keep it coastal. Fresh ceviche and simple grilled fish are the move.",
+          recs: [
+            {
+              title: "Ceviche culture lunch (your first stop)",
+              desc: "Try one ceviche style, then add a second small plate if you’re hungry. Let freshness lead.",
+              badges: ["Easy", "2-3 hours"],
+              chips: [
+                { label: "Best in: Coast", href: "/regions/coast/" }
+              ],
+              ctaLabel: "Explore Coast",
+              ctaHref: "/regions/coast/"
+            },
+            {
+              title: "Seafood market + cooked-to-order plate",
+              desc: "Walk the market, then choose a simple cooked dish nearby. Great for photographers too.",
+              badges: ["Easy", "Half day"],
+              chips: [
+                { label: "Best in: Coast", href: "/regions/coast/" }
+              ],
+              ctaLabel: "Explore Coast",
+              ctaHref: "/regions/coast/"
+            },
+            {
+              title: "Sunset dinner by the water",
+              desc: "A calm beach day, then a seafood dinner at golden hour. Minimal planning, maximum reward.",
+              badges: ["Easy", "Evening"],
               chips: [
                 { label: "Best in: Coast", href: "/regions/coast/" }
               ],
@@ -783,74 +833,34 @@
           ]
         },
 
-        intermediate: {
-          hint: "Intermediate = active days. You’ll do more, move more, and still keep the trip balanced.",
+        cacao: {
+          hint: "Ecuador cacao is world-class. Keep it focused: farm-to-bar or tasting + a light itinerary.",
           recs: [
             {
-              title: "Cotopaxi day hike (refugio + viewpoints)",
-              desc: "One of the best “big day” adventures — high-altitude landscapes without committing to a summit climb.",
-              badges: ["Intermediate", "Full day"],
+              title: "Cacao tasting (learn the basics fast)",
+              desc: "Try multiple percentages and styles, then keep your afternoon simple so it stays enjoyable.",
+              badges: ["Easy", "1-2 hours"],
               chips: [
-                { label: "Best in: Andes (Cotopaxi)", href: "/regions/andes/cotopaxi/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
+                { label: "Great from: Andes", href: "/regions/andes/" },
+                { label: "Also: Amazon", href: "/regions/amazon/" }
               ],
-              ctaLabel: "View Cotopaxi",
-              ctaHref: "/regions/andes/cotopaxi/"
+              ctaLabel: "Explore Regions",
+              ctaHref: "/regions/"
             },
             {
-              title: "Rafting day (class depends on river)",
-              desc: "A classic Ecuador adventure — rivers range from fun + splashy to serious, depending on the route.",
-              badges: ["Intermediate", "Half day–Full day"],
+              title: "Cacao experience + scenic rest day",
+              desc: "Pair a cacao visit with a relaxing day so you don’t turn it into a rushed checklist.",
+              badges: ["Easy", "Full day"],
               chips: [
-                { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
+                { label: "Good match: Andes", href: "/regions/andes/" }
               ],
-              ctaLabel: "View Baños",
-              ctaHref: "/regions/andes/banos/"
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
             },
             {
-              title: "Canopy zipline + cloud forest combo",
-              desc: "A high-energy day with iconic scenery — zipline circuits paired with trails, waterfalls, and viewpoints.",
-              badges: ["Intermediate", "Full day"],
-              chips: [
-                { label: "Best in: Andes (Mindo)", href: "/regions/andes/mindo/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "View Mindo",
-              ctaHref: "/regions/andes/mindo/"
-            }
-          ]
-        },
-
-        advanced: {
-          hint: "Advanced = demanding days. Expect long routes, altitude, and more technical effort.",
-          recs: [
-            {
-              title: "High-altitude ridgelines + long volcanic routes",
-              desc: "Longer hikes at altitude where weather and pacing matter — the Andes is the playground here.",
-              badges: ["Advanced", "Full day"],
-              chips: [
-                { label: "Best in: Andes (Quito area)", href: "/regions/andes/quito/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "View Quito",
-              ctaHref: "/regions/andes/quito/"
-            },
-            {
-              title: "Serious canyoning routes",
-              desc: "Bigger rappels, faster water, and higher intensity lines — best done with experienced guides.",
-              badges: ["Advanced", "Half day–Full day"],
-              chips: [
-                { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "View Baños",
-              ctaHref: "/regions/andes/banos/"
-            },
-            {
-              title: "Remote jungle days (long boat + trekking)",
-              desc: "Multi-hour river travel, humid trails, and longer days — rewarding, but physically demanding.",
-              badges: ["Advanced", "Multi-day"],
+              title: "Amazon flavor day (ingredients + story)",
+              desc: "A deeper cultural angle: native ingredients and traditional preparation with local context.",
+              badges: ["Moderate", "Full day"],
               chips: [
                 { label: "Best in: Amazon", href: "/regions/amazon/" }
               ],
@@ -860,40 +870,38 @@
           ]
         },
 
-        thrill: {
-          hint: "Thrill Seeker = bucket-list intensity. These are the “tell everyone about it” days.",
+        coffee: {
+          hint: "Coffee days are best kept slow: one great cafe, one tasting, and plenty of downtime.",
           recs: [
             {
-              title: "Cotopaxi summit climb",
-              desc: "A true mountaineering objective — altitude, glacier conditions, and a serious achievement.",
-              badges: ["Thrill Seeker", "Overnight"],
+              title: "Cafe crawl (max 2 stops)",
+              desc: "Pick one anchor cafe, then one second stop. Don’t overdo it. Keep it calm and intentional.",
+              badges: ["Easy", "2-4 hours"],
               chips: [
-                { label: "Best in: Andes (Cotopaxi)", href: "/regions/andes/cotopaxi/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
+                { label: "Great from: Andes", href: "/regions/andes/" }
               ],
-              ctaLabel: "View Cotopaxi",
-              ctaHref: "/regions/andes/cotopaxi/"
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
             },
             {
-              title: "Galapagos dive trips (iconic marine life)",
-              desc: "World-class diving with big wildlife moments — plan around conditions and permitted sites.",
-              badges: ["Thrill Seeker", "Multi-day"],
+              title: "Coffee tasting + local pastry pairing",
+              desc: "A simple tasting with a sweet bite. Great for friends and couples.",
+              badges: ["Easy", "1-2 hours"],
               chips: [
-                { label: "Best in: Galapagos", href: "/regions/galapagos/" }
+                { label: "Great from: Andes", href: "/regions/andes/" }
               ],
-              ctaLabel: "Explore Galapagos",
-              ctaHref: "/regions/galapagos/"
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
             },
             {
-              title: "High-intensity rafting or extreme canyoning day",
-              desc: "If you want adrenaline on water — choose routes that match your skills and conditions.",
-              badges: ["Thrill Seeker", "Full day"],
+              title: "Coastal alternative (coffee + warm pace)",
+              desc: "If you want cafes with beach time, the Coast offers a slower, warmer rhythm.",
+              badges: ["Easy", "Half day-Full day"],
               chips: [
-                { label: "Best in: Andes (Baños)", href: "/regions/andes/banos/" },
-                { label: "Explore Andes", href: "/regions/andes/" }
+                { label: "Good match: Coast", href: "/regions/coast/" }
               ],
-              ctaLabel: "View Baños",
-              ctaHref: "/regions/andes/banos/"
+              ctaLabel: "Explore Coast",
+              ctaHref: "/regions/coast/"
             }
           ]
         }
@@ -908,8 +916,8 @@
           .replaceAll("'","&#039;");
       }
 
-      function render(levelKey){
-        const block = data[levelKey] || data.intermediate;
+      function render(key){
+        const block = data[key] || data.markets;
         if (hintEl) hintEl.textContent = block.hint || "";
 
         const html = block.recs.map((r) => {
@@ -937,19 +945,23 @@
         recsEl.innerHTML = html;
       }
 
-      render(levelEl ? levelEl.value : "intermediate");
+      render(focusEl ? focusEl.value : "markets");
 
-      if (levelEl) {
-        levelEl.addEventListener("change", function(){
+      if (focusEl) {
+        focusEl.addEventListener("change", function(){
           render(this.value);
         });
       }
     })();
 
-    /* ===== Carousel (regions-style) - MATCH NATURE ===== */
+    /* ===== Carousel (placeholders) ===== */
     (function(){
-      const track = document.getElementById("ee_car_track");
-      const viewport = document.getElementById("ee_car_viewport");
+      const carousel = document.querySelector("section.carousel");
+      if (!carousel) return;
+
+      const viewport = carousel.querySelector(".carousel-viewport");
+      const track = carousel.querySelector(".carousel-track");
+
       const prevBtn = document.getElementById("ee_car_prev");
       const nextBtn = document.getElementById("ee_car_next");
       const dotsWrap = document.getElementById("ee_car_dots");
@@ -957,54 +969,82 @@
 
       if (!track || !viewport) return;
 
-      const slides = Array.from(track.children);
+      const slides = Array.from(track.children).filter(el => el.classList.contains("carousel-slide"));
       const total = slides.length;
+      if (total === 0) return;
+
       let index = 0;
+      let timer = null;
+
       let startX = 0;
       let currentX = 0;
       let dragging = false;
+
+      const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       function setCounter(){
         if (!counter) return;
         counter.textContent = `${index + 1} / ${total}`;
       }
 
-      function setDots(){
+      let dots = [];
+      function buildDots(){
         if (!dotsWrap) return;
         dotsWrap.innerHTML = "";
+        dots = [];
         for (let i = 0; i < total; i++){
           const b = document.createElement("button");
           b.className = "dot" + (i === index ? " active" : "");
           b.type = "button";
           b.setAttribute("aria-label", `Go to slide ${i + 1}`);
-          b.addEventListener("click", () => goTo(i));
+          b.addEventListener("click", () => goTo(i, true));
           dotsWrap.appendChild(b);
+          dots.push(b);
         }
       }
 
-      function update(){
+      function render(){
         track.style.transform = `translateX(${-index * 100}%)`;
         setCounter();
-        setDots();
+        if (dots.length){
+          dots.forEach((d, i) => d.classList.toggle("active", i === index));
+        }
       }
 
-      function goTo(i){
+      function goTo(i, userAction){
         index = (i + total) % total;
-        update();
+        render();
+        if (userAction) restart();
       }
 
-      function next(){ goTo(index + 1); }
-      function prev(){ goTo(index - 1); }
+      function next(userAction){ goTo(index + 1, userAction); }
+      function prev(userAction){ goTo(index - 1, userAction); }
 
-      if (nextBtn) nextBtn.addEventListener("click", next);
-      if (prevBtn) prevBtn.addEventListener("click", prev);
+      function start(){
+        if (reduceMotion) return;
+        stop();
+        timer = setInterval(() => next(false), 4200);
+      }
 
-      // Touch swipe
+      function stop(){
+        if (timer) clearInterval(timer);
+        timer = null;
+      }
+
+      function restart(){
+        stop();
+        start();
+      }
+
+      if (nextBtn) nextBtn.addEventListener("click", () => next(true));
+      if (prevBtn) prevBtn.addEventListener("click", () => prev(true));
+
       viewport.addEventListener("touchstart", (e) => {
         if (e.touches.length !== 1) return;
         dragging = true;
         startX = e.touches[0].clientX;
         currentX = startX;
+        stop();
       }, { passive:true });
 
       viewport.addEventListener("touchmove", (e) => {
@@ -1017,18 +1057,21 @@
         const dx = currentX - startX;
         dragging = false;
         if (Math.abs(dx) > 45){
-          if (dx < 0) next();
-          else prev();
+          if (dx < 0) next(true);
+          else prev(true);
+        } else {
+          start();
         }
       });
 
-      // Keyboard (viewport has tabindex="0")
-      viewport.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight") next();
-        if (e.key === "ArrowLeft") prev();
-      });
+      carousel.addEventListener("mouseenter", stop);
+      carousel.addEventListener("mouseleave", start);
+      carousel.addEventListener("focusin", stop);
+      carousel.addEventListener("focusout", start);
 
-      update();
+      buildDots();
+      render();
+      start();
     })();
   </script>
 </body>
