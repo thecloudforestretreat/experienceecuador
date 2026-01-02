@@ -3,7 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Relaxation | Experience Ecuador</title>
+  <meta name="description" content="Plan a relaxing Ecuador trip with hot springs, scenic stays, easy day trips, and coastal slow travel. Pick a focus and start with the best regions." />
+
+  <!-- Canonical (must match page URL) -->
+  <link rel="canonical" href="https://experienceecuador.com/experiences/relaxation/" />
+
+  <!-- Open Graph (use the same OG image site-wide) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Experience Ecuador" />
+  <meta property="og:title" content="Relaxation | Experience Ecuador" />
+  <meta property="og:description" content="Plan a relaxing Ecuador trip with hot springs, scenic stays, easy day trips, and coastal slow travel. Pick a focus and start with the best regions." />
+  <meta property="og:url" content="https://experienceecuador.com/experiences/relaxation/" />
+  <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Experience Ecuador travel inspiration cover image" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Relaxation | Experience Ecuador" />
+  <meta name="twitter:description" content="Plan a relaxing Ecuador trip with hot springs, scenic stays, easy day trips, and coastal slow travel. Pick a focus and start with the best regions." />
+  <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
   <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -560,7 +583,7 @@
 
         <div class="carousel-ui">
           <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
-          <div class="carousel-counter" id="ee_car_counter">1 / 1</div>
+          <div class="carousel-counter" id="ee_car_counter">1 / 10</div>
         </div>
       </section>
 
@@ -615,7 +638,7 @@
           recs: [
             { title:"Single base, short day trips", desc:"A simple plan: one home base, easy outings, and plenty of downtime built in.", badges:["Easy","Flexible"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
             { title:"Nature-forward lodging", desc:"Choose a stay that feels like the destination. Views, quiet mornings, and easy walks.", badges:["Easy","Scenic"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
-            { title:"Relaxed culture and cafés", desc:"Slow city days with markets, cafés, and a calm pace without constant transit.", badges:["Easy","City"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" }
+            { title:"Relaxed culture and cafes", desc:"Slow city days with markets, cafes, and a calm pace without constant transit.", badges:["Easy","City"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" }
           ]
         },
         coastal_chill: {
@@ -629,9 +652,9 @@
         quiet_city: {
           hint: "A quiet city reset is best when you keep your plan light and walkable.",
           recs: [
-            { title:"Walkable city + downtime", desc:"A calm pace with easy walking, cafés, and gentle culture days.", badges:["Easy","City"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
+            { title:"Walkable city and downtime", desc:"A calm pace with easy walking, cafes, and gentle culture days.", badges:["Easy","City"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
             { title:"Food, parks, and viewpoints", desc:"Minimal transit, maximum comfort. Choose a few simple highlights and relax.", badges:["Easy","Comfort"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
-            { title:"Short stay recharge", desc:"Perfect for 2–3 nights when you want to reset before moving on.", badges:["Easy","Short stay"], ctaLabel:"All Regions", ctaHref:"/regions/" }
+            { title:"Short stay recharge", desc:"Perfect for 2 to 3 nights when you want to reset before moving on.", badges:["Easy","Short stay"], ctaLabel:"All Regions", ctaHref:"/regions/" }
           ]
         }
       };
@@ -691,39 +714,39 @@
       const slides = Array.from(track.children);
       const total = slides.length;
       let index = 0;
-      let startX = 0;
-      let currentX = 0;
-      let dragging = false;
 
-      function setCounter(){
-        if (!counter) return;
-        counter.textContent = `${index + 1} / ${total}`;
-      }
-
-      function setDots(){
-        if (!dotsWrap) return;
+      const dots = [];
+      if (dotsWrap) {
         dotsWrap.innerHTML = "";
         for (let i = 0; i < total; i++){
           const b = document.createElement("button");
-          b.className = "dot" + (i === index ? " active" : "");
           b.type = "button";
-          b.setAttribute("aria-label", `Go to slide ${i + 1}`);
+          b.className = "dot" + (i === 0 ? " active" : "");
+          b.setAttribute("aria-label", `Go to slide ${i+1}`);
           b.addEventListener("click", () => goTo(i));
           dotsWrap.appendChild(b);
+          dots.push(b);
         }
       }
 
-      function update(){
+      function updateUI(){
         track.style.transform = `translateX(${-index * 100}%)`;
-        setCounter();
-        setDots();
-        if (prevBtn) prevBtn.style.display = total > 1 ? "" : "none";
-        if (nextBtn) nextBtn.style.display = total > 1 ? "" : "none";
+        if (counter) counter.textContent = `${index + 1} / ${total}`;
+        dots.forEach((d, i) => {
+          if (i === index) d.classList.add("active");
+          else d.classList.remove("active");
+        });
+      }
+
+      function clamp(i){
+        if (i < 0) return total - 1;
+        if (i >= total) return 0;
+        return i;
       }
 
       function goTo(i){
-        index = (i + total) % total;
-        update();
+        index = clamp(i);
+        updateUI();
       }
 
       function next(){ goTo(index + 1); }
@@ -732,36 +755,34 @@
       if (nextBtn) nextBtn.addEventListener("click", next);
       if (prevBtn) prevBtn.addEventListener("click", prev);
 
-      viewport.addEventListener("touchstart", (e) => {
-        if (total <= 1) return;
-        if (e.touches.length !== 1) return;
-        dragging = true;
-        startX = e.touches[0].clientX;
-        currentX = startX;
-      }, { passive:true });
+      viewport.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") next();
+        if (e.key === "ArrowLeft") prev();
+      });
 
-      viewport.addEventListener("touchmove", (e) => {
-        if (!dragging || e.touches.length !== 1) return;
-        currentX = e.touches[0].clientX;
-      }, { passive:true });
+      let startX = 0;
+      let isDown = false;
 
-      viewport.addEventListener("touchend", () => {
-        if (!dragging) return;
-        const dx = currentX - startX;
-        dragging = false;
-        if (Math.abs(dx) > 45){
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+      });
+
+      viewport.addEventListener("pointerup", (e) => {
+        if (!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        if (Math.abs(dx) > 45) {
           if (dx < 0) next();
           else prev();
         }
       });
 
-      viewport.addEventListener("keydown", (e) => {
-        if (total <= 1) return;
-        if (e.key === "ArrowRight") next();
-        if (e.key === "ArrowLeft") prev();
-      });
+      viewport.addEventListener("pointercancel", () => { isDown = false; });
+      viewport.addEventListener("pointerleave", () => { isDown = false; });
 
-      update();
+      updateUI();
     })();
   </script>
 
