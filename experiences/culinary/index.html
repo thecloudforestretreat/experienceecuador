@@ -5,27 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Culinary | Experience Ecuador</title>
-  <meta name="description" content="Explore Ecuador through food with markets, seafood, cacao, and coffee. Use this culinary guide to pick a focus and build the best region-first itinerary." />
+  <meta name="description" content="Explore Ecuador through food with markets, seafood, cacao, and coffee. Pick a culinary focus and start with the best region to build your itinerary." />
 
-  <!-- Canonical -->
+  <!-- Canonical (must match page URL) -->
   <link rel="canonical" href="https://experienceecuador.com/experiences/culinary/" />
 
-  <!-- Open Graph -->
+  <!-- Open Graph (use the same OG image site-wide) -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
   <meta property="og:title" content="Culinary | Experience Ecuador" />
-  <meta property="og:description" content="Explore Ecuador through food with markets, seafood, cacao, and coffee. Use this culinary guide to pick a focus and build the best region-first itinerary." />
+  <meta property="og:description" content="Explore Ecuador through food with markets, seafood, cacao, and coffee. Pick a culinary focus and start with the best region to build your itinerary." />
   <meta property="og:url" content="https://experienceecuador.com/experiences/culinary/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Experience Ecuador travel inspiration" />
+  <meta property="og:image:alt" content="Experience Ecuador travel inspiration cover image" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Culinary | Experience Ecuador" />
-  <meta name="twitter:description" content="Explore Ecuador through food with markets, seafood, cacao, and coffee. Use this culinary guide to pick a focus and build the best region-first itinerary." />
+  <meta name="twitter:description" content="Explore Ecuador through food with markets, seafood, cacao, and coffee. Pick a culinary focus and start with the best region to build your itinerary." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
   <!-- Favicons (root paths) -->
@@ -196,7 +196,6 @@
       overflow:hidden;
     }
 
-    /* UPDATED: controls are right-aligned on top, copy sits below full width */
     .selector-top{
       display:grid;
       grid-template-columns:1fr auto;
@@ -230,7 +229,6 @@
       max-width:70ch;
     }
 
-    /* UPDATED: Experiences + Focus in two stacked rows, same width, right aligned */
     .selector-controls{
       grid-column:2;
       grid-row:1;
@@ -402,7 +400,7 @@
       font-weight:700;
     }
 
-    /* ===== CAROUSEL (GALLERY) - PLACEHOLDERS ===== */
+    /* ===== CAROUSEL (GALLERY) ===== */
     .carousel{
       margin-top:40px;
       background:#fff;
@@ -439,27 +437,6 @@
       width:100%;
       height:100%;
       object-fit:cover;
-    }
-
-    .ph{
-      width:100%;
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:18px;
-      color:#0f2f62;
-      font-weight:900;
-      letter-spacing:-0.02em;
-      background:linear-gradient(180deg, rgba(3,78,162,0.08), rgba(3,78,162,0.02));
-    }
-    .ph small{
-      display:block;
-      margin-top:8px;
-      font-weight:800;
-      opacity:0.85;
-      letter-spacing:0.01em;
     }
 
     .carousel-btn{
@@ -543,8 +520,8 @@
       .grid{grid-template-columns:1fr}
       .recs-grid{grid-template-columns:1fr}
       .selector-top{display:flex; flex-direction:column; align-items:flex-start;}
-      .selector-controls{display:flex; flex-wrap:wrap; justify-content:flex-start;}
-      .selector-controls select{min-width:260px; width:100%;}
+      .selector-controls{display:flex; flex-wrap:wrap; justify-content:flex-start; width:100%;}
+      .selector-controls select{min-width:0; width:100%;}
       .hero-inner{ text-align:center; }
       .hero p{ margin:0 auto; }
     }
@@ -583,16 +560,7 @@
       <!-- Culinary Selector -->
       <section class="section selector" aria-label="Culinary selector">
         <div class="selector-top">
-          <div class="selector-copy">
-            <h3>Pick your food focus</h3>
-            <p>
-              Choose what you want to taste and we’ll show three strong starting points plus the best region to build from.
-              Keep it simple and let the meals do the travel planning.
-            </p>
-          </div>
-
           <div class="selector-controls">
-            <!-- Universal Experiences quick nav (template) -->
             <label for="ee_exp_nav">Experiences</label>
             <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Navigate to an experience">
               <option value="/experiences">All Experiences</option>
@@ -611,6 +579,14 @@
               <option value="cacao">Cacao + chocolate experiences</option>
               <option value="coffee">Coffee culture + cafes</option>
             </select>
+          </div>
+
+          <div class="selector-copy">
+            <h3>Pick your food focus</h3>
+            <p>
+              Choose what you want to taste and we’ll show three strong starting points plus the best region to build from.
+              Keep it simple and let the meals do the travel planning.
+            </p>
           </div>
         </div>
 
@@ -635,7 +611,6 @@
             </ul>
           </div>
 
-          <!-- Must Eats intro (new) -->
           <div class="card" style="margin-top:16px;">
             <h2>Must Eats</h2>
             <p style="margin:0 0 12px; color:#24324a; line-height:1.7; font-size:14.8px;">
@@ -668,7 +643,7 @@
         </div>
       </section>
 
-      <!-- Bottom Carousel (placeholders) -->
+      <!-- Bottom Carousel -->
       <section class="carousel" aria-label="Culinary gallery carousel">
         <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
           <span aria-hidden="true"></span>
@@ -677,8 +652,8 @@
           <span aria-hidden="true"></span>
         </button>
 
-        <div class="carousel-viewport" aria-label="Carousel viewport">
-          <div class="carousel-track" aria-label="Carousel track">
+        <div class="carousel-viewport" id="ee_car_viewport">
+          <div class="carousel-track" id="ee_car_track">
             <div class="carousel-slide">
               <img src="/assets/images/EE-Carousel-Culinary-1.jpg" alt="Culinary gallery image 1">
             </div>
@@ -722,7 +697,8 @@
 
   <div id="siteFooter"></div>
 
-  <!-- Inject global header/footer first -->
+  <script src="/assets/js/site.js"></script>
+
   <script>
     (function(){
       async function inject(id, url){
@@ -736,24 +712,18 @@
     })();
   </script>
 
-  <!-- Global site JS (drill-down mobile nav, etc.) -->
-  <script src="/assets/js/site.js"></script>
-
   <script>
-    /* ===== Experiences selector quick nav (universal) ===== */
+    /* ===== Experiences dropdown (auto-navigate) ===== */
     (function(){
-      const expNav = document.getElementById("ee_exp_nav");
-      if (!expNav) return;
-
-      expNav.addEventListener("change", function(){
-        const url = String(this.value || "").trim();
-        if (!url) return;
-        if (url === window.location.pathname || url === window.location.pathname + "/") return;
-        window.location.href = url;
+      const expEl = document.getElementById("ee_exp_nav");
+      if (!expEl) return;
+      expEl.addEventListener("change", function(){
+        const url = this.value;
+        if (url) window.location.href = url;
       });
     })();
 
-    /* ===== Culinary Selector (3 recommendations) ===== */
+    /* ===== Culinary Focus Selector (3 recommendations) ===== */
     (function(){
       const focusEl = document.getElementById("ee_cul_focus");
       const recsEl = document.getElementById("ee_cul_recs");
@@ -761,148 +731,35 @@
 
       const data = {
         markets: {
-          hint: "Markets are the quickest way to learn local food. Go early, snack slowly, and keep it simple.",
+          hint: "Markets are the fastest way to understand a region’s food culture. Go early, snack slowly, and keep it simple.",
           recs: [
-            {
-              title: "Highland market morning + comfort lunch",
-              desc: "Browse stalls, try local snacks, then finish with a classic soup or hearty plate in a family-run spot.",
-              badges: ["Easy", "Half day"],
-              chips: [
-                { label: "Best in: Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "Explore Andes",
-              ctaHref: "/regions/andes/"
-            },
-            {
-              title: "Street food sampling (small bites only)",
-              desc: "A slow walk, a few tasting stops, and a relaxed pace. Perfect for first-timers.",
-              badges: ["Easy", "2-4 hours"],
-              chips: [
-                { label: "Best in: Andes", href: "/regions/andes/" },
-                { label: "Also good: Coast", href: "/regions/coast/" }
-              ],
-              ctaLabel: "Explore Regions",
-              ctaHref: "/regions/"
-            },
-            {
-              title: "Traditional meal + local bakery stop",
-              desc: "Pair one signature dish with something sweet. Keep the day light and food-forward.",
-              badges: ["Easy", "Half day-Full day"],
-              chips: [
-                { label: "Best in: Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "Explore Andes",
-              ctaHref: "/regions/andes/"
-            }
+            { title:"Highland market morning", desc:"Browse stalls, try local snacks, then finish with a classic soup or hearty plate nearby.", badges:["Easy","Half day"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
+            { title:"Street food sampler", desc:"A calm walk with a few tasting stops. Perfect for first-timers who want local flavor fast.", badges:["Easy","2–4 hours"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
+            { title:"Traditional meal + bakery stop", desc:"Pair one signature dish with something sweet. Keep the day light and food-forward.", badges:["Easy","Flexible"], ctaLabel:"All Regions", ctaHref:"/regions/" }
           ]
         },
-
         seafood: {
-          hint: "For seafood, keep it coastal. Fresh ceviche and simple grilled fish are the move.",
+          hint: "For seafood, stay coastal. Fresh ceviche and simple grilled fish are the move.",
           recs: [
-            {
-              title: "Ceviche culture lunch (your first stop)",
-              desc: "Try one ceviche style, then add a second small plate if you’re hungry. Let freshness lead.",
-              badges: ["Easy", "2-3 hours"],
-              chips: [
-                { label: "Best in: Coast", href: "/regions/coast/" }
-              ],
-              ctaLabel: "Explore Coast",
-              ctaHref: "/regions/coast/"
-            },
-            {
-              title: "Seafood market + cooked-to-order plate",
-              desc: "Walk the market, then choose a simple cooked dish nearby. Great for photographers too.",
-              badges: ["Easy", "Half day"],
-              chips: [
-                { label: "Best in: Coast", href: "/regions/coast/" }
-              ],
-              ctaLabel: "Explore Coast",
-              ctaHref: "/regions/coast/"
-            },
-            {
-              title: "Sunset dinner by the water",
-              desc: "A calm beach day, then a seafood dinner at golden hour. Minimal planning, maximum reward.",
-              badges: ["Easy", "Evening"],
-              chips: [
-                { label: "Best in: Coast", href: "/regions/coast/" }
-              ],
-              ctaLabel: "Explore Coast",
-              ctaHref: "/regions/coast/"
-            }
+            { title:"Ceviche culture lunch", desc:"Try one ceviche style, then add a second small plate if you’re hungry. Let freshness lead.", badges:["Easy","Coast"], ctaLabel:"Explore Coast", ctaHref:"/regions/coast/" },
+            { title:"Seafood market + cooked-to-order plate", desc:"Walk the market, then choose a simple cooked dish nearby. Great for photographers too.", badges:["Easy","Half day"], ctaLabel:"Explore Coast", ctaHref:"/regions/coast/" },
+            { title:"Sunset seafood dinner", desc:"A calm beach day, then dinner by the water at golden hour. Minimal planning, maximum reward.", badges:["Easy","Evening"], ctaLabel:"Explore Coast", ctaHref:"/regions/coast/" }
           ]
         },
-
         cacao: {
-          hint: "Ecuador cacao is world-class. Keep it focused: farm-to-bar or tasting + a light itinerary.",
+          hint: "Ecuador cacao is world-class. Keep it focused: tasting plus a light itinerary.",
           recs: [
-            {
-              title: "Cacao tasting (learn the basics fast)",
-              desc: "Try multiple percentages and styles, then keep your afternoon simple so it stays enjoyable.",
-              badges: ["Easy", "1-2 hours"],
-              chips: [
-                { label: "Great from: Andes", href: "/regions/andes/" },
-                { label: "Also: Amazon", href: "/regions/amazon/" }
-              ],
-              ctaLabel: "Explore Regions",
-              ctaHref: "/regions/"
-            },
-            {
-              title: "Cacao experience + scenic rest day",
-              desc: "Pair a cacao visit with a relaxing day so you don’t turn it into a rushed checklist.",
-              badges: ["Easy", "Full day"],
-              chips: [
-                { label: "Good match: Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "Explore Andes",
-              ctaHref: "/regions/andes/"
-            },
-            {
-              title: "Amazon flavor day (ingredients + story)",
-              desc: "A deeper cultural angle: native ingredients and traditional preparation with local context.",
-              badges: ["Moderate", "Full day"],
-              chips: [
-                { label: "Best in: Amazon", href: "/regions/amazon/" }
-              ],
-              ctaLabel: "Explore Amazon",
-              ctaHref: "/regions/amazon/"
-            }
+            { title:"Cacao tasting and chocolate flight", desc:"Try multiple percentages and styles, then keep your afternoon simple so it stays enjoyable.", badges:["Easy","1–2 hours"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
+            { title:"Cacao experience + scenic rest day", desc:"Pair a cacao visit with downtime so you don’t turn it into a rushed checklist.", badges:["Easy","Full day"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
+            { title:"Amazon ingredients and story", desc:"A deeper cultural angle: native ingredients and traditional preparation with local context.", badges:["Moderate","Full day"], ctaLabel:"Explore Amazon", ctaHref:"/regions/amazon/" }
           ]
         },
-
         coffee: {
           hint: "Coffee days are best kept slow: one great cafe, one tasting, and plenty of downtime.",
           recs: [
-            {
-              title: "Cafe crawl (max 2 stops)",
-              desc: "Pick one anchor cafe, then one second stop. Don’t overdo it. Keep it calm and intentional.",
-              badges: ["Easy", "2-4 hours"],
-              chips: [
-                { label: "Great from: Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "Explore Andes",
-              ctaHref: "/regions/andes/"
-            },
-            {
-              title: "Coffee tasting + local pastry pairing",
-              desc: "A simple tasting with a sweet bite. Great for friends and couples.",
-              badges: ["Easy", "1-2 hours"],
-              chips: [
-                { label: "Great from: Andes", href: "/regions/andes/" }
-              ],
-              ctaLabel: "Explore Andes",
-              ctaHref: "/regions/andes/"
-            },
-            {
-              title: "Coastal alternative (coffee + warm pace)",
-              desc: "If you want cafes with beach time, the Coast offers a slower, warmer rhythm.",
-              badges: ["Easy", "Half day-Full day"],
-              chips: [
-                { label: "Good match: Coast", href: "/regions/coast/" }
-              ],
-              ctaLabel: "Explore Coast",
-              ctaHref: "/regions/coast/"
-            }
+            { title:"Cafe crawl (max 2 stops)", desc:"Pick one anchor cafe, then one second stop. Don’t overdo it. Keep it calm and intentional.", badges:["Easy","2–4 hours"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
+            { title:"Coffee tasting + pastry pairing", desc:"A simple tasting with a sweet bite. Great for friends and couples.", badges:["Easy","1–2 hours"], ctaLabel:"Explore Andes", ctaHref:"/regions/andes/" },
+            { title:"Coastal alternative (coffee + warm pace)", desc:"If you want cafes with beach time, the Coast offers a slower, warmer rhythm.", badges:["Easy","Flexible"], ctaLabel:"Explore Coast", ctaHref:"/regions/coast/" }
           ]
         }
       };
@@ -920,19 +777,13 @@
         const block = data[key] || data.markets;
         if (hintEl) hintEl.textContent = block.hint || "";
 
-        const html = block.recs.map((r) => {
+        const html = (block.recs || []).map((r) => {
           const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
-          const chips = (r.chips || []).map(c => `
-            <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
-          `).join("");
-
           return `
             <article class="rec">
               <div class="meta">${badges}</div>
               <h4>${escapeHtml(r.title)}</h4>
               <p>${escapeHtml(r.desc)}</p>
-
-              <div class="chips">${chips}</div>
 
               <div class="rec-actions">
                 <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
@@ -954,14 +805,10 @@
       }
     })();
 
-    /* ===== Carousel (placeholders) ===== */
+    /* ===== Carousel (same JS pattern) ===== */
     (function(){
-      const carousel = document.querySelector("section.carousel");
-      if (!carousel) return;
-
-      const viewport = carousel.querySelector(".carousel-viewport");
-      const track = carousel.querySelector(".carousel-track");
-
+      const track = document.getElementById("ee_car_track");
+      const viewport = document.getElementById("ee_car_viewport");
       const prevBtn = document.getElementById("ee_car_prev");
       const nextBtn = document.getElementById("ee_car_next");
       const dotsWrap = document.getElementById("ee_car_dots");
@@ -969,82 +816,56 @@
 
       if (!track || !viewport) return;
 
-      const slides = Array.from(track.children).filter(el => el.classList.contains("carousel-slide"));
+      const slides = Array.from(track.children);
       const total = slides.length;
-      if (total === 0) return;
-
       let index = 0;
-      let timer = null;
-
       let startX = 0;
       let currentX = 0;
       let dragging = false;
-
-      const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       function setCounter(){
         if (!counter) return;
         counter.textContent = `${index + 1} / ${total}`;
       }
 
-      let dots = [];
-      function buildDots(){
+      function setDots(){
         if (!dotsWrap) return;
         dotsWrap.innerHTML = "";
-        dots = [];
         for (let i = 0; i < total; i++){
           const b = document.createElement("button");
           b.className = "dot" + (i === index ? " active" : "");
           b.type = "button";
           b.setAttribute("aria-label", `Go to slide ${i + 1}`);
-          b.addEventListener("click", () => goTo(i, true));
+          b.addEventListener("click", () => goTo(i));
           dotsWrap.appendChild(b);
-          dots.push(b);
         }
       }
 
-      function render(){
+      function update(){
         track.style.transform = `translateX(${-index * 100}%)`;
         setCounter();
-        if (dots.length){
-          dots.forEach((d, i) => d.classList.toggle("active", i === index));
-        }
+        setDots();
+        if (prevBtn) prevBtn.style.display = total > 1 ? "" : "none";
+        if (nextBtn) nextBtn.style.display = total > 1 ? "" : "none";
       }
 
-      function goTo(i, userAction){
+      function goTo(i){
         index = (i + total) % total;
-        render();
-        if (userAction) restart();
+        update();
       }
 
-      function next(userAction){ goTo(index + 1, userAction); }
-      function prev(userAction){ goTo(index - 1, userAction); }
+      function next(){ goTo(index + 1); }
+      function prev(){ goTo(index - 1); }
 
-      function start(){
-        if (reduceMotion) return;
-        stop();
-        timer = setInterval(() => next(false), 4200);
-      }
-
-      function stop(){
-        if (timer) clearInterval(timer);
-        timer = null;
-      }
-
-      function restart(){
-        stop();
-        start();
-      }
-
-      if (nextBtn) nextBtn.addEventListener("click", () => next(true));
-      if (prevBtn) prevBtn.addEventListener("click", () => prev(true));
+      if (nextBtn) nextBtn.addEventListener("click", next);
+      if (prevBtn) prevBtn.addEventListener("click", prev);
 
       viewport.addEventListener("touchstart", (e) => {
+        if (total <= 1) return;
         if (e.touches.length !== 1) return;
         dragging = true;
         startX = e.touches[0].clientX;
         currentX = startX;
-        stop();
       }, { passive:true });
 
       viewport.addEventListener("touchmove", (e) => {
@@ -1057,22 +878,20 @@
         const dx = currentX - startX;
         dragging = false;
         if (Math.abs(dx) > 45){
-          if (dx < 0) next(true);
-          else prev(true);
-        } else {
-          start();
+          if (dx < 0) next();
+          else prev();
         }
       });
 
-      carousel.addEventListener("mouseenter", stop);
-      carousel.addEventListener("mouseleave", start);
-      carousel.addEventListener("focusin", stop);
-      carousel.addEventListener("focusout", start);
+      viewport.addEventListener("keydown", (e) => {
+        if (total <= 1) return;
+        if (e.key === "ArrowRight") next();
+        if (e.key === "ArrowLeft") prev();
+      });
 
-      buildDots();
-      render();
-      start();
+      update();
     })();
   </script>
+
 </body>
 </html>
