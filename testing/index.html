@@ -4,31 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Must Eats | Experience Ecuador</title>
-  <meta name="description" content="Discover Ecuador’s must-try dishes by region: Andes comfort food, Coast seafood, Amazon flavors, and Galapagos fresh catch. Simple, region-first picks." />
+  <title>Culture | Mindo Bird Watching</title>
+  <meta name="description" content="Explore culture around Mindo, Ecuador through markets, artisan towns, heritage crafts, and local traditions. Practical starting points to plan your day." />
 
   <!-- Canonical (must match page URL) -->
-  <link rel="canonical" href="https://experienceecuador.com/experiences/culinary/must-eats/" />
+  <link rel="canonical" href="https://staging.mindobirdwatching.com/experiences/culture/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Experience Ecuador" />
-  <meta property="og:title" content="Must Eats | Experience Ecuador" />
-  <meta property="og:description" content="Discover Ecuador’s must-try dishes by region: Andes comfort food, Coast seafood, Amazon flavors, and Galapagos fresh catch. Simple, region-first picks." />
-  <meta property="og:url" content="https://experienceecuador.com/experiences/culinary/must-eats/" />
-  <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
-  <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:site_name" content="Mindo Bird Watching" />
+  <meta property="og:title" content="Culture | Mindo Bird Watching" />
+  <meta property="og:description" content="Explore culture around Mindo, Ecuador through markets, artisan towns, heritage crafts, and local traditions. Practical starting points to plan your day." />
+  <meta property="og:url" content="https://staging.mindobirdwatching.com/experiences/culture/" />
+  <meta property="og:image" content="https://staging.mindobirdwatching.com/MBW-Assets-OG-Image.png" />
+  <meta property="og:image:secure_url" content="https://staging.mindobirdwatching.com/MBW-Assets-OG-Image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Experience Ecuador travel inspiration" />
+  <meta property="og:image:alt" content="Mindo Bird Watching trip planning and experiences" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Must Eats | Experience Ecuador" />
-  <meta name="twitter:description" content="Discover Ecuador’s must-try dishes by region: Andes comfort food, Coast seafood, Amazon flavors, and Galapagos fresh catch. Simple, region-first picks." />
-  <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta name="twitter:title" content="Culture | Mindo Bird Watching" />
+  <meta name="twitter:description" content="Explore culture around Mindo, Ecuador through markets, artisan towns, heritage crafts, and local traditions. Practical starting points to plan your day." />
+  <meta name="twitter:image" content="https://staging.mindobirdwatching.com/MBW-Assets-OG-Image.png" />
 
-  <!-- Favicons (root paths) -->
+  <!-- Favicons (approved root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -49,6 +49,13 @@
       --brand-blue:#034EA2;
       --charcoal:#1F1F1F;
       --slate:#6E7B8B;
+
+      --card:#ffffff;
+      --border:rgba(0,0,0,0.06);
+      --shadow:0 18px 55px rgba(3,78,162,0.12);
+
+      --chipBg: rgba(3,78,162,0.10);
+      --chipText:#0f2f62;
     }
 
     *{box-sizing:border-box}
@@ -62,52 +69,92 @@
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
 
-    /* ===== HERO (image behind title) ===== */
+    /* ===== HERO (Galapagos pattern) ===== */
     .hero{
       position:relative;
-      max-width:1100px;
-      margin:0 auto;
-      padding:22px 18px 12px;
-    }
-
-    .hero-banner{
-      position:relative;
-      border-radius:24px;
-      overflow:hidden;
-      box-shadow:0 22px 60px rgba(0,0,0,0.18);
-      min-height:320px;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)),
-        url("/assets/images/EE-Assets-17-Hero-Culinary.jpg") center/cover no-repeat;
-    }
-
-    .hero-content{
-      position:absolute;
-      inset:0;
+      width:100%;
+      min-height:64vh;
       display:flex;
       align-items:flex-end;
-      padding:22px;
+      justify-content:center;
+      background:url("/assets/images/experiences/EE-Assets-Exp-Hero-Culture.jpg") center / cover no-repeat;
+      color:#fff;
     }
 
-    .hero-title{
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.70));
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:1100px;
+      padding:54px 18px 34px;
+      text-align:left;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(3,78,162,0.38);
+      border:1px solid rgba(255,255,255,0.22);
+      font-weight:700;
+      letter-spacing:0.02em;
+      font-size:12.5px;
+      margin-bottom:14px;
+      backdrop-filter:blur(10px);
+    }
+
+    .hero h1{
+      margin:0 0 10px;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      font-size:clamp(34px,4.6vw,54px);
       letter-spacing:-0.03em;
-      color:#fff;
+      font-size:clamp(40px,5.4vw,72px);
+      line-height:1.03;
+    }
+
+    .hero p{
       margin:0;
-      line-height:1.05;
-      text-shadow:0 10px 30px rgba(0,0,0,0.35);
+      max-width:68ch;
+      font-size:clamp(15px,2vw,18px);
+      line-height:1.65;
+      color:rgba(255,255,255,0.92);
     }
 
     /* ===== CONTENT ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:0 18px 60px;
+      padding:36px 18px 60px;
     }
 
-    .content-grid{
+    .section{margin-bottom:36px}
+
+    .section h2{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:24px;
+      margin:0 0 10px;
+      color:var(--brand-blue);
+    }
+
+    .section p{
+      max-width:85ch;
+      line-height:1.75;
+      font-size:15.8px;
+      color:#2a2f36;
+      margin:0;
+    }
+
+    .grid{
       display:grid;
       grid-template-columns:1.15fr 0.85fr;
       gap:28px;
@@ -120,24 +167,15 @@
       border-radius:22px;
       padding:22px;
       border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      box-shadow:var(--shadow);
     }
 
-    .card h2{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:22px;
-      margin:0 0 10px;
-      color:var(--brand-blue);
-      letter-spacing:-0.02em;
-    }
-
-    .card p{
+    .card ul{
       margin:0;
+      padding-left:18px;
       line-height:1.75;
-      font-size:15.8px;
-      color:#2a2f36;
-      max-width:85ch;
+      font-size:14.8px;
+      color:#24324a;
     }
 
     .mini{
@@ -149,50 +187,51 @@
 
     .mini + .mini{margin-top:16px}
 
-    .mini h3{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      margin:0 0 8px;
-      color:#0f2f62;
-      letter-spacing:-0.02em;
-      font-size:18px;
-    }
-
-    .mini p{
-      margin:0 0 12px;
-      color:#24324a;
-      opacity:.95;
-      line-height:1.6;
-      font-size:14.6px;
-    }
-
-    /* ===== SELECTOR CARD (Experiences only) ===== */
-    .selector-card{
+    /* ===== CULTURE SELECTOR ===== */
+    .selector{
       background:#fff;
-      border-radius:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
       overflow:hidden;
     }
 
     .selector-top{
-      padding:18px 18px 0;
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:12px;
-      align-items:start;
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      justify-content:flex-start;
+      gap:16px;
+      padding:22px;
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
     }
 
-    /* Experiences-only control, matches the other pages' control sizing */
-    .selector-controls{
-      grid-column:2;
-      grid-row:1;
-      justify-self:end;
+    .selector-copy h3{
+      margin:0 0 6px;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:20px;
+      color:#0f2f62;
+    }
 
+    .selector-copy p{
+      margin:0;
+      color:#24324a;
+      opacity:0.92;
+      line-height:1.65;
+      font-size:14.8px;
+      max-width:70ch;
+    }
+
+    .selector-controls{
       display:grid;
       grid-template-columns:auto 260px;
-      gap:10px 10px;
+      gap:10px 12px;
+      justify-content:end;
       align-items:center;
+      align-self:flex-end;
     }
 
     .selector-controls label{
@@ -200,7 +239,9 @@
       color:#0f2f62;
       font-size:13px;
       letter-spacing:0.02em;
+      justify-self:start;
       text-align:left;
+      white-space:nowrap;
     }
 
     .selector-controls select{
@@ -216,7 +257,6 @@
       font-size:14px;
       cursor:pointer;
       outline:none;
-      min-width:0;
       width:260px;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
       background-image:
@@ -238,150 +278,260 @@
 
     .selector-body{ padding:22px; }
 
-    @media(max-width:900px){
-      .selector-top{
-        grid-template-columns:1fr;
-      }
-      .selector-controls{
-        grid-column:1;
-        justify-self:stretch;
-        grid-template-columns:1fr;
-      }
-      .selector-controls label{
-        margin-top:8px;
-      }
-      .selector-controls select{
-        width:100%;
-        min-width:0;
-      }
+    .recs-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:16px;
     }
 
-    /* ===== MUST EATS GRID ===== */
-    .section-title{
+    .rec{
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.06);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 16px 45px rgba(0,0,0,0.08);
+      transition:transform .2s ease, box-shadow .2s ease;
+      min-height:192px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .rec:hover{
+      transform:translateY(-5px);
+      box-shadow:0 24px 60px rgba(0,0,0,0.12);
+    }
+
+    .rec h4{
+      margin:0;
       font-family:Montserrat,Inter,sans-serif;
       font-weight:800;
-      font-size:24px;
-      margin:0 0 14px;
-      color:var(--brand-blue);
       letter-spacing:-0.02em;
+      font-size:16px;
+      color:#0f2f62;
     }
 
-    .must-grid{
-      display:grid;
-      grid-template-columns:repeat(2, 1fr);
-      gap:18px;
+    .rec p{
+      margin:0;
+      color:#2a2f36;
+      line-height:1.6;
+      font-size:14px;
+      opacity:0.95;
+      flex:1;
     }
 
-    /* ===== CAROUSEL (simple, auto-rotate + buttons) ===== */
+    .chips{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      background:var(--chipBg);
+      color:var(--chipText);
+      font-weight:800;
+      font-size:12.5px;
+      letter-spacing:0.01em;
+      border:1px solid rgba(3,78,162,0.16);
+      transition:transform .15s ease, background .15s ease;
+    }
+
+    .chip:hover{
+      transform:translateY(-1px);
+      background:rgba(3,78,162,0.14);
+    }
+
+    .meta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:-2px;
+    }
+
+    .badge{
+      font-size:12px;
+      font-weight:800;
+      color:#0f2f62;
+      background:rgba(3,78,162,0.08);
+      border:1px solid rgba(3,78,162,0.14);
+      padding:6px 8px;
+      border-radius:999px;
+      line-height:1;
+    }
+
+    .rec-actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:4px;
+    }
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:900;
+      font-size:13px;
+      background:var(--brand-blue);
+      color:#fff;
+      border:0;
+      cursor:pointer;
+      min-width:120px;
+    }
+
+    .cta:hover{ filter:brightness(0.95); }
+
+    .hint{
+      font-size:12.5px;
+      color:#24324a;
+      opacity:0.85;
+      font-weight:700;
+    }
+
+    /* ===== CAROUSEL (GALLERY) ===== */
     .carousel{
-      position:relative;
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 14px 34px rgba(3,78,162,0.10);
+      margin-top:40px;
       background:#fff;
-      margin-top:14px;
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.10);
+      overflow:hidden;
+      position:relative;
+      z-index:1;
+    }
+
+    .carousel-viewport{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
     }
 
     .carousel-track{
       display:flex;
-      transition:transform .45s ease;
+      width:100%;
+      transform:translateX(0);
+      transition:transform 450ms ease;
       will-change:transform;
     }
 
     .carousel-slide{
       min-width:100%;
-      aspect-ratio: 16 / 10;
       position:relative;
-      background:linear-gradient(180deg, rgba(3,78,162,0.10), rgba(3,78,162,0.02));
+      aspect-ratio:16/9;
+      background:#eef2f7;
     }
 
     .carousel-slide img{
       width:100%;
       height:100%;
       object-fit:cover;
-      display:block;
-    }
-
-    .slide-caption{
-      position:absolute;
-      left:12px;
-      right:12px;
-      bottom:12px;
-      padding:10px 12px;
-      border-radius:14px;
-      background:rgba(0,0,0,0.35);
-      backdrop-filter:saturate(140%) blur(8px);
-      border:1px solid rgba(255,255,255,0.18);
-      color:#fff;
-      font-weight:900;
-      letter-spacing:-0.01em;
-      line-height:1.25;
-      font-size:14px;
-      text-shadow:0 10px 30px rgba(0,0,0,0.35);
     }
 
     .carousel-btn{
       position:absolute;
       top:50%;
       transform:translateY(-50%);
-      width:42px;
-      height:42px;
+      width:44px;
+      height:44px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,0.35);
-      background:rgba(0,0,0,0.25);
-      backdrop-filter:saturate(140%) blur(8px);
-      color:#fff;
+      background:rgba(15,47,98,0.55);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
       display:flex;
       align-items:center;
       justify-content:center;
-      cursor:pointer;
       z-index:5;
     }
 
-    .carousel-btn:hover{background:rgba(0,0,0,0.32)}
-    .carousel-btn.prev{left:10px}
-    .carousel-btn.next{right:10px}
+    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
 
-    .chev{
-      width:10px;height:10px;
+    .carousel-btn.prev{ left:12px; }
+    .carousel-btn.next{ right:12px; }
+
+    .carousel-btn span{
+      display:block;
+      width:10px;
+      height:10px;
       border-right:2px solid #fff;
       border-bottom:2px solid #fff;
       opacity:.95;
     }
-    .prev .chev{transform:rotate(135deg)}
-    .next .chev{transform:rotate(-45deg)}
+
+    .carousel-btn.prev span{ transform:rotate(135deg); }
+    .carousel-btn.next span{ transform:rotate(-45deg); }
+
+    .carousel-ui{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+    }
 
     .carousel-dots{
-      position:absolute;
-      bottom:10px;
-      left:0;
-      right:0;
       display:flex;
-      justify-content:center;
       gap:8px;
-      z-index:6;
-      padding:0 12px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
+      flex:1;
     }
 
     .dot{
-      width:8px;height:8px;
+      width:10px;
+      height:10px;
       border-radius:999px;
-      background:rgba(255,255,255,0.55);
-      border:1px solid rgba(0,0,0,0.10);
+      border:1px solid rgba(3,78,162,0.25);
+      background:rgba(3,78,162,0.12);
       cursor:pointer;
+      padding:0;
     }
-    .dot.active{background:#fff}
+
+    .dot.active{
+      background:rgba(3,78,162,0.85);
+      border-color:rgba(3,78,162,0.85);
+    }
+
+    .carousel-counter{
+      font-weight:700;
+      font-size:13px;
+      color:#0f2f62;
+      opacity:.9;
+      white-space:nowrap;
+    }
 
     /* ===== MOBILE ===== */
     @media(max-width:900px){
-      .content-grid{grid-template-columns:1fr}
-      .must-grid{grid-template-columns:1fr}
-      .hero-banner{min-height:290px}
+      .hero-inner{ text-align:center; }
+      .hero p{ margin:0 auto; }
+
+      .grid{grid-template-columns:1fr}
+      .recs-grid{grid-template-columns:1fr}
+      .selector-controls{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        justify-content:flex-start;
+        width:100%;
+      }
+      .selector-controls label{width:100%; justify-self:auto;}
+      .selector-controls select{width:100%; min-width:260px;}
     }
 
-    @media(max-width:620px){
-      .hero-content{padding:16px}
+    @media (prefers-reduced-motion: reduce){
+      .rec { transition:none !important; }
+      .carousel-track{ transition:none !important; }
     }
   </style>
 </head>
@@ -390,265 +540,136 @@
   <div id="siteHeader"></div>
 
   <main>
-    <!-- PAGE CONTENT ONLY -->
-
-    <section class="hero" aria-label="Must Eats hero">
-      <div class="hero-banner" role="img" aria-label="Must Eats hero image placeholder">
-        <div class="hero-content">
-          <div>
-            <h1 class="hero-title">Must Eats</h1>
-            <!-- Removed the two hero buttons -->
-          </div>
-        </div>
+    <section class="hero" aria-label="Culture page hero">
+      <div class="hero-inner">
+        <div class="kicker">Experience: Culture</div>
+        <h1>Culture</h1>
+        <p>
+          Indigenous traditions, colonial history, and strong regional identity shape daily life across Ecuador.
+          Cultural travel here is about how people live, celebrate, and preserve heritage.
+        </p>
       </div>
     </section>
 
     <div class="wrap">
-      <!-- Experiences selector (dropdown like the other pages) -->
-      <section class="selector-card" aria-label="Experiences selector" style="margin-top:18px;">
-        <div class="selector-top">
-          <div></div>
+      <section class="section">
+        <h2>What this experience is about</h2>
+        <p>
+          Cultural experiences in Ecuador range from markets and festivals to artisan communities, historic towns, music, and everyday traditions.
+          This category focuses on meaningful encounters rather than surface-level sightseeing.
+        </p>
+      </section>
 
-          <div class="selector-controls" aria-label="Selector controls">
-            <label for="experienceSelect">Experiences</label>
-            <select id="experienceSelect" name="experience">
-              <option value="/experiences/">All Experiences</option>
+      <!-- Culture Selector -->
+      <section class="section selector" aria-label="Culture selector">
+        <div class="selector-top">
+          <div class="selector-controls">
+            <label for="ee_exp_nav">Experiences</label>
+            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Navigate to an experience">
               <option value="/experiences/adventure/">Adventure</option>
               <option value="/experiences/nature/">Nature</option>
               <option value="/experiences/wildlife-birding/">Wildlife &amp; Birding</option>
               <option value="/experiences/relaxation/">Relaxation</option>
-              <option value="/experiences/culinary/" selected>Culinary</option>
-              <option value="/experiences/culture/">Culture</option>
+              <option value="/experiences/culinary/">Culinary</option>
+              <option value="/experiences/culture/" selected>Culture</option>
             </select>
+
+            <label for="ee_cult_focus">Focus</label>
+            <select id="ee_cult_focus" name="ee_cult_focus" aria-label="Select culture focus">
+              <option value="markets" selected>Markets + artisan towns</option>
+              <option value="history">Historic cities + architecture</option>
+              <option value="communities">Indigenous communities + crafts</option>
+              <option value="festivals">Festivals + local traditions</option>
+            </select>
+          </div>
+
+          <div class="selector-copy">
+            <h3>Pick your culture focus</h3>
+            <p>
+              Choose what you want to experience and we’ll show three strong starting points — plus the best region to build from.
+              Keep it practical and let the local rhythm guide the day.
+            </p>
           </div>
         </div>
 
         <div class="selector-body">
-          <div class="card" style="box-shadow:none;border:0;padding:0;background:transparent;">
-            <h2 style="margin-bottom:10px;">How Ecuador’s regions taste different</h2>
-            <p>
-              Ecuador is small, but the food changes fast. The Andes lean into comfort and tradition, built around potatoes,
-              pork, and hearty sauces. The Coast is bright and ocean-forward with citrus, plantain, and seafood that shows up
-              everywhere. The Amazon brings smoky, herbal flavors and ingredients you rarely see outside the rainforest.
-              In the Galapagos, simplicity wins: fresh fish, island-style sides, and whatever the ocean delivered that day.
-              Pick a region, try at least one dish, and you’ll understand the local culture instantly.
-            </p>
+          <div class="recs-grid" id="ee_cult_recs" aria-live="polite"></div>
+          <div style="margin-top:12px;">
+            <span class="hint" id="ee_cult_hint">Tip: Start with a market. It’s the easiest way to feel a region fast.</span>
           </div>
         </div>
       </section>
 
-      <section style="margin-top:34px" aria-label="Top must eats by region">
-        <h2 class="section-title">Top must eats by region</h2>
+      <section class="section grid">
+        <div class="card">
+          <h2>Signature cultural experiences</h2>
+          <ul>
+            <li>Traditional markets and artisan towns</li>
+            <li>Indigenous communities and heritage crafts</li>
+            <li>Historic cities and colonial architecture</li>
+            <li>Festivals, rituals, and local celebrations</li>
+            <li>Music, dance, and storytelling traditions</li>
+          </ul>
+        </div>
 
-        <div class="must-grid">
-          <!-- ANDES -->
-          <div class="card" aria-label="Andes must eats">
-            <h2>Andes</h2>
-            <p>Comfort-forward food built for high elevation: warm soups, pork specialties, and classic sides.</p>
-
-            <div class="carousel" data-carousel="andes" aria-label="Andes dishes carousel">
-              <button class="carousel-btn prev" type="button" aria-label="Previous slide"><span class="chev" aria-hidden="true"></span></button>
-              <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
-
-              <div class="carousel-track">
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Locro.jpg" alt="Locro de papa">
-                  <div class="slide-caption">Locro de papa</div>
-                </div>
-
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Fritada.jpg" alt="Fritada with llapingachos">
-                  <div class="slide-caption">Fritada + llapingachos</div>
-                </div>
-
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Hornado.jpg" alt="Hornado">
-                  <div class="slide-caption">Hornado</div>
-                </div>
-              </div>
-
-              <div class="carousel-dots" aria-label="Carousel dots"></div>
-            </div>
-
-            <p style="margin-top:14px">
-              <strong>Must-try:</strong> Locro de papa · Fritada + llapingachos · Hornado
-            </p>
+        <div>
+          <div class="mini card" style="padding:20px;">
+            <h2 style="margin:0 0 10px; font-family:Montserrat,Inter,sans-serif; font-weight:800; color:var(--brand-blue); font-size:20px;">Best for</h2>
+            <ul style="margin:0; padding-left:18px; line-height:1.75; font-size:14.8px; color:#24324a;">
+              <li>Cultural explorers</li>
+              <li>Slow travelers</li>
+              <li>History and anthropology enthusiasts</li>
+              <li>Travelers seeking authentic connection</li>
+            </ul>
           </div>
 
-          <!-- COAST -->
-          <div class="card" aria-label="Coast must eats">
-            <h2>Coast</h2>
-            <p>Bright, citrusy, and seafood-heavy with plantain everywhere. Perfect for quick, flavorful meals.</p>
-
-            <div class="carousel" data-carousel="coast" aria-label="Coast dishes carousel">
-              <button class="carousel-btn prev" type="button" aria-label="Previous slide"><span class="chev" aria-hidden="true"></span></button>
-              <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
-
-              <div class="carousel-track">
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Ceviche.jpg" alt="Ceviche Ecuatoriano">
-                  <div class="slide-caption">Ceviche ecuatoriano</div>
-                </div>
-
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Encebollado.jpg" alt="Encebollado">
-                  <div class="slide-caption">Encebollado</div>
-                </div>
-
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Bolon.jpg" alt="Bolon de verde">
-                  <div class="slide-caption">Bolon de verde</div>
-                </div>
-              </div>
-
-              <div class="carousel-dots" aria-label="Carousel dots"></div>
-            </div>
-
-            <p style="margin-top:14px">
-              <strong>Must-try:</strong> Ceviche ecuatoriano · Encebollado · Bolon de verde
-            </p>
-          </div>
-
-          <!-- AMAZON -->
-          <div class="card" aria-label="Amazon must eats">
-            <h2>Amazon</h2>
-            <p>Smoky, herbal, and rainforest-rooted. Dishes feel close to the forest and the river.</p>
-
-            <div class="carousel" data-carousel="amazon" aria-label="Amazon dishes carousel">
-              <button class="carousel-btn prev" type="button" aria-label="Previous slide"><span class="chev" aria-hidden="true"></span></button>
-              <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
-
-              <div class="carousel-track">
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Maito.jpg" alt="Maito">
-                  <div class="slide-caption">Maito</div>
-                </div>
-
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-GuayusaTea.jpg" alt="Guayusa tea">
-                  <div class="slide-caption">Guayusa tea</div>
-                </div>
-
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-CacaoCafe.jpg" alt="Chocolate and cacao drinks">
-                  <div class="slide-caption">Chocolate + cacao drinks</div>
-                </div>
-              </div>
-
-              <div class="carousel-dots" aria-label="Carousel dots"></div>
-            </div>
-
-            <p style="margin-top:14px">
-              <strong>Must-try:</strong> Maito · Guayusa tea · Chocolate and cacao drinks
-            </p>
-          </div>
-
-          <!-- GALAPAGOS -->
-          <div class="card" aria-label="Galapagos must eats">
-            <h2>Galapagos</h2>
-            <p>Island simplicity with a seafood focus. Fresh fish, classic sides, and ocean-first flavor.</p>
-
-            <div class="carousel" data-carousel="galapagos" aria-label="Galapagos dishes carousel">
-              <button class="carousel-btn prev" type="button" aria-label="Previous slide"><span class="chev" aria-hidden="true"></span></button>
-              <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
-
-              <div class="carousel-track">
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-ArrozMarinero.jpg" alt="Arroz marinero">
-                  <div class="slide-caption">Arroz marinero</div>
-                </div>
-
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-FreshCatch.jpg" alt="Fresh catch of the day">
-                  <div class="slide-caption">Fresh catch of the day</div>
-                </div>
-
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Patacones.jpg" alt="Patacones">
-                  <div class="slide-caption">Patacones</div>
-                </div>
-              </div>
-
-              <div class="carousel-dots" aria-label="Carousel dots"></div>
-            </div>
-
-            <p style="margin-top:14px">
-              <strong>Must-try:</strong> Arroz marinero · Fresh catch of the day · Patacones
-            </p>
+          <div class="mini card" style="padding:20px; margin-top:16px;">
+            <h2 style="margin:0 0 10px; font-family:Montserrat,Inter,sans-serif; font-weight:800; color:var(--brand-blue); font-size:20px;">Good region matches</h2>
+            <ul style="margin:0; padding-left:18px; line-height:1.75; font-size:14.8px; color:#24324a;">
+              <li>Andes: markets, heritage towns, indigenous culture</li>
+              <li>Coast: music, food culture, coastal traditions</li>
+              <li>Amazon: ancestral knowledge and community life</li>
+              <li>Galapagos: island history and conservation culture</li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <section style="margin-top:34px" aria-label="Feeling brave section">
-        <h2 class="section-title">Feeling brave</h2>
+      <!-- Bottom Carousel -->
+      <section class="carousel" aria-label="Culture gallery carousel">
+        <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
+          <span aria-hidden="true"></span>
+        </button>
+        <button class="carousel-btn next" type="button" aria-label="Next slide" id="ee_car_next">
+          <span aria-hidden="true"></span>
+        </button>
 
-        <div class="must-grid">
-          <div class="card" aria-label="Challenge bites">
-            <h2>Challenge bites</h2>
-            <p>
-              These are classic “try it once” foods you’ll see in Ecuador. If you want a story, order one and lean in.
-              In the future, this section can include “where to try it” and trusted spots.
-            </p>
-
-            <div class="carousel" data-carousel="brave" aria-label="Feeling brave carousel">
-              <button class="carousel-btn prev" type="button" aria-label="Previous slide"><span class="chev" aria-hidden="true"></span></button>
-              <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
-
-              <div class="carousel-track">
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Cuy.jpg" alt="Cuy asado">
-                  <div class="slide-caption">Cuy asado</div>
-                </div>
-
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Chontacuro.jpg" alt="Chontacuro">
-                  <div class="slide-caption">Chontacuro</div>
-                </div>
-              </div>
-
-              <div class="carousel-dots" aria-label="Carousel dots"></div>
-            </div>
-
-            <p style="margin-top:14px">
-              <strong>Must-try:</strong> Cuy asado · Chontacuro
-            </p>
+        <div class="carousel-viewport" id="ee_car_viewport">
+          <div class="carousel-track" id="ee_car_track">
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-1.jpg" alt="Culture gallery image 1"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-2.jpg" alt="Culture gallery image 2"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-3.jpg" alt="Culture gallery image 3"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-4.jpg" alt="Culture gallery image 4"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-5.jpg" alt="Culture gallery image 5"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-6.jpg" alt="Culture gallery image 6"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-7.jpg" alt="Culture gallery image 7"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-8.jpg" alt="Culture gallery image 8"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-9.jpg" alt="Culture gallery image 9"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-10.jpg" alt="Culture gallery image 10"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-11.jpg" alt="Culture gallery image 11"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-12.jpg" alt="Culture gallery image 12"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-13.jpg" alt="Culture gallery image 13"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-14.jpg" alt="Culture gallery image 14"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-15.jpg" alt="Culture gallery image 15"></div>
           </div>
+        </div>
 
-          <div class="card" aria-label="Coming soon">
-            <h2>Where to try it (coming soon)</h2>
-            <p>
-              This space is reserved for curated recommendations: neighborhoods, markets, restaurants, and
-              “best version of the dish” picks by region.
-            </p>
-
-            <div class="carousel" data-carousel="comingsoon" aria-label="Where to try it carousel placeholder">
-              <button class="carousel-btn prev" type="button" aria-label="Previous slide"><span class="chev" aria-hidden="true"></span></button>
-              <button class="carousel-btn next" type="button" aria-label="Next slide"><span class="chev" aria-hidden="true"></span></button>
-
-              <div class="carousel-track">
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Market.jpg" alt="Market">
-                  <div class="slide-caption">Markets</div>
-                </div>
-
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-Restaurant.jpg" alt="Restaurant">
-                  <div class="slide-caption">Restaurants</div>
-                </div>
-
-                <div class="carousel-slide">
-                  <img src="/assets/images/EE-Assets-Culinary-Must-Eats-StreetFood.jpg" alt="Street food">
-                  <div class="slide-caption">Street Foods</div>
-                </div>
-              </div>
-
-              <div class="carousel-dots" aria-label="Carousel dots"></div>
-            </div>
-          </div>
+        <div class="carousel-ui">
+          <div class="carousel-dots" id="ee_car_dots" aria-label="Carousel pagination"></div>
+          <div class="carousel-counter" id="ee_car_counter">1 / 15</div>
         </div>
       </section>
     </div>
-
   </main>
 
   <div id="siteFooter"></div>
@@ -669,123 +690,301 @@
   </script>
 
   <script>
-    (function () {
-      const dropdowns = document.querySelectorAll('.dropdown');
-
-      function closeAll() {
-        dropdowns.forEach(dd => {
-          dd.classList.remove('open');
-          const btn = dd.querySelector('.dropbtn');
-          if (btn) btn.setAttribute('aria-expanded', 'false');
-        });
-      }
-
-      dropdowns.forEach(dd => {
-        const btn = dd.querySelector('.dropbtn');
-        const menu = dd.querySelector('.dropdown-menu');
-        if (!btn) return;
-
-        btn.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-
-          const isOpen = dd.classList.contains('open');
-          closeAll();
-          dd.classList.toggle('open', !isOpen);
-          btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
-        });
-
-        if (menu) {
-          menu.addEventListener('click', function (e) {
-            e.stopPropagation();
-          });
-        }
-      });
-
-      document.addEventListener('click', closeAll);
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeAll();
-      });
-    })();
-
-    (function () {
-      const carousels = document.querySelectorAll('.carousel');
-
-      function setupCarousel(root) {
-        const track = root.querySelector('.carousel-track');
-        const slides = Array.from(root.querySelectorAll('.carousel-slide'));
-        const prevBtn = root.querySelector('.carousel-btn.prev');
-        const nextBtn = root.querySelector('.carousel-btn.next');
-        const dotsWrap = root.querySelector('.carousel-dots');
-
-        if (!track || slides.length === 0 || !prevBtn || !nextBtn || !dotsWrap) return;
-
-        let index = 0;
-        let timer = null;
-
-        dotsWrap.innerHTML = '';
-        const dots = slides.map((_, i) => {
-          const d = document.createElement('button');
-          d.className = 'dot' + (i === 0 ? ' active' : '');
-          d.type = 'button';
-          d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-          d.addEventListener('click', () => goTo(i, true));
-          dotsWrap.appendChild(d);
-          return d;
-        });
-
-        function render() {
-          track.style.transform = 'translateX(' + (-index * 100) + '%)';
-          dots.forEach((d, i) => d.classList.toggle('active', i === index));
-        }
-
-        function goTo(i, userAction) {
-          index = (i + slides.length) % slides.length;
-          render();
-          if (userAction) restart();
-        }
-
-        function next(userAction){ goTo(index + 1, userAction); }
-        function prev(userAction){ goTo(index - 1, userAction); }
-
-        function start() {
-          stop();
-          timer = setInterval(() => next(false), 4200);
-        }
-
-        function stop() {
-          if (timer) clearInterval(timer);
-          timer = null;
-        }
-
-        function restart() {
-          stop();
-          start();
-        }
-
-        nextBtn.addEventListener('click', () => next(true));
-        prevBtn.addEventListener('click', () => prev(true));
-
-        root.addEventListener('mouseenter', stop);
-        root.addEventListener('mouseleave', start);
-        root.addEventListener('focusin', stop);
-        root.addEventListener('focusout', start);
-
-        render();
-        start();
-      }
-
-      carousels.forEach(setupCarousel);
-    })();
-
+    /* ===== Experiences selector quick nav (universal) ===== */
     (function(){
-      const experienceSelect = document.getElementById('experienceSelect');
-      if (!experienceSelect) return;
+      const expNav = document.getElementById("ee_exp_nav");
+      if (!expNav) return;
 
-      experienceSelect.addEventListener('change', function(){
-        const url = this.value;
-        if (url) window.location.href = url;
+      expNav.addEventListener("change", function(){
+        const url = String(this.value || "").trim();
+        if (!url) return;
+        if (url === window.location.pathname || url === window.location.pathname + "/") return;
+        window.location.href = url;
       });
+    })();
+
+    /* ===== Culture Selector ===== */
+    (function(){
+      const focusEl = document.getElementById("ee_cult_focus");
+      const recsEl = document.getElementById("ee_cult_recs");
+      const hintEl = document.getElementById("ee_cult_hint");
+
+      const data = {
+        markets: {
+          hint: "Markets and artisan towns are the easiest entry point. Go early and keep the pace slow.",
+          recs: [
+            {
+              title: "Market morning + artisan browsing",
+              desc: "Start with a traditional market, then visit nearby artisan shops for textiles, ceramics, and small crafts.",
+              badges: ["Easy", "Half day"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            },
+            {
+              title: "Hands-on workshop (short + local)",
+              desc: "A small craft lesson or demonstration that keeps the focus on people and process, not souvenirs.",
+              badges: ["Easy", "2-3 hours"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            },
+            {
+              title: "Food + culture stroll (simple loop)",
+              desc: "Pair one local dish with a short walk through historic streets and daily-life neighborhoods.",
+              badges: ["Easy", "2-4 hours"],
+              chips: [
+                { label: "Good match: Andes", href: "/regions/andes/" },
+                { label: "Also: Coast", href: "/regions/coast/" }
+              ],
+              ctaLabel: "Explore Regions",
+              ctaHref: "/regions/"
+            }
+          ]
+        },
+
+        history: {
+          hint: "Historic cities are best done in layers: one neighborhood, one museum, one cafe. No rushing.",
+          recs: [
+            {
+              title: "Colonial city walk (one district)",
+              desc: "Choose one historic area and explore slowly with stops for viewpoints, plazas, and architecture details.",
+              badges: ["Easy", "2-4 hours"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            },
+            {
+              title: "Museum + cafe reset",
+              desc: "A simple culture day: one museum, then downtime. Works well on travel days.",
+              badges: ["Easy", "Half day"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            },
+            {
+              title: "Heritage town base + short excursions",
+              desc: "Stay in a scenic town and take short cultural outings without turning the day into a checklist.",
+              badges: ["Easy", "Full day"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            }
+          ]
+        },
+
+        communities: {
+          hint: "For community visits, prioritize respect and context. A good guide makes all the difference.",
+          recs: [
+            {
+              title: "Community visit + craft context",
+              desc: "Learn the story behind weaving, carving, or painting and how it connects to identity and daily life.",
+              badges: ["Moderate", "Half day"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            },
+            {
+              title: "Cultural exchange day (slow pace)",
+              desc: "A slower day focused on conversation, small demonstrations, and shared meals when available.",
+              badges: ["Moderate", "Full day"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            },
+            {
+              title: "Amazon community life (when appropriate)",
+              desc: "A deeper cultural angle built around local knowledge, river life, and sustainable traditions.",
+              badges: ["Moderate", "Full day"],
+              chips: [
+                { label: "Best in: Amazon", href: "/regions/amazon/" }
+              ],
+              ctaLabel: "Explore Amazon",
+              ctaHref: "/regions/amazon/"
+            }
+          ]
+        },
+
+        festivals: {
+          hint: "Festivals are seasonal. If there is no festival, choose music + daily traditions instead.",
+          recs: [
+            {
+              title: "Festival day plan (light + flexible)",
+              desc: "Arrive early, keep expectations open, and focus on one or two key moments rather than everything.",
+              badges: ["Easy", "Half day to Full day"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" },
+                { label: "Also: Coast", href: "/regions/coast/" }
+              ],
+              ctaLabel: "Explore Regions",
+              ctaHref: "/regions/"
+            },
+            {
+              title: "Music, dance, and evening culture",
+              desc: "If timing aligns, build an evening around local music, small performances, and community energy.",
+              badges: ["Easy", "Evening"],
+              chips: [
+                { label: "Good match: Coast", href: "/regions/coast/" }
+              ],
+              ctaLabel: "Explore Coast",
+              ctaHref: "/regions/coast/"
+            },
+            {
+              title: "Traditions day (markets + rituals)",
+              desc: "A non-festival alternative that still feels cultural: markets, crafts, and local daily rhythms.",
+              badges: ["Easy", "Half day"],
+              chips: [
+                { label: "Best in: Andes", href: "/regions/andes/" }
+              ],
+              ctaLabel: "Explore Andes",
+              ctaHref: "/regions/andes/"
+            }
+          ]
+        }
+      };
+
+      function escapeHtml(str){
+        return String(str)
+          .replaceAll("&","&amp;")
+          .replaceAll("<","&lt;")
+          .replaceAll(">","&gt;")
+          .replaceAll('"',"&quot;")
+          .replaceAll("'","&#039;");
+      }
+
+      function render(key){
+        const block = data[key] || data.markets;
+        if (hintEl) hintEl.textContent = block.hint || "";
+
+        const html = block.recs.map((r) => {
+          const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
+          const chips = (r.chips || []).map(c => `
+            <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
+          `).join("");
+
+          return `
+            <article class="rec">
+              <div class="meta">${badges}</div>
+              <h4>${escapeHtml(r.title)}</h4>
+              <p>${escapeHtml(r.desc)}</p>
+
+              <div class="chips">${chips}</div>
+
+              <div class="rec-actions">
+                <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
+                <span class="hint">Best-fit starting point</span>
+              </div>
+            </article>
+          `;
+        }).join("");
+
+        recsEl.innerHTML = html;
+      }
+
+      render(focusEl ? focusEl.value : "markets");
+
+      if (focusEl) {
+        focusEl.addEventListener("change", function(){
+          render(this.value);
+        });
+      }
+    })();
+
+    /* ===== Carousel ===== */
+    (function(){
+      const track = document.getElementById("ee_car_track");
+      const viewport = document.getElementById("ee_car_viewport");
+      const prevBtn = document.getElementById("ee_car_prev");
+      const nextBtn = document.getElementById("ee_car_next");
+      const dotsWrap = document.getElementById("ee_car_dots");
+      const counter = document.getElementById("ee_car_counter");
+
+      if (!track || !viewport) return;
+
+      const slides = Array.from(track.children);
+      const total = slides.length;
+      let index = 0;
+      let startX = 0;
+      let currentX = 0;
+      let dragging = false;
+
+      function setCounter(){
+        if (!counter) return;
+        counter.textContent = (index + 1) + " / " + total;
+      }
+
+      function setDots(){
+        if (!dotsWrap) return;
+        dotsWrap.innerHTML = "";
+        for (let i = 0; i < total; i++){
+          const b = document.createElement("button");
+          b.className = "dot" + (i === index ? " active" : "");
+          b.type = "button";
+          b.setAttribute("aria-label", "Go to slide " + (i + 1));
+          b.addEventListener("click", () => goTo(i));
+          dotsWrap.appendChild(b);
+        }
+      }
+
+      function update(){
+        track.style.transform = "translateX(" + (-index * 100) + "%)";
+        setCounter();
+        setDots();
+      }
+
+      function goTo(i){
+        index = (i + total) % total;
+        update();
+      }
+
+      function next(){ goTo(index + 1); }
+      function prev(){ goTo(index - 1); }
+
+      if (nextBtn) nextBtn.addEventListener("click", next);
+      if (prevBtn) prevBtn.addEventListener("click", prev);
+
+      viewport.addEventListener("touchstart", (e) => {
+        if (e.touches.length !== 1) return;
+        dragging = true;
+        startX = e.touches[0].clientX;
+        currentX = startX;
+      }, { passive:true });
+
+      viewport.addEventListener("touchmove", (e) => {
+        if (!dragging || e.touches.length !== 1) return;
+        currentX = e.touches[0].clientX;
+      }, { passive:true });
+
+      viewport.addEventListener("touchend", () => {
+        if (!dragging) return;
+        const dx = currentX - startX;
+        dragging = false;
+        if (Math.abs(dx) > 45){
+          if (dx < 0) next();
+          else prev();
+        }
+      });
+
+      viewport.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") next();
+        if (e.key === "ArrowLeft") prev();
+      });
+
+      update();
     })();
   </script>
 </body>
