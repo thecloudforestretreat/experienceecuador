@@ -42,7 +42,7 @@
     "/experiences/": "/es/experiencias/",
     "/experiences/adventure/": "/es/experiencias/aventura/",
     "/experiences/nature/": "/es/experiencias/naturaleza/",
-    "/experiences/wildlife-birding/": "/es/experiencias/vida-silvestre-y-avistamiento-de-aves/",
+    "/experiences/wildlife-birding/": "/es/experiencias/vida-silvestre-y-aves/",
     "/experiences/relaxation/": "/es/experiencias/relajacion/",
     "/experiences/culinary/": "/es/experiencias/gastronomia/",
     "/experiences/culture/": "/es/experiencias/cultura/",
