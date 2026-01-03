@@ -5,29 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- SEO -->
-  <title>Aventura | Experience Ecuador</title>
-  <meta name="description" content="Descubre aventuras en Ecuador: volcanes, canopy, rafting y rutas activas en Andes, Amazonia, Costa y Galapagos. Elige tu nivel y arma tu itinerario." />
-  <link rel="canonical" href="https://experienceecuador.com/es/experiencias/aventura/" />
+  <title>Naturaleza | Experience Ecuador</title>
+  <meta name="description" content="Explora la naturaleza de Ecuador: volcanes, bosque nublado, Amazonia, costa y Galapagos. Elige tu ritmo y empieza con las regiones ideales." />
+  <link rel="canonical" href="https://experienceecuador.com/es/experiencias/naturaleza/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
-  <meta property="og:title" content="Aventura | Experience Ecuador" />
-  <meta property="og:description" content="Descubre aventuras en Ecuador: volcanes, canopy, rafting y rutas activas en Andes, Amazonia, Costa y Galapagos. Elige tu nivel y arma tu itinerario." />
-  <meta property="og:url" content="https://experienceecuador.com/es/experiencias/aventura/" />
+  <meta property="og:title" content="Naturaleza | Experience Ecuador" />
+  <meta property="og:description" content="Explora la naturaleza de Ecuador: volcanes, bosque nublado, Amazonia, costa y Galapagos. Elige tu ritmo y empieza con las regiones ideales." />
+  <meta property="og:url" content="https://experienceecuador.com/es/experiencias/naturaleza/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Experience Ecuador travel planning and destination guides" />
+  <meta property="og:image:alt" content="Experience Ecuador - Naturaleza" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Aventura | Experience Ecuador" />
-  <meta name="twitter:description" content="Descubre aventuras en Ecuador: volcanes, canopy, rafting y rutas activas en Andes, Amazonia, Costa y Galapagos. Elige tu nivel y arma tu itinerario." />
+  <meta name="twitter:title" content="Naturaleza | Experience Ecuador" />
+  <meta name="twitter:description" content="Explora la naturaleza de Ecuador: volcanes, bosque nublado, Amazonia, costa y Galapagos. Elige tu ritmo y empieza con las regiones ideales." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
-  <!-- Favicons (root paths) -->
+  <!-- Favicons (approved root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -69,7 +69,7 @@
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
 
-    /* ===== HERO (GALAPAGOS PATTERN) ===== */
+    /* ===== HERO ===== */
     .hero{
       position:relative;
       width:100%;
@@ -77,7 +77,7 @@
       display:flex;
       align-items:flex-end;
       justify-content:center;
-      background:url("/assets/images/experiences/EE-Assets-Exp-Hero-Adventure.jpg") center / cover no-repeat;
+      background:url("/assets/images/experiences/EE-Assets-Exp-Hero-Nature.jpg") center / cover no-repeat;
       color:#fff;
     }
 
@@ -187,7 +187,7 @@
 
     .mini + .mini{margin-top:16px}
 
-    /* ===== ADVENTURE LEVEL SELECTOR ===== */
+    /* ===== NATURE SELECTOR (UPDATED TO MATCH CULTURE MOBILE) ===== */
     .selector{
       background:#fff;
       border:1px solid var(--border);
@@ -197,18 +197,14 @@
     }
 
     .selector-top{
-      display:grid;
-      grid-template-columns:1fr auto;
-      grid-template-rows:auto auto;
-      align-items:start;
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      justify-content:flex-start;
       gap:16px;
       padding:22px;
       border-bottom:1px solid rgba(0,0,0,0.06);
       background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-    }
-
-    .selector-copy{
-      grid-column:1 / -1;
     }
 
     .selector-copy h3{
@@ -229,14 +225,14 @@
       max-width:70ch;
     }
 
+    /* IMPORTANT: this grid makes labels sit above selects on mobile, consistent with culinary/culture */
     .selector-controls{
-      grid-column:2;
-      justify-self:end;
       display:grid;
       grid-template-columns:auto 260px;
-      column-gap:12px;
-      row-gap:10px;
+      gap:10px 12px;
+      justify-content:end;
       align-items:center;
+      align-self:flex-end;
     }
 
     .selector-controls label{
@@ -244,6 +240,8 @@
       color:#0f2f62;
       font-size:13px;
       letter-spacing:0.02em;
+      justify-self:end;
+      white-space:nowrap;
     }
 
     .selector-controls select{
@@ -260,7 +258,6 @@
       cursor:pointer;
       outline:none;
       width:260px;
-      min-width:260px;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
       background-image:
         linear-gradient(45deg, transparent 50%, #0f2f62 50%),
@@ -400,7 +397,7 @@
       font-weight:700;
     }
 
-    /* ===== CAROUSEL (GALLERY) - REGIONS STYLE (MATCH NATURE) ===== */
+    /* ===== CAROUSEL (GALLERY) - FIXED HOOKUP ===== */
     .carousel{
       margin-top:40px;
       background:#fff;
@@ -416,7 +413,6 @@
       overflow:hidden;
       width:100%;
       touch-action:pan-y;
-      outline:none;
     }
 
     .carousel-track{
@@ -520,27 +516,20 @@
     @media(max-width:900px){
       .grid{grid-template-columns:1fr}
       .recs-grid{grid-template-columns:1fr}
-      .selector-top{
-        grid-template-columns:1fr;
-      }
-      .selector-controls{
-        grid-column:1;
-        justify-self:start;
-        grid-template-columns:1fr;
-        row-gap:10px;
-        column-gap:0;
-        width:100%;
-      }
-      .selector-controls label{
-        margin:0;
-      }
-      .selector-controls select{
-        width:100%;
-        min-width:0;
-      }
 
       .hero-inner{ text-align:center; }
       .hero p{ margin:0 auto; }
+
+      /* Keep labels above selects on mobile (matches culinary/culture) */
+      .selector-controls{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        justify-content:flex-start;
+        width:100%;
+      }
+      .selector-controls label{width:100%; justify-self:auto;}
+      .selector-controls select{width:100%; min-width:260px;}
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -556,78 +545,76 @@
   <main>
     <!-- PAGE CONTENT ONLY -->
 
-    <section class="hero" aria-label="Imagen principal de aventura">
+    <section class="hero" aria-label="Imagen principal de Naturaleza">
       <div class="hero-inner">
-        <div class="kicker">Guia de Experiencias</div>
-        <h1>Aventura</h1>
+        <div class="kicker">Experiencias • Naturaleza</div>
+        <h1>Naturaleza</h1>
         <p>
-          Ecuador esta hecho para la aventura: volcanes, rios, costa y bosque nublado, todo a pocas horas entre si.
-          Usa el selector de abajo para ajustar tu nivel de energia con las mejores aventuras y regiones.
+          La variedad natural de Ecuador es enorme: volcanes, bosque nublado, ríos amazónicos, playas e islas.
+          Elige tu ritmo abajo y empieza con las regiones que mejor encajan.
         </p>
       </div>
     </section>
 
     <div class="wrap">
-
       <section class="section">
-        <h2>De que se trata esta experiencia</h2>
+        <h2>De qué se trata esta experiencia</h2>
         <p>
-          La aventura en Ecuador es compacta, diversa y sorprendentemente accesible. Puedes combinar rutas en volcanes de gran altura,
-          dias de canopy en bosque nublado, rios para rafting y aventura costera en un solo itinerario sin perder dias en traslados.
-          Ya sea que busques algo facil y escenico o un reto a toda velocidad, el pais lo hace simple para armar un viaje activo
-          que se sienta equilibrado.
+          Viajar por naturaleza en Ecuador significa acceso fácil a ecosistemas totalmente distintos. En un solo itinerario puedes pasar
+          de miradores andinos y paisajes volcánicos a senderos húmedos de bosque nublado y ríos de selva. Muchas de las mejores experiencias
+          son guiadas o lideradas por comunidades, así que tienes logística más segura, contexto local y una conexión más profunda con los lugares.
         </p>
       </section>
 
-      <!-- Adventure Level Selector -->
-      <section class="section selector" aria-label="Selector de nivel de aventura">
+      <!-- Nature Pace Selector -->
+      <section class="section selector" aria-label="Selector de ritmo de naturaleza">
         <div class="selector-top">
           <div class="selector-controls">
             <label for="ee_exp_nav">Experiencias</label>
-            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Seleccionar experiencia">
-              <option value="/es/experiencias/aventura/" selected>Aventura</option>
-              <option value="/es/experiencias/naturaleza/">Naturaleza</option>
-              <option value="/es/experiencias/vida-silvestre-aves/">Vida Silvestre y Aves</option>
-              <option value="/es/experiencias/relajacion/">Relajacion</option>
-              <option value="/es/experiencias/gastronomia/">Gastronomia</option>
+            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Ir a una experiencia">
+              <option value="/es/experiencias/aventura/">Aventura</option>
+              <option value="/es/experiencias/naturaleza/" selected>Naturaleza</option>
+              <option value="/es/experiencias/vida-silvestre-y-aves/">Vida Silvestre y Avistamiento</option>
+              <option value="/es/experiencias/relajacion/">Relajación</option>
+              <option value="/es/experiencias/gastronomia/">Gastronomía</option>
               <option value="/es/experiencias/cultura/">Cultura</option>
             </select>
 
-            <label for="ee_level">Nivel</label>
-            <select id="ee_level" name="ee_level" aria-label="Seleccionar nivel">
-              <option value="beginner">Principiante (facil y escenico)</option>
-              <option value="intermediate" selected>Intermedio (dias activos)</option>
-              <option value="advanced">Avanzado (dias intensos)</option>
-              <option value="thrill">Buscador de adrenalina (imperdible)</option>
+            <label for="ee_nature_pace">Ritmo</label>
+            <select id="ee_nature_pace" name="ee_nature_pace" aria-label="Seleccionar ritmo de naturaleza">
+              <option value="easy">Fácil y escénico (naturaleza tranquila)</option>
+              <option value="active" selected>Exploración activa (senderos y miradores)</option>
+              <option value="immersive">Ecosistemas inmersivos (naturaleza profunda)</option>
+              <option value="iconic">Paisajes icónicos (imperdibles)</option>
             </select>
           </div>
 
           <div class="selector-copy">
-            <h3>Elige tu nivel de aventura</h3>
+            <h3>Elige tu ritmo de naturaleza</h3>
             <p>
-              Selecciona tu ritmo y te mostramos tres puntos de partida solidos, cada uno con la mejor region para vivirlo.
-              (Luego puedes ajustar cuando agregues mas paginas de destinos y aliados.)
+              Selecciona el estilo de naturaleza que quieres y te mostraremos tres puntos de partida fuertes, cada uno ligado a la mejor región para empezar.
+              (Puedes afinar esto a medida que expandas tus páginas de destinos.)
             </p>
           </div>
         </div>
 
         <div class="selector-body">
-          <div class="recs-grid" id="ee_recs" aria-live="polite"></div>
+          <div class="recs-grid" id="ee_nature_recs" aria-live="polite"></div>
           <div style="margin-top:12px;">
-            <span class="hint" id="ee_hint">Tip: Empieza con Intermedio y luego sube o baja el nivel.</span>
+            <span class="hint" id="ee_nature_hint">Tip: Empieza con Exploración activa y luego sube la inmersión o ve a lo más icónico.</span>
           </div>
         </div>
       </section>
 
       <section class="section grid">
         <div class="card">
-          <h2>Actividades destacadas</h2>
+          <h2>Experiencias de naturaleza destacadas</h2>
           <ul>
-            <li>Caminatas en volcanes, crestas y miradores de altura</li>
-            <li>Rafting, canyoning y dias de aventura en rios</li>
-            <li>Canopy y recorridos en el dosel del bosque nublado</li>
-            <li>Cabalgatas, bicicleta de montana y excursiones off-road</li>
-            <li>Dias de surf en la costa y aventuras frente al mar</li>
+            <li>Senderos en bosque nublado, cascadas y miradores</li>
+            <li>Eco-lodges en selva, canoa en ríos y caminatas guiadas</li>
+            <li>Miradores volcánicos, páramo y lagunas altoandinas</li>
+            <li>Reservas costeras, manglares y ecosistemas de playa</li>
+            <li>Áreas protegidas y parques nacionales en varias regiones</li>
           </ul>
         </div>
 
@@ -635,27 +622,27 @@
           <div class="mini">
             <h2>Ideal para</h2>
             <ul>
-              <li>Viajeros activos que disfrutan de hacer algo cada dia</li>
-              <li>Parejas y grupos pequenos que quieren variedad en poco tiempo</li>
-              <li>Personas que prefieren guias locales por seguridad y eficiencia</li>
-              <li>Viajeros que desean combinar varias regiones sin complicaciones</li>
+              <li>Viajeros que buscan paisaje y calma</li>
+              <li>Senderistas y exploradores casuales</li>
+              <li>Fotógrafos y itinerarios centrados en naturaleza</li>
+              <li>Parejas, familias y grupos pequeños</li>
             </ul>
           </div>
 
           <div class="mini">
             <h2>Regiones que brillan</h2>
             <ul>
-              <li>Andes: rutas de volcanes, senderos de altura y hubs de aventura</li>
-              <li>Amazonia: exploracion de rio y selva con apoyo de guia</li>
-              <li>Costa: surf, actividades oceanicas y dias de aventura en playa</li>
-              <li>Galapagos: exploracion controlada y vida silvestre iconica</li>
+              <li>Andes: volcanes, lagunas y miradores de altura</li>
+              <li>Amazonía: biodiversidad de selva y sistemas de ríos</li>
+              <li>Costa: reservas, playas y bosques costeros</li>
+              <li>Galápagos: ecosistemas únicos y vida marina</li>
             </ul>
           </div>
         </div>
       </section>
 
       <!-- Bottom Carousel -->
-      <section class="carousel" aria-label="Carrusel de galeria de aventura">
+      <section class="carousel" aria-label="Carrusel de galería de Naturaleza">
         <button class="carousel-btn prev" type="button" aria-label="Diapositiva anterior" id="ee_car_prev">
           <span aria-hidden="true"></span>
         </button>
@@ -663,54 +650,33 @@
           <span aria-hidden="true"></span>
         </button>
 
-        <div class="carousel-viewport" id="ee_car_viewport" aria-label="Vista del carrusel" tabindex="0">
+        <div class="carousel-viewport" id="ee_car_viewport" aria-label="Vista del carrusel">
           <div class="carousel-track" id="ee_car_track" aria-label="Pista del carrusel">
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-1.jpg" alt="Imagen de galeria de aventura 1">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-2.jpg" alt="Imagen de galeria de aventura 2">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-3.jpg" alt="Imagen de galeria de aventura 3">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-4.jpg" alt="Imagen de galeria de aventura 4">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-5.jpg" alt="Imagen de galeria de aventura 5">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-6.jpg" alt="Imagen de galeria de aventura 6">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-7.jpg" alt="Imagen de galeria de aventura 7">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-8.jpg" alt="Imagen de galeria de aventura 8">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-9.jpg" alt="Imagen de galeria de aventura 9">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/images/EE-Carousel-Adventure-10.jpg" alt="Imagen de galeria de aventura 10">
-            </div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-1.jpg" alt="Imagen de galería de naturaleza 1"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-2.jpg" alt="Imagen de galería de naturaleza 2"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-3.jpg" alt="Imagen de galería de naturaleza 3"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-4.jpg" alt="Imagen de galería de naturaleza 4"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-5.jpg" alt="Imagen de galería de naturaleza 5"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-6.jpg" alt="Imagen de galería de naturaleza 6"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-7.jpg" alt="Imagen de galería de naturaleza 7"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-8.jpg" alt="Imagen de galería de naturaleza 8"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-9.jpg" alt="Imagen de galería de naturaleza 9"></div>
+            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Nature-10.jpg" alt="Imagen de galería de naturaleza 10"></div>
           </div>
         </div>
 
         <div class="carousel-ui">
-          <div class="carousel-dots" id="ee_car_dots" aria-label="Paginacion del carrusel"></div>
+          <div class="carousel-dots" id="ee_car_dots" aria-label="Paginación del carrusel"></div>
           <div class="carousel-counter" id="ee_car_counter">1 / 10</div>
         </div>
       </section>
-
     </div>
   </main>
 
   <div id="siteFooter"></div>
 
+  <!-- Inject global header/footer first -->
   <script>
-    /* Inject global header/footer first, then load site.js (so nav JS never runs before header exists) */
     (function(){
       async function inject(id, url){
         const el = document.getElementById(id);
@@ -718,47 +684,42 @@
         const res = await fetch(url, { cache: "no-store" });
         el.innerHTML = await res.text();
       }
-
-      Promise.all([
-        inject("siteHeader", "/assets/includes/header.html"),
-        inject("siteFooter", "/assets/includes/footer.html")
-      ]).then(() => {
-        const s = document.createElement("script");
-        s.src = "/assets/js/site.js";
-        document.body.appendChild(s);
-      }).catch(() => {
-        const s = document.createElement("script");
-        s.src = "/assets/js/site.js";
-        document.body.appendChild(s);
-      });
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
     })();
   </script>
 
+  <!-- Global site JS (keep at bottom) -->
+  <script src="/assets/js/site.js"></script>
+
   <script>
-    /* ===== Experiences dropdown (auto-navigate) ===== */
+    /* ===== Experiences selector quick nav (universal) ===== */
     (function(){
-      const expEl = document.getElementById("ee_exp_nav");
-      if (!expEl) return;
-      expEl.addEventListener("change", function(){
-        const url = this.value;
-        if (url) window.location.href = url;
+      const expNav = document.getElementById("ee_exp_nav");
+      if (!expNav) return;
+
+      expNav.addEventListener("change", function(){
+        const url = String(this.value || "").trim();
+        if (!url) return;
+        if (url === window.location.pathname || url === window.location.pathname + "/") return;
+        window.location.href = url;
       });
     })();
 
-    /* ===== Adventure Level Selector (3 recommendations) ===== */
+    /* ===== Nature Pace Selector (3 recommendations) ===== */
     (function(){
-      const levelEl = document.getElementById("ee_level");
-      const recsEl = document.getElementById("ee_recs");
-      const hintEl = document.getElementById("ee_hint");
+      const paceEl = document.getElementById("ee_nature_pace");
+      const recsEl = document.getElementById("ee_nature_recs");
+      const hintEl = document.getElementById("ee_nature_hint");
 
       const data = {
-        beginner: {
-          hint: "Principiante = escenico y sin demasiada exigencia. Perfecto si quieres aventura sin sentirlo extremo.",
+        easy: {
+          hint: "Fácil y escénico = días tranquilos, caminatas cortas y grandes vistas sin prisas.",
           recs: [
             {
-              title: "Cascadas y senderos faciles en bosque nublado",
-              desc: "Caminatas cortas, miradores y selva exuberante: un dia ideal para empezar y sentir Ecuador.",
-              badges: ["Principiante", "Medio dia a dia completo"],
+              title: "Cascadas en bosque nublado y senderos suaves",
+              desc: "Caminatas fáciles, verde intenso y miradores de cascadas. Ideal para un día relajado de naturaleza.",
+              badges: ["Fácil", "Medio día a día completo"],
               chips: [
                 { label: "Mejor en: Andes (Mindo)", href: "/es/regiones/andes/mindo/" },
                 { label: "Explorar Andes", href: "/es/regiones/andes/" }
@@ -767,20 +728,20 @@
               ctaHref: "/es/regiones/andes/mindo/"
             },
             {
-              title: "Aguas termales y caminatas suaves en canones",
-              desc: "Relajacion con toque aventurero: piscinas termales, senderos faciles y opciones extra si quieres mas.",
-              badges: ["Principiante", "Medio dia a dia completo"],
+              title: "Lagunas altoandinas y miradores panorámicos",
+              desc: "Aire limpio, paisajes abiertos y horizontes dramáticos. Un plan ganador con poco esfuerzo.",
+              badges: ["Fácil", "Medio día a día completo"],
               chips: [
-                { label: "Mejor en: Andes (Banos)", href: "/es/regiones/andes/banos/" },
+                { label: "Mejor en: Andes (zona Quito)", href: "/es/regiones/andes/quito/" },
                 { label: "Explorar Andes", href: "/es/regiones/andes/" }
               ],
-              ctaLabel: "Ver Banos",
-              ctaHref: "/es/regiones/andes/banos/"
+              ctaLabel: "Ver Quito",
+              ctaHref: "/es/regiones/andes/quito/"
             },
             {
-              title: "Primera clase de surf y dia de aventura en la playa",
-              desc: "Una forma divertida y amigable para principiantes de sumar energia sin necesitar experiencia previa.",
-              badges: ["Principiante", "Dia completo"],
+              title: "Día de naturaleza en playa y atardeceres costeros",
+              desc: "Un día costero más lento: caminatas por la orilla, brisa del mar y naturaleza sin presión.",
+              badges: ["Fácil", "Día completo"],
               chips: [
                 { label: "Mejor en: Costa", href: "/es/regiones/costa/" }
               ],
@@ -790,13 +751,13 @@
           ]
         },
 
-        intermediate: {
-          hint: "Intermedio = dias activos. Haras mas, te moveras mas y el viaje se mantiene equilibrado.",
+        active: {
+          hint: "Exploración activa = senderos más largos, más miradores y días completos bien equilibrados.",
           recs: [
             {
-              title: "Caminata de un dia en Cotopaxi (refugio y miradores)",
-              desc: "Uno de los mejores dias intensos: paisajes de altura sin comprometerte con una cumbre.",
-              badges: ["Intermedio", "Dia completo"],
+              title: "Paisajes de Cotopaxi y senderos de páramo",
+              desc: "Terreno altoandino, escenario volcánico y naturaleza icónica. Perfecto para caminatas activas de día.",
+              badges: ["Activo", "Día completo"],
               chips: [
                 { label: "Mejor en: Andes (Cotopaxi)", href: "/es/regiones/andes/cotopaxi/" },
                 { label: "Explorar Andes", href: "/es/regiones/andes/" }
@@ -805,20 +766,57 @@
               ctaHref: "/es/regiones/andes/cotopaxi/"
             },
             {
-              title: "Dia de rafting (clase segun el rio)",
-              desc: "Una aventura clasica en Ecuador: desde rutas divertidas hasta mas serias, segun el tramo.",
-              badges: ["Intermedio", "Medio dia a dia completo"],
+              title: "Miradores de bosque nublado y senderos con variedad",
+              desc: "Un día completo con neblina, cascadas y vistas elevadas. Naturaleza clásica con ritmo.",
+              badges: ["Activo", "Día completo"],
               chips: [
-                { label: "Mejor en: Andes (Banos)", href: "/es/regiones/andes/banos/" },
+                { label: "Mejor en: Andes (Mindo)", href: "/es/regiones/andes/mindo/" },
                 { label: "Explorar Andes", href: "/es/regiones/andes/" }
               ],
-              ctaLabel: "Ver Banos",
-              ctaHref: "/es/regiones/andes/banos/"
+              ctaLabel: "Ver Mindo",
+              ctaHref: "/es/regiones/andes/mindo/"
             },
             {
-              title: "Canopy y bosque nublado en un solo dia",
-              desc: "Un dia con mucha energia y paisajes iconicos: circuitos de canopy con senderos, cascadas y miradores.",
-              badges: ["Intermedio", "Dia completo"],
+              title: "Ruta de termas y paisajes de río",
+              desc: "Combina naturaleza con recuperación en agua tibia. Ideal para quienes prefieren moverse y descansar bien.",
+              badges: ["Activo", "Medio día a día completo"],
+              chips: [
+                { label: "Mejor en: Andes (Baños)", href: "/es/regiones/andes/banos/" },
+                { label: "Explorar Andes", href: "/es/regiones/andes/" }
+              ],
+              ctaLabel: "Ver Baños",
+              ctaHref: "/es/regiones/andes/banos/"
+            }
+          ]
+        },
+
+        immersive: {
+          hint: "Ecosistemas inmersivos = naturaleza más profunda, logística más larga y biodiversidad más intensa.",
+          recs: [
+            {
+              title: "Lodge en selva y caminatas guiadas",
+              desc: "Despierta dentro del ecosistema: senderos guiados, orillas de río y sonidos nocturnos inolvidables.",
+              badges: ["Inmersivo", "Varios días"],
+              chips: [
+                { label: "Mejor en: Amazonía", href: "/es/regiones/amazonia/" }
+              ],
+              ctaLabel: "Explorar Amazonía",
+              ctaHref: "/es/regiones/amazonia/"
+            },
+            {
+              title: "Canoa en el río y bordes de bosque",
+              desc: "Viaje lento por corredores de río para máxima inmersión y oportunidades de fotografía.",
+              badges: ["Inmersivo", "Día completo a varios días"],
+              chips: [
+                { label: "Mejor en: Amazonía", href: "/es/regiones/amazonia/" }
+              ],
+              ctaLabel: "Explorar Amazonía",
+              ctaHref: "/es/regiones/amazonia/"
+            },
+            {
+              title: "Senderos profundos en bosque nublado y cascadas escondidas",
+              desc: "Más allá de las paradas rápidas: recorridos más largos, menos gente y más ritmo real de bosque.",
+              badges: ["Inmersivo", "Día completo"],
               chips: [
                 { label: "Mejor en: Andes (Mindo)", href: "/es/regiones/andes/mindo/" },
                 { label: "Explorar Andes", href: "/es/regiones/andes/" }
@@ -829,51 +827,13 @@
           ]
         },
 
-        advanced: {
-          hint: "Avanzado = exigente. Espera rutas largas, altura y esfuerzo mas tecnico.",
+        iconic: {
+          hint: "Paisajes icónicos = la lista imperdible: volcanes, islas y escenarios inolvidables.",
           recs: [
             {
-              title: "Crestas de altura y rutas volcanicas largas",
-              desc: "Caminatas mas largas en altura donde el clima y el ritmo importan. Los Andes son el escenario perfecto.",
-              badges: ["Avanzado", "Dia completo"],
-              chips: [
-                { label: "Mejor en: Andes (zona Quito)", href: "/es/regiones/andes/quito/" },
-                { label: "Explorar Andes", href: "/es/regiones/andes/" }
-              ],
-              ctaLabel: "Ver Quito",
-              ctaHref: "/es/regiones/andes/quito/"
-            },
-            {
-              title: "Rutas de canyoning mas exigentes",
-              desc: "Rapeles mas grandes, agua mas rapida e intensidad mayor. Ideal con guias experimentados.",
-              badges: ["Avanzado", "Medio dia a dia completo"],
-              chips: [
-                { label: "Mejor en: Andes (Banos)", href: "/es/regiones/andes/banos/" },
-                { label: "Explorar Andes", href: "/es/regiones/andes/" }
-              ],
-              ctaLabel: "Ver Banos",
-              ctaHref: "/es/regiones/andes/banos/"
-            },
-            {
-              title: "Jornadas remotas en la selva (lancha y trekking)",
-              desc: "Traslados largos por rio, senderos humedos y dias extensos. Muy gratificante, pero demandante.",
-              badges: ["Avanzado", "Varios dias"],
-              chips: [
-                { label: "Mejor en: Amazonia", href: "/es/regiones/amazonia/" }
-              ],
-              ctaLabel: "Explorar Amazonia",
-              ctaHref: "/es/regiones/amazonia/"
-            }
-          ]
-        },
-
-        thrill: {
-          hint: "Buscador de adrenalina = intensidad imperdible. Son dias para contarle a todo el mundo.",
-          recs: [
-            {
-              title: "Ascenso a la cumbre del Cotopaxi",
-              desc: "Un objetivo real de montanismo: altura, glaciar y un logro serio.",
-              badges: ["Adrenalina", "Noche incluida"],
+              title: "Miradores volcánicos y paisajes de gran escala",
+              desc: "Escenario andino clásico donde la escala es la experiencia. Ideal para tu primer viaje a Ecuador.",
+              badges: ["Icónico", "Día completo"],
               chips: [
                 { label: "Mejor en: Andes (Cotopaxi)", href: "/es/regiones/andes/cotopaxi/" },
                 { label: "Explorar Andes", href: "/es/regiones/andes/" }
@@ -882,25 +842,25 @@
               ctaHref: "/es/regiones/andes/cotopaxi/"
             },
             {
-              title: "Buceo en Galapagos (vida marina iconica)",
-              desc: "Buceo de clase mundial con grandes momentos de vida silvestre. Planifica segun condiciones y sitios permitidos.",
-              badges: ["Adrenalina", "Varios dias"],
+              title: "Ecosistemas de Galápagos y senderos costeros",
+              desc: "Naturaleza insular única. Planifica según rutas, tiempos y sitios permitidos.",
+              badges: ["Icónico", "Varios días"],
               chips: [
-                { label: "Mejor en: Galapagos", href: "/es/regiones/galapagos/" }
+                { label: "Mejor en: Galápagos", href: "/es/regiones/galapagos/" }
               ],
-              ctaLabel: "Explorar Galapagos",
+              ctaLabel: "Explorar Galápagos",
               ctaHref: "/es/regiones/galapagos/"
             },
             {
-              title: "Rafting intenso o canyoning extremo",
-              desc: "Si buscas adrenalina en el agua, elige rutas que encajen con tu nivel y las condiciones del dia.",
-              badges: ["Adrenalina", "Dia completo"],
+              title: "Lagunas altoandinas y crestas dramáticas",
+              desc: "Miradores abiertos, aire limpio y paradas fotográficas clásicas de la Sierra ecuatoriana.",
+              badges: ["Icónico", "Día completo"],
               chips: [
-                { label: "Mejor en: Andes (Banos)", href: "/es/regiones/andes/banos/" },
+                { label: "Mejor en: Andes (zona Quito)", href: "/es/regiones/andes/quito/" },
                 { label: "Explorar Andes", href: "/es/regiones/andes/" }
               ],
-              ctaLabel: "Ver Banos",
-              ctaHref: "/es/regiones/andes/banos/"
+              ctaLabel: "Ver Quito",
+              ctaHref: "/es/regiones/andes/quito/"
             }
           ]
         }
@@ -915,8 +875,8 @@
           .replaceAll("'","&#039;");
       }
 
-      function render(levelKey){
-        const block = data[levelKey] || data.intermediate;
+      function render(key){
+        const block = data[key] || data.active;
         if (hintEl) hintEl.textContent = block.hint || "";
 
         const html = block.recs.map((r) => {
@@ -944,16 +904,16 @@
         recsEl.innerHTML = html;
       }
 
-      render(levelEl ? levelEl.value : "intermediate");
+      render(paceEl ? paceEl.value : "active");
 
-      if (levelEl) {
-        levelEl.addEventListener("change", function(){
+      if (paceEl) {
+        paceEl.addEventListener("change", function(){
           render(this.value);
         });
       }
     })();
 
-    /* ===== Carousel (regions-style) ===== */
+    /* ===== Carousel (fixed hookup) ===== */
     (function(){
       const track = document.getElementById("ee_car_track");
       const viewport = document.getElementById("ee_car_viewport");
@@ -973,7 +933,7 @@
 
       function setCounter(){
         if (!counter) return;
-        counter.textContent = (index + 1) + " / " + total;
+        counter.textContent = `${index + 1} / ${total}`;
       }
 
       function setDots(){
@@ -983,14 +943,14 @@
           const b = document.createElement("button");
           b.className = "dot" + (i === index ? " active" : "");
           b.type = "button";
-          b.setAttribute("aria-label", "Ir a la diapositiva " + (i + 1));
+          b.setAttribute("aria-label", `Ir a la diapositiva ${i + 1}`);
           b.addEventListener("click", () => goTo(i));
           dotsWrap.appendChild(b);
         }
       }
 
       function update(){
-        track.style.transform = "translateX(" + (-index * 100) + "%)";
+        track.style.transform = `translateX(${-index * 100}%)`;
         setCounter();
         setDots();
       }
@@ -1027,6 +987,8 @@
           else prev();
         }
       });
+
+      viewport.tabIndex = 0;
 
       viewport.addEventListener("keydown", (e) => {
         if (e.key === "ArrowRight") next();
