@@ -4,36 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Cultura | Experience Ecuador</title>
-  <meta name="description" content="Explora cultura en Ecuador con mercados, pueblos artesanos, ciudades históricas y comunidades locales. Elige tu enfoque y encuentra regiones ideales." />
-  <link rel="canonical" href="https://experienceecuador.com/es/experiencias/cultura/" />
+  <title>Gastronomia | Experience Ecuador</title>
+  <meta name="description" content="Descubre la gastronomia de Ecuador: mercados, ceviche, cacao y cafe. Ideas faciles por region para planear rutas culinarias sin prisa y con sabor local." />
+
+  <!-- Canonical (must match page URL) -->
+  <link rel="canonical" href="https://experienceecuador.com/es/experiencias/gastronomia/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
-  <meta property="og:title" content="Cultura | Experience Ecuador" />
-  <meta property="og:description" content="Explora cultura en Ecuador con mercados, pueblos artesanos, ciudades históricas y comunidades locales. Elige tu enfoque y encuentra regiones ideales." />
-  <meta property="og:url" content="https://experienceecuador.com/es/experiencias/cultura/" />
+  <meta property="og:title" content="Gastronomia | Experience Ecuador" />
+  <meta property="og:description" content="Descubre la gastronomia de Ecuador: mercados, ceviche, cacao y cafe. Ideas faciles por region para planear rutas culinarias sin prisa y con sabor local." />
+  <meta property="og:url" content="https://experienceecuador.com/es/experiencias/gastronomia/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Experience Ecuador - inspire travel planning across Ecuador" />
+  <meta property="og:image:alt" content="Experience Ecuador: inspiracion de viajes y experiencias en Ecuador" />
 
-  <!-- Twitter Card -->
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Cultura | Experience Ecuador" />
-  <meta name="twitter:description" content="Explora cultura en Ecuador con mercados, pueblos artesanos, ciudades históricas y comunidades locales. Elige tu enfoque y encuentra regiones ideales." />
+  <meta name="twitter:title" content="Gastronomia | Experience Ecuador" />
+  <meta name="twitter:description" content="Descubre la gastronomia de Ecuador: mercados, ceviche, cacao y cafe. Ideas faciles por region para planear rutas culinarias sin prisa y con sabor local." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
-  <!-- Favicons (approved root paths) -->
+  <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
 
-  <!-- Global header/footer CSS (required) -->
+  <!-- Global header/footer CSS -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
 
@@ -67,7 +69,7 @@
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
 
-    /* ===== HERO (Galapagos pattern) ===== */
+    /* ===== HERO (GALAPAGOS PATTERN) ===== */
     .hero{
       position:relative;
       width:100%;
@@ -75,7 +77,7 @@
       display:flex;
       align-items:flex-end;
       justify-content:center;
-      background:url("/assets/images/experiences/EE-Assets-Exp-Hero-Culture.jpg") center / cover no-repeat;
+      background:url("/assets/images/experiences/EE-Assets-Exp-Hero-Culinary.jpg") center / cover no-repeat;
       color:#fff;
     }
 
@@ -185,7 +187,7 @@
 
     .mini + .mini{margin-top:16px}
 
-    /* ===== CULTURE SELECTOR ===== */
+    /* ===== CULINARY SELECTOR (TEMPLATE READY) ===== */
     .selector{
       background:#fff;
       border:1px solid var(--border);
@@ -194,15 +196,20 @@
       overflow:hidden;
     }
 
+    /* UPDATED: controls are right-aligned on top, copy sits below full width */
     .selector-top{
-      display:flex;
-      flex-direction:column;
-      align-items:stretch;
-      justify-content:flex-start;
+      display:grid;
+      grid-template-columns:1fr auto;
       gap:16px;
       padding:22px;
       border-bottom:1px solid rgba(0,0,0,0.06);
       background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      align-items:start;
+    }
+
+    .selector-copy{
+      grid-column:1 / -1;
+      grid-row:2;
     }
 
     .selector-copy h3{
@@ -223,13 +230,16 @@
       max-width:70ch;
     }
 
+    /* UPDATED: Experiences + Focus in two stacked rows, same width, right aligned */
     .selector-controls{
+      grid-column:2;
+      grid-row:1;
+      justify-self:end;
+
       display:grid;
       grid-template-columns:auto 260px;
-      gap:10px 12px;
-      justify-content:end;
+      gap:10px 10px;
       align-items:center;
-      align-self:flex-end;
     }
 
     .selector-controls label{
@@ -237,9 +247,6 @@
       color:#0f2f62;
       font-size:13px;
       letter-spacing:0.02em;
-      justify-self:start;
-      text-align:left;
-      white-space:nowrap;
     }
 
     .selector-controls select{
@@ -255,6 +262,7 @@
       font-size:14px;
       cursor:pointer;
       outline:none;
+      min-width:0;
       width:260px;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
       background-image:
@@ -289,7 +297,7 @@
       padding:16px;
       box-shadow:0 16px 45px rgba(0,0,0,0.08);
       transition:transform .2s ease, box-shadow .2s ease;
-      min-height:192px;
+      min-height:182px;
       display:flex;
       flex-direction:column;
       gap:10px;
@@ -511,20 +519,26 @@
 
     /* ===== MOBILE ===== */
     @media(max-width:900px){
-      .hero-inner{ text-align:center; }
-      .hero p{ margin:0 auto; }
-
       .grid{grid-template-columns:1fr}
       .recs-grid{grid-template-columns:1fr}
+
+      /* keep selector behavior aligned with Wildlife: controls stack on mobile */
+      .selector-top{
+        grid-template-columns:1fr;
+        grid-template-rows:auto auto;
+      }
       .selector-controls{
-        display:flex;
-        flex-direction:column;
-        align-items:flex-start;
-        justify-content:flex-start;
+        grid-column:1;
+        justify-self:start;
+        grid-template-columns:1fr;
+        row-gap:10px;
+        column-gap:0;
         width:100%;
       }
-      .selector-controls label{width:100%; justify-self:auto;}
-      .selector-controls select{width:100%; min-width:260px;}
+      .selector-controls select{width:100%; min-width:0;}
+
+      .hero-inner{ text-align:center; }
+      .hero p{ margin:0 auto; }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -538,103 +552,118 @@
   <div id="siteHeader"></div>
 
   <main>
-    <section class="hero" aria-label="Hero de Cultura">
+    <!-- PAGE CONTENT ONLY -->
+
+    <section class="hero" aria-label="Imagen principal de Gastronomia">
       <div class="hero-inner">
-        <div class="kicker">Experiencia: Cultura</div>
-        <h1>Cultura</h1>
+        <div class="kicker">Guia de experiencias</div>
+        <h1>Gastronomia</h1>
         <p>
-          Las tradiciones indígenas, la historia colonial y una fuerte identidad regional moldean la vida diaria en Ecuador.
-          Viajar por cultura aquí se trata de cómo vive la gente, cómo celebra y cómo preserva su herencia.
+          La cocina ecuatoriana es profundamente regional y esta ligada a la cultura. Prueba la Costa, los Andes, la Amazonia y las islas a traves de mercados, cacao, cafe y comidas sin prisa.
         </p>
       </div>
     </section>
 
     <div class="wrap">
       <section class="section">
-        <h2>De qué se trata esta experiencia</h2>
+        <h2>De que se trata esta experiencia</h2>
         <p>
-          Las experiencias culturales en Ecuador van desde mercados y festivales hasta comunidades artesanas, pueblos históricos,
-          música y tradiciones del día a día. Esta categoría se enfoca en encuentros significativos, no en turismo superficial.
+          Viajar por la comida en Ecuador va mucho mas alla de los restaurantes. Incluye visitas a mercados, cocinas familiares, especialidades regionales,
+          cultura de cafe y cacao, y comidas que cuentan una historia del lugar donde estas. Esta pagina crecera con experiencias curadas, lugares confiables
+          y highlights gastronomicos por region.
         </p>
       </section>
 
-      <!-- Culture Selector -->
-      <section class="section selector" aria-label="Selector de Cultura">
+      <!-- Culinary Selector -->
+      <section class="section selector" aria-label="Selector de gastronomia">
         <div class="selector-top">
-          <div class="selector-controls">
-            <label for="ee_exp_nav">Experiencias</label>
-            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Navegar a una experiencia">
-              <option value="/es/experiencias/aventura/">Aventura</option>
-              <option value="/es/experiencias/naturaleza/">Naturaleza</option>
-              <option value="/es/experiencias/vida-silvestre-y-aves/">Vida silvestre y avistamiento de aves</option>
-              <option value="/es/experiencias/relajacion/">Relajación</option>
-              <option value="/es/experiencias/gastronomia/">Gastronomía</option>
-              <option value="/es/experiencias/cultura/" selected>Cultura</option>
-            </select>
-
-            <label for="ee_cult_focus">Enfoque</label>
-            <select id="ee_cult_focus" name="ee_cult_focus" aria-label="Seleccionar enfoque cultural">
-              <option value="markets" selected>Mercados y pueblos artesanos</option>
-              <option value="history">Ciudades históricas y arquitectura</option>
-              <option value="communities">Comunidades indígenas y artes</option>
-              <option value="festivals">Festivales y tradiciones locales</option>
-            </select>
+          <div class="selector-copy">
+            <h3>Elige tu enfoque gastronomico</h3>
+            <p>
+              Elige lo que quieres probar y te mostraremos tres puntos de partida fuertes, mas la mejor region para construir tu ruta.
+              Mantenlo simple y deja que las comidas hagan la planificacion.
+            </p>
           </div>
 
-          <div class="selector-copy">
-            <h3>Elige tu enfoque cultural</h3>
-            <p>
-              Elige lo que quieres vivir y te mostraremos tres puntos de partida fuertes, además de la mejor región para construir tu plan.
-              Manténlo práctico y deja que el ritmo local guíe el día.
-            </p>
+          <div class="selector-controls">
+            <!-- Universal Experiences quick nav -->
+            <label for="ee_exp_nav">Experiencias</label>
+            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Ir a una experiencia">
+              <option value="/es/experiencias/">Todas las experiencias</option>
+              <option value="/es/experiencias/aventura/">Aventura</option>
+              <option value="/es/experiencias/naturaleza/">Naturaleza</option>
+              <option value="/es/experiencias/vida-silvestre-y-aves/">Vida Silvestre y Aves</option>
+              <option value="/es/experiencias/relajacion/">Relajacion</option>
+              <option value="/es/experiencias/gastronomia/" selected>Gastronomia</option>
+              <option value="/es/experiencias/cultura/">Cultura</option>
+            </select>
+
+            <label for="ee_cul_focus">Enfoque</label>
+            <select id="ee_cul_focus" name="ee_cul_focus" aria-label="Seleccionar enfoque gastronomico">
+              <option value="markets" selected>Mercados y clasicos locales</option>
+              <option value="seafood">Mariscos y cultura del ceviche</option>
+              <option value="cacao">Cacao y experiencias de chocolate</option>
+              <option value="coffee">Cultura del cafe y cafeterias</option>
+            </select>
           </div>
         </div>
 
         <div class="selector-body">
-          <div class="recs-grid" id="ee_cult_recs" aria-live="polite"></div>
+          <div class="recs-grid" id="ee_cul_recs" aria-live="polite"></div>
           <div style="margin-top:12px;">
-            <span class="hint" id="ee_cult_hint">Tip: Empieza con un mercado. Es la forma más rápida de sentir una región.</span>
+            <span class="hint" id="ee_cul_hint">Tip: Los mercados son la forma mas rapida de entender la cultura culinaria de una region.</span>
           </div>
         </div>
       </section>
 
       <section class="section grid">
-        <div class="card">
-          <h2>Experiencias culturales clave</h2>
-          <ul>
-            <li>Mercados tradicionales y pueblos artesanos</li>
-            <li>Comunidades indígenas y oficios patrimoniales</li>
-            <li>Ciudades históricas y arquitectura colonial</li>
-            <li>Festivales, rituales y celebraciones locales</li>
-            <li>Música, danza y tradiciones de relato oral</li>
-          </ul>
-        </div>
-
         <div>
-          <div class="mini card" style="padding:20px;">
-            <h2 style="margin:0 0 10px; font-family:Montserrat,Inter,sans-serif; font-weight:800; color:var(--brand-blue); font-size:20px;">Ideal para</h2>
-            <ul style="margin:0; padding-left:18px; line-height:1.75; font-size:14.8px; color:#24324a;">
-              <li>Exploradores culturales</li>
-              <li>Viajeros de ritmo lento</li>
-              <li>Amantes de la historia y la antropología</li>
-              <li>Viajeros que buscan conexión auténtica</li>
+          <div class="card">
+            <h2>Experiencias gastronomicas clave</h2>
+            <ul>
+              <li>Mariscos de la costa y cultura del ceviche</li>
+              <li>Mercados andinos y platos tradicionales</li>
+              <li>Ingredientes amazonicos y tradiciones indigenas</li>
+              <li>Cafe, cacao y experiencias de chocolate</li>
+              <li>Cocinas locales, panaderias y restaurantes familiares</li>
             </ul>
           </div>
 
-          <div class="mini card" style="padding:20px; margin-top:16px;">
-            <h2 style="margin:0 0 10px; font-family:Montserrat,Inter,sans-serif; font-weight:800; color:var(--brand-blue); font-size:20px;">Regiones recomendadas</h2>
-            <ul style="margin:0; padding-left:18px; line-height:1.75; font-size:14.8px; color:#24324a;">
-              <li>Andes: mercados, pueblos patrimoniales, cultura indígena</li>
-              <li>Costa: música, cultura local, tradiciones costeras</li>
-              <li>Amazonía: saberes ancestrales y vida comunitaria</li>
-              <li>Galápagos: historia isleña y cultura de conservación</li>
+          <!-- Must Eats intro -->
+          <div class="card" style="margin-top:16px;">
+            <h2>Must Eats</h2>
+            <p style="margin:0 0 12px; color:#24324a; line-height:1.7; font-size:14.8px;">
+              Quieres la lista corta? Entra a Must Eats para ver platos, snacks y favoritos locales que valen la pena planear.
+            </p>
+            <a class="cta" href="/es/experiencias/gastronomia/imperdibles/">Explorar Imperdibles</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="mini">
+            <h2>Ideal para</h2>
+            <ul>
+              <li>Viajeros con foco en comida</li>
+              <li>Exploradores culturales</li>
+              <li>Slow travelers y planificadores</li>
+              <li>Personas que quieren comer como locales</li>
+            </ul>
+          </div>
+
+          <div class="mini">
+            <h2>Buenas regiones para esto</h2>
+            <ul>
+              <li>Costa: mariscos, platos con platano, sabores frescos</li>
+              <li>Andes: mercados, sopas, granos y comfort food</li>
+              <li>Amazonia: ingredientes nativos y preparacion tradicional</li>
+              <li>Galapagos: pescado fresco y comidas en isla</li>
             </ul>
           </div>
         </div>
       </section>
 
       <!-- Bottom Carousel -->
-      <section class="carousel" aria-label="Carrusel de galería cultural">
+      <section class="carousel" aria-label="Carrusel de galeria gastronomica">
         <button class="carousel-btn prev" type="button" aria-label="Diapositiva anterior" id="ee_car_prev">
           <span aria-hidden="true"></span>
         </button>
@@ -642,29 +671,44 @@
           <span aria-hidden="true"></span>
         </button>
 
-        <div class="carousel-viewport" id="ee_car_viewport">
-          <div class="carousel-track" id="ee_car_track">
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-1.jpg" alt="Imagen de galería cultural 1"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-2.jpg" alt="Imagen de galería cultural 2"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-3.jpg" alt="Imagen de galería cultural 3"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-4.jpg" alt="Imagen de galería cultural 4"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-5.jpg" alt="Imagen de galería cultural 5"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-6.jpg" alt="Imagen de galería cultural 6"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-7.jpg" alt="Imagen de galería cultural 7"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-8.jpg" alt="Imagen de galería cultural 8"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-9.jpg" alt="Imagen de galería cultural 9"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-10.jpg" alt="Imagen de galería cultural 10"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-11.jpg" alt="Imagen de galería cultural 11"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-12.jpg" alt="Imagen de galería cultural 12"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-13.jpg" alt="Imagen de galería cultural 13"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-14.jpg" alt="Imagen de galería cultural 14"></div>
-            <div class="carousel-slide"><img src="/assets/images/EE-Carousel-Culture-15.jpg" alt="Imagen de galería cultural 15"></div>
+        <div class="carousel-viewport" aria-label="Vista del carrusel" id="ee_car_viewport">
+          <div class="carousel-track" aria-label="Pista del carrusel" id="ee_car_track">
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Culinary-1.jpg" alt="Imagen de galeria gastronomica 1">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Culinary-2.jpg" alt="Imagen de galeria gastronomica 2">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Culinary-3.jpg" alt="Imagen de galeria gastronomica 3">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Culinary-4.jpg" alt="Imagen de galeria gastronomica 4">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Culinary-5.jpg" alt="Imagen de galeria gastronomica 5">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Culinary-6.jpg" alt="Imagen de galeria gastronomica 6">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Culinary-7.jpg" alt="Imagen de galeria gastronomica 7">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Culinary-8.jpg" alt="Imagen de galeria gastronomica 8">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Culinary-9.jpg" alt="Imagen de galeria gastronomica 9">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/images/EE-Carousel-Culinary-10.jpg" alt="Imagen de galeria gastronomica 10">
+            </div>
           </div>
         </div>
 
         <div class="carousel-ui">
-          <div class="carousel-dots" id="ee_car_dots" aria-label="Paginación del carrusel"></div>
-          <div class="carousel-counter" id="ee_car_counter">1 / 15</div>
+          <div class="carousel-dots" id="ee_car_dots" aria-label="Paginacion del carrusel"></div>
+          <div class="carousel-counter" id="ee_car_counter">1 / 10</div>
         </div>
       </section>
     </div>
@@ -701,20 +745,20 @@
       });
     })();
 
-    /* ===== Culture Selector ===== */
+    /* ===== Culinary Selector (3 recommendations) ===== */
     (function(){
-      const focusEl = document.getElementById("ee_cult_focus");
-      const recsEl = document.getElementById("ee_cult_recs");
-      const hintEl = document.getElementById("ee_cult_hint");
+      const focusEl = document.getElementById("ee_cul_focus");
+      const recsEl = document.getElementById("ee_cul_recs");
+      const hintEl = document.getElementById("ee_cul_hint");
 
       const data = {
         markets: {
-          hint: "Los mercados y pueblos artesanos son la mejor entrada. Ve temprano y mantén el ritmo lento.",
+          hint: "Los mercados son la forma mas rapida de entender la comida local. Ve temprano, prueba de a poco y mantenlo simple.",
           recs: [
             {
-              title: "Mañana de mercado y artesanías",
-              desc: "Empieza en un mercado tradicional y luego visita tiendas artesanas cercanas con textiles, cerámica y pequeñas piezas.",
-              badges: ["Fácil", "Medio día"],
+              title: "Manana de mercado andino y almuerzo de comfort",
+              desc: "Recorre puestos, prueba snacks locales y termina con una sopa clasica o un plato fuerte en un lugar familiar.",
+              badges: ["Facil", "Medio dia"],
               chips: [
                 { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
               ],
@@ -722,134 +766,134 @@
               ctaHref: "/es/regiones/andes/"
             },
             {
-              title: "Taller práctico (corto y local)",
-              desc: "Una clase o demostración pequeña para entender el proceso y a la gente, sin convertirlo en compra de souvenirs.",
-              badges: ["Fácil", "2 a 3 horas"],
-              chips: [
-                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
-              ],
-              ctaLabel: "Explorar Andes",
-              ctaHref: "/es/regiones/andes/"
-            },
-            {
-              title: "Comida y paseo cultural (loop simple)",
-              desc: "Combina un plato local con una caminata corta por calles históricas y barrios de vida diaria.",
-              badges: ["Fácil", "2 a 4 horas"],
-              chips: [
-                { label: "Buen match: Andes", href: "/es/regiones/andes/" },
-                { label: "También: Costa", href: "/es/regiones/costa/" }
-              ],
-              ctaLabel: "Explorar Regiones",
-              ctaHref: "/es/regiones/"
-            }
-          ]
-        },
-
-        history: {
-          hint: "Las ciudades históricas se disfrutan por capas: un barrio, un museo, un café. Sin correr.",
-          recs: [
-            {
-              title: "Caminata colonial (un distrito)",
-              desc: "Elige un área histórica y explórala despacio con paradas para miradores, plazas y detalles arquitectónicos.",
-              badges: ["Fácil", "2 a 4 horas"],
-              chips: [
-                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
-              ],
-              ctaLabel: "Explorar Andes",
-              ctaHref: "/es/regiones/andes/"
-            },
-            {
-              title: "Museo y pausa en café",
-              desc: "Un día cultural simple: un museo y luego descanso. Funciona bien en días de traslado.",
-              badges: ["Fácil", "Medio día"],
-              chips: [
-                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
-              ],
-              ctaLabel: "Explorar Andes",
-              ctaHref: "/es/regiones/andes/"
-            },
-            {
-              title: "Pueblo patrimonial como base + salidas cortas",
-              desc: "Hospédate en un pueblo con encanto y haz salidas culturales cortas, sin convertir el día en una lista.",
-              badges: ["Fácil", "Día completo"],
-              chips: [
-                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
-              ],
-              ctaLabel: "Explorar Andes",
-              ctaHref: "/es/regiones/andes/"
-            }
-          ]
-        },
-
-        communities: {
-          hint: "Para visitas comunitarias, prioriza respeto y contexto. Un buen guía marca la diferencia.",
-          recs: [
-            {
-              title: "Visita comunitaria y contexto artesanal",
-              desc: "Conoce la historia detrás del tejido, tallado o pintura y cómo se conecta con identidad y vida diaria.",
-              badges: ["Moderado", "Medio día"],
-              chips: [
-                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
-              ],
-              ctaLabel: "Explorar Andes",
-              ctaHref: "/es/regiones/andes/"
-            },
-            {
-              title: "Día de intercambio cultural (ritmo lento)",
-              desc: "Un día más tranquilo enfocado en conversación, demostraciones pequeñas y comidas compartidas cuando sea posible.",
-              badges: ["Moderado", "Día completo"],
-              chips: [
-                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
-              ],
-              ctaLabel: "Explorar Andes",
-              ctaHref: "/es/regiones/andes/"
-            },
-            {
-              title: "Vida comunitaria amazónica (cuando aplique)",
-              desc: "Un enfoque más profundo basado en conocimientos locales, vida de río y tradiciones sostenibles.",
-              badges: ["Moderado", "Día completo"],
-              chips: [
-                { label: "Mejor en: Amazonía", href: "/es/regiones/amazonia/" }
-              ],
-              ctaLabel: "Explorar Amazonía",
-              ctaHref: "/es/regiones/amazonia/"
-            }
-          ]
-        },
-
-        festivals: {
-          hint: "Los festivales son estacionales. Si no hay festival, elige música y tradiciones del día a día.",
-          recs: [
-            {
-              title: "Plan de festival (ligero y flexible)",
-              desc: "Llega temprano, mantén expectativas abiertas y enfócate en uno o dos momentos clave, no en todo.",
-              badges: ["Fácil", "Medio día a día completo"],
+              title: "Street food (solo bocados pequenos)",
+              desc: "Caminata lenta, pocas paradas y ritmo relajado. Perfecto para primera vez.",
+              badges: ["Facil", "2-4 horas"],
               chips: [
                 { label: "Mejor en: Andes", href: "/es/regiones/andes/" },
-                { label: "También: Costa", href: "/es/regiones/costa/" }
+                { label: "Tambien: Costa", href: "/es/regiones/costa/" }
               ],
-              ctaLabel: "Explorar Regiones",
+              ctaLabel: "Explorar regiones",
               ctaHref: "/es/regiones/"
             },
             {
-              title: "Música, danza y cultura nocturna",
-              desc: "Si el timing encaja, arma una noche con música local, pequeñas presentaciones y energía comunitaria.",
-              badges: ["Fácil", "Noche"],
+              title: "Plato tradicional y parada en panaderia local",
+              desc: "Combina un plato signature con algo dulce. Manten el dia liviano y centrado en comida.",
+              badges: ["Facil", "Medio dia-Dia completo"],
               chips: [
-                { label: "Buen match: Costa", href: "/es/regiones/costa/" }
+                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
+              ],
+              ctaLabel: "Explorar Andes",
+              ctaHref: "/es/regiones/andes/"
+            }
+          ]
+        },
+
+        seafood: {
+          hint: "Para mariscos, quedate en la costa. Ceviche fresco y pescado a la plancha, sin complicaciones.",
+          recs: [
+            {
+              title: "Cultura del ceviche (primera parada)",
+              desc: "Prueba un estilo de ceviche y suma un segundo plato pequeno si te queda espacio. Que mande lo fresco.",
+              badges: ["Facil", "2-3 horas"],
+              chips: [
+                { label: "Mejor en: Costa", href: "/es/regiones/costa/" }
               ],
               ctaLabel: "Explorar Costa",
               ctaHref: "/es/regiones/costa/"
             },
             {
-              title: "Día de tradiciones (mercados y rituales)",
-              desc: "Alternativa sin festival que igual se siente cultural: mercados, artes y ritmos locales.",
-              badges: ["Fácil", "Medio día"],
+              title: "Mercado de mariscos y plato hecho al momento",
+              desc: "Camina el mercado y luego elige un plato cocinado simple cerca. Buenisimo para fotos tambien.",
+              badges: ["Facil", "Medio dia"],
               chips: [
-                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
+                { label: "Mejor en: Costa", href: "/es/regiones/costa/" }
+              ],
+              ctaLabel: "Explorar Costa",
+              ctaHref: "/es/regiones/costa/"
+            },
+            {
+              title: "Cena al atardecer junto al mar",
+              desc: "Dia de playa tranquilo y cena de mariscos en golden hour. Minima planificacion, maximo premio.",
+              badges: ["Facil", "Noche"],
+              chips: [
+                { label: "Mejor en: Costa", href: "/es/regiones/costa/" }
+              ],
+              ctaLabel: "Explorar Costa",
+              ctaHref: "/es/regiones/costa/"
+            }
+          ]
+        },
+
+        cacao: {
+          hint: "El cacao ecuatoriano es top. Manten el plan enfocado: farm-to-bar o tasting + itinerario liviano.",
+          recs: [
+            {
+              title: "Cata de cacao (aprende rapido lo esencial)",
+              desc: "Prueba varios porcentajes y estilos, y deja la tarde tranquila para disfrutar sin apuro.",
+              badges: ["Facil", "1-2 horas"],
+              chips: [
+                { label: "Ideal desde: Andes", href: "/es/regiones/andes/" },
+                { label: "Tambien: Amazonia", href: "/es/regiones/amazonia/" }
+              ],
+              ctaLabel: "Explorar regiones",
+              ctaHref: "/es/regiones/"
+            },
+            {
+              title: "Experiencia de cacao y dia escenico de descanso",
+              desc: "Combina cacao con un dia relajado para que no se convierta en una lista apurada.",
+              badges: ["Facil", "Dia completo"],
+              chips: [
+                { label: "Buen match: Andes", href: "/es/regiones/andes/" }
               ],
               ctaLabel: "Explorar Andes",
               ctaHref: "/es/regiones/andes/"
+            },
+            {
+              title: "Dia de sabores amazonicos (ingredientes e historia)",
+              desc: "Un angulo mas cultural: ingredientes nativos y preparacion tradicional con contexto local.",
+              badges: ["Moderado", "Dia completo"],
+              chips: [
+                { label: "Mejor en: Amazonia", href: "/es/regiones/amazonia/" }
+              ],
+              ctaLabel: "Explorar Amazonia",
+              ctaHref: "/es/regiones/amazonia/"
+            }
+          ]
+        },
+
+        coffee: {
+          hint: "Los dias de cafe se disfrutan sin prisa: un gran cafe, una cata y bastante downtime.",
+          recs: [
+            {
+              title: "Ruta de cafeterias (maximo 2 paradas)",
+              desc: "Elige un cafe principal y una segunda parada. No lo sobrecargues. Calma e intencion.",
+              badges: ["Facil", "2-4 horas"],
+              chips: [
+                { label: "Ideal desde: Andes", href: "/es/regiones/andes/" }
+              ],
+              ctaLabel: "Explorar Andes",
+              ctaHref: "/es/regiones/andes/"
+            },
+            {
+              title: "Cata de cafe y maridaje con pastel local",
+              desc: "Una cata simple con un bocado dulce. Perfecto para amigos y parejas.",
+              badges: ["Facil", "1-2 horas"],
+              chips: [
+                { label: "Ideal desde: Andes", href: "/es/regiones/andes/" }
+              ],
+              ctaLabel: "Explorar Andes",
+              ctaHref: "/es/regiones/andes/"
+            },
+            {
+              title: "Alternativa costera (cafe y ritmo calido)",
+              desc: "Si quieres cafeterias con playa, la Costa ofrece un ritmo mas lento y calido.",
+              badges: ["Facil", "Medio dia-Dia completo"],
+              chips: [
+                { label: "Buen match: Costa", href: "/es/regiones/costa/" }
+              ],
+              ctaLabel: "Explorar Costa",
+              ctaHref: "/es/regiones/costa/"
             }
           ]
         }
@@ -884,7 +928,7 @@
 
               <div class="rec-actions">
                 <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
-                <span class="hint">Punto de partida recomendado</span>
+                <span class="hint">Mejor punto de partida</span>
               </div>
             </article>
           `;
@@ -902,10 +946,14 @@
       }
     })();
 
-    /* ===== Carousel ===== */
+    /* ===== Carousel (same behavior, Spanish aria labels) ===== */
     (function(){
-      const track = document.getElementById("ee_car_track");
-      const viewport = document.getElementById("ee_car_viewport");
+      const carousel = document.querySelector("section.carousel");
+      if (!carousel) return;
+
+      const viewport = carousel.querySelector(".carousel-viewport");
+      const track = carousel.querySelector(".carousel-track");
+
       const prevBtn = document.getElementById("ee_car_prev");
       const nextBtn = document.getElementById("ee_car_next");
       const dotsWrap = document.getElementById("ee_car_dots");
@@ -913,53 +961,82 @@
 
       if (!track || !viewport) return;
 
-      const slides = Array.from(track.children);
+      const slides = Array.from(track.children).filter(el => el.classList.contains("carousel-slide"));
       const total = slides.length;
+      if (total === 0) return;
+
       let index = 0;
+      let timer = null;
+
       let startX = 0;
       let currentX = 0;
       let dragging = false;
+
+      const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       function setCounter(){
         if (!counter) return;
         counter.textContent = `${index + 1} / ${total}`;
       }
 
-      function setDots(){
+      let dots = [];
+      function buildDots(){
         if (!dotsWrap) return;
         dotsWrap.innerHTML = "";
+        dots = [];
         for (let i = 0; i < total; i++){
           const b = document.createElement("button");
           b.className = "dot" + (i === index ? " active" : "");
           b.type = "button";
           b.setAttribute("aria-label", `Ir a la diapositiva ${i + 1}`);
-          b.addEventListener("click", () => goTo(i));
+          b.addEventListener("click", () => goTo(i, true));
           dotsWrap.appendChild(b);
+          dots.push(b);
         }
       }
 
-      function update(){
+      function render(){
         track.style.transform = `translateX(${-index * 100}%)`;
         setCounter();
-        setDots();
+        if (dots.length){
+          dots.forEach((d, i) => d.classList.toggle("active", i === index));
+        }
       }
 
-      function goTo(i){
+      function goTo(i, userAction){
         index = (i + total) % total;
-        update();
+        render();
+        if (userAction) restart();
       }
 
-      function next(){ goTo(index + 1); }
-      function prev(){ goTo(index - 1); }
+      function next(userAction){ goTo(index + 1, userAction); }
+      function prev(userAction){ goTo(index - 1, userAction); }
 
-      if (nextBtn) nextBtn.addEventListener("click", next);
-      if (prevBtn) prevBtn.addEventListener("click", prev);
+      function start(){
+        if (reduceMotion) return;
+        stop();
+        timer = setInterval(() => next(false), 4200);
+      }
+
+      function stop(){
+        if (timer) clearInterval(timer);
+        timer = null;
+      }
+
+      function restart(){
+        stop();
+        start();
+      }
+
+      if (nextBtn) nextBtn.addEventListener("click", () => next(true));
+      if (prevBtn) prevBtn.addEventListener("click", () => prev(true));
 
       viewport.addEventListener("touchstart", (e) => {
         if (e.touches.length !== 1) return;
         dragging = true;
         startX = e.touches[0].clientX;
         currentX = startX;
+        stop();
       }, { passive:true });
 
       viewport.addEventListener("touchmove", (e) => {
@@ -972,30 +1049,21 @@
         const dx = currentX - startX;
         dragging = false;
         if (Math.abs(dx) > 45){
-          if (dx < 0) next();
-          else prev();
+          if (dx < 0) next(true);
+          else prev(true);
+        } else {
+          start();
         }
       });
 
-      viewport.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight") next();
-        if (e.key === "ArrowLeft") prev();
-      });
+      carousel.addEventListener("mouseenter", stop);
+      carousel.addEventListener("mouseleave", start);
+      carousel.addEventListener("focusin", stop);
+      carousel.addEventListener("focusout", start);
 
-      update();
-    })();
-  </script>
-
-  <script>
-    (function(){
-      async function inject(id, url){
-        const el = document.getElementById(id);
-        if(!el) return;
-        const res = await fetch(url, { cache: "no-store" });
-        el.innerHTML = await res.text();
-      }
-      inject("siteHeader", "/assets/includes/header.html");
-      inject("siteFooter", "/assets/includes/footer.html");
+      buildDots();
+      render();
+      start();
     })();
   </script>
 </body>
