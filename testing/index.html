@@ -1,704 +1,943 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Vida Silvestre y Aves | Mindo Bird Watching</title>
-  <meta name="description" content="Descubre vida silvestre y aves en Mindo, Ecuador: colibries, tucanes, senderos faciles y guias locales. Elige tu enfoque y arma un viaje de biodiversidad." />
-
-  <!-- Canonical (must match page URL) -->
-  <link rel="canonical" href="https://mindobirdwatching.com/es/experiencias/vida-silvestre-y-aves/" />
-
+  <title>Reviews | Experience Ecuador</title>
+  <meta name="description" content="Read guest reviews and feedback about Experience Ecuador. Our Google Reviews page is coming soon." />
+  <link rel="canonical" href="https://experienceecuador.com/reviews/" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Mindo Bird Watching" />
-  <meta property="og:title" content="Vida Silvestre y Aves | Mindo Bird Watching" />
-  <meta property="og:description" content="Descubre vida silvestre y aves en Mindo, Ecuador: colibries, tucanes, senderos faciles y guias locales. Elige tu enfoque y arma un viaje de biodiversidad." />
-  <meta property="og:url" content="https://mindobirdwatching.com/es/experiencias/vida-silvestre-y-aves/" />
-  <meta property="og:image" content="https://mindobirdwatching.com/MBW-Assets-OG-Image.png" />
-  <meta property="og:image:secure_url" content="https://mindobirdwatching.com/MBW-Assets-OG-Image.png" />
+  <meta property="og:site_name" content="Experience Ecuador" />
+  <meta property="og:title" content="Reviews | Experience Ecuador" />
+  <meta property="og:description" content="Read guest reviews and feedback about Experience Ecuador. Our Google Reviews page is coming soon." />
+  <meta property="og:url" content="https://experienceecuador.com/reviews/" />
+  <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Mindo Bird Watching: aves, vida silvestre y experiencias en Mindo, Ecuador" />
-
+  <meta property="og:image:alt" content="Experience Ecuador reviews and travel experiences" />
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Vida Silvestre y Aves | Mindo Bird Watching" />
-  <meta name="twitter:description" content="Descubre vida silvestre y aves en Mindo, Ecuador: colibries, tucanes, senderos faciles y guias locales. Elige tu enfoque y arma un viaje de biodiversidad." />
-  <meta name="twitter:image" content="https://mindobirdwatching.com/MBW-Assets-OG-Image.png" />
-
-  <!-- Favicons (approved root paths) -->
+  <meta name="twitter:title" content="Reviews | Experience Ecuador" />
+  <meta name="twitter:description" content="Read guest reviews and feedback about Experience Ecuador. Our Google Reviews page is coming soon." />
+  <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
-
   <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
-
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
+  <!-- (Optional) Reviews data file you will add later:
+       IMPORTANT: keep it non-deferred if you want window.EE_REVIEWS_DATA available immediately.
+       <script src="/assets/data/reviews-data.js"></script>
+  -->
   <style>
     :root{
       --brand-blue:#034EA2;
-      --charcoal:#1F1F1F;
       --slate:#6E7B8B;
+      --text:#1F1F1F;
+      --bg:#f6f8fb;
+      --card:#fff;
+      --border:rgba(0,0,0,.06);
+      --shadow:0 18px 55px rgba(3,78,162,.12);
 
-      --card:#ffffff;
-      --border:rgba(0,0,0,0.06);
-      --shadow:0 18px 55px rgba(3,78,162,0.12);
-      --shadowHover:0 28px 70px rgba(3,78,162,0.18);
-
-      --chipBg: rgba(3,78,162,0.10);
-      --chipText:#0f2f62;
+      --glass: rgba(255,255,255,.72);
+      --glass2: rgba(255,255,255,.62);
+      --soft: rgba(255,255,255,.55);
+      --google-star:#fbbc04;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--charcoal);
-      background:#f6f8fb;
+      background:var(--bg);
+      color:var(--text);
     }
-
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
+    img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
 
-    /* ===== HERO (GALAPAGOS PATTERN) ===== */
-    .hero{
-      position:relative;
-      width:100%;
-      min-height:64vh;
-      display:flex;
-      align-items:flex-end;
-      justify-content:center;
-      background:url("/assets/images/experiences/EE-Assets-Exp-Hero-Wildlife-Birding.jpg") center / cover no-repeat;
-      color:#fff;
-    }
-
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.70));
-    }
-
-    .hero-inner{
-      position:relative;
-      z-index:2;
-      width:100%;
+    .wrap{
       max-width:1100px;
-      padding:54px 18px 34px;
-      text-align:left;
+      margin:0 auto;
+      padding:22px 18px 40px;
     }
 
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,0.38);
-      border:1px solid rgba(255,255,255,0.22);
-      font-weight:700;
-      letter-spacing:0.02em;
-      font-size:12.5px;
-      margin-bottom:14px;
-      backdrop-filter:blur(10px);
+    /* Hero image like your other pages */
+    .heroImage{
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      box-shadow:0 18px 60px rgba(0,0,0,.14);
+      background:#e9eef7;
+      margin-top:18px;
+    }
+    .heroImage img{
+      width:100%;
+      height:auto;
+      display:block;
     }
 
-    .hero h1{
-      margin:0 0 10px;
+    .page{
+      margin-top:18px;
+      padding:22px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:16px;
+      align-items:start;
+    }
+
+    h1{
       font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
+      font-size:clamp(34px,4vw,54px);
+      color:var(--brand-blue);
+      margin:0 0 10px;
       letter-spacing:-0.03em;
-      font-size:clamp(40px,5.4vw,72px);
-      line-height:1.03;
     }
 
     .hero p{
       margin:0;
-      max-width:68ch;
-      font-size:clamp(15px,2vw,18px);
-      line-height:1.65;
-      color:rgba(255,255,255,0.92);
-    }
-
-    /* ===== CONTENT ===== */
-    .wrap{
-      max-width:1100px;
-      margin:0 auto;
-      padding:36px 18px 60px;
-    }
-
-    .section{margin-bottom:36px}
-
-    .section h2{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:24px;
-      margin:0 0 10px;
-      color:var(--brand-blue);
-    }
-
-    .section p{
       max-width:85ch;
-      line-height:1.75;
-      font-size:15.8px;
-      color:#2a2f36;
-      margin:0;
+      color:var(--slate);
+      line-height:1.65;
+      font-size:16.8px;
     }
 
-    .grid{
+    .leftStack{
       display:grid;
-      grid-template-columns:1.15fr 0.85fr;
-      gap:28px;
-      margin-top:18px;
-      align-items:start;
+      gap:14px;
+      align-content:start;
     }
 
-    .card{
-      background:#fff;
-      border-radius:22px;
-      padding:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:var(--shadow);
+    /* Coming soon block (requested) */
+    .comingSoon{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px dashed rgba(3,78,162,.28);
+      background:rgba(3,78,162,.06);
+      box-shadow:0 10px 26px rgba(3,78,162,.06);
+    }
+    .comingSoon b{
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+    }
+    .comingSoon p{
+      margin:2px 0 0;
+      font-size:14.6px;
+      line-height:1.6;
+      color:var(--slate);
+      max-width:none;
+    }
+    .csIcon{
+      width:40px;
+      height:40px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(3,78,162,.10);
+      border:1px solid rgba(3,78,162,.18);
+      flex:0 0 auto;
+      font-size:18px;
+      color:#0f2f62;
+      font-weight:900;
     }
 
-    .card ul{
-      margin:0;
-      padding-left:18px;
-      line-height:1.75;
-      font-size:14.8px;
-      color:#24324a;
+    .ctaPills{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      align-items:stretch;
+      max-width:560px;
     }
 
-    .mini{
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      border-radius:20px;
-      padding:20px;
-      border:1px solid rgba(3,78,162,0.12);
-    }
-
-    .mini + .mini{margin-top:16px}
-
-    /* ===== SELECTOR (SAME SYSTEM AS ADVENTURE) ===== */
-    .selector{
-      background:#fff;
+    .pillBtn{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:14px 16px;
+      border-radius:18px;
       border:1px solid var(--border);
-      border-radius:24px;
       box-shadow:var(--shadow);
+      text-decoration:none;
+      font-weight:900;
+      letter-spacing:-0.01em;
+      color:#0f2f62;
+      background:var(--glass);
+      min-height:58px;
+      transition:transform .15s ease, filter .15s ease;
+    }
+    .pillBtn:hover{ transform:translateY(-1px); }
+    .pillBtn:active{ transform:translateY(0px); }
+
+    .pillLeft{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+    .pillIcon{
+      width:38px;
+      height:38px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(3,78,162,.18);
+      background:rgba(3,78,162,.06);
+      flex:0 0 auto;
+      font-size:18px;
       overflow:hidden;
     }
-
-    .selector-top{
-      display:grid;
-      grid-template-columns:1fr auto;
-      grid-template-rows:auto auto;
-      align-items:start;
-      gap:16px;
-      padding:22px;
-      border-bottom:1px solid rgba(0,0,0,0.06);
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+    .pillIcon img{
+      width:34px;
+      height:34px;
+      display:block;
+      object-fit:contain;
     }
-
-    .selector-copy{
-      grid-column:1 / -1;
-    }
-
-    .selector-copy h3{
-      margin:0 0 6px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:20px;
-      color:#0f2f62;
-    }
-
-    .selector-copy p{
+    .pillText{ display:grid; gap:2px; min-width:0; }
+    .pillTitle{
       margin:0;
-      color:#24324a;
-      opacity:0.92;
-      line-height:1.65;
-      font-size:14.8px;
-      max-width:70ch;
-    }
-
-    .selector-controls{
-      grid-column:2;
-      justify-self:end;
-      display:grid;
-      grid-template-columns:auto 260px;
-      column-gap:12px;
-      row-gap:10px;
-      align-items:center;
-    }
-
-    .selector-controls label{
-      font-weight:800;
-      color:#0f2f62;
-      font-size:13px;
-      letter-spacing:0.02em;
-    }
-
-    .selector-controls select{
-      appearance:none;
-      -webkit-appearance:none;
-      -moz-appearance:none;
-      border:1px solid rgba(3,78,162,0.22);
-      background:#fff;
-      color:#0f2f62;
-      font-weight:700;
-      padding:11px 42px 11px 12px;
-      border-radius:14px;
-      font-size:14px;
-      cursor:pointer;
-      outline:none;
-      width:260px;
-      min-width:260px;
-      box-shadow:0 14px 30px rgba(3,78,162,0.10);
-      background-image:
-        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
-        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
-        linear-gradient(to right, transparent, transparent);
-      background-position:
-        calc(100% - 18px) 50%,
-        calc(100% - 12px) 50%,
-        0 0;
-      background-size:6px 6px, 6px 6px, 100% 100%;
-      background-repeat:no-repeat;
-    }
-
-    .selector-controls select:focus{
-      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
-      border-color:rgba(3,78,162,0.45);
-    }
-
-    .selector-body{ padding:22px; }
-
-    .recs-grid{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:16px;
-    }
-
-    .rec{
-      background:#fff;
-      border:1px solid rgba(0,0,0,0.06);
-      border-radius:18px;
-      padding:16px;
-      box-shadow:0 16px 45px rgba(0,0,0,0.08);
-      transition:transform .2s ease, box-shadow .2s ease;
-      min-height:182px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
-    .rec:hover{
-      transform:translateY(-5px);
-      box-shadow:0 24px 60px rgba(0,0,0,0.12);
-    }
-
-    .rec h4{
-      margin:0;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
       font-size:16px;
-      color:#0f2f62;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
-
-    .rec p{
+    .pillSub{
       margin:0;
-      color:#2a2f36;
-      line-height:1.6;
-      font-size:14px;
-      opacity:0.95;
-      flex:1;
-    }
-
-    .chips{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      background:var(--chipBg);
-      color:var(--chipText);
-      font-weight:800;
       font-size:12.5px;
-      letter-spacing:0.01em;
-      border:1px solid rgba(3,78,162,0.16);
-      transition:transform .15s ease, background .15s ease;
+      color:var(--slate);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
-
-    .chip:hover{
-      transform:translateY(-1px);
-      background:rgba(3,78,162,0.14);
-    }
-
-    .meta{
+    .pillChevron{
+      width:34px;
+      height:34px;
+      border-radius:14px;
       display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-top:-2px;
-    }
-
-    .badge{
-      font-size:12px;
-      font-weight:800;
-      color:#0f2f62;
-      background:rgba(3,78,162,0.08);
-      border:1px solid rgba(3,78,162,0.14);
-      padding:6px 8px;
-      border-radius:999px;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(0,0,0,.06);
+      background:rgba(255,255,255,.70);
+      flex:0 0 auto;
+      font-size:18px;
       line-height:1;
     }
 
-    .rec-actions{
+    .pillPrimary{
+      background:rgba(251,188,4,.20);
+      border-color:rgba(251,188,4,.30);
+    }
+    .pillPrimary .pillIcon{
+      background:rgba(251,188,4,.16);
+      border-color:rgba(251,188,4,.35);
+    }
+
+    .pillSecondary{
+      background:rgba(3,78,162,.06);
+      border-color:rgba(3,78,162,.12);
+    }
+    .pillSecondary .pillIcon{
+      background:rgba(3,78,162,.08);
+      border-color:rgba(3,78,162,.16);
+    }
+
+    .pillWhatsapp{
+      background:rgba(37,211,102,.10);
+      border-color:rgba(37,211,102,.20);
+    }
+    .pillWhatsapp .pillIcon{
+      background:rgba(37,211,102,.12);
+      border-color:rgba(37,211,102,.22);
+    }
+
+    .summaryCard{
+      border:1px solid var(--border);
+      border-radius:22px;
+      background:var(--glass2);
+      box-shadow:var(--shadow);
+      padding:16px;
+      overflow:hidden;
+      position:relative;
+      max-width:560px;
+    }
+
+    .summaryTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .score{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      min-width:0;
+    }
+
+    .scoreNum{
+      font-weight:1000;
+      letter-spacing:-0.03em;
+      font-size:44px;
+      line-height:1;
+      color:#0f2f62;
+      flex:0 0 auto;
+    }
+
+    .scoreMeta{
+      display:grid;
+      gap:8px;
+      min-width:0;
+    }
+
+    .stars{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .starRow{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      line-height:1;
+      flex-wrap:nowrap;
+      white-space:nowrap;
+    }
+    .star{
+      border:0;
+      background:transparent;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .star::before{
+      content:"★";
+      font-size:26px;
+      font-weight:900;
+      color:var(--google-star);
+      line-height:1;
+      display:block;
+    }
+
+    .scoreLine{
+      margin:0;
+      color:var(--slate);
+      font-size:13px;
+      line-height:1.35;
+    }
+
+    .badgeRow{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.08);
+      background:rgba(255,255,255,.72);
+      box-shadow:0 10px 26px rgba(3,78,162,.08);
+      font-weight:900;
+      font-size:12.5px;
+      color:#0f2f62;
+      line-height:1;
+      white-space:nowrap;
+    }
+
+    .poweredBy{
+      margin-top:6px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:12px;
+      color:var(--slate);
+      font-size:12.5px;
+      line-height:1.35;
+      flex-wrap:wrap;
+    }
+    .poweredGroup{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .poweredBy img{
+      width:16px;
+      height:16px;
+      display:block;
+    }
+    .poweredBy a{
+      color:#0f2f62;
+      font-weight:900;
+      text-decoration:underline;
+      text-underline-offset:3px;
+      white-space:nowrap;
+    }
+
+    .proof{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+    .proofItem{
+      border:1px solid var(--border);
+      border-radius:16px;
+      background:var(--soft);
+      padding:12px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .proofItem b{
+      display:block;
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+    }
+    .proofItem span{
+      display:block;
+      color:var(--slate);
+      font-size:13px;
+      line-height:1.45;
+      margin-top:2px;
+    }
+
+    .rightStack{
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
+
+    .vCarousel{
+      border:1px solid var(--border);
+      border-radius:18px;
+      background:var(--glass2);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .vCarouselHeader{
+      padding:12px 14px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:10px;
-      margin-top:4px;
+      border-bottom:1px solid rgba(0,0,0,.05);
     }
-
-    .cta{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:10px 12px;
-      border-radius:12px;
-      font-weight:900;
-      font-size:13px;
-      background:var(--brand-blue);
-      color:#fff;
-      border:0;
-      cursor:pointer;
-      min-width:120px;
+    .vCarouselHeader b{
+      font-weight:1000;
+      letter-spacing:-0.01em;
+      color:#0f2f62;
     }
-
-    .cta:hover{ filter:brightness(0.95); }
-
-    .hint{
+    .vCarouselHeader span{
+      color:var(--slate);
       font-size:12.5px;
-      color:#24324a;
-      opacity:0.85;
-      font-weight:700;
+      line-height:1.2;
     }
 
-    /* ===== CAROUSEL (REGIONS-STYLE, SAME AS ADVENTURE) ===== */
-    .carousel{
-      margin-top:18px;
-      background:#fff;
-      border-radius:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.10);
-      overflow:hidden;
+    .vStage{
       position:relative;
-      z-index:1;
+      aspect-ratio:9 / 16;
+      background:rgba(0,0,0,.03);
+      min-height:420px;
     }
-
-    .carousel-viewport{
-      overflow:hidden;
-      width:100%;
-      touch-action:pan-y;
-    }
-
-    .carousel-track{
-      display:flex;
-      width:100%;
-      transform:translateX(0);
-      transition:transform 450ms ease;
-      will-change:transform;
-    }
-
-    .carousel-slide{
-      min-width:100%;
-      position:relative;
-      aspect-ratio:16/9;
-      background:#eef2f7;
-    }
-
-    .carousel-slide img{
+    .vStage img{
+      position:absolute;
+      inset:0;
       width:100%;
       height:100%;
       object-fit:cover;
-    }
-
-    .carousel-btn{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:44px;
-      height:44px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.35);
-      background:rgba(15,47,98,0.55);
-      backdrop-filter:blur(10px);
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:5;
-    }
-
-    .carousel-btn:hover{ background:rgba(15,47,98,0.70); }
-
-    .carousel-btn.prev{ left:12px; }
-    .carousel-btn.next{ right:12px; }
-
-    .carousel-btn span{
       display:block;
-      width:10px;
-      height:10px;
-      border-right:2px solid #fff;
-      border-bottom:2px solid #fff;
-      opacity:.95;
+      opacity:0;
+      transform:scale(1.02);
+      transition:opacity .45s ease, transform .65s ease;
+      pointer-events:none;
+    }
+    .vStage img.active{
+      opacity:1;
+      transform:scale(1.00);
+      pointer-events:auto;
     }
 
-    .carousel-btn.prev span{ transform:rotate(135deg); }
-    .carousel-btn.next span{ transform:rotate(-45deg); }
-
-    .carousel-ui{
+    .vNav{
+      position:absolute;
+      inset:0;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
-      padding:12px 14px;
-      border-top:1px solid rgba(0,0,0,0.06);
-      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.01));
+      padding:0 10px;
+      pointer-events:none;
     }
-
-    .carousel-dots{
+    .vBtn{
+      pointer-events:auto;
+      width:42px;
+      height:42px;
+      border-radius:16px;
+      border:1px solid rgba(0,0,0,.08);
+      background:rgba(255,255,255,.76);
+      box-shadow:0 10px 26px rgba(0,0,0,.12);
       display:flex;
-      gap:8px;
-      flex-wrap:wrap;
       align-items:center;
-    }
-
-    .dot{
-      width:10px;
-      height:10px;
-      border-radius:999px;
-      border:1px solid rgba(3,78,162,0.25);
-      background:rgba(3,78,162,0.12);
-      cursor:pointer;
-      padding:0;
-    }
-
-    .dot.active{
-      background:rgba(3,78,162,0.85);
-      border-color:rgba(3,78,162,0.85);
-    }
-
-    .carousel-counter{
-      font-weight:700;
-      font-size:13px;
+      justify-content:center;
+      font-size:18px;
+      font-weight:900;
       color:#0f2f62;
-      opacity:.9;
+      cursor:pointer;
+      user-select:none;
+    }
+    .vBtn:active{ transform:scale(.98); }
+
+    .vDots{
+      display:flex;
+      gap:6px;
+      padding:10px 12px 12px;
+      justify-content:center;
+      align-items:center;
+      background:rgba(255,255,255,.35);
+      border-top:1px solid rgba(0,0,0,.04);
+    }
+    .vDot{
+      width:7px;
+      height:7px;
+      border-radius:999px;
+      background:rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.35);
+      cursor:pointer;
+    }
+    .vDot.active{
+      width:18px;
+      background:rgba(3,78,162,.38);
+      border-color:rgba(3,78,162,.22);
+    }
+
+    .section{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid rgba(0,0,0,.06);
+    }
+
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+
+    .sectionHead h2{
+      margin:0;
+      font-family:Montserrat,Inter,sans-serif;
+      color:#0f2f62;
+      letter-spacing:-0.02em;
+      font-size:20px;
+    }
+
+    .hint{ margin:0; color:var(--slate); font-size:13px; }
+
+    .reviewsSplit{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      align-items:start;
+      margin-top:12px;
+    }
+    .col{ display:grid; gap:12px; align-content:start; }
+
+    .reviewCard{
+      border:1px solid var(--border);
+      border-radius:22px;
+      background:rgba(255,255,255,.70);
+      box-shadow:var(--shadow);
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .reviewTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .who{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+
+    .avatar{
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      border:1px solid rgba(251,188,4,.35);
+      background:rgba(251,188,4,.14);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      color:#8a6a00;
+      flex:0 0 auto;
+    }
+
+    .whoMeta{ display:grid; gap:2px; min-width:0; }
+
+    .name{
+      margin:0;
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+      font-size:15px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width:42ch;
+    }
+
+    .sub{
+      margin:0;
+      color:var(--slate);
+      font-size:12.5px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width:52ch;
+    }
+
+    .reviewBadges{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .starsPill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:0;
+      background:rgba(251,188,4,.16);
+      box-shadow:0 10px 26px rgba(3,78,162,.08);
+      font-weight:1000;
+      font-size:13px;
+      color:#8a6a00;
+      line-height:1;
       white-space:nowrap;
     }
 
-    /* ===== MOBILE ===== */
-    @media(max-width:900px){
-      .grid{grid-template-columns:1fr}
-      .recs-grid{grid-template-columns:1fr}
-      .selector-top{grid-template-columns:1fr;}
-      .selector-controls{
-        grid-column:1;
-        justify-self:start;
-        grid-template-columns:1fr;
-        row-gap:10px;
-        column-gap:0;
-        width:100%;
-      }
-      .selector-controls select{width:100%; min-width:0;}
+    .starsTextInline{
+      font-size:14px;
+      letter-spacing:.06em;
+      color:var(--google-star);
+      font-weight:1000;
+      line-height:1;
+      display:inline-flex;
+      gap:2px;
+    }
 
-      .hero-inner{ text-align:center; }
-      .hero p{ margin:0 auto; }
+    .gMark{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0;
+      border:0;
+      background:transparent;
+      box-shadow:none;
+      line-height:1;
+    }
+
+    .gMark img{
+      width:28px;
+      height:28px;
+      display:block;
+      object-fit:contain;
+    }
+
+    .quote{
+      margin:12px 0 0;
+      color:var(--text);
+      line-height:1.7;
+      white-space:pre-wrap;
+      font-size:14px;
+    }
+
+    .emptyState{
+      border:1px solid var(--border);
+      border-radius:22px;
+      background:rgba(255,255,255,.60);
+      box-shadow:var(--shadow);
+      padding:14px;
+      color:var(--slate);
+      font-size:13.5px;
+      line-height:1.6;
+      margin-top:12px;
+    }
+
+    /* Primary button classes aligned to your template */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      font-weight:900;
+      font-size:14px;
+      border:1px solid transparent;
+      cursor:pointer;
+      user-select:none;
+      font-family:inherit;
+    }
+    .btnPrimary{
+      background:var(--brand-blue);
+      color:#fff;
+      box-shadow:0 18px 40px rgba(3,78,162,0.18);
+    }
+    .btnPrimary:hover{filter:brightness(.97); transform:translateY(-1px)}
+    .btnGhost{
+      background:#fff;
+      color:#0f2f62;
+      border-color:rgba(3,78,162,0.22);
+      box-shadow:0 12px 26px rgba(3,78,162,0.08);
+    }
+    .btnGhost:hover{transform:translateY(-1px)}
+
+    @media (max-width: 860px){
+      .hero{ grid-template-columns:1fr; }
+      .reviewsSplit{ grid-template-columns:1fr; }
+      .ctaPills, .summaryCard{ max-width:100%; }
+      .page{ padding:18px; }
+      .score{ gap:10px; }
+      .scoreNum{ font-size:42px; }
+      .star::before{ font-size:24px; }
+      .stars{ gap:8px; }
+      .scoreMeta{ gap:6px; }
+      .badgeRow{ flex-wrap:nowrap; gap:8px; }
+      .badge{ padding:8px 10px; font-size:12px; }
+      .poweredBy{ flex-direction:column; align-items:flex-start; gap:6px; }
+      .pillTitle{ font-size:15px; }
+      .vStage{ min-height:520px; }
     }
 
     @media (prefers-reduced-motion: reduce){
-      .rec, .carousel-track { transition:none !important; }
+      .vStage img{ transition:none; }
+      .pillBtn:hover{ transform:none; }
+      .vBtn:active{ transform:none; }
     }
   </style>
 </head>
-
 <body>
   <div id="siteHeader"></div>
-
-  <main>
-    <!-- PAGE CONTENT ONLY -->
-
-    <section class="hero" aria-label="Imagen principal de Vida silvestre y aves">
-      <div class="hero-inner">
-        <div class="kicker">Experiencias • Vida Silvestre y Aves</div>
-        <h1>Vida Silvestre y Aves</h1>
+  <main class="wrap">
+    <div class="heroImage" aria-label="Reviews hero image">
+      <img src="/assets/images/pages/EE-Assets-73-Reviews.jpg" alt="Ecuador travel moments and landscapes">
+    </div>
+<section class="page" aria-label="Reviews page content">
+  <section class="hero" aria-label="Reviews introduction">
+    <div class="leftStack">
+      <div>
+        <h1>Reviews</h1>
         <p>
-          Ecuador es uno de los países con mayor vida silvestre del planeta. Desde colibríes y tucanes hasta monos, ranas y vida marina,
-          los encuentros son posibles en todas las regiones. Usa el selector para elegir tu estilo de viaje enfocado en biodiversidad.
+          Real feedback from travelers and partners helps us improve the Experience Ecuador platform and highlight the best local experiences.
+          Our Google Reviews page is coming soon.
         </p>
       </div>
-    </section>
 
-    <div class="wrap">
-      <section class="section">
-        <h2>De qué se trata esta experiencia</h2>
-        <p>
-          La vida silvestre y el avistamiento de aves en Ecuador no se limitan a expediciones remotas. Las distancias cortas, guías locales expertos
-          y ecosistemas protegidos lo convierten en uno de los destinos más accesibles del mundo para viajar por biodiversidad. Seas un observador casual
-          o un pajarero serio, Ecuador ofrece encuentros excepcionales durante todo el año.
-        </p>
-      </section>
-
-      <!-- Wildlife Selector -->
-      <section class="section selector" aria-label="Selector de vida silvestre y aves">
-        <div class="selector-top">
-          <div class="selector-controls">
-            <label for="ee_exp_nav">Experiencias</label>
-            <select id="ee_exp_nav" name="ee_exp_nav" aria-label="Seleccionar experiencia">
-              <option value="/es/experiencias/aventura/">Aventura</option>
-              <option value="/es/experiencias/naturaleza/">Naturaleza</option>
-              <option value="/es/experiencias/vida-silvestre-y-aves/" selected>Vida Silvestre y Aves</option>
-              <option value="/es/experiencias/relajacion/">Relajación</option>
-              <option value="/es/experiencias/gastronomia/">Gastronomía</option>
-              <option value="/es/experiencias/cultura/">Cultura</option>
-            </select>
-
-            <label for="ee_wildlife_focus">Enfoque</label>
-            <select id="ee_wildlife_focus" name="ee_wildlife_focus" aria-label="Seleccionar enfoque de vida silvestre">
-              <option value="casual">Encuentros casuales (fácil y rápido)</option>
-              <option value="birding" selected>Aves primero (especies objetivo)</option>
-              <option value="amazon">Vida silvestre amazónica (selva profunda)</option>
-              <option value="marine">Vida marina (océano e islas)</option>
-            </select>
-          </div>
-
-          <div class="selector-copy">
-            <h3>Elige tu enfoque de vida silvestre</h3>
-            <p>
-              Selecciona lo que quieres priorizar y te mostraremos tres puntos de partida fuertes, cada uno ligado a la mejor región para empezar.
-              (Puedes afinar esto a medida que expandas tus páginas de destinos.)
-            </p>
-          </div>
-        </div>
-
-        <div class="selector-body">
-          <div class="recs-grid" id="ee_wildlife_recs" aria-live="polite"></div>
-          <div style="margin-top:12px;">
-            <span class="hint" id="ee_wildlife_hint">Tip: “Aves primero” es la opción más popular. Combínala con una base en bosque nublado.</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section grid">
-        <div class="card">
-          <h2>Experiencias de vida silvestre destacadas</h2>
-          <ul>
-            <li>Avistamiento de aves en bosque nublado y reservas</li>
-            <li>Vida silvestre amazónica y exploración de canopy</li>
-            <li>Encuentros con vida marina en la costa</li>
-            <li>Especies endémicas y caminatas guiadas</li>
-            <li>Experiencias enfocadas en fotografía de naturaleza</li>
-          </ul>
-        </div>
-
+      <div class="comingSoon" aria-label="Coming soon notice">
+        <div class="csIcon" aria-hidden="true">⏳</div>
         <div>
-          <div class="mini">
-            <h2>Ideal para</h2>
-            <ul>
-              <li>Pajareros y amantes de la vida silvestre</li>
-              <li>Fotógrafos de naturaleza</li>
-              <li>Eco viajeros y viajeros con enfoque de conservación</li>
-              <li>Viaje lento e inmersión</li>
-            </ul>
-          </div>
-
-          <div class="mini">
-            <h2>Regiones que brillan</h2>
-            <ul>
-              <li>Andes: bosque nublado y especies endémicas</li>
-              <li>Amazonía: vida silvestre de selva y biodiversidad</li>
-              <li>Costa: ecosistemas marinos y bosques costeros</li>
-              <li>Galápagos: endemismo icónico</li>
-            </ul>
-          </div>
+          <b>Coming soon</b>
+          <p>
+            We are setting up our official Google Business reviews page. For now, you can still share feedback and reach us directly.
+          </p>
         </div>
-      </section>
+      </div>
 
-      <!-- Bottom Carousel (Regions-style) -->
-      <section class="section" aria-label="Galería de vida silvestre y aves">
-        <div class="carousel" id="wildlifeCarousel">
-          <button class="carousel-btn prev" type="button" aria-label="Diapositiva anterior">
-            <span aria-hidden="true"></span>
-          </button>
-          <button class="carousel-btn next" type="button" aria-label="Siguiente diapositiva">
-            <span aria-hidden="true"></span>
-          </button>
+      <div class="ctaPills" aria-label="Primary actions">
+        <a class="pillBtn pillPrimary" href="#" aria-disabled="true" onclick="return false;">
+          <div class="pillLeft">
+            <div class="pillIcon" aria-hidden="true">
+              <img src="/assets/images/icons/Google-Review-Symbol.png" alt="">
+            </div>
+            <div class="pillText">
+              <p class="pillTitle">Leave a Review on Google</p>
+              <p class="pillSub">Coming soon</p>
+            </div>
+          </div>
+          <div class="pillChevron" aria-hidden="true">›</div>
+        </a>
 
-          <div class="carousel-viewport" aria-label="Vista del carrusel">
-            <div class="carousel-track" aria-label="Pista del carrusel">
-              <div class="carousel-slide">
-                <img src="/assets/images/EE-Carousel-Wildlife-1.jpg" alt="Imagen de galería de vida silvestre 1">
+        <a class="pillBtn pillSecondary" href="/trip-builder/">
+          <div class="pillLeft">
+            <div class="pillIcon" aria-hidden="true">🧭</div>
+            <div class="pillText">
+              <p class="pillTitle">Plan a Trip</p>
+              <p class="pillSub">Start with regions and experiences</p>
+            </div>
+          </div>
+          <div class="pillChevron" aria-hidden="true">›</div>
+        </a>
+
+        <a class="pillBtn pillWhatsapp" href="/contact/">
+          <div class="pillLeft">
+            <div class="pillIcon" aria-hidden="true">✉️</div>
+            <div class="pillText">
+              <p class="pillTitle">Send Feedback</p>
+              <p class="pillSub">Contact our team</p>
+            </div>
+          </div>
+          <div class="pillChevron" aria-hidden="true">›</div>
+        </a>
+      </div>
+
+      <aside class="summaryCard" aria-label="Google rating summary">
+        <div class="summaryTop">
+          <div class="score" aria-label="Overall rating">
+            <div class="scoreNum" id="ratingValue">-</div>
+
+            <div class="scoreMeta">
+              <div class="stars" aria-label="Star rating">
+                <div class="starRow" aria-hidden="true">
+                  <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                </div>
+
+                <p class="scoreLine"><span id="reviewCount">-</span> reviews</p>
+
+                <div class="badgeRow" aria-label="Badges row">
+                  <span class="badge" id="ratingMeta">Google Reviews</span>
+                  <span class="badge" aria-label="Location badge">📍 Ecuador</span>
+                </div>
               </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE-Carousel-Wildlife-2.jpg" alt="Imagen de galería de vida silvestre 2">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE-Carousel-Wildlife-3.jpg" alt="Imagen de galería de vida silvestre 3">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE-Carousel-Wildlife-4.jpg" alt="Imagen de galería de vida silvestre 4">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE-Carousel-Wildlife-5.jpg" alt="Imagen de galería de vida silvestre 5">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE-Carousel-Wildlife-6.jpg" alt="Imagen de galería de vida silvestre 6">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE-Carousel-Wildlife-7.jpg" alt="Imagen de galería de vida silvestre 7">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE-Carousel-Wildlife-8.jpg" alt="Imagen de galería de vida silvestre 8">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE-Carousel-Wildlife-9.jpg" alt="Imagen de galería de vida silvestre 9">
-              </div>
-              <div class="carousel-slide">
-                <img src="/assets/images/EE-Carousel-Wildlife-10.jpg" alt="Imagen de galería de vida silvestre 10">
+
+              <div class="poweredBy">
+                <a id="mapsLink" href="#" target="_blank" rel="noopener noreferrer" style="display:none;">Open on Maps</a>
+                <span class="poweredGroup">
+                  <img src="/assets/images/icons/Google__G__logo.png" alt="Google logo">
+                  <span>Powered by Google</span>
+                </span>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="carousel-ui" aria-label="Controles del carrusel">
-            <div class="carousel-dots" id="wildlifeDots" aria-label="Puntos del carrusel"></div>
-            <div class="carousel-counter" id="wildlifeCounter" aria-label="Contador del carrusel">1 / 10</div>
+        <div class="proof" aria-label="What people highlight">
+          <div class="proofItem">
+            <div>
+              <b>Curated picks</b>
+              <span>Clear categories across regions, stays, and experiences.</span>
+            </div>
+            <span class="badge">Goal</span>
+          </div>
+
+          <div class="proofItem">
+            <div>
+              <b>Simple planning</b>
+              <span>Less overwhelm, more confidence in your itinerary.</span>
+            </div>
+            <span class="badge">Focus</span>
+          </div>
+
+          <div class="proofItem">
+            <div>
+              <b>Local-first</b>
+              <span>Built to highlight guides, lodges, and small operators.</span>
+            </div>
+            <span class="badge">Promise</span>
           </div>
         </div>
+      </aside>
+    </div>
+
+    <div class="rightStack" aria-label="Reviews carousel column">
+      <section class="vCarousel" aria-label="Highlights carousel">
+        <div class="vCarouselHeader">
+          <b>Traveler Moments</b>
+          <span></span>
+        </div>
+
+        <div class="vStage" id="vStage">
+          <img class="active" alt="Experience Ecuador highlight 1" src="/assets/images/pages/reviews/EE-Reviews-Carousel-01.jpg">
+          <img alt="Experience Ecuador highlight 2" src="/assets/images/pages/reviews/EE-Reviews-Carousel-02.jpg">
+          <img alt="Experience Ecuador highlight 3" src="/assets/images/pages/reviews/EE-Reviews-Carousel-03.jpg">
+          <img alt="Experience Ecuador highlight 4" src="/assets/images/pages/reviews/EE-Reviews-Carousel-04.jpg">
+          <img alt="Experience Ecuador highlight 5" src="/assets/images/pages/reviews/EE-Reviews-Carousel-05.jpg">
+
+          <div class="vNav" aria-label="Carousel navigation">
+            <button class="vBtn" type="button" id="vPrev" aria-label="Previous image">‹</button>
+            <button class="vBtn" type="button" id="vNext" aria-label="Next image">›</button>
+          </div>
+        </div>
+
+        <div class="vDots" id="vDots" aria-label="Carousel dots"></div>
       </section>
     </div>
-  </main>
+  </section>
 
+  <section class="section" aria-label="Live reviews">
+    <div class="sectionHead">
+      <h2>Latest Google Reviews</h2>
+      <p class="hint" id="reviewsHint">Coming soon…</p>
+    </div>
+
+    <div class="reviewsSplit" aria-label="Reviews split columns">
+      <div class="col" id="colLeft" aria-label="Left column"></div>
+      <div class="col" id="colRight" aria-label="Right column"></div>
+    </div>
+
+    <div class="emptyState" id="reviewsEmpty">
+      Reviews are not available yet. Once our Google Business profile is live, this page will automatically populate with ratings and recent reviews.
+    </div>
+  </section>
+</section>
+      </main>
   <div id="siteFooter"></div>
-
+  <script>
+    // Light deterrent: disable right-click on images only
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+  </script>
+  <!-- Keep global mobile nav behavior -->
   <script src="/assets/js/site.js"></script>
-
+  <!-- Global header/footer injection -->
   <script>
     (function(){
       async function inject(id, url){
@@ -711,322 +950,76 @@
       inject("siteFooter", "/assets/includes/footer.html");
     })();
   </script>
-
   <script>
-    /* ===== Experiences dropdown (auto-navigate) ===== */
-    (function(){
-      const expEl = document.getElementById("ee_exp_nav");
-      if (!expEl) return;
-      expEl.addEventListener("change", function(){
-        const url = this.value;
-        if (url) window.location.href = url;
-      });
-    })();
+    (function () {
+      "use strict";
 
-    /* ===== Wildlife Focus Selector (3 recommendations) ===== */
-    (function(){
-      const focusEl = document.getElementById("ee_wildlife_focus");
-      const recsEl = document.getElementById("ee_wildlife_recs");
-      const hintEl = document.getElementById("ee_wildlife_hint");
+      function byId(id){ return document.getElementById(id); }
 
-      const data = {
-        casual: {
-          hint: "Los encuentros casuales son mas faciles con una base en bosque nublado. Muchas observaciones con logistica minima.",
-          recs: [
-            {
-              title: "Jardines de colibries y caminatas faciles en reserva",
-              desc: "Senderos cortos, avistamientos frecuentes y una gran introduccion a la biodiversidad sin irte lejos.",
-              badges: ["Facil", "Medio dia a dia completo"],
-              chips: [
-                { label: "Mejor en: Andes (Mindo)", href: "/es/regiones/andes/mindo/" },
-                { label: "Explorar Andes", href: "/es/regiones/andes/" }
-              ],
-              ctaLabel: "Ver Mindo",
-              ctaHref: "/es/regiones/andes/mindo/"
-            },
-            {
-              title: "Caminata guiada para especies endemicas",
-              desc: "Un guia te ayuda a ver lo que se te escaparia. Ideal para tu primera experiencia de vida silvestre.",
-              badges: ["Facil", "Medio dia"],
-              chips: [
-                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
-              ],
-              ctaLabel: "Explorar Andes",
-              ctaHref: "/es/regiones/andes/"
-            },
-            {
-              title: "Dia en reserva costera con sorpresas de fauna",
-              desc: "Combina playa y naturaleza: manglares, bosques costeros y mucha actividad de aves.",
-              badges: ["Facil", "Dia completo"],
-              chips: [
-                { label: "Mejor en: Costa", href: "/es/regiones/costa/" }
-              ],
-              ctaLabel: "Explorar Costa",
-              ctaHref: "/es/regiones/costa/"
-            }
-          ]
-        },
+      function initVerticalCarousel(){
+        var stage = byId("vStage");
+        var dotsWrap = byId("vDots");
+        var prev = byId("vPrev");
+        var next = byId("vNext");
+        if(!stage || !dotsWrap || !prev || !next) return;
 
-        birding: {
-          hint: "Los viajes de aves primero funcionan mejor con guias locales y salidas al amanecer. El bosque nublado es el punto ideal.",
-          recs: [
-            {
-              title: "Aves en bosque nublado (mananas de especies objetivo)",
-              desc: "Amaneceres tempranos, reservas bien elegidas y gran variedad de especies en un area compacta.",
-              badges: ["Aves primero", "Dia completo"],
-              chips: [
-                { label: "Mejor en: Andes (Mindo)", href: "/es/regiones/andes/mindo/" },
-                { label: "Explorar Andes", href: "/es/regiones/andes/" }
-              ],
-              ctaLabel: "Ver Mindo",
-              ctaHref: "/es/regiones/andes/mindo/"
-            },
-            {
-              title: "Rutas de endemismos (hotspots andinos)",
-              desc: "Arma tu itinerario por endemicas y bandas de altitud para maximizar variedad.",
-              badges: ["Aves primero", "Dia completo"],
-              chips: [
-                { label: "Mejor en: Andes", href: "/es/regiones/andes/" }
-              ],
-              ctaLabel: "Explorar Andes",
-              ctaHref: "/es/regiones/andes/"
-            },
-            {
-              title: "Paradas de aves para fotografia (muy buenas para close-ups)",
-              desc: "Comederos conocidos, buenos angulos y avistamientos constantes. Perfecto para fotos de cerca.",
-              badges: ["Aves primero", "Medio dia a dia completo"],
-              chips: [
-                { label: "Mejor en: Andes (Mindo)", href: "/es/regiones/andes/mindo/" }
-              ],
-              ctaLabel: "Ver Mindo",
-              ctaHref: "/es/regiones/andes/mindo/"
-            }
-          ]
-        },
+        var imgs = Array.prototype.slice.call(stage.querySelectorAll("img"));
+        if(!imgs.length) return;
 
-        amazon: {
-          hint: "La vida silvestre amazonica es inmersiva. Planifica varios dias para aumentar avistamientos y reducir estres de traslados.",
-          recs: [
-            {
-              title: "Lodge en selva y caminatas guiadas de fauna",
-              desc: "Maximiza encuentros con caminatas guiadas, bordes de rio y sesiones nocturnas de escucha.",
-              badges: ["Inmersivo", "Varios dias"],
-              chips: [
-                { label: "Mejor en: Amazonia", href: "/es/regiones/amazonia/" }
-              ],
-              ctaLabel: "Explorar Amazonia",
-              ctaHref: "/es/regiones/amazonia/"
-            },
-            {
-              title: "Canopy y sistemas de rio (gran biodiversidad)",
-              desc: "Los hotspots aparecen en bordes de ecosistemas. Corredores de rio y zonas de canopy son clave.",
-              badges: ["Inmersivo", "Dia completo a varios dias"],
-              chips: [
-                { label: "Mejor en: Amazonia", href: "/es/regiones/amazonia/" }
-              ],
-              ctaLabel: "Explorar Amazonia",
-              ctaHref: "/es/regiones/amazonia/"
-            },
-            {
-              title: "Caminatas nocturnas y anfibios e insectos",
-              desc: "Parte de la fauna mas memorable aparece de noche. Los guias lo hacen seguro y valioso.",
-              badges: ["Inmersivo", "Noche"],
-              chips: [
-                { label: "Mejor en: Amazonia", href: "/es/regiones/amazonia/" }
-              ],
-              ctaLabel: "Explorar Amazonia",
-              ctaHref: "/es/regiones/amazonia/"
-            }
-          ]
-        },
+        var idx = 0;
+        var timer = null;
 
-        marine: {
-          hint: "La vida marina depende de sitios y timing. Islas y areas costeras protegidas ofrecen los mejores encuentros.",
-          recs: [
-            {
-              title: "Fauna endemica de Galapagos (encuentros iconicos)",
-              desc: "El destino de vida silvestre mas famoso del mundo. Planifica rutas con cuidado para maximizar variedad.",
-              badges: ["Iconico", "Varios dias"],
-              chips: [
-                { label: "Mejor en: Galapagos", href: "/es/regiones/galapagos/" }
-              ],
-              ctaLabel: "Explorar Galapagos",
-              ctaHref: "/es/regiones/galapagos/"
-            },
-            {
-              title: "Reservas marinas costeras y dia en bote",
-              desc: "Una gran opcion si quieres fauna oceanica sin un itinerario completo de islas.",
-              badges: ["Marino", "Dia completo"],
-              chips: [
-                { label: "Mejor en: Costa", href: "/es/regiones/costa/" }
-              ],
-              ctaLabel: "Explorar Costa",
-              ctaHref: "/es/regiones/costa/"
-            },
-            {
-              title: "Manglares y actividad de aves costeras",
-              desc: "Ideal para birders que tambien quieren ecosistemas costeros. Aguas mas calmadas y avistamientos constantes.",
-              badges: ["Marino", "Medio dia a dia completo"],
-              chips: [
-                { label: "Mejor en: Costa", href: "/es/regiones/costa/" }
-              ],
-              ctaLabel: "Explorar Costa",
-              ctaHref: "/es/regiones/costa/"
-            }
-          ]
+        function renderDots(){
+          dotsWrap.innerHTML = imgs.map(function(_, i){
+            return '<button class="vDot' + (i === idx ? ' active' : '') + '" type="button" aria-label="Go to image ' + (i+1) + '" data-i="' + i + '"></button>';
+          }).join("");
         }
-      };
 
-      function escapeHtml(str){
-        return String(str)
-          .replaceAll("&","&amp;")
-          .replaceAll("<","&lt;")
-          .replaceAll(">","&gt;")
-          .replaceAll('"',"&quot;")
-          .replaceAll("'","&#039;");
-      }
-
-      function render(key){
-        const block = data[key] || data.birding;
-        if (hintEl) hintEl.textContent = block.hint || "";
-
-        const html = (block.recs || []).map((r) => {
-          const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
-          const chips = (r.chips || []).map(c => `
-            <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
-          `).join("");
-
-          return `
-            <article class="rec">
-              <div class="meta">${badges}</div>
-              <h4>${escapeHtml(r.title)}</h4>
-              <p>${escapeHtml(r.desc)}</p>
-
-              <div class="chips">${chips}</div>
-
-              <div class="rec-actions">
-                <a class="cta" href="${escapeHtml(r.ctaHref)}">${escapeHtml(r.ctaLabel)}</a>
-                <span class="hint">Mejor punto de partida</span>
-              </div>
-            </article>
-          `;
-        }).join("");
-
-        recsEl.innerHTML = html;
-      }
-
-      render(focusEl ? focusEl.value : "birding");
-
-      if (focusEl) {
-        focusEl.addEventListener("change", function(){
-          render(this.value);
-        });
-      }
-    })();
-
-    /* ===== Carousel (Regions-style, same as Adventure) ===== */
-    (function(){
-      const root = document.getElementById("wildlifeCarousel");
-      if (!root) return;
-
-      const track = root.querySelector(".carousel-track");
-      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
-      const prevBtn = root.querySelector(".carousel-btn.prev");
-      const nextBtn = root.querySelector(".carousel-btn.next");
-      const dotsWrap = document.getElementById("wildlifeDots");
-      const counter = document.getElementById("wildlifeCounter");
-
-      let index = 0;
-      const total = slides.length;
-
-      const dots = [];
-      if (dotsWrap) {
-        dotsWrap.innerHTML = "";
-        for (let i = 0; i < total; i++){
-          const b = document.createElement("button");
-          b.type = "button";
-          b.className = "dot" + (i === 0 ? " active" : "");
-          b.setAttribute("aria-label", "Ir a la diapositiva " + (i + 1));
-          b.addEventListener("click", () => goTo(i));
-          dotsWrap.appendChild(b);
-          dots.push(b);
+        function show(i){
+          idx = (i + imgs.length) % imgs.length;
+          imgs.forEach(function(im, k){ im.classList.toggle("active", k === idx); });
+          renderDots();
         }
-      }
 
-      function updateUI(){
-        const x = -index * 100;
-        track.style.transform = "translateX(" + x + "%)";
+        function start(){
+          var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if(reduce) return;
+          stop();
+          timer = setInterval(function(){ show(idx + 1); }, 2600);
+        }
 
-        if (counter) counter.textContent = (index + 1) + " / " + total;
+        function stop(){
+          if(timer){ clearInterval(timer); timer = null; }
+        }
 
-        dots.forEach((d, i) => {
-          if (i === index) d.classList.add("active");
-          else d.classList.remove("active");
-        });
-      }
+        prev.addEventListener("click", function(){ show(idx - 1); start(); });
+        next.addEventListener("click", function(){ show(idx + 1); start(); });
 
-      function clamp(i){
-        if (i < 0) return total - 1;
-        if (i >= total) return 0;
-        return i;
-      }
-
-      function goTo(i){
-        index = clamp(i);
-        updateUI();
-      }
-
-      function next(){ goTo(index + 1); }
-      function prev(){ goTo(index - 1); }
-
-      if (nextBtn) nextBtn.addEventListener("click", next);
-      if (prevBtn) prevBtn.addEventListener("click", prev);
-
-      root.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight") next();
-        if (e.key === "ArrowLeft") prev();
-      });
-
-      let startX = 0;
-      let isDown = false;
-
-      const viewport = root.querySelector(".carousel-viewport");
-      if (viewport) {
-        viewport.addEventListener("pointerdown", (e) => {
-          isDown = true;
-          startX = e.clientX;
-          viewport.setPointerCapture(e.pointerId);
+        dotsWrap.addEventListener("click", function(e){
+          var t = e.target;
+          if(!t || !t.getAttribute) return;
+          var di = t.getAttribute("data-i");
+          if(di == null) return;
+          show(parseInt(di, 10));
+          start();
         });
 
-        viewport.addEventListener("pointerup", (e) => {
-          if (!isDown) return;
-          isDown = false;
-          const dx = e.clientX - startX;
-          if (Math.abs(dx) > 45) {
-            if (dx < 0) next();
-            else prev();
-          }
-        });
+        stage.addEventListener("mouseenter", stop);
+        stage.addEventListener("mouseleave", start);
+        stage.addEventListener("touchstart", stop, { passive: true });
+        stage.addEventListener("touchend", start, { passive: true });
+        stage.addEventListener("focusin", stop);
+        stage.addEventListener("focusout", start);
 
-        viewport.addEventListener("pointercancel", () => { isDown = false; });
-        viewport.addEventListener("pointerleave", () => { isDown = false; });
+        show(0);
+        start();
       }
 
-      updateUI();
-    })();
-  </script>
-
-  <script>
-    (function(){
-      async function inject(id, url){
-        const el = document.getElementById(id);
-        if(!el) return;
-        const res = await fetch(url, { cache: "no-store" });
-        el.innerHTML = await res.text();
-      }
-      inject("siteHeader", "/assets/includes/header.html");
-      inject("siteFooter", "/assets/includes/footer.html");
+      initVerticalCarousel();
     })();
   </script>
 </body>
 </html>
+
+
+  
