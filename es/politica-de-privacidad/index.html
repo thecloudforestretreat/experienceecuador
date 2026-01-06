@@ -689,7 +689,6 @@
   </script>
 
   <script>
-    /* Inject global header/footer first, then load site.js */
     (function(){
       async function inject(id, url){
         const el = document.getElementById(id);
@@ -699,7 +698,7 @@
       }
 
       Promise.all([
-        inject("siteHeader", "/assets/includes/header-es.html"),
+        inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(() => {
         const s = document.createElement("script");
