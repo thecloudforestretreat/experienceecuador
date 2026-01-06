@@ -5,6 +5,7 @@
    - Mobile drill-down menus (data-target / data-back)
    - Language switch (EN <-> ES) + header link rewriting + i18n labels
    - Google Analytics 4 loader (runs even when header is injected via innerHTML)
+   - GA4 Events: WhatsApp clicks + Contact form submits
 */
 (function () {
   "use strict";
@@ -48,6 +49,72 @@
 
     // Optional debug helper in console
     // console.log("[EE] GA4 initialized:", MID);
+  })();
+
+  /* =========================
+     GA4 Events: WhatsApp clicks + Contact form submits
+     ========================= */
+  (function initGA4Events() {
+    function safeGtag() {
+      return typeof window.gtag === "function";
+    }
+
+    function track(name, params) {
+      if (!safeGtag()) return;
+      try {
+        window.gtag("event", name, params || {});
+      } catch (e) {}
+    }
+
+    // 1) Track WhatsApp link clicks (captures desktop + mobile, header/footer too)
+    document.addEventListener(
+      "click",
+      function (e) {
+        var a =
+          e.target && e.target.closest ? e.target.closest("a[href]") : null;
+        if (!a) return;
+
+        var href = a.getAttribute("href") || "";
+        var isWhatsapp =
+          href.indexOf("wa.me/") !== -1 ||
+          href.indexOf("api.whatsapp.com/") !== -1 ||
+          href.indexOf("whatsapp://") !== -1;
+
+        if (!isWhatsapp) return;
+
+        track("whatsapp_click", {
+          link_url: href,
+          link_text: (a.textContent || "").trim().slice(0, 80),
+          page_path: window.location.pathname || "/"
+        });
+      },
+      true
+    );
+
+    // 2) Track contact form submits
+    // Recommended: add data-ga="contact_form" to the form element you want to track.
+    document.addEventListener(
+      "submit",
+      function (e) {
+        var form = e.target;
+        if (!form || form.nodeName !== "FORM") return;
+
+        var tag = form.getAttribute("data-ga") || "";
+        var isContactForm =
+          tag === "contact_form" ||
+          form.id === "contactForm" ||
+          (form.classList && form.classList.contains("contact-form"));
+
+        if (!isContactForm) return;
+
+        track("contact_form_submit", {
+          form_id: form.id || "",
+          form_name: form.getAttribute("name") || "",
+          page_path: window.location.pathname || "/"
+        });
+      },
+      true
+    );
   })();
 
   const HEADER_MOUNT_ID = "siteHeader";
@@ -223,7 +290,10 @@
     });
 
     // Swap hamburger aria-label (label element)
-    const burgerLabel = qs(headerEl, ".nav-toggle-btn[data-en-aria][data-es-aria]");
+    const burgerLabel = qs(
+      headerEl,
+      ".nav-toggle-btn[data-en-aria][data-es-aria]"
+    );
     if (burgerLabel) {
       const enA = burgerLabel.getAttribute("data-en-aria") || "Menu";
       const esA = burgerLabel.getAttribute("data-es-aria") || "Menu";
