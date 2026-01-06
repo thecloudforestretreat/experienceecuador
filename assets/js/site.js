@@ -4,9 +4,51 @@
    - Hamburger open/close + scroll lock
    - Mobile drill-down menus (data-target / data-back)
    - Language switch (EN <-> ES) + header link rewriting + i18n labels
+   - Google Analytics 4 loader (runs even when header is injected via innerHTML)
 */
 (function () {
   "use strict";
+
+  /* =========================
+     GA4 (must live in JS, not injected HTML)
+     ========================= */
+  (function initGA4() {
+    var MID = "G-3EDLVGV2HD";
+
+    // Prevent double-loading across pages / reinits
+    if (window.__EE_GA4_LOADED__) return;
+    window.__EE_GA4_LOADED__ = true;
+
+    // dataLayer + gtag shim
+    window.dataLayer = window.dataLayer || [];
+    window.gtag =
+      window.gtag ||
+      function () {
+        window.dataLayer.push(arguments);
+      };
+
+    // Load GA library if not already present
+    var hasGtag = document.querySelector(
+      'script[src^="https://www.googletagmanager.com/gtag/js?id="]'
+    );
+    if (!hasGtag) {
+      var s = document.createElement("script");
+      s.async = true;
+      s.src =
+        "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(MID);
+      document.head.appendChild(s);
+    }
+
+    // Init + page_view
+    window.gtag("js", new Date());
+    window.gtag("config", MID, {
+      anonymize_ip: true,
+      send_page_view: true
+    });
+
+    // Optional debug helper in console
+    // console.log("[EE] GA4 initialized:", MID);
+  })();
 
   const HEADER_MOUNT_ID = "siteHeader";
   const TOGGLE_ID = "eeNavToggle";
@@ -77,7 +119,9 @@
         return normalizePath("/es/regiones/" + from.slice("/regions/".length));
       }
       if (from.startsWith("/experiences/")) {
-        return normalizePath("/es/experiencias/" + from.slice("/experiences/".length));
+        return normalizePath(
+          "/es/experiencias/" + from.slice("/experiences/".length)
+        );
       }
       if (from === "/") return "/es/";
       return normalizePath("/es" + from);
@@ -87,7 +131,9 @@
       return normalizePath("/regions/" + from.slice("/es/regiones/".length));
     }
     if (from.startsWith("/es/experiencias/")) {
-      return normalizePath("/experiences/" + from.slice("/es/experiencias/".length));
+      return normalizePath(
+        "/experiences/" + from.slice("/es/experiencias/".length)
+      );
     }
     if (from.startsWith("/es/")) {
       const stripped = "/" + from.slice("/es/".length);
@@ -158,7 +204,7 @@
         return;
       }
 
-      const link = t.closest('a[href]');
+      const link = t.closest("a[href]");
       if (link && mobileNav.contains(link)) {
         const href = link.getAttribute("href") || "";
         if (!href || href.charAt(0) === "#") return;
@@ -180,7 +226,7 @@
     const burgerLabel = qs(headerEl, ".nav-toggle-btn[data-en-aria][data-es-aria]");
     if (burgerLabel) {
       const enA = burgerLabel.getAttribute("data-en-aria") || "Menu";
-      const esA = burgerLabel.getAttribute("data-es-aria") || "Menú";
+      const esA = burgerLabel.getAttribute("data-es-aria") || "Menu";
       burgerLabel.setAttribute("aria-label", onEs ? esA : enA);
     }
   }
@@ -200,7 +246,7 @@
       if (a.classList.contains("nav-link")) {
         a.textContent = onEs ? "EN" : "ES";
       } else {
-        a.textContent = onEs ? "English" : "Español";
+        a.textContent = onEs ? "English" : "Espanol";
       }
 
       a.addEventListener("click", (e) => {
