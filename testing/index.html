@@ -121,7 +121,8 @@
       gap:12px;
     }
 
-    details{
+    /* IMPORTANT: Scope these to FAQ only, so header dropdown <details> is not affected */
+    .faq details{
       background:linear-gradient(180deg, rgba(3,78,162,.04), rgba(3,78,162,.015));
       border:1px solid rgba(3,78,162,.12);
       border-radius:18px;
@@ -129,7 +130,7 @@
       overflow:hidden;
     }
 
-    summary{
+    .faq summary{
       list-style:none;
       cursor:pointer;
       display:flex;
@@ -142,7 +143,7 @@
       line-height:1.35;
     }
 
-    summary::-webkit-details-marker{display:none}
+    .faq summary::-webkit-details-marker{display:none}
 
     .q{
       display:flex;
@@ -180,7 +181,7 @@
       transition:transform .15s ease;
     }
 
-    details[open] .chev{
+    .faq details[open] .chev{
       transform:rotate(-135deg);
       margin-top:10px;
     }
@@ -688,7 +689,7 @@
   </script>
 
   <script>
-    /* Inject global header/footer first, then load site.js (so nav JS never runs before header exists) */
+    /* Inject global header/footer first, then load site.js */
     (function(){
       async function inject(id, url){
         const el = document.getElementById(id);
@@ -698,7 +699,7 @@
       }
 
       Promise.all([
-        inject("siteHeader", "/assets/includes/header.html"),
+        inject("siteHeader", "/assets/includes/header-es.html"),
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(() => {
         const s = document.createElement("script");
