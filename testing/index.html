@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Los Andes | Experience Ecuador</title>
   <meta name="description" content="Explora los Andes de Ecuador: Quito, paisajes de volcanes, mercados y escapadas al bosque nublado. Usa esta guia de region para las mejores bases, imperdibles y combinaciones de viaje." />
-  <!-- Canonical (must match page URL) -->
   <link rel="canonical" href="https://experienceecuador.com/es/regiones/andes/" />
-  <!-- Open Graph (use the same OG image site-wide) -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
   <meta property="og:title" content="Los Andes | Experience Ecuador" />
@@ -18,21 +16,17 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Portada de inspiracion de viaje de Experience Ecuador" />
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Los Andes | Experience Ecuador" />
   <meta name="twitter:description" content="Explora los Andes de Ecuador: Quito, paisajes de volcanes, mercados y escapadas al bosque nublado. Usa esta guia de region para las mejores bases, imperdibles y combinaciones de viaje." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
-  <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
-  <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -57,7 +51,6 @@
     img{max-width:100%;display:block}
     img{ user-select:none; -webkit-user-drag:none; }
 
-    /* ===== HERO ===== */
     .hero{
       position:relative;
       width:100%;
@@ -121,14 +114,12 @@
       color:rgba(255,255,255,0.92);
     }
 
-    /* ===== PAGE WRAP ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
       padding:36px 18px 0;
     }
 
-    /* ===== SECTION / CARDS ===== */
     .section{ margin-bottom:26px; }
 
     .section h2{
@@ -214,7 +205,6 @@
       font-size:13px;
     }
 
-    /* ===== PLACES GRID ===== */
     .places-grid{
       display:grid;
       grid-template-columns:repeat(2, 1fr);
@@ -350,7 +340,6 @@
       background:rgba(0,0,0,0.06);
     }
 
-    /* ===== CAROUSEL (GALLERY) ===== */
     .carousel{
       margin-top:18px;
       background:#fff;
@@ -463,7 +452,6 @@
       white-space:nowrap;
     }
 
-    /* ===== CTA ===== */
     .cta{
       margin:28px 0 56px;
       background:var(--brand-blue);
@@ -489,7 +477,6 @@
       max-width:85ch;
     }
 
-    /* ===== MOBILE ===== */
     @media(max-width:900px){
       .grid{ grid-template-columns:1fr; }
       .hero-inner{ text-align:center; }
@@ -503,7 +490,6 @@
       .carousel-btn{ width:40px; height:40px; }
     }
 
-    /* === YouTube embed responsiveness === */
     .video-embed{
       margin-top:14px;
       border-radius:18px;
@@ -526,7 +512,6 @@
 <body>
   <div id="siteHeader"></div>
   <main>
-    <!-- HERO -->
     <section class="hero" aria-label="Imagen hero de los Andes">
       <div class="hero-inner">
         <div class="kicker">Guia de region • En vivo</div>
@@ -537,9 +522,7 @@
         </p>
       </div>
     </section>
-<!-- CONTENT -->
 <div class="wrap">
-
   <section class="section">
     <h2>Que define a los Andes</h2>
     <p>
@@ -847,12 +830,10 @@
       Si quieres una ruta curada, contactanos y la armamos con el ritmo correcto.
     </p>
   </section>
-
 </div>
-  </main>
+      </main>
   <div id="siteFooter"></div>
   <script>
-    /* Andes carousel */
     (function(){
       const root = document.getElementById("andesCarousel");
       if(!root) return;
@@ -966,11 +947,19 @@
       async function inject(id, url){
         const el = document.getElementById(id);
         if(!el) return;
-        const res = await fetch(url, { cache: "no-store" });
-        el.innerHTML = await res.text();
+
+        try{
+          const res = await fetch(url, { cache: "no-store" });
+          if(!res.ok) throw new Error("HTTP " + res.status + " for " + url);
+          el.innerHTML = await res.text();
+        }catch(err){
+          console.error("Include failed:", err);
+          el.innerHTML = "";
+        }
       }
-      inject("siteHeader", "/assets/includes/header-es.html");
-      inject("siteFooter", "/assets/includes/footer-es.html");
+
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
     })();
   </script>
 </body>
