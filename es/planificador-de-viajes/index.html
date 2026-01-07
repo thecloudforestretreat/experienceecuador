@@ -36,6 +36,22 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
 
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Planificador de Viajes | Experience Ecuador",
+    "url":"https://experienceecuador.com/es/planificador-de-viajes/",
+    "description":"Crea un itinerario personalizado por Ecuador: selecciona dias, regiones y experiencias, y genera un plan sugerido para ajustar facilmente.",
+    "isPartOf":{
+      "@type":"WebSite",
+      "name":"Experience Ecuador",
+      "url":"https://experienceecuador.com/"
+    }
+  }
+  </script>
+
   <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
@@ -1610,7 +1626,6 @@
       els.output.appendChild(wrap);
     }
 
-    // FIXED: remove broken math conversion regex and use a normal match
     function extractPartLabelFromTitleOrId(block){
       const t = String(block && block.title ? block.title : "");
       const m1 = t.match(/Parte\s+\d+\s+de\s+\d+/i);
