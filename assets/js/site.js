@@ -130,14 +130,18 @@
       }
 
       function isTripBuilderPage() {
-        // We detect by required elements that exist on both EN and ES pages.
-        return !!(byId("daysSelect") && byId("regionsPills") && byId("experiencesPills") && byId("generateBtn"));
+        // Detect by required elements that exist on both EN and ES pages.
+        return !!(
+          byId("daysSelect") &&
+          byId("regionsPills") &&
+          byId("experiencesPills") &&
+          byId("generateBtn")
+        );
       }
 
       function getSelectedPillCount(containerId) {
         var root = byId(containerId);
         if (!root) return 0;
-        // Your pills use aria-pressed="true"
         return root.querySelectorAll('.pill[aria-pressed="true"]').length;
       }
 
@@ -167,7 +171,6 @@
 
       if (!isTripBuilderPage()) return;
 
-      // Start triggers: first interaction with any of these controls
       document.addEventListener(
         "change",
         function (e) {
@@ -184,17 +187,17 @@
           var t = e.target;
           if (!t) return;
 
-          // Any pill click inside regions or experiences counts as starting
           var inRegions = t.closest ? t.closest("#regionsPills .pill") : null;
-          var inExperiences = t.closest ? t.closest("#experiencesPills .pill") : null;
+          var inExperiences = t.closest
+            ? t.closest("#experiencesPills .pill")
+            : null;
+
           if (inRegions) fireStart("region_select");
           if (inExperiences) fireStart("experience_select");
 
-          // Generate Itinerary click counts as start (if not already)
           var genBtn = t.closest ? t.closest("#generateBtn") : null;
           if (genBtn) {
             fireStart("generate_click");
-            // Only fire submit if button is enabled
             if (!genBtn.disabled) fireSubmit();
           }
         },
@@ -203,8 +206,11 @@
     })();
   })();
 
-  const HEADER_MOUNT_ID = "siteHeader";
-  const TOGGLE_ID = "eeNavToggle";
+  /* =========================
+     Header / Mobile Nav / Language
+     ========================= */
+  var HEADER_MOUNT_ID = "siteHeader";
+  var TOGGLE_ID = "eeNavToggle";
 
   function qs(root, sel) {
     return root ? root.querySelector(sel) : null;
@@ -215,6 +221,12 @@
 
   function normalizePath(p) {
     var path = String(p || "/").trim();
+
+    // Keep hashes/queries out of normalization
+    // (they should not be translated by our path mapper)
+    if (path.indexOf("#") !== -1) path = path.split("#")[0] || "/";
+    if (path.indexOf("?") !== -1) path = path.split("?")[0] || "/";
+
     if (!path.startsWith("/")) path = "/" + path;
     if (!path.endsWith("/")) path += "/";
     path = path.replace(/\/{2,}/g, "/");
@@ -299,7 +311,8 @@
   function setBodyLock(locked) {
     document.documentElement.classList.toggle("nav-open", locked);
     document.body.style.overflow = locked ? "hidden" : "";
-    document.body.style.touchAction = "";
+    // Helps iOS prevent background scroll while menu is open
+    document.body.style.touchAction = locked ? "none" : "";
   }
 
   function showMain(headerEl) {
@@ -334,6 +347,8 @@
   function openMobile(headerEl) {
     var toggle = qs(headerEl, "#" + TOGGLE_ID);
     if (toggle) toggle.checked = true;
+    // Always open to main view (prevents "all submenus visible" states)
+    showMain(headerEl);
     setBodyLock(true);
   }
 
@@ -345,8 +360,9 @@
 
     mobileNav.addEventListener("click", function (e) {
       var t = e.target;
+      if (!t) return;
 
-      var next = t.closest(".m-next");
+      var next = t.closest ? t.closest(".m-next") : null;
       if (next && mobileNav.contains(next)) {
         e.preventDefault();
         var targetSel = next.getAttribute("data-target") || "";
@@ -354,14 +370,14 @@
         return;
       }
 
-      var back = t.closest("[data-back]");
+      var back = t.closest ? t.closest("[data-back]") : null;
       if (back && mobileNav.contains(back)) {
         e.preventDefault();
         showMain(headerEl);
         return;
       }
 
-      var link = t.closest("a[href]");
+      var link = t.closest ? t.closest("a[href]") : null;
       if (link && mobileNav.contains(link)) {
         var href = link.getAttribute("href") || "";
         if (!href || href.charAt(0) === "#") return;
@@ -371,7 +387,6 @@
   }
 
   function applyI18n(headerEl, onEs) {
-    // Swap visible labels
     qsa(headerEl, ".i18n[data-en][data-es]").forEach(function (el) {
       var en = el.getAttribute("data-en") || "";
       var es = el.getAttribute("data-es") || "";
@@ -379,7 +394,6 @@
       if (val) el.textContent = val;
     });
 
-    // Swap hamburger aria-label (label element)
     var burgerLabel = qs(
       headerEl,
       '.nav-toggle-btn[data-en-aria][data-es-aria]'
@@ -397,12 +411,11 @@
     var targetLang = onEs ? "en" : "es";
     var switchHref = translatePath(current, targetLang);
 
-    // Update all language switch anchors in header (desktop + mobile)
     var switches = qsa(headerEl, "[data-lang-switch]");
     switches.forEach(function (a) {
       a.setAttribute("href", switchHref);
 
-      // Label
+      // Keep ASCII
       if (a.classList.contains("nav-link")) {
         a.textContent = onEs ? "EN" : "ES";
       } else {
@@ -420,11 +433,13 @@
 
     // Rewrite internal header links to match current language
     var allLinks = qsa(headerEl, 'a[href^="/"]');
-
     allLinks.forEach(function (link) {
       if (link.hasAttribute("data-lang-switch")) return;
 
       var hrefRaw = link.getAttribute("href") || "";
+      // Skip anchors/queries (do not translate these)
+      if (hrefRaw.indexOf("#") !== -1 || hrefRaw.indexOf("?") !== -1) return;
+
       var href = normalizePath(hrefRaw);
 
       if (
@@ -440,7 +455,6 @@
       link.setAttribute("href", newHref);
     });
 
-    // Set html lang + swap labels
     document.documentElement.setAttribute("lang", onEs ? "es" : "en");
     applyI18n(headerEl, onEs);
   }
@@ -450,10 +464,8 @@
     headerEl.__eeNavInit = true;
 
     var toggle = qs(headerEl, "#" + TOGGLE_ID);
-    var toggleBtn = qs(headerEl, '.nav-toggle-btn[for="' + TOGGLE_ID + '"]');
     var mobileNav = qs(headerEl, ".nav.nav-mobile");
-
-    if (!toggle || !toggleBtn || !mobileNav) return;
+    if (!toggle || !mobileNav) return;
 
     initMobileViews(headerEl);
 
@@ -483,7 +495,8 @@
     var mount = document.getElementById(HEADER_MOUNT_ID);
     if (!mount) return false;
 
-    var headerEl = qs(mount, ".topbar") || qs(mount, "header");
+    // Be flexible about markup: header might be <header class="topbar"> or <div class="topbar">
+    var headerEl = qs(mount, ".topbar") || qs(mount, "header") || qs(mount, "[data-header]");
     if (!headerEl) return false;
 
     initHeader(headerEl);
