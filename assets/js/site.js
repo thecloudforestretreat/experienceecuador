@@ -6,6 +6,7 @@
    - Language switch (EN <-> ES) + header link rewriting + i18n labels
    - Google Analytics 4 loader (runs even when header is injected via innerHTML)
    - GA4 Events: WhatsApp clicks + Contact form submits + Trip Builder start/submit
+   - GA4 Events: Region interest (pageview + clicks)
 */
 (function () {
   "use strict";
@@ -49,7 +50,7 @@
   })();
 
   /* =========================
-     GA4 Events: WhatsApp clicks + Contact form submits + Trip Builder
+     GA4 Events: WhatsApp clicks + Contact form submits + Trip Builder + Region Interest
      ========================= */
   (function initGA4Events() {
     function safeGtag() {
@@ -62,6 +63,130 @@
         window.gtag("event", name, params || {});
       } catch (e) {}
     }
+
+    function normalizePathNoQueryHash(p) {
+      var path = String(p || "/").trim();
+      if (path.indexOf("#") !== -1) path = path.split("#")[0] || "/";
+      if (path.indexOf("?") !== -1) path = path.split("?")[0] || "/";
+      if (!path.startsWith("/")) path = "/" + path;
+      path = path.replace(/\/{2,}/g, "/");
+      return path;
+    }
+
+    function getRegionFromPath(pathname) {
+      var p = normalizePathNoQueryHash(pathname);
+
+      // EN: /regions/<slug>/...
+      if (p.indexOf("/regions/") === 0) {
+        var restEn = p.slice("/regions/".length); // "<slug>/..."
+        var slugEn = (restEn.split("/")[0] || "").trim().toLowerCase();
+        if (!slugEn) return null;
+
+        var mapEn = {
+          galapagos: { id: "galapagos", name: "Galapagos" },
+          coast: { id: "coast", name: "Coast" },
+          andes: { id: "andes", name: "Andes" },
+          amazon: { id: "amazon", name: "Amazon" }
+        };
+
+        return mapEn[slugEn] || { id: slugEn, name: slugEn };
+      }
+
+      // ES: /es/regiones/<slug>/...
+      if (p.indexOf("/es/regiones/") === 0) {
+        var restEs = p.slice("/es/regiones/".length); // "<slug>/..."
+        var slugEs = (restEs.split("/")[0] || "").trim().toLowerCase();
+        if (!slugEs) return null;
+
+        var mapEs = {
+          galapagos: { id: "galapagos", name: "Galapagos" },
+          costa: { id: "coast", name: "Costa" },
+          andes: { id: "andes", name: "Andes" },
+          amazonia: { id: "amazon", name: "Amazonia" }
+        };
+
+        return mapEs[slugEs] || { id: slugEs, name: slugEs };
+      }
+
+      return null;
+    }
+
+    function getRegionFromHref(href) {
+      var h = String(href || "").trim();
+      if (!h) return null;
+      // Only handle internal links. If absolute, ensure it is same-origin.
+      if (h.indexOf("http://") === 0 || h.indexOf("https://") === 0) {
+        try {
+          var u = new URL(h);
+          if (u.origin !== window.location.origin) return null;
+          return getRegionFromPath(u.pathname || "/");
+        } catch (e) {
+          return null;
+        }
+      }
+      if (h.charAt(0) !== "/") return null;
+      return getRegionFromPath(h);
+    }
+
+    function sourceFromLink(a) {
+      if (!a) return "unknown";
+      // If link is inside header/nav/footer, label it; else internal_link.
+      if (a.closest && a.closest("#siteHeader")) return "nav";
+      if (a.closest && a.closest("#siteFooter")) return "footer";
+      return "internal_link";
+    }
+
+    /* -------------------------
+       0) Region interest (marketing)
+       - Fires once on region page load (first view only)
+       - Fires on clicks to region links anywhere
+       ------------------------- */
+    (function initRegionInterest() {
+      // Fire once per page load
+      try {
+        if (!window.__EE_REGION_PAGEVIEW_FIRED__) {
+          var regionNow = getRegionFromPath(window.location.pathname || "/");
+          if (regionNow && regionNow.id) {
+            window.__EE_REGION_PAGEVIEW_FIRED__ = true;
+            track("region_interest", {
+              region_id: String(regionNow.id),
+              region_name: String(regionNow.name || regionNow.id),
+              source: "pageview",
+              page_path: window.location.pathname || "/"
+            });
+          }
+        }
+      } catch (e) {}
+
+      // Fire on clicks to region links
+      document.addEventListener(
+        "click",
+        function (e) {
+          var a =
+            e.target && e.target.closest ? e.target.closest("a[href]") : null;
+          if (!a) return;
+
+          var href = a.getAttribute("href") || "";
+          if (!href) return;
+
+          // Ignore in-page anchors
+          if (href.charAt(0) === "#") return;
+
+          var region = getRegionFromHref(href);
+          if (!region || !region.id) return;
+
+          track("region_interest", {
+            region_id: String(region.id),
+            region_name: String(region.name || region.id),
+            source: sourceFromLink(a),
+            link_url: href,
+            link_text: (a.textContent || "").trim().slice(0, 80),
+            page_path: window.location.pathname || "/"
+          });
+        },
+        true
+      );
+    })();
 
     /* -------------------------
        1) WhatsApp link clicks
