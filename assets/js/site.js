@@ -6,6 +6,7 @@
    - Language switch (EN <-> ES) + header link rewriting + i18n labels
    - Google Analytics 4 loader (runs even when header is injected via innerHTML)
    - GA4 Events: WhatsApp clicks + Contact form submits
+   - GA4 Events: Trip Builder start + submit
 */
 (function () {
   "use strict";
@@ -52,20 +53,27 @@
   })();
 
   /* =========================
+     GA4 Event helpers
+     ========================= */
+  function safeGtag() {
+    return typeof window.gtag === "function";
+  }
+
+  function track(name, params) {
+    if (!safeGtag()) return;
+    try {
+      window.gtag("event", name, params || {});
+    } catch (e) {}
+  }
+
+  function langCode() {
+    return document.documentElement.getAttribute("lang") || "en";
+  }
+
+  /* =========================
      GA4 Events: WhatsApp clicks + Contact form submits
      ========================= */
-  (function initGA4Events() {
-    function safeGtag() {
-      return typeof window.gtag === "function";
-    }
-
-    function track(name, params) {
-      if (!safeGtag()) return;
-      try {
-        window.gtag("event", name, params || {});
-      } catch (e) {}
-    }
-
+  (function initGA4EventsBase() {
     // 1) Track WhatsApp link clicks (captures desktop + mobile, header/footer too)
     document.addEventListener(
       "click",
@@ -85,7 +93,8 @@
         track("whatsapp_click", {
           link_url: href,
           link_text: (a.textContent || "").trim().slice(0, 80),
-          page_path: window.location.pathname || "/"
+          page_path: window.location.pathname || "/",
+          language: langCode()
         });
       },
       true
@@ -110,7 +119,103 @@
         track("contact_form_submit", {
           form_id: form.id || "",
           form_name: form.getAttribute("name") || "",
-          page_path: window.location.pathname || "/"
+          page_path: window.location.pathname || "/",
+          language: langCode()
+        });
+      },
+      true
+    );
+  })();
+
+  /* =========================
+     GA4 Events: Trip Builder start + submit
+     ========================= */
+  (function initTripBuilderEvents() {
+    var firedStart = false;
+
+    function fireTripStart(source) {
+      if (firedStart) return;
+      firedStart = true;
+
+      track("trip_builder_start", {
+        page_path: window.location.pathname || "/",
+        language: langCode(),
+        source: source || "unknown"
+      });
+    }
+
+    // Start when user lands on the Trip Builder page (EN only path here)
+    // Note: your ES mapping points to /es/planificador-de-viajes/
+    if (
+      (window.location.pathname || "").indexOf("/trip-builder") === 0 ||
+      (window.location.pathname || "").indexOf("/es/planificador-de-viajes") === 0
+    ) {
+      // Fire after DOM is interactive (but still early)
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", function () {
+          fireTripStart("page_load");
+        });
+      } else {
+        fireTripStart("page_load");
+      }
+    }
+
+    // Start when clicking Trip Builder links anywhere (header, buttons, etc.)
+    document.addEventListener(
+      "click",
+      function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+        if (!a) return;
+
+        var href = a.getAttribute("href") || "";
+        // Match EN + ES trip builder paths
+        var isTripLink =
+          href.indexOf("/trip-builder") !== -1 ||
+          href.indexOf("/es/planificador-de-viajes") !== -1;
+
+        if (!isTripLink) return;
+
+        fireTripStart("link_click");
+      },
+      true
+    );
+
+    // Submit event (form-based Trip Builder)
+    // Recommended: add data-ga="trip_builder" to the Trip Builder form element.
+    document.addEventListener(
+      "submit",
+      function (e) {
+        var form = e.target;
+        if (!form || form.nodeName !== "FORM") return;
+
+        var tag = form.getAttribute("data-ga") || "";
+        if (tag !== "trip_builder") return;
+
+        track("trip_builder_submit", {
+          form_id: form.id || "",
+          form_name: form.getAttribute("name") || "",
+          page_path: window.location.pathname || "/",
+          language: langCode()
+        });
+      },
+      true
+    );
+
+    // Submit event (button-driven Trip Builder)
+    // Recommended: add data-ga="trip_builder_submit" on the main CTA button.
+    document.addEventListener(
+      "click",
+      function (e) {
+        var btn =
+          e.target && e.target.closest
+            ? e.target.closest("[data-ga='trip_builder_submit']")
+            : null;
+        if (!btn) return;
+
+        track("trip_builder_submit", {
+          page_path: window.location.pathname || "/",
+          language: langCode(),
+          source: "button_click"
         });
       },
       true
