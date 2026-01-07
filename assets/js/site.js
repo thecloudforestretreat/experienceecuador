@@ -1,12 +1,11 @@
 /* /assets/js/site.js
-   ExperienceEcuador.com — Global header behavior
+   ExperienceEcuador.com - Global header behavior
    - Works with injected /assets/includes/header.html
    - Hamburger open/close + scroll lock
    - Mobile drill-down menus (data-target / data-back)
    - Language switch (EN <-> ES) + header link rewriting + i18n labels
    - Google Analytics 4 loader (runs even when header is injected via innerHTML)
-   - GA4 Events: WhatsApp clicks + Contact form submits
-   - GA4 Events: Trip Builder start + submit
+   - GA4 Events: WhatsApp clicks + Contact form submits + Trip Builder start/submit
 */
 (function () {
   "use strict";
@@ -47,34 +46,26 @@
       anonymize_ip: true,
       send_page_view: true
     });
-
-    // Optional debug helper in console
-    // console.log("[EE] GA4 initialized:", MID);
   })();
 
   /* =========================
-     GA4 Event helpers
+     GA4 Events: WhatsApp clicks + Contact form submits + Trip Builder
      ========================= */
-  function safeGtag() {
-    return typeof window.gtag === "function";
-  }
+  (function initGA4Events() {
+    function safeGtag() {
+      return typeof window.gtag === "function";
+    }
 
-  function track(name, params) {
-    if (!safeGtag()) return;
-    try {
-      window.gtag("event", name, params || {});
-    } catch (e) {}
-  }
+    function track(name, params) {
+      if (!safeGtag()) return;
+      try {
+        window.gtag("event", name, params || {});
+      } catch (e) {}
+    }
 
-  function langCode() {
-    return document.documentElement.getAttribute("lang") || "en";
-  }
-
-  /* =========================
-     GA4 Events: WhatsApp clicks + Contact form submits
-     ========================= */
-  (function initGA4EventsBase() {
-    // 1) Track WhatsApp link clicks (captures desktop + mobile, header/footer too)
+    /* -------------------------
+       1) WhatsApp link clicks
+       ------------------------- */
     document.addEventListener(
       "click",
       function (e) {
@@ -93,15 +84,16 @@
         track("whatsapp_click", {
           link_url: href,
           link_text: (a.textContent || "").trim().slice(0, 80),
-          page_path: window.location.pathname || "/",
-          language: langCode()
+          page_path: window.location.pathname || "/"
         });
       },
       true
     );
 
-    // 2) Track contact form submits
-    // Recommended: add data-ga="contact_form" to the form element you want to track.
+    /* -------------------------
+       2) Contact form submits
+       Recommended: add data-ga="contact_form" to the form element you want to track.
+       ------------------------- */
     document.addEventListener(
       "submit",
       function (e) {
@@ -119,107 +111,96 @@
         track("contact_form_submit", {
           form_id: form.id || "",
           form_name: form.getAttribute("name") || "",
-          page_path: window.location.pathname || "/",
-          language: langCode()
+          page_path: window.location.pathname || "/"
         });
       },
       true
     );
-  })();
 
-  /* =========================
-     GA4 Events: Trip Builder start + submit
-     ========================= */
-  (function initTripBuilderEvents() {
-    var firedStart = false;
+    /* -------------------------
+       3) Trip Builder events
+       trip_builder_start: fires once on first meaningful interaction
+       trip_builder_submit: fires when clicking "Generate Itinerary"
+       ------------------------- */
+    (function initTripBuilderEvents() {
+      var started = false;
 
-    function fireTripStart(source) {
-      if (firedStart) return;
-      firedStart = true;
-
-      track("trip_builder_start", {
-        page_path: window.location.pathname || "/",
-        language: langCode(),
-        source: source || "unknown"
-      });
-    }
-
-    // Start when user lands on the Trip Builder page (EN only path here)
-    // Note: your ES mapping points to /es/planificador-de-viajes/
-    if (
-      (window.location.pathname || "").indexOf("/trip-builder") === 0 ||
-      (window.location.pathname || "").indexOf("/es/planificador-de-viajes") === 0
-    ) {
-      // Fire after DOM is interactive (but still early)
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", function () {
-          fireTripStart("page_load");
-        });
-      } else {
-        fireTripStart("page_load");
+      function byId(id) {
+        return document.getElementById(id);
       }
-    }
 
-    // Start when clicking Trip Builder links anywhere (header, buttons, etc.)
-    document.addEventListener(
-      "click",
-      function (e) {
-        var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
-        if (!a) return;
+      function isTripBuilderPage() {
+        // We detect by required elements that exist on both EN and ES pages.
+        return !!(byId("daysSelect") && byId("regionsPills") && byId("experiencesPills") && byId("generateBtn"));
+      }
 
-        var href = a.getAttribute("href") || "";
-        // Match EN + ES trip builder paths
-        var isTripLink =
-          href.indexOf("/trip-builder") !== -1 ||
-          href.indexOf("/es/planificador-de-viajes") !== -1;
+      function getSelectedPillCount(containerId) {
+        var root = byId(containerId);
+        if (!root) return 0;
+        // Your pills use aria-pressed="true"
+        return root.querySelectorAll('.pill[aria-pressed="true"]').length;
+      }
 
-        if (!isTripLink) return;
+      function fireStart(reason) {
+        if (started) return;
+        started = true;
 
-        fireTripStart("link_click");
-      },
-      true
-    );
+        track("trip_builder_start", {
+          trigger: String(reason || "unknown"),
+          page_path: window.location.pathname || "/"
+        });
+      }
 
-    // Submit event (form-based Trip Builder)
-    // Recommended: add data-ga="trip_builder" to the Trip Builder form element.
-    document.addEventListener(
-      "submit",
-      function (e) {
-        var form = e.target;
-        if (!form || form.nodeName !== "FORM") return;
-
-        var tag = form.getAttribute("data-ga") || "";
-        if (tag !== "trip_builder") return;
+      function fireSubmit() {
+        var daysEl = byId("daysSelect");
+        var daysVal = daysEl ? String(daysEl.value || "") : "";
+        var regionsCount = getSelectedPillCount("regionsPills");
+        var experiencesCount = getSelectedPillCount("experiencesPills");
 
         track("trip_builder_submit", {
-          form_id: form.id || "",
-          form_name: form.getAttribute("name") || "",
-          page_path: window.location.pathname || "/",
-          language: langCode()
+          days: daysVal,
+          regions_selected: regionsCount,
+          experiences_selected: experiencesCount,
+          page_path: window.location.pathname || "/"
         });
-      },
-      true
-    );
+      }
 
-    // Submit event (button-driven Trip Builder)
-    // Recommended: add data-ga="trip_builder_submit" on the main CTA button.
-    document.addEventListener(
-      "click",
-      function (e) {
-        var btn =
-          e.target && e.target.closest
-            ? e.target.closest("[data-ga='trip_builder_submit']")
-            : null;
-        if (!btn) return;
+      if (!isTripBuilderPage()) return;
 
-        track("trip_builder_submit", {
-          page_path: window.location.pathname || "/",
-          language: langCode(),
-          source: "button_click"
-        });
-      },
-      true
-    );
+      // Start triggers: first interaction with any of these controls
+      document.addEventListener(
+        "change",
+        function (e) {
+          var t = e.target;
+          if (!t) return;
+          if (t.id === "daysSelect") fireStart("days_change");
+        },
+        true
+      );
+
+      document.addEventListener(
+        "click",
+        function (e) {
+          var t = e.target;
+          if (!t) return;
+
+          // Any pill click inside regions or experiences counts as starting
+          var inRegions = t.closest ? t.closest("#regionsPills .pill") : null;
+          var inExperiences = t.closest ? t.closest("#experiencesPills .pill") : null;
+          if (inRegions) fireStart("region_select");
+          if (inExperiences) fireStart("experience_select");
+
+          // Generate Itinerary click counts as start (if not already)
+          var genBtn = t.closest ? t.closest("#generateBtn") : null;
+          if (genBtn) {
+            fireStart("generate_click");
+            // Only fire submit if button is enabled
+            if (!genBtn.disabled) fireSubmit();
+          }
+        },
+        true
+      );
+    })();
   })();
 
   const HEADER_MOUNT_ID = "siteHeader";
@@ -233,7 +214,7 @@
   }
 
   function normalizePath(p) {
-    let path = String(p || "/").trim();
+    var path = String(p || "/").trim();
     if (!path.startsWith("/")) path = "/" + path;
     if (!path.endsWith("/")) path += "/";
     path = path.replace(/\/{2,}/g, "/");
@@ -241,12 +222,12 @@
   }
 
   function isSpanishPath(pathname) {
-    const p = normalizePath(pathname);
+    var p = normalizePath(pathname);
     return p === "/es/" || p.startsWith("/es/");
   }
 
   // Explicit page mappings (top-level slugs and key sections)
-  const EN_TO_ES = {
+  var EN_TO_ES = {
     "/": "/es/",
     "/about/": "/es/sobre-nosotros/",
     "/mission/": "/es/mision/",
@@ -267,9 +248,9 @@
   };
 
   // Build reverse map automatically
-  const ES_TO_EN = (function () {
-    const m = {};
-    Object.keys(EN_TO_ES).forEach((en) => {
+  var ES_TO_EN = (function () {
+    var m = {};
+    Object.keys(EN_TO_ES).forEach(function (en) {
       m[EN_TO_ES[en]] = en;
     });
     return m;
@@ -277,8 +258,8 @@
 
   // Fallback rules for deeper pages
   function translatePath(pathname, toLang) {
-    const from = normalizePath(pathname);
-    const target = String(toLang || "en").toLowerCase() === "es" ? "es" : "en";
+    var from = normalizePath(pathname);
+    var target = String(toLang || "en").toLowerCase() === "es" ? "es" : "en";
 
     if (target === "es" && isSpanishPath(from)) return from;
     if (target === "en" && !isSpanishPath(from)) return from;
@@ -308,7 +289,7 @@
       );
     }
     if (from.startsWith("/es/")) {
-      const stripped = "/" + from.slice("/es/".length);
+      var stripped = "/" + from.slice("/es/".length);
       return normalizePath(stripped);
     }
 
@@ -322,32 +303,36 @@
   }
 
   function showMain(headerEl) {
-    const main = qs(headerEl, ".nav-mobile .m-main");
-    const subs = qsa(headerEl, ".nav-mobile .m-submenu");
+    var main = qs(headerEl, ".nav-mobile .m-main");
+    var subs = qsa(headerEl, ".nav-mobile .m-submenu");
     if (main) main.hidden = false;
-    subs.forEach((s) => (s.hidden = true));
+    subs.forEach(function (s) {
+      s.hidden = true;
+    });
   }
 
   function showSubmenu(headerEl, selector) {
-    const main = qs(headerEl, ".nav-mobile .m-main");
-    const subs = qsa(headerEl, ".nav-mobile .m-submenu");
-    const target = selector ? qs(headerEl, selector) : null;
+    var main = qs(headerEl, ".nav-mobile .m-main");
+    var subs = qsa(headerEl, ".nav-mobile .m-submenu");
+    var target = selector ? qs(headerEl, selector) : null;
     if (!target) return;
 
     if (main) main.hidden = true;
-    subs.forEach((s) => (s.hidden = true));
+    subs.forEach(function (s) {
+      s.hidden = true;
+    });
     target.hidden = false;
   }
 
   function closeMobile(headerEl) {
-    const toggle = qs(headerEl, `#${TOGGLE_ID}`);
+    var toggle = qs(headerEl, "#" + TOGGLE_ID);
     if (toggle) toggle.checked = false;
     setBodyLock(false);
     showMain(headerEl);
   }
 
   function openMobile(headerEl) {
-    const toggle = qs(headerEl, `#${TOGGLE_ID}`);
+    var toggle = qs(headerEl, "#" + TOGGLE_ID);
     if (toggle) toggle.checked = true;
     setBodyLock(true);
   }
@@ -355,30 +340,30 @@
   function initMobileViews(headerEl) {
     showMain(headerEl);
 
-    const mobileNav = qs(headerEl, ".nav.nav-mobile");
+    var mobileNav = qs(headerEl, ".nav.nav-mobile");
     if (!mobileNav) return;
 
-    mobileNav.addEventListener("click", (e) => {
-      const t = e.target;
+    mobileNav.addEventListener("click", function (e) {
+      var t = e.target;
 
-      const next = t.closest(".m-next");
+      var next = t.closest(".m-next");
       if (next && mobileNav.contains(next)) {
         e.preventDefault();
-        const targetSel = next.getAttribute("data-target") || "";
+        var targetSel = next.getAttribute("data-target") || "";
         if (targetSel) showSubmenu(headerEl, targetSel);
         return;
       }
 
-      const back = t.closest("[data-back]");
+      var back = t.closest("[data-back]");
       if (back && mobileNav.contains(back)) {
         e.preventDefault();
         showMain(headerEl);
         return;
       }
 
-      const link = t.closest("a[href]");
+      var link = t.closest("a[href]");
       if (link && mobileNav.contains(link)) {
-        const href = link.getAttribute("href") || "";
+        var href = link.getAttribute("href") || "";
         if (!href || href.charAt(0) === "#") return;
         closeMobile(headerEl);
       }
@@ -387,34 +372,34 @@
 
   function applyI18n(headerEl, onEs) {
     // Swap visible labels
-    qsa(headerEl, ".i18n[data-en][data-es]").forEach((el) => {
-      const en = el.getAttribute("data-en") || "";
-      const es = el.getAttribute("data-es") || "";
-      const val = onEs ? es : en;
+    qsa(headerEl, ".i18n[data-en][data-es]").forEach(function (el) {
+      var en = el.getAttribute("data-en") || "";
+      var es = el.getAttribute("data-es") || "";
+      var val = onEs ? es : en;
       if (val) el.textContent = val;
     });
 
     // Swap hamburger aria-label (label element)
-    const burgerLabel = qs(
+    var burgerLabel = qs(
       headerEl,
-      ".nav-toggle-btn[data-en-aria][data-es-aria]"
+      '.nav-toggle-btn[data-en-aria][data-es-aria]'
     );
     if (burgerLabel) {
-      const enA = burgerLabel.getAttribute("data-en-aria") || "Menu";
-      const esA = burgerLabel.getAttribute("data-es-aria") || "Menu";
+      var enA = burgerLabel.getAttribute("data-en-aria") || "Menu";
+      var esA = burgerLabel.getAttribute("data-es-aria") || "Menu";
       burgerLabel.setAttribute("aria-label", onEs ? esA : enA);
     }
   }
 
   function initLanguage(headerEl) {
-    const current = normalizePath(window.location.pathname || "/");
-    const onEs = isSpanishPath(current);
-    const targetLang = onEs ? "en" : "es";
-    const switchHref = translatePath(current, targetLang);
+    var current = normalizePath(window.location.pathname || "/");
+    var onEs = isSpanishPath(current);
+    var targetLang = onEs ? "en" : "es";
+    var switchHref = translatePath(current, targetLang);
 
     // Update all language switch anchors in header (desktop + mobile)
-    const switches = qsa(headerEl, "[data-lang-switch]");
-    switches.forEach((a) => {
+    var switches = qsa(headerEl, "[data-lang-switch]");
+    switches.forEach(function (a) {
       a.setAttribute("href", switchHref);
 
       // Label
@@ -424,8 +409,8 @@
         a.textContent = onEs ? "English" : "Espanol";
       }
 
-      a.addEventListener("click", (e) => {
-        const href = a.getAttribute("href") || "";
+      a.addEventListener("click", function (e) {
+        var href = a.getAttribute("href") || "";
         if (!href || href === "#") return;
         e.preventDefault();
         closeMobile(headerEl);
@@ -434,13 +419,13 @@
     });
 
     // Rewrite internal header links to match current language
-    const allLinks = qsa(headerEl, 'a[href^="/"]');
+    var allLinks = qsa(headerEl, 'a[href^="/"]');
 
-    allLinks.forEach((link) => {
+    allLinks.forEach(function (link) {
       if (link.hasAttribute("data-lang-switch")) return;
 
-      const hrefRaw = link.getAttribute("href") || "";
-      const href = normalizePath(hrefRaw);
+      var hrefRaw = link.getAttribute("href") || "";
+      var href = normalizePath(hrefRaw);
 
       if (
         href.startsWith("/assets/") ||
@@ -451,7 +436,7 @@
         return;
       }
 
-      const newHref = onEs ? translatePath(href, "es") : translatePath(href, "en");
+      var newHref = onEs ? translatePath(href, "es") : translatePath(href, "en");
       link.setAttribute("href", newHref);
     });
 
@@ -464,29 +449,29 @@
     if (!headerEl || headerEl.__eeNavInit) return;
     headerEl.__eeNavInit = true;
 
-    const toggle = qs(headerEl, `#${TOGGLE_ID}`);
-    const toggleBtn = qs(headerEl, `.nav-toggle-btn[for="${TOGGLE_ID}"]`);
-    const mobileNav = qs(headerEl, ".nav.nav-mobile");
+    var toggle = qs(headerEl, "#" + TOGGLE_ID);
+    var toggleBtn = qs(headerEl, '.nav-toggle-btn[for="' + TOGGLE_ID + '"]');
+    var mobileNav = qs(headerEl, ".nav.nav-mobile");
 
     if (!toggle || !toggleBtn || !mobileNav) return;
 
     initMobileViews(headerEl);
 
-    toggle.addEventListener("change", () => {
+    toggle.addEventListener("change", function () {
       if (toggle.checked) openMobile(headerEl);
       else closeMobile(headerEl);
     });
 
-    document.addEventListener("keydown", (e) => {
+    document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") closeMobile(headerEl);
     });
 
-    document.addEventListener("click", (e) => {
+    document.addEventListener("click", function (e) {
       if (!toggle.checked) return;
       if (!headerEl.contains(e.target)) closeMobile(headerEl);
     });
 
-    window.addEventListener("resize", () => {
+    window.addEventListener("resize", function () {
       if (window.innerWidth >= 901) closeMobile(headerEl);
     });
 
@@ -495,10 +480,10 @@
   }
 
   function tryInitFromMount() {
-    const mount = document.getElementById(HEADER_MOUNT_ID);
+    var mount = document.getElementById(HEADER_MOUNT_ID);
     if (!mount) return false;
 
-    const headerEl = qs(mount, ".topbar") || qs(mount, "header");
+    var headerEl = qs(mount, ".topbar") || qs(mount, "header");
     if (!headerEl) return false;
 
     initHeader(headerEl);
@@ -509,16 +494,16 @@
   tryInitFromMount();
 
   // Observe injection
-  const mount = document.getElementById(HEADER_MOUNT_ID);
+  var mount = document.getElementById(HEADER_MOUNT_ID);
   if (mount) {
-    const mo = new MutationObserver(() => {
+    var mo = new MutationObserver(function () {
       if (tryInitFromMount()) mo.disconnect();
     });
     mo.observe(mount, { childList: true, subtree: true });
   }
 
   // Safety
-  window.addEventListener("load", () => {
+  window.addEventListener("load", function () {
     tryInitFromMount();
   });
 })();
