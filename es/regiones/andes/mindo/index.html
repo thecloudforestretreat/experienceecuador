@@ -251,6 +251,220 @@
       font-size:13px;
     }
 
+    /* ===== PROMO OPERADOR RECOMENDADO (MBW) - MISMA IDEA QUE EN INGLES ===== */
+    .partner-card{
+      background:#fff;
+      padding:0;
+      border-radius:22px;
+      box-shadow:0 18px 55px rgba(3,78,162,.12);
+      border:1px solid rgba(0,0,0,.06);
+      overflow:hidden;
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+
+    .partner-hero{
+      position:relative;
+      height:120px; /* Ajuste que confirmaste */
+      background:#e9eef7;
+      border-bottom:1px solid rgba(0,0,0,0.06);
+    }
+
+    .partner-hero img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transform:scale(1.01);
+    }
+
+    .partner-hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(520px 220px at 18% 40%, rgba(3,78,162,0.25), rgba(0,0,0,0) 60%),
+        linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.05), rgba(0,0,0,0.22));
+      pointer-events:none;
+    }
+
+    .partner-heroText{
+      position:absolute;
+      left:12px;
+      right:12px;
+      bottom:10px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:10px;
+      z-index:1;
+    }
+
+    .partner-heroTitle{
+      margin:0;
+      color:#fff;
+      font-weight:1000;
+      letter-spacing:-0.02em;
+      font-size:14px;
+      text-shadow:0 14px 30px rgba(0,0,0,0.35);
+      max-width:22ch;
+      line-height:1.15;
+    }
+
+    .partner-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.22);
+      background:rgba(0,0,0,0.32);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color:#fff;
+      font-weight:900;
+      font-size:11.8px;
+      white-space:nowrap;
+      box-shadow:0 18px 40px rgba(0,0,0,0.20);
+    }
+
+    .partner-body{
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .partner-headRow{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .partner-mark{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      border:1px solid rgba(3,78,162,.14);
+      background:linear-gradient(180deg, rgba(3,78,162,.08), rgba(3,78,162,.03));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#0f2f62;
+      font-weight:1000;
+      letter-spacing:-0.02em;
+      font-size:14px;
+      flex:0 0 auto;
+    }
+
+    .partner-name{
+      margin:0;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:900;
+      letter-spacing:-0.02em;
+      color:#0f2f62;
+      font-size:16px;
+      line-height:1.2;
+    }
+
+    .partner-sub{
+      margin:6px 0 0;
+      color:#1f2b3f;
+      opacity:.92;
+      line-height:1.6;
+      font-size:14.2px;
+    }
+
+    .partner-chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:2px;
+    }
+
+    .partner-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 9px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.18);
+      background:rgba(3,78,162,0.06);
+      color:#0f2f62;
+      font-weight:900;
+      font-size:11.6px;
+      white-space:nowrap;
+    }
+
+    .partner-chip.light{
+      border-color:rgba(0,0,0,0.08);
+      background:rgba(0,0,0,0.03);
+      color:#1f2a3a;
+      font-weight:800;
+    }
+
+    .partner-bullets{
+      margin:0;
+      padding-left:18px;
+      color:#1f2b3f;
+      line-height:1.65;
+      font-size:13.8px;
+    }
+
+    .partner-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:2px;
+    }
+
+    .pbtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:14px;
+      font-weight:900;
+      font-size:13.5px;
+      border:1px solid transparent;
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+      transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
+    }
+
+    .pbtnPrimary{
+      background:var(--brand-blue);
+      color:#fff;
+      box-shadow:0 18px 40px rgba(3,78,162,0.18);
+    }
+
+    .pbtnGhost{
+      background:#fff;
+      color:#0f2f62;
+      border-color:rgba(3,78,162,0.22);
+      box-shadow:0 12px 26px rgba(3,78,162,0.08);
+    }
+
+    .pbtnPrimary:hover{ filter:brightness(.98); transform:translateY(-1px); }
+    .pbtnGhost:hover{ transform:translateY(-1px); }
+
+    .partner-fineprint{
+      margin-top:2px;
+      padding-top:10px;
+      border-top:1px solid rgba(0,0,0,.06);
+      color:var(--slate);
+      font-size:12.8px;
+      line-height:1.55;
+    }
+
+    .partner-card:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.12);
+    }
+
     /* ===== ITINERARY SELECTOR ===== */
     .it-head{
       display:flex;
@@ -404,7 +618,7 @@
       line-height:1.65;
     }
 
-    /* ===== WEATHER (same as Quito) ===== */
+    /* ===== WEATHER ===== */
     .wx-card{
       padding:18px 18px;
       border-radius:22px;
@@ -525,73 +739,6 @@
       opacity:.85;
       font-size:13.5px;
       line-height:1.5;
-    }
-
-    .legend{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:10px;
-      align-items:center;
-    }
-
-    .legend-item{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      font-size:12.8px;
-      font-weight:800;
-      color:#162b55;
-      opacity:.9;
-    }
-
-    .swatch{
-      width:14px;
-      height:14px;
-      border-radius:6px;
-      border:1px solid rgba(3,78,162,.22);
-      background:rgba(3,78,162,.06);
-    }
-
-    .swatch.best{ background:rgba(3,78,162,.14); border-color:rgba(3,78,162,.32); }
-    .swatch.good{ background:rgba(3,78,162,.09); border-color:rgba(3,78,162,.22); }
-    .swatch.fair{ background:rgba(3,78,162,.04); border-color:rgba(3,78,162,.18); opacity:.85; }
-
-    .month-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:10px;
-    }
-
-    .month-chip{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(3,78,162,.14);
-      background:rgba(3,78,162,.06);
-      color:#0f2f62;
-      font-weight:900;
-      font-size:12.4px;
-      min-width:46px;
-    }
-
-    .month-chip.best{
-      background:rgba(3,78,162,.14);
-      border-color:rgba(3,78,162,.32);
-    }
-
-    .month-chip.good{
-      background:rgba(3,78,162,.09);
-      border-color:rgba(3,78,162,.22);
-    }
-
-    .month-chip.fair{
-      background:rgba(3,78,162,.04);
-      border-color:rgba(3,78,162,.18);
-      opacity:.85;
     }
 
     /* ===== MORE ANDES DESTINATIONS ===== */
@@ -877,7 +1024,6 @@
       </p>
     </div>
 
-    <!-- SINGLE ITINERARY SECTION WITH DROPDOWN -->
     <div class="card" id="mindoItinerary">
       <h2>Elige tu plan para Mindo</h2>
 
@@ -901,11 +1047,13 @@
 
       <div class="it-note">
         Esta es una guia de ritmo tentativo. En el bosque nublado el clima puede cambiar rapido, por eso recomendamos dejar las tardes flexibles.
+        Si el avistamiento de aves es prioridad, un guia local mejora el timing de la manana.
+        Operador recomendado:
+        <a class="inline-link" href="https://www.mindobirdwatching.com/?utm_source=experienceecuador&utm_medium=referral&utm_campaign=mindo_es_page&utm_content=itinerary_note" target="_blank" rel="noopener">Mindo Bird Watching</a>.
         Si quieres esto ajustado a tus fechas e intereses, usa la pagina de <a class="inline-link" href="/es/contacto/">Contacto</a>.
       </div>
     </div>
 
-    <!-- Carousel bottom -->
     <div id="mindoCarousel" class="carousel" aria-label="Galeria de imagenes de Mindo">
       <button class="carousel-btn prev" type="button" aria-label="Imagen anterior">
         <span aria-hidden="true"></span>
@@ -955,8 +1103,51 @@
       </div>
     </div>
 
-    <!-- Weather card -->
-    <div class="wx-card" aria-label="Clima y estacionalidad">
+    <!-- OPERADOR RECOMENDADO (NUEVO) -->
+    <div class="partner-card" aria-label="Operador local recomendado">
+      <div class="partner-hero" aria-label="Imagen promo de Mindo Bird Watching">
+        <img src="/assets/images/promos/ee_promos_mbw.jpg" alt="Mindo Bird Watching en el bosque nublado" loading="lazy" decoding="async" />
+        <div class="partner-heroText" aria-label="Overlay promo">
+          <div class="partner-heroTitle">Tours de aves en Mindo</div>
+          <div class="partner-badge">Operador recomendado</div>
+        </div>
+      </div>
+
+      <div class="partner-body">
+        <div class="partner-headRow">
+          <div>
+            <div class="partner-name">Mindo Bird Watching</div>
+            <p class="partner-sub">
+              Tours locales enfocados en aves en el bosque nublado. Ideal para principiantes y birders serios que buscan el mejor timing de manana.
+            </p>
+          </div>
+          <div class="partner-mark" aria-hidden="true">MBW</div>
+        </div>
+
+        <div class="partner-chips" aria-label="Highlights rapidos">
+          <span class="partner-chip">Mananas temprano</span>
+          <span class="partner-chip">Medio dia / Dia completo</span>
+          <span class="partner-chip light">Colibries</span>
+        </div>
+
+        <ul class="partner-bullets" aria-label="Puntos clave del operador">
+          <li>Avistamiento al amanecer (mejor luz y actividad)</li>
+          <li>Opciones de medio dia o dia completo desde Mindo</li>
+          <li>Ritmo guiado para ver mas especies y reducir la incertidumbre</li>
+        </ul>
+
+        <div class="partner-actions" aria-label="Acciones del operador">
+          <a class="pbtn pbtnPrimary" href="https://www.mindobirdwatching.com/?utm_source=experienceecuador&utm_medium=referral&utm_campaign=mindo_es_page&utm_content=sidebar_primary" target="_blank" rel="noopener" aria-label="Visitar sitio web de Mindo Bird Watching">Visitar sitio</a>
+          <a class="pbtn pbtnGhost" href="https://www.mindobirdwatching.com/?utm_source=experienceecuador&utm_medium=referral&utm_campaign=mindo_es_page&utm_content=sidebar_secondary" target="_blank" rel="noopener" aria-label="Ver tours en el sitio de Mindo Bird Watching">Ver tours</a>
+        </div>
+
+        <div class="partner-fineprint">
+          Tip: El avistamiento es mas fuerte al amanecer. Si tienes poco tiempo, prioriza una manana guiada y deja las tardes flexibles.
+        </div>
+      </div>
+    </div>
+
+    <div class="wx-card" aria-label="Clima y planificacion">
       <div class="wx-title">Clima actual</div>
 
       <div class="wx-now">
@@ -970,29 +1161,8 @@
         <div class="wx-grid7" id="mindoWx7" aria-label="Grid de pronostico 7 dias (Mindo)"></div>
 
         <div class="wx-title" style="margin-top:14px;">Mejores meses para visitar</div>
-        <div class="wx-sub" style="margin-bottom:8px;">
-          Basado en cielos tipicamente mas secos y comodidad para explorar el bosque nublado.
-        </div>
-
-        <div class="legend" aria-label="Leyenda mejores meses">
-          <div class="legend-item"><span class="swatch best" aria-hidden="true"></span>Mejor</div>
-          <div class="legend-item"><span class="swatch good" aria-hidden="true"></span>Bueno</div>
-          <div class="legend-item"><span class="swatch fair" aria-hidden="true"></span>Regular</div>
-        </div>
-
-        <div class="month-row" aria-label="Chips de 12 meses">
-          <span class="month-chip fair" aria-label="Enero">Ene</span>
-          <span class="month-chip fair" aria-label="Febrero">Feb</span>
-          <span class="month-chip fair" aria-label="Marzo">Mar</span>
-          <span class="month-chip fair" aria-label="Abril">Abr</span>
-          <span class="month-chip fair" aria-label="Mayo">May</span>
-          <span class="month-chip good" aria-label="Junio (bueno)">Jun</span>
-          <span class="month-chip best" aria-label="Julio (mejor)">Jul</span>
-          <span class="month-chip best" aria-label="Agosto (mejor)">Ago</span>
-          <span class="month-chip good" aria-label="Septiembre (bueno)">Sep</span>
-          <span class="month-chip fair" aria-label="Octubre">Oct</span>
-          <span class="month-chip fair" aria-label="Noviembre">Nov</span>
-          <span class="month-chip fair" aria-label="Diciembre">Dic</span>
+        <div class="wx-sub" style="margin-bottom:0;">
+          Las condiciones del bosque nublado pueden variar. Para planificar, usa el pronostico y prioriza las mananas para senderos y aves.
         </div>
       </div>
     </div>
@@ -1062,9 +1232,7 @@
 </section>
   </main>
   <div id="siteFooter"></div>
-  <!-- Global behavior JS (required, bottom only) -->
   <script src="/assets/js/site.js"></script>
-  <!-- Required include injector (exact) -->
   <script>
     (function(){
       async function inject(id, url){
@@ -1078,12 +1246,10 @@
     })();
   </script>
   <script>
-    // Light deterrent: disable right-click on images only
     document.addEventListener('contextmenu', (e) => {
       if (e.target && e.target.tagName === 'IMG') e.preventDefault();
     });
 
-    /* ===== MINDO ITINERARY (1 page + dropdown) ===== */
     (function(){
       const selectEl = document.getElementById("itDaysSelect");
       const planEl = document.getElementById("itPlan");
@@ -1227,25 +1393,10 @@
 
         planEl.innerHTML = data.days.map((d) => {
           const slotsHtml = d.slots.map(s => {
-            return `
-              <div class="slot">
-                <div class="slot-time">${s.time}</div>
-                <p class="slot-text">${s.text}</p>
-              </div>
-            `;
+            return '<div class="slot"><div class="slot-time">' + s.time + '</div><p class="slot-text">' + s.text + '</p></div>';
           }).join("");
 
-          return `
-            <div class="day-card" aria-label="${d.title}">
-              <div class="day-top">
-                <div class="day-title">${d.title}</div>
-                <div class="day-pill">${d.pill}</div>
-              </div>
-              <div class="slots">
-                ${slotsHtml}
-              </div>
-            </div>
-          `;
+          return '<div class="day-card" aria-label="' + d.title + '"><div class="day-top"><div class="day-title">' + d.title + '</div><div class="day-pill">' + d.pill + '</div></div><div class="slots">' + slotsHtml + '</div></div>';
         }).join("");
       }
 
@@ -1261,7 +1412,6 @@
       });
     })();
 
-    /* Mindo weather: date + (max/min/rain) + 7-day forecast */
     (function(){
       const dateEl = document.getElementById("mindoWxDate");
       const linesEl = document.getElementById("mindoWxLines");
@@ -1276,7 +1426,7 @@
       function fmtTemp(c){
         const cc = Math.round(c * 10) / 10;
         const ff = Math.round(cToF(cc) * 10) / 10;
-        return `${cc}°C / ${ff}°F`;
+        return cc + "°C / " + ff + "°F";
       }
 
       function fmtDow(dateStr){
@@ -1294,7 +1444,7 @@
         const mm = String(d.getMonth() + 1).padStart(2, "0");
         const dd = String(d.getDate()).padStart(2, "0");
         const yy = d.getFullYear();
-        return `${mm}/${dd}/${yy}`;
+        return mm + "/" + dd + "/" + yy;
       }
 
       function readCache(){
@@ -1309,7 +1459,7 @@
       }
 
       function writeCache(data){
-        try{ localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); }catch(_){}
+        try{ localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: data })); }catch(_){}
       }
 
       function render(d){
@@ -1323,9 +1473,9 @@
         dateEl.textContent = t0 ? fmtMMDDYYYY(t0) : "--/--/----";
 
         const lines = [];
-        if(todayMax !== null) lines.push(`Max: ${fmtTemp(todayMax)}`);
-        if(todayMin !== null) lines.push(`Min: ${fmtTemp(todayMin)}`);
-        if(todayRain !== null) lines.push(`Rain: ${Math.round(todayRain * 10)/10} mm`);
+        if(todayMax !== null) lines.push("Max: " + fmtTemp(todayMax));
+        if(todayMin !== null) lines.push("Min: " + fmtTemp(todayMin));
+        if(todayRain !== null) lines.push("Rain: " + (Math.round(todayRain * 10)/10) + " mm");
         linesEl.innerHTML = lines.length ? lines.join("<br>") : "Datos de clima no disponibles en este momento.";
 
         const times = daily && Array.isArray(daily.time) ? daily.time : [];
@@ -1348,17 +1498,7 @@
           const hi = day.max !== null ? fmtTemp(day.max) : "--";
           const lo = day.min !== null ? fmtTemp(day.min) : "--";
           const rain = day.rain !== null ? (Math.round(day.rain * 10)/10 + " mm") : "--";
-          return `
-            <div class="wx-day" aria-label="Pronostico ${day.time}">
-              <div class="wx-top">
-                <div class="wx-dow">${fmtDow(day.time)}</div>
-                <div class="wx-mmdd">${fmtMd(day.time)}</div>
-              </div>
-              <div class="wx-hi">${hi}</div>
-              <div class="wx-lo">${lo}</div>
-              <div class="wx-rain">☔ ${rain}</div>
-            </div>
-          `;
+          return '<div class="wx-day" aria-label="Pronostico ' + day.time + '"><div class="wx-top"><div class="wx-dow">' + fmtDow(day.time) + '</div><div class="wx-mmdd">' + fmtMd(day.time) + '</div></div><div class="wx-hi">' + hi + '</div><div class="wx-lo">' + lo + '</div><div class="wx-rain">☔ ' + rain + '</div></div>';
         }).join("");
       }
 
@@ -1370,7 +1510,7 @@
         }
 
         try{
-          const url = `/api/weather?lat=${encodeURIComponent(PLACE.lat)}&lon=${encodeURIComponent(PLACE.lon)}`;
+          const url = "/api/weather?lat=" + encodeURIComponent(PLACE.lat) + "&lon=" + encodeURIComponent(PLACE.lon);
           const res = await fetch(url, { headers: { "accept": "application/json" } });
           const json = await res.json();
           const d = json && json.data ? json.data : null;
@@ -1390,7 +1530,6 @@
       load();
     })();
 
-    /* Mindo carousel */
     (function(){
       const root = document.getElementById("mindoCarousel");
       if(!root) return;
@@ -1412,13 +1551,13 @@
 
       function setIndex(next){
         index = (next + slides.length) % slides.length;
-        track.style.transform = `translateX(-${index * 100}%)`;
+        track.style.transform = "translateX(-" + (index * 100) + "%)";
         updateDots();
         updateCounter();
       }
 
       function updateCounter(){
-        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
+        if(counter) counter.textContent = (index + 1) + " / " + slides.length;
       }
 
       function updateDots(){
@@ -1432,7 +1571,7 @@
           const b = document.createElement("button");
           b.type = "button";
           b.className = "dot" + (i === 0 ? " active" : "");
-          b.setAttribute("aria-label", `Ir a la imagen ${i + 1}`);
+          b.setAttribute("aria-label", "Ir a la imagen " + (i + 1));
           b.addEventListener("click", () => {
             setIndex(i);
             stopAutoplay();
