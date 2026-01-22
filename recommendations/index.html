@@ -202,6 +202,12 @@
 
     .btn:active{ transform: translateY(1px); }
 
+    .btn[aria-disabled="true"]{
+      opacity: .55;
+      pointer-events:none;
+      cursor: default;
+    }
+
     .count{
       color: #0f2f62;
       font-weight: 900;
@@ -553,49 +559,30 @@
     (function(){
       "use strict";
 
-      var LANG = (document.documentElement && document.documentElement.lang) ? document.documentElement.lang : "en";
-
       var STR = {
         en: {
           all_regions: "All regions",
           all_locations: "All locations",
           all_experiences: "All experiences",
           all_categories: "All categories",
-          region: "Region",
-          location: "Location",
-          experience: "Experience",
-          category: "Category",
-          reset: "Reset",
-          become_partner: "Become a partner",
           results_one: "result",
           results_many: "results",
           no_results: "No recommendations match your filters yet.",
-          featured: "Featured Partner"
+          featured: "Featured Partner",
+          visit_website: "Visit Website",
+          whatsapp: "WhatsApp",
+          download_menu: "Download Menu (PDF)"
         }
       };
 
       function t(key){
-        var pack = STR.en;
-        return pack[key] || key;
+        return (STR.en && STR.en[key]) ? STR.en[key] : key;
       }
 
       function esc(s){
         return String(s || "").replace(/[&<>"']/g, function(m){
           return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[m];
         });
-      }
-
-      function unique(arr){
-        var out = [];
-        var seen = {};
-        for (var i=0; i<arr.length; i++){
-          var v = arr[i];
-          if (!v) continue;
-          if (seen[v]) continue;
-          seen[v] = true;
-          out.push(v);
-        }
-        return out;
       }
 
       function byAlpha(a,b){
@@ -607,6 +594,28 @@
           if (!r.ok) throw new Error("bad response");
           return r.json();
         });
+      }
+
+      function normalizeUrl(u){
+        var s = String(u || "").trim();
+        if (!s || s === "#") return "";
+        if (/^https?:\/\//i.test(s)) return s;
+        if (/^mailto:/i.test(s)) return s;
+        if (/^tel:/i.test(s)) return s;
+        if (/^sms:/i.test(s)) return s;
+        return "https://" + s.replace(/^\/+/, "");
+      }
+
+      function getAction(item, key){
+        if (item && item.actions && item.actions[key]) return item.actions[key];
+        if (item && item.links){
+          // Back-compat for older data shapes
+          if (key === "website_url" && item.links.website) return item.links.website;
+          if (key === "whatsapp_url" && item.links.whatsapp) return item.links.whatsapp;
+          if (key === "menu_pdf" && item.links.menu_pdf) return item.links.menu_pdf;
+          if (key === "details_url" && item.links.details) return item.links.details;
+        }
+        return "";
       }
 
       var elRegion = document.getElementById("fRegion");
@@ -641,7 +650,6 @@
         elLocation.value = "";
         elExperience.value = "";
         elCategory.value = "";
-
         elLocation.disabled = true;
         syncLocationOptions();
         apply();
@@ -649,10 +657,11 @@
 
       function syncRegionOptions(){
         if (!REGIONS || !REGIONS.regions || !REGIONS.regions.length) return;
-
         var opts = ['<option value="">' + esc(t("all_regions")) + '</option>'];
-        for (var i=0; i<REGIONS.regions.length; i++){
-          var r = REGIONS.regions[i];
+        var regs = REGIONS.regions.slice(0);
+        regs.sort(function(a,b){ return byAlpha(a.name_en || a.name || a.id, b.name_en || b.name || b.id); });
+        for (var i=0; i<regs.length; i++){
+          var r = regs[i];
           opts.push('<option value="' + esc(r.id) + '">' + esc(r.name_en || r.name || r.id) + '</option>');
         }
         elRegion.innerHTML = opts.join("");
@@ -660,13 +669,9 @@
 
       function syncExperienceOptions(){
         if (!EXPERIENCES || !EXPERIENCES.experiences || !EXPERIENCES.experiences.length) return;
-
         var opts = ['<option value="">' + esc(t("all_experiences")) + '</option>'];
         var exps = EXPERIENCES.experiences.slice(0);
-        exps.sort(function(a,b){
-          return byAlpha(a.name_en || a.name || a.id, b.name_en || b.name || b.id);
-        });
-
+        exps.sort(function(a,b){ return byAlpha(a.name_en || a.name || a.id, b.name_en || b.name || b.id); });
         for (var i=0; i<exps.length; i++){
           var e = exps[i];
           opts.push('<option value="' + esc(e.id) + '">' + esc(e.name_en || e.name || e.id) + '</option>');
@@ -687,23 +692,17 @@
       function syncLocationOptions(){
         var regionId = elRegion.value || "";
         var opts = ['<option value="">' + esc(t("all_locations")) + '</option>'];
-
         if (!regionId){
           elLocation.innerHTML = opts.join("");
           elLocation.disabled = true;
           return;
         }
-
         var locs = getLocationsForRegion(regionId).slice(0);
-        locs.sort(function(a,b){
-          return byAlpha(a.name_en || a.name || a.id, b.name_en || b.name || b.id);
-        });
-
+        locs.sort(function(a,b){ return byAlpha(a.name_en || a.name || a.id, b.name_en || b.name || b.id); });
         for (var i=0; i<locs.length; i++){
           var l = locs[i];
           opts.push('<option value="' + esc(l.id) + '">' + esc(l.name_en || l.name || l.id) + '</option>');
         }
-
         elLocation.innerHTML = opts.join("");
         elLocation.disabled = false;
       }
@@ -755,7 +754,7 @@
       }
 
       function normalizeImages(item){
-        var imgs = item.images && item.images.length ? item.images.slice(0) : [];
+        var imgs = (item && item.images && item.images.length) ? item.images.slice(0) : [];
         while (imgs.length < 3){
           imgs.push(makePlaceholderImgDataURI(item.title_en || item.title || "Image"));
         }
@@ -781,19 +780,25 @@
           chips.push('<span class="chip">' + esc(labelExperience(item.experiences[0])) + '</span>');
         }
 
+        var websiteUrl = normalizeUrl(getAction(item, "website_url"));
+        var whatsappUrl = normalizeUrl(getAction(item, "whatsapp_url"));
+        var menuPdf = normalizeUrl(getAction(item, "menu_pdf"));
+
         var links = [];
-        if (item.links && item.links.website){
-          links.push('<a class="btn primary" href="' + esc(item.links.website) + '" target="_blank" rel="noopener" aria-label="Visit website">Visit Website</a>');
+        if (websiteUrl){
+          links.push('<a class="btn primary" href="' + esc(websiteUrl) + '" target="_blank" rel="noopener" aria-label="Visit website">' + esc(t("visit_website")) + '</a>');
         } else {
-          links.push('<a class="btn primary" href="#" aria-label="Visit website">Visit Website</a>');
+          links.push('<a class="btn primary" href="#" aria-label="Visit website" aria-disabled="true">' + esc(t("visit_website")) + '</a>');
         }
-        if (item.links && item.links.whatsapp){
-          links.push('<a class="btn" href="' + esc(item.links.whatsapp) + '" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>');
+
+        if (whatsappUrl){
+          links.push('<a class="btn" href="' + esc(whatsappUrl) + '" target="_blank" rel="noopener" aria-label="WhatsApp">' + esc(t("whatsapp")) + '</a>');
         } else {
-          links.push('<a class="btn" href="#" aria-label="WhatsApp">WhatsApp</a>');
+          links.push('<a class="btn" href="#" aria-label="WhatsApp" aria-disabled="true">' + esc(t("whatsapp")) + '</a>');
         }
-        if (item.links && item.links.menu_pdf){
-          links.push('<a class="btn" href="' + esc(item.links.menu_pdf) + '" download aria-label="Download menu">Download Menu (PDF)</a>');
+
+        if (menuPdf){
+          links.push('<a class="btn" href="' + esc(menuPdf) + '" target="_blank" rel="noopener" aria-label="Download menu">' + esc(t("download_menu")) + '</a>');
         }
 
         var aria = esc(title);
