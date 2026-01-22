@@ -1,1 +1,1053 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recomendados | Experience Ecuador</title>
+  <meta name="description" content="Recomendado por Experience Ecuador. Filtra recomendaciones por region, lugar, experiencia y categoria para encontrar alojamientos, restaurantes, servicios y actividades de confianza." />
+  <link rel="canonical" href="https://experienceecuador.com/es/recomendados/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Experience Ecuador" />
+  <meta property="og:title" content="Recomendados | Experience Ecuador" />
+  <meta property="og:description" content="Recomendado por Experience Ecuador. Filtra recomendaciones por region, lugar, experiencia y categoria." />
+  <meta property="og:url" content="https://experienceecuador.com/es/recomendados/" />
+  <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Experience Ecuador - planifica tu viaje a Ecuador" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Recomendados | Experience Ecuador" />
+  <meta name="twitter:description" content="Recomendado por Experience Ecuador. Filtra recomendaciones por region, lugar, experiencia y categoria." />
+  <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
+  <!-- Favicons (root paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#034EA2">
+
+  <!-- Global header/footer CSS -->
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --slate:#6E7B8B;
+      --text:#1F1F1F;
+      --line: rgba(0,0,0,.08);
+      --card:#ffffff;
+      --shadow: 0 18px 55px rgba(3,78,162,.12);
+      --r: 22px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:#f6f8fb;
+      color:var(--text);
+    }
+    a{ text-decoration:none; color:inherit; }
+    img{ max-width:100%; display:block; user-select:none; -webkit-user-drag:none; }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 40px 18px 64px;
+    }
+
+    h1{
+      font-family:Montserrat,Inter,sans-serif;
+      font-size: clamp(34px, 4vw, 54px);
+      color: var(--brand-blue);
+      margin: 0 0 10px;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+
+    .lede{
+      color: var(--slate);
+      line-height: 1.7;
+      max-width: 92ch;
+      margin: 0;
+      font-size: 16.8px;
+    }
+
+    .metaRow{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+      color:#162b55;
+      font-weight:800;
+      font-size:13.5px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(3,78,162,.06);
+      border: 1px solid rgba(3,78,162,.14);
+      color:#0f2f62;
+      font-weight:900;
+      white-space:nowrap;
+    }
+
+    .filters{
+      margin-top: 18px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 12px;
+      align-items:end;
+    }
+
+    .fGroup label{
+      display:block;
+      font-size: 12.8px;
+      font-weight: 900;
+      color:#0f2f62;
+      letter-spacing: -0.01em;
+      margin: 0 0 6px;
+    }
+
+    .fGroup select{
+      width:100%;
+      appearance:none;
+      -webkit-appearance:none;
+      padding: 11px 42px 11px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(3,78,162,.18);
+      background: rgba(255,255,255,.88);
+      color:#0f2f62;
+      font-weight: 800;
+      font-size: 14px;
+      outline: none;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(3,78,162,.08);
+    }
+
+    .fGroup{
+      position: relative;
+      min-width: 0;
+    }
+
+    .fGroup:after{
+      content:"";
+      position:absolute;
+      right: 14px;
+      top: 38px;
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid rgba(15,47,98,.75);
+      border-bottom: 2px solid rgba(15,47,98,.75);
+      transform: rotate(45deg);
+      pointer-events:none;
+    }
+
+    .actionsRow{
+      margin-top: 12px;
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+      justify-content: space-between;
+    }
+
+    .btnRow{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 900;
+      border: 1px solid rgba(3,78,162,.18);
+      background: rgba(255,255,255,.78);
+      color:#0f2f62;
+      cursor: pointer;
+      line-height: 1;
+      box-shadow: 0 14px 30px rgba(3,78,162,.08);
+    }
+
+    .btn.primary{
+      background: rgba(3,78,162,.92);
+      color: #fff;
+      border-color: rgba(3,78,162,.30);
+      box-shadow: 0 14px 30px rgba(3,78,162,.22);
+    }
+
+    .btn:active{ transform: translateY(1px); }
+
+    .count{
+      color: #0f2f62;
+      font-weight: 900;
+      font-size: 13px;
+      opacity: .9;
+      white-space: nowrap;
+    }
+
+    .grid{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .card{
+      background: #fff;
+      border-radius: var(--r);
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    /* Square media + carousel */
+    .media{
+      width:100%;
+      aspect-ratio: 1 / 1;
+      min-height: 320px;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      position: relative;
+      overflow:hidden;
+      background: rgba(255,255,255,.75);
+    }
+
+    .carouselViewport{
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+      touch-action: pan-y;
+    }
+
+    .carouselTrack{
+      height:100%;
+      display:flex;
+      transform: translateX(0);
+      transition: transform 450ms ease;
+      will-change: transform;
+    }
+
+    .carouselSlide{
+      min-width:100%;
+      height:100%;
+      background: rgba(255,255,255,.75);
+    }
+
+    .carouselSlide img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+    }
+
+    .navBtn{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(0,0,0,0.26);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index: 6;
+      padding: 0;
+    }
+
+    .navBtn:hover{ background: rgba(0,0,0,0.38); }
+    .navBtn.prev{ left: 12px; }
+    .navBtn.next{ right: 12px; }
+
+    .navBtn span{
+      display:block;
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid rgba(255,255,255,0.95);
+      border-bottom: 2px solid rgba(255,255,255,0.95);
+      opacity: 0.95;
+    }
+
+    .navBtn.prev span{ transform: rotate(135deg); }
+    .navBtn.next span{ transform: rotate(-45deg); }
+
+    .dots{
+      position:absolute;
+      left: 12px;
+      right: 12px;
+      top: 12px;
+      display:flex;
+      justify-content:flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+      z-index: 6;
+      pointer-events: none;
+    }
+
+    .dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.22);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+      pointer-events: none;
+    }
+
+    .dot.active{
+      background: rgba(255,255,255,0.85);
+      border-color: rgba(255,255,255,0.85);
+    }
+
+    .badgeRow{
+      position:absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items:center;
+      pointer-events:none;
+      z-index: 7;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(0,0,0,.34);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: rgba(255,255,255,.96);
+      font-weight: 900;
+      font-size: 12.5px;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .tag.featured{
+      border-color: rgba(255,255,255,.45);
+      background: rgba(3,78,162,.60);
+    }
+
+    .body{
+      padding: 14px;
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .titleRow{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .title{
+      margin:0;
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-size: 18px;
+      line-height: 1.15;
+      color:#0f2f62;
+      min-width: 0;
+    }
+
+    .chips{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(3,78,162,.14);
+      background: rgba(3,78,162,.06);
+      font-weight: 900;
+      font-size: 12.5px;
+      color:#0f2f62;
+      white-space: nowrap;
+    }
+
+    .desc{
+      margin:0;
+      color:#1f2b3f;
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .why{
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 16px;
+      background: rgba(3,78,162,.035);
+      padding: 10px 12px;
+      color:#162b55;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .links{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+      margin-top: 2px;
+    }
+
+    .noResults{
+      margin-top: 16px;
+      border-radius: var(--r);
+      border: 1px dashed rgba(3,78,162,.26);
+      background: rgba(255,255,255,.70);
+      box-shadow: 0 14px 30px rgba(3,78,162,.08);
+      padding: 14px;
+      color:#0f2f62;
+      font-weight: 900;
+      display:none;
+    }
+
+    .disclosure{
+      margin-top: 14px;
+      border-radius: var(--r);
+      border: 1px solid rgba(0,0,0,.06);
+      background: rgba(255,255,255,.75);
+      box-shadow: 0 14px 30px rgba(3,78,162,.08);
+      padding: 14px;
+      color: var(--slate);
+      font-size: 13px;
+      line-height: 1.6;
+      max-width: 92ch;
+    }
+
+    .disclosure strong{ color:#0f2f62; }
+
+    @media (max-width: 980px){
+      .filters{ grid-template-columns: 1fr; }
+      .fGroup:after{ top: 38px; }
+      .grid{ grid-template-columns: 1fr; }
+      .media{ min-height: 280px; }
+    }
+
+    @media (max-width: 480px){
+      .navBtn{ width: 40px; height: 40px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="siteHeader"></div>
+
+  <main class="wrap" aria-label="Recomendados">
+    <h1>Recomendados</h1>
+    <p class="lede">
+      Recomendado por Experience Ecuador. Filtra por region, lugar, experiencia y categoria para encontrar opciones y servicios de confianza para tu viaje.
+    </p>
+
+    <div class="metaRow" aria-label="Resumen rapido">
+      <span class="pill">Recomendado por Experience Ecuador</span>
+      <span class="pill">Sin precios publicos</span>
+      <span class="pill">Pronto: destacados</span>
+    </div>
+
+    <div class="disclosure" aria-label="Aviso">
+      <strong>Aviso:</strong> En el futuro, algunos listados podran marcarse como Socio Destacado. Las ubicaciones destacadas ayudaran a apoyar este proyecto.
+    </div>
+
+    <section class="filters" aria-label="Filtros">
+      <div class="fGroup">
+        <label for="fRegion">Region</label>
+        <select id="fRegion" aria-label="Filtrar por region">
+          <option value="">Todas las regiones</option>
+        </select>
+      </div>
+
+      <div class="fGroup">
+        <label for="fLocation">Lugar</label>
+        <select id="fLocation" aria-label="Filtrar por lugar" disabled>
+          <option value="">Todos los lugares</option>
+        </select>
+      </div>
+
+      <div class="fGroup">
+        <label for="fExperience">Experiencia</label>
+        <select id="fExperience" aria-label="Filtrar por experiencia">
+          <option value="">Todas las experiencias</option>
+        </select>
+      </div>
+
+      <div class="fGroup">
+        <label for="fCategory">Categoria</label>
+        <select id="fCategory" aria-label="Filtrar por categoria">
+          <option value="">Todas las categorias</option>
+          <option value="lodging">Alojamiento</option>
+          <option value="restaurants">Restaurantes</option>
+          <option value="services">Servicios</option>
+          <option value="activities">Actividades</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="actionsRow" aria-label="Acciones">
+      <div class="btnRow">
+        <button class="btn" id="btnReset" type="button" aria-label="Reiniciar filtros">Reiniciar</button>
+        <a class="btn primary" href="/contact/" aria-label="Hazte socio">Hazte socio</a>
+      </div>
+      <div class="count" id="resultCount" aria-label="Conteo de resultados">0 resultados</div>
+    </div>
+
+    <div class="noResults" id="noResults" aria-label="Mensaje sin resultados">Aun no hay recomendaciones para esta seleccion.</div>
+
+    <section class="grid" id="cards" aria-label="Tarjetas de recomendados"></section>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script src="/assets/js/site.js"></script>
+  <script>
+    (function(){
+      "use strict";
+
+      var LANG = (document.documentElement && document.documentElement.lang) ? document.documentElement.lang : "es";
+
+      var STR = {
+        en: {
+          all_regions: "All regions",
+          all_locations: "All locations",
+          all_experiences: "All experiences",
+          all_categories: "All categories",
+          region: "Region",
+          location: "Location",
+          experience: "Experience",
+          category: "Category",
+          reset: "Reset",
+          become_partner: "Become a partner",
+          results_one: "result",
+          results_many: "results",
+          no_results: "No recommendations match your filters yet.",
+          featured: "Featured Partner",
+          visit_website: "Visit Website",
+          download_menu: "Download Menu (PDF)",
+          why_we_recommend: "Why we recommend:"
+        },
+        es: {
+          all_regions: "Todas las regiones",
+          all_locations: "Todos los lugares",
+          all_experiences: "Todas las experiencias",
+          all_categories: "Todas las categorias",
+          region: "Region",
+          location: "Lugar",
+          experience: "Experiencia",
+          category: "Categoria",
+          reset: "Reiniciar",
+          become_partner: "Hazte socio",
+          results_one: "resultado",
+          results_many: "resultados",
+          no_results: "Aun no hay recomendaciones para esta seleccion.",
+          featured: "Socio Destacado",
+          visit_website: "Ver sitio web",
+          download_menu: "Descargar menu (PDF)",
+          why_we_recommend: "Por que lo recomendamos:"
+        }
+      };
+
+      function t(key){
+        var pack = STR[LANG] || STR.es;
+        return pack[key] || key;
+      }
+
+      function esc(s){
+        return String(s || "").replace(/[&<>"']/g, function(m){
+          return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[m];
+        });
+      }
+
+      function byAlpha(a,b){
+        return String(a || "").localeCompare(String(b || ""), "es", { sensitivity: "base" });
+      }
+
+      function fetchJson(url){
+        return fetch(url, { cache: "no-store" }).then(function(r){
+          if (!r.ok) throw new Error("bad response");
+          return r.json();
+        });
+      }
+
+      var elRegion = document.getElementById("fRegion");
+      var elLocation = document.getElementById("fLocation");
+      var elExperience = document.getElementById("fExperience");
+      var elCategory = document.getElementById("fCategory");
+      var elCards = document.getElementById("cards");
+      var elNoResults = document.getElementById("noResults");
+      var elCount = document.getElementById("resultCount");
+      var btnReset = document.getElementById("btnReset");
+
+      var REGIONS = null;
+      var EXPERIENCES = null;
+      var ITEMS = null;
+
+      function setCount(n){
+        var word = (n === 1) ? t("results_one") : t("results_many");
+        elCount.textContent = String(n) + " " + word;
+      }
+
+      function getFilters(){
+        return {
+          region_id: elRegion.value || "",
+          location_id: elLocation.value || "",
+          experience_id: elExperience.value || "",
+          category: elCategory.value || ""
+        };
+      }
+
+      function resetFilters(){
+        elRegion.value = "";
+        elLocation.value = "";
+        elExperience.value = "";
+        elCategory.value = "";
+
+        elLocation.disabled = true;
+        syncLocationOptions();
+        apply();
+      }
+
+      function syncRegionOptions(){
+        if (!REGIONS || !REGIONS.regions || !REGIONS.regions.length) return;
+
+        var opts = ['<option value="">' + esc(t("all_regions")) + '</option>'];
+        for (var i=0; i<REGIONS.regions.length; i++){
+          var r = REGIONS.regions[i];
+          opts.push('<option value="' + esc(r.id) + '">' + esc(r.name_es || r.name || r.id) + '</option>');
+        }
+        elRegion.innerHTML = opts.join("");
+      }
+
+      function syncExperienceOptions(){
+        if (!EXPERIENCES || !EXPERIENCES.experiences || !EXPERIENCES.experiences.length) return;
+
+        var opts = ['<option value="">' + esc(t("all_experiences")) + '</option>'];
+        var exps = EXPERIENCES.experiences.slice(0);
+        exps.sort(function(a,b){
+          return byAlpha(a.name_es || a.name || a.id, b.name_es || b.name || b.id);
+        });
+
+        for (var i=0; i<exps.length; i++){
+          var e = exps[i];
+          opts.push('<option value="' + esc(e.id) + '">' + esc(e.name_es || e.name || e.id) + '</option>');
+        }
+        elExperience.innerHTML = opts.join("");
+      }
+
+      function getLocationsForRegion(regionId){
+        if (!REGIONS || !REGIONS.regions) return [];
+        for (var i=0; i<REGIONS.regions.length; i++){
+          if (REGIONS.regions[i].id === regionId){
+            return REGIONS.regions[i].locations || [];
+          }
+        }
+        return [];
+      }
+
+      function syncLocationOptions(){
+        var regionId = elRegion.value || "";
+        var opts = ['<option value="">' + esc(t("all_locations")) + '</option>'];
+
+        if (!regionId){
+          elLocation.innerHTML = opts.join("");
+          elLocation.disabled = true;
+          return;
+        }
+
+        var locs = getLocationsForRegion(regionId).slice(0);
+        locs.sort(function(a,b){
+          return byAlpha(a.name_es || a.name || a.id, b.name_es || b.name || b.id);
+        });
+
+        for (var i=0; i<locs.length; i++){
+          var l = locs[i];
+          opts.push('<option value="' + esc(l.id) + '">' + esc(l.name_es || l.name || l.id) + '</option>');
+        }
+
+        elLocation.innerHTML = opts.join("");
+        elLocation.disabled = false;
+      }
+
+      function labelRegion(regionId){
+        if (!REGIONS || !REGIONS.regions) return regionId;
+        for (var i=0; i<REGIONS.regions.length; i++){
+          if (REGIONS.regions[i].id === regionId){
+            return REGIONS.regions[i].name_es || REGIONS.regions[i].name || regionId;
+          }
+        }
+        return regionId;
+      }
+
+      function labelLocation(regionId, locationId){
+        var locs = getLocationsForRegion(regionId);
+        for (var i=0; i<locs.length; i++){
+          if (locs[i].id === locationId){
+            return locs[i].name_es || locs[i].name || locationId;
+          }
+        }
+        return locationId;
+      }
+
+      function labelExperience(expId){
+        if (!EXPERIENCES || !EXPERIENCES.experiences) return expId;
+        for (var i=0; i<EXPERIENCES.experiences.length; i++){
+          if (EXPERIENCES.experiences[i].id === expId){
+            return EXPERIENCES.experiences[i].name_es || EXPERIENCES.experiences[i].name || expId;
+          }
+        }
+        return expId;
+      }
+
+      function makePlaceholderImgDataURI(title){
+        var text1 = esc(title || "Imagen");
+        var svg = ""
+          + "<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200'>"
+          + "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>"
+          + "<stop offset='0' stop-color='%23eaf2ff'/>"
+          + "<stop offset='1' stop-color='%23ffffff'/>"
+          + "</linearGradient></defs>"
+          + "<rect width='100%25' height='100%25' fill='url(%23g)'/>"
+          + "<rect x='90' y='90' width='1020' height='1020' rx='42' fill='rgba(3,78,162,0.08)' stroke='rgba(0,0,0,0.08)'/>"
+          + "<text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial' font-size='44' fill='rgba(15,47,98,0.85)'>" + text1 + "</text>"
+          + "<text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial' font-size='22' fill='rgba(15,47,98,0.70)'>Reemplaza esto con una foto real despues</text>"
+          + "</svg>";
+        return "data:image/svg+xml;utf8," + svg;
+      }
+
+      function normalizeImages(item){
+        var imgs = item.images && item.images.length ? item.images.slice(0) : [];
+        while (imgs.length < 3){
+          imgs.push(makePlaceholderImgDataURI(item.title_es || item.title || "Imagen"));
+        }
+        return imgs.slice(0,3);
+      }
+
+      function categoryLabelEs(cat){
+        if (cat === "lodging") return "Alojamiento";
+        if (cat === "restaurants") return "Restaurantes";
+        if (cat === "services") return "Servicios";
+        if (cat === "activities") return "Actividades";
+        return cat || "";
+      }
+
+      function cardHtml(item){
+        var title = item.title_es || item.title || item.title_en || "Sin titulo";
+        var desc = item.description_es || item.description || item.description_en || "";
+        var why = item.why_es || item.why_en || "";
+        var isFeatured = !!item.featured;
+
+        var images = normalizeImages(item);
+
+        var tags = [];
+        if (isFeatured) tags.push('<span class="tag featured">' + esc(t("featured")) + '</span>');
+        tags.push('<span class="tag">' + esc(labelRegion(item.region_id)) + '</span>');
+        tags.push('<span class="tag">' + esc(labelLocation(item.region_id, item.location_id)) + '</span>');
+
+        var chips = [];
+        chips.push('<span class="chip">' + esc(categoryLabelEs(item.category)) + '</span>');
+        if (item.experiences && item.experiences.length){
+          chips.push('<span class="chip">' + esc(labelExperience(item.experiences[0])) + '</span>');
+        }
+
+        var links = [];
+        if (item.links && item.links.website){
+          links.push('<a class="btn primary" href="' + esc(item.links.website) + '" target="_blank" rel="noopener" aria-label="Ver sitio web">' + esc(t("visit_website")) + '</a>');
+        } else {
+          links.push('<a class="btn primary" href="#" aria-label="Ver sitio web">' + esc(t("visit_website")) + '</a>');
+        }
+        if (item.links && item.links.whatsapp){
+          links.push('<a class="btn" href="' + esc(item.links.whatsapp) + '" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>');
+        } else {
+          links.push('<a class="btn" href="#" aria-label="WhatsApp">WhatsApp</a>');
+        }
+        if (item.links && item.links.menu_pdf){
+          links.push('<a class="btn" href="' + esc(item.links.menu_pdf) + '" download aria-label="Descargar menu">' + esc(t("download_menu")) + '</a>');
+        }
+
+        var aria = esc(title);
+
+        var dots = '<div class="dots" aria-hidden="true">'
+          + '<span class="dot active"></span><span class="dot"></span><span class="dot"></span>'
+          + '</div>';
+
+        var slides = ''
+          + '<div class="carouselSlide"><img src="' + esc(images[0]) + '" alt="' + aria + ' imagen 1" loading="eager" decoding="async"></div>'
+          + '<div class="carouselSlide"><img src="' + esc(images[1]) + '" alt="' + aria + ' imagen 2" loading="lazy" decoding="async"></div>'
+          + '<div class="carouselSlide"><img src="' + esc(images[2]) + '" alt="' + aria + ' imagen 3" loading="lazy" decoding="async"></div>';
+
+        var whyBlock = why ? ('<div class="why" aria-label="Por que lo recomendamos"><strong>' + esc(t("why_we_recommend")) + '</strong> ' + esc(why) + '</div>') : '';
+
+        return ''
+          + '<article class="card" data-id="' + esc(item.id) + '" data-region="' + esc(item.region_id) + '" data-location="' + esc(item.location_id) + '" data-category="' + esc(item.category) + '" data-experiences="' + esc((item.experiences || []).join(",")) + '">'
+          +   '<div class="media recCarousel" data-interval="2500" aria-label="' + aria + ' carrusel">'
+          +     '<div class="carouselViewport" aria-label="Ventana del carrusel">'
+          +       '<div class="carouselTrack">' + slides + '</div>'
+          +     '</div>'
+          +     '<button class="navBtn prev" type="button" aria-label="Imagen anterior"><span aria-hidden="true"></span></button>'
+          +     '<button class="navBtn next" type="button" aria-label="Siguiente imagen"><span aria-hidden="true"></span></button>'
+          +     dots
+          +     '<div class="badgeRow" aria-hidden="true">' + tags.join("") + '</div>'
+          +   '</div>'
+          +   '<div class="body">'
+          +     '<div class="titleRow">'
+          +       '<h3 class="title">' + esc(title) + '</h3>'
+          +       '<div class="chips" aria-label="Chips de meta">' + chips.join("") + '</div>'
+          +     '</div>'
+          +     '<p class="desc">' + esc(desc) + '</p>'
+          +     whyBlock
+          +     '<div class="links" aria-label="Acciones">' + links.join("") + '</div>'
+          +   '</div>'
+          + '</article>';
+      }
+
+      function apply(){
+        if (!ITEMS || !ITEMS.items) return;
+
+        var f = getFilters();
+        var out = [];
+
+        for (var i=0; i<ITEMS.items.length; i++){
+          var it = ITEMS.items[i];
+
+          if (f.region_id && it.region_id !== f.region_id) continue;
+          if (f.location_id && it.location_id !== f.location_id) continue;
+          if (f.category && it.category !== f.category) continue;
+
+          if (f.experience_id){
+            var exps = it.experiences || [];
+            var ok = false;
+            for (var j=0; j<exps.length; j++){
+              if (exps[j] === f.experience_id){ ok = true; break; }
+            }
+            if (!ok) continue;
+          }
+
+          out.push(it);
+        }
+
+        elCards.innerHTML = out.map(cardHtml).join("");
+        setCount(out.length);
+
+        if (out.length === 0){
+          elNoResults.style.display = "block";
+          elNoResults.textContent = t("no_results");
+        } else {
+          elNoResults.style.display = "none";
+        }
+
+        initAllCarousels();
+      }
+
+      function initCarousel(root){
+        var viewport = root.querySelector(".carouselViewport");
+        var track = root.querySelector(".carouselTrack");
+        var slides = Array.prototype.slice.call(root.querySelectorAll(".carouselSlide"));
+        var prevBtn = root.querySelector(".navBtn.prev");
+        var nextBtn = root.querySelector(".navBtn.next");
+        var dotsWrap = root.querySelector(".dots");
+        var dots = dotsWrap ? Array.prototype.slice.call(dotsWrap.querySelectorAll(".dot")) : [];
+
+        if(!viewport || !track || !slides.length) return;
+
+        var index = 0;
+        var intervalMs = Number(root.getAttribute("data-interval") || "2500");
+        var timer = null;
+
+        var prefersReducedMotion = false;
+        try{
+          prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        }catch(_){ prefersReducedMotion = false; }
+
+        var autoplay = !prefersReducedMotion;
+
+        function update(){
+          track.style.transform = "translateX(-" + (index * 100) + "%)";
+          if(dots.length){
+            for(var i=0; i<dots.length; i++){
+              if(i === index) dots[i].classList.add("active");
+              else dots[i].classList.remove("active");
+            }
+          }
+        }
+
+        function setIndex(next){
+          var n = next;
+          if(n < 0) n = slides.length - 1;
+          if(n >= slides.length) n = 0;
+          index = n;
+          update();
+        }
+
+        function next(){ setIndex(index + 1); }
+        function prev(){ setIndex(index - 1); }
+
+        function stop(){
+          if(timer){
+            clearInterval(timer);
+            timer = null;
+          }
+        }
+
+        function start(){
+          if(!autoplay) return;
+          stop();
+          timer = setInterval(function(){ next(); }, intervalMs);
+        }
+
+        if(prevBtn){
+          prevBtn.addEventListener("click", function(){
+            prev();
+            stop();
+          });
+        }
+
+        if(nextBtn){
+          nextBtn.addEventListener("click", function(){
+            next();
+            stop();
+          });
+        }
+
+        root.addEventListener("mouseenter", stop);
+        root.addEventListener("mouseleave", start);
+        root.addEventListener("focusin", stop);
+        root.addEventListener("focusout", start);
+
+        var startX = 0;
+        var isDown = false;
+
+        viewport.addEventListener("pointerdown", function(e){
+          isDown = true;
+          startX = e.clientX;
+          try{ viewport.setPointerCapture(e.pointerId); }catch(_){}
+        });
+
+        viewport.addEventListener("pointerup", function(e){
+          if(!isDown) return;
+          isDown = false;
+          var dx = e.clientX - startX;
+          var threshold = 40;
+          if(dx > threshold){ prev(); stop(); }
+          if(dx < -threshold){ next(); stop(); }
+        });
+
+        viewport.addEventListener("pointercancel", function(){
+          isDown = false;
+        });
+
+        update();
+        start();
+      }
+
+      function initAllCarousels(){
+        var carousels = document.querySelectorAll(".recCarousel");
+        for(var i=0; i<carousels.length; i++){
+          initCarousel(carousels[i]);
+        }
+      }
+
+      function wire(){
+        elRegion.addEventListener("change", function(){
+          syncLocationOptions();
+          elLocation.value = "";
+          apply();
+        });
+
+        elLocation.addEventListener("change", apply);
+        elExperience.addEventListener("change", apply);
+        elCategory.addEventListener("change", apply);
+
+        btnReset.addEventListener("click", resetFilters);
+      }
+
+      function boot(){
+        wire();
+
+        Promise.all([
+          fetchJson("/assets/data/regions.json"),
+          fetchJson("/assets/data/experiences.json"),
+          fetchJson("/assets/data/recommendations.json")
+        ]).then(function(all){
+          REGIONS = all[0];
+          EXPERIENCES = all[1];
+          ITEMS = all[2];
+
+          syncRegionOptions();
+          syncLocationOptions();
+          syncExperienceOptions();
+
+          apply();
+        }).catch(function(){
+          elNoResults.style.display = "block";
+          elNoResults.textContent = "No se pudieron cargar los datos de recomendados.";
+          setCount(0);
+        });
+      }
+
+      boot();
+    })();
+  </script>
+
+  <script>
+    (function(){
+      async function inject(id, url){
+        var el = document.getElementById(id);
+        if(!el) return;
+        var res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header-es.html");
+      inject("siteFooter", "/assets/includes/footer-es.html");
+    })();
+  </script>
+</body>
+</html>
