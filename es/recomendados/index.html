@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Recomendados | Experience Ecuador</title>
-  <meta name="description" content="Recomendado por Experience Ecuador. Filtra recomendaciones por region, lugar, experiencia y categoria para encontrar alojamientos, restaurantes, servicios y actividades de confianza." />
+  <meta name="description" content="Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria para encontrar alojamientos, restaurantes, servicios y actividades confiables." />
   <link rel="canonical" href="https://experienceecuador.com/es/recomendados/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
   <meta property="og:title" content="Recomendados | Experience Ecuador" />
-  <meta property="og:description" content="Recomendado por Experience Ecuador. Filtra recomendaciones por region, lugar, experiencia y categoria." />
+  <meta property="og:description" content="Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria." />
   <meta property="og:url" content="https://experienceecuador.com/es/recomendados/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
@@ -18,25 +18,21 @@
   <meta property="og:image:alt" content="Experience Ecuador - planifica tu viaje a Ecuador" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Recomendados | Experience Ecuador" />
-  <meta name="twitter:description" content="Recomendado por Experience Ecuador. Filtra recomendaciones por region, lugar, experiencia y categoria." />
+  <meta name="twitter:description" content="Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
-
   <!-- Favicons (root paths) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
-
   <!-- Global header/footer CSS -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
-
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --brand-blue:#034EA2;
@@ -201,6 +197,12 @@
     }
 
     .btn:active{ transform: translateY(1px); }
+
+    .btn[aria-disabled="true"]{
+      opacity: .55;
+      pointer-events:none;
+      cursor: default;
+    }
 
     .count{
       color: #0f2f62;
@@ -482,123 +484,91 @@
 </head>
 <body>
   <div id="siteHeader"></div>
-
   <main class="wrap" aria-label="Recomendados">
     <h1>Recomendados</h1>
     <p class="lede">
-      Recomendado por Experience Ecuador. Filtra por region, lugar, experiencia y categoria para encontrar opciones y servicios de confianza para tu viaje.
+      Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria para encontrar lugares y servicios confiables para tu viaje.
     </p>
+<div class="metaRow" aria-label="Resumen rapido">
+  <span class="pill">Recomendado por Experience Ecuador</span>
+  <span class="pill">Sin precios publicos</span>
+  <span class="pill">Espacios destacados: proximamente</span>
+</div>
 
-    <div class="metaRow" aria-label="Resumen rapido">
-      <span class="pill">Recomendado por Experience Ecuador</span>
-      <span class="pill">Sin precios publicos</span>
-      <span class="pill">Pronto: destacados</span>
-    </div>
+<div class="disclosure" aria-label="Aviso">
+  <strong>Aviso:</strong> Algunas fichas podrian mostrarse como Socio Destacado en el futuro. Los espacios destacados ayudaran a sostener este proyecto.
+</div>
 
-    <div class="disclosure" aria-label="Aviso">
-      <strong>Aviso:</strong> En el futuro, algunos listados podran marcarse como Socio Destacado. Las ubicaciones destacadas ayudaran a apoyar este proyecto.
-    </div>
+<section class="filters" aria-label="Filtros">
+  <div class="fGroup">
+    <label for="fRegion">Region</label>
+    <select id="fRegion" aria-label="Filtrar por region">
+      <option value="">Todas las regiones</option>
+    </select>
+  </div>
 
-    <section class="filters" aria-label="Filtros">
-      <div class="fGroup">
-        <label for="fRegion">Region</label>
-        <select id="fRegion" aria-label="Filtrar por region">
-          <option value="">Todas las regiones</option>
-        </select>
-      </div>
+  <div class="fGroup">
+    <label for="fLocation">Ubicacion</label>
+    <select id="fLocation" aria-label="Filtrar por ubicacion" disabled>
+      <option value="">Todas las ubicaciones</option>
+    </select>
+  </div>
 
-      <div class="fGroup">
-        <label for="fLocation">Lugar</label>
-        <select id="fLocation" aria-label="Filtrar por lugar" disabled>
-          <option value="">Todos los lugares</option>
-        </select>
-      </div>
+  <div class="fGroup">
+    <label for="fExperience">Experiencia</label>
+    <select id="fExperience" aria-label="Filtrar por experiencia">
+      <option value="">Todas las experiencias</option>
+    </select>
+  </div>
 
-      <div class="fGroup">
-        <label for="fExperience">Experiencia</label>
-        <select id="fExperience" aria-label="Filtrar por experiencia">
-          <option value="">Todas las experiencias</option>
-        </select>
-      </div>
+  <div class="fGroup">
+    <label for="fCategory">Categoria</label>
+    <select id="fCategory" aria-label="Filtrar por categoria">
+      <option value="">Todas las categorias</option>
+      <option value="lodging">Alojamiento</option>
+      <option value="restaurants">Restaurantes</option>
+      <option value="services">Servicios</option>
+      <option value="activities">Actividades</option>
+    </select>
+  </div>
+</section>
 
-      <div class="fGroup">
-        <label for="fCategory">Categoria</label>
-        <select id="fCategory" aria-label="Filtrar por categoria">
-          <option value="">Todas las categorias</option>
-          <option value="lodging">Alojamiento</option>
-          <option value="restaurants">Restaurantes</option>
-          <option value="services">Servicios</option>
-          <option value="activities">Actividades</option>
-        </select>
-      </div>
-    </section>
+<div class="actionsRow" aria-label="Acciones">
+  <div class="btnRow">
+    <button class="btn" id="btnReset" type="button" aria-label="Restablecer filtros">Restablecer</button>
+    <a class="btn primary" href="/es/contacto/" aria-label="Quiero ser socio">Quiero ser socio</a>
+  </div>
+  <div class="count" id="resultCount" aria-label="Conteo de resultados">0 resultados</div>
+</div>
 
-    <div class="actionsRow" aria-label="Acciones">
-      <div class="btnRow">
-        <button class="btn" id="btnReset" type="button" aria-label="Reiniciar filtros">Reiniciar</button>
-        <a class="btn primary" href="/contact/" aria-label="Hazte socio">Hazte socio</a>
-      </div>
-      <div class="count" id="resultCount" aria-label="Conteo de resultados">0 resultados</div>
-    </div>
+<div class="noResults" id="noResults" aria-label="Mensaje sin resultados">Aun no hay recomendaciones para esta seleccion.</div>
 
-    <div class="noResults" id="noResults" aria-label="Mensaje sin resultados">Aun no hay recomendaciones para esta seleccion.</div>
-
-    <section class="grid" id="cards" aria-label="Tarjetas de recomendados"></section>
+<section class="grid" id="cards" aria-label="Tarjetas de recomendacion"></section>
   </main>
-
   <div id="siteFooter"></div>
-
   <script src="/assets/js/site.js"></script>
   <script>
     (function(){
       "use strict";
 
-      var LANG = (document.documentElement && document.documentElement.lang) ? document.documentElement.lang : "es";
-
       var STR = {
-        en: {
-          all_regions: "All regions",
-          all_locations: "All locations",
-          all_experiences: "All experiences",
-          all_categories: "All categories",
-          region: "Region",
-          location: "Location",
-          experience: "Experience",
-          category: "Category",
-          reset: "Reset",
-          become_partner: "Become a partner",
-          results_one: "result",
-          results_many: "results",
-          no_results: "No recommendations match your filters yet.",
-          featured: "Featured Partner",
-          visit_website: "Visit Website",
-          download_menu: "Download Menu (PDF)",
-          why_we_recommend: "Why we recommend:"
-        },
         es: {
           all_regions: "Todas las regiones",
-          all_locations: "Todos los lugares",
+          all_locations: "Todas las ubicaciones",
           all_experiences: "Todas las experiencias",
           all_categories: "Todas las categorias",
-          region: "Region",
-          location: "Lugar",
-          experience: "Experiencia",
-          category: "Categoria",
-          reset: "Reiniciar",
-          become_partner: "Hazte socio",
           results_one: "resultado",
           results_many: "resultados",
           no_results: "Aun no hay recomendaciones para esta seleccion.",
           featured: "Socio Destacado",
           visit_website: "Ver sitio web",
-          download_menu: "Descargar menu (PDF)",
-          why_we_recommend: "Por que lo recomendamos:"
+          whatsapp: "WhatsApp",
+          download_menu: "Descargar menu (PDF)"
         }
       };
 
       function t(key){
-        var pack = STR[LANG] || STR.es;
-        return pack[key] || key;
+        return (STR.es && STR.es[key]) ? STR.es[key] : key;
       }
 
       function esc(s){
@@ -616,6 +586,27 @@
           if (!r.ok) throw new Error("bad response");
           return r.json();
         });
+      }
+
+      function normalizeUrl(u){
+        var s = String(u || "").trim();
+        if (!s || s === "#") return "";
+        if (/^https?:\/\//i.test(s)) return s;
+        if (/^mailto:/i.test(s)) return s;
+        if (/^tel:/i.test(s)) return s;
+        if (/^sms:/i.test(s)) return s;
+        return "https://" + s.replace(/^\/+/, "");
+      }
+
+      function getAction(item, key){
+        if (item && item.actions && item.actions[key]) return item.actions[key];
+        if (item && item.links){
+          if (key === "website_url" && item.links.website) return item.links.website;
+          if (key === "whatsapp_url" && item.links.whatsapp) return item.links.whatsapp;
+          if (key === "menu_pdf" && item.links.menu_pdf) return item.links.menu_pdf;
+          if (key === "details_url" && item.links.details) return item.links.details;
+        }
+        return "";
       }
 
       var elRegion = document.getElementById("fRegion");
@@ -650,7 +641,6 @@
         elLocation.value = "";
         elExperience.value = "";
         elCategory.value = "";
-
         elLocation.disabled = true;
         syncLocationOptions();
         apply();
@@ -658,27 +648,24 @@
 
       function syncRegionOptions(){
         if (!REGIONS || !REGIONS.regions || !REGIONS.regions.length) return;
-
         var opts = ['<option value="">' + esc(t("all_regions")) + '</option>'];
-        for (var i=0; i<REGIONS.regions.length; i++){
-          var r = REGIONS.regions[i];
-          opts.push('<option value="' + esc(r.id) + '">' + esc(r.name_es || r.name || r.id) + '</option>');
+        var regs = REGIONS.regions.slice(0);
+        regs.sort(function(a,b){ return byAlpha(a.name_es || a.name_en || a.name || a.id, b.name_es || b.name_en || b.name || b.id); });
+        for (var i=0; i<regs.length; i++){
+          var r = regs[i];
+          opts.push('<option value="' + esc(r.id) + '">' + esc(r.name_es || r.name_en || r.name || r.id) + '</option>');
         }
         elRegion.innerHTML = opts.join("");
       }
 
       function syncExperienceOptions(){
         if (!EXPERIENCES || !EXPERIENCES.experiences || !EXPERIENCES.experiences.length) return;
-
         var opts = ['<option value="">' + esc(t("all_experiences")) + '</option>'];
         var exps = EXPERIENCES.experiences.slice(0);
-        exps.sort(function(a,b){
-          return byAlpha(a.name_es || a.name || a.id, b.name_es || b.name || b.id);
-        });
-
+        exps.sort(function(a,b){ return byAlpha(a.name_es || a.name_en || a.name || a.id, b.name_es || b.name_en || b.name || b.id); });
         for (var i=0; i<exps.length; i++){
           var e = exps[i];
-          opts.push('<option value="' + esc(e.id) + '">' + esc(e.name_es || e.name || e.id) + '</option>');
+          opts.push('<option value="' + esc(e.id) + '">' + esc(e.name_es || e.name_en || e.name || e.id) + '</option>');
         }
         elExperience.innerHTML = opts.join("");
       }
@@ -696,23 +683,17 @@
       function syncLocationOptions(){
         var regionId = elRegion.value || "";
         var opts = ['<option value="">' + esc(t("all_locations")) + '</option>'];
-
         if (!regionId){
           elLocation.innerHTML = opts.join("");
           elLocation.disabled = true;
           return;
         }
-
         var locs = getLocationsForRegion(regionId).slice(0);
-        locs.sort(function(a,b){
-          return byAlpha(a.name_es || a.name || a.id, b.name_es || b.name || b.id);
-        });
-
+        locs.sort(function(a,b){ return byAlpha(a.name_es || a.name_en || a.name || a.id, b.name_es || b.name_en || b.name || b.id); });
         for (var i=0; i<locs.length; i++){
           var l = locs[i];
-          opts.push('<option value="' + esc(l.id) + '">' + esc(l.name_es || l.name || l.id) + '</option>');
+          opts.push('<option value="' + esc(l.id) + '">' + esc(l.name_es || l.name_en || l.name || l.id) + '</option>');
         }
-
         elLocation.innerHTML = opts.join("");
         elLocation.disabled = false;
       }
@@ -721,7 +702,7 @@
         if (!REGIONS || !REGIONS.regions) return regionId;
         for (var i=0; i<REGIONS.regions.length; i++){
           if (REGIONS.regions[i].id === regionId){
-            return REGIONS.regions[i].name_es || REGIONS.regions[i].name || regionId;
+            return REGIONS.regions[i].name_es || REGIONS.regions[i].name_en || REGIONS.regions[i].name || regionId;
           }
         }
         return regionId;
@@ -731,7 +712,7 @@
         var locs = getLocationsForRegion(regionId);
         for (var i=0; i<locs.length; i++){
           if (locs[i].id === locationId){
-            return locs[i].name_es || locs[i].name || locationId;
+            return locs[i].name_es || locs[i].name_en || locs[i].name || locationId;
           }
         }
         return locationId;
@@ -741,7 +722,7 @@
         if (!EXPERIENCES || !EXPERIENCES.experiences) return expId;
         for (var i=0; i<EXPERIENCES.experiences.length; i++){
           if (EXPERIENCES.experiences[i].id === expId){
-            return EXPERIENCES.experiences[i].name_es || EXPERIENCES.experiences[i].name || expId;
+            return EXPERIENCES.experiences[i].name_es || EXPERIENCES.experiences[i].name_en || EXPERIENCES.experiences[i].name || expId;
           }
         }
         return expId;
@@ -758,30 +739,22 @@
           + "<rect width='100%25' height='100%25' fill='url(%23g)'/>"
           + "<rect x='90' y='90' width='1020' height='1020' rx='42' fill='rgba(3,78,162,0.08)' stroke='rgba(0,0,0,0.08)'/>"
           + "<text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial' font-size='44' fill='rgba(15,47,98,0.85)'>" + text1 + "</text>"
-          + "<text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial' font-size='22' fill='rgba(15,47,98,0.70)'>Reemplaza esto con una foto real despues</text>"
+          + "<text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial' font-size='22' fill='rgba(15,47,98,0.70)'>Cambia esto por una foto real</text>"
           + "</svg>";
         return "data:image/svg+xml;utf8," + svg;
       }
 
       function normalizeImages(item){
-        var imgs = item.images && item.images.length ? item.images.slice(0) : [];
+        var imgs = (item && item.images && item.images.length) ? item.images.slice(0) : [];
         while (imgs.length < 3){
-          imgs.push(makePlaceholderImgDataURI(item.title_es || item.title || "Imagen"));
+          imgs.push(makePlaceholderImgDataURI(item.title_es || item.title_en || item.title || "Imagen"));
         }
         return imgs.slice(0,3);
       }
 
-      function categoryLabelEs(cat){
-        if (cat === "lodging") return "Alojamiento";
-        if (cat === "restaurants") return "Restaurantes";
-        if (cat === "services") return "Servicios";
-        if (cat === "activities") return "Actividades";
-        return cat || "";
-      }
-
       function cardHtml(item){
-        var title = item.title_es || item.title || item.title_en || "Sin titulo";
-        var desc = item.description_es || item.description || item.description_en || "";
+        var title = item.title_es || item.title_en || item.title || "Sin titulo";
+        var desc = item.description_es || item.description_en || item.description || "";
         var why = item.why_es || item.why_en || "";
         var isFeatured = !!item.featured;
 
@@ -793,24 +766,30 @@
         tags.push('<span class="tag">' + esc(labelLocation(item.region_id, item.location_id)) + '</span>');
 
         var chips = [];
-        chips.push('<span class="chip">' + esc(categoryLabelEs(item.category)) + '</span>');
+        chips.push('<span class="chip">' + esc(item.category_label_es || item.category_label_en || item.category || "") + '</span>');
         if (item.experiences && item.experiences.length){
           chips.push('<span class="chip">' + esc(labelExperience(item.experiences[0])) + '</span>');
         }
 
+        var websiteUrl = normalizeUrl(getAction(item, "website_url"));
+        var whatsappUrl = normalizeUrl(getAction(item, "whatsapp_url"));
+        var menuPdf = normalizeUrl(getAction(item, "menu_pdf"));
+
         var links = [];
-        if (item.links && item.links.website){
-          links.push('<a class="btn primary" href="' + esc(item.links.website) + '" target="_blank" rel="noopener" aria-label="Ver sitio web">' + esc(t("visit_website")) + '</a>');
+        if (websiteUrl){
+          links.push('<a class="btn primary" href="' + esc(websiteUrl) + '" target="_blank" rel="noopener" aria-label="Ver sitio web">' + esc(t("visit_website")) + '</a>');
         } else {
-          links.push('<a class="btn primary" href="#" aria-label="Ver sitio web">' + esc(t("visit_website")) + '</a>');
+          links.push('<a class="btn primary" href="#" aria-label="Ver sitio web" aria-disabled="true">' + esc(t("visit_website")) + '</a>');
         }
-        if (item.links && item.links.whatsapp){
-          links.push('<a class="btn" href="' + esc(item.links.whatsapp) + '" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>');
+
+        if (whatsappUrl){
+          links.push('<a class="btn" href="' + esc(whatsappUrl) + '" target="_blank" rel="noopener" aria-label="WhatsApp">' + esc(t("whatsapp")) + '</a>');
         } else {
-          links.push('<a class="btn" href="#" aria-label="WhatsApp">WhatsApp</a>');
+          links.push('<a class="btn" href="#" aria-label="WhatsApp" aria-disabled="true">' + esc(t("whatsapp")) + '</a>');
         }
-        if (item.links && item.links.menu_pdf){
-          links.push('<a class="btn" href="' + esc(item.links.menu_pdf) + '" download aria-label="Descargar menu">' + esc(t("download_menu")) + '</a>');
+
+        if (menuPdf){
+          links.push('<a class="btn" href="' + esc(menuPdf) + '" target="_blank" rel="noopener" aria-label="Descargar menu">' + esc(t("download_menu")) + '</a>');
         }
 
         var aria = esc(title);
@@ -824,11 +803,11 @@
           + '<div class="carouselSlide"><img src="' + esc(images[1]) + '" alt="' + aria + ' imagen 2" loading="lazy" decoding="async"></div>'
           + '<div class="carouselSlide"><img src="' + esc(images[2]) + '" alt="' + aria + ' imagen 3" loading="lazy" decoding="async"></div>';
 
-        var whyBlock = why ? ('<div class="why" aria-label="Por que lo recomendamos"><strong>' + esc(t("why_we_recommend")) + '</strong> ' + esc(why) + '</div>') : '';
+        var whyBlock = why ? ('<div class="why" aria-label="Por que lo recomendamos"><strong>Por que lo recomendamos:</strong> ' + esc(why) + '</div>') : '';
 
         return ''
           + '<article class="card" data-id="' + esc(item.id) + '" data-region="' + esc(item.region_id) + '" data-location="' + esc(item.location_id) + '" data-category="' + esc(item.category) + '" data-experiences="' + esc((item.experiences || []).join(",")) + '">'
-          +   '<div class="media recCarousel" data-interval="2500" aria-label="' + aria + ' carrusel">'
+          +   '<div class="media recCarousel" data-interval="2500" aria-label="Carrusel de ' + aria + '">'
           +     '<div class="carouselViewport" aria-label="Ventana del carrusel">'
           +       '<div class="carouselTrack">' + slides + '</div>'
           +     '</div>'
@@ -840,7 +819,7 @@
           +   '<div class="body">'
           +     '<div class="titleRow">'
           +       '<h3 class="title">' + esc(title) + '</h3>'
-          +       '<div class="chips" aria-label="Chips de meta">' + chips.join("") + '</div>'
+          +       '<div class="chips" aria-label="Etiquetas">' + chips.join("") + '</div>'
           +     '</div>'
           +     '<p class="desc">' + esc(desc) + '</p>'
           +     whyBlock
@@ -1028,7 +1007,7 @@
           apply();
         }).catch(function(){
           elNoResults.style.display = "block";
-          elNoResults.textContent = "No se pudieron cargar los datos de recomendados.";
+          elNoResults.textContent = "No se pudo cargar la informacion de recomendados.";
           setCount(0);
         });
       }
@@ -1036,7 +1015,6 @@
       boot();
     })();
   </script>
-
   <script>
     (function(){
       async function inject(id, url){
