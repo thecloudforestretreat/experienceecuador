@@ -7,26 +7,32 @@
   <meta name="description" content="Apply to be featured as a recommended partner on Experience Ecuador. Submit your business details, regions, locations, and experiences." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://experienceecuador.com/partners/join/" />
+
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
   <meta property="og:title" content="Partner Application | Experience Ecuador" />
   <meta property="og:description" content="Submit your partner application to be considered for Recommended by Experience Ecuador." />
   <meta property="og:url" content="https://experienceecuador.com/partners/join/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Partner Application | Experience Ecuador" />
   <meta name="twitter:description" content="Apply to be featured as a recommended partner on Experience Ecuador." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <meta name="theme-color" content="#034EA2" />
+
   <link rel="stylesheet" href="/assets/css/header.css" />
   <link rel="stylesheet" href="/assets/css/footer.css" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
   <style>
     :root{
       --brand:#034EA2;
@@ -39,6 +45,8 @@
       --shadow: 0 18px 55px rgba(3,78,162,0.12);
       --shadowSoft: 0 14px 34px rgba(3,78,162,0.10);
       --r-xl: 24px;
+      --r-lg: 18px;
+      --r-md: 14px;
       --max: 1040px;
     }
     *{ box-sizing:border-box; }
@@ -77,43 +85,6 @@
       max-width: 86ch;
       font-size: 14px;
     }
-
-    .toggle{
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(3,78,162,0.18);
-      background: rgba(255,255,255,0.92);
-      color: var(--ink);
-      font-weight: 900;
-      font-size: 12.5px;
-      user-select:none;
-      box-shadow: var(--shadowSoft);
-    }
-    .switch{
-      width: 46px;
-      height: 28px;
-      border-radius: 999px;
-      background: rgba(3,78,162,0.14);
-      position: relative;
-      cursor: pointer;
-      border: 1px solid rgba(3,78,162,0.18);
-      flex: 0 0 auto;
-    }
-    .knob{
-      position:absolute;
-      top: 3px;
-      left: 3px;
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      background: #fff;
-      box-shadow: 0 10px 22px rgba(0,0,0,0.10);
-      transition: transform 180ms ease;
-    }
-    .switch.is-en .knob{ transform: translateX(18px); }
 
     .card{
       background: var(--card);
@@ -266,20 +237,15 @@
       box-shadow: 0 18px 40px rgba(3,78,162,0.18);
     }
     .btn:disabled{ opacity:.65; cursor: default; }
-
-    .spinner{
-      width: 16px;
-      height: 16px;
-      border-radius: 999px;
-      border: 2px solid rgba(255,255,255,0.5);
-      border-top-color: rgba(255,255,255,1);
+    .btn .spinner{
+      width: 16px; height: 16px; border-radius: 999px;
+      border: 2px solid rgba(255,255,255,0.45);
+      border-top-color: rgba(255,255,255,0.95);
       display:none;
-      animation: spin 900ms linear infinite;
+      animation: spin 800ms linear infinite;
     }
-    .btn.primary.is-loading .spinner{ display:inline-block; }
+    .btn.primary.busy .spinner{ display:inline-block; }
     @keyframes spin{ to{ transform: rotate(360deg); } }
-
-    iframe#eeSubmitFrame{ width:0; height:0; border:0; position:absolute; left:-9999px; top:-9999px; }
 
     @media (max-width: 900px){
       .wrap{ padding: 18px 14px 64px; }
@@ -290,149 +256,161 @@
 </head>
 <body>
   <div id="siteHeader"></div>
+
   <main class="wrap" aria-label="Partner application">
     <div class="topRow">
       <div>
-        <h1 data-i18n="title">Partner Application</h1>
-        <p class="sub" data-i18n="subtitle">Submit your details to be considered for Recommended by Experience Ecuador.</p>
-      </div>
-  <div class="toggle" aria-label="Language toggle">
-    <span>ES</span>
-    <div class="switch is-en" id="langSwitch" role="button" tabindex="0" aria-label="Toggle language">
-      <div class="knob"></div>
-    </div>
-    <span>EN</span>
-  </div>
-</div>
-
-<section class="card" aria-label="Partner form">
-  <form id="eeForm" class="pad" method="POST" action="https://script.google.com/macros/s/AKfycbyRKvcA3pKXEwA6rJS6TIqiG9AGzhNFaAX_MTKKZ12nf_XyrpCc-O5S5nOGfo2C1QEcTw/exec" target="eeSubmitFrame" autocomplete="on">
-    <input type="hidden" name="language" id="language" value="en" />
-    <input type="hidden" name="drive_upload_link" id="drive_upload_link" value="https://docs.google.com/forms/d/e/1FAIpQLSf4bTVL36AFYwK1WUyPZbYvkJ891VYnYQrh1VaibIsMCKwEbA/viewform?usp=sharing" />
-    <input type="hidden" name="source_page" value="https://experienceecuador.com/partners/join/" />
-
-    <div class="row">
-      <div>
-        <label><span class="req">*</span><span data-i18n="business_name_label">Business name</span></label>
-        <input name="business_name" id="business_name" placeholder="Mindo Bird Watching" required />
-      </div>
-      <div>
-        <label><span class="req">*</span><span data-i18n="business_type_label">Category</span></label>
-        <select name="business_type" id="business_type" required></select>
-        <div class="help" data-i18n="business_type_help">Choose one.</div>
+        <h1>Partner Application</h1>
+        <p class="sub">
+          Submit your details to be considered for Recommended by Experience Ecuador.
+          Fields marked with <span class="req">*</span> are required.
+        </p>
       </div>
     </div>
 
-    <div class="row">
-      <div>
-        <label><span class="req">*</span><span data-i18n="email_label">Business email</span></label>
-        <input name="email" id="email" type="email" placeholder="hello@example.com" required />
-      </div>
-      <div>
-        <label><span data-i18n="phone_label">Phone (optional)</span></label>
-        <input name="phone" id="phone" placeholder="+593 ..." />
-      </div>
-    </div>
-
-    <div class="row">
-      <div>
-        <label><span class="req">*</span><span data-i18n="website_label">Website URL</span></label>
-        <input name="website_url" id="website_url" placeholder="https://example.com" required />
-      </div>
-      <div>
-        <label><span data-i18n="whatsapp_label">WhatsApp URL (optional)</span></label>
-        <input name="whatsapp_url" id="whatsapp_url" placeholder="https://wa.me/..." />
-      </div>
-    </div>
-
-    <div class="row">
-      <div>
-        <label><span data-i18n="photos_label">Photos</span></label>
-
-        <div class="uploadBand">
-          <div><strong data-i18n="photos_upload_title">Option A: Upload images</strong></div>
-          <div class="help" data-i18n="photos_upload_help">
-            If you have a Google account, you can upload images using our upload form. Google requires sign-in for file uploads.
+    <section class="card" aria-label="Partner form">
+      <div class="pad">
+        <div class="row">
+          <div>
+            <label><span class="req">*</span>Business name</label>
+            <input id="business_name" placeholder="Mindo Bird Watching" />
+            <div class="help">Auto-capitalizes as you type.</div>
           </div>
-          <div class="uploadRow">
-            <a class="btnLink" href="https://docs.google.com/forms/d/e/1FAIpQLSf4bTVL36AFYwK1WUyPZbYvkJ891VYnYQrh1VaibIsMCKwEbA/viewform?usp=sharing" target="_blank" rel="noopener" data-i18n="open_upload_form">Open upload form</a>
+          <div>
+            <label><span class="req">*</span>Category</label>
+            <select id="business_type"></select>
+            <div class="help">Choose one.</div>
           </div>
         </div>
 
-        <div style="margin-top:10px">
-          <div class="help" data-i18n="photos_urls_help">
-            Option B: If you already have direct image URLs, you can paste them here (optional).
+        <div class="row">
+          <div>
+            <label><span class="req">*</span>Contact first name</label>
+            <input id="contact_first_name" placeholder="Maria" />
           </div>
-          <input name="image_1_url" id="image_1_url" placeholder="Image URL 1" style="margin-top:8px" />
-          <input name="image_2_url" id="image_2_url" placeholder="Image URL 2" style="margin-top:10px" />
-          <input name="image_3_url" id="image_3_url" placeholder="Image URL 3" style="margin-top:10px" />
+          <div>
+            <label><span class="req">*</span>Contact last name</label>
+            <input id="contact_last_name" placeholder="Perez" />
+          </div>
         </div>
 
-        <div class="help" data-i18n="photos_fallback">
-          Option C: If neither works, you can email images to info@experienceecuador.com.
+        <div class="row">
+          <div>
+            <label><span class="req">*</span>Contact email</label>
+            <input id="contact_email" type="email" placeholder="hello@example.com" />
+          </div>
+          <div>
+            <label>Contact phone (optional)</label>
+            <input id="contact_phone" placeholder="+593 ..." />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label><span class="req">*</span>Website URL</label>
+            <input id="website_url" placeholder="https://example.com" />
+          </div>
+          <div>
+            <label>WhatsApp URL (optional)</label>
+            <input id="whatsapp_url" placeholder="https://wa.me/..." />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Photos (optional)</label>
+
+            <div class="uploadBand">
+              <div><strong>Option A: Upload images</strong></div>
+              <div class="help">
+                If you have a Google account, you can upload images using our upload form. Google requires sign-in for file uploads.
+              </div>
+              <div class="uploadRow">
+                <a class="btnLink" href="https://docs.google.com/forms/d/e/1FAIpQLSf4bTVL36AFYwK1WUyPZbYvkJ891VYnYQrh1VaibIsMCKwEbA/viewform?usp=sharing" target="_blank" rel="noopener">Open upload form</a>
+              </div>
+            </div>
+
+            <div style="margin-top:10px">
+              <div class="help">
+                Option B: If you already have direct image URLs, you can paste them here.
+              </div>
+              <input id="image_1_url" placeholder="Image URL 1" style="margin-top:8px" />
+              <input id="image_2_url" placeholder="Image URL 2" style="margin-top:10px" />
+              <input id="image_3_url" placeholder="Image URL 3" style="margin-top:10px" />
+            </div>
+
+            <div class="help">
+              Option C: If neither works, you can email images to info@experienceecuador.com.
+            </div>
+          </div>
+
+          <div>
+            <label><span class="req">*</span>Regions</label>
+            <div class="pillBox" id="regionsBox"></div>
+            <div class="help">Select all that apply.</div>
+
+            <div style="margin-top:12px">
+              <label><span class="req">*</span>Locations</label>
+              <div class="pillBox" id="locationsBox"></div>
+              <div class="help">Locations update based on selected regions.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row one">
+          <div>
+            <label><span class="req">*</span>Experiences</label>
+            <div class="pillBox" id="experiencesBox"></div>
+            <div class="help">Select all that apply.</div>
+          </div>
+        </div>
+
+        <div class="row one">
+          <div>
+            <label><span class="req">*</span>Short description (Spanish)</label>
+            <textarea id="short_description_es" placeholder="Describe tu negocio en 2 a 5 frases."></textarea>
+            <div class="help">This can be Spanish only for now. English is optional.</div>
+          </div>
+        </div>
+
+        <div class="row one">
+          <div>
+            <label>Short description (English, optional)</label>
+            <textarea id="short_description_en" placeholder="Describe your business in 2 to 5 sentences."></textarea>
+          </div>
+        </div>
+
+        <div class="row one" style="margin-top:14px">
+          <div class="consentRow">
+            <label><span class="req">*</span>I confirm you may publish these details on Experience Ecuador.</label>
+            <input id="consent_publish" type="checkbox" />
+          </div>
+
+          <div class="consentRow" style="margin-top:10px">
+            <label><span class="req">*</span>I agree Experience Ecuador may contact me about my submission.</label>
+            <input id="consent_contact" type="checkbox" />
+          </div>
+        </div>
+
+        <div class="okBox" id="okBox"></div>
+        <div class="errBox" id="errBox"></div>
+      </div>
+
+      <div class="actions">
+        <div class="note">Submissions are reviewed before publishing. No public prices are displayed.</div>
+        <div class="btnRow">
+          <button class="btn" id="btnReset" type="button">Reset</button>
+          <button class="btn primary" id="btnSubmit" type="button">
+            <span id="btnSubmitLabel">Submit</span>
+            <span class="spinner" aria-hidden="true"></span>
+          </button>
         </div>
       </div>
-
-      <div>
-        <label><span class="req">*</span><span data-i18n="regions_label">Regions</span></label>
-        <div class="pillBox" id="regionsBox"></div>
-        <div class="help" data-i18n="regions_help">Select all that apply.</div>
-
-        <div style="margin-top:12px">
-          <label><span class="req">*</span><span data-i18n="locations_label">Locations</span></label>
-          <div class="pillBox" id="locationsBox"></div>
-          <div class="help" data-i18n="locations_help">Locations update based on selected regions.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row one">
-      <div>
-        <label><span class="req">*</span><span data-i18n="experiences_label">Experiences</span></label>
-        <div class="pillBox" id="experiencesBox"></div>
-        <div class="help" data-i18n="experiences_help">Select all that apply.</div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div>
-        <label><span class="req">*</span><span data-i18n="desc_es_label">Short description (Spanish)</span></label>
-        <textarea name="short_description_es" id="short_description_es" placeholder="Describe tu negocio en 2 a 5 frases." required></textarea>
-      </div>
-      <div>
-        <label><span data-i18n="desc_en_label">Short description (English)</span></label>
-        <textarea name="short_description_en" id="short_description_en" placeholder="Describe your business in 2 to 5 sentences."></textarea>
-      </div>
-    </div>
-
-    <div class="row one" style="margin-top:14px">
-      <div class="consentRow">
-        <label><span class="req">*</span><span data-i18n="consent_publish_label">I confirm you may publish these details on Experience Ecuador.</span></label>
-        <input name="consent_publish" id="consent_publish" type="checkbox" value="yes" required />
-      </div>
-
-      <div class="consentRow" style="margin-top:10px">
-        <label><span class="req">*</span><span data-i18n="consent_contact_label">I agree Experience Ecuador may contact me about my submission.</span></label>
-        <input name="consent_contact" id="consent_contact" type="checkbox" value="yes" required />
-      </div>
-    </div>
-
-    <div class="okBox" id="okBox"></div>
-    <div class="errBox" id="errBox"></div>
-  </form>
-
-  <div class="actions">
-    <div class="note" data-i18n="note">Submissions are reviewed before publishing. No public prices are displayed.</div>
-    <div class="btnRow">
-      <button class="btn" id="btnReset" type="button" data-i18n="reset">Reset</button>
-      <button class="btn primary" id="btnSubmit" type="button" data-i18n="submit"><span class="spinner" aria-hidden="true"></span><span id="btnSubmitText">Submit</span></button>
-    </div>
-  </div>
-</section>
-
-<iframe id="eeSubmitFrame" name="eeSubmitFrame" title="Submission frame"></iframe>
+    </section>
   </main>
+
   <div id="siteFooter"></div>
+
   <script src="/assets/js/site.js"></script>
   <script>
     (function(){
@@ -446,322 +424,294 @@
       inject("siteFooter", "/assets/includes/footer.html");
     })();
   </script>
+
   <script>
     (function(){
+      var API_URL = "https://script.google.com/macros/s/AKfycbyRKvcA3pKXEwA6rJS6TIqiG9AGzhNFaAX_MTKKZ12nf_XyrpCc-O5S5nOGfo2C1QEcTw/exec";
+      var UPLOAD_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf4bTVL36AFYwK1WUyPZbYvkJ891VYnYQrh1VaibIsMCKwEbA/viewform?usp=sharing";
+
       function qs(sel, root){ return (root||document).querySelector(sel); }
       function qsa(sel, root){ return Array.prototype.slice.call((root||document).querySelectorAll(sel)); }
-      function esc(s){ return String(s||"").replace(/[&<>"']/g, function(m){ return ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" })[m]; }); }
 
-      function getParam(name){
-        try{ return new URL(window.location.href).searchParams.get(name); }catch(e){ return null; }
+      function esc(s){
+        return String(s||"").replace(/[&<>"']/g, function(m){
+          return ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[m];
+        });
       }
 
-      var langParam = (getParam("lang") || "").toLowerCase().trim();
-      var lang = (langParam === "es") ? "es" : "en";
+      function titleCaseWords(s){
+        var t = String(s || "").replace(/\s+/g, " ").trim();
+        if(!t) return "";
+        return t.split(" ").map(function(w){
+          if(!w) return "";
+          return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+        }).join(" ");
+      }
 
-      var STR = {
-        en: {
-          title: "Partner Application",
-          subtitle: "Submit your details to be considered for Recommended by Experience Ecuador.",
-          business_name_label: "Business name",
-          business_type_label: "Category",
-          business_type_help: "Choose one.",
-          email_label: "Business email",
-          phone_label: "Phone (optional)",
-          website_label: "Website URL",
-          whatsapp_label: "WhatsApp URL (optional)",
-          photos_label: "Photos",
-          photos_upload_title: "Option A: Upload images",
-          photos_upload_help: "If you have a Google account, you can upload images using our upload form. Google requires sign-in for file uploads.",
-          open_upload_form: "Open upload form",
-          photos_urls_help: "Option B: If you already have direct image URLs, you can paste them here (optional).",
-          photos_fallback: "Option C: If neither works, you can email images to info@experienceecuador.com.",
-          regions_label: "Regions",
-          regions_help: "Select all that apply.",
-          locations_label: "Locations",
-          locations_help: "Locations update based on selected regions.",
-          experiences_label: "Experiences",
-          experiences_help: "Select all that apply.",
-          desc_es_label: "Short description (Spanish)",
-          desc_en_label: "Short description (English)",
-          consent_publish_label: "I confirm you may publish these details on Experience Ecuador.",
-          consent_contact_label: "I agree Experience Ecuador may contact me about my submission.",
-          note: "Submissions are reviewed before publishing. No public prices are displayed.",
-          reset: "Reset",
-          submit: "Submit",
-          sending: "Submitting",
-          select: "Select",
-          required_missing: "Please complete all required fields marked with *.",
-          success: "Thanks. We received your submission. We will follow up by email if we need anything else."
-        },
-        es: {
-          title: "Registro de Socios",
-          subtitle: "Envíanos tu información para ser considerado en Recomendado por Experience Ecuador.",
-          business_name_label: "Nombre del negocio",
-          business_type_label: "Categoría",
-          business_type_help: "Elige una.",
-          email_label: "Correo del negocio",
-          phone_label: "Teléfono (opcional)",
-          website_label: "Sitio web",
-          whatsapp_label: "WhatsApp (opcional)",
-          photos_label: "Fotos",
-          photos_upload_title: "Opción A: Subir imágenes",
-          photos_upload_help: "Si tienes cuenta de Google, puedes subir imágenes con nuestro formulario. Google requiere iniciar sesión para subir archivos.",
-          open_upload_form: "Abrir formulario de carga",
-          photos_urls_help: "Opción B: Si ya tienes enlaces directos a imágenes, pégalos aquí (opcional).",
-          photos_fallback: "Opción C: Si ninguna opción sirve, puedes enviarlas por correo a info@experienceecuador.com.",
-          regions_label: "Regiones",
-          regions_help: "Selecciona todas las que correspondan.",
-          locations_label: "Ubicaciones",
-          locations_help: "Las ubicaciones se actualizan según las regiones seleccionadas.",
-          experiences_label: "Experiencias",
-          experiences_help: "Selecciona todas las que correspondan.",
-          desc_es_label: "Descripción corta (español)",
-          desc_en_label: "Descripción corta (inglés)",
-          consent_publish_label: "Confirmo que pueden publicar esta información en Experience Ecuador.",
-          consent_contact_label: "Acepto que Experience Ecuador me contacte sobre esta solicitud.",
-          note: "Revisamos cada solicitud antes de publicar. No mostramos precios públicamente.",
-          reset: "Limpiar",
-          submit: "Enviar",
-          sending: "Enviando",
-          select: "Selecciona",
-          required_missing: "Completa los campos obligatorios marcados con *.",
-          success: "Gracias. Recibimos tu solicitud. Te escribiremos si necesitamos algo adicional."
-        }
-      };
+      function showOk(msg){
+        var ok = qs("#okBox");
+        var err = qs("#errBox");
+        err.style.display = "none";
+        ok.style.display = "block";
+        ok.textContent = msg;
+      }
 
-      function t(k){ return (STR[lang] && STR[lang][k]) ? STR[lang][k] : k; }
+      function showErr(msg){
+        var ok = qs("#okBox");
+        var err = qs("#errBox");
+        ok.style.display = "none";
+        err.style.display = "block";
+        err.textContent = msg;
+      }
 
-      function setText(){
-        document.documentElement.lang = lang;
-        qs("#language").value = lang;
-        qs("#langSwitch").classList.toggle("is-en", lang === "en");
-        qsa("[data-i18n]").forEach(function(el){
-          var key = el.getAttribute("data-i18n");
-          if(key) el.textContent = t(key);
-        });
-        qs("#btnSubmitText").textContent = t("submit");
+      function clearMsgs(){
+        qs("#okBox").style.display = "none";
+        qs("#errBox").style.display = "none";
+      }
+
+      function getChecked(name){
+        return qsa('input[type="checkbox"][name="'+name+'"]:checked').map(function(x){ return (x.value||"").trim(); }).filter(Boolean);
       }
 
       function pill(id, label, group, value, checked){
         var safeId = group + "_" + id;
-        return '<label class="pill" for="' + safeId + '"><input id="' + safeId + '" type="checkbox" name="' + group + '" value="' + esc(value) + '"' + (checked ? " checked" : "") + '><span>' + esc(label) + '</span></label>';
+        return '<label class="pill" for="'+safeId+'">' +
+          '<input id="'+safeId+'" type="checkbox" name="'+group+'" value="'+esc(value)+'"'+(checked ? " checked" : "")+'>' +
+          '<span>'+esc(label)+'</span></label>';
       }
 
-      function getChecked(group){
-        return qsa('input[type="checkbox"][name="' + group + '"]:checked').map(function(x){ return (x.value||"").trim(); }).filter(Boolean);
-      }
-
-      function showOk(msg){
-        qs("#errBox").style.display = "none";
-        qs("#okBox").style.display = "block";
-        qs("#okBox").textContent = msg;
-      }
-
-      function showErr(msg){
-        qs("#okBox").style.display = "none";
-        qs("#errBox").style.display = "block";
-        qs("#errBox").textContent = msg;
-      }
-
-      function resetForm(){
-        qs("#eeForm").reset();
-        qs("#locationsBox").innerHTML = "";
-        qs("#okBox").style.display = "none";
-        qs("#errBox").style.display = "none";
-        setText();
-      }
-
-      function validate(){
-        var bn = (qs("#business_name").value || "").trim();
-        var em = (qs("#email").value || "").trim();
-        var bt = (qs("#business_type").value || "").trim();
-        var web = (qs("#website_url").value || "").trim();
-        var regions = getChecked("regions");
-        var locs = getChecked("locations");
-        var exps = getChecked("experiences");
-        var descEs = (qs("#short_description_es").value || "").trim();
-        var c1 = qs("#consent_publish").checked;
-        var c2 = qs("#consent_contact").checked;
-
-        if(!bn || !em || !bt || !web) return false;
-        if(!regions.length || !locs.length || !exps.length) return false;
-        if(!descEs) return false;
-        if(!c1 || !c2) return false;
-        return true;
-      }
-
-      function renderBusinessTypes(list){
+      function renderBusinessTypes(){
         var sel = qs("#business_type");
         var current = sel.value || "";
-        var opts = ['<option value="">' + esc(t("select")) + '</option>'];
-        list.forEach(function(bt){
-          var label = (lang === "es") ? (bt.es || bt.name_es || bt.name || bt.id) : (bt.en || bt.name_en || bt.name || bt.id);
-          opts.push('<option value="' + esc(bt.id) + '">' + esc(label) + '</option>');
-        });
+        var opts = [
+          '<option value="">Select</option>',
+          '<option value="lodging">Lodging</option>',
+          '<option value="restaurants">Restaurants</option>',
+          '<option value="services">Services</option>',
+          '<option value="activities">Activities</option>'
+        ];
         sel.innerHTML = opts.join("");
         if(current) sel.value = current;
       }
 
-      function renderRegions(regions, preserve){
+      function normalizeRegionsJson(payload){
+        if(payload && payload.regions && Array.isArray(payload.regions)) return payload.regions;
+        if(payload && Array.isArray(payload)) return payload;
+        return [];
+      }
+
+      function normalizeExperiencesJson(payload){
+        if(payload && payload.experiences && Array.isArray(payload.experiences)) return payload.experiences;
+        if(payload && Array.isArray(payload)) return payload;
+        return [];
+      }
+
+      function loadData(){
+        return Promise.all([
+          fetch("/assets/data/regions.json", { cache:"no-store" }).then(function(r){ return r.json(); }),
+          fetch("/assets/data/experiences.json", { cache:"no-store" }).then(function(r){ return r.json(); })
+        ]);
+      }
+
+      var REGIONS = [];
+      var EXPERIENCES = [];
+
+      function renderRegions(preserve){
         var prev = preserve ? getChecked("regions") : [];
-        qs("#regionsBox").innerHTML = regions.map(function(r){
-          var nm = (lang === "es") ? (r.name_es || r.name_en || r.name || r.id) : (r.name_en || r.name_es || r.name || r.id);
-          return pill(r.id, nm, "regions", r.id, prev.indexOf(r.id) !== -1);
+        var box = qs("#regionsBox");
+        box.innerHTML = REGIONS.map(function(r){
+          var label = r.name_en || r.name || r.id;
+          return pill(r.id, label, "regions", r.id, prev.indexOf(r.id) !== -1);
         }).join("");
       }
 
-      function renderLocations(regions, preserve){
+      function renderLocations(preserve){
         var selected = getChecked("regions");
         var prev = preserve ? getChecked("locations") : [];
         var box = qs("#locationsBox");
         if(!selected.length){ box.innerHTML = ""; return; }
 
         var locs = [];
-        regions.forEach(function(r){
+        REGIONS.forEach(function(r){
           if(selected.indexOf(r.id) === -1) return;
           (r.locations || []).forEach(function(l){
-            var nm = (lang === "es") ? (l.name_es || l.name_en || l.name || l.id) : (l.name_en || l.name_es || l.name || l.id);
-            locs.push({ id: l.id, label: nm });
+            var label = l.name_en || l.name || l.id;
+            locs.push({ id: l.id, label: label });
           });
         });
 
         var seen = {};
         var uniq = [];
         locs.forEach(function(l){ if(l.id && !seen[l.id]){ seen[l.id]=true; uniq.push(l); } });
-        uniq.sort(function(a,b){ return String(a.label).localeCompare(String(b.label), (lang==="es" ? "es" : "en"), { sensitivity:"base" }); });
+        uniq.sort(function(a,b){ return String(a.label).localeCompare(String(b.label), "en", { sensitivity:"base" }); });
 
         box.innerHTML = uniq.map(function(l){ return pill(l.id, l.label, "locations", l.id, prev.indexOf(l.id) !== -1); }).join("");
       }
 
-      function renderExperiences(exps, preserve){
+      function renderExperiences(preserve){
         var prev = preserve ? getChecked("experiences") : [];
-        qs("#experiencesBox").innerHTML = exps.map(function(e){
-          var label = (lang === "es") ? (e.name_es || e.name_en || e.name || e.id) : (e.name_en || e.name_es || e.name || e.id);
+        var box = qs("#experiencesBox");
+
+        var items = EXPERIENCES.map(function(e){
+          var label = e.name_en || e.name || e.id;
           return { id: e.id, label: label };
-        }).sort(function(a,b){
-          return String(a.label).localeCompare(String(b.label), (lang==="es" ? "es" : "en"), { sensitivity:"base" });
-        }).map(function(e){
-          return pill(e.id, e.label, "experiences", e.id, prev.indexOf(e.id) !== -1);
-        }).join("");
+        });
+        items.sort(function(a,b){ return String(a.label).localeCompare(String(b.label), "en", { sensitivity:"base" }); });
+
+        box.innerHTML = items.map(function(e){ return pill(e.id, e.label, "experiences", e.id, prev.indexOf(e.id) !== -1); }).join("");
       }
 
-      function setLang(next, regions, exps, types){
-        lang = (next === "es") ? "es" : "en";
-        setText();
-        renderBusinessTypes(types);
-        renderRegions(regions, true);
-        renderLocations(regions, true);
-        renderExperiences(exps, true);
+      function validate(){
+        function v(id){ return (qs(id).value || "").trim(); }
+        var business_name = v("#business_name");
+        var cf = v("#contact_first_name");
+        var cl = v("#contact_last_name");
+        var ce = v("#contact_email");
+        var bt = (qs("#business_type").value || "").trim();
+        var web = v("#website_url");
+        var regions = getChecked("regions");
+        var locations = getChecked("locations");
+        var experiences = getChecked("experiences");
+        var descEs = v("#short_description_es");
+        var c1 = qs("#consent_publish").checked;
+        var c2 = qs("#consent_contact").checked;
+
+        if(!business_name || !cf || !cl || !ce || !bt || !web) return false;
+        if(!regions.length || !locations.length || !experiences.length) return false;
+        if(!descEs) return false;
+        if(!c1 || !c2) return false;
+        return true;
+      }
+
+      function buildPayload(){
+        function v(id){ return (qs(id).value || "").trim(); }
+        var payload = {
+          language: "en",
+          business_name: v("#business_name"),
+          business_type: (qs("#business_type").value || "").trim(),
+          contact_first_name: v("#contact_first_name"),
+          contact_last_name: v("#contact_last_name"),
+          contact_email: v("#contact_email"),
+          contact_phone: v("#contact_phone"),
+          website_url: v("#website_url"),
+          whatsapp_url: v("#whatsapp_url"),
+          regions: getChecked("regions"),
+          locations: getChecked("locations"),
+          experiences: getChecked("experiences"),
+          short_description_es: v("#short_description_es"),
+          short_description_en: v("#short_description_en"),
+          image_1_url: v("#image_1_url"),
+          image_2_url: v("#image_2_url"),
+          image_3_url: v("#image_3_url"),
+          drive_upload_link: UPLOAD_FORM_URL,
+          consent_publish: qs("#consent_publish").checked ? "yes" : "no",
+          consent_contact: qs("#consent_contact").checked ? "yes" : "no",
+          source_page: window.location.href
+        };
+        return payload;
+      }
+
+      async function submit(){
+        clearMsgs();
+        if(!validate()){ showErr("Please complete all required fields marked with *."); return; }
+
+        var btn = qs("#btnSubmit");
+        btn.disabled = true;
+        btn.classList.add("busy");
+        qs("#btnSubmitLabel").textContent = "Submitting";
 
         try{
-          var u = new URL(window.location.href);
-          u.searchParams.set("lang", lang);
-          window.history.replaceState({}, "", u.toString());
-        }catch(e){}
+          var res = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(buildPayload())
+          });
+
+          var ct = (res.headers.get("content-type") || "").toLowerCase();
+          var data = null;
+
+          if(ct.indexOf("application/json") !== -1){
+            data = await res.json();
+          } else {
+            var txt = await res.text();
+            throw new Error("Server did not return JSON. Response starts with: " + txt.slice(0, 60));
+          }
+
+          if(!data || !data.ok) throw new Error((data && (data.error || data.email_error)) ? (data.error || data.email_error) : "Submission failed.");
+
+          showOk("Submitted. Thank you. We will follow up by email if we need anything else.");
+          qs("#btnReset").click();
+        } catch(e) {
+          showErr(String(e && e.message ? e.message : e));
+        } finally {
+          btn.disabled = false;
+          btn.classList.remove("busy");
+          qs("#btnSubmitLabel").textContent = "Submit";
+        }
       }
 
-      var regionsData = [];
-      var experiencesData = [];
-      var typesData = [
-        { id: "lodging", en: "Lodging", es: "Alojamiento" },
-        { id: "restaurants", en: "Restaurants", es: "Restaurantes" },
-        { id: "services", en: "Services", es: "Servicios" },
-        { id: "activities", en: "Activities", es: "Actividades" }
-      ];
-
-      function setSubmitting(isSubmitting){
-        var btn = qs("#btnSubmit");
-        btn.disabled = !!isSubmitting;
-        btn.classList.toggle("is-loading", !!isSubmitting);
-        qs("#btnSubmitText").textContent = isSubmitting ? t("sending") : t("submit");
+      function reset(){
+        qs("#business_type").value = "";
+        qsa('input[type="checkbox"][name="regions"]').forEach(function(x){ x.checked = false; });
+        qsa('input[type="checkbox"][name="locations"]').forEach(function(x){ x.checked = false; });
+        qsa('input[type="checkbox"][name="experiences"]').forEach(function(x){ x.checked = false; });
+        qs("#locationsBox").innerHTML = "";
+        qs("#consent_publish").checked = false;
+        qs("#consent_contact").checked = false;
+        clearMsgs();
+        qs("#business_name").focus();
       }
-
-      var submittedOnce = false;
 
       function boot(){
-        setText();
-        setSubmitting(false);
+        // business name title case
+        qs("#business_name").addEventListener("input", function(){
+          var caret = this.selectionStart;
+          var next = titleCaseWords(this.value);
+          this.value = next;
+          try{ this.setSelectionRange(caret, caret); }catch(_){}
+        });
 
-        Promise.all([
-          fetch("/assets/data/regions.json", { cache: "no-store" }).then(function(r){ return r.json(); }),
-          fetch("/assets/data/experiences.json", { cache: "no-store" }).then(function(r){ return r.json(); })
-        ]).then(function(all){
-          var rj = all[0] || {};
-          var ej = all[1] || {};
+        renderBusinessTypes();
 
-          regionsData = rj.regions || [];
-          experiencesData = ej.experiences || [];
+        // load regions/experiences from site json
+        loadData().then(function(parts){
+          var regionsPayload = parts[0];
+          var expPayload = parts[1];
 
-          renderBusinessTypes(typesData);
-          renderRegions(regionsData, false);
-          renderLocations(regionsData, false);
-          renderExperiences(experiencesData, false);
+          REGIONS = normalizeRegionsJson(regionsPayload);
+          EXPERIENCES = normalizeExperiencesJson(expPayload);
 
-          setLang(lang, regionsData, experiencesData, typesData);
-
+          renderRegions(false);
+          renderExperiences(false);
+          renderLocations(false);
         }).catch(function(err){
-          showErr("Failed to load regions/experiences data.");
+          showErr("Failed to load regions/experiences. " + String(err && err.message ? err.message : err));
         });
 
         document.addEventListener("change", function(e){
-          var tEl = e.target;
-          if(tEl && tEl.name === "regions"){
-            renderLocations(regionsData, true);
-          }
+          var t = e.target;
+          if(t && t.name === "regions") renderLocations(true);
         });
 
-        qs("#btnReset").addEventListener("click", function(){
-          resetForm();
-          renderBusinessTypes(typesData);
-          renderRegions(regionsData, false);
-          renderLocations(regionsData, false);
-          renderExperiences(experiencesData, false);
-          setLang(lang, regionsData, experiencesData, typesData);
+        qs("#btnReset").addEventListener("click", function(){ 
+          qs("#business_name").value = "";
+          qs("#contact_first_name").value = "";
+          qs("#contact_last_name").value = "";
+          qs("#contact_email").value = "";
+          qs("#contact_phone").value = "";
+          qs("#website_url").value = "";
+          qs("#whatsapp_url").value = "";
+          qs("#image_1_url").value = "";
+          qs("#image_2_url").value = "";
+          qs("#image_3_url").value = "";
+          qs("#short_description_es").value = "";
+          qs("#short_description_en").value = "";
+          reset();
+          renderRegions(false);
+          renderExperiences(false);
         });
 
-        qs("#langSwitch").addEventListener("click", function(){
-          setLang(lang === "en" ? "es" : "en", regionsData, experiencesData, typesData);
-        });
-        qs("#langSwitch").addEventListener("keydown", function(e){
-          if(e.key === "Enter" || e.key === " "){
-            e.preventDefault();
-            setLang(lang === "en" ? "es" : "en", regionsData, experiencesData, typesData);
-          }
-        });
-
-        var frame = qs("#eeSubmitFrame");
-        frame.addEventListener("load", function(){
-          if(!submittedOnce) return;
-          submittedOnce = false;
-          setSubmitting(false);
-          showOk(t("success"));
-          resetForm();
-        });
-
-        qs("#btnSubmit").addEventListener("click", function(){
-          if(!validate()){
-            showErr(t("required_missing"));
-            return;
-          }
-          qs("#okBox").style.display = "none";
-          qs("#errBox").style.display = "none";
-
-          submittedOnce = true;
-          setSubmitting(true);
-
-          try{ qs("#eeSubmitFrame").src = "about:blank"; }catch(e){}
-          qs("#eeForm").submit();
-
-          setTimeout(function(){
-            if(submittedOnce){
-              submittedOnce = false;
-              setSubmitting(false);
-              showOk(t("success"));
-              resetForm();
-            }
-          }, 6000);
-        });
+        qs("#btnSubmit").addEventListener("click", submit);
       }
 
       boot();
