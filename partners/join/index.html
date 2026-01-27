@@ -301,7 +301,7 @@
         <div class="row">
           <div>
             <label><span class="req">*</span><span data-i18n="business_name_label">Business name</span></label>
-            <input name="business_name" id="business_name" placeholder="Mindo Bird Watching" required />
+            <input name="business_name" id="business_name" placeholder="Business name" required />
           </div>
           <div>
             <label><span class="req">*</span><span data-i18n="business_type_label">Category</span></label>
@@ -449,7 +449,6 @@
 
   <script>
     (function(){
-      var EE_UPLOAD_FORM = "https://docs.google.com/forms/d/e/1FAIpQLSf4bTVL36AFYwK1WUyPZbYvkJ891VYnYQrh1VaibIsMCKwEbA/viewform?usp=sharing";
       var REGIONS = [];
       var EXPERIENCES = [];
       var BUSINESS_TYPES = [
@@ -461,7 +460,11 @@
 
       function qs(sel, root){ return (root||document).querySelector(sel); }
       function qsa(sel, root){ return Array.prototype.slice.call((root||document).querySelectorAll(sel)); }
-      function esc(s){ return String(s||"").replace(/[&<>"']/g, function(m){ return ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[m]; }); }
+      function esc(s){
+        return String(s||"").replace(/[&<>"']/g, function(m){
+          return ({"&":"&amp;","<":"&lt;",">":"&gt;","\\"":"&quot;","'":"&#39;"})[m];
+        });
+      }
       function getParam(name){ try{ return new URL(window.location.href).searchParams.get(name); }catch(e){ return null; } }
 
       var init = (getParam("lang") || "").toLowerCase().trim();
@@ -573,7 +576,9 @@
       }
 
       function getChecked(group){
-        return qsa('input[type="checkbox"][name="' + group + '"]:checked').map(function(x){ return (x.value||"").trim(); }).filter(Boolean);
+        return qsa('input[type="checkbox"][name="' + group + '"]:checked')
+          .map(function(x){ return (x.value||"").trim(); })
+          .filter(Boolean);
       }
 
       function renderRegions(preserve){
@@ -602,7 +607,9 @@
         var seen = {};
         var uniq = [];
         locs.forEach(function(l){ if(l.id && !seen[l.id]){ seen[l.id]=true; uniq.push(l); } });
-        uniq.sort(function(a,b){ return String(a.label).localeCompare(String(b.label), (lang==="es" ? "es" : "en"), { sensitivity:"base" }); });
+        uniq.sort(function(a,b){
+          return String(a.label).localeCompare(String(b.label), (lang==="es" ? "es" : "en"), { sensitivity:"base" });
+        });
 
         box.innerHTML = uniq.map(function(l){ return pill(l.id, l.label, "locations", l.id, prev.indexOf(l.id) !== -1); }).join("");
       }
@@ -613,12 +620,23 @@
           var label = (lang === "es") ? (e.name_es || e.name_en || e.name || e.id) : (e.name_en || e.name || e.id);
           return { id: e.id, label: label };
         });
-        exps.sort(function(a,b){ return String(a.label).localeCompare(String(b.label), (lang==="es" ? "es" : "en"), { sensitivity:"base" }); });
+        exps.sort(function(a,b){
+          return String(a.label).localeCompare(String(b.label), (lang==="es" ? "es" : "en"), { sensitivity:"base" });
+        });
         qs("#experiencesBox").innerHTML = exps.map(function(e){ return pill(e.id, e.label, "experiences", e.id, prev.indexOf(e.id) !== -1); }).join("");
       }
 
-      function showOk(msg){ qs("#errBox").style.display = "none"; qs("#okBox").style.display = "block"; qs("#okBox").textContent = msg; }
-      function showErr(msg){ qs("#okBox").style.display = "none"; qs("#errBox").style.display = "block"; qs("#errBox").textContent = msg; }
+      function showOk(msg){
+        qs("#errBox").style.display = "none";
+        qs("#okBox").style.display = "block";
+        qs("#okBox").textContent = msg;
+      }
+
+      function showErr(msg){
+        qs("#okBox").style.display = "none";
+        qs("#errBox").style.display = "block";
+        qs("#errBox").textContent = msg;
+      }
 
       function resetForm(){
         qs("#eeForm").reset();
@@ -661,21 +679,16 @@
         try{
           var r1 = await fetch("/assets/data/regions.json", { cache: "no-store" });
           var j1 = await r1.json();
-          REGIONS =
-          Array.isArray(j1?.regions)
-            ? j1.regions
-            : Array.isArray(j1?.regions?.regions)
-              ? j1.regions.regions
-              : [];
+          if (j1 && Array.isArray(j1.regions)) REGIONS = j1.regions;
+          else if (j1 && j1.regions && Array.isArray(j1.regions.regions)) REGIONS = j1.regions.regions;
+          else REGIONS = [];
 
           var r2 = await fetch("/assets/data/experiences.json", { cache: "no-store" });
           var j2 = await r2.json();
-          EXPERIENCES =
-          Array.isArray(j2?.experiences)
-            ? j2.experiences
-            : Array.isArray(j2?.experiences?.experiences)
-              ? j2.experiences.experiences
-              : [];
+          if (j2 && Array.isArray(j2.experiences)) EXPERIENCES = j2.experiences;
+          else if (j2 && j2.experiences && Array.isArray(j2.experiences.experiences)) EXPERIENCES = j2.experiences.experiences;
+          else EXPERIENCES = [];
+
           setLang(lang);
         }catch(e){
           showErr("Data load failed.");
@@ -702,8 +715,8 @@
         bindTitleCase();
 
         document.addEventListener("change", function(e){
-          var t = e.target;
-          if(t && t.name === "regions"){ renderLocations(true); }
+          var tEl = e.target;
+          if(tEl && tEl.name === "regions"){ renderLocations(true); }
         });
 
         qs("#btnReset").addEventListener("click", function(){ resetForm(); });
@@ -717,7 +730,7 @@
           qs("#errBox").style.display = "none";
 
           setSubmitting(true);
-          // safety timeout in case postMessage is blocked
+
           window.__eeSubmitTimer = window.setTimeout(function(){
             setSubmitting(false);
             showErr("Submission may have completed. If you received the confirmation email, it worked.");
@@ -729,7 +742,12 @@
         var sw = qs("#langSwitch");
         function toggle(){ setLang(lang === "es" ? "en" : "es"); }
         sw.addEventListener("click", toggle);
-        sw.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); toggle(); } });
+        sw.addEventListener("keydown", function(e){
+          if(e.key === "Enter" || e.key === " "){
+            e.preventDefault();
+            toggle();
+          }
+        });
 
         window.addEventListener("message", function(ev){
           if(!ev || !ev.data) return;
