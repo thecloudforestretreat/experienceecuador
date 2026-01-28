@@ -186,7 +186,9 @@
   </style>
 </head>
 <body>
-<main class="wrap">
+  <div id="siteHeader"></div>
+
+  <main class="wrap">
     <section class="hero" aria-label="Aliados">
       <div class="grid">
         <div>
@@ -234,6 +236,21 @@
       </div>
     </section>
   </main>
-<script src="/assets/js/site.js"></script>
-  </body>
+
+  <div id="siteFooter"></div>
+
+  <script src="/assets/js/site.js"></script>
+  <script>
+    (function(){
+      async function inject(id, url){
+        var el = document.getElementById(id);
+        if(!el) return;
+        var res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
+</body>
 </html>
