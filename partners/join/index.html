@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Partner Application | Experience Ecuador</title>
   <meta name="description" content="Apply to be featured as a recommended partner on Experience Ecuador." />
-  <link rel="canonical" href="https://experienceecuador.com/partners/join/" />
   <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://experienceecuador.com/partners/join/" />
 
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -36,62 +36,241 @@
       --max: 1040px;
     }
     *{ box-sizing:border-box; }
-    body{ margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--text); background:var(--bg); }
-    a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width:var(--max); margin:0 auto; padding:22px 18px 72px; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+    a{ color: inherit; text-decoration:none; }
+    .wrap{ max-width: var(--max); margin:0 auto; padding: 22px 18px 72px; }
 
-    .topRow{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap; margin:10px 0 16px; }
-    h1{ margin:0; font-family:Montserrat, Inter, sans-serif; font-weight:800; letter-spacing:-0.03em; color:var(--brand); font-size:30px; line-height:1.1; }
-    .sub{ margin:8px 0 0; color:var(--muted); line-height:1.6; font-weight:600; max-width:86ch; font-size:14px; }
+    .topRow{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 10px 0 16px;
+    }
+    h1{
+      margin:0;
+      font-family: Montserrat, Inter, sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--brand);
+      font-size: 30px;
+      line-height: 1.1;
+    }
+    .sub{
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 600;
+      max-width: 86ch;
+      font-size: 14px;
+    }
 
-    .toggle{ display:inline-flex; align-items:center; gap:10px; padding:10px 12px; border-radius:999px; border:1px solid rgba(3,78,162,0.18); background:rgba(255,255,255,0.92); color:var(--ink); font-weight:900; font-size:12.5px; user-select:none; box-shadow:var(--shadowSoft); }
-    .switch{ width:46px; height:28px; border-radius:999px; background:rgba(3,78,162,0.14); position:relative; cursor:pointer; border:1px solid rgba(3,78,162,0.18); flex:0 0 auto; }
-    .knob{ position:absolute; top:3px; left:3px; width:22px; height:22px; border-radius:999px; background:#fff; box-shadow:0 10px 22px rgba(0,0,0,0.10); transition:transform 180ms ease; }
-    .switch.is-en .knob{ transform:translateX(18px); }
+    .toggle{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(3,78,162,0.18);
+      background: rgba(255,255,255,0.92);
+      color: var(--ink);
+      font-weight: 900;
+      font-size: 12.5px;
+      user-select:none;
+      box-shadow: var(--shadowSoft);
+    }
+    .switch{
+      width: 46px;
+      height: 28px;
+      border-radius: 999px;
+      background: rgba(3,78,162,0.14);
+      position: relative;
+      cursor: pointer;
+      border: 1px solid rgba(3,78,162,0.18);
+      flex: 0 0 auto;
+    }
+    .knob{
+      position:absolute;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+      transition: transform 180ms ease;
+    }
+    .switch.is-en .knob{ transform: translateX(18px); }
 
-    .card{ background:var(--card); border:1px solid var(--line); border-radius:var(--r-xl); box-shadow:var(--shadow); overflow:hidden; }
-    .pad{ padding:16px; }
-    .row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; }
-    .row.one{ grid-template-columns:1fr; }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--r-xl);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .pad{ padding: 16px; }
 
-    label{ display:block; font-weight:900; font-size:12.5px; color:var(--ink); margin:0 0 6px; }
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .row.one{ grid-template-columns: 1fr; }
+
+    label{
+      display:block;
+      font-weight: 900;
+      font-size: 12.5px;
+      color: var(--ink);
+      margin: 0 0 6px;
+    }
     .req{ color:#b91c1c; margin-right:6px; }
+    input, textarea, select{
+      width:100%;
+      border:1px solid rgba(3,78,162,0.18);
+      border-radius: 14px;
+      padding: 11px 12px;
+      font-size: 14px;
+      outline: none;
+      background: rgba(255,255,255,0.98);
+      text-transform: none;
+    }
+    textarea{ min-height: 96px; resize: vertical; }
 
-    input, textarea, select{ width:100%; border:1px solid rgba(3,78,162,0.18); border-radius:14px; padding:11px 12px; font-size:14px; outline:none; background:rgba(255,255,255,0.98); }
-    textarea{ min-height:96px; resize:vertical; }
+    .help{
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 650;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
 
-    .help{ font-size:12px; color:var(--muted); font-weight:650; margin-top:6px; line-height:1.5; }
-
-    .pillBox{ border:1px solid rgba(3,78,162,0.18); border-radius:14px; padding:10px; background:rgba(3,78,162,0.03); display:flex; flex-wrap:wrap; gap:10px; }
-    .pill{ display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:999px; border:1px solid rgba(3,78,162,0.18); background:rgba(255,255,255,0.92); font-weight:900; font-size:12.5px; color:var(--ink); cursor:pointer; user-select:none; white-space:nowrap; }
+    .pillBox{
+      border:1px solid rgba(3,78,162,0.18);
+      border-radius: 14px;
+      padding: 10px;
+      background: rgba(3,78,162,0.03);
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      min-height: 44px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(3,78,162,0.18);
+      background: rgba(255,255,255,0.92);
+      font-weight: 900;
+      font-size: 12.5px;
+      color: var(--ink);
+      cursor: pointer;
+      user-select:none;
+      white-space: nowrap;
+    }
     .pill input{ width:auto; margin:0; }
 
-    .uploadBand{ border-radius:16px; border:1px solid rgba(3,78,162,0.18); background:rgba(3,78,162,0.04); padding:12px; margin-top:10px; }
-    .uploadBand strong{ color:var(--ink); }
-    .uploadRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:8px; }
-    .btnLink{ display:inline-flex; align-items:center; justify-content:center; padding:10px 12px; border-radius:14px; font-weight:900; border:1px solid rgba(3,78,162,0.18); background:rgba(255,255,255,0.96); color:var(--ink); box-shadow:var(--shadowSoft); }
+    .uploadBand{
+      border-radius: 16px;
+      border: 1px solid rgba(3,78,162,0.18);
+      background: rgba(3,78,162,0.04);
+      padding: 12px;
+      margin-top: 10px;
+    }
+    .uploadBand strong{ color: var(--ink); }
+    .uploadRow{ display:flex; gap: 10px; flex-wrap: wrap; align-items:center; margin-top: 8px; }
+    .btnLink{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-weight: 900;
+      border: 1px solid rgba(3,78,162,0.18);
+      background: rgba(255,255,255,0.96);
+      color: var(--ink);
+      box-shadow: var(--shadowSoft);
+    }
 
-    .consentRow{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; padding:12px; border-radius:14px; border:1px solid rgba(3,78,162,0.18); background:rgba(255,255,255,0.92); }
-    .consentRow label{ margin:0; font-size:12.8px; line-height:1.5; font-weight:900; color:var(--ink); }
-    .consentRow input{ width:auto; margin-top:2px; }
+    .consentRow{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border:1px solid rgba(3,78,162,0.18);
+      background: rgba(255,255,255,0.92);
+    }
+    .consentRow label{ margin:0; font-size:12.8px; line-height:1.5; font-weight:900; color: var(--ink); }
+    .consentRow input{ width:auto; margin-top: 2px; }
 
-    .okBox,.errBox{ margin-top:14px; padding:12px 14px; border-radius:14px; border:1px solid rgba(0,0,0,0.08); background:rgba(255,255,255,0.92); font-weight:800; display:none; line-height:1.55; font-size:13px; }
+    .okBox, .errBox{
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.92);
+      font-weight: 800;
+      display:none;
+      line-height: 1.55;
+      font-size: 13px;
+    }
     .okBox{ border-color: rgba(16,185,129,0.35); }
     .errBox{ border-color: rgba(239,68,68,0.35); }
 
-    .actions{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:16px; border-top:1px solid var(--line); background:rgba(3,78,162,0.02); }
-    .note{ font-weight:800; color:var(--ink); font-size:12.5px; line-height:1.45; max-width:66ch; }
-    .btnRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-    .btn{ display:inline-flex; align-items:center; justify-content:center; padding:12px 14px; border-radius:14px; font-weight:900; border:1px solid rgba(3,78,162,0.18); background:rgba(255,255,255,0.96); color:var(--ink); cursor:pointer; box-shadow:var(--shadowSoft); }
-    .btn.primary{ background:rgba(3,78,162,0.95); color:#fff; border-color: rgba(3,78,162,0.28); box-shadow:0 18px 40px rgba(3,78,162,0.18); }
-    .btn:disabled{ opacity:.65; cursor:default; }
+    .actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 16px;
+      border-top: 1px solid var(--line);
+      background: rgba(3,78,162,0.02);
+    }
+    .note{ font-weight: 800; color: var(--ink); font-size: 12.5px; line-height: 1.45; max-width: 66ch; }
+    .btnRow{ display:flex; gap: 10px; flex-wrap: wrap; align-items:center; }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-weight: 900;
+      border: 1px solid rgba(3,78,162,0.18);
+      background: rgba(255,255,255,0.96);
+      color: var(--ink);
+      cursor:pointer;
+      box-shadow: var(--shadowSoft);
+    }
+    .btn.primary{
+      background: rgba(3,78,162,0.95);
+      color:#fff;
+      border-color: rgba(3,78,162,0.28);
+      box-shadow: 0 18px 40px rgba(3,78,162,0.18);
+    }
+    .btn:disabled{ opacity:.65; cursor: default; }
 
     .spinner{ display:none; margin-left:10px; font-weight:800; color: rgba(255,255,255,0.92); }
     .btn.primary.is-loading .spinner{ display:inline; }
 
+    iframe#eeSubmitFrame{ width:0; height:0; border:0; position:absolute; left:-9999px; top:-9999px; }
+
     @media (max-width: 900px){
-      .wrap{ padding:18px 14px 64px; }
-      .row{ grid-template-columns:1fr; }
+      .wrap{ padding: 18px 14px 64px; }
+      .row{ grid-template-columns: 1fr; }
       .note{ max-width:none; }
     }
   </style>
@@ -116,7 +295,10 @@
     </div>
 
     <section class="card" aria-label="Partner form">
-      <form id="eeForm" class="pad" method="POST" action="https://script.google.com/macros/s/AKfycbyRKvcA3pKXEwA6rJS6TIqiG9AGzhNFaAX_MTKKZ12nf_XyrpCc-O5S5nOGfo2C1QEcTw/exec" autocomplete="on">
+      <form id="eeForm" class="pad" method="POST"
+            action="https://script.google.com/macros/s/AKfycbyRKvcA3pKXEwA6rJS6TIqiG9AGzhNFaAX_MTKKZ12nf_XyrpCc-O5S5nOGfo2C1QEcTw/exec"
+            target="eeSubmitFrame" autocomplete="on">
+
         <input type="hidden" name="language" id="language" value="en" />
         <input type="hidden" name="source_page" id="source_page" value="https://experienceecuador.com/partners/join/" />
         <input type="hidden" name="drive_upload_link" id="drive_upload_link" value="https://docs.google.com/forms/d/e/1FAIpQLSf4bTVL36AFYwK1WUyPZbYvkJ891VYnYQrh1VaibIsMCKwEbA/viewform?usp=sharing" />
@@ -172,20 +354,28 @@
 
             <div class="uploadBand">
               <div><strong data-i18n="photos_upload_title">Option A: Upload images</strong></div>
-              <div class="help" data-i18n="photos_upload_help">If you have a Google account, you can upload images using our upload form. Google requires sign-in for file uploads.</div>
+              <div class="help" data-i18n="photos_upload_help">
+                If you have a Google account, you can upload images using our upload form. Google requires sign-in for file uploads.
+              </div>
               <div class="uploadRow">
-                <a class="btnLink" href="https://docs.google.com/forms/d/e/1FAIpQLSf4bTVL36AFYwK1WUyPZbYvkJ891VYnYQrh1VaibIsMCKwEbA/viewform?usp=sharing" target="_blank" rel="noopener" data-i18n="open_upload_form">Open upload form</a>
+                <a class="btnLink" id="uploadFormLink"
+                   href="https://docs.google.com/forms/d/e/1FAIpQLSf4bTVL36AFYwK1WUyPZbYvkJ891VYnYQrh1VaibIsMCKwEbA/viewform?usp=sharing"
+                   target="_blank" rel="noopener" data-i18n="open_upload_form">Open upload form</a>
               </div>
             </div>
 
             <div style="margin-top:10px">
-              <div class="help" data-i18n="photos_urls_help">Option B: If you already have direct image URLs, you can paste them here (optional).</div>
+              <div class="help" data-i18n="photos_urls_help">
+                Option B: If you already have direct image URLs, you can paste them here (optional).
+              </div>
               <input name="image_1_url" id="image_1_url" placeholder="Image URL 1" style="margin-top:8px" />
               <input name="image_2_url" id="image_2_url" placeholder="Image URL 2" style="margin-top:10px" />
               <input name="image_3_url" id="image_3_url" placeholder="Image URL 3" style="margin-top:10px" />
             </div>
 
-            <div class="help" data-i18n="photos_fallback">Option C: If neither works, you can email images to info@experienceecuador.com.</div>
+            <div class="help" data-i18n="photos_fallback">
+              Option C: If neither works, you can email images to info@experienceecuador.com.
+            </div>
           </div>
 
           <div>
@@ -244,6 +434,8 @@
         </div>
       </div>
     </section>
+
+    <iframe id="eeSubmitFrame" name="eeSubmitFrame" title="Submission frame"></iframe>
   </main>
 
   <div id="siteFooter"></div>
@@ -251,11 +443,13 @@
   <script src="/assets/js/site.js"></script>
   <script>
     (function(){
-      async function inject(id, url){
+      function inject(id, url){
         var el = document.getElementById(id);
         if(!el) return;
-        var res = await fetch(url, { cache: "no-store" });
-        el.innerHTML = await res.text();
+        fetch(url, { cache: "no-store" })
+          .then(function(r){ return r.text(); })
+          .then(function(html){ el.innerHTML = html; })
+          .catch(function(){});
       }
       inject("siteHeader", "/assets/includes/header.html");
       inject("siteFooter", "/assets/includes/footer.html");
@@ -264,9 +458,10 @@
 
   <script>
     (function(){
-      var REGIONS = [];
-      var EXPERIENCES = [];
-      var BUSINESS_TYPES = [
+      var EE_UPLOAD_FORM = "https://docs.google.com/forms/d/e/1FAIpQLSf4bTVL36AFYwK1WUyPZbYvkJ891VYnYQrh1VaibIsMCKwEbA/viewform?usp=sharing";
+      var regionsData = [];
+      var experiencesData = [];
+      var typesData = [
         { id: "lodging", en: "Lodging", es: "Alojamiento" },
         { id: "restaurants", en: "Restaurants", es: "Restaurantes" },
         { id: "services", en: "Services", es: "Servicios" },
@@ -316,7 +511,8 @@
           submitting: "Submitting...",
           select: "Select",
           required_missing: "Please complete all required fields marked with *.",
-          success: "Thanks. We received your submission."
+          success: "Thanks. We received your submission. We will follow up by email if we need anything else.",
+          data_failed: "Data load failed. Please refresh and try again."
         },
         es: {
           title: "Registro de Socios",
@@ -352,11 +548,24 @@
           submitting: "Enviando...",
           select: "Selecciona",
           required_missing: "Completa los campos obligatorios marcados con *.",
-          success: "Gracias. Recibimos tu solicitud."
+          success: "Gracias. Recibimos tu solicitud. Te escribiremos si necesitamos algo adicional.",
+          data_failed: "No se pudieron cargar los datos. Actualiza la pagina e intenta de nuevo."
         }
       };
 
       function t(k){ return (STR[lang] && STR[lang][k]) ? STR[lang][k] : k; }
+
+      function showOk(msg){
+        qs("#errBox").style.display = "none";
+        qs("#okBox").style.display = "block";
+        qs("#okBox").textContent = msg;
+      }
+
+      function showErr(msg){
+        qs("#okBox").style.display = "none";
+        qs("#errBox").style.display = "block";
+        qs("#errBox").textContent = msg;
+      }
 
       function setText(){
         document.documentElement.lang = lang;
@@ -369,11 +578,36 @@
         });
       }
 
+      function setSubmitting(isSubmitting){
+        var btn = qs("#btnSubmit");
+        btn.disabled = !!isSubmitting;
+        btn.classList.toggle("is-loading", !!isSubmitting);
+      }
+
+      function titleCaseWords(s){
+        var cleaned = String(s||"").replace(/\s+/g," ").trim();
+        if(!cleaned) return "";
+        return cleaned.split(" ").map(function(w){
+          if(!w) return "";
+          return w.charAt(0).toUpperCase() + w.slice(1);
+        }).join(" ");
+      }
+
+      function bindTitleCase(){
+        ["#business_name", "#contact_first_name", "#contact_last_name"].forEach(function(sel){
+          var el = qs(sel);
+          if(!el) return;
+          el.addEventListener("blur", function(){
+            this.value = titleCaseWords(this.value);
+          });
+        });
+      }
+
       function renderBusinessTypes(){
         var sel = qs("#business_type");
         var current = sel.value || "";
         var opts = ['<option value="">' + esc(t("select")) + '</option>'];
-        BUSINESS_TYPES.forEach(function(bt){
+        typesData.forEach(function(bt){
           var label = (lang === "es") ? bt.es : bt.en;
           opts.push('<option value="' + esc(bt.id) + '">' + esc(label) + '</option>');
         });
@@ -387,13 +621,15 @@
       }
 
       function getChecked(group){
-        return qsa('input[type="checkbox"][name="' + group + '"]:checked').map(function(x){ return (x.value||"").trim(); }).filter(Boolean);
+        return qsa('input[type="checkbox"][name="' + group + '"]:checked')
+          .map(function(x){ return (x.value||"").trim(); })
+          .filter(Boolean);
       }
 
       function renderRegions(preserve){
         var prev = preserve ? getChecked("regions") : [];
-        qs("#regionsBox").innerHTML = REGIONS.map(function(r){
-          var nm = (lang === "es") ? (r.name_es || r.name_en || r.name || r.id) : (r.name_en || r.name || r.id);
+        qs("#regionsBox").innerHTML = regionsData.map(function(r){
+          var nm = (lang === "es") ? (r.name_es || r.name_en || r.name || r.id) : (r.name_en || r.name_es || r.name || r.id);
           return pill(r.id, nm, "regions", r.id, prev.indexOf(r.id) !== -1);
         }).join("");
       }
@@ -405,10 +641,10 @@
         if(!selected.length){ box.innerHTML = ""; return; }
 
         var locs = [];
-        REGIONS.forEach(function(r){
+        regionsData.forEach(function(r){
           if(selected.indexOf(r.id) === -1) return;
           (r.locations || []).forEach(function(l){
-            var nm = (lang === "es") ? (l.name_es || l.name_en || l.name || l.id) : (l.name_en || l.name || l.id);
+            var nm = (lang === "es") ? (l.name_es || l.name_en || l.name || l.id) : (l.name_en || l.name_es || l.name || l.id);
             locs.push({ id: l.id, label: nm });
           });
         });
@@ -418,28 +654,22 @@
         locs.forEach(function(l){ if(l.id && !seen[l.id]){ seen[l.id]=true; uniq.push(l); } });
         uniq.sort(function(a,b){ return String(a.label).localeCompare(String(b.label), (lang==="es" ? "es" : "en"), { sensitivity:"base" }); });
 
-        box.innerHTML = uniq.map(function(l){ return pill(l.id, l.label, "locations", l.id, prev.indexOf(l.id) !== -1); }).join("");
+        box.innerHTML = uniq.map(function(l){
+          return pill(l.id, l.label, "locations", l.id, prev.indexOf(l.id) !== -1);
+        }).join("");
       }
 
       function renderExperiences(preserve){
         var prev = preserve ? getChecked("experiences") : [];
-        var exps = EXPERIENCES.map(function(e){
-          var label = (lang === "es") ? (e.name_es || e.name_en || e.name || e.id) : (e.name_en || e.name || e.id);
+        var exps = experiencesData.map(function(e){
+          var label = (lang === "es") ? (e.name_es || e.name_en || e.name || e.id) : (e.name_en || e.name_es || e.name || e.id);
           return { id: e.id, label: label };
         });
         exps.sort(function(a,b){ return String(a.label).localeCompare(String(b.label), (lang==="es" ? "es" : "en"), { sensitivity:"base" }); });
-        qs("#experiencesBox").innerHTML = exps.map(function(e){ return pill(e.id, e.label, "experiences", e.id, prev.indexOf(e.id) !== -1); }).join("");
-      }
 
-      function showOk(msg){ qs("#errBox").style.display = "none"; qs("#okBox").style.display = "block"; qs("#okBox").textContent = msg; }
-      function showErr(msg){ qs("#okBox").style.display = "none"; qs("#errBox").style.display = "block"; qs("#errBox").textContent = msg; }
-
-      function resetForm(){
-        qs("#eeForm").reset();
-        qs("#locationsBox").innerHTML = "";
-        qs("#okBox").style.display = "none";
-        qs("#errBox").style.display = "none";
-        setText();
+        qs("#experiencesBox").innerHTML = exps.map(function(e){
+          return pill(e.id, e.label, "experiences", e.id, prev.indexOf(e.id) !== -1);
+        }).join("");
       }
 
       function validate(){
@@ -450,36 +680,16 @@
         return true;
       }
 
-      function titleCaseWords(s){
-        var cleaned = String(s||"").replace(/\s+/g," ").trim();
-        if(!cleaned) return "";
-        return cleaned.split(" ").map(function(w){
-          if(!w) return "";
-          return w.charAt(0).toUpperCase() + w.slice(1);
-        }).join(" ");
-      }
-
-      function bindTitleCase(){
-        [qs("#business_name"), qs("#contact_first_name"), qs("#contact_last_name")].forEach(function(el){
-          if(!el) return;
-          el.addEventListener("blur", function(){ el.value = titleCaseWords(el.value); });
-        });
-      }
-
-      async function loadData(){
-        try{
-          var r1 = await fetch("/assets/data/regions.json", { cache: "no-store" });
-          var j1 = await r1.json();
-          REGIONS = Array.isArray(j1 && j1.regions) ? j1.regions : [];
-
-          var r2 = await fetch("/assets/data/experiences.json", { cache: "no-store" });
-          var j2 = await r2.json();
-          EXPERIENCES = Array.isArray(j2 && j2.experiences) ? j2.experiences : [];
-
-          setLang(lang);
-        }catch(e){
-          showErr("Data load failed.");
-        }
+      function resetForm(){
+        qs("#eeForm").reset();
+        qs("#locationsBox").innerHTML = "";
+        qs("#okBox").style.display = "none";
+        qs("#errBox").style.display = "none";
+        setText();
+        renderBusinessTypes();
+        renderRegions(false);
+        renderLocations(false);
+        renderExperiences(false);
       }
 
       function setLang(next){
@@ -491,26 +701,51 @@
         renderExperiences(true);
       }
 
-      function setSubmitting(isSubmitting){
-        var btn = qs("#btnSubmit");
-        btn.disabled = !!isSubmitting;
-        btn.classList.toggle("is-loading", !!isSubmitting);
-      }
-
-      function applySubmissionStatusFromUrl(){
-        var submitted = getParam("submitted");
-        var err = getParam("err");
-        if(submitted === "1") showOk(t("success"));
-        if(submitted === "0") showErr(err ? decodeURIComponent(err) : "Submission failed.");
+      function loadData(){
+        return Promise.all([
+          fetch("/assets/data/regions.json", { cache: "no-store" }).then(function(r){ return r.json(); }),
+          fetch("/assets/data/experiences.json", { cache: "no-store" }).then(function(r){ return r.json(); })
+        ]).then(function(pair){
+          var regionsObj = pair[0] || {};
+          var expsObj = pair[1] || {};
+          regionsData = (regionsObj.regions && Array.isArray(regionsObj.regions)) ? regionsObj.regions : [];
+          experiencesData = (expsObj.experiences && Array.isArray(expsObj.experiences)) ? expsObj.experiences : [];
+          if(!regionsData.length) throw new Error("No regions loaded");
+          if(!experiencesData.length) throw new Error("No experiences loaded");
+        });
       }
 
       function boot(){
+        window.addEventListener("message", function(ev){
+          if(!ev || !ev.data) return;
+          if(ev.data.type !== "EE_ONBOARDING_RESULT") return;
+
+          if(window.__eeSubmitTimer){
+            clearTimeout(window.__eeSubmitTimer);
+            window.__eeSubmitTimer = null;
+          }
+
+          setSubmitting(false);
+
+          var payload = ev.data.payload || {};
+          if(payload.ok){
+            showOk(t("success"));
+            resetForm();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }else{
+            showErr(payload.error || "Submission failed.");
+          }
+        });
+
         setText();
         bindTitleCase();
+        renderBusinessTypes();
 
         document.addEventListener("change", function(e){
-          var tEl = e.target;
-          if(tEl && tEl.name === "regions") renderLocations(true);
+          var tEl = e && e.target ? e.target : null;
+          if(tEl && tEl.name === "regions"){
+            renderLocations(true);
+          }
         });
 
         qs("#btnReset").addEventListener("click", function(){ resetForm(); });
@@ -520,24 +755,50 @@
             showErr(t("required_missing"));
             return;
           }
+
           qs("#okBox").style.display = "none";
           qs("#errBox").style.display = "none";
+
           setSubmitting(true);
+
+          window.__eeSubmitTimer = window.setTimeout(function(){
+            setSubmitting(false);
+            showErr("No confirmation returned. If you received the email, the submission worked.");
+          }, 15000);
+
           qs("#eeForm").submit();
         });
 
         var sw = qs("#langSwitch");
         function toggle(){ setLang(lang === "es" ? "en" : "es"); }
         sw.addEventListener("click", toggle);
-        sw.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); toggle(); } });
+        sw.addEventListener("keydown", function(e){
+          if(e.key === "Enter" || e.key === " "){
+            e.preventDefault();
+            toggle();
+          }
+        });
 
         loadData().then(function(){
-          applySubmissionStatusFromUrl();
+          renderRegions(false);
+          renderLocations(false);
+          renderExperiences(false);
+
+          qs("#uploadFormLink").setAttribute("href", EE_UPLOAD_FORM);
+          qs("#drive_upload_link").value = EE_UPLOAD_FORM;
+
+          setLang(lang);
+        }).catch(function(err){
           setSubmitting(false);
+          showErr(t("data_failed") + " (" + String(err && err.message ? err.message : err) + ")");
         });
       }
 
-      boot();
+      if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded", boot);
+      }else{
+        boot();
+      }
     })();
   </script>
 </body>
