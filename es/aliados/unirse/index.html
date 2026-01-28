@@ -88,7 +88,9 @@
   </style>
 </head>
 <body>
-<main class="wrap" aria-label="Registro de socios">
+  <div id="siteHeader"></div>
+
+  <main class="wrap" aria-label="Registro de socios">
     <div class="topRow">
       <div>
         <h1 data-i18n="title">Registro de Socios</h1>
@@ -235,7 +237,23 @@
 
     <iframe id="eeSubmitFrame" name="eeSubmitFrame" title="Submission frame"></iframe>
   </main>
-<script src="/assets/js/site.js"></script>
+
+  <div id="siteFooter"></div>
+
+  <script src="/assets/js/site.js"></script>
+  <script>
+    (function(){
+      async function inject(id, url){
+        var el = document.getElementById(id);
+        if(!el) return;
+        var res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
+    })();
+  </script>
+
   <script>
     (function(){
       var REGIONS = [];
