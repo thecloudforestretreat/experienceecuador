@@ -138,7 +138,7 @@
         <div class="row">
           <div>
             <label><span class="req">*</span><span data-i18n="contact_email_label">Correo</span></label>
-            <input name="contact_email" id="contact_email" type="email" placeholder="hello@example.com" required />
+            <input name="contact_email" id="contact_email" type="email" placeholder="hola@ejemplo.com" required />
           </div>
           <div>
             <label><span class="req">*</span><span data-i18n="contact_phone_label">Telefono</span></label>
@@ -149,7 +149,7 @@
         <div class="row">
           <div>
             <label><span class="req">*</span><span data-i18n="website_label">Sitio web</span></label>
-            <input name="website_url" id="website_url" placeholder="https://example.com" required />
+            <input name="website_url" id="website_url" placeholder="https://ejemplo.com" required />
           </div>
           <div>
             <label><span data-i18n="whatsapp_label">WhatsApp (opcional)</span></label>
@@ -207,7 +207,7 @@
           </div>
           <div>
             <label><span data-i18n="desc_en_label">Descripcion corta (ingles)</span></label>
-            <textarea name="short_description_en" id="short_description_en" placeholder="Optional"></textarea>
+            <textarea name="short_description_en" id="short_description_en" placeholder="Opcional"></textarea>
           </div>
         </div>
 
@@ -350,6 +350,31 @@
       function t(k){ return (STR[lang] && STR[lang][k]) ? STR[lang][k] : k; }
 
       function setText(){
+      function setPlaceholders(){
+        var bn = qs("#business_name");
+        var fn = qs("#contact_first_name");
+        var ln = qs("#contact_last_name");
+        var em = qs("#contact_email");
+        var web = qs("#website_url");
+        var descEn = qs("#short_description_en");
+
+        if(lang === "es"){
+          if(bn) bn.placeholder = "Nombre del negocio";
+          if(fn) fn.placeholder = "Nombre";
+          if(ln) ln.placeholder = "Apellido";
+          if(em) em.placeholder = "hola@ejemplo.com";
+          if(web) web.placeholder = "https://ejemplo.com";
+          if(descEn) descEn.placeholder = "Opcional";
+        }else{
+          if(bn) bn.placeholder = "Business name";
+          if(fn) fn.placeholder = "First name";
+          if(ln) ln.placeholder = "Last name";
+          if(em) em.placeholder = "hello@example.com";
+          if(web) web.placeholder = "https://example.com";
+          if(descEn) descEn.placeholder = "Optional";
+        }
+      }
+
         document.documentElement.lang = lang;
 
         var langField = qs("#language");
