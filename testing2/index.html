@@ -495,8 +495,8 @@
             id="eeContactForm"
            
             target="ee_hidden_iframe"
-            data-action="https://script.google.com/macros/s/AKfycbwkEieBoxiVmuSVQi-KXrMOtt875Rwx_bdOgEHI4kWcI-w5IUGeKSiH5BmxZbVmA5Qj/exec"
-           method="POST" target="eeHiddenFrame" action="https://script.google.com/macros/s/AKfycbwkEieBoxiVmuSVQi-KXrMOtt875Rwx_bdOgEHI4kWcI-w5IUGeKSiH5BmxZbVmA5Qj/exec">
+            data-action="/api/contact-submit"
+          >
                 <input type="hidden" name="user_agent" value="">
 <input type="hidden" name="source" value="EE Contact">
 <input type="hidden" name="status" value="New">
@@ -625,9 +625,6 @@
     </section>
   </main>
 
-  <iframe name="eeHiddenFrame" id="eeHiddenFrame" style="display:none" title="hidden"></iframe>
-
-
   <div id="siteFooter"></div>
 
   <script>
@@ -638,115 +635,41 @@
 
     // Copy email icon button
     (function () {
-  "use strict";
+      var email = "info@experienceecuador.com";
+      var btn = document.getElementById("copyContactEmail");
+      var toast = document.getElementById("contactCopyToast");
+      if (!btn) return;
 
-  var form = document.getElementById("eeContactForm");
-  var submitBtn = document.getElementById("submitBtn");
-  var statusEl = document.getElementById("status");
-  var languageEl = document.getElementById("language");
-  var sourceEl = document.getElementById("source");
-  var uaEl = document.getElementById("user_agent");
-  var ipEl = document.getElementById("ip_best-effort");
-
-  var verifyEndpoint = "https://experienceecuador.com/api/turnstile-verify";
-
-  function setStatus(kind, msg) {
-    if (!statusEl) return;
-    statusEl.className = "status " + (kind || "");
-    statusEl.textContent = msg || "";
-    statusEl.style.display = msg ? "block" : "none";
-  }
-
-  function disableSubmit(disabled) {
-    if (!submitBtn) return;
-    submitBtn.disabled = !!disabled;
-    submitBtn.setAttribute("aria-disabled", disabled ? "true" : "false");
-  }
-
-  function inferLanguageFromPath() {
-    try {
-      var p = (window.location && window.location.pathname) ? window.location.pathname.toLowerCase() : "";
-      if (p.indexOf("/es/") !== -1 || p.endsWith("/es") || p.indexOf("lang=es") !== -1) return "es";
-    } catch (e) {}
-    return "en";
-  }
-
-  function getTurnstileToken() {
-    var el = form ? form.querySelector('input[name="cf-turnstile-response"]') : null;
-    return el ? String(el.value || "").trim() : "";
-  }
-
-  async function verifyTurnstile(token) {
-    var res = await fetch(verifyEndpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify({
-        token: token,
-        action: "ee_contact",
-        language: languageEl ? languageEl.value : "en",
-        source: sourceEl ? sourceEl.value : "EE Contact",
-        user_agent: navigator.userAgent || ""
-      })
-    });
-
-    var data = {};
-    try { data = await res.json(); } catch (e) {}
-    if (!res.ok || !data || data.ok !== true) {
-      var msg = (data && (data.message || data.error)) ? (data.message || data.error) : ("Turnstile verification failed (" + res.status + ")");
-      throw new Error(msg);
-    }
-    return data;
-  }
-
-  async function onSubmit(ev) {
-    ev.preventDefault();
-    setStatus("", "");
-    disableSubmit(true);
-
-    try {
-      if (languageEl) languageEl.value = inferLanguageFromPath();
-      if (sourceEl && !sourceEl.value) sourceEl.value = "EE Contact";
-      if (uaEl) uaEl.value = navigator.userAgent || "";
-
-      var token = getTurnstileToken();
-      if (!token) {
-        setStatus("error", "Please complete the spam protection check, then submit again.");
-        disableSubmit(false);
-        return;
+      function showCopied() {
+        btn.classList.add("copied");
+        if (toast) toast.classList.add("show");
+        setTimeout(function () {
+          btn.classList.remove("copied");
+          if (toast) toast.classList.remove("show");
+        }, 1600);
       }
 
-      await verifyTurnstile(token);
-
-      setStatus("success", (languageEl && languageEl.value === "es")
-        ? "Enviado. Recibimos tu mensaje y te responderemos pronto."
-        : "Submitted. We received your message and will get back to you soon."
-      );
-
-      // Submit as a standard POST (no fetch) so we avoid cross-origin redirect/CORS issues.
-      // The form posts into a hidden iframe so the page does not refresh and the form is not cleared.
-      if (form) form.submit();
-
-      // Keep button disabled briefly to prevent double submits, then re-enable.
-      window.setTimeout(function () { disableSubmit(false); }, 3000);
-
-    } catch (err) {
-      var msg = (err && err.message) ? err.message : "Submission failed.";
-      setStatus("error", "Submission failed. " + msg);
-      disableSubmit(false);
-
-      // If the Turnstile API exists, reset so user can try again.
-      try {
-        if (window.turnstile && typeof window.turnstile.reset === "function") {
-          var widget = document.querySelector(".cf-turnstile");
-          if (widget) window.turnstile.reset(widget);
-          else window.turnstile.reset();
-        }
-      } catch (e) {}
-    }
-  }
-
-  if (form) form.addEventListener("submit", onSubmit);
-})();
+      btn.addEventListener("click", async function () {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(email);
+            showCopied();
+            return;
+          }
+          var ta = document.createElement("textarea");
+          ta.value = email;
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          ta.style.top = "0";
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+          showCopied();
+        } catch (e) {}
+      });
+    })();
 
     // Phone UX:
     // - Country code field (digits only, no + typed)
@@ -860,7 +783,7 @@
 
   var statusEl = document.getElementById("eeFormStatus");
   var submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
-  var endpoint = form.getAttribute("data-action") || "https://script.google.com/macros/s/AKfycbwkEieBoxiVmuSVQi-KXrMOtt875Rwx_bdOgEHI4kWcI-w5IUGeKSiH5BmxZbVmA5Qj/exec";
+  var endpoint = form.getAttribute("data-action") || "/api/contact-submit";
 
   function setStatus(kind, msg) {
     if (!statusEl) return;
