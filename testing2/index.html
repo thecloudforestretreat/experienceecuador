@@ -390,7 +390,7 @@
       background:#fff;
       color:#0f2f62;
       border-color:rgba(3,78,162,0.22);
-      box-shadow:0 12px 26px rgba(3,78,162,.08);
+      box-shadow:0 12px 26px rgba(3,78,162,0.08);
     }
     .btnGhost:hover{transform:translateY(-1px)}
 
@@ -407,12 +407,6 @@
       color:#0f2f62;
     }
     .statusPill.show{ display:inline-flex; }
-
-    .statusPill.isError{
-      border-color: rgba(180,35,24,.25);
-      background: rgba(180,35,24,.08);
-      color:#7a1a13;
-    }
 
     /* Phone field group */
     .phoneRow{
@@ -456,6 +450,7 @@
       .grid2{grid-template-columns:1fr}
     }
   </style>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
@@ -494,38 +489,37 @@
             Fields marked <span class="req">*</span> are required.
           </p>
 
+          <!-- UPDATED: add data-ga="contact_form" + id="contactForm" (required for GA4 event tracking) -->
           <form
             data-ga="contact_form"
-            id="contactForm"
-            method="POST"
+            id="eeContactForm"
+           
             target="ee_hidden_iframe"
-            action="https://script.google.com/macros/s/AKfycbwkEieBoxiVmuSVQi-KXrMOtt875Rwx_bdOgEHI4kWcI-w5IUGeKSiH5BmxZbVmA5Qj/exec"
+            data-action="https://script.google.com/macros/s/AKfycbwkEieBoxiVmuSVQi-KXrMOtt875Rwx_bdOgEHI4kWcI-w5IUGeKSiH5BmxZbVmA5Qj/exec"
           >
-            <!-- Sheet headers -->
-            <input type="hidden" name="status" value="New">
-            <input type="hidden" id="language" name="language" value="en">
-            <input type="hidden" id="source" name="source" value="EE Contact">
-            <input type="hidden" id="user_agent" name="user_agent" value="">
-            <input type="hidden" id="ip_best_effort" name="ip_best-effort" value="">
+                <input type="hidden" name="user_agent" value="">
+<input type="hidden" name="source" value="EE Contact">
+<input type="hidden" name="status" value="New">
+            <input type="hidden" name="language" value="en">
 
             <!-- WhatsApp-compatible E.164-ish: +<countrycode><digits> -->
-            <input type="hidden" id="phone_full" name="phone" value="">
+            <input type="hidden" id="phone_full" name="phone" value="" autocapitalize="none" autocomplete="tel">
 
             <div class="grid2">
               <div class="field">
                 <label for="first_name">First Name <span class="req">*</span></label>
-                <input class="input" id="first_name" name="first_name" type="text" autocomplete="given-name" required>
+                <input class="input" id="first_name" name="first_name" type="text" autocomplete="given-name" required autocapitalize="words">
               </div>
 
               <div class="field">
                 <label for="last_name">Last Name <span class="req">*</span></label>
-                <input class="input" id="last_name" name="last_name" type="text" autocomplete="family-name" required>
+                <input class="input" id="last_name" name="last_name" type="text" autocomplete="family-name" required autocapitalize="words">
               </div>
             </div>
 
             <div class="field">
               <label for="email">Email <span class="req">*</span></label>
-              <input class="input" id="email" name="email" type="email" autocomplete="email" required>
+              <input class="input" id="email" name="email" type="email" autocomplete="email" required autocapitalize="none">
             </div>
 
             <div class="field">
@@ -553,7 +547,7 @@
 
             <div class="field">
               <label for="notes">Notes</label>
-              <textarea class="textarea" id="notes" name="notes" placeholder="Share a quick message, plus any links (website, media kit, itinerary ideas, etc.)"></textarea>
+              <textarea class="textarea" id="notes" name="notes" placeholder="Share a quick message, plus any links (website, media kit, itinerary ideas, etc.)" autocapitalize="sentences"></textarea>
             </div>
 
             <div class="field">
@@ -570,14 +564,25 @@
             </div>
 
             <div class="actionsRow">
-              <button class="btn btnPrimary" id="submitBtn" type="submit">Submit</button>
+              <button class="btn btnPrimary" type="submit">Submit</button>
               <button class="btn btnGhost" type="reset">Reset</button>
             </div>
 
             <div class="statusPill" id="formStatusPill" role="status" aria-live="polite"></div>
-          </form>
+          
+  <div class="ee-turnstile" style="margin-top:14px">
+    <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY" data-theme="light"></div>
+    <p class="ee-turnstile-note" style="margin:8px 0 0;font-size:12px;opacity:0.8">
+      This helps protect our inbox from spam.
+    </p>
+  </div>
 
-          <iframe class="hiddenFrame" id="ee_hidden_iframe" name="ee_hidden_iframe" title="Hidden submission frame"></iframe>
+
+  <div id="eeFormStatus" role="status" aria-live="polite" style="margin-top:14px"></div>
+
+</form>
+
+          <iframe class="hiddenFrame" name="ee_hidden_iframe" title="Hidden submission frame"></iframe>
         </div>
       </div>
 
@@ -666,21 +671,6 @@
       });
     })();
 
-    // Set language + source + user_agent for sheet + emails
-    (function () {
-      var langInput = document.getElementById("language");
-      var sourceInput = document.getElementById("source");
-      var uaInput = document.getElementById("user_agent");
-
-      var path = String(location.pathname || "");
-      var htmlLang = (document.documentElement && document.documentElement.getAttribute("lang")) ? document.documentElement.getAttribute("lang") : "";
-      var isEs = (path.indexOf("/es/") === 0) || (String(htmlLang).toLowerCase() === "es");
-
-      if (langInput) langInput.value = isEs ? "es" : "en";
-      if (sourceInput && !sourceInput.value) sourceInput.value = "EE Contact";
-      if (uaInput) uaInput.value = String(navigator.userAgent || "");
-    })();
-
     // Phone UX:
     // - Country code field (digits only, no + typed)
     // - Number field (digits, spaces, dashes allowed)
@@ -691,6 +681,7 @@
       var full = document.getElementById("phone_full");
       if (!cc || !num || !full) return;
 
+      // Default to US if user leaves it blank (remove if you want no default)
       cc.value = cc.value || "1";
 
       function digitsOnly(v) {
@@ -742,49 +733,17 @@
       updateFull();
     })();
 
-    // Submission confirmation (does not leave page):
-    // - On submit: show "Sending..."
-    // - When iframe loads (response from Apps Script): show success message
+    // Submitted confirmation (without leaving the page):
+    // We submit to Apps Script in a hidden iframe, then show a confirmation message immediately.
     (function () {
       var form = document.getElementById("contactForm");
       var pill = document.getElementById("formStatusPill");
-      var iframe = document.getElementById("ee_hidden_iframe");
-      var submitBtn = document.getElementById("submitBtn");
-      if (!form || !pill || !iframe) return;
-
-      var pending = false;
-
-      function getIsEs() {
-        var langInput = document.getElementById("language");
-        return String(langInput && langInput.value ? langInput.value : "en").toLowerCase() === "es";
-      }
-
-      function setPill(text, isError) {
-        pill.textContent = text;
-        pill.classList.add("show");
-        pill.classList.toggle("isError", !!isError);
-      }
+      if (!form || !pill) return;
 
       form.addEventListener("submit", function () {
-        pending = true;
-        if (submitBtn) submitBtn.disabled = true;
-
-        if (getIsEs()) {
-          setPill("Enviando... Un momento por favor.", false);
-        } else {
-          setPill("Sending... Please wait.", false);
-        }
-      });
-
-      iframe.addEventListener("load", function () {
-        if (!pending) return;
-        pending = false;
-
-        if (getIsEs()) {
-          setPill("Listo. Recibimos tu mensaje y te responderemos pronto.", false);
-        } else {
-          setPill("Submitted. We received your message and will get back to you soon.", false);
-        }
+        pill.textContent =
+          "Submitted. We received your message and will get back to you soon.";
+        pill.classList.add("show");
 
         setTimeout(function () {
           try { form.reset(); } catch (e) {}
@@ -794,8 +753,6 @@
 
           var full = document.getElementById("phone_full");
           if (full) full.value = "";
-
-          if (submitBtn) submitBtn.disabled = false;
         }, 450);
       });
     })();
@@ -817,5 +774,103 @@
       inject("siteFooter", "/assets/includes/footer.html");
     })();
   </script>
+
+<script>
+/* EE_CONTACT_AJAX_SUBMIT_v1 */
+(function() {
+  var form = document.getElementById("eeContactForm");
+  if (!form) return;
+
+  var statusEl = document.getElementById("eeFormStatus");
+  var submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+  var endpoint = form.getAttribute("data-action") || "https://script.google.com/macros/s/AKfycbwkEieBoxiVmuSVQi-KXrMOtt875Rwx_bdOgEHI4kWcI-w5IUGeKSiH5BmxZbVmA5Qj/exec";
+
+  function setStatus(kind, msg) {
+    if (!statusEl) return;
+    var bg = kind === "success" ? "rgba(34,197,94,0.12)" : kind === "error" ? "rgba(239,68,68,0.12)" : "rgba(59,130,246,0.12)";
+    var border = kind === "success" ? "rgba(34,197,94,0.35)" : kind === "error" ? "rgba(239,68,68,0.35)" : "rgba(59,130,246,0.35)";
+    statusEl.innerHTML =
+      '<div style="padding:14px 14px;border-radius:14px;border:1px solid ' + border + ';background:' + bg + ';font-weight:700">' +
+        msg +
+      '</div>';
+  }
+
+  function getLang() {
+    var langField = form.querySelector('input[name="language"]');
+    var docLang = (document.documentElement.getAttribute("lang") || "en").toLowerCase();
+    var lang = (langField && langField.value ? langField.value : docLang);
+    return (lang.indexOf("es") === 0) ? "es" : "en";
+  }
+
+  function serializeForm() {
+    var fd = new FormData(form);
+    var obj = {};
+    fd.forEach(function(v, k) {
+      if (obj[k] !== undefined) return;
+      obj[k] = String(v || "").trim();
+    });
+    obj.user_agent = navigator.userAgent || obj.user_agent || "";
+    obj.source = obj.source || "EE Contact";
+    obj.language = obj.language || getLang();
+    return obj;
+  }
+
+  form.addEventListener("submit", function(ev) {
+    ev.preventDefault();
+
+    // Turnstile token
+    var tsInput = form.querySelector('input[name="cf-turnstile-response"]');
+    var tsToken = tsInput ? (tsInput.value || "").trim() : "";
+
+    if (!tsToken) {
+      setStatus("error", getLang() === "es" ? "Por favor completa la verificacion anti-spam antes de enviar." : "Please complete the anti-spam verification before submitting.");
+      return;
+    }
+
+    var payload = serializeForm();
+    payload.turnstile_token = tsToken;
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.setAttribute("aria-disabled", "true");
+    }
+    setStatus("info", getLang() === "es" ? "Enviando..." : "Submitting...");
+
+    fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(payload)
+    }).then(function(res) {
+      return res.json();
+    }).then(function(data) {
+      if (data && data.ok) {
+        setStatus("success", getLang() === "es"
+          ? "Enviado. Hemos recibido tu mensaje y te responderemos pronto."
+          : "Submitted. We received your message and will get back to you soon."
+        );
+        // Do NOT clear the form (per your requirement).
+      } else {
+        var err = (data && (data.email_error || data.message)) ? (data.email_error || data.message) : "Unknown error";
+        setStatus("error", (getLang()==="es" ? "No se pudo enviar. " : "Submission failed. ") + err);
+      }
+    }).catch(function(err) {
+      setStatus("error", (getLang()==="es" ? "No se pudo enviar. " : "Submission failed. ") + String(err || ""));
+    }).finally(function() {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute("aria-disabled");
+      }
+      // Reset Turnstile so user can resubmit if needed
+      try {
+        if (window.turnstile && form.querySelector(".cf-turnstile")) window.turnstile.reset(form.querySelector(".cf-turnstile"));
+      } catch (e) {}
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
