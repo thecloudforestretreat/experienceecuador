@@ -3,15 +3,15 @@
  *
  * What it does:
  * 1) Verifies Cloudflare Turnstile token server-side
- * 2) Forwards the sanitized payload to your Google Apps Script Web App (server-side, no browser CORS/302 issues)
+ * 2) Forwards the sanitized payload to your Google Apps Script Web App
  * 3) Returns the Apps Script JSON back to the browser
  *
- * Required env vars (Cloudflare Pages -> Settings -> Environment variables):
- * - TURNSTILE_SECRET      (your Turnstile secret key)
- * - GAS_CONTACT_URL       (your Apps Script Web App URL, ending in /exec)
+ * Required env vars:
+ * - TURNSTILE_SECRET
+ * - GAS_CONTACT_URL
  *
  * Optional:
- * - ALLOW_ORIGIN          (defaults to https://experienceecuador.com)
+ * - ALLOW_ORIGIN (defaults to https://experienceecuador.com)
  */
 
 function jsonResponse(data, status = 200, origin = null) {
@@ -20,7 +20,6 @@ function jsonResponse(data, status = 200, origin = null) {
     "Cache-Control": "no-store"
   };
 
-  // Same-origin calls do not need CORS, but this helps if you ever call it cross-origin.
   if (origin) {
     headers["Access-Control-Allow-Origin"] = origin;
     headers["Vary"] = "Origin";
@@ -30,7 +29,6 @@ function jsonResponse(data, status = 200, origin = null) {
 }
 
 function getClientIp(request) {
-  // Cloudflare sets this header
   return request.headers.get("CF-Connecting-IP") || "";
 }
 
@@ -49,7 +47,7 @@ async function verifyTurnstile({ token, ip, secret }) {
   return data;
 }
 
-export async function onRequestOptions({ request, env }) {
+export async function onRequestOptions({ env }) {
   const allowOrigin = env.ALLOW_ORIGIN || "https://experienceecuador.com";
   return new Response(null, {
     status: 204,
@@ -60,6 +58,19 @@ export async function onRequestOptions({ request, env }) {
       "Access-Control-Max-Age": "86400"
     }
   });
+}
+
+export async function onRequestGet({ env }) {
+  const allowOrigin = env.ALLOW_ORIGIN || "https://experienceecuador.com";
+  return jsonResponse(
+    {
+      ok: false,
+      code: "method_not_allowed",
+      message: "Use POST for /api/contact-submit."
+    },
+    405,
+    allowOrigin
+  );
 }
 
 export async function onRequestPost({ request, env }) {
@@ -78,7 +89,6 @@ export async function onRequestPost({ request, env }) {
     if (ct.includes("application/json")) {
       payload = await request.json();
     } else {
-      // support form posts if needed
       const form = await request.formData();
       payload = Object.fromEntries(form.entries());
     }
@@ -94,7 +104,6 @@ export async function onRequestPost({ request, env }) {
   const ip = getClientIp(request);
   const ua = request.headers.get("User-Agent") || "";
 
-  // Verify Turnstile
   const ver = await verifyTurnstile({ token, ip, secret: env.TURNSTILE_SECRET });
   if (!ver || ver.success !== true) {
     return jsonResponse(
@@ -109,7 +118,6 @@ export async function onRequestPost({ request, env }) {
     );
   }
 
-  // Build sanitized payload for Apps Script (strip token, enforce strings)
   const forward = {
     first_name: String(payload.first_name || ""),
     last_name: String(payload.last_name || ""),
@@ -125,7 +133,6 @@ export async function onRequestPost({ request, env }) {
     status: String(payload.status || "New")
   };
 
-  // Forward to Apps Script (server-side; redirects are fine here)
   let gasJson = null;
   try {
     const gasResp = await fetch(env.GAS_CONTACT_URL, {
@@ -141,11 +148,34 @@ export async function onRequestPost({ request, env }) {
     try {
       gasJson = JSON.parse(text);
     } catch {
-      gasJson = { ok: false, code: "gas_non_json", message: "Apps Script did not return JSON.", raw: text.slice(0, 500) };
+      gasJson = {
+        ok: false,
+        code: "gas_non_json",
+        message: "Apps Script did not return JSON.",
+        raw: text.slice(0, 500)
+      };
     }
   } catch (e) {
-    return jsonResponse({ ok: false, code: "gas_fetch_failed", message: String(e && e.message ? e.message : e) }, 502, allowOrigin);
+    return jsonResponse(
+      { ok: false, code: "gas_fetch_failed", message: String(e && e.message ? e.message : e) },
+      502,
+      allowOrigin
+    );
   }
 
   return jsonResponse(gasJson, 200, allowOrigin);
+}
+
+export async function onRequest({ request, env, next }) {
+  const method = (request.method || "GET").toUpperCase();
+  if (method === "GET") return onRequestGet({ env });
+  if (method === "OPTIONS") return onRequestOptions({ env });
+  if (method === "POST") return onRequestPost({ request, env });
+
+  const allowOrigin = env.ALLOW_ORIGIN || "https://experienceecuador.com";
+  return jsonResponse(
+    { ok: false, code: "method_not_allowed", message: "Only POST is supported for /api/contact-submit." },
+    405,
+    allowOrigin
+  );
 }
