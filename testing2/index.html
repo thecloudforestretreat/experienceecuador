@@ -274,7 +274,7 @@
       .note{ max-width:none; }
     }
   </style>
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=eeTurnstileOnload&render=explicit" async defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
   <div id="siteHeader"></div>
@@ -423,6 +423,11 @@
           </div>
         </div>
 
+        <div class="field turnstileField">
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAACb5DEUS0cegxQwi" data-theme="light"></div>
+          <input type="hidden" name="turnstile_token" id="turnstile_token" value="">
+        </div>
+
         <div class="okBox" id="okBox"></div>
         <div class="errBox" id="errBox"></div>
       </form>
@@ -470,6 +475,11 @@
       ];
 
       function qs(sel, root){ return (root||document).querySelector(sel); }
+  function getTurnstileToken(){
+    var el = document.querySelector('input[name="cf-turnstile-response"]');
+    return el ? String(el.value || "").trim() : "";
+  }
+
       function qsa(sel, root){ return Array.prototype.slice.call((root||document).querySelectorAll(sel)); }
       function esc(s){ return String(s||"").replace(/[&<>"']/g, function(m){ return ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[m]; }); }
       function getParam(name){ try{ return new URL(window.location.href).searchParams.get(name); }catch(e){ return null; } }
@@ -514,6 +524,7 @@
           required_missing: "Please complete all required fields marked with *.",
           success: "Thanks. We received your submission. We will follow up by email if we need anything else.",
           data_failed: "Data load failed. Please refresh and try again."
+      err_turnstile: "Please complete the security check.",
         },
         es: {
           title: "Registro de Socios",
@@ -551,6 +562,7 @@
           required_missing: "Completa los campos obligatorios marcados con *.",
           success: "Gracias. Recibimos tu solicitud. Te escribiremos si necesitamos algo adicional.",
           data_failed: "No se pudieron cargar los datos. Actualiza la pagina e intenta de nuevo."
+      err_turnstile: "Por favor completa la verificacion de seguridad.",
         }
       };
 
@@ -752,13 +764,6 @@
         qs("#btnReset").addEventListener("click", function(){ resetForm(); });
 
         qs("#btnSubmit").addEventListener("click", function(){
-          var ts = getTurnstileToken();
-          if (!ts) {
-            showErr("Please complete the security check.");
-            try { var w = document.getElementById("ee_turnstile"); if (w) w.scrollIntoView({behavior:"smooth", block:"center"}); } catch (e) {}
-            return;
-          }
-
           if(!validate()){
             showErr(t("required_missing"));
             return;
@@ -803,49 +808,7 @@
       }
 
       if(document.readyState === "loading"){
-        
-  // Turnstile (required)
-  var eeTurnstileWidgetId = null;
-
-  function eeTurnstileOnload() {
-    try {
-      if (!window.turnstile) return;
-      var el = document.getElementById("ee_turnstile");
-      if (!el) return;
-      eeTurnstileWidgetId = window.turnstile.render(el, {
-        sitekey: "0x4AAAAAACb5DEUS0cegxQwi",
-        callback: function(token) {
-          var hid = document.getElementById("turnstile_token");
-          if (hid) hid.value = token || "";
-        },
-        "expired-callback": function() {
-          var hid = document.getElementById("turnstile_token");
-          if (hid) hid.value = "";
-        },
-        "error-callback": function() {
-          var hid = document.getElementById("turnstile_token");
-          if (hid) hid.value = "";
-        }
-      });
-    } catch (e) {}
-  }
-
-  function getTurnstileToken() {
-    var hid = document.getElementById("turnstile_token");
-    var v = hid ? String(hid.value || "").trim() : "";
-    if (v) return v;
-    try {
-      if (window.turnstile && eeTurnstileWidgetId !== null) {
-        v = String(window.turnstile.getResponse(eeTurnstileWidgetId) || "").trim();
-        if (hid && v) hid.value = v;
-        return v;
-      }
-    } catch (e) {}
-    return "";
-  }
-
-
-document.addEventListener("DOMContentLoaded", boot);
+        document.addEventListener("DOMContentLoaded", boot);
       }else{
         boot();
       }
