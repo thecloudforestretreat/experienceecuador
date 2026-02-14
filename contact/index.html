@@ -790,7 +790,7 @@
     var bg = kind === "success" ? "rgba(34,197,94,0.12)" : kind === "error" ? "rgba(239,68,68,0.12)" : "rgba(59,130,246,0.12)";
     var border = kind === "success" ? "rgba(34,197,94,0.35)" : kind === "error" ? "rgba(239,68,68,0.35)" : "rgba(59,130,246,0.35)";
     statusEl.innerHTML =
-      '<div style="padding:14px 14px;border-radius:14px;border:1px solid ' + border + ';background:' + bg + ';font-weight:700">' +
+      '<div style="padding:14px 14px;border-radius:14px;border:1px solid ' + border + ';background:' + bg + ';font-weight:700;text-transform:none">' +
         msg +
       '</div>';
   }
@@ -802,6 +802,30 @@
     return (lang.indexOf("es") === 0) ? "es" : "en";
   }
 
+
+  function titleCaseWords(s) {
+    s = String(s || "").trim();
+    if (!s) return "";
+    return s.replace(/\s+/g, " ").split(" ").map(function(w) {
+      if (!w) return "";
+      return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+    }).join(" ");
+  }
+
+  // Make First/Last name capitalization reliable across browsers.
+  (function attachAutoCaps() {
+    var fn = document.getElementById("first_name");
+    var ln = document.getElementById("last_name");
+    function normalize(el) {
+      if (!el) return;
+      var v = el.value || "";
+      var nv = titleCaseWords(v);
+      if (nv !== v) el.value = nv;
+    }
+    if (fn) fn.addEventListener("blur", function() { normalize(fn); });
+    if (ln) ln.addEventListener("blur", function() { normalize(ln); });
+  })();
+
   function serializeForm() {
     var fd = new FormData(form);
     var obj = {};
@@ -812,6 +836,8 @@
     obj.user_agent = navigator.userAgent || obj.user_agent || "";
     obj.source = obj.source || "EE Contact";
     obj.language = obj.language || getLang();
+    if (obj.first_name) obj.first_name = titleCaseWords(obj.first_name);
+    if (obj.last_name) obj.last_name = titleCaseWords(obj.last_name);
     return obj;
   }
 
