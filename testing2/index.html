@@ -461,6 +461,7 @@
       /* Keep phoneRow on one line (do NOT stack) */
     }
   </style>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
   <div id="siteHeader"></div>
@@ -496,7 +497,7 @@
         Los campos marcados con <span class="req">*</span> son obligatorios.
       </p>
 
-      <form id="eeContactForm" method="POST" target="ee_hidden_iframe" action="https://script.google.com/macros/s/AKfycbwkEieBoxiVmuSVQi-KXrMOtt875Rwx_bdOgEHI4kWcI-w5IUGeKSiH5BmxZbVmA5Qj/exec">
+      <form id="eeContactForm" method="POST" data-action="/api/contact-submit">
         <input type="hidden" name="status" value="New">
         <input type="hidden" name="language" value="es">
 
@@ -562,12 +563,25 @@
         </div>
 
         <div class="actionsRow">
-          <button class="btn btnPrimary" type="submit">Enviar</button>
+          <button class="btn btnPrimary" type="submit" id="submitBtn">Enviar</button>
           <button class="btn btnGhost" type="reset">Restablecer</button>
         </div>
 
         <div class="statusPill" id="formStatusPill" role="status" aria-live="polite"></div>
-      </form>
+      
+        <input type="hidden" name="source" id="source" value="EE Contact ES" />
+        <input type="hidden" name="user_agent" id="user_agent" value="" />
+        <input type="hidden" name="turnstile_token" id="turnstile_token" value="" />
+
+        <div class="turnstileWrap" aria-label="Proteccion anti-spam">
+          <div class="cf-turnstile"
+               data-sitekey="0x4AAAAAACb5DEUS0cegxQwi"
+               data-callback="eeTurnstileCallback"
+               data-expired-callback="eeTurnstileExpired"
+               data-error-callback="eeTurnstileError"></div>
+          <p class="turnstileNote">Este formulario usa una verificacion anti-spam. Si no aparece, desactiva bloqueadores y recarga.</p>
+        </div>
+</form>
 
       <iframe class="hiddenFrame" name="ee_hidden_iframe" title="Marco oculto de envío"></iframe>
     </div>
@@ -788,5 +802,130 @@ form.addEventListener('submit', () => {
       });
     })();
   </script>
+
+<script>
+(function(){
+  const form = document.getElementById("eeContactForm");
+  const pill = document.getElementById("formStatusPill");
+  const submitBtn = document.getElementById("submitBtn");
+  if(!form) return;
+
+  const API_URL = form.getAttribute("data-action") || "/api/contact-submit";
+
+  // Turnstile callbacks (called by the widget)
+  window.eeTurnstileCallback = function(token){
+    const el = document.getElementById("turnstile_token");
+    if(el) el.value = token || "";
+  };
+  window.eeTurnstileExpired = function(){
+    const el = document.getElementById("turnstile_token");
+    if(el) el.value = "";
+  };
+  window.eeTurnstileError = function(){
+    const el = document.getElementById("turnstile_token");
+    if(el) el.value = "";
+  };
+
+  function setPill(text, variant){
+    if(!pill) return;
+    pill.textContent = text;
+    pill.dataset.state = variant || "idle";
+  }
+
+  function toTitleCaseBasic(s){
+    const t = String(s || "").trim();
+    if(!t) return "";
+    return t.charAt(0).toUpperCase() + t.slice(1);
+  }
+
+  function normalizeNameField(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.value = toTitleCaseBasic(el.value);
+  }
+
+  // First-letter capitalization for name fields
+  ["first_name","last_name"].forEach((id)=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.addEventListener("blur", ()=> normalizeNameField(id));
+  });
+
+  form.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+
+    if(submitBtn){
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Enviando...";
+    }
+    setPill("Enviando...", "sending");
+
+    // Normalize names
+    normalizeNameField("first_name");
+    normalizeNameField("last_name");
+
+    // Stamp metadata
+    const ua = document.getElementById("user_agent");
+    if(ua) ua.value = navigator.userAgent || "";
+    const src = document.getElementById("source");
+    if(src && !src.value) src.value = "EE Contact ES";
+
+    // Collect form data
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+    payload.language = "es";
+
+    try{
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        credentials: "omit",
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json().catch(()=> ({}));
+
+      if(!res.ok || !data.ok){
+        const msg = (data && data.message) ? data.message : "No se pudo enviar. Intenta de nuevo.";
+        setPill(msg, "error");
+        if(submitBtn){
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Enviar";
+        }
+        // If Turnstile token expired, reset widget if available
+        if(window.turnstile && typeof window.turnstile.reset === "function"){
+          try{ window.turnstile.reset(); }catch(_){}
+        }
+        return;
+      }
+
+      setPill("Enviado. Recibimos tu mensaje y te responderemos pronto.", "ok");
+      form.reset();
+
+      // Clear token after success
+      const tok = document.getElementById("turnstile_token");
+      if(tok) tok.value = "";
+      if(window.turnstile && typeof window.turnstile.reset === "function"){
+        try{ window.turnstile.reset(); }catch(_){}
+      }
+
+      if(submitBtn){
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Enviar";
+      }
+    }catch(err){
+      setPill("No se pudo enviar. Verifica tu conexion y vuelve a intentar.", "error");
+      if(submitBtn){
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Enviar";
+      }
+      if(window.turnstile && typeof window.turnstile.reset === "function"){
+        try{ window.turnstile.reset(); }catch(_){}
+      }
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
