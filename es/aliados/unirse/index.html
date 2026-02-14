@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Registro de Socios | Experience Ecuador</title>
-  <meta name="description" content="Envianos tu informacion para ser considerado en Recomendado por Experience Ecuador." />
+  <meta name="description" content="Envíanos tu información para ser considerado en Recomendado por Experience Ecuador." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://experienceecuador.com/es/aliados/unirse/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
   <meta property="og:title" content="Registro de Socios | Experience Ecuador" />
-  <meta property="og:description" content="Envianos tu informacion para ser considerado en Recomendado por Experience Ecuador." />
+  <meta property="og:description" content="Envíanos tu información para ser considerado en Recomendado por Experience Ecuador." />
   <meta property="og:url" content="https://experienceecuador.com/es/aliados/unirse/" />
   <meta property="og:image" content="https://experienceecuador.com/EE-OG-Image-1.jpg" />
 
@@ -71,7 +71,10 @@
     .consentRow label{ margin:0; font-size:12.8px; line-height:1.5; font-weight:900; color: var(--ink); }
     .consentRow input{ width:auto; margin-top:2px; }
 
-    .okBox, .errBox{ margin-top:14px; padding:12px 14px; border-radius:14px; border:1px solid rgba(0,0,0,0.08); background: rgba(255,255,255,0.92); font-weight:800; display:none; line-height:1.55; font-size:13px; }
+    .turnstileWrap{ margin-top:12px; padding:12px; border-radius:14px; border:1px solid rgba(3,78,162,0.18); background: rgba(255,255,255,0.92); }
+    .turnstileHelp{ margin-top:8px; font-size:12px; color: var(--muted); font-weight:750; line-height:1.5; }
+
+    .okBox, .errBox{ margin:14px 16px 0; padding:12px 14px; border-radius:14px; border:1px solid rgba(0,0,0,0.08); background: rgba(255,255,255,0.92); font-weight:800; display:none; line-height:1.55; font-size:13px; }
     .okBox{ border-color: rgba(16,185,129,0.35); }
     .errBox{ border-color: rgba(239,68,68,0.35); }
 
@@ -81,10 +84,15 @@
     .btn{ display:inline-flex; align-items:center; justify-content:center; padding:12px 14px; border-radius:14px; font-weight:900; border:1px solid rgba(3,78,162,0.18); background: rgba(255,255,255,0.96); color: var(--ink); cursor:pointer; box-shadow: var(--shadowSoft); }
     .btn.primary{ background: rgba(3,78,162,0.95); color:#fff; border-color: rgba(3,78,162,0.28); box-shadow: 0 18px 40px rgba(3,78,162,0.18); }
     .btn:disabled{ opacity:.65; cursor: default; }
-    .spinner{ display:none; margin-left:10px; font-weight:800; color: var(--muted); }
+    .spinner{ display:none; margin-left:10px; font-weight:800; color: rgba(255,255,255,0.90); }
     .btn.primary.is-loading .spinner{ display:inline; }
     iframe#eeSubmitFrame{ width:0; height:0; border:0; position:absolute; left:-9999px; top:-9999px; }
-    @media (max-width: 900px){ .wrap{ padding: 18px 14px 64px; } .row{ grid-template-columns: 1fr; } .note{ max-width:none; } }
+
+    @media (max-width: 900px){
+      .wrap{ padding: 18px 14px 64px; }
+      .row{ grid-template-columns: 1fr; }
+      .note{ max-width:none; }
+    }
   </style>
 </head>
 <body>
@@ -94,12 +102,12 @@
     <div class="topRow">
       <div>
         <h1 data-i18n="title">Registro de Socios</h1>
-        <p class="sub" data-i18n="subtitle">Envianos tu informacion para ser considerado en Recomendado por Experience Ecuador.</p>
+        <p class="sub" data-i18n="subtitle">Envíanos tu información para ser considerado en Recomendado por Experience Ecuador.</p>
       </div>
 
-      <div class="toggle" aria-label="Toggle language">
+      <div class="toggle" aria-label="Cambiar idioma">
         <span>ES</span>
-        <div class="switch" id="langSwitch" role="button" tabindex="0" aria-label="Toggle language">
+        <div class="switch" id="langSwitch" role="button" tabindex="0" aria-label="Cambiar idioma">
           <div class="knob"></div>
         </div>
         <span>EN</span>
@@ -107,10 +115,11 @@
     </div>
 
     <section class="card" aria-label="Formulario de aliados">
-      <form id="eeForm" class="pad" method="POST" action="https://script.google.com/macros/s/AKfycbyRKvcA3pKXEwA6rJS6TIqiG9AGzhNFaAX_MTKKZ12nf_XyrpCc-O5S5nOGfo2C1QEcTw/exec" target="eeSubmitFrame" autocomplete="on">
+      <form id="eeForm" class="pad" method="POST" action="" target="eeSubmitFrame" autocomplete="on">
         <input type="hidden" name="language" id="language" value="es" />
         <input type="hidden" name="source_page" id="source_page" value="https://experienceecuador.com/es/aliados/unirse/" />
         <input type="hidden" name="drive_upload_link" id="drive_upload_link" value="https://docs.google.com/forms/d/e/1FAIpQLSf4bTVL36AFYwK1WUyPZbYvkJ891VYnYQrh1VaibIsMCKwEbA/viewform?usp=sharing" />
+        <input type="hidden" name="turnstile_token" id="turnstile_token" value="" />
 
         <div class="row">
           <div>
@@ -118,7 +127,7 @@
             <input name="business_name" id="business_name" placeholder="Nombre del negocio" required />
           </div>
           <div>
-            <label><span class="req">*</span><span data-i18n="business_type_label">Categoria</span></label>
+            <label><span class="req">*</span><span data-i18n="business_type_label">Categoría</span></label>
             <select name="business_type" id="business_type" required></select>
             <div class="help" data-i18n="business_type_help">Elige una.</div>
           </div>
@@ -138,10 +147,10 @@
         <div class="row">
           <div>
             <label><span class="req">*</span><span data-i18n="contact_email_label">Correo</span></label>
-            <input name="contact_email" id="contact_email" type="email" placeholder="hello@example.com" required />
+            <input name="contact_email" id="contact_email" type="email" placeholder="hola@ejemplo.com" required />
           </div>
           <div>
-            <label><span class="req">*</span><span data-i18n="contact_phone_label">Telefono</span></label>
+            <label><span class="req">*</span><span data-i18n="contact_phone_label">Teléfono</span></label>
             <input name="contact_phone" id="contact_phone" placeholder="+593 ..." required />
           </div>
         </div>
@@ -149,7 +158,7 @@
         <div class="row">
           <div>
             <label><span class="req">*</span><span data-i18n="website_label">Sitio web</span></label>
-            <input name="website_url" id="website_url" placeholder="https://example.com" required />
+            <input name="website_url" id="website_url" placeholder="https://ejemplo.com" required />
           </div>
           <div>
             <label><span data-i18n="whatsapp_label">WhatsApp (opcional)</span></label>
@@ -162,21 +171,21 @@
             <label><span data-i18n="photos_label">Fotos</span></label>
 
             <div class="uploadBand">
-              <div><strong data-i18n="photos_upload_title">Opcion A: Subir imagenes</strong></div>
-              <div class="help" data-i18n="photos_upload_help">Si tienes cuenta de Google, puedes subir imagenes con nuestro formulario. Google requiere iniciar sesion para subir archivos.</div>
+              <div><strong data-i18n="photos_upload_title">Opción A: Subir imágenes</strong></div>
+              <div class="help" data-i18n="photos_upload_help">Si tienes cuenta de Google, puedes subir imágenes con nuestro formulario. Google requiere iniciar sesión para subir archivos.</div>
               <div class="uploadRow">
                 <a class="btnLink" id="uploadFormLink" href="https://docs.google.com/forms/d/e/1FAIpQLSf4bTVL36AFYwK1WUyPZbYvkJ891VYnYQrh1VaibIsMCKwEbA/viewform?usp=sharing" target="_blank" rel="noopener" data-i18n="open_upload_form">Abrir formulario de carga</a>
               </div>
             </div>
 
             <div style="margin-top:10px">
-              <div class="help" data-i18n="photos_urls_help">Opcion B: Si ya tienes enlaces directos a imagenes, pegarlos aqui (opcional).</div>
+              <div class="help" data-i18n="photos_urls_help">Opción B: Si ya tienes enlaces directos a imágenes, pégalos aquí (opcional).</div>
               <input name="image_1_url" id="image_1_url" placeholder="Image URL 1" style="margin-top:8px" />
               <input name="image_2_url" id="image_2_url" placeholder="Image URL 2" style="margin-top:10px" />
               <input name="image_3_url" id="image_3_url" placeholder="Image URL 3" style="margin-top:10px" />
             </div>
 
-            <div class="help" data-i18n="photos_fallback">Opcion C: Si ninguna opcion sirve, puedes enviarlas por correo a info@experienceecuador.com.</div>
+            <div class="help" data-i18n="photos_fallback">Opción C: Si ninguna opción sirve, puedes enviarlas por correo a info@experienceecuador.com.</div>
           </div>
 
           <div>
@@ -187,7 +196,7 @@
             <div style="margin-top:12px">
               <label><span class="req">*</span><span data-i18n="locations_label">Ubicaciones</span></label>
               <div class="pillBox" id="locationsBox"></div>
-              <div class="help" data-i18n="locations_help">Las ubicaciones se actualizan segun las regiones seleccionadas.</div>
+              <div class="help" data-i18n="locations_help">Las ubicaciones se actualizan según las regiones seleccionadas.</div>
             </div>
           </div>
         </div>
@@ -202,18 +211,18 @@
 
         <div class="row">
           <div>
-            <label><span data-i18n="desc_es_label">Descripcion corta (espanol)</span></label>
+            <label><span data-i18n="desc_es_label">Descripción corta (español)</span></label>
             <textarea name="short_description_es" id="short_description_es" placeholder="Describe tu negocio en 2 a 5 frases."></textarea>
           </div>
           <div>
-            <label><span data-i18n="desc_en_label">Descripcion corta (ingles)</span></label>
+            <label><span data-i18n="desc_en_label">Descripción corta (inglés)</span></label>
             <textarea name="short_description_en" id="short_description_en" placeholder="Optional"></textarea>
           </div>
         </div>
 
         <div class="row one" style="margin-top:14px">
           <div class="consentRow">
-            <label><span class="req">*</span><span data-i18n="consent_publish_label">Confirmo que pueden publicar esta informacion en Experience Ecuador.</span></label>
+            <label><span class="req">*</span><span data-i18n="consent_publish_label">Confirmo que pueden publicar esta información en Experience Ecuador.</span></label>
             <input name="consent_publish" id="consent_publish" type="checkbox" value="yes" required />
           </div>
           <div class="consentRow" style="margin-top:10px">
@@ -222,18 +231,22 @@
           </div>
         </div>
 
+        <div class="turnstileWrap" id="turnstileWrap" style="display:none">
+          <div id="turnstileWidget"></div>
+          <div class="turnstileHelp" data-i18n="turnstile_help">Completa la verificación de seguridad para enviar.</div>
+        </div>
       </form>
 
       <div class="actions">
-        <div class="note" data-i18n="note">Revisamos cada solicitud antes de publicar. No mostramos precios publicamente.</div>
+        <div class="note" data-i18n="note">Revisamos cada solicitud antes de publicar. No mostramos precios públicamente.</div>
         <div class="btnRow">
           <button class="btn" id="btnReset" type="button" data-i18n="reset">Limpiar</button>
           <button class="btn primary" id="btnSubmit" type="button" data-i18n="submit">Enviar<span class="spinner" id="spinner">Enviando...</span></button>
         </div>
-        </div>
-        <div class="okBox" id="okBox"></div>
-        <div class="errBox" id="errBox"></div>
       </div>
+
+      <div class="okBox" id="okBox"></div>
+      <div class="errBox" id="errBox"></div>
     </section>
 
     <iframe id="eeSubmitFrame" name="eeSubmitFrame" title="Submission frame"></iframe>
@@ -247,8 +260,10 @@
       async function inject(id, url){
         var el = document.getElementById(id);
         if(!el) return;
-        var res = await fetch(url, { cache: "no-store" });
-        el.innerHTML = await res.text();
+        try{
+          var res = await fetch(url, { cache: "no-store" });
+          el.innerHTML = await res.text();
+        }catch(e){}
       }
       inject("siteHeader", "/assets/includes/header.html");
       inject("siteFooter", "/assets/includes/footer.html");
@@ -266,6 +281,11 @@
         { id: "activities", en: "Activities", es: "Actividades" }
       ];
 
+      var gasOnboardingUrl = "";
+      var turnstileSiteKey = "";
+      var turnstileWidgetId = null;
+      var turnstileToken = "";
+
       function qs(sel, root){ return (root||document).querySelector(sel); }
       function qsa(sel, root){ return Array.prototype.slice.call((root||document).querySelectorAll(sel)); }
       function esc(s){ return String(s||"").replace(/[&<>"']/g, function(m){ return ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[m]; }); }
@@ -274,40 +294,43 @@
       var STR = {
         es: {
           title: "Registro de Socios",
-          subtitle: "Envianos tu informacion para ser considerado en Recomendado por Experience Ecuador.",
+          subtitle: "Envíanos tu información para ser considerado en Recomendado por Experience Ecuador.",
           business_name_label: "Nombre del negocio",
-          business_type_label: "Categoria",
+          business_type_label: "Categoría",
           business_type_help: "Elige una.",
           contact_first_name_label: "Nombre",
           contact_last_name_label: "Apellido",
           contact_email_label: "Correo",
-          contact_phone_label: "Telefono",
+          contact_phone_label: "Teléfono",
           website_label: "Sitio web",
           whatsapp_label: "WhatsApp (opcional)",
           photos_label: "Fotos",
-          photos_upload_title: "Opcion A: Subir imagenes",
-          photos_upload_help: "Si tienes cuenta de Google, puedes subir imagenes con nuestro formulario. Google requiere iniciar sesion para subir archivos.",
+          photos_upload_title: "Opción A: Subir imágenes",
+          photos_upload_help: "Si tienes cuenta de Google, puedes subir imágenes con nuestro formulario. Google requiere iniciar sesión para subir archivos.",
           open_upload_form: "Abrir formulario de carga",
-          photos_urls_help: "Opcion B: Si ya tienes enlaces directos a imagenes, pegarlos aqui (opcional).",
-          photos_fallback: "Opcion C: Si ninguna opcion sirve, puedes enviarlas por correo a info@experienceecuador.com.",
+          photos_urls_help: "Opción B: Si ya tienes enlaces directos a imágenes, pégalos aquí (opcional).",
+          photos_fallback: "Opción C: Si ninguna opción sirve, puedes enviarlas por correo a info@experienceecuador.com.",
           regions_label: "Regiones",
           regions_help: "Selecciona todas las que correspondan.",
           locations_label: "Ubicaciones",
-          locations_help: "Las ubicaciones se actualizan segun las regiones seleccionadas.",
+          locations_help: "Las ubicaciones se actualizan según las regiones seleccionadas.",
           experiences_label: "Experiencias",
           experiences_help: "Selecciona todas las que correspondan.",
-          desc_es_label: "Descripcion corta (espanol)",
-          desc_en_label: "Descripcion corta (ingles)",
-          consent_publish_label: "Confirmo que pueden publicar esta informacion en Experience Ecuador.",
+          desc_es_label: "Descripción corta (español)",
+          desc_en_label: "Descripción corta (inglés)",
+          consent_publish_label: "Confirmo que pueden publicar esta información en Experience Ecuador.",
           consent_contact_label: "Acepto que Experience Ecuador me contacte sobre esta solicitud.",
-          note: "Revisamos cada solicitud antes de publicar. No mostramos precios publicamente.",
+          turnstile_help: "Completa la verificación de seguridad para enviar.",
+          note: "Revisamos cada solicitud antes de publicar. No mostramos precios públicamente.",
           reset: "Limpiar",
           submit: "Enviar",
           submitting: "Enviando...",
           select: "Selecciona",
           required_missing: "Completa los campos obligatorios marcados con *.",
+          security_missing: "Completa la verificación de seguridad antes de enviar.",
           success: "Gracias. Recibimos tu solicitud. Te escribiremos si necesitamos algo adicional.",
-          sent_fallback: "Enviado. Si recibiste el correo de confirmacion, funciono."
+          confirm_timeout: "No se recibió confirmación. Si recibiste el correo, la solicitud se envió.",
+          load_failed: "No pudimos cargar las opciones del formulario. Recarga la página e inténtalo de nuevo."
         },
         en: {
           title: "Partner Application",
@@ -337,17 +360,58 @@
           desc_en_label: "Short description (English)",
           consent_publish_label: "I confirm you may publish these details on Experience Ecuador.",
           consent_contact_label: "I agree Experience Ecuador may contact me about my submission.",
+          turnstile_help: "Complete the security check to submit.",
           note: "Submissions are reviewed before publishing. No public prices are displayed.",
           reset: "Reset",
           submit: "Submit",
           submitting: "Submitting...",
           select: "Select",
           required_missing: "Please complete all required fields marked with *.",
+          security_missing: "Please complete the security check before submitting.",
           success: "Thanks. We received your submission. We will follow up by email if we need anything else.",
-          sent_fallback: "Submission sent. If you received the confirmation email, it worked."
+          confirm_timeout: "No confirmation returned. If you received the email, the submission worked.",
+          load_failed: "We could not load the form options. Please refresh and try again."
         }
       };
+
       function t(k){ return (STR[lang] && STR[lang][k]) ? STR[lang][k] : k; }
+
+      function showOk(msg){
+        var ok = qs("#okBox"), er = qs("#errBox");
+        if(er) er.style.display = "none";
+        if(ok){ ok.style.display = "block"; ok.textContent = msg; }
+      }
+
+      function showErr(msg){
+        var ok = qs("#okBox"), er = qs("#errBox");
+        if(ok) ok.style.display = "none";
+        if(er){ er.style.display = "block"; er.textContent = msg; }
+      }
+
+      function clearMessages(){
+        var ok = qs("#okBox"), er = qs("#errBox");
+        if(ok) ok.style.display = "none";
+        if(er) er.style.display = "none";
+      }
+
+      function setPlaceholders(){
+        var isEs = (lang === "es");
+        var ph = {
+          business_name: isEs ? "Nombre del negocio" : "Business name",
+          contact_first_name: isEs ? "Nombre" : "First name",
+          contact_last_name: isEs ? "Apellido" : "Last name",
+          contact_email: isEs ? "hola@ejemplo.com" : "hello@example.com",
+          website_url: isEs ? "https://ejemplo.com" : "https://example.com",
+          short_description_es: isEs ? "Opcional" : "Optional",
+          short_description_en: "Optional"
+        };
+        Object.keys(ph).forEach(function(id){
+          var el = qs("#" + id);
+          if(el && typeof el.placeholder === "string"){
+            el.placeholder = ph[id];
+          }
+        });
+      }
 
       function setText(){
         document.documentElement.lang = lang;
@@ -365,33 +429,14 @@
           var key = el.getAttribute("data-i18n");
           if(!key) return;
           el.textContent = t(key);
+        });
 
         setPlaceholders();
-        });
       }
-      function setPlaceholders(){
-        var isEs = (lang === "es");
-        var ph = {
-          business_name: isEs ? "Nombre del negocio" : "Business name",
-          contact_first_name: isEs ? "Nombre" : "First name",
-          contact_last_name: isEs ? "Apellido" : "Last name",
-          contact_email: isEs ? "hola@ejemplo.com" : "hello@example.com",
-          website_url: isEs ? "https://ejemplo.com" : "https://example.com",
-          short_description_es: isEs ? "Opcional" : "Optional",
-          short_description_en: isEs ? "Optional" : "Optional"
-        };
-
-        Object.keys(ph).forEach(function(id){
-          var el = qs("#" + id);
-          if(el && typeof el.placeholder === "string"){
-            el.placeholder = ph[id];
-          }
-        });
-      }
-
 
       function renderBusinessTypes(){
         var sel = qs("#business_type");
+        if(!sel) return;
         var current = sel.value || "";
         var opts = ['<option value="">' + esc(t("select")) + '</option>'];
         BUSINESS_TYPES.forEach(function(bt){
@@ -413,7 +458,10 @@
 
       function renderRegions(preserve){
         var prev = preserve ? getChecked("regions") : [];
-        qs("#regionsBox").innerHTML = REGIONS.map(function(r){
+        var box = qs("#regionsBox");
+        if(!box) return;
+
+        box.innerHTML = REGIONS.map(function(r){
           var nm = (lang === "es") ? (r.name_es || r.name_en || r.name || r.id) : (r.name_en || r.name || r.id);
           return pill(r.id, nm, "regions", r.id, prev.indexOf(r.id) !== -1);
         }).join("");
@@ -423,7 +471,12 @@
         var selected = getChecked("regions");
         var prev = preserve ? getChecked("locations") : [];
         var box = qs("#locationsBox");
-        if(!selected.length){ box.innerHTML = ""; return; }
+        if(!box) return;
+
+        if(!selected.length){
+          box.innerHTML = "";
+          return;
+        }
 
         var locs = [];
         REGIONS.forEach(function(r){
@@ -437,34 +490,39 @@
         var seen = {};
         var uniq = [];
         locs.forEach(function(l){ if(l.id && !seen[l.id]){ seen[l.id]=true; uniq.push(l); } });
-        uniq.sort(function(a,b){ return String(a.label).localeCompare(String(b.label), (lang==="es" ? "es" : "en"), { sensitivity:"base" }); });
 
-        box.innerHTML = uniq.map(function(l){ return pill(l.id, l.label, "locations", l.id, prev.indexOf(l.id) !== -1); }).join("");
+        uniq.sort(function(a,b){
+          return String(a.label).localeCompare(String(b.label), (lang==="es" ? "es" : "en"), { sensitivity:"base" });
+        });
+
+        box.innerHTML = uniq.map(function(l){
+          return pill(l.id, l.label, "locations", l.id, prev.indexOf(l.id) !== -1);
+        }).join("");
       }
 
       function renderExperiences(preserve){
         var prev = preserve ? getChecked("experiences") : [];
+        var box = qs("#experiencesBox");
+        if(!box) return;
+
         var exps = EXPERIENCES.map(function(e){
           var label = (lang === "es") ? (e.name_es || e.name_en || e.name || e.id) : (e.name_en || e.name || e.id);
           return { id: e.id, label: label };
         });
-        exps.sort(function(a,b){ return String(a.label).localeCompare(String(b.label), (lang==="es" ? "es" : "en"), { sensitivity:"base" }); });
-        qs("#experiencesBox").innerHTML = exps.map(function(e){ return pill(e.id, e.label, "experiences", e.id, prev.indexOf(e.id) !== -1); }).join("");
-      }
 
-      function showOk(msg){ qs("#errBox").style.display = "none"; qs("#okBox").style.display = "block"; qs("#okBox").textContent = msg; }
-      function showErr(msg){ qs("#okBox").style.display = "none"; qs("#errBox").style.display = "block"; qs("#errBox").textContent = msg; }
+        exps.sort(function(a,b){
+          return String(a.label).localeCompare(String(b.label), (lang==="es" ? "es" : "en"), { sensitivity:"base" });
+        });
 
-      function resetForm(){
-        qs("#eeForm").reset();
-        qs("#locationsBox").innerHTML = "";
-        qs("#okBox").style.display = "none";
-        qs("#errBox").style.display = "none";
-        setText();
+        box.innerHTML = exps.map(function(e){
+          return pill(e.id, e.label, "experiences", e.id, prev.indexOf(e.id) !== -1);
+        }).join("");
       }
 
       function validate(){
-        if(!qs("#eeForm").checkValidity()) return false;
+        var form = qs("#eeForm");
+        if(!form) return false;
+        if(!form.checkValidity()) return false;
         if(!getChecked("regions").length) return false;
         if(!getChecked("locations").length) return false;
         if(!getChecked("experiences").length) return false;
@@ -499,70 +557,214 @@
         renderRegions(true);
         renderLocations(true);
         renderExperiences(true);
+        refreshTurnstileText_();
       }
 
       function setSubmitting(isSubmitting){
         var btn = qs("#btnSubmit");
+        if(!btn) return;
         btn.disabled = !!isSubmitting;
         btn.classList.toggle("is-loading", !!isSubmitting);
       }
 
-      async function loadData(){
+      function ensureTurnstileScript_(){
+        return new Promise(function(resolve){
+          if(window.turnstile && typeof window.turnstile.render === "function"){
+            resolve(true);
+            return;
+          }
+          var existing = document.getElementById("cfTurnstileScript");
+          if(existing){
+            existing.addEventListener("load", function(){ resolve(true); });
+            existing.addEventListener("error", function(){ resolve(false); });
+            return;
+          }
+          var s = document.createElement("script");
+          s.id = "cfTurnstileScript";
+          s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+          s.async = true;
+          s.defer = true;
+          s.onload = function(){ resolve(true); };
+          s.onerror = function(){ resolve(false); };
+          document.head.appendChild(s);
+        });
+      }
+
+      function refreshTurnstileText_(){
+        var help = qs("[data-i18n='turnstile_help']");
+        if(help) help.textContent = t("turnstile_help");
+      }
+
+      async function mountTurnstile_(){
+        var wrap = qs("#turnstileWrap");
+        var tokenField = qs("#turnstile_token");
+        if(!wrap || !tokenField) return;
+
+        if(!turnstileSiteKey){
+          wrap.style.display = "none";
+          return;
+        }
+
+        wrap.style.display = "block";
+
+        var ok = await ensureTurnstileScript_();
+        if(!ok || !window.turnstile){
+          wrap.style.display = "none";
+          return;
+        }
+
+        if(turnstileWidgetId !== null){
+          try{ window.turnstile.reset(turnstileWidgetId); }catch(e){}
+          return;
+        }
+
         try{
-          var r1 = await fetch("/assets/data/regions.json", { cache: "no-store" });
-          var j1 = await r1.json();
-          REGIONS = Array.isArray(j1 && j1.regions) ? j1.regions : (Array.isArray(j1 && j1.regions && j1.regions.regions) ? j1.regions.regions : []);
-
-          var r2 = await fetch("/assets/data/experiences.json", { cache: "no-store" });
-          var j2 = await r2.json();
-          EXPERIENCES = Array.isArray(j2 && j2.experiences) ? j2.experiences : (Array.isArray(j2 && j2.experiences && j2.experiences.experiences) ? j2.experiences.experiences : []);
-
-          setLang(lang);
+          turnstileWidgetId = window.turnstile.render("#turnstileWidget", {
+            sitekey: turnstileSiteKey,
+            theme: "light",
+            callback: function(token){
+              turnstileToken = token || "";
+              tokenField.value = turnstileToken;
+              var er = qs("#errBox");
+              if(er && er.style.display === "block"){
+                er.style.display = "none";
+              }
+            },
+            "expired-callback": function(){
+              turnstileToken = "";
+              tokenField.value = "";
+            },
+            "error-callback": function(){
+              turnstileToken = "";
+              tokenField.value = "";
+            }
+          });
         }catch(e){
-          showErr("Data load failed.");
+          wrap.style.display = "none";
         }
       }
 
+      async function loadConfig_(){
+        try{
+          var r = await fetch("/api/onboarding-config", { cache: "no-store" });
+          var j = await r.json();
+
+          if(j && j.ok){
+            gasOnboardingUrl = String(j.gas_onboarding_url || "").trim();
+            turnstileSiteKey = String(j.turnstile_site_key || "").trim();
+          }
+        }catch(e){}
+      }
+
+      async function loadData_(){
+        var loadedAny = false;
+        try{
+          var r1 = await fetch("/assets/data/regions.json", { cache: "no-store" });
+          var j1 = await r1.json();
+          REGIONS = Array.isArray(j1 && j1.regions) ? j1.regions : [];
+          loadedAny = loadedAny || !!REGIONS.length;
+
+          var r2 = await fetch("/assets/data/experiences.json", { cache: "no-store" });
+          var j2 = await r2.json();
+          EXPERIENCES = Array.isArray(j2 && j2.experiences) ? j2.experiences : [];
+          loadedAny = loadedAny || !!EXPERIENCES.length;
+        }catch(e){}
+
+        if(!loadedAny){
+          showErr(t("load_failed"));
+          return false;
+        }
+        return true;
+      }
+
+      function applyConfig_(){
+        var form = qs("#eeForm");
+        if(form && gasOnboardingUrl){
+          form.setAttribute("action", gasOnboardingUrl);
+        }
+      }
+
+      function resetForm(){
+        var form = qs("#eeForm");
+        if(form) form.reset();
+
+        var loc = qs("#locationsBox");
+        if(loc) loc.innerHTML = "";
+
+        clearMessages();
+        try{
+          if(turnstileWidgetId !== null && window.turnstile){
+            window.turnstile.reset(turnstileWidgetId);
+          }
+        }catch(e){}
+
+        turnstileToken = "";
+        var tokenField = qs("#turnstile_token");
+        if(tokenField) tokenField.value = "";
+
+        setText();
+      }
+
       function boot(){
-        // ES page defaults to Spanish, but keep a working toggle
         setLang("es");
         bindTitleCase();
 
         document.addEventListener("change", function(e){
-          var t = e.target;
-          if(t && t.name === "regions"){ renderLocations(true); }
+          var target = e.target;
+          if(target && target.name === "regions"){ renderLocations(true); }
         });
 
-        qs("#btnReset").addEventListener("click", function(){ resetForm(); });
+        var btnReset = qs("#btnReset");
+        if(btnReset){
+          btnReset.addEventListener("click", function(){ resetForm(); });
+        }
 
-        qs("#btnSubmit").addEventListener("click", function(){
-          if(!validate()){
-            showErr(t("required_missing"));
-            return;
-          }
-          qs("#okBox").style.display = "none";
-          qs("#errBox").style.display = "none";
+        var btnSubmit = qs("#btnSubmit");
+        if(btnSubmit){
+          btnSubmit.addEventListener("click", function(){
+            if(!validate()){
+              showErr(t("required_missing"));
+              return;
+            }
 
-          setSubmitting(true);
+            if(turnstileSiteKey && !turnstileToken){
+              showErr(t("security_missing"));
+              return;
+            }
 
-          window.__eeSubmitTimer = window.setTimeout(function(){
-            setSubmitting(false);
-            showErr("No se recibio confirmacion. Si recibiste el correo, la solicitud se envio.");
-          }, 12000);
+            clearMessages();
+            setSubmitting(true);
 
-          qs("#eeForm").submit();
-        });
+            window.__eeSubmitTimer = window.setTimeout(function(){
+              setSubmitting(false);
+              showErr(t("confirm_timeout"));
+            }, 12000);
+
+            var form = qs("#eeForm");
+            if(form) form.submit();
+          });
+        }
 
         var sw = qs("#langSwitch");
         function toggle(){ setLang(lang === "es" ? "en" : "es"); }
-        sw.addEventListener("click", toggle);
-        sw.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); toggle(); } });
+        if(sw){
+          sw.addEventListener("click", toggle);
+          sw.addEventListener("keydown", function(e){
+            if(e.key === "Enter" || e.key === " "){
+              e.preventDefault();
+              toggle();
+            }
+          });
+        }
 
         window.addEventListener("message", function(ev){
           if(!ev || !ev.data) return;
           if(ev.data.type !== "EE_ONBOARDING_RESULT") return;
 
-          if(window.__eeSubmitTimer){ clearTimeout(window.__eeSubmitTimer); window.__eeSubmitTimer = null; }
+          if(window.__eeSubmitTimer){
+            clearTimeout(window.__eeSubmitTimer);
+            window.__eeSubmitTimer = null;
+          }
 
           var payload = ev.data.payload || {};
           setSubmitting(false);
@@ -576,7 +778,20 @@
           }
         });
 
-        loadData();
+        (async function init(){
+          await loadConfig_();
+          applyConfig_();
+
+          var ok = await loadData_();
+          if(!ok) return;
+
+          renderBusinessTypes();
+          renderRegions(false);
+          renderLocations(false);
+          renderExperiences(false);
+
+          await mountTurnstile_();
+        })();
       }
 
       boot();
