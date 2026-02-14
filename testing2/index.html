@@ -461,6 +461,7 @@
       /* Keep phoneRow on one line (do NOT stack) */
     }
   </style>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
   <div id="siteHeader"></div>
@@ -496,12 +497,15 @@
         Los campos marcados con <span class="req">*</span> son obligatorios.
       </p>
 
-      <form id="eeContactForm" method="POST" target="ee_hidden_iframe" action="https://script.google.com/macros/s/AKfycbwkEieBoxiVmuSVQi-KXrMOtt875Rwx_bdOgEHI4kWcI-w5IUGeKSiH5BmxZbVmA5Qj/exec">
+      <form id="eeContactForm" data-action="/api/contact-submit novalidate>
         <input type="hidden" name="status" value="New">
         <input type="hidden" name="language" value="es">
+        <input type="hidden" name="source" id="source" value="EE Contacto">
+        <input type="hidden" name="user_agent" id="user_agent" value="">
+        <input type="hidden" name="ip_best-effort" id="ip_best_effort" value="">
 
         <!-- Guardamos el teléfono como +<código><número> (compatible con WhatsApp) -->
-        <input type="hidden" id="phone_full" name="phone" value="" autocapitalize="none">
+        <input type="hidden" id="phone_full" name="phone" value="">
 
         <div class="grid2">
           <div class="field">
@@ -517,7 +521,7 @@
 
         <div class="field">
           <label for="email">Correo electrónico <span class="req">*</span></label>
-          <input class="input" id="email" name="email" type="email" autocomplete="email" required autocapitalize="none">
+          <input class="input" id="email" name="email" type="email" autocomplete="email" required>
         </div>
 
         <div class="field">
@@ -526,8 +530,8 @@
 
           <div class="phoneRow" style="margin-top:8px;">
             <div class="plusBox" aria-hidden="true">+</div>
-            <input class="input ccOnly" id="phone_cc" type="text" inputmode="numeric" autocomplete="tel-country-code" aria-label="Código de país" autocapitalize="none">
-            <input class="input numInput" id="phone_num" type="text" inputmode="tel" autocomplete="tel-national" aria-label="Número de teléfono" autocapitalize="none">
+            <input class="input ccOnly" id="phone_cc" type="text" inputmode="numeric" autocomplete="tel-country-code" aria-label="Código de país">
+            <input class="input numInput" id="phone_num" type="text" inputmode="tel" autocomplete="tel-national" aria-label="Número de teléfono">
           </div>
         </div>
 
@@ -561,6 +565,10 @@
           </select>
         </div>
 
+                <div class="field">
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAACb5DEUS0cegxQwi" data-theme="light"></div>
+          <p class="helper" style="margin-top:10px;">Protegido por una verificacion de seguridad.</p>
+        </div>
         <div class="actionsRow">
           <button class="btn btnPrimary" type="submit">Enviar</button>
           <button class="btn btnGhost" type="reset">Restablecer</button>
