@@ -595,22 +595,37 @@
       function t(k){ return (STR[lang] && STR[lang][k]) ? STR[lang][k] : k; }
 
       function showOk(msg){
-        qs("#errBox").style.display = "none";
-        qs("#okBox").style.display = "block";
-        qs("#okBox").textContent = msg;
+        var ok = qs("#okBox");
+        var err = qs("#errBox");
+        if(err) err.style.display = "none";
+        if(ok){
+          ok.style.display = "block";
+          ok.textContent = msg;
+        }
       }
 
       function showErr(msg){
-        qs("#okBox").style.display = "none";
-        qs("#errBox").style.display = "block";
-        qs("#errBox").textContent = msg;
+        var ok = qs("#okBox");
+        var err = qs("#errBox");
+        if(ok) ok.style.display = "none";
+        if(err){
+          err.style.display = "block";
+          err.textContent = msg;
+        }
       }
 
       function setText(){
         document.documentElement.lang = lang;
-        qs("#language").value = lang;
-        qs("#langSwitch").classList.toggle("is-en", lang === "en");
-        qs("#spinner").textContent = t("submitting");
+
+        var langInput = qs("#language");
+        if(langInput) langInput.value = lang;
+
+        var sw = qs("#langSwitch");
+        if(sw) sw.classList.toggle("is-en", lang === "en");
+
+        var sp = qs("#spinner");
+        if(sp) sp.textContent = t("submitting");
+
         qsa("[data-i18n]").forEach(function(el){
           var key = el.getAttribute("data-i18n");
           if(key) el.textContent = t(key);
@@ -890,7 +905,20 @@
           setLang(lang);
         }).catch(function(err){
           setSubmitting(false);
-          showErr(t("data_failed") + " (" + String(err && err.message ? err.message : err) + ")");
+          console.error(err);
+
+          // If the critical option groups rendered, suppress any non-blocking init errors.
+          var regionsWrap = qs("#regionsWrap");
+          var expsWrap = qs("#experiencesWrap");
+          var hasRegions = !!(regionsWrap && regionsWrap.querySelectorAll("input[type=checkbox]").length);
+          var hasExps = !!(expsWrap && expsWrap.querySelectorAll("input[type=checkbox]").length);
+
+          if(!hasRegions || !hasExps){
+            showErr(t("data_failed") + " (" + String(err && err.message ? err.message : err) + ")");
+          } else {
+            // Keep UI clean; data is usable.
+            // If you want to surface this later, check DevTools console.
+          }
         });
       }
 
