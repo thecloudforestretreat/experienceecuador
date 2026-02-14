@@ -461,7 +461,6 @@
       /* Keep phoneRow on one line (do NOT stack) */
     }
   </style>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
   <div id="siteHeader"></div>
@@ -497,12 +496,9 @@
         Los campos marcados con <span class="req">*</span> son obligatorios.
       </p>
 
-      <form id="eeContactForm" data-action="/api/contact-submit novalidate>
+      <form id="eeContactForm" method="POST" target="ee_hidden_iframe" action="https://script.google.com/macros/s/AKfycbwkEieBoxiVmuSVQi-KXrMOtt875Rwx_bdOgEHI4kWcI-w5IUGeKSiH5BmxZbVmA5Qj/exec">
         <input type="hidden" name="status" value="New">
         <input type="hidden" name="language" value="es">
-        <input type="hidden" name="source" id="source" value="EE Contacto">
-        <input type="hidden" name="user_agent" id="user_agent" value="">
-        <input type="hidden" name="ip_best-effort" id="ip_best_effort" value="">
 
         <!-- Guardamos el teléfono como +<código><número> (compatible con WhatsApp) -->
         <input type="hidden" id="phone_full" name="phone" value="">
@@ -549,7 +545,7 @@
 
         <div class="field">
           <label for="notes">Notas</label>
-          <textarea class="textarea" id="notes" name="notes" placeholder="Comparte un mensaje breve y cualquier enlace (sitio web, media kit, ideas de itinerario, etc.)" autocapitalize="sentences"></textarea>
+          <textarea class="textarea" id="notes" name="notes" placeholder="Comparte un mensaje breve y cualquier enlace (sitio web, media kit, ideas de itinerario, etc.)" autocapitalize="sentences" autocomplete="off"></textarea>
         </div>
 
         <div class="field">
@@ -565,10 +561,6 @@
           </select>
         </div>
 
-                <div class="field">
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAACb5DEUS0cegxQwi" data-theme="light"></div>
-          <p class="helper" style="margin-top:10px;">Protegido por una verificacion de seguridad.</p>
-        </div>
         <div class="actionsRow">
           <button class="btn btnPrimary" type="submit">Enviar</button>
           <button class="btn btnGhost" type="reset">Restablecer</button>
@@ -620,123 +612,7 @@
 </section>
   </main>
   <div id="siteFooter"></div>
-  <script>
-    // Light deterrent: disable right-click on images only
-    document.addEventListener('contextmenu', (e) => {
-      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
-    });
-
-    // Copy email icon button
-    (function(){
-      const email = 'info@experienceecuador.com';
-      const btn = document.getElementById('copyContactEmail');
-      const toast = document.getElementById('contactCopyToast');
-      if(!btn) return;
-
-      function showCopied(){
-        btn.classList.add('copied');
-        if(toast) toast.classList.add('show');
-        setTimeout(() => {
-          btn.classList.remove('copied');
-          if(toast) toast.classList.remove('show');
-        }, 1600);
-      }
-
-      btn.addEventListener('click', async () => {
-        try {
-          if (navigator.clipboard && window.isSecureContext) {
-            await navigator.clipboard.writeText(email);
-            showCopied();
-            return;
-          }
-          const ta = document.createElement('textarea');
-          ta.value = email;
-          ta.style.position = 'fixed';
-          ta.style.left = '-9999px';
-          ta.style.top = '0';
-          document.body.appendChild(ta);
-          ta.focus();
-          ta.select();
-          document.execCommand('copy');
-          document.body.removeChild(ta);
-          showCopied();
-        } catch (e) {}
-      });
-    })();
-
-    // Phone UX:
-    // - Código de país (solo dígitos, sin escribir +)
-    // - Número (dígitos, espacios, guiones)
-    // - Se guarda como +<código><dígitos> en el input oculto "phone"
-    (function(){
-      const cc = document.getElementById('phone_cc');
-      const num = document.getElementById('phone_num');
-      const full = document.getElementById('phone_full');
-      if(!cc || !num || !full) return;
-
-      cc.value = cc.value || '1';
-
-      function digitsOnly(v){ return String(v || '').replace(/\D/g,''); }
-
-      function formatNationalBasic(v){
-        const d = digitsOnly(v);
-        if(!d) return '';
-        if(d.length <= 3) return d;
-        if(d.length <= 6) return d.slice(0,3) + '-' + d.slice(3);
-        return d.slice(0,3) + '-' + d.slice(3,6) + '-' + d.slice(6,10) + (d.length > 10 ? ' ' + d.slice(10) : '');
-      }
-
-      function updateFull(){
-        const ccd = digitsOnly(cc.value);
-        const nd = digitsOnly(num.value);
-        if(!ccd && !nd){
-          full.value = '';
-          return;
-        }
-        if(!nd){
-          full.value = ccd ? ('+' + ccd) : '';
-          return;
-        }
-        full.value = (ccd ? ('+' + ccd) : '+') + nd;
-      }
-
-      cc.addEventListener('input', () => {
-        cc.value = digitsOnly(cc.value).slice(0,4);
-        updateFull();
-      });
-
-      num.addEventListener('input', () => {
-        const formatted = formatNationalBasic(num.value);
-        num.value = formatted;
-        updateFull();
-      });
-
-      cc.addEventListener('blur', updateFull);
-      num.addEventListener('blur', updateFull);
-
-      updateFull();
-    })();
-
-    // Submitted confirmation (sin salir de la página)
-    (function(){
-      const form = document.getElementById('eeContactForm');
-      const pill = document.getElementById('formStatusPill');
-      if(!form || !pill) return;
-
-      form.addEventListener('submit', () => {
-        pill.textContent = 'Enviado. Recibimos tu mensaje y te responderemos pronto.';
-        pill.classList.add('show');
-
-        setTimeout(() => {
-          try { form.reset(); } catch(e) {}
-          const cc = document.getElementById('phone_cc');
-          if(cc && !cc.value) cc.value = '1';
-          const full = document.getElementById('phone_full');
-          if(full) full.value = '';
-        }, 450);
-      });
-    })();
-  </script>
+  
   <script>
     /* Inject global header/footer first, then load site.js (so nav JS never runs before header exists) */
     (function(){
@@ -760,6 +636,130 @@
         document.body.appendChild(s);
       });
     })();
+  </script>
+
+  <script>
+/* EE_CONTACT_AJAX_SUBMIT_v1 */
+(function() {
+  var form = document.getElementById("eeContactForm");
+  if (!form) return;
+
+  var statusEl = document.getElementById("eeFormStatus");
+  var submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+  var endpoint = form.getAttribute("data-action") || "/api/contact-submit";
+
+  function setStatus(kind, msg) {
+    if (!statusEl) return;
+    var bg = kind === "success" ? "rgba(34,197,94,0.12)" : kind === "error" ? "rgba(239,68,68,0.12)" : "rgba(59,130,246,0.12)";
+    var border = kind === "success" ? "rgba(34,197,94,0.35)" : kind === "error" ? "rgba(239,68,68,0.35)" : "rgba(59,130,246,0.35)";
+    statusEl.innerHTML =
+      '<div style="padding:14px 14px;border-radius:14px;border:1px solid ' + border + ';background:' + bg + ';font-weight:700;text-transform:none">' +
+        msg +
+      '</div>';
+  }
+
+  function getLang() {
+    var langField = form.querySelector('input[name="language"]');
+    var docLang = (document.documentElement.getAttribute("lang") || "en").toLowerCase();
+    var lang = (langField && langField.value ? langField.value : docLang);
+    return (lang.indexOf("es") === 0) ? "es" : "en";
+  }
+
+
+  function titleCaseWords(s) {
+    s = String(s || "").trim();
+    if (!s) return "";
+    return s.replace(/\s+/g, " ").split(" ").map(function(w) {
+      if (!w) return "";
+      return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+    }).join(" ");
+  }
+
+  // Make First/Last name capitalization reliable across browsers.
+  (function attachAutoCaps() {
+    var fn = document.getElementById("first_name");
+    var ln = document.getElementById("last_name");
+    function normalize(el) {
+      if (!el) return;
+      var v = el.value || "";
+      var nv = titleCaseWords(v);
+      if (nv !== v) el.value = nv;
+    }
+    if (fn) fn.addEventListener("blur", function() { normalize(fn); });
+    if (ln) ln.addEventListener("blur", function() { normalize(ln); });
+  })();
+
+  function serializeForm() {
+    var fd = new FormData(form);
+    var obj = {};
+    fd.forEach(function(v, k) {
+      if (obj[k] !== undefined) return;
+      obj[k] = String(v || "").trim();
+    });
+    obj.user_agent = navigator.userAgent || obj.user_agent || "";
+    obj.source = obj.source || "EE Contact";
+    obj.language = obj.language || getLang();
+    if (obj.first_name) obj.first_name = titleCaseWords(obj.first_name);
+    if (obj.last_name) obj.last_name = titleCaseWords(obj.last_name);
+    return obj;
+  }
+
+  form.addEventListener("submit", function(ev) {
+    ev.preventDefault();
+
+    // Turnstile token
+    var tsInput = form.querySelector('input[name="cf-turnstile-response"]');
+    var tsToken = tsInput ? (tsInput.value || "").trim() : "";
+
+    if (!tsToken) {
+      setStatus("error", getLang() === "es" ? "Por favor completa la verificacion anti-spam antes de enviar." : "Please complete the anti-spam verification before submitting.");
+      return;
+    }
+
+    var payload = serializeForm();
+    payload.turnstile_token = tsToken;
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.setAttribute("aria-disabled", "true");
+    }
+    setStatus("info", getLang() === "es" ? "Enviando..." : "Submitting...");
+
+    fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(payload)
+    }).then(function(res) {
+      return res.json();
+    }).then(function(data) {
+      if (data && data.ok) {
+        setStatus("success", getLang() === "es"
+          ? "Enviado. Hemos recibido tu mensaje y te responderemos pronto."
+          : "Submitted. We received your message and will get back to you soon."
+        );
+        // Do NOT clear the form (per your requirement).
+      } else {
+        var err = (data && (data.email_error || data.message)) ? (data.email_error || data.message) : "Unknown error";
+        setStatus("error", (getLang()==="es" ? "No se pudo enviar. " : "Submission failed. ") + err);
+      }
+    }).catch(function(err) {
+      setStatus("error", (getLang()==="es" ? "No se pudo enviar. " : "Submission failed. ") + String(err || ""));
+    }).finally(function() {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute("aria-disabled");
+      }
+      // Reset Turnstile so user can resubmit if needed
+      try {
+        if (window.turnstile && form.querySelector(".cf-turnstile")) window.turnstile.reset(form.querySelector(".cf-turnstile"));
+      } catch (e) {}
+    });
+  });
+})();
+
   </script>
 </body>
 </html>
