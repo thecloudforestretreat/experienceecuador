@@ -274,7 +274,7 @@
       .note{ max-width:none; }
     }
   </style>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=eeTurnstileOnload&render=explicit" async defer></script>
 </head>
 <body>
   <div id="siteHeader"></div>
@@ -429,18 +429,6 @@
 
       <div class="actions">
         <div class="note" data-i18n="note">Submissions are reviewed before publishing. No public prices are displayed.</div>
-        <div class="field">
-          <label class="label" data-i18n="turnstile_label">Verification</label>
-          <div class="turnstileWrap">
-            <div class="cf-turnstile"
-                 data-sitekey="0x4AAAAAACb5DEUS0cegxQwi"
-                 data-callback="eeOnTurnstile"
-                 data-expired-callback="eeOnTurnstileExpired"></div>
-            <input type="hidden" name="turnstile_token" id="turnstile_token" value="">
-          </div>
-          <div class="hint" data-i18n="turnstile_hint">Please complete the verification to submit.</div>
-        </div>
-
         <div class="btnRow">
           <button class="btn" id="btnReset" type="button" data-i18n="reset">Reset</button>
           <button class="btn primary" id="btnSubmit" type="button" data-i18n="submit">Submit<span class="spinner" id="spinner">Submitting...</span></button>
@@ -493,10 +481,7 @@
         en: {
           title: "Partner Application",
           subtitle: "Submit your details to be considered for Recommended by Experience Ecuador.",
-          
-          
-          
-          turnstile_error: "Please complete the verification.",turnstile_hint: "Please complete the verification to submit.",turnstile_label: "Verification",business_name_label: "Business name",
+          business_name_label: "Business name",
           business_type_label: "Category",
           business_type_help: "Choose one.",
           contact_first_name_label: "Contact first name",
@@ -533,10 +518,7 @@
         es: {
           title: "Registro de Socios",
           subtitle: "Envianos tu informacion para ser considerado en Recomendado por Experience Ecuador.",
-          
-          
-          
-          turnstile_error: "Completa la verificacion.",turnstile_hint: "Completa la verificacion para enviar.",turnstile_label: "Verificacion",business_name_label: "Nombre del negocio",
+          business_name_label: "Nombre del negocio",
           business_type_label: "Categoria",
           business_type_help: "Elige una.",
           contact_first_name_label: "Nombre",
@@ -571,26 +553,6 @@
           data_failed: "No se pudieron cargar los datos. Actualiza la pagina e intenta de nuevo."
         }
       };
-
-      function eeOnTurnstile(token){
-        var el = document.getElementById("turnstile_token");
-        if (el) el.value = token || "";
-      }
-      function eeOnTurnstileExpired(){
-        var el = document.getElementById("turnstile_token");
-        if (el) el.value = "";
-      }
-
-
-      function eeOnTurnstile(token){
-        var el = document.getElementById("turnstile_token");
-        if (el) el.value = token || "";
-      }
-      function eeOnTurnstileExpired(){
-        var el = document.getElementById("turnstile_token");
-        if (el) el.value = "";
-      }
-
 
       function t(k){ return (STR[lang] && STR[lang][k]) ? STR[lang][k] : k; }
 
@@ -729,8 +691,6 @@
         renderRegions(false);
         renderLocations(false);
         renderExperiences(false);
-        try { var tEl=document.getElementById("turnstile_token"); if (tEl) tEl.value=""; if (window.turnstile) window.turnstile.reset(); } catch(e) {}
-
       }
 
       function setLang(next){
@@ -792,6 +752,13 @@
         qs("#btnReset").addEventListener("click", function(){ resetForm(); });
 
         qs("#btnSubmit").addEventListener("click", function(){
+          var ts = getTurnstileToken();
+          if (!ts) {
+            showErr("Please complete the security check.");
+            try { var w = document.getElementById("ee_turnstile"); if (w) w.scrollIntoView({behavior:"smooth", block:"center"}); } catch (e) {}
+            return;
+          }
+
           if(!validate()){
             showErr(t("required_missing"));
             return;
@@ -836,7 +803,49 @@
       }
 
       if(document.readyState === "loading"){
-        document.addEventListener("DOMContentLoaded", boot);
+        
+  // Turnstile (required)
+  var eeTurnstileWidgetId = null;
+
+  function eeTurnstileOnload() {
+    try {
+      if (!window.turnstile) return;
+      var el = document.getElementById("ee_turnstile");
+      if (!el) return;
+      eeTurnstileWidgetId = window.turnstile.render(el, {
+        sitekey: "0x4AAAAAACb5DEUS0cegxQwi",
+        callback: function(token) {
+          var hid = document.getElementById("turnstile_token");
+          if (hid) hid.value = token || "";
+        },
+        "expired-callback": function() {
+          var hid = document.getElementById("turnstile_token");
+          if (hid) hid.value = "";
+        },
+        "error-callback": function() {
+          var hid = document.getElementById("turnstile_token");
+          if (hid) hid.value = "";
+        }
+      });
+    } catch (e) {}
+  }
+
+  function getTurnstileToken() {
+    var hid = document.getElementById("turnstile_token");
+    var v = hid ? String(hid.value || "").trim() : "";
+    if (v) return v;
+    try {
+      if (window.turnstile && eeTurnstileWidgetId !== null) {
+        v = String(window.turnstile.getResponse(eeTurnstileWidgetId) || "").trim();
+        if (hid && v) hid.value = v;
+        return v;
+      }
+    } catch (e) {}
+    return "";
+  }
+
+
+document.addEventListener("DOMContentLoaded", boot);
       }else{
         boot();
       }
