@@ -506,7 +506,22 @@
         if(!box) return;
 
         var exps = EXPERIENCES.map(function(e){
-          var label = (lang === "es") ? (e.name_es || e.name_en || e.name || e.id) : (e.name_en || e.name || e.id);
+          var esLabelMap = {
+            adventure: "Aventura",
+            culinary: "Gastronomia",
+            culture: "Cultura",
+            nature: "Naturaleza",
+            relaxation: "Relajacion",
+            wildlife_birding: "Vida silvestre y observacion de aves",
+            wildlife_and_birding: "Vida silvestre y observacion de aves"
+          };
+
+          var label;
+          if (lang === "es") {
+            label = e.name_es || esLabelMap[e.id] || esLabelMap[e.key] || esLabelMap[e.slug] || e.name || e.name_en || e.id;
+          } else {
+            label = e.name_en || e.name || e.id;
+          }
           return { id: e.id, label: label };
         });
 
