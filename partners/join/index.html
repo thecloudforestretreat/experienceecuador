@@ -595,22 +595,33 @@
       function t(k){ return (STR[lang] && STR[lang][k]) ? STR[lang][k] : k; }
 
       function showOk(msg){
-        qs("#errBox").style.display = "none";
-        qs("#okBox").style.display = "block";
-        qs("#okBox").textContent = msg;
+        var er = qs("#errBox");
+        var ok = qs("#okBox");
+        if(er) er.style.display = "none";
+        if(ok){
+          ok.style.display = "block";
+          ok.textContent = msg;
+        }
       }
 
       function showErr(msg){
-        qs("#okBox").style.display = "none";
-        qs("#errBox").style.display = "block";
-        qs("#errBox").textContent = msg;
+        var ok = qs("#okBox");
+        var er = qs("#errBox");
+        if(ok) ok.style.display = "none";
+        if(er){
+          er.style.display = "block";
+          er.textContent = msg;
+        }
       }
 
       function setText(){
         document.documentElement.lang = lang;
-        qs("#language").value = lang;
-        qs("#langSwitch").classList.toggle("is-en", lang === "en");
-        qs("#spinner").textContent = t("submitting");
+        var lf = qs("#language");
+        if(lf) lf.value = lang;
+        var sw = qs("#langSwitch");
+        if(sw) sw.classList.toggle("is-en", lang === "en");
+        var sp = qs("#spinner");
+        if(sp) sp.textContent = t("submitting");
         qsa("[data-i18n]").forEach(function(el){
           var key = el.getAttribute("data-i18n");
           if(key) el.textContent = t(key);
@@ -890,7 +901,7 @@
           setLang(lang);
         }).catch(function(err){
           setSubmitting(false);
-          showErr(t("data_failed") + " (" + String(err && err.message ? err.message : err) + ")");
+          showErr(t("data_failed"));
         });
       }
 
