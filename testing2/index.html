@@ -504,7 +504,8 @@
       function getTurnstileToken(){
         var el = document.querySelector('textarea[name="cf-turnstile-response"]');
         var v = el ? String(el.value || "").trim() : "";
-        qs("#turnstile_token").value = v;
+        var out = qs("#turnstile_token");
+        if(out) out.value = v;
         return v;
       }
 
@@ -595,8 +596,8 @@
       function t(k){ return (STR[lang] && STR[lang][k]) ? STR[lang][k] : k; }
 
       function showOk(msg){
-        var ok = qs("#okBox");
         var er = qs("#errBox");
+        var ok = qs("#okBox");
         if(er) er.style.display = "none";
         if(ok){
           ok.style.display = "block";
@@ -616,16 +617,12 @@
 
       function setText(){
         document.documentElement.lang = lang;
-
-        var langField = qs("#language");
-        if(langField) langField.value = lang;
-
+        var lf = qs("#language");
+        if(lf) lf.value = lang;
         var sw = qs("#langSwitch");
         if(sw) sw.classList.toggle("is-en", lang === "en");
-
         var sp = qs("#spinner");
         if(sp) sp.textContent = t("submitting");
-
         qsa("[data-i18n]").forEach(function(el){
           var key = el.getAttribute("data-i18n");
           if(key) el.textContent = t(key);
@@ -906,7 +903,7 @@
           setLang(lang);
         }).catch(function(err){
           setSubmitting(false);
-          showErr(t("data_failed") + " (" + String(err && err.message ? err.message : err) + ")");
+          showErr(t("data_failed"));
         });
       }
 
