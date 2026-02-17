@@ -504,8 +504,7 @@
       function getTurnstileToken(){
         var el = document.querySelector('textarea[name="cf-turnstile-response"]');
         var v = el ? String(el.value || "").trim() : "";
-        var out = qs("#turnstile_token");
-        if(out) out.value = v;
+        qs("#turnstile_token").value = v;
         return v;
       }
 
@@ -626,7 +625,6 @@
         qsa("[data-i18n]").forEach(function(el){
           var key = el.getAttribute("data-i18n");
           if(key) el.textContent = t(key);
-        });
         });
       }
 
