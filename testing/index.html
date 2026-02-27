@@ -619,17 +619,28 @@
         });
       }
 
-      function normalizeUrl(u){
-        var s = String(u || "").trim();
-        if (!s || s === "#") return "";
-        if (/^https?:\/\//i.test(s)) return s;
-        if (/^mailto:/i.test(s)) return s;
-        if (/^tel:/i.test(s)) return s;
-        if (/^sms:/i.test(s)) return s;
-        return "https://" + s.replace(/^\/+/, "");
-      }
+      function normalizeUrl(u) {
+  var s = String(u || "").trim();
+  if (!s || s === "#") return "";
+  if (/^https?:\/\//i.test(s)) return s;
+  if (/^(mailto:|tel:|sms:)/i.test(s)) return s;
+  // Root-relative or relative asset paths should stay as-is (or be resolved later)
+  if (s.startsWith("/")) return s;
+  if (/^(assets\/|\.\/|\.\.\/)/i.test(s)) return s.replace(/^\.\//, "");
+  // Otherwise treat as a bare domain (example.com) and add https
+  return "https://" + s;
+}
 
-      function getAction(item, key){
+function normalizeAssetUrl(p) {
+  var s = String(p || "").trim();
+  if (!s) return "";
+  if (/^https?:\/\//i.test(s) || s.startsWith("data:")) return s;
+  if (s.startsWith("/")) return window.location.origin + s;
+  // treat as site-relative (e.g., assets/...)
+  return window.location.origin + "/" + s.replace(/^\.\//, "").replace(/^\//, "");
+}
+
+function getAction(item, key){
         if (item && item.actions && item.actions[key]) return item.actions[key];
         if (item && item.links){
           // Back-compat for older data shapes
@@ -846,12 +857,25 @@
     return out;
   }
 
-function normalizeImages(item){
-        var imgs = (item && item.images && item.images.length) ? item.images.slice(0) : [];
-        while (imgs.length < 3){
-          imgs.push(makePlaceholderImgDataURI(item.title_en || item.title || "Image"));
-        }
-        return imgs.slice(0,3);
+function normalizeImages(item) {
+  var imgs = [];
+  if (item && Array.isArray(item.images)) imgs = item.images.slice();
+  imgs = imgs.map(function(x){ return String(x || "").trim(); }).filter(Boolean);
+
+  // Fallback: use the category placeholder image when a listing has no images
+  var cat = String((item && item.category) || "").toLowerCase();
+  var fallback = (PLACEHOLDER_IMAGES[cat] || "").trim();
+  if (!imgs.length && fallback) imgs = [fallback];
+
+  // Always output exactly 3 images to keep the carousel consistent
+  while (imgs.length < 3 && imgs.length > 0) imgs.push(imgs[0]);
+  imgs = imgs.slice(0, 3);
+
+  // Convert to absolute URLs so paths work from /recommendations/ and elsewhere
+  return imgs.map(normalizeAssetUrl);
+}
+
+return imgs.slice(0,3);
       }
 
       function cardHtml(item){
