@@ -619,28 +619,17 @@
         });
       }
 
-      function normalizeUrl(u) {
-  var s = String(u || "").trim();
-  if (!s || s === "#") return "";
-  if (/^https?:\/\//i.test(s)) return s;
-  if (/^(mailto:|tel:|sms:)/i.test(s)) return s;
-  // Root-relative or relative asset paths should stay as-is (or be resolved later)
-  if (s.startsWith("/")) return s;
-  if (/^(assets\/|\.\/|\.\.\/)/i.test(s)) return s.replace(/^\.\//, "");
-  // Otherwise treat as a bare domain (example.com) and add https
-  return "https://" + s;
-}
+      function normalizeUrl(u){
+        var s = String(u || "").trim();
+        if (!s || s === "#") return "";
+        if (/^https?:\/\//i.test(s)) return s;
+        if (/^mailto:/i.test(s)) return s;
+        if (/^tel:/i.test(s)) return s;
+        if (/^sms:/i.test(s)) return s;
+        return "https://" + s.replace(/^\/+/, "");
+      }
 
-function normalizeAssetUrl(p) {
-  var s = String(p || "").trim();
-  if (!s) return "";
-  if (/^https?:\/\//i.test(s) || s.startsWith("data:")) return s;
-  if (s.startsWith("/")) return window.location.origin + s;
-  // treat as site-relative (e.g., assets/...)
-  return window.location.origin + "/" + s.replace(/^\.\//, "").replace(/^\//, "");
-}
-
-function getAction(item, key){
+      function getAction(item, key){
         if (item && item.actions && item.actions[key]) return item.actions[key];
         if (item && item.links){
           // Back-compat for older data shapes
@@ -798,7 +787,7 @@ function getAction(item, key){
 
   function makeMarketingPlaceholder(category, regionId, locationId, experienceId){
     const labels = categoryLabels(category);
-    const img = PLACEHOLDER_IMAGES[category] || "";
+        const img = normalizeImgSrc(PLACEHOLDER_IMAGES[category] || "");
     const exps = experienceId ? [experienceId] : [];
     return {
       id: "placeholder_" + category + "_" + (locationId || "all"),
@@ -857,305 +846,35 @@ function getAction(item, key){
     return out;
   }
 
-function normalizeImages(item) {
-  var imgs = [];
-  if (item && Array.isArray(item.images)) imgs = item.images.slice();
-  imgs = imgs.map(function(x){ return String(x || "").trim(); }).filter(Boolean);
 
-  // Fallback: use the category placeholder image when a listing has no images
-  var cat = String((item && item.category) || "").toLowerCase();
-  var fallback = (PLACEHOLDER_IMAGES[cat] || "").trim();
-  if (!imgs.length && fallback) imgs = [fallback];
-
-  // Always output exactly 3 images to keep the carousel consistent
-  while (imgs.length < 3 && imgs.length > 0) imgs.push(imgs[0]);
-  imgs = imgs.slice(0, 3);
-
-  // Convert to absolute URLs so paths work from /recommendations/ and elsewhere
-  return imgs.map(normalizeAssetUrl);
-}
-
-return imgs.slice(0,3);
+      function normalizeImgSrc(src){
+        var s = String(src || "").trim();
+        if (!s) return "";
+        if (/^data:/i.test(s)) return s;
+        if (/^https?:\/\//i.test(s)) return s;
+        if (s[0] === "/") return s;            // root-relative already
+        if (s.indexOf("assets/") === 0) return "/" + s;  // common case
+        return "/" + s.replace(/^\.?\//, ""); // fallback
       }
 
-      function cardHtml(item){
-        var title = item.title_en || item.title || "Untitled";
-        var desc = item.description_en || item.description || "";
-        var why = item.why_en || "";
-        var isFeatured = !!item.featured;
+function normalizeImages(item){
+        var imgs = (item && item.images && item.images.length) ? item.images.slice(0) : [];
 
-        var images = normalizeImages(item);
-
-        var tags = [];
-        if (isFeatured) tags.push('<span class="tag featured">' + esc(t("featured")) + '</span>');
-        tags.push('<span class="tag">' + esc(labelRegion(item.region_id)) + '</span>');
-        tags.push('<span class="tag">' + esc(labelLocation(item.region_id, item.location_id)) + '</span>');
-
-        var chips = [];
-        chips.push('<span class="chip">' + esc(item.category_label_en || item.category || "") + '</span>');
-        if (item.experiences && item.experiences.length){
-          chips.push('<span class="chip">' + esc(labelExperience(item.experiences[0])) + '</span>');
+        // Normalize any relative image paths so they always resolve from site root
+        for (var i = 0; i < imgs.length; i++){
+          imgs[i] = normalizeImgSrc(imgs[i]);
         }
 
-        var websiteUrl = normalizeUrl(getAction(item, "website_url"));
-        var whatsappUrl = normalizeUrl(getAction(item, "whatsapp_url"));
-        var menuPdf = normalizeUrl(getAction(item, "menu_pdf"));
-
-        var links = [];
-        if (websiteUrl){
-          links.push('<a class="btn primary" href="' + esc(websiteUrl) + '" target="_blank" rel="noopener" aria-label="Visit website">' + esc(t("visit_website")) + '</a>');
-        } else {
-          links.push('<a class="btn primary" href="#" aria-label="Visit website" aria-disabled="true">' + esc(t("visit_website")) + '</a>');
+        // Placeholders must ALWAYS have exactly 3 images (same placeholder image repeated)
+        if (item && item.placeholder){
+          var base = imgs[0] || normalizeImgSrc((PLACEHOLDER_IMAGES[item.category] || ""));
+          if (!base) return [];
+          return [base, base, base];
         }
 
-        if (whatsappUrl){
-          links.push('<a class="btn" href="' + esc(whatsappUrl) + '" target="_blank" rel="noopener" aria-label="WhatsApp">' + esc(t("whatsapp")) + '</a>');
-        } else {
-          links.push('<a class="btn" href="#" aria-label="WhatsApp" aria-disabled="true">' + esc(t("whatsapp")) + '</a>');
+        // Real listings: keep as-is, but ensure at least 1 image for the carousel
+        if (imgs.length === 0){
+          imgs = [makePlaceholderImgDataURI(item.title_en || item.title || "Image")];
         }
-
-        if (menuPdf){
-          links.push('<a class="btn" href="' + esc(menuPdf) + '" target="_blank" rel="noopener" aria-label="Download menu">' + esc(t("download_menu")) + '</a>');
-        }
-
-        var aria = esc(title);
-
-        var dots = '<div class="dots" aria-hidden="true">'
-          + '<span class="dot active"></span><span class="dot"></span><span class="dot"></span>'
-          + '</div>';
-
-        var slides = ''
-          + '<div class="carouselSlide"><img src="' + esc(images[0]) + '" alt="' + aria + ' image 1" loading="eager" decoding="async"></div>'
-          + '<div class="carouselSlide"><img src="' + esc(images[1]) + '" alt="' + aria + ' image 2" loading="lazy" decoding="async"></div>'
-          + '<div class="carouselSlide"><img src="' + esc(images[2]) + '" alt="' + aria + ' image 3" loading="lazy" decoding="async"></div>';
-
-        var whyBlock = why ? ('<div class="why" aria-label="Why we recommend"><strong>Why we recommend:</strong> ' + esc(why) + '</div>') : '';
-
-        return ''
-          + '<article class="card" data-id="' + esc(item.id) + '" data-region="' + esc(item.region_id) + '" data-location="' + esc(item.location_id) + '" data-category="' + esc(item.category) + '" data-experiences="' + esc((item.experiences || []).join(",")) + '">'
-          +   '<div class="media recCarousel" data-interval="2500" aria-label="' + aria + ' carousel">'
-          +     '<div class="carouselViewport" aria-label="Carousel viewport">'
-          +       '<div class="carouselTrack">' + slides + '</div>'
-          +     '</div>'
-          +     '<button class="navBtn prev" type="button" aria-label="Previous image"><span aria-hidden="true"></span></button>'
-          +     '<button class="navBtn next" type="button" aria-label="Next image"><span aria-hidden="true"></span></button>'
-          +     dots
-          +     '<div class="badgeRow" aria-hidden="true">' + tags.join("") + '</div>'
-          +   '</div>'
-          +   '<div class="body">'
-          +     '<div class="titleRow">'
-          +       '<h3 class="title">' + esc(title) + '</h3>'
-          +     '</div>'
-          +     '<div class="chipsRow" aria-label="Meta chips">' + chips.join("") + '</div>'
-          +     '<p class="desc">' + esc(desc) + '</p>'
-          +     whyBlock
-          +     '<div class="links" aria-label="Actions">' + links.join("") + '</div>'
-          +   '</div>'
-          + '</article>';
+        return imgs;
       }
-
-      function apply(){
-        if (!ITEMS || !ITEMS.items) return;
-
-        var f = getFilters();
-        var out = [];
-
-        for (var i=0; i<ITEMS.items.length; i++){
-          var it = ITEMS.items[i];
-
-          if (f.region_id && it.region_id !== f.region_id) continue;
-          if (f.location_id && it.location_id !== f.location_id) continue;
-          if (f.category && it.category !== f.category) continue;
-
-          if (f.experience_id){
-            var exps = it.experiences || [];
-            var ok = false;
-            for (var j=0; j<exps.length; j++){
-              if (exps[j] === f.experience_id){ ok = true; break; }
-            }
-            if (!ok) continue;
-          }
-
-          out.push(it);
-        }
-
-        var realCount = out.length;
-        out = addMarketingPlaceholders(out, f);
-
-        elCards.innerHTML = out.map(cardHtml).join("");
-        setCount(realCount);
-
-        if (realCount === 0){
-          elNoResults.style.display = "block";
-          elNoResults.textContent = t("no_results");
-        } else {
-          elNoResults.style.display = "none";
-        }
-
-        initAllCarousels();
-      }
-
-      function initCarousel(root){
-        var viewport = root.querySelector(".carouselViewport");
-        var track = root.querySelector(".carouselTrack");
-        var slides = Array.prototype.slice.call(root.querySelectorAll(".carouselSlide"));
-        var prevBtn = root.querySelector(".navBtn.prev");
-        var nextBtn = root.querySelector(".navBtn.next");
-        var dotsWrap = root.querySelector(".dots");
-        var dots = dotsWrap ? Array.prototype.slice.call(dotsWrap.querySelectorAll(".dot")) : [];
-
-        if(!viewport || !track || !slides.length) return;
-
-        var index = 0;
-        var intervalMs = Number(root.getAttribute("data-interval") || "2500");
-        var timer = null;
-
-        var prefersReducedMotion = false;
-        try{
-          prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        }catch(_){ prefersReducedMotion = false; }
-
-        var autoplay = !prefersReducedMotion;
-
-        function update(){
-          track.style.transform = "translateX(-" + (index * 100) + "%)";
-          if(dots.length){
-            for(var i=0; i<dots.length; i++){
-              if(i === index) dots[i].classList.add("active");
-              else dots[i].classList.remove("active");
-            }
-          }
-        }
-
-        function setIndex(next){
-          var n = next;
-          if(n < 0) n = slides.length - 1;
-          if(n >= slides.length) n = 0;
-          index = n;
-          update();
-        }
-
-        function next(){ setIndex(index + 1); }
-        function prev(){ setIndex(index - 1); }
-
-        function stop(){
-          if(timer){
-            clearInterval(timer);
-            timer = null;
-          }
-        }
-
-        function start(){
-          if(!autoplay) return;
-          stop();
-          timer = setInterval(function(){ next(); }, intervalMs);
-        }
-
-        if(prevBtn){
-          prevBtn.addEventListener("click", function(){
-            prev();
-            stop();
-          });
-        }
-
-        if(nextBtn){
-          nextBtn.addEventListener("click", function(){
-            next();
-            stop();
-          });
-        }
-
-        root.addEventListener("mouseenter", stop);
-        root.addEventListener("mouseleave", start);
-        root.addEventListener("focusin", stop);
-        root.addEventListener("focusout", start);
-
-        var startX = 0;
-        var isDown = false;
-
-        viewport.addEventListener("pointerdown", function(e){
-          isDown = true;
-          startX = e.clientX;
-          try{ viewport.setPointerCapture(e.pointerId); }catch(_){}
-        });
-
-        viewport.addEventListener("pointerup", function(e){
-          if(!isDown) return;
-          isDown = false;
-          var dx = e.clientX - startX;
-          var threshold = 40;
-          if(dx > threshold){ prev(); stop(); }
-          if(dx < -threshold){ next(); stop(); }
-        });
-
-        viewport.addEventListener("pointercancel", function(){
-          isDown = false;
-        });
-
-        update();
-        start();
-      }
-
-      function initAllCarousels(){
-        var carousels = document.querySelectorAll(".recCarousel");
-        for(var i=0; i<carousels.length; i++){
-          initCarousel(carousels[i]);
-        }
-      }
-
-      function wire(){
-        elRegion.addEventListener("change", function(){
-          syncLocationOptions();
-          elLocation.value = "";
-          apply();
-        });
-
-        elLocation.addEventListener("change", apply);
-        elExperience.addEventListener("change", apply);
-        elCategory.addEventListener("change", apply);
-
-        btnReset.addEventListener("click", resetFilters);
-      }
-
-      function boot(){
-        wire();
-
-        Promise.all([
-          fetchJson("/assets/data/regions.json"),
-          fetchJson("/assets/data/experiences.json"),
-          fetchJson("/assets/data/recommendations.json")
-        ]).then(function(all){
-          REGIONS = all[0];
-          EXPERIENCES = all[1];
-          ITEMS = all[2];
-
-          syncRegionOptions();
-          syncLocationOptions();
-          syncExperienceOptions();
-
-          apply();
-        }).catch(function(){
-          elNoResults.style.display = "block";
-          elNoResults.textContent = "Unable to load recommendations data.";
-          setCount(0);
-        });
-      }
-
-      boot();
-    })();
-  </script>
-
-  <script>
-    (function(){
-      async function inject(id, url){
-        var el = document.getElementById(id);
-        if(!el) return;
-        var res = await fetch(url, { cache: "no-store" });
-        el.innerHTML = await res.text();
-      }
-      inject("siteHeader", "/assets/includes/header.html");
-      inject("siteFooter", "/assets/includes/footer.html");
-    })();
-  </script>
-</body>
-</html>
