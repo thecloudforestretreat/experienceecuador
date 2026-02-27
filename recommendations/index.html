@@ -484,7 +484,30 @@
     @media (max-width: 480px){
       .navBtn{ width: 40px; height: 40px; }
     }
-  </style>
+  
+
+    /* Ensure action buttons align across cards */
+    .links{ margin-top: auto; }
+
+    /* Chips are always on their own full-width row for consistent layout */
+    .chipsRow{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items:center;
+      justify-content:flex-end;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    /* Disabled buttons (empty links) */
+    .btn[aria-disabled="true"]{
+      opacity: .45;
+      pointer-events: none;
+      filter: grayscale(100%);
+    }
+
+</style>
 </head>
 <body>
   <div id="siteHeader"></div>
@@ -753,7 +776,77 @@
         return "data:image/svg+xml;utf8," + svg;
       }
 
-      function normalizeImages(item){
+      
+  // Category-specific marketing placeholders (not stored in recommendations.json)
+  const PLACEHOLDER_IMAGES = {
+    lodging: "assets/images/promos/clients/ee_promos_clients_lodging_01.jpg",
+    restaurants: "assets/images/promos/clients/ee_promos_clients_food_01.jpg",
+    services: "assets/images/promos/clients/ee_promos_clients_service_01.jpg",
+    activities: "assets/images/promos/clients/ee_promos_clients_activities_01.jpg"
+  };
+
+  function makeMarketingPlaceholder(category, regionId, locationId, experienceId){
+    const labels = categoryLabels(category);
+    const img = PLACEHOLDER_IMAGES[category] || "";
+    const exps = experienceId ? [experienceId] : [];
+    return {
+      id: "placeholder_" + category + "_" + (locationId || "all"),
+      category: category,
+      category_label_en: labels.en,
+      category_label_es: labels.es,
+      region_id: regionId || "",
+      location_id: locationId || "",
+      experiences: exps,
+      title_en: "Featured Partner Spot",
+      title_es: "Espacio para socio",
+      description_en: "Your business could be featured here with photos, links, and booking details.",
+      description_es: "Tu negocio puede aparecer aqui con fotos, enlaces y detalles de reserva.",
+      why_en: "Want to be listed? Contact us to join as a partner.",
+      why_es: "Quieres aparecer aqui? Contactanos para ser socio.",
+      tags_en: ["Partner", "Coming soon"],
+      tags_es: ["Socio", "Proximamente"],
+      images: img ? [img] : [],
+      actions: { website_url: "", whatsapp_url: "", phone: "", menu_pdf: "", details_url: "" },
+      featured: false,
+      placeholder: true
+    };
+  }
+
+  function categoryLabels(category){
+    const c = String(category || "").toLowerCase();
+    if (c === "lodging") return { en: "Lodging", es: "Alojamiento" };
+    if (c === "restaurants") return { en: "Restaurants", es: "Restaurantes" };
+    if (c === "services") return { en: "Services", es: "Servicios" };
+    if (c === "activities") return { en: "Activities", es: "Actividades" };
+    return { en: "", es: "" };
+  }
+
+  function inferRegionForLocation(locationId){
+    const all = (ITEMS && ITEMS.items) ? ITEMS.items : [];
+    for (let i = 0; i < all.length; i++){
+      if (String(all[i].location_id || "") === String(locationId || "")) {
+        return all[i].region_id || "";
+      }
+    }
+    return "";
+  }
+
+  function addMarketingPlaceholders(out, f){
+    if (!f || !f.location_id) return out;
+
+    const regionId = f.region_id || inferRegionForLocation(f.location_id);
+    const cats = f.category ? [f.category] : ["lodging","restaurants","services","activities"];
+
+    // Always add one marketing placeholder per category for the selected location,
+    // so visitors can see available partner slots even if there are real listings.
+    cats.forEach(function(cat){
+      out.push(makeMarketingPlaceholder(cat, regionId, f.location_id, f.experience_id || ""));
+    });
+
+    return out;
+  }
+
+function normalizeImages(item){
         var imgs = (item && item.images && item.images.length) ? item.images.slice(0) : [];
         while (imgs.length < 3){
           imgs.push(makePlaceholderImgDataURI(item.title_en || item.title || "Image"));
@@ -828,8 +921,8 @@
           +   '<div class="body">'
           +     '<div class="titleRow">'
           +       '<h3 class="title">' + esc(title) + '</h3>'
-          +       '<div class="chips" aria-label="Meta chips">' + chips.join("") + '</div>'
           +     '</div>'
+          +     '<div class="chipsRow" aria-label="Meta chips">' + chips.join("") + '</div>'
           +     '<p class="desc">' + esc(desc) + '</p>'
           +     whyBlock
           +     '<div class="links" aria-label="Actions">' + links.join("") + '</div>'
@@ -862,10 +955,13 @@
           out.push(it);
         }
 
-        elCards.innerHTML = out.map(cardHtml).join("");
-        setCount(out.length);
+        var realCount = out.length;
+        out = addMarketingPlaceholders(out, f);
 
-        if (out.length === 0){
+        elCards.innerHTML = out.map(cardHtml).join("");
+        setCount(realCount);
+
+        if (realCount === 0){
           elNoResults.style.display = "block";
           elNoResults.textContent = t("no_results");
         } else {
