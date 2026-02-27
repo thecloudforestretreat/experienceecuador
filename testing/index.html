@@ -787,7 +787,7 @@
 
   function makeMarketingPlaceholder(category, regionId, locationId, experienceId){
     const labels = categoryLabels(category);
-    const img = PLACEHOLDER_IMAGES[category] || "";
+        const img = normalizeImgSrc(PLACEHOLDER_IMAGES[category] || "");
     const exps = experienceId ? [experienceId] : [];
     return {
       id: "placeholder_" + category + "_" + (locationId || "all"),
@@ -846,8 +846,24 @@
     return out;
   }
 
+
+      function normalizeImgSrc(src){
+        var s = String(src || "").trim();
+        if (!s) return "";
+        if (/^data:/i.test(s)) return s;
+        if (/^https?:\/\//i.test(s)) return s;
+        if (s[0] === "/") return s;            // root-relative already
+        if (s.indexOf("assets/") === 0) return "/" + s;  // common case
+        return "/" + s.replace(/^\.?\//, ""); // fallback
+      }
+
 function normalizeImages(item){
         var imgs = (item && item.images && item.images.length) ? item.images.slice(0) : [];
+        // Normalize any relative image paths so they always resolve from site root,
+        // not relative to /recommendations/
+        for (var i = 0; i < imgs.length; i++){
+          imgs[i] = normalizeImgSrc(imgs[i]);
+        }
         while (imgs.length < 3){
           imgs.push(makePlaceholderImgDataURI(item.title_en || item.title || "Image"));
         }
