@@ -444,7 +444,7 @@
       gap: 10px;
       flex-wrap: wrap;
       align-items:center;
-      margin-top: auto;
+      margin-top: 2px;
     }
 
     .noResults{
@@ -779,10 +779,10 @@
       
   // Category-specific marketing placeholders (not stored in recommendations.json)
   const PLACEHOLDER_IMAGES = {
-    lodging: "assets/images/promos/clients/ee_promos_clients_lodging_01.jpg",
-    restaurants: "assets/images/promos/clients/ee_promos_clients_food_01.jpg",
-    services: "assets/images/promos/clients/ee_promos_clients_service_01.jpg",
-    activities: "assets/images/promos/clients/ee_promos_clients_activities_01.jpg"
+    lodging: "/assets/images/promos/clients/ee_promos_clients_lodging_01.jpg",
+    restaurants: "/assets/images/promos/clients/ee_promos_clients_food_01.jpg",
+    services: "/assets/images/promos/clients/ee_promos_clients_service_01.jpg",
+    activities: "/assets/images/promos/clients/ee_promos_clients_activities_01.jpg"
   };
 
   function makeMarketingPlaceholder(category, regionId, locationId, experienceId){
@@ -831,56 +831,30 @@
     return "";
   }
 
-    function addMarketingPlaceholders(list, f){
-    // Only add placeholders when a specific location is selected AND results are below the minimum.
-    if (!f.location_id) return list;
+  function addMarketingPlaceholders(out, f){
+    if (!f || !f.location_id) return out;
 
-    const MIN_RESULTS = 4;
-    if (list.length >= MIN_RESULTS) return list;
+    const regionId = f.region_id || inferRegionForLocation(f.location_id);
+    const cats = f.category ? [f.category] : ["lodging","restaurants","services","activities"];
 
-    const regionId = f.region_id || firstRegionForLocation(f.location_id) || "andes";
+    // Always add one marketing placeholder per category for the selected location,
+    // so visitors can see available partner slots even if there are real listings.
+    cats.forEach(function(cat){
+      out.push(makeMarketingPlaceholder(cat, regionId, f.location_id, f.experience_id || ""));
+    });
 
-    // Category -> default experience mapping (so placeholders can appear under experience filters)
-    const expByCategory = {
-      lodging: "nature",
-      restaurants: "culinary",
-      services: "relaxation",
-      activities: "adventure"
-    };
-
-    // Build categories we are allowed to add based on current category filter
-    const allCats = ["lodging","restaurants","services","activities"];
-    const allowedCats = f.category ? [f.category] : allCats;
-
-    // Prefer categories not already present in the current results
-    const presentCats = new Set(list.map(x => x.category).filter(Boolean));
-    const orderedCats = [
-      ...allowedCats.filter(c => !presentCats.has(c)),
-      ...allowedCats.filter(c => presentCats.has(c))
-    ];
-
-    for (const cat of orderedCats){
-      if (list.length >= MIN_RESULTS) break;
-
-      const exp = expByCategory[cat] || "";
-      // Respect experience filter: only add placeholder if it matches the selected experience (if any)
-      if (f.experience_id && exp && f.experience_id !== exp) continue;
-
-      const placeholder = makeMarketingPlaceholder({
-        regionId,
-        locationId: f.location_id,
-        category: cat,
-        experiences: exp ? [exp] : []
-      });
-
-      // Ensure unique id (avoid duplicates if user already has a placeholder row)
-      if (!list.some(x => x.id === placeholder.id)) list.push(placeholder);
-    }
-
-    return list;
+    return out;
   }
 
-  function cardHtml(item){
+function normalizeImages(item){
+        var imgs = (item && item.images && item.images.length) ? item.images.slice(0) : [];
+        while (imgs.length < 3){
+          imgs.push(makePlaceholderImgDataURI(item.title_en || item.title || "Image"));
+        }
+        return imgs.slice(0,3);
+      }
+
+      function cardHtml(item){
         var title = item.title_en || item.title || "Untitled";
         var desc = item.description_en || item.description || "";
         var why = item.why_en || "";
