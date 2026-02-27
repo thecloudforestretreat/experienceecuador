@@ -484,30 +484,7 @@
     @media (max-width: 480px){
       .navBtn{ width: 40px; height: 40px; }
     }
-  
-
-    /* Ensure action buttons align across cards */
-    .links{ margin-top: auto; }
-
-    /* Chips are always on their own full-width row for consistent layout */
-    .chipsRow{
-      display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items:center;
-      justify-content:flex-end;
-      margin-top: 10px;
-      width: 100%;
-    }
-
-    /* Disabled buttons (empty links) */
-    .btn[aria-disabled="true"]{
-      opacity: .45;
-      pointer-events: none;
-      filter: grayscale(100%);
-    }
-
-</style>
+  </style>
 </head>
 <body>
   <div id="siteHeader"></div>
@@ -776,80 +753,54 @@
         return "data:image/svg+xml;utf8," + svg;
       }
 
-      
-  // Category-specific marketing placeholders (not stored in recommendations.json)
-  const PLACEHOLDER_IMAGES = {
-    lodging: "/assets/images/promos/clients/ee_promos_clients_lodging_01.jpg",
-    restaurants: "/assets/images/promos/clients/ee_promos_clients_food_01.jpg",
-    services: "/assets/images/promos/clients/ee_promos_clients_service_01.jpg",
-    activities: "/assets/images/promos/clients/ee_promos_clients_activities_01.jpg"
-  };
+      // Placeholder promo images (root-relative). These must resolve correctly even when this page is under /testing/ or /recommendations/.
+      var PLACEHOLDER_IMAGES = {
+        lodging: "/assets/images/promos/clients/ee_promos_clients_lodging_01.jpg",
+        restaurants: "/assets/images/promos/clients/ee_promos_clients_food_01.jpg",
+        services: "/assets/images/promos/clients/ee_promos_clients_service_01.jpg",
+        activities: "/assets/images/promos/clients/ee_promos_clients_activities_01.jpg",
+        default: "/assets/images/promos/clients/ee_promos_clients_lodging_01.jpg"
+      };
 
-  function makeMarketingPlaceholder(category, regionId, locationId, experienceId){
-    const labels = categoryLabels(category);
-    const img = PLACEHOLDER_IMAGES[category] || "";
-    const exps = experienceId ? [experienceId] : [];
-    return {
-      id: "placeholder_" + category + "_" + (locationId || "all"),
-      category: category,
-      category_label_en: labels.en,
-      category_label_es: labels.es,
-      region_id: regionId || "",
-      location_id: locationId || "",
-      experiences: exps,
-      title_en: "Featured Partner Spot",
-      title_es: "Espacio para socio",
-      description_en: "Your business could be featured here with photos, links, and booking details.",
-      description_es: "Tu negocio puede aparecer aqui con fotos, enlaces y detalles de reserva.",
-      why_en: "Want to be listed? Contact us to join as a partner.",
-      why_es: "Quieres aparecer aqui? Contactanos para ser socio.",
-      tags_en: ["Partner", "Coming soon"],
-      tags_es: ["Socio", "Proximamente"],
-      images: img ? [img] : [],
-      actions: { website_url: "", whatsapp_url: "", phone: "", menu_pdf: "", details_url: "" },
-      featured: false,
-      placeholder: true
-    };
-  }
-
-  function categoryLabels(category){
-    const c = String(category || "").toLowerCase();
-    if (c === "lodging") return { en: "Lodging", es: "Alojamiento" };
-    if (c === "restaurants") return { en: "Restaurants", es: "Restaurantes" };
-    if (c === "services") return { en: "Services", es: "Servicios" };
-    if (c === "activities") return { en: "Activities", es: "Actividades" };
-    return { en: "", es: "" };
-  }
-
-  function inferRegionForLocation(locationId){
-    const all = (ITEMS && ITEMS.items) ? ITEMS.items : [];
-    for (let i = 0; i < all.length; i++){
-      if (String(all[i].location_id || "") === String(locationId || "")) {
-        return all[i].region_id || "";
+      function absRootUrl(u){
+        if (!u) return "";
+        var s = String(u).trim();
+        if (!s) return "";
+        if (/^https?:\/\//i.test(s) || s.indexOf("data:") === 0) return s;
+        if (s.charAt(0) !== "/") s = "/" + s;
+        return window.location.origin + s;
       }
-    }
-    return "";
-  }
 
-  function addMarketingPlaceholders(out, f){
-    if (!f || !f.location_id) return out;
+      function isPlaceholderItem(item){
+        if (!item) return false;
+        if (item.is_placeholder === true) return true;
+        var id = String(item.id || "");
+        if (id.indexOf("placeholder_") === 0) return true;
+        var t = (item.title_en || item.title_es || item.title || "");
+        t = String(t).toLowerCase();
+        return t.indexOf("featured partner spot") === 0;
+      }
 
-    const regionId = f.region_id || inferRegionForLocation(f.location_id);
-    const cats = f.category ? [f.category] : ["lodging","restaurants","services","activities"];
+      function normalizeImages(item){
+        var isPh = isPlaceholderItem(item);
+        var cat = String((item && item.category) || "").toLowerCase();
+        var phPath = PLACEHOLDER_IMAGES[cat] || PLACEHOLDER_IMAGES["default"];
+        var phAbs = absRootUrl(phPath);
 
-    // Always add one marketing placeholder per category for the selected location,
-    // so visitors can see available partner slots even if there are real listings.
-    cats.forEach(function(cat){
-      out.push(makeMarketingPlaceholder(cat, regionId, f.location_id, f.experience_id || ""));
-    });
+        // If this is a placeholder card, always use 3 real promo images (no SVG data URIs).
+        if (isPh){
+          return [phAbs, phAbs, phAbs];
+        }
 
-    return out;
-  }
-
-function normalizeImages(item){
+        // For real listings, keep provided images, but normalize to absolute-root URLs.
         var imgs = (item && item.images && item.images.length) ? item.images.slice(0) : [];
-        while (imgs.length < 3){
-          imgs.push(makePlaceholderImgDataURI(item.title_en || item.title || "Image"));
+        imgs = imgs.map(function(u){ return absRootUrl(u); }).filter(Boolean);
+
+        // If a real listing has < 3 images, repeat the first image to keep the carousel consistent.
+        if (imgs.length === 0){
+          imgs = [phAbs, phAbs, phAbs];
+        } else {
+          while (imgs.length < 3) imgs.push(imgs[0]);
         }
         return imgs.slice(0,3);
       }
@@ -921,8 +872,8 @@ function normalizeImages(item){
           +   '<div class="body">'
           +     '<div class="titleRow">'
           +       '<h3 class="title">' + esc(title) + '</h3>'
+          +       '<div class="chips" aria-label="Meta chips">' + chips.join("") + '</div>'
           +     '</div>'
-          +     '<div class="chipsRow" aria-label="Meta chips">' + chips.join("") + '</div>'
           +     '<p class="desc">' + esc(desc) + '</p>'
           +     whyBlock
           +     '<div class="links" aria-label="Actions">' + links.join("") + '</div>'
@@ -955,13 +906,10 @@ function normalizeImages(item){
           out.push(it);
         }
 
-        var realCount = out.length;
-        out = addMarketingPlaceholders(out, f);
-
         elCards.innerHTML = out.map(cardHtml).join("");
-        setCount(realCount);
+        setCount(out.length);
 
-        if (realCount === 0){
+        if (out.length === 0){
           elNoResults.style.display = "block";
           elNoResults.textContent = t("no_results");
         } else {
