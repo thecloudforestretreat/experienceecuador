@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recomendados | Experiencia Ecuador</title>
+  <title>Recommendations | Experiencia Ecuador</title>
   <meta name="description" content="Recomendado por Experiencia Ecuador. Filter recommendations by region, location, experience, and category to find trusted lodges, restaurants, services, and activities." />
   <link rel="canonical" href="https://experienceecuador.com/recommendations/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experiencia Ecuador" />
-  <meta property="og:title" content="Recomendados | Experiencia Ecuador" />
+  <meta property="og:title" content="Recommendations | Experiencia Ecuador" />
   <meta property="og:description" content="Recomendado por Experiencia Ecuador. Filter recommendations by region, location, experience, and category." />
   <meta property="og:url" content="https://experienceecuador.com/recommendations/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
@@ -17,7 +17,7 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Experiencia Ecuador - plan your trip to Ecuador" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Recomendados | Experiencia Ecuador" />
+  <meta name="twitter:title" content="Recommendations | Experiencia Ecuador" />
   <meta name="twitter:description" content="Recomendado por Experiencia Ecuador. Filter recommendations by region, location, experience, and category." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
@@ -489,7 +489,7 @@
 <body>
   <div id="siteHeader"></div>
 
-  <main class="wrap" aria-label="Recomendados">
+  <main class="wrap" aria-label="Recommendations">
     <h1>Recomendados</h1>
     <p class="lede">
       Recomendado por Experiencia Ecuador. Filtra por region, ubicacion, experiencia y categoria para encontrar lugares y servicios confiables para tu viaje.
@@ -541,13 +541,13 @@
 
     <div class="actionsRow" aria-label="Actions">
       <div class="btnRow">
-        <button class="btn" id="btnRestablecer" type="button" aria-label="Restablecer filters">Restablecer</button>
-        <a class="btn primary" href="/contact/" aria-label="Quiero ser socio">Quiero ser socio</a>
+        <button class="btn" id="btnReset" type="button" aria-label="Reset filters">Restablecer</button>
+        <a class="btn primary" href="/contact/" aria-label="Become a Partner">Quiero ser socio</a>
       </div>
       <div class="count" id="resultCount" aria-label="Result count">0 resultados</div>
     </div>
 
-    <div class="noResults" id="noResults" aria-label="No results message">No recommendations match your filters yet.</div>
+    <div class="noResults" id="noResults" aria-label="0 resultados message">No recommendations match your filters yet.</div>
 
     <section class="grid" id="cards" aria-label="Recommendation cards"></section>
   </main>
@@ -566,7 +566,7 @@
           all_experiences: "Todas las experiencias",
           all_categories: "Todas las categorias",
           results_one: "result",
-          results_many: "resultados",
+          results_many: "results",
           no_results: "No recommendations match your filters yet.",
           featured: "Featured Partner",
           visit_website: "Visit Website",
@@ -619,9 +619,9 @@
       }
 
       var elRegion = document.getElementById("fRegion");
-      var elLocation = document.getElementById("fLocation");
-      var elExperience = document.getElementById("fExperience");
-      var elCategory = document.getElementById("fCategory");
+      var elUbicacion = document.getElementById("fUbicacion");
+      var elExperiencia = document.getElementById("fExperiencia");
+      var elCategoria = document.getElementById("fCategoria");
       var elCards = document.getElementById("cards");
       var elNoResults = document.getElementById("noResults");
       var elCount = document.getElementById("resultCount");
@@ -639,19 +639,19 @@
       function getFilters(){
         return {
           region_id: elRegion.value || "",
-          location_id: elLocation.value || "",
-          experience_id: elExperience.value || "",
-          category: elCategory.value || ""
+          location_id: elUbicacion.value || "",
+          experience_id: elExperiencia.value || "",
+          category: elCategoria.value || ""
         };
       }
 
       function resetFilters(){
         elRegion.value = "";
-        elLocation.value = "";
-        elExperience.value = "";
-        elCategory.value = "";
-        elLocation.disabled = true;
-        syncLocationOptions();
+        elUbicacion.value = "";
+        elExperiencia.value = "";
+        elCategoria.value = "";
+        elUbicacion.disabled = true;
+        syncUbicacionOptions();
         apply();
       }
 
@@ -667,7 +667,7 @@
         elRegion.innerHTML = opts.join("");
       }
 
-      function syncExperienceOptions(){
+      function syncExperienciaOptions(){
         if (!EXPERIENCES || !EXPERIENCES.experiences || !EXPERIENCES.experiences.length) return;
         var opts = ['<option value="">' + esc(t("all_experiences")) + '</option>'];
         var exps = EXPERIENCES.experiences.slice(0);
@@ -676,10 +676,10 @@
           var e = exps[i];
           opts.push('<option value="' + esc(e.id) + '">' + esc(e.name_en || e.name || e.id) + '</option>');
         }
-        elExperience.innerHTML = opts.join("");
+        elExperiencia.innerHTML = opts.join("");
       }
 
-      function getLocationsForRegion(regionId){
+      function getUbicacionsForRegion(regionId){
         if (!REGIONS || !REGIONS.regions) return [];
         for (var i=0; i<REGIONS.regions.length; i++){
           if (REGIONS.regions[i].id === regionId){
@@ -689,22 +689,22 @@
         return [];
       }
 
-      function syncLocationOptions(){
+      function syncUbicacionOptions(){
         var regionId = elRegion.value || "";
         var opts = ['<option value="">' + esc(t("all_locations")) + '</option>'];
         if (!regionId){
-          elLocation.innerHTML = opts.join("");
-          elLocation.disabled = true;
+          elUbicacion.innerHTML = opts.join("");
+          elUbicacion.disabled = true;
           return;
         }
-        var locs = getLocationsForRegion(regionId).slice(0);
+        var locs = getUbicacionsForRegion(regionId).slice(0);
         locs.sort(function(a,b){ return byAlpha(a.name_en || a.name || a.id, b.name_en || b.name || b.id); });
         for (var i=0; i<locs.length; i++){
           var l = locs[i];
           opts.push('<option value="' + esc(l.id) + '">' + esc(l.name_en || l.name || l.id) + '</option>');
         }
-        elLocation.innerHTML = opts.join("");
-        elLocation.disabled = false;
+        elUbicacion.innerHTML = opts.join("");
+        elUbicacion.disabled = false;
       }
 
       function labelRegion(regionId){
@@ -717,8 +717,8 @@
         return regionId;
       }
 
-      function labelLocation(regionId, locationId){
-        var locs = getLocationsForRegion(regionId);
+      function labelUbicacion(regionId, locationId){
+        var locs = getUbicacionsForRegion(regionId);
         for (var i=0; i<locs.length; i++){
           if (locs[i].id === locationId){
             return locs[i].name_en || locs[i].name || locationId;
@@ -727,7 +727,7 @@
         return locationId;
       }
 
-      function labelExperience(expId){
+      function labelExperiencia(expId){
         if (!EXPERIENCES || !EXPERIENCES.experiences) return expId;
         for (var i=0; i<EXPERIENCES.experiences.length; i++){
           if (EXPERIENCES.experiences[i].id === expId){
@@ -748,7 +748,7 @@
           + "<rect width='100%25' height='100%25' fill='url(%23g)'/>"
           + "<rect x='90' y='90' width='1020' height='1020' rx='42' fill='rgba(3,78,162,0.08)' stroke='rgba(0,0,0,0.08)'/>"
           + "<text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial' font-size='44' fill='rgba(15,47,98,0.85)'>" + text1 + "</text>"
-          + "<text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial' font-size='22' fill='rgba(15,47,98,0.70)'>Replace this with a real photo later</text>"
+          + "<text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial' font-size='22' fill='rgba(15,47,98,0.70)'>Reemplaza esto con una foto real mas adelante</text>"
           + "</svg>";
         return "data:image/svg+xml;utf8," + svg;
       }
@@ -816,12 +816,12 @@
         var tags = [];
         if (isFeatured) tags.push('<span class="tag featured">' + esc(t("featured")) + '</span>');
         tags.push('<span class="tag">' + esc(labelRegion(item.region_id)) + '</span>');
-        tags.push('<span class="tag">' + esc(labelLocation(item.region_id, item.location_id)) + '</span>');
+        tags.push('<span class="tag">' + esc(labelUbicacion(item.region_id, item.location_id)) + '</span>');
 
         var chips = [];
         chips.push('<span class="chip">' + esc(item.category_label_en || item.category || "") + '</span>');
         if (item.experiences && item.experiences.length){
-          chips.push('<span class="chip">' + esc(labelExperience(item.experiences[0])) + '</span>');
+          chips.push('<span class="chip">' + esc(labelExperiencia(item.experiences[0])) + '</span>');
         }
 
         var websiteUrl = normalizeUrl(getAction(item, "website_url"));
@@ -856,7 +856,7 @@
           + '<div class="carouselSlide"><img src="' + esc(images[1]) + '" alt="' + aria + ' image 2" loading="lazy" decoding="async"></div>'
           + '<div class="carouselSlide"><img src="' + esc(images[2]) + '" alt="' + aria + ' image 3" loading="lazy" decoding="async"></div>';
 
-        var whyBlock = why ? ('<div class="why" aria-label="Why we recommend"><strong>Why we recommend:</strong> ' + esc(why) + '</div>') : '';
+        var whyBlock = why ? ('<div class="why" aria-label="Why we recommend"><strong>Por que lo recomendamos:</strong> ' + esc(why) + '</div>') : '';
 
         return ''
           + '<article class="card" data-id="' + esc(item.id) + '" data-region="' + esc(item.region_id) + '" data-location="' + esc(item.location_id) + '" data-category="' + esc(item.category) + '" data-experiences="' + esc((item.experiences || []).join(",")) + '">'
@@ -1029,14 +1029,14 @@
 
       function wire(){
         elRegion.addEventListener("change", function(){
-          syncLocationOptions();
-          elLocation.value = "";
+          syncUbicacionOptions();
+          elUbicacion.value = "";
           apply();
         });
 
-        elLocation.addEventListener("change", apply);
-        elExperience.addEventListener("change", apply);
-        elCategory.addEventListener("change", apply);
+        elUbicacion.addEventListener("change", apply);
+        elExperiencia.addEventListener("change", apply);
+        elCategoria.addEventListener("change", apply);
 
         btnReset.addEventListener("click", resetFilters);
       }
@@ -1054,8 +1054,8 @@
           ITEMS = all[2];
 
           syncRegionOptions();
-          syncLocationOptions();
-          syncExperienceOptions();
+          syncUbicacionOptions();
+          syncExperienciaOptions();
 
           apply();
         }).catch(function(){
