@@ -805,7 +805,7 @@
       why_es: "Quieres aparecer aqui? Contactanos para ser socio.",
       tags_en: ["Partner", "Coming soon"],
       tags_es: ["Socio", "Proximamente"],
-      images: img ? [img] : [],
+      images: (toRootAssetPath(img) ? [toRootAssetPath(img), toRootAssetPath(img), toRootAssetPath(img)] : []),
       actions: { website_url: "", whatsapp_url: "", phone: "", menu_pdf: "", details_url: "" },
       featured: false,
       placeholder: true
@@ -846,11 +846,25 @@
     return out;
   }
 
+
+      function toRootAssetPath(u){
+        u = String(u == null ? "" : u).trim();
+        if (!u) return "";
+        if (/^data:/i.test(u)) return u;
+        if (/^https?:\/\//i.test(u)) return u;
+        if (u.startsWith("/")) return u;
+        u = u.replace(/^\.\//, "");
+        return "/" + u.replace(/^\/+/, "");
+      }
+
 function normalizeImages(item){
         var imgs = (item && item.images && item.images.length) ? item.images.slice(0) : [];
+        imgs = imgs.map(toRootAssetPath).filter(Boolean);
         while (imgs.length < 3){
           imgs.push(makePlaceholderImgDataURI(item.title_en || item.title || "Image"));
         }
+        return imgs.slice(0,3);
+      }
         return imgs.slice(0,3);
       }
 
