@@ -423,6 +423,11 @@
       color:#1f2b3f;
       line-height: 1.65;
       font-size: 15px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+      min-height: calc(1.65em * 3);
     }
 
     .why{
@@ -433,14 +438,21 @@
       color:#162b55;
       font-size: 13px;
       line-height: 1.55;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      min-height: calc(1.55em * 2 + 20px);
     }
 
     .links{
-      display:flex;
+display:flex;
       gap: 10px;
       flex-wrap: wrap;
       align-items:center;
       margin-top: 2px;
+      margin-top: auto;
+    
     }
 
     .noResults{
@@ -548,27 +560,48 @@
   <div id="siteFooter"></div>
   <script src="/assets/js/site.js"></script>
   <script>
+
     (function(){
       "use strict";
 
       var STR = {
-        es: {
-          all_regions: "Todas las regiones",
-          all_locations: "Todas las ubicaciones",
-          all_experiences: "Todas las experiencias",
-          all_categories: "Todas las categorias",
-          results_one: "resultado",
-          results_many: "resultados",
-          no_results: "Aun no hay recomendaciones para esta seleccion.",
-          featured: "Socio Destacado",
-          visit_website: "Ver sitio web",
+        en: {
+          all_regions: "All regions",
+          all_locations: "All locations",
+          all_experiences: "All experiences",
+          all_categories: "All categories",
+          results_one: "result",
+          results_many: "results",
+          no_results: "No recommendations match your filters yet.",
+          featured: "Featured Partner",
+          visit_website: "Visitar sitio",
           whatsapp: "WhatsApp",
-          download_menu: "Descargar menu (PDF)"
+          download_menu: "Download Menu (PDF)"
         }
       };
 
+      var LOCALE = (document.documentElement && document.documentElement.lang && document.documentElement.lang.toLowerCase().indexOf("es") === 0) ? "es" : "en";
+
       function t(key){
-        return (STR.es && STR.es[key]) ? STR.es[key] : key;
+        var dict = STR[LOCALE] || STR.en || {};
+        return (dict && dict[key]) ? dict[key] : key;
+      }
+
+      function pickField(item, base){
+        var v = "";
+        if (item){
+          v = item[base + "_" + LOCALE] || item[base + "_en"] || "";
+        }
+        return String(v || "").trim();
+      }
+
+      function pickList(item, base){
+        var v = [];
+        if (item){
+          v = item[base + "_" + LOCALE] || item[base + "_en"] || [];
+        }
+        if (Array.isArray(v)) return v.map(function(x){ return String(x || "").trim(); }).filter(Boolean);
+        return String(v || "").split(",").map(function(x){ return x.trim(); }).filter(Boolean);
       }
 
       function esc(s){
@@ -578,7 +611,7 @@
       }
 
       function byAlpha(a,b){
-        return String(a || "").localeCompare(String(b || ""), "es", { sensitivity: "base" });
+        return String(a || "").localeCompare(String(b || ""), "en", { sensitivity: "base" });
       }
 
       function fetchJson(url){
@@ -601,6 +634,7 @@
       function getAction(item, key){
         if (item && item.actions && item.actions[key]) return item.actions[key];
         if (item && item.links){
+          // Back-compat for older data shapes
           if (key === "website_url" && item.links.website) return item.links.website;
           if (key === "whatsapp_url" && item.links.whatsapp) return item.links.whatsapp;
           if (key === "menu_pdf" && item.links.menu_pdf) return item.links.menu_pdf;
@@ -650,10 +684,10 @@
         if (!REGIONS || !REGIONS.regions || !REGIONS.regions.length) return;
         var opts = ['<option value="">' + esc(t("all_regions")) + '</option>'];
         var regs = REGIONS.regions.slice(0);
-        regs.sort(function(a,b){ return byAlpha(a.name_es || a.name_en || a.name || a.id, b.name_es || b.name_en || b.name || b.id); });
+        regs.sort(function(a,b){ return byAlpha(a.name_en || a.name || a.id, b.name_en || b.name || b.id); });
         for (var i=0; i<regs.length; i++){
           var r = regs[i];
-          opts.push('<option value="' + esc(r.id) + '">' + esc(r.name_es || r.name_en || r.name || r.id) + '</option>');
+          opts.push('<option value="' + esc(r.id) + '">' + esc(r.name_en || r.name || r.id) + '</option>');
         }
         elRegion.innerHTML = opts.join("");
       }
@@ -662,10 +696,10 @@
         if (!EXPERIENCES || !EXPERIENCES.experiences || !EXPERIENCES.experiences.length) return;
         var opts = ['<option value="">' + esc(t("all_experiences")) + '</option>'];
         var exps = EXPERIENCES.experiences.slice(0);
-        exps.sort(function(a,b){ return byAlpha(a.name_es || a.name_en || a.name || a.id, b.name_es || b.name_en || b.name || b.id); });
+        exps.sort(function(a,b){ return byAlpha(a.name_en || a.name || a.id, b.name_en || b.name || b.id); });
         for (var i=0; i<exps.length; i++){
           var e = exps[i];
-          opts.push('<option value="' + esc(e.id) + '">' + esc(e.name_es || e.name_en || e.name || e.id) + '</option>');
+          opts.push('<option value="' + esc(e.id) + '">' + esc(e.name_en || e.name || e.id) + '</option>');
         }
         elExperience.innerHTML = opts.join("");
       }
@@ -689,10 +723,10 @@
           return;
         }
         var locs = getLocationsForRegion(regionId).slice(0);
-        locs.sort(function(a,b){ return byAlpha(a.name_es || a.name_en || a.name || a.id, b.name_es || b.name_en || b.name || b.id); });
+        locs.sort(function(a,b){ return byAlpha(a.name_en || a.name || a.id, b.name_en || b.name || b.id); });
         for (var i=0; i<locs.length; i++){
           var l = locs[i];
-          opts.push('<option value="' + esc(l.id) + '">' + esc(l.name_es || l.name_en || l.name || l.id) + '</option>');
+          opts.push('<option value="' + esc(l.id) + '">' + esc(l.name_en || l.name || l.id) + '</option>');
         }
         elLocation.innerHTML = opts.join("");
         elLocation.disabled = false;
@@ -702,7 +736,7 @@
         if (!REGIONS || !REGIONS.regions) return regionId;
         for (var i=0; i<REGIONS.regions.length; i++){
           if (REGIONS.regions[i].id === regionId){
-            return REGIONS.regions[i].name_es || REGIONS.regions[i].name_en || REGIONS.regions[i].name || regionId;
+            return REGIONS.regions[i].name_en || REGIONS.regions[i].name || regionId;
           }
         }
         return regionId;
@@ -712,7 +746,7 @@
         var locs = getLocationsForRegion(regionId);
         for (var i=0; i<locs.length; i++){
           if (locs[i].id === locationId){
-            return locs[i].name_es || locs[i].name_en || locs[i].name || locationId;
+            return locs[i].name_en || locs[i].name || locationId;
           }
         }
         return locationId;
@@ -722,14 +756,14 @@
         if (!EXPERIENCES || !EXPERIENCES.experiences) return expId;
         for (var i=0; i<EXPERIENCES.experiences.length; i++){
           if (EXPERIENCES.experiences[i].id === expId){
-            return EXPERIENCES.experiences[i].name_es || EXPERIENCES.experiences[i].name_en || EXPERIENCES.experiences[i].name || expId;
+            return EXPERIENCES.experiences[i].name_en || EXPERIENCES.experiences[i].name || expId;
           }
         }
         return expId;
       }
 
       function makePlaceholderImgDataURI(title){
-        var text1 = esc(title || "Imagen");
+        var text1 = esc(title || "Image");
         var svg = ""
           + "<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200'>"
           + "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>"
@@ -739,23 +773,67 @@
           + "<rect width='100%25' height='100%25' fill='url(%23g)'/>"
           + "<rect x='90' y='90' width='1020' height='1020' rx='42' fill='rgba(3,78,162,0.08)' stroke='rgba(0,0,0,0.08)'/>"
           + "<text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial' font-size='44' fill='rgba(15,47,98,0.85)'>" + text1 + "</text>"
-          + "<text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial' font-size='22' fill='rgba(15,47,98,0.70)'>Cambia esto por una foto real</text>"
+          + "<text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial' font-size='22' fill='rgba(15,47,98,0.70)'>Replace this with a real photo later</text>"
           + "</svg>";
         return "data:image/svg+xml;utf8," + svg;
       }
 
+      // Placeholder promo images (root-relative). These must resolve correctly even when this page is under /testing/ or /recommendations/.
+      var PLACEHOLDER_IMAGES = {
+        lodging: "/assets/images/promos/clients/ee_promos_clients_lodging_01.jpg",
+        restaurants: "/assets/images/promos/clients/ee_promos_clients_food_01.jpg",
+        services: "/assets/images/promos/clients/ee_promos_clients_service_01.jpg",
+        activities: "/assets/images/promos/clients/ee_promos_clients_activities_01.jpg",
+        default: "/assets/images/promos/clients/ee_promos_clients_lodging_01.jpg"
+      };
+
+      function absRootUrl(u){
+        if (!u) return "";
+        var s = String(u).trim();
+        if (!s) return "";
+        if (/^https?:\/\//i.test(s) || s.indexOf("data:") === 0) return s;
+        if (s.charAt(0) !== "/") s = "/" + s;
+        return window.location.origin + s;
+      }
+
+      function isPlaceholderItem(item){
+        if (!item) return false;
+        if (item.is_placeholder === true) return true;
+        var id = String(item.id || "");
+        if (id.indexOf("placeholder_") === 0) return true;
+        var t = (pickField(item,'title') || item.title_es || item.title || "");
+        t = String(t).toLowerCase();
+        return t.indexOf("featured partner spot") === 0;
+      }
+
       function normalizeImages(item){
+        var isPh = isPlaceholderItem(item);
+        var cat = String((item && item.category) || "").toLowerCase();
+        var phPath = PLACEHOLDER_IMAGES[cat] || PLACEHOLDER_IMAGES["default"];
+        var phAbs = absRootUrl(phPath);
+
+        // If this is a placeholder card, always use 3 real promo images (no SVG data URIs).
+        if (isPh){
+          return [phAbs, phAbs, phAbs];
+        }
+
+        // For real listings, keep provided images, but normalize to absolute-root URLs.
         var imgs = (item && item.images && item.images.length) ? item.images.slice(0) : [];
-        while (imgs.length < 3){
-          imgs.push(makePlaceholderImgDataURI(item.title_es || item.title_en || item.title || "Imagen"));
+        imgs = imgs.map(function(u){ return absRootUrl(u); }).filter(Boolean);
+
+        // If a real listing has < 3 images, repeat the first image to keep the carousel consistent.
+        if (imgs.length === 0){
+          imgs = [phAbs, phAbs, phAbs];
+        } else {
+          while (imgs.length < 3) imgs.push(imgs[0]);
         }
         return imgs.slice(0,3);
       }
 
       function cardHtml(item){
-        var title = item.title_es || item.title_en || item.title || "Sin titulo";
-        var desc = item.description_es || item.description_en || item.description || "";
-        var why = item.why_es || item.why_en || "";
+        var title = pickField(item,'title') || item.title || "Untitled";
+        var desc = pickField(item,'description') || item.description || "";
+        var why = pickField(item,'why') || "";
         var isFeatured = !!item.featured;
 
         var images = normalizeImages(item);
@@ -766,7 +844,7 @@
         tags.push('<span class="tag">' + esc(labelLocation(item.region_id, item.location_id)) + '</span>');
 
         var chips = [];
-        chips.push('<span class="chip">' + esc(item.category_label_es || item.category_label_en || item.category || "") + '</span>');
+        chips.push('<span class="chip">' + esc(pickField(item,'category_label') || item.category || "") + '</span>');
         if (item.experiences && item.experiences.length){
           chips.push('<span class="chip">' + esc(labelExperience(item.experiences[0])) + '</span>');
         }
@@ -777,9 +855,9 @@
 
         var links = [];
         if (websiteUrl){
-          links.push('<a class="btn primary" href="' + esc(websiteUrl) + '" target="_blank" rel="noopener" aria-label="Ver sitio web">' + esc(t("visit_website")) + '</a>');
+          links.push('<a class="btn primary" href="' + esc(websiteUrl) + '" target="_blank" rel="noopener" aria-label="Visit website">' + esc(t("visit_website")) + '</a>');
         } else {
-          links.push('<a class="btn primary" href="#" aria-label="Ver sitio web" aria-disabled="true">' + esc(t("visit_website")) + '</a>');
+          links.push('<a class="btn primary" href="#" aria-label="Visit website" aria-disabled="true">' + esc(t("visit_website")) + '</a>');
         }
 
         if (whatsappUrl){
@@ -789,7 +867,7 @@
         }
 
         if (menuPdf){
-          links.push('<a class="btn" href="' + esc(menuPdf) + '" target="_blank" rel="noopener" aria-label="Descargar menu">' + esc(t("download_menu")) + '</a>');
+          links.push('<a class="btn" href="' + esc(menuPdf) + '" target="_blank" rel="noopener" aria-label="Download menu">' + esc(t("download_menu")) + '</a>');
         }
 
         var aria = esc(title);
@@ -799,31 +877,31 @@
           + '</div>';
 
         var slides = ''
-          + '<div class="carouselSlide"><img src="' + esc(images[0]) + '" alt="' + aria + ' imagen 1" loading="eager" decoding="async"></div>'
-          + '<div class="carouselSlide"><img src="' + esc(images[1]) + '" alt="' + aria + ' imagen 2" loading="lazy" decoding="async"></div>'
-          + '<div class="carouselSlide"><img src="' + esc(images[2]) + '" alt="' + aria + ' imagen 3" loading="lazy" decoding="async"></div>';
+          + '<div class="carouselSlide"><img src="' + esc(images[0]) + '" alt="' + aria + ' image 1" loading="eager" decoding="async"></div>'
+          + '<div class="carouselSlide"><img src="' + esc(images[1]) + '" alt="' + aria + ' image 2" loading="lazy" decoding="async"></div>'
+          + '<div class="carouselSlide"><img src="' + esc(images[2]) + '" alt="' + aria + ' image 3" loading="lazy" decoding="async"></div>';
 
-        var whyBlock = why ? ('<div class="why" aria-label="Por que lo recomendamos"><strong>Por que lo recomendamos:</strong> ' + esc(why) + '</div>') : '';
+        var whyBlock = why ? ('<div class="why" aria-label="Por que recomendamos"><strong>Por que recomendamos:</strong> ' + esc(why) + '</div>') : '';
 
         return ''
           + '<article class="card" data-id="' + esc(item.id) + '" data-region="' + esc(item.region_id) + '" data-location="' + esc(item.location_id) + '" data-category="' + esc(item.category) + '" data-experiences="' + esc((item.experiences || []).join(",")) + '">'
-          +   '<div class="media recCarousel" data-interval="2500" aria-label="Carrusel de ' + aria + '">'
-          +     '<div class="carouselViewport" aria-label="Ventana del carrusel">'
+          +   '<div class="media recCarousel" data-interval="2500" aria-label="' + aria + ' carousel">'
+          +     '<div class="carouselViewport" aria-label="Carousel viewport">'
           +       '<div class="carouselTrack">' + slides + '</div>'
           +     '</div>'
-          +     '<button class="navBtn prev" type="button" aria-label="Imagen anterior"><span aria-hidden="true"></span></button>'
-          +     '<button class="navBtn next" type="button" aria-label="Siguiente imagen"><span aria-hidden="true"></span></button>'
+          +     '<button class="navBtn prev" type="button" aria-label="Previous image"><span aria-hidden="true"></span></button>'
+          +     '<button class="navBtn next" type="button" aria-label="Next image"><span aria-hidden="true"></span></button>'
           +     dots
           +     '<div class="badgeRow" aria-hidden="true">' + tags.join("") + '</div>'
           +   '</div>'
           +   '<div class="body">'
           +     '<div class="titleRow">'
           +       '<h3 class="title">' + esc(title) + '</h3>'
-          +       '<div class="chips" aria-label="Etiquetas">' + chips.join("") + '</div>'
+          +       '<div class="chips" aria-label="Meta chips">' + chips.join("") + '</div>'
           +     '</div>'
           +     '<p class="desc">' + esc(desc) + '</p>'
           +     whyBlock
-          +     '<div class="links" aria-label="Acciones">' + links.join("") + '</div>'
+          +     '<div class="links" aria-label="Actions">' + links.join("") + '</div>'
           +   '</div>'
           + '</article>';
       }
@@ -1007,14 +1085,15 @@
           apply();
         }).catch(function(){
           elNoResults.style.display = "block";
-          elNoResults.textContent = "No se pudo cargar la informacion de recomendados.";
+          elNoResults.textContent = "Unable to load recommendations data.";
           setCount(0);
         });
       }
 
       boot();
     })();
-  </script>
+  
+</script>
   <script>
     (function(){
       async function inject(id, url){
