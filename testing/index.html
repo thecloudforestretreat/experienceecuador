@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recommendations | Experience Ecuador</title>
-  <meta name="description" content="Recomendado por Experience Ecuador. Filter recommendations by region, location, experience, and category to find trusted lodges, restaurants, services, and activities." />
+  <title>Recomendados | Experiencia Ecuador</title>
+  <meta name="description" content="Recomendado por Experiencia Ecuador. Filter recommendations by region, location, experience, and category to find trusted lodges, restaurants, services, and activities." />
   <link rel="canonical" href="https://experienceecuador.com/recommendations/" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Experience Ecuador" />
-  <meta property="og:title" content="Recommendations | Experience Ecuador" />
-  <meta property="og:description" content="Recomendado por Experience Ecuador. Filter recommendations by region, location, experience, and category." />
+  <meta property="og:site_name" content="Experiencia Ecuador" />
+  <meta property="og:title" content="Recomendados | Experiencia Ecuador" />
+  <meta property="og:description" content="Recomendado por Experiencia Ecuador. Filter recommendations by region, location, experience, and category." />
   <meta property="og:url" content="https://experienceecuador.com/recommendations/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Experience Ecuador - plan your trip to Ecuador" />
+  <meta property="og:image:alt" content="Experiencia Ecuador - plan your trip to Ecuador" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Recommendations | Experience Ecuador" />
-  <meta name="twitter:description" content="Recomendado por Experience Ecuador. Filter recommendations by region, location, experience, and category." />
+  <meta name="twitter:title" content="Recomendados | Experiencia Ecuador" />
+  <meta name="twitter:description" content="Recomendado por Experiencia Ecuador. Filter recommendations by region, location, experience, and category." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
   <!-- Favicons (root paths) -->
@@ -484,42 +484,19 @@
     @media (max-width: 480px){
       .navBtn{ width: 40px; height: 40px; }
     }
-  
-
-    /* Ensure action buttons align across cards */
-    .links{ margin-top: auto; }
-
-    /* Chips are always on their own full-width row for consistent layout */
-    .chipsRow{
-      display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items:center;
-      justify-content:flex-end;
-      margin-top: 10px;
-      width: 100%;
-    }
-
-    /* Disabled buttons (empty links) */
-    .btn[aria-disabled="true"]{
-      opacity: .45;
-      pointer-events: none;
-      filter: grayscale(100%);
-    }
-
-</style>
+  </style>
 </head>
 <body>
   <div id="siteHeader"></div>
 
-  <main class="wrap" aria-label="Recommendations">
+  <main class="wrap" aria-label="Recomendados">
     <h1>Recomendados</h1>
     <p class="lede">
-      Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria para encontrar lugares y servicios confiables para tu viaje.
+      Recomendado por Experiencia Ecuador. Filtra por region, ubicacion, experiencia y categoria para encontrar lugares y servicios confiables para tu viaje.
     </p>
 
     <div class="metaRow" aria-label="Quick summary">
-      <span class="pill">Recomendado por Experience Ecuador</span>
+      <span class="pill">Recomendado por Experiencia Ecuador</span>
       <span class="pill">Sin precios publicos</span>
       <span class="pill">Espacios destacados: proximamente</span>
     </div>
@@ -537,22 +514,22 @@
       </div>
 
       <div class="fGroup">
-        <label for="fLocation">Ubicacion</label>
-        <select id="fLocation" aria-label="Filter by location" disabled>
+        <label for="fUbicacion">Ubicacion</label>
+        <select id="fUbicacion" aria-label="Filter by location" disabled>
           <option value="">Todas las ubicaciones</option>
         </select>
       </div>
 
       <div class="fGroup">
-        <label for="fExperience">Experiencia</label>
-        <select id="fExperience" aria-label="Filter by experience">
+        <label for="fExperiencia">Experiencia</label>
+        <select id="fExperiencia" aria-label="Filter by experience">
           <option value="">Todas las experiencias</option>
         </select>
       </div>
 
       <div class="fGroup">
-        <label for="fCategory">Categoria</label>
-        <select id="fCategory" aria-label="Filter by category">
+        <label for="fCategoria">Categoria</label>
+        <select id="fCategoria" aria-label="Filter by category">
           <option value="">Todas las categorias</option>
           <option value="lodging">Lodging</option>
           <option value="restaurants">Restaurants</option>
@@ -565,7 +542,7 @@
     <div class="actionsRow" aria-label="Actions">
       <div class="btnRow">
         <button class="btn" id="btnRestablecer" type="button" aria-label="Restablecer filters">Restablecer</button>
-        <a class="btn primary" href="/es/contacto/" aria-label="Quiero ser socio">Quiero ser socio</a>
+        <a class="btn primary" href="/contact/" aria-label="Quiero ser socio">Quiero ser socio</a>
       </div>
       <div class="count" id="resultCount" aria-label="Result count">0 resultados</div>
     </div>
@@ -589,10 +566,10 @@
           all_experiences: "Todas las experiencias",
           all_categories: "Todas las categorias",
           results_one: "result",
-          results_many: "results",
+          results_many: "resultados",
           no_results: "No recommendations match your filters yet.",
           featured: "Featured Partner",
-          visit_website: "Visitar sitio",
+          visit_website: "Visit Website",
           whatsapp: "WhatsApp",
           download_menu: "Download Menu (PDF)"
         }
@@ -648,7 +625,7 @@
       var elCards = document.getElementById("cards");
       var elNoResults = document.getElementById("noResults");
       var elCount = document.getElementById("resultCount");
-      var btnRestablecer = document.getElementById("btnRestablecer");
+      var btnReset = document.getElementById("btnReset");
 
       var REGIONS = null;
       var EXPERIENCES = null;
@@ -771,100 +748,60 @@
           + "<rect width='100%25' height='100%25' fill='url(%23g)'/>"
           + "<rect x='90' y='90' width='1020' height='1020' rx='42' fill='rgba(3,78,162,0.08)' stroke='rgba(0,0,0,0.08)'/>"
           + "<text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial' font-size='44' fill='rgba(15,47,98,0.85)'>" + text1 + "</text>"
-          + "<text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial' font-size='22' fill='rgba(15,47,98,0.70)'>Reemplaza esto con una foto real</text>"
+          + "<text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial' font-size='22' fill='rgba(15,47,98,0.70)'>Replace this with a real photo later</text>"
           + "</svg>";
         return "data:image/svg+xml;utf8," + svg;
       }
 
-      
-  // Category-specific marketing placeholders (not stored in recommendations.json)
-  const PLACEHOLDER_IMAGES = {
-    lodging: "/assets/images/promos/clients/ee_promos_clients_lodging_01.jpg",
-    restaurants: "/assets/images/promos/clients/ee_promos_clients_food_01.jpg",
-    services: "/assets/images/promos/clients/ee_promos_clients_service_01.jpg",
-    activities: "/assets/images/promos/clients/ee_promos_clients_activities_01.jpg"
-  };
+      // Placeholder promo images (root-relative). These must resolve correctly even when this page is under /testing/ or /recommendations/.
+      var PLACEHOLDER_IMAGES = {
+        lodging: "/assets/images/promos/clients/ee_promos_clients_lodging_01.jpg",
+        restaurants: "/assets/images/promos/clients/ee_promos_clients_food_01.jpg",
+        services: "/assets/images/promos/clients/ee_promos_clients_service_01.jpg",
+        activities: "/assets/images/promos/clients/ee_promos_clients_activities_01.jpg",
+        default: "/assets/images/promos/clients/ee_promos_clients_lodging_01.jpg"
+      };
 
-  function makeMarketingPlaceholder(category, regionId, locationId, experienceId){
-    const labels = categoryLabels(category);
-    const img = PLACEHOLDER_IMAGES[category] || "";
-    const exps = experienceId ? [experienceId] : [];
-    return {
-      id: "placeholder_" + category + "_" + (locationId || "all"),
-      category: category,
-      category_label_en: labels.en,
-      category_label_es: labels.es,
-      region_id: regionId || "",
-      location_id: locationId || "",
-      experiences: exps,
-      title_en: "Espacio de socio destacado",
-      title_es: "Espacio para socio",
-      description_en: "Your business could be featured here with photos, links, and booking details.",
-      description_es: "Tu negocio puede aparecer aqui con fotos, enlaces y detalles de reserva.",
-      why_en: "Want to be listed? Contact us to join as a partner.",
-      why_es: "Quieres aparecer aqui? Contactanos para ser socio.",
-      tags_en: ["Partner", "Coming soon"],
-      tags_es: ["Socio", "Proximamente"],
-      images: (toRootAssetPath(img) ? [toRootAssetPath(img), toRootAssetPath(img), toRootAssetPath(img)] : []),
-      actions: { website_url: "", whatsapp_url: "", phone: "", menu_pdf: "", details_url: "" },
-      featured: false,
-      placeholder: true
-    };
-  }
-
-  function categoryLabels(category){
-    const c = String(category || "").toLowerCase();
-    if (c === "lodging") return { en: "Lodging", es: "Alojamiento" };
-    if (c === "restaurants") return { en: "Restaurants", es: "Restaurantes" };
-    if (c === "services") return { en: "Services", es: "Servicios" };
-    if (c === "activities") return { en: "Activities", es: "Actividades" };
-    return { en: "", es: "" };
-  }
-
-  function inferRegionForLocation(locationId){
-    const all = (ITEMS && ITEMS.items) ? ITEMS.items : [];
-    for (let i = 0; i < all.length; i++){
-      if (String(all[i].location_id || "") === String(locationId || "")) {
-        return all[i].region_id || "";
-      }
-    }
-    return "";
-  }
-
-  function addMarketingPlaceholders(out, f){
-    if (!f || !f.location_id) return out;
-
-    const regionId = f.region_id || inferRegionForLocation(f.location_id);
-    const cats = f.category ? [f.category] : ["lodging","restaurants","services","activities"];
-
-    // Always add one marketing placeholder per category for the selected location,
-    // so visitors can see available partner slots even if there are real listings.
-    cats.forEach(function(cat){
-      out.push(makeMarketingPlaceholder(cat, regionId, f.location_id, f.experience_id || ""));
-    });
-
-    return out;
-  }
-
-
-      function toRootAssetPath(u){
-        u = String(u == null ? "" : u).trim();
+      function absRootUrl(u){
         if (!u) return "";
-        if (/^data:/i.test(u)) return u;
-        if (/^https?:\/\//i.test(u)) return u;
-        if (u.startsWith("/")) return u;
-        u = u.replace(/^\.\//, "");
-        return "/" + u.replace(/^\/+/, "");
+        var s = String(u).trim();
+        if (!s) return "";
+        if (/^https?:\/\//i.test(s) || s.indexOf("data:") === 0) return s;
+        if (s.charAt(0) !== "/") s = "/" + s;
+        return window.location.origin + s;
       }
 
-function normalizeImages(item){
-        var imgs = (item && item.images && item.images.length) ? item.images.slice(0) : [];
-        imgs = imgs.map(toRootAssetPath).filter(Boolean);
-        while (imgs.length < 3){
-          imgs.push(makePlaceholderImgDataURI(item.title_en || item.title || "Image"));
-        }
-        return imgs.slice(0,3);
+      function isPlaceholderItem(item){
+        if (!item) return false;
+        if (item.is_placeholder === true) return true;
+        var id = String(item.id || "");
+        if (id.indexOf("placeholder_") === 0) return true;
+        var t = (item.title_en || item.title_es || item.title || "");
+        t = String(t).toLowerCase();
+        return t.indexOf("featured partner spot") === 0;
       }
+
+      function normalizeImages(item){
+        var isPh = isPlaceholderItem(item);
+        var cat = String((item && item.category) || "").toLowerCase();
+        var phPath = PLACEHOLDER_IMAGES[cat] || PLACEHOLDER_IMAGES["default"];
+        var phAbs = absRootUrl(phPath);
+
+        // If this is a placeholder card, always use 3 real promo images (no SVG data URIs).
+        if (isPh){
+          return [phAbs, phAbs, phAbs];
+        }
+
+        // For real listings, keep provided images, but normalize to absolute-root URLs.
+        var imgs = (item && item.images && item.images.length) ? item.images.slice(0) : [];
+        imgs = imgs.map(function(u){ return absRootUrl(u); }).filter(Boolean);
+
+        // If a real listing has < 3 images, repeat the first image to keep the carousel consistent.
+        if (imgs.length === 0){
+          imgs = [phAbs, phAbs, phAbs];
+        } else {
+          while (imgs.length < 3) imgs.push(imgs[0]);
+        }
         return imgs.slice(0,3);
       }
 
@@ -919,7 +856,7 @@ function normalizeImages(item){
           + '<div class="carouselSlide"><img src="' + esc(images[1]) + '" alt="' + aria + ' image 2" loading="lazy" decoding="async"></div>'
           + '<div class="carouselSlide"><img src="' + esc(images[2]) + '" alt="' + aria + ' image 3" loading="lazy" decoding="async"></div>';
 
-        var whyBlock = why ? ('<div class="why" aria-label="Por que lo recomendamos"><strong>Por que lo recomendamos:</strong> ' + esc(why) + '</div>') : '';
+        var whyBlock = why ? ('<div class="why" aria-label="Why we recommend"><strong>Why we recommend:</strong> ' + esc(why) + '</div>') : '';
 
         return ''
           + '<article class="card" data-id="' + esc(item.id) + '" data-region="' + esc(item.region_id) + '" data-location="' + esc(item.location_id) + '" data-category="' + esc(item.category) + '" data-experiences="' + esc((item.experiences || []).join(",")) + '">'
@@ -935,8 +872,8 @@ function normalizeImages(item){
           +   '<div class="body">'
           +     '<div class="titleRow">'
           +       '<h3 class="title">' + esc(title) + '</h3>'
+          +       '<div class="chips" aria-label="Meta chips">' + chips.join("") + '</div>'
           +     '</div>'
-          +     '<div class="chipsRow" aria-label="Meta chips">' + chips.join("") + '</div>'
           +     '<p class="desc">' + esc(desc) + '</p>'
           +     whyBlock
           +     '<div class="links" aria-label="Actions">' + links.join("") + '</div>'
@@ -969,13 +906,10 @@ function normalizeImages(item){
           out.push(it);
         }
 
-        var realCount = out.length;
-        out = addMarketingPlaceholders(out, f);
-
         elCards.innerHTML = out.map(cardHtml).join("");
-        setCount(realCount);
+        setCount(out.length);
 
-        if (realCount === 0){
+        if (out.length === 0){
           elNoResults.style.display = "block";
           elNoResults.textContent = t("no_results");
         } else {
@@ -1104,7 +1038,7 @@ function normalizeImages(item){
         elExperience.addEventListener("change", apply);
         elCategory.addEventListener("change", apply);
 
-        btnRestablecer.addEventListener("click", resetFilters);
+        btnReset.addEventListener("click", resetFilters);
       }
 
       function boot(){
