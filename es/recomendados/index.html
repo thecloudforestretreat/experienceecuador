@@ -381,8 +381,9 @@
 
     .titleRow{
       display:flex;
+      flex-direction:column;
       align-items:flex-start;
-      justify-content:space-between;
+      justify-content:flex-start;
       gap: 10px;
       min-width: 0;
     }
@@ -396,19 +397,38 @@
       line-height: 1.15;
       color:#0f2f62;
       min-width: 0;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      min-height: calc(1.15em * 2);
     }
 
     .chips{
       display:flex;
       gap: 8px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       align-items:center;
-      justify-content:flex-end;
+      justify-content:flex-start;
+      min-width: 0;
+      min-height: 40px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      white-space: nowrap;
+      padding-right: 10px;
+      padding-bottom: 2px;
+    }
+
+    .chips::-webkit-scrollbar{
+      display:none;
     }
 
     .chip{
       display:inline-flex;
       align-items:center;
+      flex: 0 0 auto;
       padding: 7px 10px;
       border-radius: 999px;
       border: 1px solid rgba(3,78,162,.14);
@@ -487,6 +507,14 @@
       .fGroup:after{ top: 38px; }
       .grid{ grid-template-columns: 1fr; }
       .media{ min-height: 280px; }
+      .title{
+        font-size: 17px;
+        min-height: calc(1.15em * 2);
+      }
+      .chips{
+        width: 100%;
+        justify-content: flex-start;
+      }
       .why{
         display:block;
         -webkit-line-clamp:unset;
@@ -499,6 +527,12 @@
       .navBtn{ width: 40px; height: 40px; }
       .body{ gap: 12px; }
       .links{ gap: 8px; }
+      .title{
+        font-size: 16px;
+      }
+      .chips{
+        gap: 6px;
+      }
       .why{
         font-size:14px;
         line-height:1.6;
