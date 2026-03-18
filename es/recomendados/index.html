@@ -592,6 +592,19 @@
       };
 
       var LOCALE = (document.documentElement && document.documentElement.lang && document.documentElement.lang.toLowerCase().indexOf("es") === 0) ? "es" : "en";
+      var elRegion = document.getElementById("fRegion");
+      var elLocation = document.getElementById("fLocation");
+      var elExperience = document.getElementById("fExperience");
+      var elCategory = document.getElementById("fCategory");
+      var elCards = document.getElementById("cards");
+      var elNoResults = document.getElementById("noResults");
+      var elCount = document.getElementById("resultCount");
+      var btnReset = document.getElementById("btnReset");
+
+      var REGIONS = null;
+      var EXPERIENCES = null;
+      var ITEMS = null;
+      var isApplyingQueryParams = false;
 
       function t(key){
         var dict = STR[LOCALE] || STR.en || {};
@@ -651,19 +664,6 @@
         } catch(e){}
       }
 
-      var elRegion = document.getElementById("fRegion");
-      var elLocation = document.getElementById("fLocation");
-      var elExperience = document.getElementById("fExperience");
-      var elCategory = document.getElementById("fCategory");
-      var elCards = document.getElementById("cards");
-      var elNoResults = document.getElementById("noResults");
-      var elCount = document.getElementById("resultCount");
-      var btnReset = document.getElementById("btnReset");
-
-      var REGIONS = null;
-      var EXPERIENCES = null;
-      var ITEMS = null;
-
       function setCount(n){
         var word = (n === 1) ? t("results_one") : t("results_many");
         elCount.textContent = String(n) + " " + word;
@@ -676,6 +676,33 @@
           experience_id: elExperience.value || "",
           category: elCategory.value || ""
         };
+      }
+
+      function getQueryParams(){
+        var params = new URLSearchParams(window.location.search || "");
+        return {
+          region_id: params.get("region") || params.get("region_id") || "",
+          location_id: params.get("location") || params.get("location_id") || "",
+          experience_id: params.get("experience") || params.get("experience_id") || "",
+          category: params.get("category") || ""
+        };
+      }
+
+      function updateUrlFromFilters(){
+        if (isApplyingQueryParams) return;
+        var f = getFilters();
+        var params = new URLSearchParams();
+
+        if (f.region_id) params.set("region", f.region_id);
+        if (f.location_id) params.set("location", f.location_id);
+        if (f.experience_id) params.set("experience", f.experience_id);
+        if (f.category) params.set("category", f.category);
+
+        var qs = params.toString();
+        var nextUrl = window.location.pathname + (qs ? ("?" + qs) : "");
+        if (window.location.search !== (qs ? ("?" + qs) : "")){
+          history.replaceState({}, "", nextUrl);
+        }
       }
 
       function resetFilters(){
@@ -933,6 +960,39 @@
           + '</article>';
       }
 
+      function applyQueryFilters(){
+        var qp = getQueryParams();
+        isApplyingQueryParams = true;
+
+        if (qp.region_id){
+          elRegion.value = qp.region_id;
+        } else {
+          elRegion.value = "";
+        }
+
+        syncLocationOptions();
+
+        if (qp.location_id && !elLocation.disabled){
+          elLocation.value = qp.location_id;
+        } else {
+          elLocation.value = "";
+        }
+
+        if (qp.experience_id){
+          elExperience.value = qp.experience_id;
+        } else {
+          elExperience.value = "";
+        }
+
+        if (qp.category){
+          elCategory.value = qp.category;
+        } else {
+          elCategory.value = "";
+        }
+
+        isApplyingQueryParams = false;
+      }
+
       function apply(){
         if (!ITEMS || !ITEMS.items) return;
 
@@ -968,6 +1028,7 @@
           elNoResults.style.display = "none";
         }
 
+        updateUrlFromFilters();
         initAllCarousels();
       }
 
@@ -1125,9 +1186,8 @@
           ITEMS = all[2];
 
           syncRegionOptions();
-          syncLocationOptions();
           syncExperienceOptions();
-
+          applyQueryFilters();
           apply();
         }).catch(function(){
           elNoResults.style.display = "block";
