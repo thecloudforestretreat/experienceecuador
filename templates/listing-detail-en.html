@@ -1,1 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>{{META_TITLE_EN}}</title>
+  <meta name="description" content="{{META_DESCRIPTION_EN}}" />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="canonical" href="{{CANONICAL_URL_EN}}" />
+  <link rel="alternate" hreflang="en" href="{{CANONICAL_URL_EN}}" />
+  <link rel="alternate" hreflang="es" href="{{CANONICAL_URL_ES}}" />
+  <link rel="alternate" hreflang="x-default" href="{{CANONICAL_URL_EN}}" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Experience Ecuador" />
+  <meta property="og:title" content="{{TITLE_EN}} | Experience Ecuador" />
+  <meta property="og:description" content="{{META_DESCRIPTION_EN}}" />
+  <meta property="og:url" content="{{CANONICAL_URL_EN}}" />
+  <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Experience Ecuador - plan your trip to Ecuador" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{TITLE_EN}} | Experience Ecuador" />
+  <meta name="twitter:description" content="{{META_DESCRIPTION_EN}}" />
+  <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta name="twitter:image:alt" content="Experience Ecuador - plan your trip to Ecuador" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#034EA2" />
+
+  <link rel="stylesheet" href="/assets/css/header.css" />
+  <link rel="stylesheet" href="/assets/css/footer.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Recommendations", "item": "https://experienceecuador.com/recommendations/" },
+          { "@type": "ListItem", "position": 2, "name": "{{REGION_NAME_EN}}", "item": "https://experienceecuador.com{{REGION_PAGE_EN}}" },
+          { "@type": "ListItem", "position": 3, "name": "{{LOCATION_NAME_EN}}", "item": "https://experienceecuador.com{{LOCATION_PAGE_EN}}" },
+          { "@type": "ListItem", "position": 4, "name": "{{TITLE_EN}}", "item": "{{CANONICAL_URL_EN}}" }
+        ]
+      },
+      {
+        "@type": "{{SCHEMA_TYPE}}",
+        "name": "{{TITLE_EN}}",
+        "url": "{{CANONICAL_URL_EN}}",
+        "image": [
+          "https://experienceecuador.com{{IMAGE_1}}",
+          "https://experienceecuador.com{{IMAGE_2}}",
+          "https://experienceecuador.com{{IMAGE_3}}"
+        ],
+        "description": "{{DESCRIPTION_SHORT_EN}}",
+        "telephone": "{{PHONE}}",
+        "sameAs": [
+          "{{WEBSITE_URL}}",
+          "{{WHATSAPP_URL}}"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "{{LOCATION_NAME_EN}}",
+          "addressRegion": "{{REGION_NAME_EN}}",
+          "addressCountry": "EC"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "{{FAQ_1_Q_EN}}", "acceptedAnswer": { "@type": "Answer", "text": "{{FAQ_1_A_EN}}" } },
+          { "@type": "Question", "name": "{{FAQ_2_Q_EN}}", "acceptedAnswer": { "@type": "Answer", "text": "{{FAQ_2_A_EN}}" } },
+          { "@type": "Question", "name": "{{FAQ_3_Q_EN}}", "acceptedAnswer": { "@type": "Answer", "text": "{{FAQ_3_A_EN}}" } },
+          { "@type": "Question", "name": "{{FAQ_4_Q_EN}}", "acceptedAnswer": { "@type": "Answer", "text": "{{FAQ_4_A_EN}}" } }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --brand-blue:#034EA2;
+      --ink:#0f2f62;
+      --text:#1f2a3a;
+      --slate:#6E7B8B;
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --line:rgba(0,0,0,.08);
+      --shadow:0 18px 55px rgba(3,78,162,.12);
+      --shadow-soft:0 14px 34px rgba(3,78,162,.10);
+      --r-xl:24px;
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:var(--bg);
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .wrap{max-width:var(--max);margin:0 auto;padding:38px 18px 72px}
+    .breadcrumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px;color:var(--slate);font-size:13px;font-weight:700}
+    .breadcrumbs a{color:var(--ink)}
+    .breadcrumbs .sep{opacity:.55}
+    .hero{display:grid;grid-template-columns:1.02fr .98fr;gap:16px;align-items:stretch}
+    .heroCard,.heroMedia,.section,.ctaBand{background:var(--card);border:1px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--shadow)}
+    .heroCard{padding:18px;min-width:0}
+    .heroTop{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(3,78,162,.14);background:rgba(3,78,162,.06);color:var(--ink);font-weight:900;font-size:12.5px;white-space:nowrap}
+    h1{margin:6px 0 10px;font-family:Montserrat,Inter,sans-serif;font-weight:800;letter-spacing:-0.03em;line-height:1.06;font-size:clamp(34px,4vw,54px);color:var(--brand-blue);max-width:18ch}
+    .lede{margin:0;color:#2a2f36;line-height:1.75;font-size:16px;max-width:72ch}
+    .lede + .lede{margin-top:10px}
+    .metaRow{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .ctaRow{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border-radius:14px;font-weight:900;font-size:14px;border:1px solid transparent;cursor:pointer;user-select:none;box-shadow:0 14px 30px rgba(3,78,162,.10)}
+    .btnPrimary{background:var(--brand-blue);color:#fff;border-color:rgba(3,78,162,.24);box-shadow:0 18px 40px rgba(3,78,162,.18)}
+    .btnGhost{background:#fff;color:var(--ink);border-color:rgba(3,78,162,.22)}
+    .heroMedia{overflow:hidden;position:relative;min-height:460px;display:flex;flex-direction:column;min-width:0}
+    .carousel{position:relative;width:100%;height:100%;flex:1;min-height:460px;background:#eef2f7}
+    .carouselViewport{position:absolute;inset:0;overflow:hidden;touch-action:pan-y}
+    .carouselTrack{height:100%;display:flex;transform:translateX(0);transition:transform 450ms ease;will-change:transform}
+    .carouselSlide{min-width:100%;height:100%;background:#eef2f7;position:relative}
+    .carouselSlide img{width:100%;height:100%;object-fit:cover;display:block}
+    .phOverlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.04), rgba(0,0,0,.30));pointer-events:none}
+    .phLabel{position:absolute;left:14px;right:14px;bottom:70px;border-radius:16px;border:1px solid rgba(255,255,255,.26);background:rgba(255,255,255,.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:12px;color:#fff;box-shadow:0 20px 60px rgba(0,0,0,.20);font-weight:900;letter-spacing:-0.01em;line-height:1.3}
+    .carouselControls{position:absolute;left:14px;right:14px;bottom:14px;z-index:6;display:flex;align-items:center;justify-content:space-between;gap:10px;pointer-events:none}
+    .carouselControls>*{pointer-events:auto}
+    .navBtn{width:40px;height:40px;border-radius:999px;border:1px solid rgba(255,255,255,.38);background:rgba(0,0,0,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;flex:0 0 auto;box-shadow:0 16px 34px rgba(0,0,0,.24)}
+    .navBtn:hover{background:rgba(0,0,0,.28)}
+    .navBtn span{display:block;width:10px;height:10px;border-right:2px solid rgba(255,255,255,.95);border-bottom:2px solid rgba(255,255,255,.95);opacity:.95}
+    .navBtn.prev span{transform:rotate(135deg)}
+    .navBtn.next span{transform:rotate(-45deg)}
+    .dots{display:flex;align-items:center;justify-content:center;gap:8px;flex:1 1 auto;min-width:0}
+    .dot{width:10px;height:10px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:rgba(0,0,0,.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);cursor:pointer;padding:0;appearance:none;-webkit-appearance:none;box-shadow:0 12px 26px rgba(0,0,0,.22)}
+    .dot.active{background:rgba(255,255,255,.92);border-color:rgba(255,255,255,.92)}
+    .section{margin-top:14px;padding:18px;box-shadow:var(--shadow-soft)}
+    .h2{margin:0 0 10px;font-family:Montserrat,Inter,sans-serif;font-weight:800;letter-spacing:-0.02em;color:var(--ink);font-size:20px}
+    .p{margin:0;color:#2a2f36;line-height:1.78;font-size:14.9px;opacity:.98;max-width:92ch}
+    .p + .p{margin-top:10px}
+    .grid2,.nearbyGrid,.faqGrid,.linkGrid,.galleryGrid{margin-top:12px;display:grid;gap:12px}
+    .grid2{grid-template-columns:1fr 1fr}
+    .nearbyGrid{grid-template-columns:repeat(3,1fr)}
+    .faqGrid{grid-template-columns:1fr 1fr}
+    .linkGrid{grid-template-columns:1fr 1fr 1fr}
+    .galleryGrid{grid-template-columns:repeat(3,1fr)}
+    .mini,.nearbyCard,.faqCard,.linkCard,.galleryCard{border-radius:18px;overflow:hidden;border:1px solid rgba(0,0,0,.06);box-shadow:0 16px 35px rgba(3,78,162,.10);background:#fff}
+    .mini{background:rgba(3,78,162,0.03);padding:14px;box-shadow:0 16px 45px rgba(3,78,162,.10)}
+    .nearbyBody,.faqBody,.linkBody,.galleryCap{padding:14px}
+    .mini h3,.nearbyCard h3,.faqCard h3,.linkCard h3{margin:0 0 8px;font-family:Montserrat,Inter,sans-serif;font-weight:800;letter-spacing:-0.02em;color:var(--ink);font-size:16px}
+    .bullets{margin:0;padding-left:18px;color:#2a2f36;line-height:1.75;font-size:14.6px}
+    .bullets li{margin:6px 0}
+    .nearbyCard p,.faqCard p,.linkCard p{margin:0;color:#2a2f36;line-height:1.7;font-size:14.2px}
+    .galleryCard img{width:100%;aspect-ratio:1 / 1;object-fit:cover}
+    .galleryCap{font-size:13px;color:var(--ink);font-weight:800;line-height:1.4}
+    .ctaBand{margin-top:14px;padding:18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;box-shadow:var(--shadow-soft);background:linear-gradient(180deg, rgba(3,78,162,.06), rgba(3,78,162,.02))}
+    .ctaLeft{min-width:260px;flex:1}
+    .ctaBand h3{margin:0 0 6px;font-family:Montserrat,Inter,sans-serif;font-weight:800;letter-spacing:-0.02em;color:var(--ink);font-size:18px}
+    .ctaBand p{margin:0;color:#2a2f36;opacity:.95;line-height:1.6;font-size:14.4px;max-width:78ch}
+    .ctaRight{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    @media (max-width:980px){
+      .wrap{padding:18px 14px 64px}
+      .hero,.grid2,.nearbyGrid,.faqGrid,.linkGrid,.galleryGrid{grid-template-columns:1fr}
+      .carousel{min-height:340px}
+      .phLabel{bottom:66px}
+      .navBtn{width:38px;height:38px}
+    }
+    @media (prefers-reduced-motion: reduce){.carouselTrack{transition:none !important}}
+  </style>
+</head>
+<body>
+  <main class="wrap" aria-label="{{TITLE_EN}} listing page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/recommendations/">Recommendations</a>
+      <span class="sep">/</span>
+      <a href="{{REGION_PAGE_EN}}">{{REGION_NAME_EN}}</a>
+      <span class="sep">/</span>
+      <a href="{{LOCATION_PAGE_EN}}">{{LOCATION_NAME_EN}}</a>
+      <span class="sep">/</span>
+      <span aria-current="page">{{TITLE_EN}}</span>
+    </nav>
+
+    <section class="hero" aria-label="{{TITLE_EN}} hero">
+      <div class="heroCard" aria-label="{{TITLE_EN}} overview">
+        <div class="heroTop">
+          <span class="pill">{{CATEGORY_LABEL_EN}}</span>
+          <a class="pill" href="{{CANONICAL_URL_ES}}" aria-label="View in Spanish">Ver en Espanol</a>
+        </div>
+
+        <h1>{{TITLE_EN}}</h1>
+
+        <p class="lede">{{DESCRIPTION_SHORT_EN}}</p>
+        <p class="lede">{{HERO_SUPPORT_EN}}</p>
+
+        <div class="metaRow" aria-label="Quick tags">
+          <span class="pill">{{REGION_NAME_EN}}</span>
+          <span class="pill">{{LOCATION_NAME_EN}}</span>
+          <span class="pill">{{META_TAG_1_EN}}</span>
+          <span class="pill">{{META_TAG_2_EN}}</span>
+          <span class="pill">{{META_TAG_3_EN}}</span>
+        </div>
+
+        <div class="ctaRow" aria-label="Primary actions">
+          <a class="btn btnPrimary js-rec-action" href="{{WEBSITE_URL}}" target="_blank" rel="noopener" data-action="website" data-id="{{ID}}" data-title="{{TITLE_EN}}" data-region="{{REGION_ID_EN}}" data-location="{{LOCATION_ID_EN}}" data-category="{{CATEGORY}}">Visit Website</a>
+          <a class="btn btnGhost js-rec-action" href="{{WHATSAPP_URL}}" target="_blank" rel="noopener" data-action="whatsapp" data-id="{{ID}}" data-title="{{TITLE_EN}}" data-region="{{REGION_ID_EN}}" data-location="{{LOCATION_ID_EN}}" data-category="{{CATEGORY}}">WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="heroMedia" aria-label="{{TITLE_EN}} image carousel">
+        <div class="carousel" data-interval="2800" aria-label="{{TITLE_EN}} photo carousel">
+          <div class="carouselViewport" aria-label="Carousel viewport">
+            <div class="carouselTrack">
+              <div class="carouselSlide">
+                <img src="{{IMAGE_1}}" alt="{{IMAGE_1_ALT_EN}}" loading="eager" decoding="async" />
+                <div class="phOverlay" aria-hidden="true"></div>
+                <div class="phLabel">{{IMAGE_1_CAPTION_EN}}</div>
+              </div>
+              <div class="carouselSlide">
+                <img src="{{IMAGE_2}}" alt="{{IMAGE_2_ALT_EN}}" loading="lazy" decoding="async" />
+                <div class="phOverlay" aria-hidden="true"></div>
+                <div class="phLabel">{{IMAGE_2_CAPTION_EN}}</div>
+              </div>
+              <div class="carouselSlide">
+                <img src="{{IMAGE_3}}" alt="{{IMAGE_3_ALT_EN}}" loading="lazy" decoding="async" />
+                <div class="phOverlay" aria-hidden="true"></div>
+                <div class="phLabel">{{IMAGE_3_CAPTION_EN}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="carouselControls" aria-label="Carousel controls">
+            <button class="navBtn prev" type="button" aria-label="Previous image"><span aria-hidden="true"></span></button>
+            <div class="dots" aria-label="Choose image"></div>
+            <button class="navBtn next" type="button" aria-label="Next image"><span aria-hidden="true"></span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Short description">
+      <h2 class="h2">{{SECTION_SHORT_HEADING_EN}}</h2>
+      <p class="p">{{DESCRIPTION_SHORT_EN}}</p>
+    </section>
+
+    <section class="section" aria-label="Long SEO paragraph">
+      <h2 class="h2">{{SECTION_SEO_HEADING_EN}}</h2>
+      <p class="p">{{SEO_PARAGRAPH_1_EN}}</p>
+      <p class="p">{{SEO_PARAGRAPH_2_EN}}</p>
+    </section>
+
+    <section class="section" aria-label="Why stay here">
+      <h2 class="h2">{{SECTION_WHY_HEADING_EN}}</h2>
+      <p class="p">{{WHY_SECTION_EN}}</p>
+    </section>
+
+    <section class="section" aria-label="Experience overview">
+      <h2 class="h2">Experience breakdown</h2>
+      <div class="grid2">
+        <div class="mini">
+          <h3>What stands out</h3>
+          <ul class="bullets">
+            <li>{{EXPERIENCE_HIGHLIGHT_1_EN}}</li>
+            <li>{{EXPERIENCE_HIGHLIGHT_2_EN}}</li>
+            <li>{{EXPERIENCE_HIGHLIGHT_3_EN}}</li>
+            <li>{{EXPERIENCE_HIGHLIGHT_4_EN}}</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <h3>Best for</h3>
+          <ul class="bullets">
+            <li>{{BEST_FOR_1_EN}}</li>
+            <li>{{BEST_FOR_2_EN}}</li>
+            <li>{{BEST_FOR_3_EN}}</li>
+            <li>{{BEST_FOR_4_EN}}</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Location context">
+      <h2 class="h2">{{SECTION_LOCATION_HEADING_EN}}</h2>
+      <p class="p">{{LOCATION_CONTEXT_EN}}</p>
+    </section>
+
+    <section class="section" aria-label="Things to do nearby">
+      <h2 class="h2">Things to do nearby</h2>
+      <div class="nearbyGrid">
+        <article class="nearbyCard"><div class="nearbyBody"><h3>{{NEARBY_1_TITLE_EN}}</h3><p>{{NEARBY_1_TEXT_EN}}</p></div></article>
+        <article class="nearbyCard"><div class="nearbyBody"><h3>{{NEARBY_2_TITLE_EN}}</h3><p>{{NEARBY_2_TEXT_EN}}</p></div></article>
+        <article class="nearbyCard"><div class="nearbyBody"><h3>{{NEARBY_3_TITLE_EN}}</h3><p>{{NEARBY_3_TEXT_EN}}</p></div></article>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Photo gallery">
+      <h2 class="h2">{{GALLERY_HEADING_EN}}</h2>
+      <div class="galleryGrid" aria-label="{{TITLE_EN}} image gallery">
+        <figure class="galleryCard"><img src="{{IMAGE_1}}" alt="{{IMAGE_1_ALT_EN}}" loading="lazy" decoding="async" /><figcaption class="galleryCap">{{IMAGE_1_GALLERY_CAPTION_EN}}</figcaption></figure>
+        <figure class="galleryCard"><img src="{{IMAGE_2}}" alt="{{IMAGE_2_ALT_EN}}" loading="lazy" decoding="async" /><figcaption class="galleryCap">{{IMAGE_2_GALLERY_CAPTION_EN}}</figcaption></figure>
+        <figure class="galleryCard"><img src="{{IMAGE_3}}" alt="{{IMAGE_3_ALT_EN}}" loading="lazy" decoding="async" /><figcaption class="galleryCap">{{IMAGE_3_GALLERY_CAPTION_EN}}</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Frequently asked questions">
+      <h2 class="h2">Frequently asked questions</h2>
+      <div class="faqGrid">
+        <article class="faqCard"><div class="faqBody"><h3>{{FAQ_1_Q_EN}}</h3><p>{{FAQ_1_A_EN}}</p></div></article>
+        <article class="faqCard"><div class="faqBody"><h3>{{FAQ_2_Q_EN}}</h3><p>{{FAQ_2_A_EN}}</p></div></article>
+        <article class="faqCard"><div class="faqBody"><h3>{{FAQ_3_Q_EN}}</h3><p>{{FAQ_3_A_EN}}</p></div></article>
+        <article class="faqCard"><div class="faqBody"><h3>{{FAQ_4_Q_EN}}</h3><p>{{FAQ_4_A_EN}}</p></div></article>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Explore more with Experience Ecuador">
+      <h2 class="h2">Explore more with Experience Ecuador</h2>
+      <p class="p">{{EXPLORE_SECTION_INTRO_EN}}</p>
+      <div class="linkGrid">
+        <article class="linkCard"><div class="linkBody"><h3><a href="/recommendations/">Browse all recommendations</a></h3><p>Return to the main recommendations page to compare lodges, activities, and services across Ecuador.</p></div></article>
+        <article class="linkCard"><div class="linkBody"><h3><a href="/recommendations/?region={{REGION_ID_EN}}">Explore {{REGION_NAME_EN}} listings</a></h3><p>See more curated recommendation results already filtered to the {{REGION_NAME_EN}} region.</p></div></article>
+        <article class="linkCard"><div class="linkBody"><h3><a href="/recommendations/?region={{REGION_ID_EN}}&location={{LOCATION_ID_EN}}">See more in {{LOCATION_NAME_EN}}</a></h3><p>View all categories and experiences currently available in recommendation results for {{LOCATION_NAME_EN}}.</p></div></article>
+        <article class="linkCard"><div class="linkBody"><h3><a href="/recommendations/?experience={{EXPERIENCE_FILTER_ID}}">{{EXPERIENCE_LINK_LABEL_EN}}</a></h3><p>{{EXPERIENCE_LINK_TEXT_EN}}</p></div></article>
+        <article class="linkCard"><div class="linkBody"><h3><a href="{{REGION_PAGE_EN}}">Explore the {{REGION_NAME_EN}} region</a></h3><p>{{REGION_LINK_TEXT_EN}}</p></div></article>
+        <article class="linkCard"><div class="linkBody"><h3><a href="{{LOCATION_PAGE_EN}}">Discover {{LOCATION_NAME_EN}}</a></h3><p>{{LOCATION_LINK_TEXT_EN}}</p></div></article>
+      </div>
+    </section>
+
+    <section class="ctaBand" aria-label="Plan your stay">
+      <div class="ctaLeft">
+        <h3>{{CTA_HEADING_EN}}</h3>
+        <p>{{CTA_TEXT_EN}}</p>
+      </div>
+      <div class="ctaRight">
+        <a class="btn btnPrimary js-rec-action" href="{{WEBSITE_URL}}" target="_blank" rel="noopener" data-action="website" data-id="{{ID}}" data-title="{{TITLE_EN}}" data-region="{{REGION_ID_EN}}" data-location="{{LOCATION_ID_EN}}" data-category="{{CATEGORY}}">Visit Website</a>
+        <a class="btn btnGhost js-rec-action" href="{{WHATSAPP_URL}}" target="_blank" rel="noopener" data-action="whatsapp" data-id="{{ID}}" data-title="{{TITLE_EN}}" data-region="{{REGION_ID_EN}}" data-location="{{LOCATION_ID_EN}}" data-category="{{CATEGORY}}">WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="/assets/js/site.js"></script>
+  <script>
+    (function(){
+      function safeTrack(name, params){
+        if (typeof window.gtag !== "function") return;
+        try { window.gtag("event", name, params || {}); } catch(e){}
+      }
+      document.addEventListener("click", function(e){
+        var a = e.target && e.target.closest ? e.target.closest(".js-rec-action") : null;
+        if (!a) return;
+        safeTrack("recommendation_click", {
+          listing_id: a.getAttribute("data-id") || "",
+          listing_title: a.getAttribute("data-title") || "",
+          region_id: a.getAttribute("data-region") || "",
+          location_id: a.getAttribute("data-location") || "",
+          category: a.getAttribute("data-category") || "",
+          action_type: a.getAttribute("data-action") || "",
+          page_path: window.location.pathname || "/"
+        });
+      }, true);
+    })();
+  </script>
+  <script>
+    (function(){
+      function initCarousel(root){
+        if(!root) return;
+        var viewport = root.querySelector(".carouselViewport");
+        var track = root.querySelector(".carouselTrack");
+        var slides = Array.prototype.slice.call(root.querySelectorAll(".carouselSlide"));
+        var prevBtn = root.querySelector(".navBtn.prev");
+        var nextBtn = root.querySelector(".navBtn.next");
+        var dotsWrap = root.querySelector(".dots");
+        if(!viewport || !track || !slides.length) return;
+        var index = 0, intervalMs = Number(root.getAttribute("data-interval") || "2800"), timer = null, dots = [];
+        function buildDots(){
+          if(!dotsWrap) return;
+          dotsWrap.innerHTML = "";
+          dots = [];
+          for(var i=0; i<slides.length; i++){
+            (function(i2){
+              var b = document.createElement("button");
+              b.type = "button";
+              b.className = "dot" + (i2 === 0 ? " active" : "");
+              b.setAttribute("aria-label", "Go to image " + (i2 + 1));
+              b.addEventListener("click", function(){ setIndex(i2); stop(); });
+              dotsWrap.appendChild(b);
+              dots.push(b);
+            })(i);
+          }
+        }
+        function update(){
+          track.style.transform = "translateX(-" + (index * 100) + "%)";
+          for(var i=0; i<dots.length; i++) dots[i].classList.toggle("active", i === index);
+        }
+        function setIndex(next){ index = (next < 0 ? slides.length - 1 : next >= slides.length ? 0 : next); update(); }
+        function next(){ setIndex(index + 1); }
+        function prev(){ setIndex(index - 1); }
+        function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+        function start(){ stop(); timer = setInterval(next, intervalMs); }
+        if(prevBtn) prevBtn.addEventListener("click", function(){ prev(); stop(); });
+        if(nextBtn) nextBtn.addEventListener("click", function(){ next(); stop(); });
+        root.addEventListener("mouseenter", stop);
+        root.addEventListener("mouseleave", start);
+        var startX = 0, isDown = false;
+        viewport.addEventListener("pointerdown", function(e){ isDown = true; startX = e.clientX; try{ viewport.setPointerCapture(e.pointerId); }catch(_){} });
+        viewport.addEventListener("pointerup", function(e){ if(!isDown) return; isDown = false; var dx = e.clientX - startX; if(dx > 40){ prev(); stop(); } if(dx < -40){ next(); stop(); } });
+        viewport.addEventListener("pointercancel", function(){ isDown = false; });
+        buildDots(); update(); start();
+      }
+      initCarousel(document.querySelector(".carousel"));
+    })();
+  </script>
+</body>
+</html>
