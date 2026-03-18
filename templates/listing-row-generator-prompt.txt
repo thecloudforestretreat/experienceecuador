@@ -1,94 +1,103 @@
-:::writing{variant=“standard” id=“lsng1”}
 You are building structured listing data for Experience Ecuador.
 
 Your job is to take a business URL and generate ONE complete listing row in TSV format that matches the schema of listing_pages_input.csv.
 
-⸻
-
 INPUT:
-	•	Website URL: {{URL}}
-	•	WhatsApp (optional): {{WHATSAPP}}
-	•	Notes (optional): {{NOTES}}
-
-⸻
+- Website URL: {{URL}}
+- WhatsApp (optional): {{WHATSAPP}}
+- Notes (optional): {{NOTES}}
 
 RULES:
-	1.	Output ONLY a single TSV row (no explanations, no JSON, no formatting).
-	2.	Follow the exact column order from the CSV.
-	3.	Fill BOTH English and Spanish fields.
-	4.	Spanish must be LATAM / South American Spanish (not Spain Spanish).
-	5.	Do NOT invent:
-	•	phone numbers (unless clearly visible)
-	•	addresses
-	•	amenities not mentioned
-	6.	If data is missing:
-	•	leave field empty
-	7.	Keep tone:
-	•	editorial
-	•	travel-focused
-	•	SEO optimized but natural
-
-⸻
+1. Output ONLY a single TSV row (no explanations, no JSON, no formatting).
+2. Follow the exact column order from the CSV.
+3. Fill BOTH English and Spanish fields.
+4. Spanish must be LATAM / South American Spanish (not Spain Spanish).
+5. Do NOT invent:
+   - phone numbers (unless clearly visible)
+   - addresses
+   - amenities not mentioned
+6. If data is missing:
+   - leave field empty
+7. Keep tone:
+   - editorial
+   - travel-focused
+   - SEO optimized but natural
 
 CONTENT RULES:
 
 TITLE:
-	•	Use real business name
-	•	Do NOT keyword stuff
+- Use real business name
+- Do NOT keyword stuff
 
 META:
-	•	Must be SEO optimized
-	•	Include location + intent
+- Must be SEO optimized
+- Include location + intent
 
 SEO PARAGRAPHS:
-	•	Paragraph 1 = discoverability (keywords)
-	•	Paragraph 2 = intent + traveler fit
+- Paragraph 1 = discoverability (keywords)
+- Paragraph 2 = intent + traveler fit
 
 WHY SECTION:
-	•	Clear value proposition
+- Clear value proposition
 
 EXPERIENCE HIGHLIGHTS:
-	•	4 bullets
-	•	pipe separated |
-	•	short phrases
+- 4 bullets
+- pipe separated |
+- short phrases
 
 BEST FOR:
-	•	4 bullets
-	•	traveler types
+- 4 bullets
+- traveler types
 
 LOCATION CONTEXT:
-	•	Explain destination value (Tena, Mindo, etc.)
+- Explain destination value (Tena, Mindo, etc.)
 
 NEARBY:
-	•	Generic but realistic
-	•	Do NOT hallucinate specific businesses
+- Generic but realistic
+- Do NOT hallucinate specific businesses
 
 FAQ:
-	•	3–4 realistic traveler questions
+- 3-4 realistic traveler questions
 
 IMAGES:
-	•	Use site images if available
-	•	Otherwise leave blank
+- Use site images if available
+- Otherwise leave blank
 
 FILTERS:
-	•	Map correctly:
-birdwatching → wildlife-birding
-adventure → adventure
-food → culinary
-relaxation → relaxation
+- Map correctly:
+  birdwatching -> wildlife-birding
+  adventure -> adventure
+  food -> culinary
+  relaxation -> relaxation
 
 SLUG RULE:
-	•	lowercase
-	•	hyphen separated
-	•	based on name
+- lowercase
+- hyphen separated
+- based on name
 
 REGION + LOCATION:
-	•	Must map correctly:
-amazon / amazonia
-tena / tena
-mindo / mindo
+- Must map correctly:
+  amazon / amazonia
+  tena / tena
+  mindo / mindo
 
-⸻
+PAGE PATH RULES (CRITICAL):
+
+- REGION_PAGE_EN must be exactly:
+  /regions/<region_id_en>/
+
+- LOCATION_PAGE_EN must be exactly:
+  /regions/<region_id_en>/<location_id_en>/
+
+- REGION_PAGE_ES must be exactly:
+  /es/regiones/<region_id_es>/
+
+- LOCATION_PAGE_ES must be exactly:
+  /es/regiones/<region_id_es>/<location_id_es>/
+
+- Spanish paths MUST always include /es/ prefix
+- Do NOT output Spanish paths without /es/
+- Do NOT guess or omit path structure
 
 OUTPUT FORMAT:
 
@@ -96,9 +105,6 @@ TSV (tab-separated)
 
 DO NOT include column headers.
 
-⸻
-
 FINAL INSTRUCTION:
 
 Return ONLY the TSV row.
-:::
