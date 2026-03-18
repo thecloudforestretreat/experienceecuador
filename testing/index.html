@@ -495,7 +495,6 @@
   </style>
 </head>
 <body>
-  <div id="siteHeader"></div>
   <main class="wrap" aria-label="Recomendados">
     <h1>Recomendados</h1>
     <p class="lede">
@@ -558,7 +557,6 @@
 
     <section class="grid" id="cards" aria-label="Tarjetas de recomendacion"></section>
   </main>
-  <div id="siteFooter"></div>
   <script src="/assets/js/site.js"></script>
   <script>
     (function(){
@@ -1139,18 +1137,6 @@
       }
 
       boot();
-    })();
-  </script>
-  <script>
-    (function(){
-      async function inject(id, url){
-        var el = document.getElementById(id);
-        if(!el) return;
-        var res = await fetch(url, { cache: "no-store" });
-        el.innerHTML = await res.text();
-      }
-      inject("siteHeader", "/assets/includes/header-es.html");
-      inject("siteFooter", "/assets/includes/footer-es.html");
     })();
   </script>
 </body>
