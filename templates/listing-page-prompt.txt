@@ -1,27 +1,35 @@
-Use the two master templates `listing-detail-en.html` and `listing-detail-es.html` with one row from `listing_pages_input.csv`.
+:::writing{variant=“standard” id=“lsng2”}
+Use the two master templates listing-detail-en.html and listing-detail-es.html with one row from listing_pages_input.csv.
 
 Rules:
-1. Do not add header/footer mounts or injection scripts. Header/footer are injected globally.
-2. Preserve all CSS, JS, analytics tracking, schema structure, and section order.
-3. Fill placeholders only.
-4. Output two complete files:
-   - English final file path: `/recommendations/members/<region_id_en>/<location_id_en>/<listing_slug>/index.html`
-   - Spanish final file path: `/es/recomendados/miembros/<region_id_es>/<location_id_es>/<listing_slug>/index.html`
-5. English filtered links:
-   - `/recommendations/?region=<region_id_en>`
-   - `/recommendations/?region=<region_id_en>&location=<location_id_en>`
-   - `/recommendations/?experience=<experience_filter_id>`
-6. Spanish filtered links:
-   - `/es/recomendados/?region=<region_id_es>`
-   - `/es/recomendados/?region=<region_id_es>&ubicacion=<location_id_es>`
-   - `/es/recomendados/?experience=<experience_filter_id>`
-7. Region/location backlinks:
-   - EN from `region_page_en`, `location_page_en`
-   - ES from `region_page_es`, `location_page_es`
-8. Spanish copy must be natural Latin American / South American Spanish, not Spain Spanish.
-9. Keep `experience_highlights_*` and `best_for_*` pipe-separated values split into exactly 4 bullets each.
-10. Keep all links, canonicals, hreflang, IDs, and CTA tracking attributes aligned with the row values.
-11. If `phone` lacks a leading plus, normalize it to include `+` in the rendered page and schema.
+	1.	Header and footer MUST be injected using the global include system:
+	•	Add <div id="siteHeader"></div> immediately after opening <body>
+	•	Add <div id="siteFooter"></div> immediately before closing </body>
+	•	Include <script src="/assets/js/includes.js"></script> before </body>
+	•	Do NOT hardcode header or footer HTML
+	•	Do NOT modify header/footer structure
+	2.	Preserve all CSS, JS, analytics tracking, schema structure, and section order.
+	3.	Fill placeholders only.
+	4.	Output two complete files:
+	•	English final file path: /recommendations/members/<region_id_en>/<location_id_en>/<listing_slug>/index.html
+	•	Spanish final file path: /es/recomendados/miembros/<region_id_es>/<location_id_es>/<listing_slug>/index.html
+	5.	English filtered links:
+	•	/recommendations/?region=<region_id_en>
+	•	/recommendations/?region=<region_id_en>&location=<location_id_en>
+	•	/recommendations/?experience=<experience_filter_id>
+	6.	Spanish filtered links:
+	•	/es/recomendados/?region=<region_id_es>
+	•	/es/recomendados/?region=<region_id_es>&ubicacion=<location_id_es>
+	•	/es/recomendados/?experience=<experience_filter_id>
+	7.	Region/location backlinks:
+	•	EN from region_page_en, location_page_en
+	•	ES from region_page_es, location_page_es
+	8.	Spanish copy must be natural Latin American / South American Spanish, not Spain Spanish.
+	9.	Keep experience_highlights_* and best_for_* pipe-separated values split into exactly 4 bullets each.
+	10.	Keep all links, canonicals, hreflang, IDs, and CTA tracking attributes aligned with the row values.
+	11.	If phone lacks a leading plus, normalize it to include + in the rendered page and schema.
+
+⸻
 
 Required placeholder mapping:
 
@@ -57,10 +65,10 @@ Section headings:
 {{GALLERY_HEADING_EN}}, {{GALLERY_HEADING_ES}}
 
 Pipe-split bullet fields:
-{{EXPERIENCE_HIGHLIGHT_1_EN}} ... {{EXPERIENCE_HIGHLIGHT_4_EN}}
-{{EXPERIENCE_HIGHLIGHT_1_ES}} ... {{EXPERIENCE_HIGHLIGHT_4_ES}}
-{{BEST_FOR_1_EN}} ... {{BEST_FOR_4_EN}}
-{{BEST_FOR_1_ES}} ... {{BEST_FOR_4_ES}}
+{{EXPERIENCE_HIGHLIGHT_1_EN}} … {{EXPERIENCE_HIGHLIGHT_4_EN}}
+{{EXPERIENCE_HIGHLIGHT_1_ES}} … {{EXPERIENCE_HIGHLIGHT_4_ES}}
+{{BEST_FOR_1_EN}} … {{BEST_FOR_4_EN}}
+{{BEST_FOR_1_ES}} … {{BEST_FOR_4_ES}}
 
 Nearby:
 {{NEARBY_1_TITLE_EN}}, {{NEARBY_1_TITLE_ES}}, {{NEARBY_1_TEXT_EN}}, {{NEARBY_1_TEXT_ES}}
@@ -91,20 +99,25 @@ CTA:
 {{CTA_HEADING_EN}}, {{CTA_HEADING_ES}}
 {{CTA_TEXT_EN}}, {{CTA_TEXT_ES}}
 
+⸻
+
 Recommended derivations:
-- CATEGORY_LABEL_EN / ES from category:
-  lodging = Lodging / Alojamiento
-  restaurants = Restaurants / Restaurantes
-  services = Services / Servicios
-  activities = Activities / Actividades
-- SCHEMA_TYPE:
-  lodging -> LodgingBusiness
-  restaurants -> Restaurant
-  services -> LocalBusiness
-  activities -> LocalBusiness
-- HERO_SUPPORT_* should be a concise second supporting sentence.
-- META_TAG_* can be derived from region, location, and three strongest themes.
-- EXPERIENCE_LINK_LABEL_EN example: "View birdwatching lodges in Ecuador"
-- EXPERIENCE_LINK_LABEL_ES example: "Ver lodges de aviturismo en Ecuador"
+	•	CATEGORY_LABEL_EN / ES from category:
+lodging = Lodging / Alojamiento
+restaurants = Restaurants / Restaurantes
+services = Services / Servicios
+activities = Activities / Actividades
+	•	SCHEMA_TYPE:
+lodging -> LodgingBusiness
+restaurants -> Restaurant
+services -> LocalBusiness
+activities -> LocalBusiness
+	•	HERO_SUPPORT_* should be a concise second supporting sentence.
+	•	META_TAG_* can be derived from region, location, and three strongest themes.
+	•	EXPERIENCE_LINK_LABEL_EN example: “View birdwatching lodges in Ecuador”
+	•	EXPERIENCE_LINK_LABEL_ES example: “Ver lodges de aviturismo en Ecuador”
+
+⸻
 
 When filling a row, keep factual details grounded in the CSV and existing listing data. Do not invent phone numbers, links, or amenities.
+:::
