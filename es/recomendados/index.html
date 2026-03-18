@@ -678,14 +678,38 @@
         };
       }
 
+      function mapRegionAlias(v){
+        var s = String(v || "").trim().toLowerCase();
+        if (s === "amazonia") return "amazon";
+        return s;
+      }
+
+      function mapExperienceAlias(v){
+        var s = String(v || "").trim().toLowerCase();
+        if (s === "vida-silvestre-y-aves") return "wildlife-birding";
+        return s;
+      }
+
       function getQueryParams(){
         var params = new URLSearchParams(window.location.search || "");
         return {
-          region_id: params.get("region") || params.get("region_id") || "",
-          location_id: params.get("location") || params.get("location_id") || "",
-          experience_id: params.get("experience") || params.get("experience_id") || "",
-          category: params.get("category") || ""
+          region_id: mapRegionAlias(params.get("region") || params.get("region_id") || params.get("regiones") || ""),
+          location_id: params.get("location") || params.get("location_id") || params.get("ubicacion") || "",
+          experience_id: mapExperienceAlias(params.get("experience") || params.get("experience_id") || params.get("experiencia") || params.get("experiecias") || ""),
+          category: params.get("category") || params.get("categoria") || ""
         };
+      }
+
+      function uiRegionSlug(v){
+        var s = String(v || "").trim().toLowerCase();
+        if (s === "amazon") return "amazonia";
+        return s;
+      }
+
+      function uiExperienceSlug(v){
+        var s = String(v || "").trim().toLowerCase();
+        if (s === "wildlife-birding") return "wildlife-birding";
+        return s;
       }
 
       function updateUrlFromFilters(){
@@ -693,9 +717,9 @@
         var f = getFilters();
         var params = new URLSearchParams();
 
-        if (f.region_id) params.set("region", f.region_id);
-        if (f.location_id) params.set("location", f.location_id);
-        if (f.experience_id) params.set("experience", f.experience_id);
+        if (f.region_id) params.set("region", uiRegionSlug(f.region_id));
+        if (f.location_id) params.set("ubicacion", f.location_id);
+        if (f.experience_id) params.set("experience", uiExperienceSlug(f.experience_id));
         if (f.category) params.set("category", f.category);
 
         var qs = params.toString();
@@ -731,10 +755,10 @@
         if (!EXPERIENCES || !EXPERIENCES.experiences || !EXPERIENCES.experiences.length) return;
         var opts = ['<option value="">' + esc(t("all_experiences")) + '</option>'];
         var exps = EXPERIENCES.experiences.slice(0);
-        exps.sort(function(a,b){ return byAlpha(a.name_es || a.name_en || a.name || a.id, b.name_es || b.name_en || b.name || b.id); });
+        exps.sort(function(a,b){ return byAlpha(labelExperience(a.id), labelExperience(b.id)); });
         for (var i=0; i<exps.length; i++){
           var e = exps[i];
-          opts.push('<option value="' + esc(e.id) + '">' + esc(e.name_es || e.name_en || e.name || e.id) + '</option>');
+          opts.push('<option value="' + esc(e.id) + '">' + esc(labelExperience(e.id)) + '</option>');
         }
         elExperience.innerHTML = opts.join("");
       }
@@ -787,7 +811,17 @@
         return locationId;
       }
 
+      var EXPERIENCE_LABELS_ES = {
+        "adventure": "Aventura",
+        "culinary": "Culinaria",
+        "culture": "Cultura",
+        "nature": "Naturaleza",
+        "relaxation": "Descanso",
+        "wildlife-birding": "Vida silvestre y aves"
+      };
+
       function labelExperience(expId){
+        if (LOCALE === "es" && EXPERIENCE_LABELS_ES[expId]) return EXPERIENCE_LABELS_ES[expId];
         if (!EXPERIENCES || !EXPERIENCES.experiences) return expId;
         for (var i=0; i<EXPERIENCES.experiences.length; i++){
           if (EXPERIENCES.experiences[i].id === expId){
