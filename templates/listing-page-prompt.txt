@@ -10,10 +10,38 @@ Rules:
    - English pages must inject:
      - `inject("siteHeader", "/assets/includes/header.html");`
      - `inject("siteFooter", "/assets/includes/footer.html");`
-   - Spanish pages must inject:
-     - `inject("siteHeader", "/assets/includes/header-es.html");`
-     - `inject("siteFooter", "/assets/includes/footer-es.html");`
-   - The inline injection script must appear before `<script src="/assets/js/site.js"></script>`
+   - Spanish pages must use the SAME live include files as the working Spanish site:
+     - `inject("siteHeader", "/assets/includes/header.html");`
+     - `inject("siteFooter", "/assets/includes/footer.html");`
+   - Injection must follow the working site pattern:
+     - Use `Promise.all([...])` to inject header and footer
+     - Load `/assets/js/site.js` ONLY AFTER injection completes
+     - Also load `/assets/js/site.js` in the catch fallback if injection fails
+   - Required injection block structure:
+
+<script>
+  (function(){
+    async function inject(id, url){
+      const el = document.getElementById(id);
+      if(!el) return;
+      const res = await fetch(url, { cache: "no-store" });
+      el.innerHTML = await res.text();
+    }
+
+    Promise.all([
+      inject("siteHeader", "/assets/includes/header.html"),
+      inject("siteFooter", "/assets/includes/footer.html")
+    ]).then(() => {
+      const s = document.createElement("script");
+      s.src = "/assets/js/site.js";
+      document.body.appendChild(s);
+    }).catch(() => {
+      const s = document.createElement("script");
+      s.src = "/assets/js/site.js";
+      document.body.appendChild(s);
+    });
+  })();
+</script>
 
 2. Preserve all CSS, JS, analytics tracking, schema structure, and section order from the master templates.
 
@@ -53,6 +81,10 @@ Rules:
      - `{{IMAGE_1_GALLERY_CAPTION_EN}}`, `{{IMAGE_2_GALLERY_CAPTION_EN}}`, `{{IMAGE_3_GALLERY_CAPTION_EN}}`
      - `{{IMAGE_1_GALLERY_CAPTION_ES}}`, `{{IMAGE_2_GALLERY_CAPTION_ES}}`, `{{IMAGE_3_GALLERY_CAPTION_ES}}`
    - No unresolved placeholder tokens may remain anywhere in the output HTML.
+   - Spanish caption enforcement:
+     - Spanish carousel overlays MUST display real Spanish text, never raw placeholder tokens
+     - Spanish gallery captions MUST display real Spanish text, never raw placeholder tokens
+     - If any `{{IMAGE_*_CAPTION_ES}}` or `{{IMAGE_*_GALLERY_CAPTION_ES}}` token remains unresolved, the output is invalid and must be regenerated before delivery
 
 13. Output ASCII-safe content in rendered pages whenever possible.
    - Replace smart apostrophes and smart quotes with plain ASCII equivalents
@@ -148,9 +180,13 @@ Recommended derivations:
 
 Validation requirements before output:
 - No unresolved `{{...}}` placeholders may remain
-- English output must use English header/footer injection paths
-- Spanish output must use Spanish header/footer injection paths
-- Footer injection script must be inline fetch-based, not `includes.js`
+- English output must use the live English header/footer injection paths
+- Spanish output must use the SAME live header/footer injection paths as the working Spanish site
+- Header/footer injection must use the inline fetch + Promise.all pattern above
+- Do not use `header-es.html` or `footer-es.html`
+- Do not use `includes.js`
 - Carousel caption overlays must display real replaced text in both EN and ES
+- Spanish caption overlays must display real Spanish text in all slides
+- Spanish gallery captions must display real Spanish text in all images
 
 When filling a row, keep factual details grounded in the CSV and existing listing data. Do not invent phone numbers, links, or amenities.
