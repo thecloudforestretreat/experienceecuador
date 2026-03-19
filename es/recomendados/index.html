@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Recomendados | Experience Ecuador</title>
-  <meta name="description" content="Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria para encontrar alojamientos, restaurantes, servicios y actividades confiables." />
+  <meta name="description" content="Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria para encontrar lugares y servicios confiables para tu viaje." />
   <link rel="canonical" href="https://experienceecuador.com/es/recomendados/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
@@ -13,14 +13,15 @@
   <meta property="og:url" content="https://experienceecuador.com/es/recomendados/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Experience Ecuador - planifica tu viaje a Ecuador" />
+  <meta property="og:image:alt" content="Experience Ecuador - plan your trip to Ecuador" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Recomendados | Experience Ecuador" />
   <meta name="twitter:description" content="Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
-  <meta name="twitter:image:alt" content="Experience Ecuador - planifica tu viaje a Ecuador" />
+  <meta name="twitter:image:alt" content="Experience Ecuador - plan your trip to Ecuador" />
 
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -541,20 +542,22 @@
   </style>
 </head>
 <body>
+  <div id="siteHeader"></div>
+
   <main class="wrap" aria-label="Recomendados">
     <h1>Recomendados</h1>
     <p class="lede">
       Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria para encontrar lugares y servicios confiables para tu viaje.
     </p>
 
-    <div class="metaRow" aria-label="Resumen rapido">
+    <div class="metaRow" aria-label="Quick summary">
       <span class="pill">Recomendado por Experience Ecuador</span>
       <span class="pill">Sin precios publicos</span>
       <span class="pill">Espacios destacados: proximamente</span>
     </div>
 
-    <div class="disclosure" aria-label="Aviso">
-      <strong>Aviso:</strong> Algunas fichas podrian mostrarse como Aliado Destacado en el futuro. Los espacios destacados ayudaran a sostener este proyecto.
+    <div class="disclosure" aria-label="Disclosure">
+      <strong>Aviso:</strong> Algunas fichas podran mostrarse como Aliado Destacado en el futuro. Los espacios destacados ayudaran a sostener este proyecto.
     </div>
 
     <section class="filters" aria-label="Filtros">
@@ -594,15 +597,18 @@
     <div class="actionsRow" aria-label="Acciones">
       <div class="btnRow">
         <button class="btn" id="btnReset" type="button" aria-label="Restablecer filtros">Restablecer</button>
-        <a class="btn primary" href="/es/aliados/" aria-label="Quiero ser aliado">Quiero ser aliado</a>
+        <a class="btn primary" href="/es/socios/" aria-label="Quiero ser aliado">Quiero ser aliado</a>
       </div>
-      <div class="count" id="resultCount" aria-label="Conteo de resultados">0 resultados</div>
+      <div class="count" id="resultCount" aria-label="Cantidad de resultados">0 resultados</div>
     </div>
 
-    <div class="noResults" id="noResults" aria-label="Mensaje sin resultados">Aun no hay recomendaciones para esta seleccion.</div>
+    <div class="noResults" id="noResults" aria-label="Mensaje sin resultados">No hay recomendados que coincidan con tus filtros por ahora.</div>
 
-    <section class="grid" id="cards" aria-label="Tarjetas de recomendacion"></section>
+    <section class="grid" id="cards" aria-label="Tarjetas de recomendados"></section>
   </main>
+
+  <div id="siteFooter"></div>
+
   <script src="/assets/js/site.js"></script>
   <script>
     (function(){
@@ -616,53 +622,17 @@
           all_categories: "Todas las categorias",
           results_one: "resultado",
           results_many: "resultados",
-          no_results: "Aun no hay recomendaciones para esta seleccion.",
+          no_results: "No hay recomendados que coincidan con tus filtros por ahora.",
           featured: "Socio Destacado",
+          view_details: "Ver detalles",
           visit_website: "Visitar sitio",
           whatsapp: "WhatsApp",
           download_menu: "Descargar menu (PDF)"
-        },
-        en: {
-          all_regions: "All regions",
-          all_locations: "All locations",
-          all_experiences: "All experiences",
-          all_categories: "All categories",
-          results_one: "result",
-          results_many: "results",
-          no_results: "No recommendations match your filters yet.",
-          featured: "Featured Partner",
-          visit_website: "Visit Website",
-          whatsapp: "WhatsApp",
-          download_menu: "Download Menu (PDF)"
         }
       };
 
-      var LOCALE = (document.documentElement && document.documentElement.lang && document.documentElement.lang.toLowerCase().indexOf("es") === 0) ? "es" : "en";
-      var elRegion = document.getElementById("fRegion");
-      var elLocation = document.getElementById("fLocation");
-      var elExperience = document.getElementById("fExperience");
-      var elCategory = document.getElementById("fCategory");
-      var elCards = document.getElementById("cards");
-      var elNoResults = document.getElementById("noResults");
-      var elCount = document.getElementById("resultCount");
-      var btnReset = document.getElementById("btnReset");
-
-      var REGIONS = null;
-      var EXPERIENCES = null;
-      var ITEMS = null;
-      var isApplyingQueryParams = false;
-
       function t(key){
-        var dict = STR[LOCALE] || STR.en || {};
-        return (dict && dict[key]) ? dict[key] : key;
-      }
-
-      function pickField(item, base){
-        var v = "";
-        if (item){
-          v = item[base + "_" + LOCALE] || item[base + "_en"] || "";
-        }
-        return String(v || "").trim();
+        return (STR.es && STR.es[key]) ? STR.es[key] : key;
       }
 
       function esc(s){
@@ -710,6 +680,20 @@
         } catch(e){}
       }
 
+      var elRegion = document.getElementById("fRegion");
+      var elLocation = document.getElementById("fLocation");
+      var elExperience = document.getElementById("fExperience");
+      var elCategory = document.getElementById("fCategory");
+      var elCards = document.getElementById("cards");
+      var elNoResults = document.getElementById("noResults");
+      var elCount = document.getElementById("resultCount");
+      var btnReset = document.getElementById("btnReset");
+
+      var REGIONS = null;
+      var EXPERIENCES = null;
+      var ITEMS = null;
+      var isApplyingQueryParams = false;
+
       function setCount(n){
         var word = (n === 1) ? t("results_one") : t("results_many");
         elCount.textContent = String(n) + " " + word;
@@ -724,38 +708,14 @@
         };
       }
 
-      function mapRegionAlias(v){
-        var s = String(v || "").trim().toLowerCase();
-        if (s === "amazonia") return "amazon";
-        return s;
-      }
-
-      function mapExperienceAlias(v){
-        var s = String(v || "").trim().toLowerCase();
-        if (s === "vida-silvestre-y-aves") return "wildlife-birding";
-        return s;
-      }
-
       function getQueryParams(){
         var params = new URLSearchParams(window.location.search || "");
         return {
-          region_id: mapRegionAlias(params.get("region") || params.get("region_id") || params.get("regiones") || ""),
-          location_id: params.get("location") || params.get("location_id") || params.get("ubicacion") || "",
-          experience_id: mapExperienceAlias(params.get("experience") || params.get("experience_id") || params.get("experiencia") || params.get("experiecias") || ""),
-          category: params.get("category") || params.get("categoria") || ""
+          region_id: params.get("region") || params.get("region_id") || "",
+          location_id: params.get("location") || params.get("location_id") || "",
+          experience_id: params.get("experience") || params.get("experience_id") || "",
+          category: params.get("category") || ""
         };
-      }
-
-      function uiRegionSlug(v){
-        var s = String(v || "").trim().toLowerCase();
-        if (s === "amazon") return "amazonia";
-        return s;
-      }
-
-      function uiExperienceSlug(v){
-        var s = String(v || "").trim().toLowerCase();
-        if (s === "wildlife-birding") return "wildlife-birding";
-        return s;
       }
 
       function updateUrlFromFilters(){
@@ -763,9 +723,9 @@
         var f = getFilters();
         var params = new URLSearchParams();
 
-        if (f.region_id) params.set("region", uiRegionSlug(f.region_id));
-        if (f.location_id) params.set("ubicacion", f.location_id);
-        if (f.experience_id) params.set("experience", uiExperienceSlug(f.experience_id));
+        if (f.region_id) params.set("region", f.region_id);
+        if (f.location_id) params.set("location", f.location_id);
+        if (f.experience_id) params.set("experience", f.experience_id);
         if (f.category) params.set("category", f.category);
 
         var qs = params.toString();
@@ -789,7 +749,7 @@
         if (!REGIONS || !REGIONS.regions || !REGIONS.regions.length) return;
         var opts = ['<option value="">' + esc(t("all_regions")) + '</option>'];
         var regs = REGIONS.regions.slice(0);
-        regs.sort(function(a,b){ return byAlpha(a.name_es || a.name_en || a.name || a.id, b.name_es || b.name_en || b.name || b.id); });
+        regs.sort(function(a,b){ return byAlpha(a.name_en || a.name || a.id, b.name_en || b.name || b.id); });
         for (var i=0; i<regs.length; i++){
           var r = regs[i];
           opts.push('<option value="' + esc(r.id) + '">' + esc(r.name_es || r.name_en || r.name || r.id) + '</option>');
@@ -801,10 +761,10 @@
         if (!EXPERIENCES || !EXPERIENCES.experiences || !EXPERIENCES.experiences.length) return;
         var opts = ['<option value="">' + esc(t("all_experiences")) + '</option>'];
         var exps = EXPERIENCES.experiences.slice(0);
-        exps.sort(function(a,b){ return byAlpha(labelExperience(a.id), labelExperience(b.id)); });
+        exps.sort(function(a,b){ return byAlpha(a.name_en || a.name || a.id, b.name_en || b.name || b.id); });
         for (var i=0; i<exps.length; i++){
           var e = exps[i];
-          opts.push('<option value="' + esc(e.id) + '">' + esc(labelExperience(e.id)) + '</option>');
+          opts.push('<option value="' + esc(e.id) + '">' + esc(e.name_es || e.name_en || e.name || e.id) + '</option>');
         }
         elExperience.innerHTML = opts.join("");
       }
@@ -828,10 +788,10 @@
           return;
         }
         var locs = getLocationsForRegion(regionId).slice(0);
-        locs.sort(function(a,b){ return byAlpha(a.name_es || a.name_en || a.name || a.id, b.name_es || b.name_en || b.name || b.id); });
+        locs.sort(function(a,b){ return byAlpha(a.name_en || a.name || a.id, b.name_en || b.name || b.id); });
         for (var i=0; i<locs.length; i++){
           var l = locs[i];
-          opts.push('<option value="' + esc(l.id) + '">' + esc(l.name_es || l.name_en || l.name || l.id) + '</option>');
+          opts.push('<option value="' + esc(l.id) + '">' + esc(l.name_en || l.name || l.id) + '</option>');
         }
         elLocation.innerHTML = opts.join("");
         elLocation.disabled = false;
@@ -857,17 +817,7 @@
         return locationId;
       }
 
-      var EXPERIENCE_LABELS_ES = {
-        "adventure": "Aventura",
-        "culinary": "Culinaria",
-        "culture": "Cultura",
-        "nature": "Naturaleza",
-        "relaxation": "Descanso",
-        "wildlife-birding": "Vida silvestre y aves"
-      };
-
       function labelExperience(expId){
-        if (LOCALE === "es" && EXPERIENCE_LABELS_ES[expId]) return EXPERIENCE_LABELS_ES[expId];
         if (!EXPERIENCES || !EXPERIENCES.experiences) return expId;
         for (var i=0; i<EXPERIENCES.experiences.length; i++){
           if (EXPERIENCES.experiences[i].id === expId){
@@ -899,9 +849,9 @@
         if (item.is_placeholder === true) return true;
         var id = String(item.id || "");
         if (id.indexOf("placeholder_") === 0) return true;
-        var title = pickField(item,"title") || item.title_es || item.title_en || item.title || "";
-        title = String(title).toLowerCase();
-        return title.indexOf("featured partner spot") === 0 || title.indexOf("espacio para socio destacado") === 0;
+        var t = (item.title_en || item.title_es || item.title || "");
+        t = String(t).toLowerCase();
+        return t.indexOf("featured partner spot") === 0;
       }
 
       function normalizeImages(item){
@@ -926,9 +876,9 @@
       }
 
       function cardHtml(item){
-        var title = pickField(item,"title") || item.title || "Sin titulo";
-        var desc = pickField(item,"description") || item.description || "";
-        var why = pickField(item,"why") || "";
+        var title = item.title_es || item.title_en || item.title || "Sin titulo";
+        var desc = item.description_es || item.description_en || item.description || "";
+        var why = item.why_es || item.why_en || "";
         var isFeatured = !!item.featured;
 
         var images = normalizeImages(item);
@@ -939,16 +889,34 @@
         tags.push('<span class="tag">' + esc(labelLocation(item.region_id, item.location_id)) + '</span>');
 
         var chips = [];
-        chips.push('<span class="chip">' + esc(pickField(item,"category_label") || item.category || "") + '</span>');
+        chips.push('<span class="chip">' + esc(item.category_label_es || item.category_label_en || item.category || "") + '</span>');
         if (item.experiences && item.experiences.length){
           chips.push('<span class="chip">' + esc(labelExperience(item.experiences[0])) + '</span>');
         }
 
+        var detailsUrl = (item && item.actions && item.actions.details_url_es) ? item.actions.details_url_es : getAction(item, "details_url");
         var websiteUrl = normalizeUrl(getAction(item, "website_url"));
         var whatsappUrl = normalizeUrl(getAction(item, "whatsapp_url"));
         var menuPdf = normalizeUrl(getAction(item, "menu_pdf"));
 
         var links = [];
+        if (detailsUrl){
+          links.push(
+            '<a class="btn js-rec-action"'
+            + ' href="' + esc(detailsUrl) + '"'
+            + ' data-action="details"'
+            + ' data-id="' + esc(item.id) + '"'
+            + ' data-title="' + esc(title) + '"'
+            + ' data-region="' + esc(item.region_id) + '"'
+            + ' data-location="' + esc(item.location_id) + '"'
+            + ' data-category="' + esc(item.category) + '"'
+            + ' aria-label="Ver detalles">'
+            + esc(t("view_details"))
+            + '</a>'
+          );
+        } else {
+          links.push('<a class="btn" href="#" aria-label="Ver detalles" aria-disabled="true">' + esc(t("view_details")) + '</a>');
+        }
         if (websiteUrl){
           links.push(
             '<a class="btn primary js-rec-action"'
@@ -1015,12 +983,12 @@
           + '<div class="carouselSlide"><img src="' + esc(images[1]) + '" alt="' + aria + ' imagen 2" loading="lazy" decoding="async"></div>'
           + '<div class="carouselSlide"><img src="' + esc(images[2]) + '" alt="' + aria + ' imagen 3" loading="lazy" decoding="async"></div>';
 
-        var whyBlock = why ? ('<div class="why" aria-label="Por que recomendamos"><strong>Por que recomendamos:</strong> ' + esc(why) + '</div>') : '';
+        var whyBlock = why ? ('<div class="why" aria-label="Por que lo recomendamos"><strong>Por que lo recomendamos:</strong> ' + esc(why) + '</div>') : '';
 
         return ''
           + '<article class="card" data-id="' + esc(item.id) + '" data-region="' + esc(item.region_id) + '" data-location="' + esc(item.location_id) + '" data-category="' + esc(item.category) + '" data-experiences="' + esc((item.experiences || []).join(",")) + '">'
-          +   '<div class="media recCarousel" data-interval="2500" aria-label="' + aria + ' carrusel">'
-          +     '<div class="carouselViewport" aria-label="Vista del carrusel">'
+          +   '<div class="media recCarousel" data-interval="2500" aria-label="' + aria + ' carousel">'
+          +     '<div class="carouselViewport" aria-label="Visor del carrusel">'
           +       '<div class="carouselTrack">' + slides + '</div>'
           +     '</div>'
           +     '<button class="navBtn prev" type="button" aria-label="Imagen anterior"><span aria-hidden="true"></span></button>'
@@ -1031,7 +999,7 @@
           +   '<div class="body">'
           +     '<div class="titleRow">'
           +       '<h3 class="title">' + esc(title) + '</h3>'
-          +       '<div class="chips" aria-label="Chips de informacion">' + chips.join("") + '</div>'
+          +       '<div class="chips" aria-label="Etiquetas">' + chips.join("") + '</div>'
           +     '</div>'
           +     '<p class="desc">' + esc(desc) + '</p>'
           +     whyBlock
@@ -1271,12 +1239,25 @@
           apply();
         }).catch(function(){
           elNoResults.style.display = "block";
-          elNoResults.textContent = "No se pudieron cargar los datos de recomendaciones.";
+          elNoResults.textContent = "No se pudieron cargar los datos de recomendados."
           setCount(0);
         });
       }
 
       boot();
+    })();
+  </script>
+
+  <script>
+    (function(){
+      async function inject(id, url){
+        var el = document.getElementById(id);
+        if(!el) return;
+        var res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
     })();
   </script>
 </body>
