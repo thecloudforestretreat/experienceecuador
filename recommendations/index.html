@@ -624,6 +624,7 @@
           results_many: "results",
           no_results: "No recommendations match your filters yet.",
           featured: "Featured Partner",
+          view_details: "View Details",
           visit_website: "Visit Website",
           whatsapp: "WhatsApp",
           download_menu: "Download Menu (PDF)"
@@ -893,11 +894,29 @@
           chips.push('<span class="chip">' + esc(labelExperience(item.experiences[0])) + '</span>');
         }
 
+        var detailsUrl = getAction(item, "details_url");
         var websiteUrl = normalizeUrl(getAction(item, "website_url"));
         var whatsappUrl = normalizeUrl(getAction(item, "whatsapp_url"));
         var menuPdf = normalizeUrl(getAction(item, "menu_pdf"));
 
         var links = [];
+        if (detailsUrl){
+          links.push(
+            '<a class="btn js-rec-action"'
+            + ' href="' + esc(detailsUrl) + '"'
+            + ' data-action="details"'
+            + ' data-id="' + esc(item.id) + '"'
+            + ' data-title="' + esc(title) + '"'
+            + ' data-region="' + esc(item.region_id) + '"'
+            + ' data-location="' + esc(item.location_id) + '"'
+            + ' data-category="' + esc(item.category) + '"'
+            + ' aria-label="View details">'
+            + esc(t("view_details"))
+            + '</a>'
+          );
+        } else {
+          links.push('<a class="btn" href="#" aria-label="View details" aria-disabled="true">' + esc(t("view_details")) + '</a>');
+        }
         if (websiteUrl){
           links.push(
             '<a class="btn primary js-rec-action"'
