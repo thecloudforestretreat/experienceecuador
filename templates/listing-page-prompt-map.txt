@@ -1,0 +1,226 @@
+Use the two master templates `listing-detail-en.html` and `listing-detail-es.html` with one row from `listing_pages_input.csv`.
+
+Rules:
+1. Header and footer MUST use the same inline fetch injection pattern as the site's working pages.
+   - Add `<div id="siteHeader"></div>` immediately after opening `<body>`
+   - Add `<div id="siteFooter"></div>` immediately before the header/footer injection script block
+   - Do NOT use `/assets/js/includes.js`
+   - Do NOT hardcode header or footer HTML
+   - Do NOT modify header/footer structure
+   - English pages must inject:
+     - `inject("siteHeader", "/assets/includes/header.html");`
+     - `inject("siteFooter", "/assets/includes/footer.html");`
+   - Spanish pages must use the SAME live include files as the working Spanish site:
+     - `inject("siteHeader", "/assets/includes/header.html");`
+     - `inject("siteFooter", "/assets/includes/footer.html");`
+   - Injection must follow the working site pattern:
+     - Use `Promise.all([...])` to inject header and footer
+     - Load `/assets/js/site.js` ONLY AFTER injection completes
+     - Also load `/assets/js/site.js` in the catch fallback if injection fails
+   - Required injection block structure:
+
+<script>
+  (function(){
+    async function inject(id, url){
+      const el = document.getElementById(id);
+      if(!el) return;
+      const res = await fetch(url, { cache: "no-store" });
+      el.innerHTML = await res.text();
+    }
+
+    Promise.all([
+      inject("siteHeader", "/assets/includes/header.html"),
+      inject("siteFooter", "/assets/includes/footer.html")
+    ]).then(() => {
+      const s = document.createElement("script");
+      s.src = "/assets/js/site.js";
+      document.body.appendChild(s);
+    }).catch(() => {
+      const s = document.createElement("script");
+      s.src = "/assets/js/site.js";
+      document.body.appendChild(s);
+    });
+  })();
+</script>
+
+2. Preserve all CSS, JS, analytics tracking, schema structure, and section order from the master templates.
+
+3. Fill placeholders only. Do not rewrite layout, rename classes, remove sections, or simplify scripts.
+
+4. Output two complete files:
+   - English final file path: `/recommendations/members/<region_id_en>/<location_id_en>/<listing_slug>/index.html`
+   - Spanish final file path: `/es/recomendados/miembros/<region_id_es>/<location_id_es>/<listing_slug>/index.html`
+
+5. English filtered links:
+   - `/recommendations/?region=<region_id_en>`
+   - `/recommendations/?region=<region_id_en>&location=<location_id_en>`
+   - `/recommendations/?experience=<experience_filter_id>`
+
+6. Spanish filtered links:
+   - `/es/recomendados/?region=<region_id_es>`
+   - `/es/recomendados/?region=<region_id_es>&ubicacion=<location_id_es>`
+   - `/es/recomendados/?experience=<experience_filter_id>`
+
+7. Region/location backlinks:
+   - EN from `region_page_en`, `location_page_en`
+   - ES from `region_page_es`, `location_page_es`
+
+8. Spanish copy must be natural Latin American / South American Spanish, not Spain Spanish.
+
+9. Keep `experience_highlights_*` and `best_for_*` pipe-separated values split into exactly 4 bullets each.
+
+10. Keep all links, canonicals, hreflang, IDs, schema fields, and CTA tracking attributes aligned with the row values.
+
+11. If `phone` lacks a leading plus, normalize it to include `+` in the rendered page and schema.
+
+12. All image-caption placeholders MUST be fully replaced in both languages.
+   - Required carousel caption replacements:
+     - `{{IMAGE_1_CAPTION_EN}}`, `{{IMAGE_2_CAPTION_EN}}`, `{{IMAGE_3_CAPTION_EN}}`
+     - `{{IMAGE_1_CAPTION_ES}}`, `{{IMAGE_2_CAPTION_ES}}`, `{{IMAGE_3_CAPTION_ES}}`
+   - Required gallery caption replacements:
+     - `{{IMAGE_1_GALLERY_CAPTION_EN}}`, `{{IMAGE_2_GALLERY_CAPTION_EN}}`, `{{IMAGE_3_GALLERY_CAPTION_EN}}`
+     - `{{IMAGE_1_GALLERY_CAPTION_ES}}`, `{{IMAGE_2_GALLERY_CAPTION_ES}}`, `{{IMAGE_3_GALLERY_CAPTION_ES}}`
+   - No unresolved placeholder tokens may remain anywhere in the output HTML.
+   - Spanish caption enforcement:
+     - Spanish carousel overlays MUST display real Spanish text, never raw placeholder tokens
+     - Spanish gallery captions MUST display real Spanish text, never raw placeholder tokens
+     - If any `{{IMAGE_*_CAPTION_ES}}` or `{{IMAGE_*_GALLERY_CAPTION_ES}}` token remains unresolved, the output is invalid and must be regenerated before delivery
+
+13. Output ASCII-safe content in rendered pages whenever possible.
+   - Replace smart apostrophes and smart quotes with plain ASCII equivalents
+   - Do not leave curly quotes in final HTML unless they already exist intentionally inside template code
+
+14. OPTIONAL MAP INTEGRATION (ONLY WHEN APPLICABLE)
+
+Some listings may include a map section, but it is NOT required for all listings.
+
+Include a map ONLY if:
+- a clear address, location reference, or GPS-friendly description is available
+- the listing benefits from geographic context (remote stays, nature lodges, etc.)
+
+If included:
+- Insert the map section IMMEDIATELY AFTER the location context section
+- Do NOT move or restructure existing sections
+- Do NOT remove any existing content
+
+If NOT included:
+- Do nothing (no placeholders, no empty sections)
+
+Map content requirements:
+- Use Google Maps embed with query-based location (NOT hard GPS unless provided)
+- Include 2 buttons:
+  - Primary: "Get Directions" / "Como llegar"
+  - Secondary: "Open in Google Maps" / "Abrir en Google Maps"
+- Include a short clarification note:
+  - EN: "Approximate map area shown..."
+  - ES: "Area aproximada mostrada..."
+
+Language rules:
+- English page must be in English
+- Spanish page must be natural Latin American Spanish
+
+CRITICAL:
+- The map section must feel like a natural extension of the page
+- Do NOT reference missing coordinates
+- Do NOT guess exact coordinates
+
+Required placeholder mapping:
+
+Core:
+{{ID}}, {{CATEGORY}}, {{SCHEMA_TYPE}}, {{REGION_ID_EN}}, {{REGION_ID_ES}}, {{LOCATION_ID_EN}}, {{LOCATION_ID_ES}},
+{{REGION_NAME_EN}}, {{REGION_NAME_ES}}, {{LOCATION_NAME_EN}}, {{LOCATION_NAME_ES}},
+{{TITLE_EN}}, {{TITLE_ES}}, {{CANONICAL_URL_EN}}, {{CANONICAL_URL_ES}},
+{{WEBSITE_URL}}, {{WHATSAPP_URL}}, {{PHONE}},
+{{IMAGE_1}}, {{IMAGE_2}}, {{IMAGE_3}}
+
+Meta:
+{{META_TITLE_EN}}, {{META_TITLE_ES}}, {{META_DESCRIPTION_EN}}, {{META_DESCRIPTION_ES}}
+
+Body copy:
+{{DESCRIPTION_SHORT_EN}}, {{DESCRIPTION_SHORT_ES}}
+{{SEO_PARAGRAPH_1_EN}}, {{SEO_PARAGRAPH_1_ES}}
+{{SEO_PARAGRAPH_2_EN}}, {{SEO_PARAGRAPH_2_ES}}
+{{WHY_SECTION_EN}}, {{WHY_SECTION_ES}}
+{{LOCATION_CONTEXT_EN}}, {{LOCATION_CONTEXT_ES}}
+
+Derived hero/support labels:
+{{CATEGORY_LABEL_EN}}, {{CATEGORY_LABEL_ES}}
+{{HERO_SUPPORT_EN}}, {{HERO_SUPPORT_ES}}
+{{META_TAG_1_EN}}, {{META_TAG_1_ES}}
+{{META_TAG_2_EN}}, {{META_TAG_2_ES}}
+{{META_TAG_3_EN}}, {{META_TAG_3_ES}}
+
+Section headings:
+{{SECTION_SHORT_HEADING_EN}}, {{SECTION_SHORT_HEADING_ES}}
+{{SECTION_SEO_HEADING_EN}}, {{SECTION_SEO_HEADING_ES}}
+{{SECTION_WHY_HEADING_EN}}, {{SECTION_WHY_HEADING_ES}}
+{{SECTION_LOCATION_HEADING_EN}}, {{SECTION_LOCATION_HEADING_ES}}
+{{GALLERY_HEADING_EN}}, {{GALLERY_HEADING_ES}}
+
+Pipe-split bullet fields:
+{{EXPERIENCE_HIGHLIGHT_1_EN}} ... {{EXPERIENCE_HIGHLIGHT_4_EN}}
+{{EXPERIENCE_HIGHLIGHT_1_ES}} ... {{EXPERIENCE_HIGHLIGHT_4_ES}}
+{{BEST_FOR_1_EN}} ... {{BEST_FOR_4_EN}}
+{{BEST_FOR_1_ES}} ... {{BEST_FOR_4_ES}}
+
+Nearby:
+{{NEARBY_1_TITLE_EN}}, {{NEARBY_1_TITLE_ES}}, {{NEARBY_1_TEXT_EN}}, {{NEARBY_1_TEXT_ES}}
+{{NEARBY_2_TITLE_EN}}, {{NEARBY_2_TITLE_ES}}, {{NEARBY_2_TEXT_EN}}, {{NEARBY_2_TEXT_ES}}
+{{NEARBY_3_TITLE_EN}}, {{NEARBY_3_TITLE_ES}}, {{NEARBY_3_TEXT_EN}}, {{NEARBY_3_TEXT_ES}}
+
+FAQ:
+{{FAQ_1_Q_EN}}, {{FAQ_1_Q_ES}}, {{FAQ_1_A_EN}}, {{FAQ_1_A_ES}}
+{{FAQ_2_Q_EN}}, {{FAQ_2_Q_ES}}, {{FAQ_2_A_EN}}, {{FAQ_2_A_ES}}
+{{FAQ_3_Q_EN}}, {{FAQ_3_Q_ES}}, {{FAQ_3_A_EN}}, {{FAQ_3_A_ES}}
+{{FAQ_4_Q_EN}}, {{FAQ_4_Q_ES}}, {{FAQ_4_A_EN}}, {{FAQ_4_A_ES}}
+
+Gallery and carousel alts/captions:
+{{IMAGE_1_ALT_EN}}, {{IMAGE_1_ALT_ES}}, {{IMAGE_1_CAPTION_EN}}, {{IMAGE_1_CAPTION_ES}}, {{IMAGE_1_GALLERY_CAPTION_EN}}, {{IMAGE_1_GALLERY_CAPTION_ES}}
+{{IMAGE_2_ALT_EN}}, {{IMAGE_2_ALT_ES}}, {{IMAGE_2_CAPTION_EN}}, {{IMAGE_2_CAPTION_ES}}, {{IMAGE_2_GALLERY_CAPTION_EN}}, {{IMAGE_2_GALLERY_CAPTION_ES}}
+{{IMAGE_3_ALT_EN}}, {{IMAGE_3_ALT_ES}}, {{IMAGE_3_CAPTION_EN}}, {{IMAGE_3_CAPTION_ES}}, {{IMAGE_3_GALLERY_CAPTION_EN}}, {{IMAGE_3_GALLERY_CAPTION_ES}}
+
+Explore section:
+{{EXPERIENCE_FILTER_ID}}
+{{EXPERIENCE_LINK_LABEL_EN}}, {{EXPERIENCE_LINK_LABEL_ES}}
+{{EXPERIENCE_LINK_TEXT_EN}}, {{EXPERIENCE_LINK_TEXT_ES}}
+{{REGION_PAGE_EN}}, {{REGION_PAGE_ES}}, {{LOCATION_PAGE_EN}}, {{LOCATION_PAGE_ES}}
+{{REGION_LINK_TEXT_EN}}, {{REGION_LINK_TEXT_ES}}
+{{LOCATION_LINK_TEXT_EN}}, {{LOCATION_LINK_TEXT_ES}}
+{{EXPLORE_SECTION_INTRO_EN}}, {{EXPLORE_SECTION_INTRO_ES}}
+
+CTA:
+{{CTA_HEADING_EN}}, {{CTA_HEADING_ES}}
+{{CTA_TEXT_EN}}, {{CTA_TEXT_ES}}
+
+Recommended derivations:
+- CATEGORY_LABEL_EN / ES from category:
+  lodging = Lodging / Alojamiento
+  restaurants = Restaurants / Restaurantes
+  services = Services / Servicios
+  activities = Activities / Actividades
+
+- SCHEMA_TYPE:
+  lodging -> LodgingBusiness
+  restaurants -> Restaurant
+  services -> LocalBusiness
+  activities -> LocalBusiness
+
+- HERO_SUPPORT_* should be a concise second supporting sentence.
+
+- META_TAG_* can be derived from region, location, and three strongest themes.
+
+- EXPERIENCE_LINK_LABEL_EN example: "View birdwatching lodges in Ecuador"
+- EXPERIENCE_LINK_LABEL_ES example: "Ver lodges de aviturismo en Ecuador"
+
+Validation requirements before output:
+- No unresolved `{{...}}` placeholders may remain
+- English output must use the live English header/footer injection paths
+- Spanish output must use the SAME live header/footer injection paths as the working Spanish site
+- Header/footer injection must use the inline fetch + Promise.all pattern above
+- Do not use `header-es.html` or `footer-es.html`
+- Do not use `includes.js`
+- Carousel caption overlays must display real replaced text in both EN and ES
+- Spanish caption overlays must display real Spanish text in all slides
+- Spanish gallery captions must display real Spanish text in all images
+
+When filling a row, keep factual details grounded in the CSV and existing listing data. Do not invent phone numbers, links, or amenities.
