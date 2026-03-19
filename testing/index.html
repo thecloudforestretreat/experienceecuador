@@ -1,1282 +1,1067 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recomendados | Experience Ecuador</title>
-  <meta name="description" content="Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria para encontrar alojamientos, restaurantes, servicios y actividades confiables." />
-  <link rel="canonical" href="https://experienceecuador.com/es/recomendados/" />
+  <title>Home | Experience Ecuador</title>
+  <meta name="description" content="Explore Ecuador by region and experience, discover curated recommendations, and use the Trip Builder for realistic day-by-day planning across the Andes, Amazon, Coast, and Galapagos." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://experienceecuador.com/" />
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
-  <meta property="og:title" content="Recomendados | Experience Ecuador" />
-  <meta property="og:description" content="Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria." />
-  <meta property="og:url" content="https://experienceecuador.com/es/recomendados/" />
-  <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
-  <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Home | Experience Ecuador" />
+  <meta property="og:description" content="Explore Ecuador by region and experience, discover curated recommendations, and use the Trip Builder for realistic day-by-day planning across the Andes, Amazon, Coast, and Galapagos." />
+  <meta property="og:url" content="https://experienceecuador.com/" />
+  <meta property="og:image" content="https://experienceecuador.com/EE-OG-Image-1.jpg" />
+  <meta property="og:image:secure_url" content="https://experienceecuador.com/EE-OG-Image-1.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Experience Ecuador - planifica tu viaje a Ecuador" />
+  <meta property="og:image:alt" content="Experience Ecuador travel planning by regions and experiences" />
+  <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Recomendados | Experience Ecuador" />
-  <meta name="twitter:description" content="Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria." />
-  <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
-  <meta name="twitter:image:alt" content="Experience Ecuador - planifica tu viaje a Ecuador" />
-
+  <meta name="twitter:title" content="Home | Experience Ecuador" />
+  <meta name="twitter:description" content="Explore Ecuador by region and experience, discover curated recommendations, and use the Trip Builder for realistic day-by-day planning across the Andes, Amazon, Coast, and Galapagos." />
+  <meta name="twitter:url" content="https://experienceecuador.com/" />
+  <meta name="twitter:image" content="https://experienceecuador.com/EE-OG-Image-1.jpg" />
+  <meta name="twitter:image:alt" content="Experience Ecuador travel planning by regions and experiences" />
+  <!-- Favicons (root) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#034EA2">
-
+  <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
-
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root{
       --brand-blue:#034EA2;
-      --slate:#6E7B8B;
-      --text:#1F1F1F;
-      --line: rgba(0,0,0,.08);
+      --charcoal:#1F1F1F;
+      --bg:#f6f8fb;
       --card:#ffffff;
-      --shadow: 0 18px 55px rgba(3,78,162,.12);
-      --r: 22px;
-      --max: 1120px;
-    }
+      --border:rgba(0,0,0,0.06);
+      --shadow:0 18px 55px rgba(3,78,162,0.12);
+      --shadowSoft:0 14px 34px rgba(3,78,162,0.10);
+  --radius-xl:24px;
+  --radius-lg:18px;
+  --radius-md:14px;
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:#f6f8fb;
-      color:var(--text);
-    }
-    a{ text-decoration:none; color:inherit; }
-    img{ max-width:100%; display:block; user-select:none; -webkit-user-drag:none; }
+  --max:1100px;
+}
 
-    .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 40px 18px 64px;
-    }
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--charcoal);
+  background:var(--bg);
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+.section{padding:44px 0}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow);
+}
 
-    h1{
-      font-family:Montserrat,Inter,sans-serif;
-      font-size: clamp(34px, 4vw, 54px);
-      color: var(--brand-blue);
-      margin: 0 0 10px;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-    }
+/* HERO */
+.hero{ padding:24px 0 10px; }
+.heroShell{
+  display:grid;
+  grid-template-columns:1.05fr 0.95fr;
+  gap:22px;
+  align-items:stretch;
+}
+.heroLeft{
+  padding:28px 26px;
+  border-radius:var(--radius-xl);
+  background:#fff;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:360px;
+}
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(3,78,162,0.08);
+  border:1px solid rgba(3,78,162,0.14);
+  color:#0f2f62;
+  font-weight:800;
+  font-size:12.5px;
+  letter-spacing:0.02em;
+  width:max-content;
+  margin-bottom:14px;
+}
+.heroTitle{
+  font-family:Montserrat,Inter,sans-serif;
+  font-weight:800;
+  letter-spacing:-0.03em;
+  line-height:1.05;
+  font-size:clamp(38px,4.4vw,58px);
+  margin:0 0 12px;
+  color:#0f2f62;
+  max-width:20ch;
+}
+.heroTitle .line2{
+  display:block;
+  max-width:18ch;
+}
+.heroLead{
+  margin:0 0 18px;
+  max-width:64ch;
+  color:#2a2f36;
+  line-height:1.75;
+  font-size:16px;
+}
+.heroActions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin-top:4px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:12px 14px;
+  border-radius:14px;
+  font-weight:900;
+  font-size:14px;
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
+  user-select:none;
+}
+.btnPrimary{
+  background:var(--brand-blue);
+  color:#fff;
+  box-shadow:0 18px 40px rgba(3,78,162,0.18);
+}
+.btnPrimary:hover{filter:brightness(.97); transform:translateY(-1px)}
+.btnGhost{
+  background:#fff;
+  color:#0f2f62;
+  border-color:rgba(3,78,162,0.22);
+  box-shadow:0 12px 26px rgba(3,78,162,0.08);
+}
+.btnGhost:hover{transform:translateY(-1px)}
+.heroRight{
+  border-radius:var(--radius-xl);
+  overflow:hidden;
+  position:relative;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  min-height:360px;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.32), rgba(0,0,0,0.10)),
+    url("/assets/images/EE-Assets-24-Homepage-hero-3.jpg") center/cover no-repeat;
+}
+.heroRightBadge{
+  position:absolute;
+  left:16px; right:16px; bottom:16px;
+  padding:12px 12px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.14);
+  border:1px solid rgba(255,255,255,0.22);
+  backdrop-filter:saturate(140%) blur(10px);
+  color:#fff;
+  box-shadow:0 20px 60px rgba(0,0,0,0.20);
+}
+.heroRightBadge strong{
+  display:block;
+  font-weight:900;
+  letter-spacing:-0.02em;
+  margin-bottom:4px;
+}
+.heroRightBadge span{
+  display:block;
+  opacity:.92;
+  line-height:1.4;
+  font-size:13.5px;
+}
 
-    .lede{
-      color: var(--slate);
-      line-height: 1.7;
-      max-width: 92ch;
-      margin: 0;
-      font-size: 16.8px;
-    }
+/* SPOTLIGHTS TEASER (compact) */
+.spotTeaserSection{ padding:12px 0 0; }
+.spotTeaserBand{
+  border-radius:var(--radius-xl);
+  border:1px solid rgba(3,78,162,0.12);
+  background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+  box-shadow:var(--shadowSoft);
+  padding:14px;
+}
+.spotTopRow{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  padding:4px 4px 10px;
+}
+.spotTopRow h2{
+  margin:0;
+  font-family:Montserrat,Inter,sans-serif;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:#0f2f62;
+  font-size:18px;
+}
+.spotTopRow p{
+  margin:0;
+  color:#2a2f36;
+  opacity:.92;
+  font-weight:600;
+  font-size:13.5px;
+  line-height:1.4;
+  max-width:70ch;
+}
+.spotGrid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:12px;
+}
+.spotItem{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 16px 45px rgba(3,78,162,0.10);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  min-height:240px;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.spotItem:hover{
+  transform:translateY(-2px);
+  box-shadow:0 22px 60px rgba(0,0,0,0.12);
+}
 
-    .metaRow{
-      margin-top: 14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-      align-items:center;
-      color:#162b55;
-      font-weight:800;
-      font-size:13.5px;
-    }
+/* Make spotlight images match featured regions image height */
+.spotMedia{
+  height:140px;
+  background:#eef2f7;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+}
+.spotMedia::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.04), rgba(0,0,0,0.12));
+  pointer-events:none;
+}
 
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(3,78,162,.06);
-      border: 1px solid rgba(3,78,162,.14);
-      color:#0f2f62;
-      font-weight:900;
-      white-space:nowrap;
-    }
+.spotBody{
+  padding:12px 12px 12px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  flex:1;
+}
+.spotTitle{
+  margin:0;
+  font-family:Montserrat,Inter,sans-serif;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:#0f2f62;
+  font-size:14.8px;
+  line-height:1.2;
+}
+.spotMeta{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin:0;
+}
+.pillMini{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 9px;
+  border-radius:999px;
+  border:1px solid rgba(3,78,162,0.18);
+  background:rgba(3,78,162,0.06);
+  color:#0f2f62;
+  font-weight:900;
+  font-size:11.5px;
+  white-space:nowrap;
+}
+.pillMini.light{
+  border-color:rgba(0,0,0,0.08);
+  background:rgba(0,0,0,0.03);
+  color:#1f2a3a;
+  font-weight:800;
+}
+.spotDesc{
+  margin:0;
+  color:#2a2f36;
+  line-height:1.55;
+  font-size:13.3px;
+  opacity:.95;
+  flex:1;
+}
+.spotLinkRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:2px;
+}
+.spotGo{
+  color:var(--brand-blue);
+  font-weight:900;
+  font-size:13px;
+  width:max-content;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.spotCtaRow{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:12px;
+  padding:0 4px 4px;
+}
+.btnSmall{
+  padding:10px 12px;
+  border-radius:12px;
+  font-size:13.5px;
+}
 
-    .filters{
-      margin-top: 18px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      padding: 14px;
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      gap: 12px;
-      align-items:end;
-    }
+/* HOW IT WORKS */
+.hTitle{
+  font-family:Montserrat,Inter,sans-serif;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:var(--brand-blue);
+  font-size:24px;
+  margin:0 0 10px;
+}
+.hSub{
+  margin:0;
+  color:#2a2f36;
+  line-height:1.7;
+  max-width:85ch;
+  font-size:15.8px;
+}
+.cards3{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:16px;
+  margin-top:18px;
+}
+.miniCard{
+  padding:18px;
+  border-radius:20px;
+  background:#fff;
+  border:1px solid var(--border);
+  box-shadow:var(--shadowSoft);
+  min-height:180px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.miniCard h3{
+  margin:0;
+  font-family:Montserrat,Inter,sans-serif;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:#0f2f62;
+  font-size:17px;
+}
+.miniCard p{
+  margin:0;
+  color:#2a2f36;
+  line-height:1.65;
+  font-size:14.6px;
+  opacity:.96;
+  flex:1;
+}
+.miniCard a{
+  color:var(--brand-blue);
+  font-weight:900;
+  font-size:13.5px;
+  width:max-content;
+}
 
-    .fGroup label{
-      display:block;
-      font-size: 12.8px;
-      font-weight: 900;
-      color:#0f2f62;
-      letter-spacing: -0.01em;
-      margin: 0 0 6px;
-    }
+/* REGIONS STRIP */
+.regionGrid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:16px;
+  margin-top:18px;
+}
+.regionCard{
+  overflow:hidden;
+  border-radius:20px;
+  border:1px solid var(--border);
+  box-shadow:var(--shadowSoft);
+  background:#fff;
+  transition:transform .18s ease, box-shadow .18s ease;
+  min-height:250px;
+  display:flex;
+  flex-direction:column;
+}
+.regionCard:hover{
+  transform:translateY(-4px);
+  box-shadow:0 26px 70px rgba(0,0,0,0.12);
+}
+.regionImg{
+  height:140px;
+  background:#eef2f7;
+  background-size:cover;
+  background-position:center;
+}
+.regionBody{
+  padding:14px 14px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  flex:1;
+}
+.regionBody h4{
+  margin:0;
+  font-family:Montserrat,Inter,sans-serif;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:#0f2f62;
+  font-size:16px;
+}
+.regionBody p{
+  margin:0;
+  color:#2a2f36;
+  line-height:1.55;
+  font-size:13.8px;
+  opacity:.95;
+  flex:1;
+}
+.regionBody .go{
+  font-weight:900;
+  color:var(--brand-blue);
+  font-size:13.5px;
+  width:max-content;
+}
 
-    .fGroup select{
-      width:100%;
-      appearance:none;
-      -webkit-appearance:none;
-      padding: 11px 42px 11px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(3,78,162,.18);
-      background: rgba(255,255,255,.88);
-      color:#0f2f62;
-      font-weight: 800;
-      font-size: 14px;
-      outline: none;
-      cursor: pointer;
-      box-shadow: 0 14px 30px rgba(3,78,162,.08);
-    }
+/* VIDEO BAND */
+.videoBand{
+  background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+  border:1px solid rgba(3,78,162,0.12);
+  border-radius:var(--radius-xl);
+  padding:18px;
+  box-shadow:var(--shadowSoft);
+}
+.videoGrid{
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr;
+  gap:18px;
+  align-items:stretch;
+}
+.embed{
+  border-radius:18px;
+  overflow:hidden;
+  border:0;
+  outline:0;
+  box-shadow:none;
+  background:transparent;
+  position:relative;
+  padding:0;
+  margin:0;
+  line-height:0;
+  aspect-ratio:16/9;
+}
+.embed iframe{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:100%;
+  height:100%;
+  transform:translate(-50%, -50%) scale(1.04);
+  transform-origin:center;
+  border:0 !important;
+  outline:0 !important;
+  display:block;
+  margin:0;
+  padding:0;
+  background:transparent;
+}
 
-    .fGroup{
-      position: relative;
-      min-width: 0;
-    }
+.videoCopy{
+  background:#fff;
+  border-radius:18px;
+  border:1px solid var(--border);
+  padding:18px;
+  box-shadow:0 16px 45px rgba(3,78,162,0.10);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.videoCopy h3{
+  margin:0;
+  font-family:Montserrat,Inter,sans-serif;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:#0f2f62;
+  font-size:18px;
+}
+.videoCopy p{
+  margin:0;
+  color:#2a2f36;
+  line-height:1.65;
+  font-size:14.6px;
+  opacity:.96;
+  flex:1;
+}
+.videoCopy .row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:4px;
+}
 
-    .fGroup:after{
-      content:"";
-      position:absolute;
-      right: 14px;
-      top: 38px;
-      width: 10px;
-      height: 10px;
-      border-right: 2px solid rgba(15,47,98,.75);
-      border-bottom: 2px solid rgba(15,47,98,.75);
-      transform: rotate(45deg);
-      pointer-events:none;
-    }
+/* ACCESS SECTION */
+.accessGrid{
+  display:grid;
+  grid-template-columns:1.05fr 0.95fr;
+  gap:18px;
+  margin-top:18px;
+  align-items:start;
+}
+.accessCard{
+  padding:20px;
+  border-radius:22px;
+  background:#fff;
+  border:1px solid var(--border);
+  box-shadow:var(--shadowSoft);
+}
+.bullets{
+  margin:0;
+  padding-left:18px;
+  line-height:1.75;
+  color:#24324a;
+  font-size:14.8px;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:12px;
+}
+.stat{
+  border-radius:18px;
+  padding:14px;
+  border:1px solid rgba(3,78,162,0.14);
+  background:rgba(3,78,162,0.06);
+}
+.stat strong{
+  display:block;
+  font-family:Montserrat,Inter,sans-serif;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:#0f2f62;
+  font-size:18px;
+  margin-bottom:4px;
+}
+.stat span{
+  display:block;
+  color:#24324a;
+  opacity:.92;
+  font-weight:700;
+  font-size:12.8px;
+  line-height:1.4;
+}
 
-    .actionsRow{
-      margin-top: 12px;
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items:center;
-      justify-content: space-between;
-    }
+/* TRUST + CTA */
+.trust{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+  padding:22px;
+}
+.trust p{margin:0; line-height:1.75; color:#2a2f36; font-size:15.2px; max-width:90ch}
+.ctaBand{
+  margin-top:18px;
+  border-radius:var(--radius-xl);
+  border:1px solid rgba(3,78,162,0.14);
+  background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+  padding:20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+  box-shadow:var(--shadowSoft);
+}
+.ctaBand h3{
+  margin:0;
+  font-family:Montserrat,Inter,sans-serif;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:#0f2f62;
+  font-size:18px;
+}
+.ctaBand p{
+  margin:6px 0 0;
+  color:#2a2f36;
+  opacity:.95;
+  line-height:1.6;
+  font-size:14.4px;
+  max-width:70ch;
+}
+.ctaLeft{min-width:260px; flex:1}
+.ctaRight{display:flex; gap:10px; flex-wrap:wrap}
 
-    .btnRow{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items:center;
-    }
+/* ECUADOR TOURISM LOGO STRIP */
+.tourismStrip{
+  margin-top:26px;
+  border-top:1px solid rgba(0,0,0,0.06);
+  padding-top:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.tourismStrip .note{
+  color:#24324a;
+  opacity:.85;
+  font-weight:700;
+  font-size:13px;
+  line-height:1.5;
+  max-width:78ch;
+}
+.tourismLogo{
+  width:150px;
+  height:150px;
+  border:0;
+  background:transparent;
+  border-radius:0;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:visible;
+}
+.tourismLogo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:0;
+}
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-weight: 900;
-      border: 1px solid rgba(3,78,162,.18);
-      background: rgba(255,255,255,.78);
-      color:#0f2f62;
-      cursor: pointer;
-      line-height: 1;
-      box-shadow: 0 14px 30px rgba(3,78,162,.08);
-    }
+/* MOBILE */
 
-    .btn.primary{
-      background: rgba(3,78,162,.92);
-      color: #fff;
-      border-color: rgba(3,78,162,.30);
-      box-shadow: 0 14px 30px rgba(3,78,162,.22);
-    }
+/* RECOMMENDATIONS HOME SECTION */
+.recGrid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:16px;
+  margin-top:18px;
+}
+.recCard{
+  overflow:hidden;
+  border-radius:20px;
+  border:1px solid var(--border);
+  box-shadow:var(--shadowSoft);
+  background:#fff;
+  transition:transform .18s ease, box-shadow .18s ease;
+  min-height:290px;
+  display:flex;
+  flex-direction:column;
+}
+.recCard:hover{
+  transform:translateY(-4px);
+  box-shadow:0 26px 70px rgba(0,0,0,0.12);
+}
+.recImg{
+  height:160px;
+  background:#eef2f7;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+}
+.recImg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.03), rgba(0,0,0,0.12));
+}
+.recBody{
+  padding:14px 14px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  flex:1;
+}
+.recMeta{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.recBody h4{
+  margin:0;
+  font-family:Montserrat,Inter,sans-serif;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:#0f2f62;
+  font-size:16px;
+  line-height:1.25;
+}
+.recBody p{
+  margin:0;
+  color:#2a2f36;
+  line-height:1.58;
+  font-size:13.9px;
+  opacity:.95;
+  flex:1;
+}
+.recBody .go{
+  font-weight:900;
+  color:var(--brand-blue);
+  font-size:13.5px;
+  width:max-content;
+}
+.recCtaRow{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
 
-    .btn:active{ transform: translateY(1px); }
+@media(max-width:950px){
+  .heroShell{grid-template-columns:1fr}
+  .heroLeft{min-height:auto}
+  .heroRight{min-height:320px}
+  .cards3{grid-template-columns:1fr}
+  .regionGrid{grid-template-columns:1fr}
+  .videoGrid{grid-template-columns:1fr}
+  .accessGrid{grid-template-columns:1fr}
+  .heroTitle{max-width:none}
+  .heroTitle .line2{max-width:none}
+  .tourismLogo{width:120px;height:120px;}
+  .spotGrid{grid-template-columns:1fr}
+  .recGrid{grid-template-columns:1fr}
+}
 
-    .btn[aria-disabled="true"]{
-      opacity: .55;
-      pointer-events:none;
-      cursor: default;
-    }
-
-    .count{
-      color: #0f2f62;
-      font-weight: 900;
-      font-size: 13px;
-      opacity: .9;
-      white-space: nowrap;
-    }
-
-    .grid{
-      margin-top: 16px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      align-items: stretch;
-    }
-
-    .card{
-      background: #fff;
-      border-radius: var(--r);
-      border: 1px solid rgba(0,0,0,.06);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      display:flex;
-      flex-direction: column;
-      min-width: 0;
-    }
-
-    .media{
-      width:100%;
-      aspect-ratio: 1 / 1;
-      min-height: 320px;
-      border-bottom: 1px solid rgba(0,0,0,.06);
-      position: relative;
-      overflow:hidden;
-      background: rgba(255,255,255,.75);
-    }
-
-    .carouselViewport{
-      position:absolute;
-      inset:0;
-      overflow:hidden;
-      touch-action: pan-y;
-    }
-
-    .carouselTrack{
-      height:100%;
-      display:flex;
-      transform: translateX(0);
-      transition: transform 450ms ease;
-      will-change: transform;
-    }
-
-    .carouselSlide{
-      min-width:100%;
-      height:100%;
-      background: rgba(255,255,255,.75);
-    }
-
-    .carouselSlide img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
-    }
-
-    .navBtn{
-      position:absolute;
-      top:50%;
-      transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.35);
-      background: rgba(0,0,0,0.26);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index: 6;
-      padding: 0;
-    }
-
-    .navBtn:hover{ background: rgba(0,0,0,0.38); }
-    .navBtn.prev{ left: 12px; }
-    .navBtn.next{ right: 12px; }
-
-    .navBtn span{
-      display:block;
-      width: 10px;
-      height: 10px;
-      border-right: 2px solid rgba(255,255,255,0.95);
-      border-bottom: 2px solid rgba(255,255,255,0.95);
-      opacity: 0.95;
-    }
-
-    .navBtn.prev span{ transform: rotate(135deg); }
-    .navBtn.next span{ transform: rotate(-45deg); }
-
-    .dots{
-      position:absolute;
-      left: 12px;
-      right: 12px;
-      top: 12px;
-      display:flex;
-      justify-content:flex-end;
-      gap: 8px;
-      flex-wrap: wrap;
-      z-index: 6;
-      pointer-events: none;
-    }
-
-    .dot{
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.45);
-      background: rgba(255,255,255,0.22);
-      box-shadow: 0 10px 22px rgba(0,0,0,0.18);
-      pointer-events: none;
-    }
-
-    .dot.active{
-      background: rgba(255,255,255,0.85);
-      border-color: rgba(255,255,255,0.85);
-    }
-
-    .badgeRow{
-      position:absolute;
-      left: 12px;
-      right: 12px;
-      bottom: 12px;
-      display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items:center;
-      pointer-events:none;
-      z-index: 7;
-    }
-
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.35);
-      background: rgba(0,0,0,.34);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      color: rgba(255,255,255,.96);
-      font-weight: 900;
-      font-size: 12.5px;
-      letter-spacing: -0.01em;
-      line-height: 1;
-      white-space: nowrap;
-    }
-
-    .tag.featured{
-      border-color: rgba(255,255,255,.45);
-      background: rgba(3,78,162,.60);
-    }
-
-    .body{
-      padding: 14px;
-      display:flex;
-      flex-direction: column;
-      gap: 10px;
-      min-width: 0;
-      flex: 1;
-    }
-
-    .titleRow{
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-      justify-content:flex-start;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .title{
-      margin:0;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      font-size: 18px;
-      line-height: 1.15;
-      color:#0f2f62;
-      min-width: 0;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-      min-height: calc(1.15em * 2);
-    }
-
-    .chips{
-      display:flex;
-      gap: 8px;
-      flex-wrap: nowrap;
-      align-items:center;
-      justify-content:flex-start;
-      min-width: 0;
-      min-height: 40px;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      white-space: nowrap;
-      padding-right: 10px;
-      padding-bottom: 2px;
-    }
-
-    .chips::-webkit-scrollbar{
-      display:none;
-    }
-
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      flex: 0 0 auto;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(3,78,162,.14);
-      background: rgba(3,78,162,.06);
-      font-weight: 900;
-      font-size: 12.5px;
-      color:#0f2f62;
-      white-space: nowrap;
-    }
-
-    .desc{
-      margin:0;
-      color:#1f2b3f;
-      line-height: 1.65;
-      font-size: 15px;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
-      overflow: hidden;
-      min-height: calc(1.65em * 3);
-    }
-
-    .why{
-      border: 1px solid rgba(0,0,0,.06);
-      border-radius: 16px;
-      background: rgba(3,78,162,.035);
-      padding: 10px 12px;
-      color:#162b55;
-      font-size: 13px;
-      line-height: 1.55;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-      min-height: calc(1.55em * 2 + 20px);
-    }
-
-    .links{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items:center;
-      margin-top: 2px;
-      margin-top: auto;
-    }
-
-    .noResults{
-      margin-top: 16px;
-      border-radius: var(--r);
-      border: 1px dashed rgba(3,78,162,.26);
-      background: rgba(255,255,255,.70);
-      box-shadow: 0 14px 30px rgba(3,78,162,.08);
-      padding: 14px;
-      color:#0f2f62;
-      font-weight: 900;
-      display:none;
-    }
-
-    .disclosure{
-      margin-top: 14px;
-      border-radius: var(--r);
-      border: 1px solid rgba(0,0,0,.06);
-      background: rgba(255,255,255,.75);
-      box-shadow: 0 14px 30px rgba(3,78,162,.08);
-      padding: 14px;
-      color: var(--slate);
-      font-size: 13px;
-      line-height: 1.6;
-      max-width: 92ch;
-    }
-
-    .disclosure strong{ color:#0f2f62; }
-
-    @media (max-width: 980px){
-      .filters{ grid-template-columns: 1fr; }
-      .fGroup:after{ top: 38px; }
-      .grid{ grid-template-columns: 1fr; }
-      .media{ min-height: 280px; }
-      .title{
-        font-size: 17px;
-        min-height: calc(1.15em * 2);
-      }
-      .chips{
-        width: 100%;
-        justify-content: flex-start;
-      }
-      .why{
-        display:block;
-        -webkit-line-clamp:unset;
-        overflow:visible;
-        min-height:0;
-      }
-    }
-
-    @media (max-width: 480px){
-      .navBtn{ width: 40px; height: 40px; }
-      .body{ gap: 12px; }
-      .links{ gap: 8px; }
-      .title{
-        font-size: 16px;
-      }
-      .chips{
-        gap: 6px;
-      }
-      .why{
-        font-size:14px;
-        line-height:1.6;
-      }
-    }
+@media (prefers-reduced-motion: reduce){
+  .btn, .regionCard, .spotItem{transition:none !important}
+}
   </style>
 </head>
 <body>
-  <main class="wrap" aria-label="Recomendados">
-    <h1>Recomendados</h1>
-    <p class="lede">
-      Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria para encontrar lugares y servicios confiables para tu viaje.
+  <div id="siteHeader"></div>
+  <main>
+    <section class="hero" aria-label="Homepage hero">
+      <div class="wrap">
+        <div class="heroShell">
+          <div class="heroLeft">
+            <div class="kicker">Plan Ecuador with Confidence</div>
+            <h1 class="heroTitle">
+              Discover Ecuador,<span class="line2">one region and experience at a time</span>
+            </h1>
+            <p class="heroLead">
+              Experience Ecuador helps you explore the country by region, travel style, and pace,
+              while surfacing curated places to stay and real experiences worth considering across the Andes, Amazon, Coast, and Galapagos.
+            </p>
+        <div class="heroActions">
+          <a class="btn btnPrimary" href="/trip-builder/">Start Planning</a>
+          <a class="btn btnGhost" href="/regions/">Explore Regions</a>
+          <a class="btn btnGhost" href="/recommendations/">Browse Recommendations</a>
+        </div>
+      </div>
+
+      <div class="heroRight" role="img" aria-label="Ecuador landscape hero image">
+        <div class="heroRightBadge">
+          <strong>Built for clarity, not noise</strong>
+          <span>Practical planning across regions, with experience-led suggestions and realistic pacing.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPOTLIGHTS TEASER (compact, high engagement) -->
+<section class="spotTeaserSection" aria-label="Right now in Ecuador">
+  <div class="wrap">
+    <div class="spotTeaserBand">
+      <div class="spotTopRow">
+        <div>
+          <h2>Right Now in Ecuador</h2>
+          <p>Time-sensitive highlights plus practical planning notes. Use these to decide where to go and when to travel.</p>
+        </div>
+        <div>
+          <a class="btn btnPrimary btnSmall" href="/spotlights/" aria-label="View all spotlights">View Spotlights</a>
+        </div>
+      </div>
+
+      <div class="spotGrid" aria-label="Spotlight previews">
+        <a class="spotItem" href="/spotlights/" aria-label="View spotlight: Guayacanes Bloom in Loja">
+          <div class="spotMedia" style="background-image:url('/assets/images/pages/spotlights/ee_spotlights_florecimiento_01.jpg');"></div>
+          <div class="spotBody">
+            <h3 class="spotTitle">Guayacanes Bloom in Loja (2026)</h3>
+            <div class="spotMeta" aria-label="Spotlight meta">
+              <span class="pillMini">Window: Jan 12 to Jan 22</span>
+              <span class="pillMini light">Andes</span>
+            </div>
+            <p class="spotDesc">A short natural spectacle that typically lasts 5 to 8 days. Timing matters.</p>
+            <div class="spotLinkRow">
+              <span class="spotGo">See details</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="spotItem" href="/spotlights/" aria-label="View spotlight: Carnival in Ecuador">
+          <div class="spotMedia" style="background-image:url('/assets/images/pages/spotlights/ee_spotlights_carnaval_01.jpg');"></div>
+          <div class="spotBody">
+            <h3 class="spotTitle">Carnival in Ecuador (2026)</h3>
+            <div class="spotMeta" aria-label="Spotlight meta">
+              <span class="pillMini">Window: Feb 14 to Feb 17</span>
+              <span class="pillMini light">Andes</span>
+            </div>
+            <p class="spotDesc">A high-energy holiday with heavy movement. Plan early for traffic and stays.</p>
+            <div class="spotLinkRow">
+              <span class="spotGo">See details</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="spotItem" href="/spotlights/" aria-label="View spotlight: La Casa del Venado near Cayambe">
+          <div class="spotMedia" style="background-image:url('/assets/images/pages/spotlights/ee_spotlights_deer_farm.JPG');"></div>
+          <div class="spotBody">
+            <h3 class="spotTitle">La Casa del Venado near Cayambe</h3>
+            <div class="spotMeta" aria-label="Spotlight meta">
+              <span class="pillMini">Daily: 06:00 to 18:00</span>
+              <span class="pillMini light">Andes</span>
+            </div>
+            <p class="spotDesc">Feed and pet calm deer, plus alpacas and more. Great for families.</p>
+            <div class="spotLinkRow">
+              <span class="spotGo">See details</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="spotCtaRow" aria-label="Spotlights CTA">
+        <a class="btn btnGhost btnSmall" href="/spotlights/" aria-label="Open the Spotlights page">Open Spotlights</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-label="How the site works">
+  <div class="wrap">
+    <h2 class="hTitle">How This Site Works</h2>
+    <p class="hSub">
+      Start from the big decision first. Pick a region. Choose an experience style. Then build a trip that fits your time.
     </p>
 
-    <div class="metaRow" aria-label="Resumen rapido">
-      <span class="pill">Recomendado por Experience Ecuador</span>
-      <span class="pill">Sin precios publicos</span>
-      <span class="pill">Espacios destacados: proximamente</span>
+    <div class="cards3" style="margin-top:18px;">
+      <div class="miniCard">
+        <h3>Plan By Region</h3>
+        <p>Andes, Amazon, Coast, and Galapagos. Each region has a different rhythm. We help you match place and pace.</p>
+        <a href="/regions/" aria-label="Explore regions">Explore Regions</a>
+      </div>
+
+      <div class="miniCard">
+        <h3>Choose Experiences</h3>
+        <p>Wildlife, culture, adventure, relaxation, and food. Mix what matters, then use curated recommendations to narrow down real options.</p>
+        <a href="/experiences/" aria-label="Explore experiences">Explore Experiences</a>
+      </div>
+
+      <div class="miniCard">
+        <h3>Build Your Trip</h3>
+        <p>Use the Trip Builder to shape time-based, realistic travel days, then compare recommended places that match your route.</p>
+        <a href="/trip-builder/" aria-label="Open trip builder">Open Trip Builder</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-label="Featured regions">
+  <div class="wrap">
+    <h2 class="hTitle">Featured Regions</h2>
+    <p class="hSub">Four regions. Four completely different trips. Start with the one that fits your style.</p>
+
+    <div class="regionGrid">
+      <a class="regionCard" href="/regions/galapagos/" aria-label="Explore Galapagos region">
+        <div class="regionImg" style="background-image:url('/assets/images/EE-Assets-25-Homepage-card-galapagos.jpg');"></div>
+        <div class="regionBody">
+          <h4>Galapagos</h4>
+          <p>Conservation-first travel with iconic wildlife and slow island days.</p>
+          <div class="go">Explore Galapagos</div>
+        </div>
+      </a>
+
+      <a class="regionCard" href="/regions/coast/" aria-label="Explore Coast region">
+        <div class="regionImg" style="background-image:url('/assets/images/EE-Assets-26-Homepage-card-costa.jpg');"></div>
+        <div class="regionBody">
+          <h4>Coast</h4>
+          <p>Beach towns, food culture, warm weather, and coastal rhythm.</p>
+          <div class="go">Explore Coast</div>
+        </div>
+      </a>
+
+      <a class="regionCard" href="/regions/andes/" aria-label="Explore Andes region">
+        <div class="regionImg" style="background-image:url('/assets/images/EE-Assets-27-Homepage-card-andes.jpg');"></div>
+        <div class="regionBody">
+          <h4>Andes</h4>
+          <p>High-altitude cities, markets, heritage towns, and dramatic landscapes.</p>
+          <div class="go">Explore Andes</div>
+        </div>
+      </a>
+
+      <a class="regionCard" href="/regions/amazon/" aria-label="Explore Amazon region">
+        <div class="regionImg" style="background-image:url('/assets/images/EE-Assets-28-Homepage-card-amazon.jpg');"></div>
+        <div class="regionBody">
+          <h4>Amazon</h4>
+          <p>Wildlife, rivers, rainforest lodges, and deep nature immersion.</p>
+          <div class="go">Explore Amazon</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-label="Planning video">
+  <div class="wrap">
+    <div class="videoBand">
+      <div class="videoGrid">
+        <div class="embed" aria-label="YouTube video embed">
+          <iframe
+            src="https://www.youtube.com/embed/l9Ol9s-lbAY"
+            title="This is why Ecuador"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+
+        <div class="videoCopy">
+          <h3>See How To Plan Ecuador The Right Way</h3>
+          <p>
+            Ecuador is compact but wildly diverse. This short video explains how to think in regions, time, and experiences
+            so your trip flows naturally instead of feeling rushed.
+          </p>
+          <div class="row">
+            <a class="btn btnPrimary" href="/trip-builder/">Try Trip Builder</a>
+            <a class="btn btnGhost" href="/regions/">Explore Regions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-label="What you can access on the site">
+  <div class="wrap">
+    <h2 class="hTitle">What You Can Access On This Site</h2>
+    <p class="hSub">
+      Everything here is designed to help you make better travel decisions, faster. No filler. No overwhelm.
+    </p>
+
+    <div class="accessGrid">
+      <div class="accessCard">
+        <h3 style="margin:0 0 10px; font-family:Montserrat,Inter,sans-serif; font-weight:800; letter-spacing:-0.02em; color:#0f2f62; font-size:18px;">
+          Planning Building Blocks
+        </h3>
+        <ul class="bullets">
+          <li>Region overviews with practical travel logic</li>
+          <li>Experience pages that help you choose what matters</li>
+          <li>Time-based suggestions for realistic trip pacing</li>
+          <li>Curated recommendations for stays, guides, and travel-ready options</li>
+          <li>Local context that helps you avoid common mistakes</li>
+          <li>Visual guides and curated highlights as the site grows</li>
+        </ul>
+      </div>
+
+      <div class="accessCard">
+        <h3 style="margin:0 0 12px; font-family:Montserrat,Inter,sans-serif; font-weight:800; letter-spacing:-0.02em; color:#0f2f62; font-size:18px;">
+          Snapshot
+        </h3>
+        <div class="stats">
+          <div class="stat">
+            <strong>4</strong>
+            <span>Core regions with distinct travel styles</span>
+          </div>
+          <div class="stat">
+            <strong>6+</strong>
+            <span>Experience categories to mix and match</span>
+          </div>
+          <div class="stat">
+            <strong>Recommendations</strong>
+            <span>Curated stays and experiences with stronger decision-ready detail</span>
+          </div>
+          <div class="stat">
+            <strong>Local-Aware</strong>
+            <span>Built for clarity and realistic pacing</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="disclosure" aria-label="Aviso">
-      <strong>Aviso:</strong> Algunas fichas podrian mostrarse como Aliado Destacado en el futuro. Los espacios destacados ayudaran a sostener este proyecto.
+    <div class="card trust" style="margin-top:18px;">
+      <h2 class="hTitle" style="margin:0;">Built For Travelers Who Want Clarity</h2>
+      <p>
+        Experience Ecuador is a planning layer, not a booking funnel. The goal is simple: help you match regions, time, and experiences
+        so your trip feels smooth, confident, and worth the flight.
+      </p>
+
+      <div class="ctaBand" aria-label="Primary call to action">
+        <div class="ctaLeft">
+          <h3>Start Exploring Ecuador With Confidence</h3>
+          <p>Choose a region, compare curated places, then shape your plan around experiences and time.</p>
+        </div>
+        <div class="ctaRight">
+          <a class="btn btnPrimary" href="/regions/">Explore Regions</a>
+          <a class="btn btnGhost" href="/recommendations/">Browse Recommendations</a>
+          <a class="btn btnGhost" href="/trip-builder/">Start Planning</a>
+        </div>
+      </div>
+
+      <div class="tourismStrip" aria-label="Ecuador tourism logo placement">
+        <div class="note">
+          Supporting responsible travel and regional discovery across Ecuador.
+        </div>
+
+        <div class="tourismLogo" aria-label="Ecuador Tourism logo">
+          <img src="/assets/images/EE-Assets-Ecuador-Tourism-Logo-29.jpg" alt="Ecuador Tourism logo" />
+        </div>
+      </div>
     </div>
 
-    <section class="filters" aria-label="Filtros">
-      <div class="fGroup">
-        <label for="fRegion">Region</label>
-        <select id="fRegion" aria-label="Filtrar por region">
-          <option value="">Todas las regiones</option>
-        </select>
-      </div>
-
-      <div class="fGroup">
-        <label for="fLocation">Ubicacion</label>
-        <select id="fLocation" aria-label="Filtrar por ubicacion" disabled>
-          <option value="">Todas las ubicaciones</option>
-        </select>
-      </div>
-
-      <div class="fGroup">
-        <label for="fExperience">Experiencia</label>
-        <select id="fExperience" aria-label="Filtrar por experiencia">
-          <option value="">Todas las experiencias</option>
-        </select>
-      </div>
-
-      <div class="fGroup">
-        <label for="fCategory">Categoria</label>
-        <select id="fCategory" aria-label="Filtrar por categoria">
-          <option value="">Todas las categorias</option>
-          <option value="lodging">Alojamiento</option>
-          <option value="restaurants">Restaurantes</option>
-          <option value="services">Servicios</option>
-          <option value="activities">Actividades</option>
-        </select>
-      </div>
-    </section>
-
-    <div class="actionsRow" aria-label="Acciones">
-      <div class="btnRow">
-        <button class="btn" id="btnReset" type="button" aria-label="Restablecer filtros">Restablecer</button>
-        <a class="btn primary" href="/es/aliados/" aria-label="Quiero ser aliado">Quiero ser aliado</a>
-      </div>
-      <div class="count" id="resultCount" aria-label="Conteo de resultados">0 resultados</div>
-    </div>
-
-    <div class="noResults" id="noResults" aria-label="Mensaje sin resultados">Aun no hay recomendaciones para esta seleccion.</div>
-
-    <section class="grid" id="cards" aria-label="Tarjetas de recomendacion"></section>
+  </div>
+</section>
   </main>
+  <div id="siteFooter"></div>
   <script src="/assets/js/site.js"></script>
   <script>
     (function(){
-      "use strict";
-
-      var STR = {
-        es: {
-          all_regions: "Todas las regiones",
-          all_locations: "Todas las ubicaciones",
-          all_experiences: "Todas las experiencias",
-          all_categories: "Todas las categorias",
-          results_one: "resultado",
-          results_many: "resultados",
-          no_results: "Aun no hay recomendaciones para esta seleccion.",
-          featured: "Socio Destacado",
-          visit_website: "Visitar sitio",
-          whatsapp: "WhatsApp",
-          download_menu: "Descargar menu (PDF)"
-        },
-        en: {
-          all_regions: "All regions",
-          all_locations: "All locations",
-          all_experiences: "All experiences",
-          all_categories: "All categories",
-          results_one: "result",
-          results_many: "results",
-          no_results: "No recommendations match your filters yet.",
-          featured: "Featured Partner",
-          visit_website: "Visit Website",
-          whatsapp: "WhatsApp",
-          download_menu: "Download Menu (PDF)"
-        }
-      };
-
-      var LOCALE = (document.documentElement && document.documentElement.lang && document.documentElement.lang.toLowerCase().indexOf("es") === 0) ? "es" : "en";
-      var elRegion = document.getElementById("fRegion");
-      var elLocation = document.getElementById("fLocation");
-      var elExperience = document.getElementById("fExperience");
-      var elCategory = document.getElementById("fCategory");
-      var elCards = document.getElementById("cards");
-      var elNoResults = document.getElementById("noResults");
-      var elCount = document.getElementById("resultCount");
-      var btnReset = document.getElementById("btnReset");
-
-      var REGIONS = null;
-      var EXPERIENCES = null;
-      var ITEMS = null;
-      var isApplyingQueryParams = false;
-
-      function t(key){
-        var dict = STR[LOCALE] || STR.en || {};
-        return (dict && dict[key]) ? dict[key] : key;
+      async function inject(id, url){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
       }
-
-      function pickField(item, base){
-        var v = "";
-        if (item){
-          v = item[base + "_" + LOCALE] || item[base + "_en"] || "";
-        }
-        return String(v || "").trim();
-      }
-
-      function esc(s){
-        return String(s || "").replace(/[&<>"']/g, function(m){
-          return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[m];
-        });
-      }
-
-      function byAlpha(a,b){
-        return String(a || "").localeCompare(String(b || ""), "es", { sensitivity: "base" });
-      }
-
-      function fetchJson(url){
-        return fetch(url, { cache: "no-store" }).then(function(r){
-          if (!r.ok) throw new Error("bad response");
-          return r.json();
-        });
-      }
-
-      function normalizeUrl(u){
-        var s = String(u || "").trim();
-        if (!s || s === "#") return "";
-        if (/^https?:\/\//i.test(s)) return s;
-        if (/^mailto:/i.test(s)) return s;
-        if (/^tel:/i.test(s)) return s;
-        if (/^sms:/i.test(s)) return s;
-        return "https://" + s.replace(/^\/+/, "");
-      }
-
-      function getAction(item, key){
-        if (item && item.actions && item.actions[key]) return item.actions[key];
-        if (item && item.links){
-          if (key === "website_url" && item.links.website) return item.links.website;
-          if (key === "whatsapp_url" && item.links.whatsapp) return item.links.whatsapp;
-          if (key === "menu_pdf" && item.links.menu_pdf) return item.links.menu_pdf;
-          if (key === "details_url" && item.links.details) return item.links.details;
-        }
-        return "";
-      }
-
-      function safeTrack(name, params){
-        if (typeof window.gtag !== "function") return;
-        try {
-          window.gtag("event", name, params || {});
-        } catch(e){}
-      }
-
-      function setCount(n){
-        var word = (n === 1) ? t("results_one") : t("results_many");
-        elCount.textContent = String(n) + " " + word;
-      }
-
-      function getFilters(){
-        return {
-          region_id: elRegion.value || "",
-          location_id: elLocation.value || "",
-          experience_id: elExperience.value || "",
-          category: elCategory.value || ""
-        };
-      }
-
-      function mapRegionAlias(v){
-        var s = String(v || "").trim().toLowerCase();
-        if (s === "amazonia") return "amazon";
-        return s;
-      }
-
-      function mapExperienceAlias(v){
-        var s = String(v || "").trim().toLowerCase();
-        if (s === "vida-silvestre-y-aves") return "wildlife-birding";
-        return s;
-      }
-
-      function getQueryParams(){
-        var params = new URLSearchParams(window.location.search || "");
-        return {
-          region_id: mapRegionAlias(params.get("region") || params.get("region_id") || params.get("regiones") || ""),
-          location_id: params.get("location") || params.get("location_id") || params.get("ubicacion") || "",
-          experience_id: mapExperienceAlias(params.get("experience") || params.get("experience_id") || params.get("experiencia") || params.get("experiecias") || ""),
-          category: params.get("category") || params.get("categoria") || ""
-        };
-      }
-
-      function uiRegionSlug(v){
-        var s = String(v || "").trim().toLowerCase();
-        if (s === "amazon") return "amazonia";
-        return s;
-      }
-
-      function uiExperienceSlug(v){
-        var s = String(v || "").trim().toLowerCase();
-        if (s === "wildlife-birding") return "wildlife-birding";
-        return s;
-      }
-
-      function updateUrlFromFilters(){
-        if (isApplyingQueryParams) return;
-        var f = getFilters();
-        var params = new URLSearchParams();
-
-        if (f.region_id) params.set("region", uiRegionSlug(f.region_id));
-        if (f.location_id) params.set("ubicacion", f.location_id);
-        if (f.experience_id) params.set("experience", uiExperienceSlug(f.experience_id));
-        if (f.category) params.set("category", f.category);
-
-        var qs = params.toString();
-        var nextUrl = window.location.pathname + (qs ? ("?" + qs) : "");
-        if (window.location.search !== (qs ? ("?" + qs) : "")){
-          history.replaceState({}, "", nextUrl);
-        }
-      }
-
-      function resetFilters(){
-        elRegion.value = "";
-        elLocation.value = "";
-        elExperience.value = "";
-        elCategory.value = "";
-        elLocation.disabled = true;
-        syncLocationOptions();
-        apply();
-      }
-
-      function syncRegionOptions(){
-        if (!REGIONS || !REGIONS.regions || !REGIONS.regions.length) return;
-        var opts = ['<option value="">' + esc(t("all_regions")) + '</option>'];
-        var regs = REGIONS.regions.slice(0);
-        regs.sort(function(a,b){ return byAlpha(a.name_es || a.name_en || a.name || a.id, b.name_es || b.name_en || b.name || b.id); });
-        for (var i=0; i<regs.length; i++){
-          var r = regs[i];
-          opts.push('<option value="' + esc(r.id) + '">' + esc(r.name_es || r.name_en || r.name || r.id) + '</option>');
-        }
-        elRegion.innerHTML = opts.join("");
-      }
-
-      function syncExperienceOptions(){
-        if (!EXPERIENCES || !EXPERIENCES.experiences || !EXPERIENCES.experiences.length) return;
-        var opts = ['<option value="">' + esc(t("all_experiences")) + '</option>'];
-        var exps = EXPERIENCES.experiences.slice(0);
-        exps.sort(function(a,b){ return byAlpha(labelExperience(a.id), labelExperience(b.id)); });
-        for (var i=0; i<exps.length; i++){
-          var e = exps[i];
-          opts.push('<option value="' + esc(e.id) + '">' + esc(labelExperience(e.id)) + '</option>');
-        }
-        elExperience.innerHTML = opts.join("");
-      }
-
-      function getLocationsForRegion(regionId){
-        if (!REGIONS || !REGIONS.regions) return [];
-        for (var i=0; i<REGIONS.regions.length; i++){
-          if (REGIONS.regions[i].id === regionId){
-            return REGIONS.regions[i].locations || [];
-          }
-        }
-        return [];
-      }
-
-      function syncLocationOptions(){
-        var regionId = elRegion.value || "";
-        var opts = ['<option value="">' + esc(t("all_locations")) + '</option>'];
-        if (!regionId){
-          elLocation.innerHTML = opts.join("");
-          elLocation.disabled = true;
-          return;
-        }
-        var locs = getLocationsForRegion(regionId).slice(0);
-        locs.sort(function(a,b){ return byAlpha(a.name_es || a.name_en || a.name || a.id, b.name_es || b.name_en || b.name || b.id); });
-        for (var i=0; i<locs.length; i++){
-          var l = locs[i];
-          opts.push('<option value="' + esc(l.id) + '">' + esc(l.name_es || l.name_en || l.name || l.id) + '</option>');
-        }
-        elLocation.innerHTML = opts.join("");
-        elLocation.disabled = false;
-      }
-
-      function labelRegion(regionId){
-        if (!REGIONS || !REGIONS.regions) return regionId;
-        for (var i=0; i<REGIONS.regions.length; i++){
-          if (REGIONS.regions[i].id === regionId){
-            return REGIONS.regions[i].name_es || REGIONS.regions[i].name_en || REGIONS.regions[i].name || regionId;
-          }
-        }
-        return regionId;
-      }
-
-      function labelLocation(regionId, locationId){
-        var locs = getLocationsForRegion(regionId);
-        for (var i=0; i<locs.length; i++){
-          if (locs[i].id === locationId){
-            return locs[i].name_es || locs[i].name_en || locs[i].name || locationId;
-          }
-        }
-        return locationId;
-      }
-
-      var EXPERIENCE_LABELS_ES = {
-        "adventure": "Aventura",
-        "culinary": "Culinaria",
-        "culture": "Cultura",
-        "nature": "Naturaleza",
-        "relaxation": "Descanso",
-        "wildlife-birding": "Vida silvestre y aves"
-      };
-
-      function labelExperience(expId){
-        if (LOCALE === "es" && EXPERIENCE_LABELS_ES[expId]) return EXPERIENCE_LABELS_ES[expId];
-        if (!EXPERIENCES || !EXPERIENCES.experiences) return expId;
-        for (var i=0; i<EXPERIENCES.experiences.length; i++){
-          if (EXPERIENCES.experiences[i].id === expId){
-            return EXPERIENCES.experiences[i].name_es || EXPERIENCES.experiences[i].name_en || EXPERIENCES.experiences[i].name || expId;
-          }
-        }
-        return expId;
-      }
-
-      var PLACEHOLDER_IMAGES = {
-        lodging: "/assets/images/promos/clients/ee_promos_clients_lodging_01.jpg",
-        restaurants: "/assets/images/promos/clients/ee_promos_clients_food_01.jpg",
-        services: "/assets/images/promos/clients/ee_promos_clients_service_01.jpg",
-        activities: "/assets/images/promos/clients/ee_promos_clients_activities_01.jpg",
-        default: "/assets/images/promos/clients/ee_promos_clients_lodging_01.jpg"
-      };
-
-      function absRootUrl(u){
-        if (!u) return "";
-        var s = String(u).trim();
-        if (!s) return "";
-        if (/^https?:\/\//i.test(s) || s.indexOf("data:") === 0) return s;
-        if (s.charAt(0) !== "/") s = "/" + s;
-        return window.location.origin + s;
-      }
-
-      function isPlaceholderItem(item){
-        if (!item) return false;
-        if (item.is_placeholder === true) return true;
-        var id = String(item.id || "");
-        if (id.indexOf("placeholder_") === 0) return true;
-        var title = pickField(item,"title") || item.title_es || item.title_en || item.title || "";
-        title = String(title).toLowerCase();
-        return title.indexOf("featured partner spot") === 0 || title.indexOf("espacio para socio destacado") === 0;
-      }
-
-      function normalizeImages(item){
-        var isPh = isPlaceholderItem(item);
-        var cat = String((item && item.category) || "").toLowerCase();
-        var phPath = PLACEHOLDER_IMAGES[cat] || PLACEHOLDER_IMAGES["default"];
-        var phAbs = absRootUrl(phPath);
-
-        if (isPh){
-          return [phAbs, phAbs, phAbs];
-        }
-
-        var imgs = (item && item.images && item.images.length) ? item.images.slice(0) : [];
-        imgs = imgs.map(function(u){ return absRootUrl(u); }).filter(Boolean);
-
-        if (imgs.length === 0){
-          imgs = [phAbs, phAbs, phAbs];
-        } else {
-          while (imgs.length < 3) imgs.push(imgs[0]);
-        }
-        return imgs.slice(0,3);
-      }
-
-      function cardHtml(item){
-        var title = pickField(item,"title") || item.title || "Sin titulo";
-        var desc = pickField(item,"description") || item.description || "";
-        var why = pickField(item,"why") || "";
-        var isFeatured = !!item.featured;
-
-        var images = normalizeImages(item);
-
-        var tags = [];
-        if (isFeatured) tags.push('<span class="tag featured">' + esc(t("featured")) + '</span>');
-        tags.push('<span class="tag">' + esc(labelRegion(item.region_id)) + '</span>');
-        tags.push('<span class="tag">' + esc(labelLocation(item.region_id, item.location_id)) + '</span>');
-
-        var chips = [];
-        chips.push('<span class="chip">' + esc(pickField(item,"category_label") || item.category || "") + '</span>');
-        if (item.experiences && item.experiences.length){
-          chips.push('<span class="chip">' + esc(labelExperience(item.experiences[0])) + '</span>');
-        }
-
-        var websiteUrl = normalizeUrl(getAction(item, "website_url"));
-        var whatsappUrl = normalizeUrl(getAction(item, "whatsapp_url"));
-        var menuPdf = normalizeUrl(getAction(item, "menu_pdf"));
-
-        var links = [];
-        if (websiteUrl){
-          links.push(
-            '<a class="btn primary js-rec-action"'
-            + ' href="' + esc(websiteUrl) + '"'
-            + ' target="_blank" rel="noopener"'
-            + ' data-action="website"'
-            + ' data-id="' + esc(item.id) + '"'
-            + ' data-title="' + esc(title) + '"'
-            + ' data-region="' + esc(item.region_id) + '"'
-            + ' data-location="' + esc(item.location_id) + '"'
-            + ' data-category="' + esc(item.category) + '"'
-            + ' aria-label="Visitar sitio">'
-            + esc(t("visit_website"))
-            + '</a>'
-          );
-        } else {
-          links.push('<a class="btn primary" href="#" aria-label="Visitar sitio" aria-disabled="true">' + esc(t("visit_website")) + '</a>');
-        }
-
-        if (whatsappUrl){
-          links.push(
-            '<a class="btn js-rec-action"'
-            + ' href="' + esc(whatsappUrl) + '"'
-            + ' target="_blank" rel="noopener"'
-            + ' data-action="whatsapp"'
-            + ' data-id="' + esc(item.id) + '"'
-            + ' data-title="' + esc(title) + '"'
-            + ' data-region="' + esc(item.region_id) + '"'
-            + ' data-location="' + esc(item.location_id) + '"'
-            + ' data-category="' + esc(item.category) + '"'
-            + ' aria-label="WhatsApp">'
-            + esc(t("whatsapp"))
-            + '</a>'
-          );
-        } else {
-          links.push('<a class="btn" href="#" aria-label="WhatsApp" aria-disabled="true">' + esc(t("whatsapp")) + '</a>');
-        }
-
-        if (menuPdf){
-          links.push(
-            '<a class="btn js-rec-action"'
-            + ' href="' + esc(menuPdf) + '"'
-            + ' target="_blank" rel="noopener"'
-            + ' data-action="menu_pdf"'
-            + ' data-id="' + esc(item.id) + '"'
-            + ' data-title="' + esc(title) + '"'
-            + ' data-region="' + esc(item.region_id) + '"'
-            + ' data-location="' + esc(item.location_id) + '"'
-            + ' data-category="' + esc(item.category) + '"'
-            + ' aria-label="Descargar menu">'
-            + esc(t("download_menu"))
-            + '</a>'
-          );
-        }
-
-        var aria = esc(title);
-
-        var dots = '<div class="dots" aria-hidden="true">'
-          + '<span class="dot active"></span><span class="dot"></span><span class="dot"></span>'
-          + '</div>';
-
-        var slides = ''
-          + '<div class="carouselSlide"><img src="' + esc(images[0]) + '" alt="' + aria + ' imagen 1" loading="eager" decoding="async"></div>'
-          + '<div class="carouselSlide"><img src="' + esc(images[1]) + '" alt="' + aria + ' imagen 2" loading="lazy" decoding="async"></div>'
-          + '<div class="carouselSlide"><img src="' + esc(images[2]) + '" alt="' + aria + ' imagen 3" loading="lazy" decoding="async"></div>';
-
-        var whyBlock = why ? ('<div class="why" aria-label="Por que recomendamos"><strong>Por que recomendamos:</strong> ' + esc(why) + '</div>') : '';
-
-        return ''
-          + '<article class="card" data-id="' + esc(item.id) + '" data-region="' + esc(item.region_id) + '" data-location="' + esc(item.location_id) + '" data-category="' + esc(item.category) + '" data-experiences="' + esc((item.experiences || []).join(",")) + '">'
-          +   '<div class="media recCarousel" data-interval="2500" aria-label="' + aria + ' carrusel">'
-          +     '<div class="carouselViewport" aria-label="Vista del carrusel">'
-          +       '<div class="carouselTrack">' + slides + '</div>'
-          +     '</div>'
-          +     '<button class="navBtn prev" type="button" aria-label="Imagen anterior"><span aria-hidden="true"></span></button>'
-          +     '<button class="navBtn next" type="button" aria-label="Imagen siguiente"><span aria-hidden="true"></span></button>'
-          +     dots
-          +     '<div class="badgeRow" aria-hidden="true">' + tags.join("") + '</div>'
-          +   '</div>'
-          +   '<div class="body">'
-          +     '<div class="titleRow">'
-          +       '<h3 class="title">' + esc(title) + '</h3>'
-          +       '<div class="chips" aria-label="Chips de informacion">' + chips.join("") + '</div>'
-          +     '</div>'
-          +     '<p class="desc">' + esc(desc) + '</p>'
-          +     whyBlock
-          +     '<div class="links" aria-label="Acciones">' + links.join("") + '</div>'
-          +   '</div>'
-          + '</article>';
-      }
-
-      function applyQueryFilters(){
-        var qp = getQueryParams();
-        isApplyingQueryParams = true;
-
-        if (qp.region_id){
-          elRegion.value = qp.region_id;
-        } else {
-          elRegion.value = "";
-        }
-
-        syncLocationOptions();
-
-        if (qp.location_id && !elLocation.disabled){
-          elLocation.value = qp.location_id;
-        } else {
-          elLocation.value = "";
-        }
-
-        if (qp.experience_id){
-          elExperience.value = qp.experience_id;
-        } else {
-          elExperience.value = "";
-        }
-
-        if (qp.category){
-          elCategory.value = qp.category;
-        } else {
-          elCategory.value = "";
-        }
-
-        isApplyingQueryParams = false;
-      }
-
-      function apply(){
-        if (!ITEMS || !ITEMS.items) return;
-
-        var f = getFilters();
-        var out = [];
-
-        for (var i=0; i<ITEMS.items.length; i++){
-          var it = ITEMS.items[i];
-
-          if (f.region_id && it.region_id !== f.region_id) continue;
-          if (f.location_id && it.location_id !== f.location_id) continue;
-          if (f.category && it.category !== f.category) continue;
-
-          if (f.experience_id){
-            var exps = it.experiences || [];
-            var ok = false;
-            for (var j=0; j<exps.length; j++){
-              if (exps[j] === f.experience_id){ ok = true; break; }
-            }
-            if (!ok) continue;
-          }
-
-          out.push(it);
-        }
-
-        elCards.innerHTML = out.map(cardHtml).join("");
-        setCount(out.length);
-
-        if (out.length === 0){
-          elNoResults.style.display = "block";
-          elNoResults.textContent = t("no_results");
-        } else {
-          elNoResults.style.display = "none";
-        }
-
-        updateUrlFromFilters();
-        initAllCarousels();
-      }
-
-      function initCarousel(root){
-        var viewport = root.querySelector(".carouselViewport");
-        var track = root.querySelector(".carouselTrack");
-        var slides = Array.prototype.slice.call(root.querySelectorAll(".carouselSlide"));
-        var prevBtn = root.querySelector(".navBtn.prev");
-        var nextBtn = root.querySelector(".navBtn.next");
-        var dotsWrap = root.querySelector(".dots");
-        var dots = dotsWrap ? Array.prototype.slice.call(dotsWrap.querySelectorAll(".dot")) : [];
-
-        if(!viewport || !track || !slides.length) return;
-
-        var index = 0;
-        var intervalMs = Number(root.getAttribute("data-interval") || "2500");
-        var timer = null;
-
-        var prefersReducedMotion = false;
-        try{
-          prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        }catch(_){ prefersReducedMotion = false; }
-
-        var autoplay = !prefersReducedMotion;
-
-        function update(){
-          track.style.transform = "translateX(-" + (index * 100) + "%)";
-          if(dots.length){
-            for(var i=0; i<dots.length; i++){
-              if(i === index) dots[i].classList.add("active");
-              else dots[i].classList.remove("active");
-            }
-          }
-        }
-
-        function setIndex(next){
-          var n = next;
-          if(n < 0) n = slides.length - 1;
-          if(n >= slides.length) n = 0;
-          index = n;
-          update();
-        }
-
-        function next(){ setIndex(index + 1); }
-        function prev(){ setIndex(index - 1); }
-
-        function stop(){
-          if(timer){
-            clearInterval(timer);
-            timer = null;
-          }
-        }
-
-        function start(){
-          if(!autoplay) return;
-          stop();
-          timer = setInterval(function(){ next(); }, intervalMs);
-        }
-
-        if(prevBtn){
-          prevBtn.addEventListener("click", function(){
-            prev();
-            stop();
-          });
-        }
-
-        if(nextBtn){
-          nextBtn.addEventListener("click", function(){
-            next();
-            stop();
-          });
-        }
-
-        root.addEventListener("mouseenter", stop);
-        root.addEventListener("mouseleave", start);
-        root.addEventListener("focusin", stop);
-        root.addEventListener("focusout", start);
-
-        var startX = 0;
-        var isDown = false;
-
-        viewport.addEventListener("pointerdown", function(e){
-          isDown = true;
-          startX = e.clientX;
-          try{ viewport.setPointerCapture(e.pointerId); }catch(_){}
-        });
-
-        viewport.addEventListener("pointerup", function(e){
-          if(!isDown) return;
-          isDown = false;
-          var dx = e.clientX - startX;
-          var threshold = 40;
-          if(dx > threshold){ prev(); stop(); }
-          if(dx < -threshold){ next(); stop(); }
-        });
-
-        viewport.addEventListener("pointercancel", function(){
-          isDown = false;
-        });
-
-        update();
-        start();
-      }
-
-      function initAllCarousels(){
-        var carousels = document.querySelectorAll(".recCarousel");
-        for(var i=0; i<carousels.length; i++){
-          initCarousel(carousels[i]);
-        }
-      }
-
-      function wireRecommendationClicks(){
-        document.addEventListener("click", function(e){
-          var a = e.target && e.target.closest ? e.target.closest(".js-rec-action") : null;
-          if (!a) return;
-
-          safeTrack("recommendation_click", {
-            listing_id: a.getAttribute("data-id") || "",
-            listing_title: a.getAttribute("data-title") || "",
-            region_id: a.getAttribute("data-region") || "",
-            location_id: a.getAttribute("data-location") || "",
-            category: a.getAttribute("data-category") || "",
-            action_type: a.getAttribute("data-action") || "",
-            page_path: window.location.pathname || "/"
-          });
-        }, true);
-      }
-
-      function wire(){
-        elRegion.addEventListener("change", function(){
-          syncLocationOptions();
-          elLocation.value = "";
-          apply();
-        });
-
-        elLocation.addEventListener("change", apply);
-        elExperience.addEventListener("change", apply);
-        elCategory.addEventListener("change", apply);
-
-        btnReset.addEventListener("click", resetFilters);
-
-        wireRecommendationClicks();
-      }
-
-      function boot(){
-        wire();
-
-        Promise.all([
-          fetchJson("/assets/data/regions.json"),
-          fetchJson("/assets/data/experiences.json"),
-          fetchJson("/assets/data/recommendations.json")
-        ]).then(function(all){
-          REGIONS = all[0];
-          EXPERIENCES = all[1];
-          ITEMS = all[2];
-
-          syncRegionOptions();
-          syncExperienceOptions();
-          applyQueryFilters();
-          apply();
-        }).catch(function(){
-          elNoResults.style.display = "block";
-          elNoResults.textContent = "No se pudieron cargar los datos de recomendaciones.";
-          setCount(0);
-        });
-      }
-
-      boot();
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
     })();
   </script>
 </body>
