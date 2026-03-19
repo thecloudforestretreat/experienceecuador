@@ -174,13 +174,20 @@
     .ctaLeft{min-width:260px;flex:1}
     .ctaBand h3{margin:0 0 6px;font-family:Montserrat,Inter,sans-serif;font-weight:800;letter-spacing:-0.02em;color:var(--ink);font-size:18px}
     .ctaBand p{margin:0;color:#2a2f36;opacity:.95;line-height:1.6;font-size:14.4px;max-width:78ch}
+    .mapSplit{margin-top:12px;display:grid;grid-template-columns:.95fr 1.05fr;gap:14px;align-items:stretch}
+    .mapCopy{border-radius:18px;border:1px solid rgba(0,0,0,.06);background:rgba(3,78,162,.03);padding:16px;box-shadow:0 16px 45px rgba(3,78,162,.10)}
+    .mapCard{min-height:360px;border-radius:18px;overflow:hidden;border:1px solid rgba(0,0,0,.08);background:#eef2f7;box-shadow:0 18px 45px rgba(3,78,162,.12)}
+    .mapCard iframe{width:100%;height:100%;min-height:360px;border:0;display:block}
+    .mapNote{margin-top:12px;font-size:13px;line-height:1.55;color:#5f6c7b}
     .ctaRight{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
     @media (max-width:980px){
       .wrap{padding:18px 14px 64px}
-      .hero,.grid2,.nearbyGrid,.faqGrid,.linkGrid,.galleryGrid{grid-template-columns:1fr}
+      .hero,.grid2,.nearbyGrid,.faqGrid,.linkGrid,.galleryGrid,.mapSplit{grid-template-columns:1fr}
       .carousel{min-height:340px}
       .phLabel{bottom:66px}
       .navBtn{width:38px;height:38px}
+      .mapCard{min-height:300px}
+      .mapCard iframe{min-height:300px}
     }
     @media (prefers-reduced-motion: reduce){.carouselTrack{transition:none !important}}
   </style>
@@ -299,6 +306,47 @@
       <p class="p">Tena es una de las principales puertas de entrada a la Amazonia del Ecuador, lo que la convierte en una base ideal para explorar selva, vida silvestre y naturaleza. Hospedarse aqui permite combinar acceso y experiencia inmersiva en el bosque.</p>
     </section>
 
+
+    <section class="section" aria-label="Ubicacion y como llegar">
+      <h2 class="h2">Ubicacion y como llegar</h2>
+      <div class="mapSplit">
+        <div class="mapCopy">
+          <p class="p">
+            Cabañas Las Nubes se encuentra en la zona de bosque nublado de Napo, en el entorno general de Cosanga / Baeza, cerca de la transicion entre los Andes y la Amazonia. Conviene entenderla como una ubicacion de naturaleza, no como una estadia urbana central dentro de Tena, y justamente eso es parte de su atractivo.
+          </p>
+          <p class="p" style="margin-top:10px;">
+            Usa el mapa para ubicar mejor el area general y abre las indicaciones directamente en Google Maps para planificar la ruta desde movil o escritorio.
+          </p>
+          <div class="ctaRow" aria-label="Acciones del mapa" style="margin-top:14px;">
+            <a class="btn btnPrimary"
+               href="https://www.google.com/maps/search/?api=1&query=Ecuador+45,+Cosanga,+Napo,+Ecuador+150750"
+               target="_blank" rel="noopener"
+               aria-label="Abrir indicaciones en Google Maps">
+              Como llegar
+            </a>
+            <a class="btn btnGhost"
+               href="https://www.google.com/maps/search/?api=1&query=Ecuador+45,+Cosanga,+Napo,+Ecuador+150750"
+               target="_blank" rel="noopener"
+               aria-label="Abrir ubicacion en Google Maps">
+              Abrir en Google Maps
+            </a>
+          </div>
+          <div class="mapNote">
+            Area aproximada mostrada en el mapa: Ecuador 45, Cosanga / Baeza, Napo, Ecuador.
+          </div>
+        </div>
+
+        <div class="mapCard" aria-label="Vista del mapa">
+          <iframe
+            title="Mapa de Cabañas Las Nubes"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Ecuador%2045,%20Cosanga,%20Napo,%20Ecuador%20150750&z=11&output=embed">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
     <section class="section" aria-label="Que hacer cerca">
       <h2 class="h2">Que hacer cerca</h2>
       <div class="nearbyGrid">
@@ -362,11 +410,21 @@
         var res = await fetch(url, { cache: "no-store" });
         el.innerHTML = await res.text();
       }
-      inject("siteHeader", "/assets/includes/header.html");
-      inject("siteFooter", "/assets/includes/footer.html");
+
+      Promise.all([
+        inject("siteHeader", "/assets/includes/header.html"),
+        inject("siteFooter", "/assets/includes/footer.html")
+      ]).then(function(){
+        var s = document.createElement("script");
+        s.src = "/assets/js/site.js";
+        document.body.appendChild(s);
+      }).catch(function(){
+        var s = document.createElement("script");
+        s.src = "/assets/js/site.js";
+        document.body.appendChild(s);
+      });
     })();
   </script>
-  <script src="/assets/js/site.js"></script>
   <script>
     (function(){
       function safeTrack(name, params){
