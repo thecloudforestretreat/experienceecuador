@@ -170,7 +170,7 @@
     .builder-layout{
       margin-top:18px;
       display:grid;
-      grid-template-columns: 3fr 1fr;
+      grid-template-columns: minmax(0, 2.45fr) minmax(300px, 1.15fr);
       gap:14px;
       align-items:stretch;
     }
@@ -1278,11 +1278,19 @@
       }
     }
 
-    function createPill({ id, name }, type) {
+    function getLabel(item, lang){
+      if (!item) return "";
+      if (item.name) return item.name;
+      if (lang === "es") return item.name_es || item.name_en || item.id || "";
+      return item.name_en || item.name_es || item.id || "";
+    }
+
+    function createPill(item, type) {
+      const id = item.id;
       const b = document.createElement('button');
       b.type = "button";
       b.className = "pill";
-      b.textContent = name;
+      b.textContent = getLabel(item, "es");
       b.setAttribute('data-id', id);
       b.setAttribute('aria-pressed', 'false');
 
@@ -1351,9 +1359,9 @@
       const regionMap = new Map(DATA.regions.regions.map(r => [r.id, r]));
       const lines = selectedRegions.map(rid => {
         const r = regionMap.get(rid);
-        const locs = (r && r.locations) ? r.locations.map(l => l.name).slice(0, 4) : [];
+        const locs = (r && r.locations) ? r.locations.map(l => getLabel(l, "es")).slice(0, 4) : [];
         const suffix = locs.length ? ` (lugares: ${locs.join(", ")}${(r.locations.length > 4 ? ", ..." : "")})` : "";
-        return `${r ? r.name : rid}${suffix}`;
+        return `${r ? getLabel(r, "es") : rid}${suffix}`;
       });
 
       els.regionHint.textContent = "Seleccionado: " + lines.join(" - ");
@@ -1366,19 +1374,19 @@
 
     function regionName(id){
       const r = DATA.regions.regions.find(x => x.id === id);
-      return r ? r.name : id;
+      return r ? getLabel(r, "es") : id;
     }
 
     function locationName(regionId, locationId){
       const r = DATA.regions.regions.find(x => x.id === regionId);
       if (!r) return "";
       const l = (r.locations || []).find(x => x.id === locationId);
-      return l ? l.name : "";
+      return l ? getLabel(l, "es") : "";
     }
 
     function experienceName(id){
       const x = DATA.experiences.experiences.find(e => e.id === id);
-      return x ? x.name : id;
+      return x ? getLabel(x, "es") : id;
     }
 
     function hasAnySelectedExperience(block, selectedExperienceIds){
