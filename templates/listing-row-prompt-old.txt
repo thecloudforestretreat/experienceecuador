@@ -1,1 +1,122 @@
-7	services_mindo_0002	services	Services	Servicios	andes	mindo	adventure,nature,relaxation,wildlife-birding	FALSE	Mindo Tours	Mindo Tours	Guided nature and birdwatching experiences in Mindo focused on the cloud forest and local biodiversity.	Experiencias guiadas de naturaleza y observacion de aves en Mindo, enfocadas en el bosque nublado y su biodiversidad local.	Great for travelers seeking guided birding and nature outings in Mindo.	Ideal para viajeros que buscan salidas guiadas de aves y naturaleza en Mindo.	Birdwatching,Cloud forest	Observacion de aves,Bosque nublado	recommendations/members/andes/mindo/mindo-tours/ee_mt_01.jpg	recommendations/members/andes/mindo/mindo-tours/ee_mt_02.jpg	recommendations/members/andes/mindo/mindo-tours/ee_mt_03.jpg	https://mindotours.com	https://wa.me/13054585402	13054355402																																																																																																																														
+You are building structured listing data for Experience Ecuador.
+
+Your job is to take a business URL and generate ONE complete listing row in TSV format that matches the schema of listing_pages_input.csv.
+
+INPUT:
+- Website URL: {{URL}}
+- WhatsApp (optional): {{WHATSAPP}}
+- Notes (optional): {{NOTES}}
+
+RULES:
+1. Output ONLY a single TSV row (no explanations, no JSON, no formatting).
+2. Follow the exact column order from the CSV.
+3. Fill BOTH English and Spanish fields.
+4. Spanish must be LATAM / South American Spanish (not Spain Spanish).
+5. Do NOT invent:
+   - phone numbers (unless clearly visible)
+   - addresses
+   - amenities not mentioned
+6. If data is missing:
+   - leave field empty
+7. Keep tone:
+   - editorial
+   - travel-focused
+   - SEO optimized but natural
+
+CONTENT RULES:
+
+TITLE:
+- Use real business name
+- Do NOT keyword stuff
+
+META:
+- Must be SEO optimized
+- Include location + intent
+
+SEO PARAGRAPHS:
+- Paragraph 1 = discoverability (keywords)
+- Paragraph 2 = intent + traveler fit
+
+WHY SECTION:
+- Clear value proposition
+
+EXPERIENCE HIGHLIGHTS:
+- 4 bullets
+- pipe separated |
+- short phrases
+
+BEST FOR:
+- 4 bullets
+- traveler types
+
+LOCATION CONTEXT:
+- Explain destination value (Tena, Mindo, etc.)
+
+NEARBY:
+- Generic but realistic
+- Do NOT hallucinate specific businesses
+
+FAQ:
+- 3-4 realistic traveler questions
+
+IMAGES:
+- Use site images if available
+- Otherwise leave blank
+
+FILTERS:
+- Map correctly:
+  birdwatching -> wildlife-birding
+  adventure -> adventure
+  food -> culinary
+  relaxation -> relaxation
+
+SLUG RULE:
+- lowercase
+- hyphen separated
+- based on name
+
+REGION + LOCATION:
+- Must map correctly:
+  amazon / amazonia
+  tena / tena
+  mindo / mindo
+
+PAGE PATH RULES (CRITICAL):
+
+- REGION_PAGE_EN must be exactly:
+  /regions/<region_id_en>/
+
+- LOCATION_PAGE_EN must be exactly:
+  /regions/<region_id_en>/<location_id_en>/
+
+- REGION_PAGE_ES must be exactly:
+  /es/regiones/<region_id_es>/
+
+- LOCATION_PAGE_ES must be exactly:
+  /es/regiones/<region_id_es>/<location_id_es>/
+
+- Spanish paths MUST always include /es/ prefix
+- Do NOT output Spanish paths without /es/
+- Do NOT guess or omit path structure
+
+OUTPUT FORMAT:
+
+TSV (tab-separated)
+
+DO NOT include column headers.
+
+FINAL INSTRUCTION:
+
+Return ONLY the TSV row.
+
+TARGET COLUMN ORDER (STRICT)
+
+You MUST output values in this EXACT order:
+
+uid	id	category	category_label_en	category_label_es	region_id	location_id	experiences	featured	title_en	title_es	meta_title_en	meta_title_es	meta_description_en	meta_description_es	description_short_en	description_short_es	seo_paragraph_1_en	seo_paragraph_1_es	seo_paragraph_2_en	seo_paragraph_2_es	why_section_en	why_section_es	experience_highlights_en	experience_highlights_es	best_for_en	best_for_es	location_context_en	location_context_es	nearby_en	nearby_es	faq_questions_en	faq_questions_es	faq_answers_en	faq_answers_es	image_1	image_2	image_3	image_1_alt_en	image_1_alt_es	image_1_caption_en	image_1_caption_es	image_1_gallery_caption_en	image_1_gallery_caption_es	image_2_alt_en	image_2_alt_es	image_2_caption_en	image_2_caption_es	image_2_gallery_caption_en	image_2_gallery_caption_es	image_3_alt_en	image_3_alt_es	image_3_caption_en	image_3_caption_es	image_3_gallery_caption_en	image_3_gallery_caption_es	canonical_url_en	canonical_url_es	region_page_en	location_page_en	region_page_es	location_page_es	region_link_text_en	region_link_text_es	location_link_text_en	location_link_text_es	explore_section_intro_en	explore_section_intro_es	experience_link_label_en	experience_link_label_es	experience_link_text_en	experience_link_text_es	experience_filter_id
+
+INPUT ROW IS NOT PRE-FORMATTED
+
+- The provided row is NOT in final schema format
+- You MUST transform it into the TARGET COLUMN ORDER
+- Do NOT reuse column positions from input
