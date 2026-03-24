@@ -1,647 +1,156 @@
-/* /assets/js/site.js
-   ExperienceEcuador.com - Global header behavior
-   - Works with injected /assets/includes/header.html
-   - Hamburger open/close + scroll lock
-   - Mobile drill-down menus (data-target / data-back)
-   - Language switch (EN <-> ES) + header link rewriting + i18n labels
-   - Google Analytics 4 loader (runs even when header is injected via innerHTML)
-   - GA4 Events: WhatsApp clicks + Contact form submits + Trip Builder start/submit
-   - GA4 Events: Region interest (pageview + clicks)
-*/
+
+/* =========================================
+   Experience Ecuador WhatsApp Smart CTA
+   ========================================= */
+
 (function () {
   "use strict";
 
-  /* =========================
-     GA4 (must live in JS, not injected HTML)
-     ========================= */
-  (function initGA4() {
-    var MID = "G-3EDLVGV2HD";
-
-    // Prevent double-loading across pages / reinits
-    if (window.__EE_GA4_LOADED__) return;
-    window.__EE_GA4_LOADED__ = true;
-
-    // dataLayer + gtag shim
-    window.dataLayer = window.dataLayer || [];
-    window.gtag =
-      window.gtag ||
-      function () {
-        window.dataLayer.push(arguments);
-      };
-
-    // Load GA library if not already present
-    var hasGtag = document.querySelector(
-      'script[src^="https://www.googletagmanager.com/gtag/js?id="]'
-    );
-    if (!hasGtag) {
-      var s = document.createElement("script");
-      s.async = true;
-      s.src =
-        "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(MID);
-      document.head.appendChild(s);
-    }
-
-    // Init + page_view
-    window.gtag("js", new Date());
-    window.gtag("config", MID, {
-      anonymize_ip: true,
-      send_page_view: true
-    });
-  })();
-
-  /* =========================
-     GA4 Events: WhatsApp clicks + Contact form submits + Trip Builder + Region Interest
-     ========================= */
-  (function initGA4Events() {
-    function safeGtag() {
-      return typeof window.gtag === "function";
-    }
-
-    function track(name, params) {
-      if (!safeGtag()) return;
-      try {
-        window.gtag("event", name, params || {});
-      } catch (e) {}
-    }
-
-    function normalizePathNoQueryHash(p) {
-      var path = String(p || "/").trim();
-      if (path.indexOf("#") !== -1) path = path.split("#")[0] || "/";
-      if (path.indexOf("?") !== -1) path = path.split("?")[0] || "/";
-      if (!path.startsWith("/")) path = "/" + path;
-      path = path.replace(/\/{2,}/g, "/");
-      return path;
-    }
-
-    function getRegionFromPath(pathname) {
-      var p = normalizePathNoQueryHash(pathname);
-
-      // EN: /regions/<slug>/...
-      if (p.indexOf("/regions/") === 0) {
-        var restEn = p.slice("/regions/".length); // "<slug>/..."
-        var slugEn = (restEn.split("/")[0] || "").trim().toLowerCase();
-        if (!slugEn) return null;
-
-        var mapEn = {
-          galapagos: { id: "galapagos", name: "Galapagos" },
-          coast: { id: "coast", name: "Coast" },
-          andes: { id: "andes", name: "Andes" },
-          amazon: { id: "amazon", name: "Amazon" }
-        };
-
-        return mapEn[slugEn] || { id: slugEn, name: slugEn };
-      }
-
-      // ES: /es/regiones/<slug>/...
-      if (p.indexOf("/es/regiones/") === 0) {
-        var restEs = p.slice("/es/regiones/".length); // "<slug>/..."
-        var slugEs = (restEs.split("/")[0] || "").trim().toLowerCase();
-        if (!slugEs) return null;
-
-        var mapEs = {
-          galapagos: { id: "galapagos", name: "Galapagos" },
-          costa: { id: "coast", name: "Costa" },
-          andes: { id: "andes", name: "Andes" },
-          amazonia: { id: "amazon", name: "Amazonia" }
-        };
-
-        return mapEs[slugEs] || { id: slugEs, name: slugEs };
-      }
-
-      return null;
-    }
-
-    function getRegionFromHref(href) {
-      var h = String(href || "").trim();
-      if (!h) return null;
-      // Only handle internal links. If absolute, ensure it is same-origin.
-      if (h.indexOf("http://") === 0 || h.indexOf("https://") === 0) {
-        try {
-          var u = new URL(h);
-          if (u.origin !== window.location.origin) return null;
-          return getRegionFromPath(u.pathname || "/");
-        } catch (e) {
-          return null;
-        }
-      }
-      if (h.charAt(0) !== "/") return null;
-      return getRegionFromPath(h);
-    }
-
-    function sourceFromLink(a) {
-      if (!a) return "unknown";
-      // If link is inside header/nav/footer, label it; else internal_link.
-      if (a.closest && a.closest("#siteHeader")) return "nav";
-      if (a.closest && a.closest("#siteFooter")) return "footer";
-      return "internal_link";
-    }
-
-    /* -------------------------
-       0) Region interest (marketing)
-       - Fires once on region page load (first view only)
-       - Fires on clicks to region links anywhere
-       ------------------------- */
-    (function initRegionInterest() {
-      // Fire once per page load
-      try {
-        if (!window.__EE_REGION_PAGEVIEW_FIRED__) {
-          var regionNow = getRegionFromPath(window.location.pathname || "/");
-          if (regionNow && regionNow.id) {
-            window.__EE_REGION_PAGEVIEW_FIRED__ = true;
-            track("region_interest", {
-              region_id: String(regionNow.id),
-              region_name: String(regionNow.name || regionNow.id),
-              source: "pageview",
-              page_path: window.location.pathname || "/"
-            });
-          }
-        }
-      } catch (e) {}
-
-      // Fire on clicks to region links
-      document.addEventListener(
-        "click",
-        function (e) {
-          var a =
-            e.target && e.target.closest ? e.target.closest("a[href]") : null;
-          if (!a) return;
-
-          var href = a.getAttribute("href") || "";
-          if (!href) return;
-
-          // Ignore in-page anchors
-          if (href.charAt(0) === "#") return;
-
-          var region = getRegionFromHref(href);
-          if (!region || !region.id) return;
-
-          track("region_interest", {
-            region_id: String(region.id),
-            region_name: String(region.name || region.id),
-            source: sourceFromLink(a),
-            link_url: href,
-            link_text: (a.textContent || "").trim().slice(0, 80),
-            page_path: window.location.pathname || "/"
-          });
-        },
-        true
-      );
-    })();
-
-    /* -------------------------
-       1) WhatsApp link clicks
-       ------------------------- */
-    document.addEventListener(
-      "click",
-      function (e) {
-        var a =
-          e.target && e.target.closest ? e.target.closest("a[href]") : null;
-        if (!a) return;
-
-        var href = a.getAttribute("href") || "";
-        var isWhatsapp =
-          href.indexOf("wa.me/") !== -1 ||
-          href.indexOf("api.whatsapp.com/") !== -1 ||
-          href.indexOf("whatsapp://") !== -1;
-
-        if (!isWhatsapp) return;
-
-        track("whatsapp_click", {
-          link_url: href,
-          link_text: (a.textContent || "").trim().slice(0, 80),
-          page_path: window.location.pathname || "/"
-        });
-      },
-      true
-    );
-
-    /* -------------------------
-       2) Contact form submits
-       Recommended: add data-ga="contact_form" to the form element you want to track.
-       ------------------------- */
-    document.addEventListener(
-      "submit",
-      function (e) {
-        var form = e.target;
-        if (!form || form.nodeName !== "FORM") return;
-
-        var tag = form.getAttribute("data-ga") || "";
-        var isContactForm =
-          tag === "contact_form" ||
-          form.id === "contactForm" ||
-          (form.classList && form.classList.contains("contact-form"));
-
-        if (!isContactForm) return;
-
-        track("contact_form_submit", {
-          form_id: form.id || "",
-          form_name: form.getAttribute("name") || "",
-          page_path: window.location.pathname || "/"
-        });
-      },
-      true
-    );
-
-    /* -------------------------
-       3) Trip Builder events
-       trip_builder_start: fires once on first meaningful interaction
-       trip_builder_submit: fires when clicking "Generate Itinerary"
-       ------------------------- */
-    (function initTripBuilderEvents() {
-      var started = false;
-
-      function byId(id) {
-        return document.getElementById(id);
-      }
-
-      function isTripBuilderPage() {
-        // Detect by required elements that exist on both EN and ES pages.
-        return !!(
-          byId("daysSelect") &&
-          byId("regionsPills") &&
-          byId("experiencesPills") &&
-          byId("generateBtn")
-        );
-      }
-
-      function getSelectedPillCount(containerId) {
-        var root = byId(containerId);
-        if (!root) return 0;
-        return root.querySelectorAll('.pill[aria-pressed="true"]').length;
-      }
-
-      function fireStart(reason) {
-        if (started) return;
-        started = true;
-
-        track("trip_builder_start", {
-          trigger: String(reason || "unknown"),
-          page_path: window.location.pathname || "/"
-        });
-      }
-
-      function fireSubmit() {
-        var daysEl = byId("daysSelect");
-        var daysVal = daysEl ? String(daysEl.value || "") : "";
-        var regionsCount = getSelectedPillCount("regionsPills");
-        var experiencesCount = getSelectedPillCount("experiencesPills");
-
-        track("trip_builder_submit", {
-          days: daysVal,
-          regions_selected: regionsCount,
-          experiences_selected: experiencesCount,
-          page_path: window.location.pathname || "/"
-        });
-      }
-
-      if (!isTripBuilderPage()) return;
-
-      document.addEventListener(
-        "change",
-        function (e) {
-          var t = e.target;
-          if (!t) return;
-          if (t.id === "daysSelect") fireStart("days_change");
-        },
-        true
-      );
-
-      document.addEventListener(
-        "click",
-        function (e) {
-          var t = e.target;
-          if (!t) return;
-
-          var inRegions = t.closest ? t.closest("#regionsPills .pill") : null;
-          var inExperiences = t.closest
-            ? t.closest("#experiencesPills .pill")
-            : null;
-
-          if (inRegions) fireStart("region_select");
-          if (inExperiences) fireStart("experience_select");
-
-          var genBtn = t.closest ? t.closest("#generateBtn") : null;
-          if (genBtn) {
-            fireStart("generate_click");
-            if (!genBtn.disabled) fireSubmit();
-          }
-        },
-        true
-      );
-    })();
-  })();
-
-  /* =========================
-     Header / Mobile Nav / Language
-     ========================= */
-  var HEADER_MOUNT_ID = "siteHeader";
-  var TOGGLE_ID = "eeNavToggle";
-
-  function qs(root, sel) {
-    return root ? root.querySelector(sel) : null;
-  }
-  function qsa(root, sel) {
-    return root ? Array.from(root.querySelectorAll(sel)) : [];
-  }
+  function qs(sel, root) { return (root || document).querySelector(sel); }
+  function qsa(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
 
   function normalizePath(p) {
-    var path = String(p || "/").trim();
-
-    // Keep hashes/queries out of normalization
-    // (they should not be translated by our path mapper)
-    if (path.indexOf("#") !== -1) path = path.split("#")[0] || "/";
-    if (path.indexOf("?") !== -1) path = path.split("?")[0] || "/";
-
-    if (!path.startsWith("/")) path = "/" + path;
-    if (!path.endsWith("/")) path += "/";
-    path = path.replace(/\/{2,}/g, "/");
-    return path;
+    p = p || "/";
+    if (p.length > 1 && p.charAt(p.length - 1) !== "/") p = p + "/";
+    return p;
   }
 
-  function isSpanishPath(pathname) {
-    var p = normalizePath(pathname);
-    return p === "/es/" || p.startsWith("/es/");
+  function isSpanishPath(p) {
+    return p === "/es/" || p.indexOf("/es/") === 0;
   }
 
-  // Explicit page mappings (top-level slugs and key sections)
-  var EN_TO_ES = {
-    "/": "/es/",
-    "/about/": "/es/sobre-nosotros/",
-    "/mission/": "/es/mision/",
-    "/contact/": "/es/contacto/",
-    "/trip-builder/": "/es/planificador-de-viajes/",
-    "/regions/": "/es/regiones/",
-    "/experiences/": "/es/experiencias/",
-    "/experiences/adventure/": "/es/experiencias/aventura/",
-    "/experiences/nature/": "/es/experiencias/naturaleza/",
-    "/experiences/wildlife-birding/": "/es/experiencias/vida-silvestre-y-aves/",
-    "/experiences/relaxation/": "/es/experiencias/relajacion/",
-    "/experiences/culinary/": "/es/experiencias/gastronomia/",
-    "/experiences/culture/": "/es/experiencias/cultura/",
-    "/regions/galapagos/": "/es/regiones/galapagos/",
-    "/regions/coast/": "/es/regiones/costa/",
-    "/regions/andes/": "/es/regiones/andes/",
-    "/regions/amazon/": "/es/regiones/amazonia/"
-  };
+  function getInlineWaQuestions() {
+    var el = document.getElementById("eeWaQuestions");
+    if (!el) return null;
+    try { return JSON.parse(el.textContent || el.innerText || "{}"); }
+    catch (e) { return null; }
+  }
 
-  // Build reverse map automatically
-  var ES_TO_EN = (function () {
-    var m = {};
-    Object.keys(EN_TO_ES).forEach(function (en) {
-      m[EN_TO_ES[en]] = en;
-    });
-    return m;
-  })();
+  function getCurrentConfig() {
+    var data = getInlineWaQuestions();
+    var path = normalizePath(window.location.pathname || "/");
+    if (!data) return null;
 
-  // Fallback rules for deeper pages
-  function translatePath(pathname, toLang) {
-    var from = normalizePath(pathname);
-    var target = String(toLang || "en").toLowerCase() === "es" ? "es" : "en";
+    var base = isSpanishPath(path) ? (data.default_es || {}) : (data.default_en || {});
+    var pageRow = data.pages ? (data.pages[path] || {}) : {};
+    var merged = {};
+    Object.keys(base).forEach(function (k) { merged[k] = base[k]; });
+    Object.keys(pageRow).forEach(function (k) { merged[k] = pageRow[k]; });
+    return merged;
+  }
 
-    if (target === "es" && isSpanishPath(from)) return from;
-    if (target === "en" && !isSpanishPath(from)) return from;
+  function fillText(template) {
+    var pageUrl = window.location.href;
+    var title = (document.title || "").trim();
+    return String(template || "")
+      .replace(/\{url\}/g, pageUrl)
+      .replace(/\{title\}/g, title);
+  }
 
-    if (target === "es" && EN_TO_ES[from]) return normalizePath(EN_TO_ES[from]);
-    if (target === "en" && ES_TO_EN[from]) return normalizePath(ES_TO_EN[from]);
+  function buildWhatsAppUrl(number, message) {
+    var digits = String(number || "").replace(/\D+/g, "");
+    if (!digits) return "";
+    return "https://wa.me/" + digits + "?text=" + encodeURIComponent(message || "");
+  }
 
-    if (target === "es") {
-      if (from.startsWith("/regions/")) {
-        return normalizePath("/es/regiones/" + from.slice("/regions/".length));
+  function trackWidgetClick(label) {
+    try {
+      if (window.dataLayer && Array.isArray(window.dataLayer)) {
+        window.dataLayer.push({
+          event: "whatsapp_widget_click",
+          whatsapp_label: label || "",
+          page_path: window.location.pathname || "/"
+        });
       }
-      if (from.startsWith("/experiences/")) {
-        return normalizePath(
-          "/es/experiencias/" + from.slice("/experiences/".length)
-        );
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "whatsapp_widget_click", {
+          event_category: "engagement",
+          event_label: label || "",
+          page_path: window.location.pathname || "/"
+        });
       }
-      if (from === "/") return "/es/";
-      return normalizePath("/es" + from);
-    }
-
-    if (from.startsWith("/es/regiones/")) {
-      return normalizePath("/regions/" + from.slice("/es/regiones/".length));
-    }
-    if (from.startsWith("/es/experiencias/")) {
-      return normalizePath(
-        "/experiences/" + from.slice("/es/experiencias/".length)
-      );
-    }
-    if (from.startsWith("/es/")) {
-      var stripped = "/" + from.slice("/es/".length);
-      return normalizePath(stripped);
-    }
-
-    return normalizePath("/");
+    } catch (e) {}
   }
 
-  function setBodyLock(locked) {
-    document.documentElement.classList.toggle("nav-open", locked);
-    document.body.style.overflow = locked ? "hidden" : "";
-    // Helps iOS prevent background scroll while menu is open
-    document.body.style.touchAction = locked ? "none" : "";
+  function openWidget(root) {
+    root.classList.add("is-open");
+    var btn = qs(".eeWaFabBtn", root);
+    if (btn) btn.setAttribute("aria-expanded", "true");
   }
 
-  function showMain(headerEl) {
-    var main = qs(headerEl, ".nav-mobile .m-main");
-    var subs = qsa(headerEl, ".nav-mobile .m-submenu");
-    if (main) main.hidden = false;
-    subs.forEach(function (s) {
-      s.hidden = true;
-    });
+  function closeWidget(root) {
+    root.classList.remove("is-open");
+    var btn = qs(".eeWaFabBtn", root);
+    if (btn) btn.setAttribute("aria-expanded", "false");
   }
 
-  function showSubmenu(headerEl, selector) {
-    var main = qs(headerEl, ".nav-mobile .m-main");
-    var subs = qsa(headerEl, ".nav-mobile .m-submenu");
-    var target = selector ? qs(headerEl, selector) : null;
-    if (!target) return;
+  function init(root) {
+    if (!root || root.__eeWaInit) return;
+    root.__eeWaInit = true;
 
-    if (main) main.hidden = true;
-    subs.forEach(function (s) {
-      s.hidden = true;
-    });
-    target.hidden = false;
-  }
+    var number = root.getAttribute("data-wa-number") || "";
+    var icon = root.getAttribute("data-wa-icon") || "";
+    var img = qs(".eeWaFabImg", root);
+    var btn = qs(".eeWaFabBtn", root);
+    var closeBtn = qs(".eeWaFabClose", root);
+    var backdrop = qs(".eeWaFabBackdrop", root);
+    var title = qs(".eeWaFabTitle", root);
+    var actions = qsa(".eeWaFabAction", root);
 
-  function closeMobile(headerEl) {
-    var toggle = qs(headerEl, "#" + TOGGLE_ID);
-    if (toggle) toggle.checked = false;
-    setBodyLock(false);
-    showMain(headerEl);
-  }
+    if (img && icon) img.setAttribute("src", icon);
 
-  function openMobile(headerEl) {
-    var toggle = qs(headerEl, "#" + TOGGLE_ID);
-    if (toggle) toggle.checked = true;
-    // Always open to main view (prevents "all submenus visible" states)
-    showMain(headerEl);
-    setBodyLock(true);
-  }
+    var cfg = getCurrentConfig() || {};
 
-  function initMobileViews(headerEl) {
-    showMain(headerEl);
+    if (title && cfg.title) title.textContent = cfg.title;
 
-    var mobileNav = qs(headerEl, ".nav.nav-mobile");
-    if (!mobileNav) return;
+    actions.forEach(function (a, idx) {
+      var n = idx + 1;
+      var q = cfg["q" + n];
+      var t = cfg["t" + n];
 
-    mobileNav.addEventListener("click", function (e) {
-      var t = e.target;
-      if (!t) return;
-
-      var next = t.closest ? t.closest(".m-next") : null;
-      if (next && mobileNav.contains(next)) {
-        e.preventDefault();
-        var targetSel = next.getAttribute("data-target") || "";
-        if (targetSel) showSubmenu(headerEl, targetSel);
+      if (!q) {
+        a.style.display = "none";
         return;
       }
 
-      var back = t.closest ? t.closest("[data-back]") : null;
-      if (back && mobileNav.contains(back)) {
-        e.preventDefault();
-        showMain(headerEl);
-        return;
-      }
-
-      var link = t.closest ? t.closest("a[href]") : null;
-      if (link && mobileNav.contains(link)) {
-        var href = link.getAttribute("href") || "";
-        if (!href || href.charAt(0) === "#") return;
-        closeMobile(headerEl);
-      }
-    });
-  }
-
-  function applyI18n(headerEl, onEs) {
-    qsa(headerEl, ".i18n[data-en][data-es]").forEach(function (el) {
-      var en = el.getAttribute("data-en") || "";
-      var es = el.getAttribute("data-es") || "";
-      var val = onEs ? es : en;
-      if (val) el.textContent = val;
+      a.style.display = "";
+      a.textContent = q;
+      a.setAttribute("data-wa-label", q);
+      a.setAttribute("data-wa-message", fillText(t || ""));
+      a.setAttribute("href", buildWhatsAppUrl(number, fillText(t || "")));
+      a.setAttribute("target", "_blank");
+      a.setAttribute("rel", "noopener");
     });
 
-    var burgerLabel = qs(
-      headerEl,
-      '.nav-toggle-btn[data-en-aria][data-es-aria]'
-    );
-    if (burgerLabel) {
-      var enA = burgerLabel.getAttribute("data-en-aria") || "Menu";
-      var esA = burgerLabel.getAttribute("data-es-aria") || "Menu";
-      burgerLabel.setAttribute("aria-label", onEs ? esA : enA);
-    }
-  }
-
-  function initLanguage(headerEl) {
-    var current = normalizePath(window.location.pathname || "/");
-    var onEs = isSpanishPath(current);
-    var targetLang = onEs ? "en" : "es";
-    var switchHref = translatePath(current, targetLang);
-
-    var switches = qsa(headerEl, "[data-lang-switch]");
-    switches.forEach(function (a) {
-      a.setAttribute("href", switchHref);
-
-      // Keep ASCII
-      if (a.classList.contains("nav-link")) {
-        a.textContent = onEs ? "EN" : "ES";
-      } else {
-        a.textContent = onEs ? "English" : "Espanol";
-      }
-
-      a.addEventListener("click", function (e) {
-        var href = a.getAttribute("href") || "";
-        if (!href || href === "#") return;
-        e.preventDefault();
-        closeMobile(headerEl);
-        window.location.href = href;
+    if (btn) {
+      btn.addEventListener("click", function () {
+        if (root.classList.contains("is-open")) closeWidget(root);
+        else openWidget(root);
       });
-    });
+    }
 
-    // Rewrite internal header links to match current language
-    var allLinks = qsa(headerEl, 'a[href^="/"]');
-    allLinks.forEach(function (link) {
-      if (link.hasAttribute("data-lang-switch")) return;
-
-      var hrefRaw = link.getAttribute("href") || "";
-      // Skip anchors/queries (do not translate these)
-      if (hrefRaw.indexOf("#") !== -1 || hrefRaw.indexOf("?") !== -1) return;
-
-      var href = normalizePath(hrefRaw);
-
-      if (
-        href.startsWith("/assets/") ||
-        href.startsWith("/favicon") ||
-        href.startsWith("/site.webmanifest") ||
-        href.startsWith("/apple-touch-icon")
-      ) {
-        return;
-      }
-
-      var newHref = onEs ? translatePath(href, "es") : translatePath(href, "en");
-      link.setAttribute("href", newHref);
-    });
-
-    document.documentElement.setAttribute("lang", onEs ? "es" : "en");
-    applyI18n(headerEl, onEs);
-  }
-
-  function initHeader(headerEl) {
-    if (!headerEl || headerEl.__eeNavInit) return;
-    headerEl.__eeNavInit = true;
-
-    var toggle = qs(headerEl, "#" + TOGGLE_ID);
-    var mobileNav = qs(headerEl, ".nav.nav-mobile");
-    if (!toggle || !mobileNav) return;
-
-    initMobileViews(headerEl);
-
-    toggle.addEventListener("change", function () {
-      if (toggle.checked) openMobile(headerEl);
-      else closeMobile(headerEl);
-    });
+    if (closeBtn) closeBtn.addEventListener("click", function () { closeWidget(root); });
+    if (backdrop) backdrop.addEventListener("click", function () { closeWidget(root); });
 
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeMobile(headerEl);
+      if (e.key === "Escape") closeWidget(root);
     });
 
-    document.addEventListener("click", function (e) {
-      if (!toggle.checked) return;
-      if (!headerEl.contains(e.target)) closeMobile(headerEl);
+    actions.forEach(function (a) {
+      a.addEventListener("click", function () {
+        trackWidgetClick(a.getAttribute("data-wa-label") || "");
+        closeWidget(root);
+      });
     });
-
-    window.addEventListener("resize", function () {
-      if (window.innerWidth >= 901) closeMobile(headerEl);
-    });
-
-    // Language setup
-    initLanguage(headerEl);
   }
 
-  function tryInitFromMount() {
-    var mount = document.getElementById(HEADER_MOUNT_ID);
-    if (!mount) return false;
-
-    // Be flexible about markup: header might be <header class="topbar"> or <div class="topbar">
-    var headerEl = qs(mount, ".topbar") || qs(mount, "header") || qs(mount, "[data-header]");
-    if (!headerEl) return false;
-
-    initHeader(headerEl);
-    return true;
+  function boot() {
+    qsa(".eeWaFab").forEach(init);
   }
 
-  // Try now
-  tryInitFromMount();
-
-  // Observe injection
-  var mount = document.getElementById(HEADER_MOUNT_ID);
-  if (mount) {
-    var mo = new MutationObserver(function () {
-      if (tryInitFromMount()) mo.disconnect();
-    });
-    mo.observe(mount, { childList: true, subtree: true });
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
   }
-
-  // Safety
-  window.addEventListener("load", function () {
-    tryInitFromMount();
-  });
 })();
