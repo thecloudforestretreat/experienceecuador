@@ -235,22 +235,16 @@
   }
 
   function bootWhenReady() {
-    var initialized = false;
-
     function tryInit() {
       var headerRoot = qs(".topbar");
-      if (!headerRoot) return;
+      if (!headerRoot) return false;
       initHeader(headerRoot);
-      initialized = true;
+      return true;
     }
 
-    tryInit();
-
-    if (!initialized) {
+    if (!tryInit()) {
       var observer = new MutationObserver(function () {
-        var headerRoot = qs(".topbar");
-        if (!headerRoot) return;
-        initHeader(headerRoot);
+        if (tryInit()) observer.disconnect();
       });
 
       observer.observe(document.documentElement, {
