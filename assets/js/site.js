@@ -1,6 +1,26 @@
 (function () {
   "use strict";
 
+  // GA LOADER
+  (function(){
+    var MID = "G-3EDLVGV2HD";
+    if (window.gtag) return;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + MID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', MID, {
+      anonymize_ip: true,
+      send_page_view: true,
+      debug_mode: true
+    });
+  })();
+
+
   function qs(sel, root) {
     return (root || document).querySelector(sel);
   }
