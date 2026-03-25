@@ -26,6 +26,7 @@
 
   function buildSpanishPath(enPath) {
     var p = normalizePath(enPath || "/");
+    if (isSpanishPath(p)) return p;
 
     if (p === "/") return "/es/";
     if (p === "/about/") return "/es/sobre-nosotros/";
@@ -39,14 +40,10 @@
       var regionRest = trimSlashes(p.replace(/^\/regions\//, ""));
       var parts = regionRest ? regionRest.split("/") : [];
       if (!parts.length) return "/es/regiones/";
-
       var region = parts[0];
       if (region === "amazon") region = "amazonia";
-
       if (parts.length === 1) return "/es/regiones/" + region + "/";
-
-      var location = parts[1];
-      return "/es/regiones/" + region + "/" + location + "/";
+      return "/es/regiones/" + region + "/" + parts[1] + "/";
     }
 
     if (p === "/recommendations/") return "/es/recomendados/";
@@ -70,6 +67,7 @@
 
   function buildEnglishPath(esPath) {
     var p = normalizePath(esPath || "/");
+    if (!isSpanishPath(p)) return p;
 
     if (p === "/es/") return "/";
     if (p === "/es/sobre-nosotros/") return "/about/";
@@ -83,14 +81,10 @@
       var regionRest = trimSlashes(p.replace(/^\/es\/regiones\//, ""));
       var parts = regionRest ? regionRest.split("/") : [];
       if (!parts.length) return "/regions/";
-
       var region = parts[0];
       if (region === "amazonia") region = "amazon";
-
       if (parts.length === 1) return "/regions/" + region + "/";
-
-      var location = parts[1];
-      return "/regions/" + region + "/" + location + "/";
+      return "/regions/" + region + "/" + parts[1] + "/";
     }
 
     if (p === "/es/recomendados/") return "/recommendations/";
@@ -117,15 +111,24 @@
     return isSpanishPath(p) ? buildEnglishPath(p) : buildSpanishPath(p);
   }
 
+  function getBaseHref(el) {
+    var base = el.getAttribute("data-ee-base-href");
+    if (base) return base;
+
+    base = el.getAttribute("data-en-href") || el.getAttribute("href") || "";
+    el.setAttribute("data-ee-base-href", base);
+    return base;
+  }
+
   function translateHref(el, spanish) {
     var explicitHref = spanish ? el.getAttribute("data-es-href") : el.getAttribute("data-en-href");
     if (explicitHref) return explicitHref;
 
-    var currentHref = el.getAttribute("href");
-    if (!currentHref) return currentHref;
-    if (/^(https?:|mailto:|tel:|#)/i.test(currentHref)) return currentHref;
+    var baseHref = getBaseHref(el);
+    if (!baseHref) return baseHref;
+    if (/^(https?:|mailto:|tel:|#)/i.test(baseHref)) return baseHref;
 
-    return spanish ? buildSpanishPath(currentHref) : buildEnglishPath(currentHref);
+    return spanish ? buildSpanishPath(baseHref) : buildEnglishPath(baseHref);
   }
 
   function applyHeaderI18n(root) {
@@ -190,7 +193,6 @@
     nextButtons.forEach(function (btn) {
       if (btn.__eeBound) return;
       btn.__eeBound = true;
-
       btn.addEventListener("click", function () {
         var targetSel = btn.getAttribute("data-target");
         var target = targetSel ? qs(targetSel, root) : null;
@@ -205,7 +207,6 @@
     backButtons.forEach(function (btn) {
       if (btn.__eeBound) return;
       btn.__eeBound = true;
-
       btn.addEventListener("click", function () {
         showMainView();
       });
@@ -429,7 +430,6 @@
 
   window.addEventListener("popstate", function () {
     refreshHeaderLanguage();
-
     qsa(".eeWaFab").forEach(function (widget) {
       widget.__eeWaInit = false;
       initWhatsAppWidget(widget);
