@@ -403,6 +403,7 @@
 
   <div id="siteFooter"></div>
 
+  <script src="/assets/js/site.js"></script>
   <script>
     (function(){
       async function inject(id, url){
@@ -412,18 +413,8 @@
         el.innerHTML = await res.text();
       }
 
-      Promise.all([
-        inject("siteHeader", "/assets/includes/header.html"),
-        inject("siteFooter", "/assets/includes/footer.html")
-      ]).then(function(){
-        var s = document.createElement("script");
-        s.src = "/assets/js/site.js";
-        document.body.appendChild(s);
-      }).catch(function(){
-        var s = document.createElement("script");
-        s.src = "/assets/js/site.js";
-        document.body.appendChild(s);
-      });
+      inject("siteHeader", "/assets/includes/header.html");
+      inject("siteFooter", "/assets/includes/footer.html");
     })();
   </script>
   <script>
@@ -515,5 +506,6 @@
       initCarousel(document.querySelector(".carousel"));
     })();
   </script>
+
 </body>
 </html>
