@@ -129,6 +129,7 @@
   }
 
   function applyHeaderI18n(root) {
+    if (!root) return;
     var spanish = isSpanishPath(window.location.pathname || "/");
 
     qsa(".i18n", root).forEach(function (el) {
@@ -158,6 +159,11 @@
     });
   }
 
+  function refreshHeaderLanguage() {
+    var headerRoot = qs(".topbar");
+    if (headerRoot) applyHeaderI18n(headerRoot);
+  }
+
   function initModernMobileMenu(root) {
     if (!root || root.__eeMobileInit) return;
     root.__eeMobileInit = true;
@@ -172,11 +178,13 @@
     function showMainView() {
       if (mainView) mainView.hidden = false;
       submenus.forEach(function (sm) { sm.hidden = true; });
+      refreshHeaderLanguage();
     }
 
     function closeMenu() {
       if (toggle) toggle.checked = false;
       showMainView();
+      refreshHeaderLanguage();
     }
 
     nextButtons.forEach(function (btn) {
@@ -190,6 +198,7 @@
         if (mainView) mainView.hidden = true;
         submenus.forEach(function (sm) { sm.hidden = true; });
         target.hidden = false;
+        refreshHeaderLanguage();
       });
     });
 
@@ -209,6 +218,14 @@
         closeMenu();
       });
     });
+
+    if (toggle && !toggle.__eeBound) {
+      toggle.__eeBound = true;
+      toggle.addEventListener("change", function () {
+        refreshHeaderLanguage();
+        if (!toggle.checked) showMainView();
+      });
+    }
 
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") closeMenu();
@@ -411,12 +428,19 @@
   }
 
   window.addEventListener("popstate", function () {
-    var headerRoot = qs(".topbar");
-    if (headerRoot) applyHeaderI18n(headerRoot);
+    refreshHeaderLanguage();
 
     qsa(".eeWaFab").forEach(function (widget) {
       widget.__eeWaInit = false;
       initWhatsAppWidget(widget);
     });
+  });
+
+  window.addEventListener("pageshow", function () {
+    refreshHeaderLanguage();
+  });
+
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) refreshHeaderLanguage();
   });
 })();
