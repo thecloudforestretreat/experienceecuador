@@ -673,15 +673,15 @@
         return "";
       }
 
+      function getPageLanguage(){
+        return (window.location.pathname || "/").indexOf("/es/") === 0 ? "es" : "en";
+      }
+
       function safeTrack(name, params){
         if (typeof window.gtag !== "function") return;
         try {
           window.gtag("event", name, params || {});
         } catch(e){}
-      }
-
-      function getPageLanguage(){
-        return (window.location.pathname || "/").indexOf("/es/") === 0 ? "es" : "en";
       }
 
       var elRegion = document.getElementById("fRegion");
@@ -701,6 +701,10 @@
       function setCount(n){
         var word = (n === 1) ? t("results_one") : t("results_many");
         elCount.textContent = String(n) + " " + word;
+      }
+
+      function getResultCountFromDom(){
+        return elCards ? elCards.querySelectorAll(".card").length : 0;
       }
 
       function getFilters(){
@@ -737,10 +741,6 @@
         if (window.location.search !== (qs ? ("?" + qs) : "")){
           history.replaceState({}, "", nextUrl);
         }
-      }
-
-      function getResultCountFromDom(){
-        return elCards ? elCards.querySelectorAll(".card").length : 0;
       }
 
       function trackFilterEvent(triggerType){
