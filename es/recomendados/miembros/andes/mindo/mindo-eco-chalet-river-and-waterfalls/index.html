@@ -219,8 +219,8 @@
         </div>
 
         <div class="ctaRow" aria-label="Acciones principales">
-          <a class="btn btnPrimary js-rec-action" href="https://www.airbnb.com.ec/rooms/6013792" target="_blank" rel="noopener" data-action="website" data-id="lodging_mindo_0001" data-title="Mindo Eco Chalet (Rio y Cascadas)" data-region="andes" data-location="mindo" data-category="lodging">Visitar sitio</a>
-          <a class="btn btnGhost js-rec-action" href="" target="_blank" rel="noopener" data-action="whatsapp" data-id="lodging_mindo_0001" data-title="Mindo Eco Chalet (Rio y Cascadas)" data-region="andes" data-location="mindo" data-category="lodging">WhatsApp</a>
+          <a id="ctaVisitWebsite" class="btn btnPrimary js-rec-action" href="https://www.airbnb.com.ec/rooms/6013792" target="_blank" rel="noopener" data-action="visit_website" data-id="lodging_mindo_0001" data-title="Mindo Eco Chalet (Rio y Cascadas)" data-region="andes" data-location="mindo" data-category="lodging">Visitar sitio</a>
+          <a id="ctaWhatsApp" class="btn btnGhost js-rec-action" href="" target="_blank" rel="noopener" data-action="whatsapp" data-id="lodging_mindo_0001" data-title="Mindo Eco Chalet (Rio y Cascadas)" data-region="andes" data-location="mindo" data-category="lodging">WhatsApp</a>
         </div>
       </div>
 
@@ -346,8 +346,8 @@
         <p>Usa el boton de abajo para ver el anuncio en Airbnb y conocer mas sobre disponibilidad.</p>
       </div>
       <div class="ctaRight">
-        <a class="btn btnPrimary js-rec-action" href="https://www.airbnb.com.ec/rooms/6013792" target="_blank" rel="noopener" data-action="website" data-id="lodging_mindo_0001" data-title="Mindo Eco Chalet (Rio y Cascadas)" data-region="andes" data-location="mindo" data-category="lodging">Visitar sitio</a>
-        <a class="btn btnGhost js-rec-action" href="" target="_blank" rel="noopener" data-action="whatsapp" data-id="lodging_mindo_0001" data-title="Mindo Eco Chalet (Rio y Cascadas)" data-region="andes" data-location="mindo" data-category="lodging">WhatsApp</a>
+        <a id="ctaVisitWebsiteBottom" class="btn btnPrimary js-rec-action" href="https://www.airbnb.com.ec/rooms/6013792" target="_blank" rel="noopener" data-action="visit_website" data-id="lodging_mindo_0001" data-title="Mindo Eco Chalet (Rio y Cascadas)" data-region="andes" data-location="mindo" data-category="lodging">Visitar sitio</a>
+        <a id="ctaWhatsAppBottom" class="btn btnGhost js-rec-action" href="" target="_blank" rel="noopener" data-action="whatsapp" data-id="lodging_mindo_0001" data-title="Mindo Eco Chalet (Rio y Cascadas)" data-region="andes" data-location="mindo" data-category="lodging">WhatsApp</a>
       </div>
     </section>
   </main>
@@ -369,23 +369,90 @@
   <script src="/assets/js/site.js"></script>
   <script>
     (function(){
+      function getPageLanguage(){
+        return (window.location.pathname || "/").indexOf("/es/") === 0 ? "es" : "en";
+      }
+
       function safeTrack(name, params){
         if (typeof window.gtag !== "function") return;
         try { window.gtag("event", name, params || {}); } catch(e){}
       }
-      document.addEventListener("click", function(e){
-        var a = e.target && e.target.closest ? e.target.closest(".js-rec-action") : null;
-        if (!a) return;
+
+      function safeTrackWhenReady(name, params, attempts){
+        var tries = typeof attempts === "number" ? attempts : 20;
+        if (typeof window.gtag === "function") {
+          try { window.gtag("event", name, params || {}); } catch(e){}
+          return;
+        }
+        if (tries <= 0) return;
+        setTimeout(function(){
+          safeTrackWhenReady(name, params, tries - 1);
+        }, 300);
+      }
+
+      var listingMeta = {
+        listing_id: "lodging_mindo_0001",
+        listing_title: "Mindo Eco Chalet (Rio y Cascadas)",
+        listing_region: "andes",
+        listing_location: "mindo",
+        listing_category: "lodging",
+        page_path: window.location.pathname || "/",
+        page_language: getPageLanguage()
+      };
+
+      function trackAction(ctaType){
         safeTrack("recommendation_click", {
-          listing_id: a.getAttribute("data-id") || "",
-          listing_title: a.getAttribute("data-title") || "",
-          region_id: a.getAttribute("data-region") || "",
-          location_id: a.getAttribute("data-location") || "",
-          category: a.getAttribute("data-category") || "",
-          action_type: a.getAttribute("data-action") || "",
-          page_path: window.location.pathname || "/"
+          listing_id: listingMeta.listing_id,
+          listing_title: listingMeta.listing_title,
+          listing_region: listingMeta.listing_region,
+          listing_location: listingMeta.listing_location,
+          listing_category: listingMeta.listing_category,
+          cta_type: ctaType,
+          page_path: listingMeta.page_path,
+          page_language: listingMeta.page_language,
+          debug_mode: true
         });
-      }, true);
+      }
+
+      safeTrackWhenReady("listing_detail_view", {
+        listing_id: listingMeta.listing_id,
+        listing_title: listingMeta.listing_title,
+        listing_region: listingMeta.listing_region,
+        listing_location: listingMeta.listing_location,
+        listing_category: listingMeta.listing_category,
+        page_path: listingMeta.page_path,
+        page_language: listingMeta.page_language,
+        debug_mode: true
+      });
+
+      var btnWebsite = document.getElementById("ctaVisitWebsite");
+      var btnWebsiteBottom = document.getElementById("ctaVisitWebsiteBottom");
+      var btnWhatsApp = document.getElementById("ctaWhatsApp");
+      var btnWhatsAppBottom = document.getElementById("ctaWhatsAppBottom");
+
+      if (btnWebsite) {
+        btnWebsite.addEventListener("click", function(){
+          trackAction("visit_website");
+        }, true);
+      }
+
+      if (btnWebsiteBottom) {
+        btnWebsiteBottom.addEventListener("click", function(){
+          trackAction("visit_website");
+        }, true);
+      }
+
+      if (btnWhatsApp) {
+        btnWhatsApp.addEventListener("click", function(){
+          trackAction("whatsapp");
+        }, true);
+      }
+
+      if (btnWhatsAppBottom) {
+        btnWhatsAppBottom.addEventListener("click", function(){
+          trackAction("whatsapp");
+        }, true);
+      }
     })();
   </script>
   <script>
