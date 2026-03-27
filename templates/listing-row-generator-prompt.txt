@@ -14,7 +14,19 @@ CRITICAL OUTPUT RULES (STRICT)
 - NO JSON
 - NO explanations
 
-If unsure → leave field blank
+If unsure -> leave field blank
+
+--------------------------------------------------
+CANONICAL DATA RULE (CRITICAL)
+--------------------------------------------------
+
+- The input Listings row is the SINGLE source of truth
+- DO NOT modify or reinterpret:
+  uid, id, category, region_id, location_id
+- Use them EXACTLY as provided
+- NEVER regenerate IDs
+- NEVER "fix" IDs
+- NEVER derive region/location from anything else
 
 --------------------------------------------------
 INPUT RULE (VERY IMPORTANT)
@@ -28,8 +40,6 @@ INPUT RULE (VERY IMPORTANT)
 --------------------------------------------------
 SOURCE COLUMN MAP (FROM INPUT ROW)
 --------------------------------------------------
-
-Column positions in input:
 
 1 uid  
 2 id  
@@ -65,47 +75,63 @@ TARGET COLUMN ORDER (STRICT - 70 COLUMNS)
 uid	id	category	category_label_en	category_label_es	region_id	location_id	experiences	featured	title_en	title_es	meta_title_en	meta_title_es	meta_description_en	meta_description_es	description_short_en	description_short_es	seo_paragraph_1_en	seo_paragraph_1_es	seo_paragraph_2_en	seo_paragraph_2_es	why_section_en	why_section_es	experience_highlights_en	experience_highlights_es	best_for_en	best_for_es	location_context_en	location_context_es	nearby_en	nearby_es	faq_questions_en	faq_questions_es	faq_answers_en	faq_answers_es	image_1	image_2	image_3	image_1_alt_en	image_1_alt_es	image_1_caption_en	image_1_caption_es	image_1_gallery_caption_en	image_1_gallery_caption_es	image_2_alt_en	image_2_alt_es	image_2_caption_en	image_2_caption_es	image_2_gallery_caption_en	image_2_gallery_caption_es	image_3_alt_en	image_3_alt_es	image_3_caption_en	image_3_caption_es	image_3_gallery_caption_en	image_3_gallery_caption_es	canonical_url_en	canonical_url_es	region_page_en	location_page_en	region_page_es	location_page_es	region_link_text_en	region_link_text_es	location_link_text_en	location_link_text_es	explore_section_intro_en	explore_section_intro_es	experience_link_label_en	experience_link_label_es	experience_link_text_en	experience_link_text_es	experience_filter_id
 
 --------------------------------------------------
+DERIVED HELPERS
+--------------------------------------------------
+
+slug:
+- lowercase
+- hyphenated
+- based on title_en
+
+human_readable_location:
+- convert location_id to Title Case words
+- example: chocoandino -> Choco Andino
+
+human_readable_region:
+- convert region_id to Title Case words
+
+--------------------------------------------------
 FIELD MAPPING RULES
 --------------------------------------------------
 
-- uid → same  
-- id → same  
-- category → same  
-- category_label_en → same  
-- category_label_es → same  
-- region_id → same  
-- location_id → same  
-- experiences → same  
-- featured → same  
+- uid -> same  
+- id -> same  
+- category -> same  
+- category_label_en -> same  
+- category_label_es -> same  
+- region_id -> same  
+- location_id -> same  
+- experiences -> same  
+- featured -> same  
 
-- title_en → same  
-- title_es → same  
+- title_en -> same  
+- title_es -> same  
 
-- description_short_en → from description_en  
-- description_short_es → from description_es  
+- description_short_en -> from description_en  
+- description_short_es -> from description_es  
 
-- why_section_en → from why_en  
-- why_section_es → from why_es  
+- why_section_en -> from why_en  
+- why_section_es -> from why_es  
 
-- image_1 → same  
-- image_2 → same  
-- image_3 → same  
+- image_1 -> same  
+- image_2 -> same  
+- image_3 -> same  
 
 --------------------------------------------------
 META RULES
 --------------------------------------------------
 
 meta_title_en:
-<title_en> in <location_id>
+<title_en> in <human_readable_location>
 
 meta_title_es:
-<title_es> en <location_id>
+<title_es> en <human_readable_location>
 
 meta_description_en:
-140–160 characters using description_short_en
+140-160 characters using description_short_en
 
 meta_description_es:
-140–160 characters using description_short_es
+140-160 characters using description_short_es
 
 --------------------------------------------------
 SEO PARAGRAPHS
@@ -147,7 +173,7 @@ LOCATION CONTEXT
 --------------------------------------------------
 
 - Explain why destination matters
-- Use region + location
+- Use region + human_readable_location
 
 --------------------------------------------------
 NEARBY
@@ -165,19 +191,12 @@ FAQ
 - pipe separated
 
 --------------------------------------------------
-IMAGE TEXT FIELDS
+IMAGE TEXT RULES
 --------------------------------------------------
 
-- Generate simple descriptive alt + captions
-- Do NOT invent specific details
-
---------------------------------------------------
-SLUG RULE
---------------------------------------------------
-
-- lowercase
-- hyphenated
-- based on title_en
+- If image field is blank:
+  ALL related alt/caption fields must be blank
+- Do NOT invent specific visual details
 
 --------------------------------------------------
 URL RULES
@@ -190,7 +209,7 @@ canonical_url_es:
 https://experienceecuador.com/es/recomendados/miembros/<region_id>/<location_id>/<slug>/
 
 --------------------------------------------------
-PAGE PATH RULES (STRICT)
+PAGE PATH RULES
 --------------------------------------------------
 
 region_page_en:
@@ -210,22 +229,22 @@ LINK TEXT RULES
 --------------------------------------------------
 
 region_link_text_en:
-Explore <Region>
+Explore <human_readable_region>
 
 region_link_text_es:
-Explorar <Region>
+Explorar <human_readable_region>
 
 location_link_text_en:
-Explore <Location>
+Explore <human_readable_location>
 
 location_link_text_es:
-Explorar <Location>
+Explorar <human_readable_location>
 
 --------------------------------------------------
 EXPLORE SECTION
 --------------------------------------------------
 
-Short intro encouraging discovery of region/location
+Short intro encouraging discovery of region and location
 
 --------------------------------------------------
 EXPERIENCE LINK
