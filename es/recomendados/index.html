@@ -680,6 +680,10 @@
         } catch(e){}
       }
 
+      function getPageLanguage(){
+        return (window.location.pathname || "/").indexOf("/es/") === 0 ? "es" : "en";
+      }
+
       var elRegion = document.getElementById("fRegion");
       var elLocation = document.getElementById("fLocation");
       var elExperience = document.getElementById("fExperience");
@@ -701,20 +705,20 @@
 
       function getFilters(){
         return {
-          region_id: elRegion.value || "",
-          location_id: elLocation.value || "",
+          listing_region: elRegion.value || "",
+          listing_location: elLocation.value || "",
           experience_id: elExperience.value || "",
-          category: elCategory.value || ""
+          listing_category: elCategory.value || ""
         };
       }
 
       function getQueryParams(){
         var params = new URLSearchParams(window.location.search || "");
         return {
-          region_id: params.get("region") || params.get("region_id") || "",
-          location_id: params.get("location") || params.get("location_id") || "",
+          listing_region: params.get("region") || params.get("region_id") || "",
+          listing_location: params.get("location") || params.get("location_id") || "",
           experience_id: params.get("experience") || params.get("experience_id") || "",
-          category: params.get("category") || ""
+          listing_category: params.get("category") || ""
         };
       }
 
@@ -723,16 +727,34 @@
         var f = getFilters();
         var params = new URLSearchParams();
 
-        if (f.region_id) params.set("region", f.region_id);
-        if (f.location_id) params.set("location", f.location_id);
+        if (f.listing_region) params.set("region", f.listing_region);
+        if (f.listing_location) params.set("location", f.listing_location);
         if (f.experience_id) params.set("experience", f.experience_id);
-        if (f.category) params.set("category", f.category);
+        if (f.listing_category) params.set("category", f.listing_category);
 
         var qs = params.toString();
         var nextUrl = window.location.pathname + (qs ? ("?" + qs) : "");
         if (window.location.search !== (qs ? ("?" + qs) : "")){
           history.replaceState({}, "", nextUrl);
         }
+      }
+
+      function getResultCountFromDom(){
+        return elCards ? elCards.querySelectorAll(".card").length : 0;
+      }
+
+      function trackFilterEvent(triggerType){
+        var f = getFilters();
+        safeTrack("recommendation_filter", {
+          listing_region: f.listing_region,
+          listing_location: f.listing_location,
+          listing_category: f.listing_category,
+          experience_id: f.experience_id,
+          result_count: getResultCountFromDom(),
+          trigger_type: triggerType || "change",
+          page_path: window.location.pathname || "/",
+          page_language: getPageLanguage()
+        });
       }
 
       function resetFilters(){
@@ -743,6 +765,7 @@
         elLocation.disabled = true;
         syncLocationOptions();
         apply();
+        trackFilterEvent("reset");
       }
 
       function syncRegionOptions(){
@@ -904,7 +927,7 @@
           links.push(
             '<a class="btn js-rec-action"'
             + ' href="' + esc(detailsUrl) + '"'
-            + ' data-action="details"'
+            + ' data-action="view_details"'
             + ' data-id="' + esc(item.id) + '"'
             + ' data-title="' + esc(title) + '"'
             + ' data-region="' + esc(item.region_id) + '"'
@@ -922,7 +945,7 @@
             '<a class="btn primary js-rec-action"'
             + ' href="' + esc(websiteUrl) + '"'
             + ' target="_blank" rel="noopener"'
-            + ' data-action="website"'
+            + ' data-action="visit_website"'
             + ' data-id="' + esc(item.id) + '"'
             + ' data-title="' + esc(title) + '"'
             + ' data-region="' + esc(item.region_id) + '"'
