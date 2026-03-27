@@ -220,8 +220,8 @@
         </div>
 
         <div class="ctaRow" aria-label="Primary actions">
-          <a class="btn btnPrimary js-rec-action" href="https://www.mindobirdwatching.com" target="_blank" rel="noopener" data-action="website" data-id="services_mindo_1305" data-title="Mindo Bird Watching" data-region="andes" data-location="mindo" data-category="services">Visit Website</a>
-          <a class="btn btnGhost js-rec-action" href="https://wa.me/13054585402" target="_blank" rel="noopener" data-action="whatsapp" data-id="services_mindo_1305" data-title="Mindo Bird Watching" data-region="andes" data-location="mindo" data-category="services">WhatsApp</a>
+          <a id="ctaVisitWebsite" class="btn btnPrimary js-rec-action" href="https://www.mindobirdwatching.com" target="_blank" rel="noopener" data-action="visit_website" data-id="services_mindo_1305" data-title="Mindo Bird Watching" data-region="andes" data-location="mindo" data-category="services">Visit Website</a>
+          <a id="ctaWhatsApp" class="btn btnGhost js-rec-action" href="https://wa.me/13054585402" target="_blank" rel="noopener" data-action="whatsapp" data-id="services_mindo_1305" data-title="Mindo Bird Watching" data-region="andes" data-location="mindo" data-category="services">WhatsApp</a>
         </div>
       </div>
 
@@ -347,8 +347,8 @@
         <p>Use the buttons below to visit the official website or contact the team directly on WhatsApp.</p>
       </div>
       <div class="ctaRight">
-        <a class="btn btnPrimary js-rec-action" href="https://www.mindobirdwatching.com" target="_blank" rel="noopener" data-action="website" data-id="services_mindo_1305" data-title="Mindo Bird Watching" data-region="andes" data-location="mindo" data-category="services">Visit Website</a>
-        <a class="btn btnGhost js-rec-action" href="https://wa.me/13054585402" target="_blank" rel="noopener" data-action="whatsapp" data-id="services_mindo_1305" data-title="Mindo Bird Watching" data-region="andes" data-location="mindo" data-category="services">WhatsApp</a>
+        <a id="ctaVisitWebsiteBottom" class="btn btnPrimary js-rec-action" href="https://www.mindobirdwatching.com" target="_blank" rel="noopener" data-action="visit_website" data-id="services_mindo_1305" data-title="Mindo Bird Watching" data-region="andes" data-location="mindo" data-category="services">Visit Website</a>
+        <a id="ctaWhatsAppBottom" class="btn btnGhost js-rec-action" href="https://wa.me/13054585402" target="_blank" rel="noopener" data-action="whatsapp" data-id="services_mindo_1305" data-title="Mindo Bird Watching" data-region="andes" data-location="mindo" data-category="services">WhatsApp</a>
       </div>
     </section>
   </main>
@@ -373,6 +373,18 @@
       function safeTrack(name, params){
         if (typeof window.gtag !== "function") return;
         try { window.gtag("event", name, params || {}); } catch(e){}
+      }
+
+      function safeTrackWhenReady(name, params, attempts){
+        var tries = typeof attempts === "number" ? attempts : 20;
+        if (typeof window.gtag === "function") {
+          try { window.gtag("event", name, params || {}); } catch(e){}
+          return;
+        }
+        if (tries <= 0) return;
+        setTimeout(function(){
+          safeTrackWhenReady(name, params, tries - 1);
+        }, 300);
       }
 
       function getPageLanguage(){
@@ -404,7 +416,7 @@
         });
       }
 
-      safeTrack("listing_detail_view", {
+      safeTrackWhenReady("listing_detail_view", {
         listing_id: listingMeta.listing_id,
         listing_title: listingMeta.listing_title,
         listing_region: listingMeta.listing_region,
@@ -415,13 +427,34 @@
         debug_mode: true
       });
 
-      document.addEventListener("click", function(e){
-        var a = e.target && e.target.closest ? e.target.closest(".js-rec-action") : null;
-        if (!a) return;
-        var action = a.getAttribute("data-action") || "";
-        if (action === "website") action = "visit_website";
-        trackAction(action);
-      }, true);
+      var btnWebsite = document.getElementById("ctaVisitWebsite");
+      var btnWebsiteBottom = document.getElementById("ctaVisitWebsiteBottom");
+      var btnWhatsApp = document.getElementById("ctaWhatsApp");
+      var btnWhatsAppBottom = document.getElementById("ctaWhatsAppBottom");
+
+      if (btnWebsite) {
+        btnWebsite.addEventListener("click", function(){
+          trackAction("visit_website");
+        }, true);
+      }
+
+      if (btnWebsiteBottom) {
+        btnWebsiteBottom.addEventListener("click", function(){
+          trackAction("visit_website");
+        }, true);
+      }
+
+      if (btnWhatsApp) {
+        btnWhatsApp.addEventListener("click", function(){
+          trackAction("whatsapp");
+        }, true);
+      }
+
+      if (btnWhatsAppBottom) {
+        btnWhatsAppBottom.addEventListener("click", function(){
+          trackAction("whatsapp");
+        }, true);
+      }
     })();
   </script>
   <script>
