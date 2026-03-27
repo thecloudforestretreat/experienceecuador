@@ -1,31 +1,29 @@
-:::writing{variant=“standard” id=“41827”}
-I am uploading one member page file.
+:::writing{variant=“standard” id=“58241”}
+I am uploading one Experience Ecuador member page file.
 
-Please fully inspect the uploaded file and update it to match our standardized GA4 tracking pattern for Experience Ecuador member pages.
+Your job is to fully inspect the uploaded file, extract the listing metadata from the code itself, fix and standardize the GA4 tracking, and return a complete updated downloadable .txt file.
 
 Target page path:
 [PASTE PAGE PATH HERE]
 
-Language:
-[en or es]
+Requirements:
+	1.	Read the full uploaded file and extract these values from the page code itself:
+	•	listing_id
+	•	listing_title
+	•	listing_region
+	•	listing_location
+	•	listing_category
+	•	page language
+	2.	Do not ask me to paste those values unless they are truly missing from the file.
+	3.	Check whether the page is using an old tracking pattern or the current standardized pattern.
+	4.	Fix everything needed so the page matches our standard Experience Ecuador member-page tracking.
+	5.	Return the complete updated page as a downloadable .txt file.
+	6.	Keep the rest of the page intact.
 
-Listing metadata:
-	•	listing_id: [PASTE]
-	•	listing_title: [PASTE EXACT TITLE]
-	•	listing_region: [PASTE]
-	•	listing_location: [PASTE]
-	•	listing_category: [PASTE]
-
-What I need you to do:
-	1.	Fully check the uploaded file, not just snippets.
-	2.	Fix and standardize all GA4 tracking on this member page.
-	3.	Replace any older tracking pattern with the current standardized version.
-	4.	Return a complete updated downloadable .txt file.
-
-Please verify and fix all of these items:
+Standard member-page tracking to enforce:
 	•	page-level listing_detail_view
-	•	use safeTrackWhenReady(...) instead of firing too early
-	•	include these parameters on listing_detail_view:
+	•	use safeTrackWhenReady(...) so the event is not lost if gtag is not ready
+	•	listing_detail_view must include:
 	•	listing_id
 	•	listing_title
 	•	listing_region
@@ -34,23 +32,29 @@ Please verify and fix all of these items:
 	•	page_path
 	•	page_language
 	•	debug_mode: true
-	•	normalize CTA tracking to:
+	•	CTA tracking must use:
 	•	visit_website
 	•	whatsapp
-	•	replace old website action names with visit_website
-	•	add direct CTA IDs if missing:
+	•	if the page still uses website, normalize it to visit_website
+	•	add these IDs if missing:
 	•	ctaVisitWebsite
 	•	ctaVisitWebsiteBottom
 	•	ctaWhatsApp
 	•	ctaWhatsAppBottom
-	•	use direct button listeners instead of the older global click listener if needed
-	•	keep the full page intact otherwise
-	•	do not give partial patches
-	•	provide the complete fixed downloadable .txt file only after checking everything
+	•	use direct CTA button listeners instead of the older global .js-rec-action click listener when needed
+	•	keep English pages with page_language: "en" and Spanish pages with page_language: "es" based on the file/path/content
+	•	preserve the existing URLs, text, and layout unless a tracking-related change is required
 
-Also tell me briefly:
+What I want back:
+	1.	A short summary of:
 	•	what was wrong
 	•	what you fixed
-	•	whether the page is now fully aligned with our standard member-page tracking
+	•	whether the page is now fully aligned with the standard
+	2.	A complete downloadable updated .txt file
+Important:
+	•	Do not give me partial patches
+	•	Do not give me a diff
+	•	Do not ask me to manually merge code
+	•	Fully inspect the uploaded file first
+	•	If the tracking is already fully correct, say so and still return a cleaned verified .txt version only if any normalization is needed
 :::
-
