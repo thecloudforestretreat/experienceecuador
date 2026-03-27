@@ -428,6 +428,21 @@
         try { window.gtag("event", name, params || {}); } catch(e){}
       }
 
+      function safeTrackWhenReady(name, params, attempts){
+        var tries = typeof attempts === "number" ? attempts : 20;
+        if (typeof window.gtag === "function") {
+          try { window.gtag("event", name, params || {}); } catch(e){}
+          return;
+        }
+        if (tries <= 0) return;
+        setTimeout(function(){
+          safeTrackWhenReady(name, params, tries - 1);
+        }, 300);
+      }
+        if (typeof window.gtag !== "function") return;
+        try { window.gtag("event", name, params || {}); } catch(e){}
+      }
+
       var listingMeta = {
         listing_id: "lodging_tena_0001",
         listing_title: "Cabañas Las Nubes",
@@ -452,7 +467,7 @@
         });
       }
 
-      safeTrack("listing_detail_view", {
+      safeTrackWhenReady("listing_detail_view", {
         listing_id: listingMeta.listing_id,
         listing_title: listingMeta.listing_title,
         listing_region: listingMeta.listing_region,
