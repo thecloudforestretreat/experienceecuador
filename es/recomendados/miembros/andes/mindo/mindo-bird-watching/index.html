@@ -219,8 +219,8 @@
         </div>
 
         <div class="ctaRow" aria-label="Acciones principales">
-          <a class="btn btnPrimary js-rec-action" href="https://www.mindobirdwatching.com" target="_blank" rel="noopener" data-action="website" data-id="services_mindo_1305" data-title="Tours de Observacion de Aves en Mindo" data-region="andes" data-location="mindo" data-category="services">Visitar sitio</a>
-          <a class="btn btnGhost js-rec-action" href="https://wa.me/13054585402" target="_blank" rel="noopener" data-action="whatsapp" data-id="services_mindo_1305" data-title="Tours de Observacion de Aves en Mindo" data-region="andes" data-location="mindo" data-category="services">WhatsApp</a>
+          <a id="ctaVisitWebsite" class="btn btnPrimary js-rec-action" href="https://www.mindobirdwatching.com" target="_blank" rel="noopener" data-action="visit_website" data-id="services_mindo_1305" data-title="Tours de Observacion de Aves en Mindo" data-region="andes" data-location="mindo" data-category="services">Visitar sitio</a>
+          <a id="ctaWhatsApp" class="btn btnGhost js-rec-action" href="https://wa.me/13054585402" target="_blank" rel="noopener" data-action="whatsapp" data-id="services_mindo_1305" data-title="Tours de Observacion de Aves en Mindo" data-region="andes" data-location="mindo" data-category="services">WhatsApp</a>
         </div>
       </div>
 
@@ -346,8 +346,8 @@
         <p>Usa los botones de abajo para visitar el sitio oficial o contactar al equipo directamente por WhatsApp.</p>
       </div>
       <div class="ctaRight">
-        <a class="btn btnPrimary js-rec-action" href="https://www.mindobirdwatching.com" target="_blank" rel="noopener" data-action="website" data-id="services_mindo_1305" data-title="Tours de Observacion de Aves en Mindo" data-region="andes" data-location="mindo" data-category="services">Visitar sitio</a>
-        <a class="btn btnGhost js-rec-action" href="https://wa.me/13054585402" target="_blank" rel="noopener" data-action="whatsapp" data-id="services_mindo_1305" data-title="Tours de Observacion de Aves en Mindo" data-region="andes" data-location="mindo" data-category="services">WhatsApp</a>
+        <a id="ctaVisitWebsiteBottom" class="btn btnPrimary js-rec-action" href="https://www.mindobirdwatching.com" target="_blank" rel="noopener" data-action="visit_website" data-id="services_mindo_1305" data-title="Tours de Observacion de Aves en Mindo" data-region="andes" data-location="mindo" data-category="services">Visitar sitio</a>
+        <a id="ctaWhatsAppBottom" class="btn btnGhost js-rec-action" href="https://wa.me/13054585402" target="_blank" rel="noopener" data-action="whatsapp" data-id="services_mindo_1305" data-title="Tours de Observacion de Aves en Mindo" data-region="andes" data-location="mindo" data-category="services">WhatsApp</a>
       </div>
     </section>
   </main>
@@ -435,12 +435,34 @@
         debug_mode: true
       });
 
-      document.addEventListener("click", function(e){
-        var a = e.target && e.target.closest ? e.target.closest(".js-rec-action") : null;
-        if (!a) return;
-        var action = a.getAttribute("data-action") || "";
-        trackAction(action === "website" ? "visit_website" : action);
-      }, true);
+      var btnWebsite = document.getElementById("ctaVisitWebsite");
+      var btnWebsiteBottom = document.getElementById("ctaVisitWebsiteBottom");
+      var btnWhatsApp = document.getElementById("ctaWhatsApp");
+      var btnWhatsAppBottom = document.getElementById("ctaWhatsAppBottom");
+
+      if (btnWebsite) {
+        btnWebsite.addEventListener("click", function(){
+          trackAction("visit_website");
+        }, true);
+      }
+
+      if (btnWebsiteBottom) {
+        btnWebsiteBottom.addEventListener("click", function(){
+          trackAction("visit_website");
+        }, true);
+      }
+
+      if (btnWhatsApp) {
+        btnWhatsApp.addEventListener("click", function(){
+          trackAction("whatsapp");
+        }, true);
+      }
+
+      if (btnWhatsAppBottom) {
+        btnWhatsAppBottom.addEventListener("click", function(){
+          trackAction("whatsapp");
+        }, true);
+      }
     })();
   </script>
   <script>
