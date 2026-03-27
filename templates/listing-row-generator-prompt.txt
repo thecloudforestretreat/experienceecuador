@@ -25,7 +25,7 @@ CANONICAL DATA RULE (CRITICAL)
   uid, id, category, region_id, location_id
 - Use them EXACTLY as provided
 - NEVER regenerate IDs
-- NEVER "fix" IDs
+- NEVER fix IDs
 - NEVER derive region/location from anything else
 
 --------------------------------------------------
@@ -41,32 +41,32 @@ INPUT RULE (VERY IMPORTANT)
 SOURCE COLUMN MAP (FROM INPUT ROW)
 --------------------------------------------------
 
-1 uid  
-2 id  
-3 category  
-4 category_label_en  
-5 category_label_es  
-6 region_id  
-7 location_id  
-8 experiences  
-9 featured  
-10 title_en  
-11 title_es  
-12 description_en  
-13 description_es  
-14 why_en  
-15 why_es  
-16 tags_en  
-17 tags_es  
-18 image_1  
-19 image_2  
-20 image_3  
-21 website_url  
-22 whatsapp_url  
-23 phone  
-24 menu_pdf  
-25 details_url  
-26 admin_notes  
+1 uid
+2 id
+3 category
+4 category_label_en
+5 category_label_es
+6 region_id
+7 location_id
+8 experiences
+9 featured
+10 title_en
+11 title_es
+12 description_en
+13 description_es
+14 why_en
+15 why_es
+16 tags_en
+17 tags_es
+18 image_1
+19 image_2
+20 image_3
+21 website_url
+22 whatsapp_url
+23 phone
+24 menu_pdf
+25 details_url
+26 admin_notes
 
 --------------------------------------------------
 TARGET COLUMN ORDER (STRICT - 70 COLUMNS)
@@ -94,28 +94,28 @@ human_readable_region:
 FIELD MAPPING RULES
 --------------------------------------------------
 
-- uid -> same  
-- id -> same  
-- category -> same  
-- category_label_en -> same  
-- category_label_es -> same  
-- region_id -> same  
-- location_id -> same  
-- experiences -> same  
-- featured -> same  
+- uid -> same
+- id -> same
+- category -> same
+- category_label_en -> same
+- category_label_es -> same
+- region_id -> same
+- location_id -> same
+- experiences -> same
+- featured -> same
 
-- title_en -> same  
-- title_es -> same  
+- title_en -> same
+- title_es -> same
 
-- description_short_en -> from description_en  
-- description_short_es -> from description_es  
+- description_short_en -> from description_en
+- description_short_es -> from description_es
 
-- why_section_en -> from why_en  
-- why_section_es -> from why_es  
+- why_section_en -> from why_en
+- why_section_es -> from why_es
 
-- image_1 -> same  
-- image_2 -> same  
-- image_3 -> same  
+- image_1 -> same
+- image_2 -> same
+- image_3 -> same
 
 --------------------------------------------------
 META RULES
@@ -179,8 +179,11 @@ LOCATION CONTEXT
 NEARBY
 --------------------------------------------------
 
-- Generic surroundings only
+- EXACTLY 3 items
+- pipe separated
+- generic surroundings only
 - NO business names
+- NO extra pipes inside nearby text
 
 --------------------------------------------------
 FAQ
@@ -189,6 +192,7 @@ FAQ
 - EXACTLY 4 questions
 - EXACTLY 4 answers
 - pipe separated
+- NO pipes inside questions or answers
 
 --------------------------------------------------
 IMAGE TEXT RULES
