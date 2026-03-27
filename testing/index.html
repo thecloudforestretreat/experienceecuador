@@ -1035,16 +1035,16 @@
         var qp = getQueryParams();
         isApplyingQueryParams = true;
 
-        if (qp.region_id){
-          elRegion.value = qp.region_id;
+        if (qp.listing_region){
+          elRegion.value = qp.listing_region;
         } else {
           elRegion.value = "";
         }
 
         syncLocationOptions();
 
-        if (qp.location_id && !elLocation.disabled){
-          elLocation.value = qp.location_id;
+        if (qp.listing_location && !elLocation.disabled){
+          elLocation.value = qp.listing_location;
         } else {
           elLocation.value = "";
         }
@@ -1055,8 +1055,8 @@
           elExperience.value = "";
         }
 
-        if (qp.category){
-          elCategory.value = qp.category;
+        if (qp.listing_category){
+          elCategory.value = qp.listing_category;
         } else {
           elCategory.value = "";
         }
@@ -1073,9 +1073,9 @@
         for (var i=0; i<ITEMS.items.length; i++){
           var it = ITEMS.items[i];
 
-          if (f.region_id && it.region_id !== f.region_id) continue;
-          if (f.location_id && it.location_id !== f.location_id) continue;
-          if (f.category && it.category !== f.category) continue;
+          if (f.listing_region && it.region_id !== f.listing_region) continue;
+          if (f.listing_location && it.location_id !== f.listing_location) continue;
+          if (f.listing_category && it.category !== f.listing_category) continue;
 
           if (f.experience_id){
             var exps = it.experiences || [];
@@ -1219,11 +1219,12 @@
           safeTrack("recommendation_click", {
             listing_id: a.getAttribute("data-id") || "",
             listing_title: a.getAttribute("data-title") || "",
-            region_id: a.getAttribute("data-region") || "",
-            location_id: a.getAttribute("data-location") || "",
-            category: a.getAttribute("data-category") || "",
+            listing_region: a.getAttribute("data-region") || "",
+            listing_location: a.getAttribute("data-location") || "",
+            listing_category: a.getAttribute("data-category") || "",
             action_type: a.getAttribute("data-action") || "",
-            page_path: window.location.pathname || "/"
+            page_path: window.location.pathname || "/",
+            page_language: getPageLanguage()
           });
         }, true);
       }
@@ -1233,11 +1234,23 @@
           syncLocationOptions();
           elLocation.value = "";
           apply();
+          trackFilterEvent("change");
         });
 
-        elLocation.addEventListener("change", apply);
-        elExperience.addEventListener("change", apply);
-        elCategory.addEventListener("change", apply);
+        elLocation.addEventListener("change", function(){
+          apply();
+          trackFilterEvent("change");
+        });
+
+        elExperience.addEventListener("change", function(){
+          apply();
+          trackFilterEvent("change");
+        });
+
+        elCategory.addEventListener("change", function(){
+          apply();
+          trackFilterEvent("change");
+        });
 
         btnReset.addEventListener("click", resetFilters);
 
