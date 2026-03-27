@@ -226,8 +226,8 @@
         </div>
 
         <div class="ctaRow" aria-label="Acciones principales">
-          <a class="btn btnPrimary js-rec-action" href="https://www.lasnubes.ec" target="_blank" rel="noopener" data-action="website" data-id="lodging_napo_0001" data-title="Cabañas Las Nubes" data-region="amazonia" data-location="napo" data-category="lodging">Visitar sitio</a>
-          <a class="btn btnGhost js-rec-action" href="https://wa.me/593982875740" target="_blank" rel="noopener" data-action="whatsapp" data-id="lodging_napo_0001" data-title="Cabañas Las Nubes" data-region="amazonia" data-location="napo" data-category="lodging">WhatsApp</a>
+          <a id="ctaVisitWebsite" class="btn btnPrimary js-rec-action" href="https://www.lasnubes.ec" target="_blank" rel="noopener" data-action="visit_website" data-id="lodging_napo_0001" data-title="Cabañas Las Nubes" data-region="amazonia" data-location="napo" data-category="lodging">Visitar sitio</a>
+          <a id="ctaWhatsApp" class="btn btnGhost js-rec-action" href="https://wa.me/593982875740" target="_blank" rel="noopener" data-action="whatsapp" data-id="lodging_napo_0001" data-title="Cabañas Las Nubes" data-region="amazonia" data-location="napo" data-category="lodging">WhatsApp</a>
         </div>
       </div>
 
@@ -394,8 +394,8 @@
         <p>Usa los botones de abajo para visitar el sitio oficial o contactar al equipo directamente por WhatsApp.</p>
       </div>
       <div class="ctaRight">
-        <a class="btn btnPrimary js-rec-action" href="https://www.lasnubes.ec" target="_blank" rel="noopener" data-action="website" data-id="lodging_napo_0001" data-title="Cabañas Las Nubes" data-region="amazonia" data-location="napo" data-category="lodging">Visitar sitio</a>
-        <a class="btn btnGhost js-rec-action" href="https://wa.me/593982875740" target="_blank" rel="noopener" data-action="whatsapp" data-id="lodging_napo_0001" data-title="Cabañas Las Nubes" data-region="amazonia" data-location="napo" data-category="lodging">WhatsApp</a>
+        <a id="ctaVisitWebsiteBottom" class="btn btnPrimary js-rec-action" href="https://www.lasnubes.ec" target="_blank" rel="noopener" data-action="visit_website" data-id="lodging_napo_0001" data-title="Cabañas Las Nubes" data-region="amazonia" data-location="napo" data-category="lodging">Visitar sitio</a>
+        <a id="ctaWhatsAppBottom" class="btn btnGhost js-rec-action" href="https://wa.me/593982875740" target="_blank" rel="noopener" data-action="whatsapp" data-id="lodging_napo_0001" data-title="Cabañas Las Nubes" data-region="amazonia" data-location="napo" data-category="lodging">WhatsApp</a>
       </div>
     </section>
   </main>
@@ -432,6 +432,18 @@
         try { window.gtag("event", name, params || {}); } catch(e){}
       }
 
+      function safeTrackWhenReady(name, params, attempts){
+        var tries = typeof attempts === "number" ? attempts : 20;
+        if (typeof window.gtag === "function") {
+          try { window.gtag("event", name, params || {}); } catch(e){}
+          return;
+        }
+        if (tries <= 0) return;
+        setTimeout(function(){
+          safeTrackWhenReady(name, params, tries - 1);
+        }, 300);
+      }
+
       function getPageLanguage(){
         var lang = document.documentElement && document.documentElement.lang ? document.documentElement.lang.toLowerCase() : "";
         return lang.indexOf("es") === 0 ? "es" : "en";
@@ -461,7 +473,7 @@
         });
       }
 
-      safeTrack("listing_detail_view", {
+      safeTrackWhenReady("listing_detail_view", {
         listing_id: listingMeta.listing_id,
         listing_title: listingMeta.listing_title,
         listing_region: listingMeta.listing_region,
@@ -472,13 +484,34 @@
         debug_mode: true
       });
 
-      document.addEventListener("click", function(e){
-        var a = e.target && e.target.closest ? e.target.closest(".js-rec-action") : null;
-        if (!a) return;
-        var rawAction = a.getAttribute("data-action") || "";
-        var ctaType = rawAction === "website" ? "visit_website" : rawAction === "whatsapp" ? "whatsapp" : rawAction;
-        trackAction(ctaType);
-      }, true);
+      var btnWebsite = document.getElementById("ctaVisitWebsite");
+      var btnWebsiteBottom = document.getElementById("ctaVisitWebsiteBottom");
+      var btnWhatsApp = document.getElementById("ctaWhatsApp");
+      var btnWhatsAppBottom = document.getElementById("ctaWhatsAppBottom");
+
+      if (btnWebsite) {
+        btnWebsite.addEventListener("click", function(){
+          trackAction("visit_website");
+        }, true);
+      }
+
+      if (btnWebsiteBottom) {
+        btnWebsiteBottom.addEventListener("click", function(){
+          trackAction("visit_website");
+        }, true);
+      }
+
+      if (btnWhatsApp) {
+        btnWhatsApp.addEventListener("click", function(){
+          trackAction("whatsapp");
+        }, true);
+      }
+
+      if (btnWhatsAppBottom) {
+        btnWhatsAppBottom.addEventListener("click", function(){
+          trackAction("whatsapp");
+        }, true);
+      }
     })();
   </script>
   <script>
