@@ -6,7 +6,7 @@ CRITICAL OUTPUT RULES (STRICT)
 
 - Return EXACTLY ONE LINE
 - Use TAB as separator
-- Output EXACTLY 70 columns (no more, no less)
+- Output EXACTLY 74 columns (no more, no less)
 - NO line breaks
 - NO tabs inside fields
 - NO quotes
@@ -69,16 +69,16 @@ SOURCE COLUMN MAP (FROM INPUT ROW)
 26 admin_notes
 
 --------------------------------------------------
-TARGET COLUMN ORDER (STRICT - 70 COLUMNS)
+TARGET COLUMN ORDER (STRICT - 74 COLUMNS)
 --------------------------------------------------
 
-uid	id	category	category_label_en	category_label_es	region_id	location_id	experiences	featured	title_en	title_es	meta_title_en	meta_title_es	meta_description_en	meta_description_es	description_short_en	description_short_es	seo_paragraph_1_en	seo_paragraph_1_es	seo_paragraph_2_en	seo_paragraph_2_es	why_section_en	why_section_es	experience_highlights_en	experience_highlights_es	best_for_en	best_for_es	location_context_en	location_context_es	nearby_en	nearby_es	faq_questions_en	faq_questions_es	faq_answers_en	faq_answers_es	image_1	image_2	image_3	image_1_alt_en	image_1_alt_es	image_1_caption_en	image_1_caption_es	image_1_gallery_caption_en	image_1_gallery_caption_es	image_2_alt_en	image_2_alt_es	image_2_caption_en	image_2_caption_es	image_2_gallery_caption_en	image_2_gallery_caption_es	image_3_alt_en	image_3_alt_es	image_3_caption_en	image_3_caption_es	image_3_gallery_caption_en	image_3_gallery_caption_es	canonical_url_en	canonical_url_es	region_page_en	location_page_en	region_page_es	location_page_es	region_link_text_en	region_link_text_es	location_link_text_en	location_link_text_es	explore_section_intro_en	explore_section_intro_es	experience_link_label_en	experience_link_label_es	experience_link_text_en	experience_link_text_es	experience_filter_id
+uid	id	category	region_id_en	region_id_es	location_id_en	location_id_es	listing_slug	title_en	title_es	meta_title_en	meta_title_es	meta_description_en	meta_description_es	description_short_en	description_short_es	seo_paragraph_1_en	seo_paragraph_1_es	seo_paragraph_2_en	seo_paragraph_2_es	why_section_en	why_section_es	experience_highlights_en	experience_highlights_es	best_for_en	best_for_es	location_context_en	location_context_es	nearby_1_title_en	nearby_1_title_es	nearby_1_text_en	nearby_1_text_es	nearby_2_title_en	nearby_2_title_es	nearby_2_text_en	nearby_2_text_es	nearby_3_title_en	nearby_3_title_es	nearby_3_text_en	nearby_3_text_es	faq_1_q_en	faq_1_q_es	faq_1_a_en	faq_1_a_es	faq_2_q_en	faq_2_q_es	faq_2_a_en	faq_2_a_es	faq_3_q_en	faq_3_q_es	faq_3_a_en	faq_3_a_es	faq_4_q_en	faq_4_q_es	faq_4_a_en	faq_4_a_es	image_1	image_2	image_3	website_url	whatsapp_url	phone	experience_filter_id	experience_filter_slug_es	region_page_en	region_page_es	location_page_en	location_page_es	canonical_url_en	canonical_url_es
 
 --------------------------------------------------
 DERIVED HELPERS
 --------------------------------------------------
 
-slug:
+listing_slug:
 - lowercase
 - hyphenated
 - based on title_en
@@ -90,6 +90,14 @@ human_readable_location:
 human_readable_region:
 - convert region_id to Title Case words
 
+experience_filter_slug_es:
+- map from experience_filter_id
+- wildlife-birding -> vida-silvestre-aviturismo
+- adventure -> aventura
+- culinary -> gastronomia
+- relaxation -> relax
+- nature -> naturaleza
+
 --------------------------------------------------
 FIELD MAPPING RULES
 --------------------------------------------------
@@ -97,12 +105,11 @@ FIELD MAPPING RULES
 - uid -> same
 - id -> same
 - category -> same
-- category_label_en -> same
-- category_label_es -> same
-- region_id -> same
-- location_id -> same
-- experiences -> same
-- featured -> same
+
+- region_id_en -> region_id
+- region_id_es -> region_id
+- location_id_en -> location_id
+- location_id_es -> location_id
 
 - title_en -> same
 - title_es -> same
@@ -116,6 +123,10 @@ FIELD MAPPING RULES
 - image_1 -> same
 - image_2 -> same
 - image_3 -> same
+
+- website_url -> same
+- whatsapp_url -> same
+- phone -> same
 
 --------------------------------------------------
 META RULES
@@ -160,6 +171,7 @@ EXPERIENCE HIGHLIGHTS
 - EXACTLY 4 items
 - pipe separated
 - short phrases only
+- NO extra pipes inside items
 
 --------------------------------------------------
 BEST FOR
@@ -167,107 +179,101 @@ BEST FOR
 
 - EXACTLY 4 traveler types
 - pipe separated
+- NO extra pipes inside items
 
 --------------------------------------------------
 LOCATION CONTEXT
 --------------------------------------------------
 
 - Explain why destination matters
-- Use region + human_readable_location
+- Use human_readable_region + human_readable_location
 
 --------------------------------------------------
 NEARBY
 --------------------------------------------------
 
-- EXACTLY 3 items
-- pipe separated
+Generate EXACTLY 3 nearby blocks.
+
+For each block output:
+- nearby_N_title_en
+- nearby_N_title_es
+- nearby_N_text_en
+- nearby_N_text_es
+
+Rules:
 - generic surroundings only
 - NO business names
-- NO extra pipes inside nearby text
+- NO extra pipes
+- Keep titles short
+- Keep text concise and factual
 
 --------------------------------------------------
 FAQ
 --------------------------------------------------
 
-- EXACTLY 4 questions
-- EXACTLY 4 answers
-- pipe separated
-- NO pipes inside questions or answers
+Generate EXACTLY 4 FAQs.
+
+For each FAQ output:
+- faq_N_q_en
+- faq_N_q_es
+- faq_N_a_en
+- faq_N_a_es
+
+Rules:
+- NO extra pipes
+- concise, factual, travel-useful
+- no invented claims
 
 --------------------------------------------------
 IMAGE TEXT RULES
 --------------------------------------------------
 
 - If image field is blank:
-  ALL related alt/caption fields must be blank
+  leave ONLY that image path blank
+- Do NOT generate extra image caption/alt columns
 - Do NOT invent specific visual details
 
 --------------------------------------------------
 URL RULES
 --------------------------------------------------
 
-canonical_url_en:
-https://experienceecuador.com/recommendations/members/<region_id>/<location_id>/<slug>/
-
-canonical_url_es:
-https://experienceecuador.com/es/recomendados/miembros/<region_id>/<location_id>/<slug>/
-
---------------------------------------------------
-PAGE PATH RULES
---------------------------------------------------
-
 region_page_en:
 /regions/<region_id>/
-
-location_page_en:
-/regions/<region_id>/<location_id>/
 
 region_page_es:
 /es/regiones/<region_id>/
 
+location_page_en:
+/regions/<region_id>/<location_id>/
+
 location_page_es:
 /es/regiones/<region_id>/<location_id>/
 
---------------------------------------------------
-LINK TEXT RULES
---------------------------------------------------
+canonical_url_en:
+https://experienceecuador.com/recommendations/members/<region_id>/<location_id>/<listing_slug>/
 
-region_link_text_en:
-Explore <human_readable_region>
-
-region_link_text_es:
-Explorar <human_readable_region>
-
-location_link_text_en:
-Explore <human_readable_location>
-
-location_link_text_es:
-Explorar <human_readable_location>
-
---------------------------------------------------
-EXPLORE SECTION
---------------------------------------------------
-
-Short intro encouraging discovery of region and location
-
---------------------------------------------------
-EXPERIENCE LINK
---------------------------------------------------
-
-Generic CTA:
-View experiences / Ver experiencias
+canonical_url_es:
+https://experienceecuador.com/es/recomendados/miembros/<region_id>/<location_id>/<listing_slug>/
 
 --------------------------------------------------
 FILTER RULE (IMPORTANT)
 --------------------------------------------------
 
 Select ONE primary value from experiences:
-
 - wildlife-birding
 - adventure
 - culinary
 - relaxation
 - nature
+
+Priority:
+1. wildlife-birding
+2. adventure
+3. culinary
+4. relaxation
+5. nature
+
+If multiple are present, choose the highest priority from this list.
 
 --------------------------------------------------
 TEXT SAFETY RULE
