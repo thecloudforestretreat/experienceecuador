@@ -663,7 +663,17 @@
       }
 
       function getAction(item, key){
-        if (item && item.actions && item.actions[key]) return item.actions[key];
+        var lang = getPageLanguage();
+
+        if (item && item.actions){
+          if (key === "details_url"){
+            if (lang === "es" && item.actions.details_url_es) return item.actions.details_url_es;
+            if (lang === "en" && item.actions.details_url_en) return item.actions.details_url_en;
+            if (item.actions.details_url) return item.actions.details_url;
+          }
+          if (item.actions[key]) return item.actions[key];
+        }
+
         if (item && item.links){
           if (key === "website_url" && item.links.website) return item.links.website;
           if (key === "whatsapp_url" && item.links.whatsapp) return item.links.whatsapp;
