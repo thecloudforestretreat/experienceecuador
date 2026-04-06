@@ -1296,7 +1296,7 @@
       }
     };
 
-    function normalizeSelection(raw) {
+    function normalizeSelectionStep2(raw) {
       const days = Number(raw.days || 0);
 
       const regions = Array.from(new Set((raw.regions || []).filter(Boolean)));
@@ -1348,7 +1348,7 @@
       };
     }
 
-    function scoreBlock(block, selection) {
+    function scoreBlockStep2(block, selection) {
       const blockExperiences = Array.isArray(block.experiences) ? block.experiences : [];
       const matchedExperiences = blockExperiences.filter(exp =>
         selection.experiences.includes(exp)
@@ -1413,8 +1413,8 @@
       };
     }
 
-    function buildRankedPool(itineraryBlocks, rawSelection) {
-      const normalized = normalizeSelection(rawSelection);
+    function buildRankedPoolStep2(itineraryBlocks, rawSelection) {
+      const normalized = normalizeSelectionStep2(rawSelection);
 
       if (!normalized.valid) {
         return {
@@ -1435,7 +1435,7 @@
           : [];
 
       const rankedBlocks = rawBlocks
-        .map(block => scoreBlock(block, selection))
+        .map(block => scoreBlockStep2(block, selection))
         .filter(Boolean)
         .sort((a, b) => b.score - a.score);
 
@@ -1458,7 +1458,7 @@
       };
     }
 
-    function renderRankedPoolPreview(result) {
+    function renderRankedPoolPreviewStep2(result) {
       if (!els.output) return;
 
       if (!result.ok) {
@@ -1842,6 +1842,7 @@
 
       const selectedRegions = Array.from(state.selectedRegionIds);
       const selectedExperiences = Array.from(state.selectedExperienceIds);
+      const days = Number(els.daysSelect ? els.daysSelect.value : state.days || 0);
 
       if (selectedRegions.length === 0 || selectedExperiences.length === 0) {
         els.regionHint.textContent =
@@ -1857,7 +1858,17 @@
         return `${r ? getLabel(r, "en") : rid}${suffix}`;
       });
 
-      els.regionHint.textContent = "Selected: " + lines.join(" · ");
+      const hints = ["Selected: " + lines.join(" · ")];
+
+      if (days <= 7 && selectedRegions.length === 3) {
+        hints.push("Planning note: three regions in a short trip can feel rushed.");
+      }
+
+      if (days >= 11 && selectedRegions.length === 4) {
+        hints.push("Planning note: four regions can work for longer trips, but expect more transfers.");
+      }
+
+      els.regionHint.textContent = hints.join(" ");
     }
 
     function updateGenerateState() {
@@ -2346,8 +2357,8 @@
     });
 
     els.generateBtn.addEventListener('click', () => {
-      const result = buildRankedPool(DATA.blocks, {
-        days: state.days,
+      const result = buildRankedPoolStep2(DATA.blocks, {
+        days: Number(els.daysSelect ? els.daysSelect.value : state.days || 0),
         regions: Array.from(state.selectedRegionIds),
         experiences: Array.from(state.selectedExperienceIds)
       });
@@ -2357,7 +2368,7 @@
       enableEmailButtonIfReady();
       clearEmailStatus();
 
-      renderRankedPoolPreview(result);
+      renderRankedPoolPreviewStep2(result);
     });
 
     els.resetBtn.addEventListener('click', () => {
