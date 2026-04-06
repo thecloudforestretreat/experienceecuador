@@ -1,1 +1,41 @@
+You are a senior frontend architect and UX engineer specializing in high-conversion travel platforms.
 
+We previously started building a client-side Ecuador Trip Builder for ExperienceEcuador.com.
+
+Current state:
+- UI is complete and working
+- Region and experience selection UI exists
+- A scoring/selection system was attempted but is currently unreliable
+- Region selection limits (3 regions for <=10 days, 4 regions for 11+ days) are NOT enforcing correctly
+- Generate button validation is inconsistent
+- Existing logic is partially conflicting with new logic
+
+Your task:
+1. Completely refactor the Trip Builder selection logic from scratch (do NOT patch existing logic)
+2. Implement clean state-driven architecture:
+   - Single source of truth for state
+   - No duplicate event handlers
+   - No UI-driven logic leaks
+3. Enforce rules:
+   - <=10 days → max 3 regions
+   - 11+ days → max 4 regions
+   - At least 1 region required
+   - At least 1 experience required
+4. Ensure:
+   - Selection limits are enforced at click level
+   - State trims automatically when days change
+   - Generate button enables ONLY when valid
+5. Build a clean itinerary generation foundation:
+   - Region balancing
+   - Experience matching
+   - Future scoring system ready (but keep simple now)
+
+Output:
+- FULL drop-in HTML files (EN + ES)
+- No partial code
+- No instructions
+- No explanations
+- Production-ready logic
+
+Goal:
+A clean, deterministic, bug-free Trip Builder foundation that we can extend later.
