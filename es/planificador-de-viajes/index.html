@@ -1296,7 +1296,7 @@
       }
     };
 
-    function normalizeSelection(raw) {
+    function normalizeSelectionStep2(raw) {
       const days = Number(raw.days || 0);
 
       const regions = Array.from(new Set((raw.regions || []).filter(Boolean)));
@@ -1306,7 +1306,7 @@
       const warnings = [];
 
       if (!Number.isFinite(days) || days < 1) {
-        errors.push("Selecciona un numero de dias valido.");
+        errors.push("Selecciona un numero valido de dias.");
       }
 
       if (!regions.length) {
@@ -1322,17 +1322,17 @@
       if (regions.length > maxRegions) {
         errors.push(
           days >= 11
-            ? "Selecciona no mas de 4 regiones para este viaje."
-            : "Los viajes de 10 dias o menos no deben usar mas de 3 regiones."
+            ? "Selecciona un maximo de 4 regiones para este viaje."
+            : "Los viajes de 10 dias o menos deben usar un maximo de 3 regiones."
         );
       }
 
       if (days <= 7 && regions.length === 3) {
-        warnings.push("Tres regiones en un viaje corto pueden sentirse apresuradas. Considera simplificar para una ruta mas fluida.");
+        warnings.push("Tres regiones en un viaje corto pueden sentirse apresuradas. Considera simplificar la ruta para un ritmo mas fluido.");
       }
 
       if (days >= 11 && regions.length === 4) {
-        warnings.push("Cuatro regiones pueden funcionar en viajes largos, pero espera mas traslados y un ritmo mas acelerado.");
+        warnings.push("Cuatro regiones pueden funcionar en viajes largos, pero espera mas traslados y un ritmo mas rapido.");
       }
 
       return {
@@ -1348,7 +1348,7 @@
       };
     }
 
-    function scoreBlock(block, selection) {
+    function scoreBlockStep2(block, selection) {
       const blockExperiences = Array.isArray(block.experiences) ? block.experiences : [];
       const matchedExperiences = blockExperiences.filter(exp =>
         selection.experiences.includes(exp)
@@ -1413,8 +1413,8 @@
       };
     }
 
-    function buildRankedPool(itineraryBlocks, rawSelection) {
-      const normalized = normalizeSelection(rawSelection);
+    function buildRankedPoolStep2(itineraryBlocks, rawSelection) {
+      const normalized = normalizeSelectionStep2(rawSelection);
 
       if (!normalized.valid) {
         return {
@@ -1435,14 +1435,14 @@
           : [];
 
       const rankedBlocks = rawBlocks
-        .map(block => scoreBlock(block, selection))
+        .map(block => scoreBlockStep2(block, selection))
         .filter(Boolean)
         .sort((a, b) => b.score - a.score);
 
       if (!rankedBlocks.length) {
         return {
           ok: false,
-          errors: ["No se encontraron bloques de itinerario compatibles para esta combinacion."],
+          errors: ["No se encontraron bloques de itinerario para esta combinacion."],
           warnings: normalized.warnings,
           selection,
           blocks: []
@@ -1458,12 +1458,12 @@
       };
     }
 
-    function renderRankedPoolPreview(result) {
+    function renderRankedPoolPreviewStep2(result) {
       if (!els.output) return;
 
       if (!result.ok) {
         els.output.innerHTML =
-          "<div class='hint'><strong>No fue posible construir el conjunto clasificado:</strong><br>" +
+          "<div class='hint'><strong>No se pudo generar el conjunto clasificado:</strong><br>" +
           result.errors.map(e => "- " + e).join("<br>") +
           "</div>";
         return;
@@ -1482,13 +1482,13 @@
           <div class="day-card">
             <div class="day-title">
               <span>${index + 1}. ${block.title}</span>
-              <span class="tag">Score ${block.score}</span>
+              <span class="tag">Puntaje ${block.score}</span>
             </div>
             <div class="slot">
               <h4>Detalles de coincidencia</h4>
               <p class="meta">
                 Region: ${block.region_id} |
-                Horario: ${block.time_of_day} |
+                Momento: ${block.time_of_day} |
                 Ritmo: ${block.pace} |
                 Horas: ${block.duration_hours}
               </p>
@@ -1505,7 +1505,7 @@
 
       els.output.innerHTML =
         warningHtml +
-        "<div class='hint' style='margin-bottom:12px;'><strong>Modo de prueba Paso 2:</strong> mostrando los bloques de itinerario mejor clasificados antes de construir los dias.</div>" +
+        "<div class='hint' style='margin-bottom:12px;'><strong>Modo de prueba Step 2:</strong> se muestran los bloques de itinerario mejor clasificados antes de construir los dias.</div>" +
         listHtml;
     }
 
@@ -1844,10 +1844,11 @@
 
       const selectedRegions = Array.from(state.selectedRegionIds);
       const selectedExperiences = Array.from(state.selectedExperienceIds);
+      const days = Number(els.daysSelect ? els.daysSelect.value : state.days || 0);
 
       if (selectedRegions.length === 0 || selectedExperiences.length === 0) {
         els.regionHint.textContent =
-          "Selecciona al menos una region y una experiencia. Puedes elegir varias regiones y experiencias para un viaje con multiples paradas.";
+          "Selecciona al menos una region y una experiencia. Puedes elegir varias regiones y varias experiencias para un viaje con varias paradas.";
         return;
       }
 
@@ -1859,7 +1860,17 @@
         return `${r ? getLabel(r, "es") : rid}${suffix}`;
       });
 
-      els.regionHint.textContent = "Seleccionado: " + lines.join(" - ");
+      const hints = ["Seleccionado: " + lines.join(" · ")];
+
+      if (days <= 7 && selectedRegions.length === 3) {
+        hints.push("Nota de planificacion: tres regiones en un viaje corto pueden sentirse apresuradas.");
+      }
+
+      if (days >= 11 && selectedRegions.length === 4) {
+        hints.push("Nota de planificacion: cuatro regiones pueden funcionar en viajes largos, pero espera mas traslados.");
+      }
+
+      els.regionHint.textContent = hints.join(" ");
     }
 
     function updateGenerateState() {
@@ -2350,8 +2361,8 @@
     });
 
     els.generateBtn.addEventListener('click', () => {
-      const result = buildRankedPool(DATA.blocks, {
-        days: state.days,
+      const result = buildRankedPoolStep2(DATA.blocks, {
+        days: Number(els.daysSelect ? els.daysSelect.value : state.days || 0),
         regions: Array.from(state.selectedRegionIds),
         experiences: Array.from(state.selectedExperienceIds)
       });
@@ -2361,7 +2372,7 @@
       enableEmailButtonIfReady();
       clearEmailStatus();
 
-      renderRankedPoolPreview(result);
+      renderRankedPoolPreviewStep2(result);
     });
 
     els.resetBtn.addEventListener('click', () => {
