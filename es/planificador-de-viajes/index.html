@@ -1780,6 +1780,23 @@
       return item.name_en || item.name_es || item.id || "";
     }
 
+    
+    function getMaxRegionsForDays(days) {
+      const n = Number(days || 0);
+      return n >= 11 ? 4 : 3;
+    }
+
+    function showSelectionLimitMessage() {
+      const days = Number(els.daysSelect ? els.daysSelect.value : state.days || 0);
+      const maxRegions = getMaxRegionsForDays(days);
+      const message = days >= 11
+        ? "Puedes seleccionar hasta 4 regiones para viajes de 11+ dias."
+        : "Los viajes de 10 dias o menos pueden usar hasta 3 regiones.";
+      els.regionHint.textContent = message;
+    }
+
+
+    
     function createPill(item, type) {
       const id = item.id;
       const b = document.createElement('button');
@@ -1791,7 +1808,19 @@
 
       b.addEventListener('click', () => {
         const set = type === "region" ? state.selectedRegionIds : state.selectedExperienceIds;
-        if (set.has(id)) set.delete(id);
+        const alreadySelected = set.has(id);
+
+        if (!alreadySelected && type === "region") {
+          const days = Number(els.daysSelect ? els.daysSelect.value : state.days || 0);
+          const maxRegions = getMaxRegionsForDays(days);
+
+          if (set.size >= maxRegions) {
+            showSelectionLimitMessage();
+            return;
+          }
+        }
+
+        if (alreadySelected) set.delete(id);
         else set.add(id);
 
         b.setAttribute('aria-pressed', set.has(id) ? 'true' : 'false');
@@ -1803,7 +1832,8 @@
       return b;
     }
 
-    function renderRegionPills() {
+
+function renderRegionPills() {
       els.regionsPills.innerHTML = "";
 
       const desiredRegionOrder = ["galapagos","coast","andes","amazon"];
@@ -1839,16 +1869,22 @@
       });
     }
 
+    
     function updateHints() {
       if (!DATA.regions) return;
 
       const selectedRegions = Array.from(state.selectedRegionIds);
       const selectedExperiences = Array.from(state.selectedExperienceIds);
       const days = Number(els.daysSelect ? els.daysSelect.value : state.days || 0);
+      const maxRegions = getMaxRegionsForDays(days);
+
+      if (selectedRegions.length > maxRegions) {
+        els.regionHint.textContent = "Reduce tu seleccion. Los viajes de 10 dias o menos solo pueden usar hasta 3 regiones.";
+        return;
+      }
 
       if (selectedRegions.length === 0 || selectedExperiences.length === 0) {
-        els.regionHint.textContent =
-          "Selecciona al menos una region y una experiencia. Puedes elegir varias regiones y varias experiencias para un viaje con varias paradas.";
+        els.regionHint.textContent = "Selecciona al menos una region y una experiencia. Puedes elegir varias regiones y varias experiencias para un viaje con varias paradas.";
         return;
       }
 
@@ -1873,7 +1909,8 @@
       els.regionHint.textContent = hints.join(" ");
     }
 
-    function updateGenerateState() {
+
+function updateGenerateState() {
       const ok = state.selectedRegionIds.size > 0 && state.selectedExperienceIds.size > 0;
       els.generateBtn.disabled = !ok;
     }
@@ -2358,6 +2395,21 @@
 
     els.daysSelect.addEventListener('change', () => {
       state.days = Number(els.daysSelect.value);
+
+      const maxRegions = getMaxRegionsForDays(state.days);
+      if (state.selectedRegionIds.size > maxRegions) {
+        const kept = Array.from(state.selectedRegionIds).slice(0, maxRegions);
+        state.selectedRegionIds = new Set(kept);
+
+        document.querySelectorAll('#regionsPills .pill').forEach(p => {
+          const id = p.getAttribute('data-id');
+          p.setAttribute('aria-pressed', state.selectedRegionIds.has(id) ? 'true' : 'false');
+        });
+      }
+
+      updateHints();
+      updateGenerateState();
+      syncDefaultFlightToFromRegions();
     });
 
     els.generateBtn.addEventListener('click', () => {
