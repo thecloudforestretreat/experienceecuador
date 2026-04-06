@@ -1296,6 +1296,220 @@
       }
     };
 
+    function normalizeSelection(raw) {
+      const days = Number(raw.days || 0);
+
+      const regions = Array.from(new Set((raw.regions || []).filter(Boolean)));
+      const experiences = Array.from(new Set((raw.experiences || []).filter(Boolean)));
+
+      const errors = [];
+      const warnings = [];
+
+      if (!Number.isFinite(days) || days < 1) {
+        errors.push("Please select a valid number of days.");
+      }
+
+      if (!regions.length) {
+        errors.push("Please select at least one region.");
+      }
+
+      if (!experiences.length) {
+        errors.push("Please select at least one experience.");
+      }
+
+      const maxRegions = days >= 11 ? 4 : 3;
+
+      if (regions.length > maxRegions) {
+        errors.push(
+          days >= 11
+            ? "Please select no more than 4 regions for this trip."
+            : "Trips of 10 days or less should use no more than 3 regions."
+        );
+      }
+
+      if (days <= 7 && regions.length === 3) {
+        warnings.push("Three regions in a short trip can feel rushed. Consider simplifying for a smoother route.");
+      }
+
+      if (days >= 11 && regions.length === 4) {
+        warnings.push("Four regions can work for longer trips, but expect more transfers and a faster pace.");
+      }
+
+      return {
+        valid: errors.length === 0,
+        errors,
+        warnings,
+        selection: {
+          days,
+          regions,
+          experiences,
+          maxRegions
+        }
+      };
+    }
+
+    function scoreBlock(block, selection) {
+      const blockExperiences = Array.isArray(block.experiences) ? block.experiences : [];
+      const matchedExperiences = blockExperiences.filter(exp =>
+        selection.experiences.includes(exp)
+      );
+
+      if (!matchedExperiences.length) {
+        return null;
+      }
+
+      const regionId = block.region_id || "all";
+      const matchedRegion = selection.regions.includes(regionId);
+      const isGenericRegion = regionId === "all";
+
+      if (!matchedRegion && !isGenericRegion) {
+        return null;
+      }
+
+      const durationHours = Number(block.duration_hours || 0);
+      if (!Number.isFinite(durationHours) || durationHours <= 0) {
+        return null;
+      }
+
+      let score = 0;
+
+      score += matchedExperiences.length * 50;
+
+      if (matchedRegion) score += 30;
+      if (isGenericRegion) score += 10;
+
+      const pace = block.pace || "any";
+      if (pace === "easy") score += 8;
+      else if (pace === "any") score += 5;
+      else if (pace === "moderate") score += 3;
+
+      const isLongBlock = durationHours >= 24;
+      if (isLongBlock && selection.days <= 4) {
+        score -= 20;
+      } else if (isLongBlock && selection.days >= 7) {
+        score += 8;
+      }
+
+      return {
+        id: block.id,
+        title: block.title,
+        summary: block.summary || "",
+        region_id: regionId,
+        location_id: block.location_id || "all",
+        experiences: blockExperiences,
+        time_of_day: block.time_of_day || "afternoon",
+        pace,
+        duration_hours: durationHours,
+        notes: block.notes || "",
+        tags: Array.isArray(block.tags) ? block.tags : [],
+        sub_experience: block.sub_experience || "",
+        level_focus: block.level_focus || "",
+        score,
+        matchedExperiences,
+        matchedRegion,
+        isGenericRegion,
+        isLongBlock,
+        timesUsed: 0
+      };
+    }
+
+    function buildRankedPool(itineraryBlocks, rawSelection) {
+      const normalized = normalizeSelection(rawSelection);
+
+      if (!normalized.valid) {
+        return {
+          ok: false,
+          errors: normalized.errors,
+          warnings: normalized.warnings,
+          selection: normalized.selection || null,
+          blocks: []
+        };
+      }
+
+      const selection = normalized.selection;
+
+      const rawBlocks = Array.isArray(itineraryBlocks)
+        ? itineraryBlocks
+        : Array.isArray(itineraryBlocks?.blocks)
+          ? itineraryBlocks.blocks
+          : [];
+
+      const rankedBlocks = rawBlocks
+        .map(block => scoreBlock(block, selection))
+        .filter(Boolean)
+        .sort((a, b) => b.score - a.score);
+
+      if (!rankedBlocks.length) {
+        return {
+          ok: false,
+          errors: ["No matching itinerary blocks were found for this combination."],
+          warnings: normalized.warnings,
+          selection,
+          blocks: []
+        };
+      }
+
+      return {
+        ok: true,
+        errors: [],
+        warnings: normalized.warnings,
+        selection,
+        blocks: rankedBlocks
+      };
+    }
+
+    function renderRankedPoolPreview(result) {
+      if (!els.output) return;
+
+      if (!result.ok) {
+        els.output.innerHTML =
+          "<div class='hint'><strong>Unable to build ranked pool:</strong><br>" +
+          result.errors.map(e => "- " + e).join("<br>") +
+          "</div>";
+        return;
+      }
+
+      const warningHtml = (result.warnings || []).length
+        ? "<div class='hint' style='margin-bottom:12px;'><strong>Planning notes:</strong><br>" +
+          result.warnings.map(w => "- " + w).join("<br>") +
+          "</div>"
+        : "";
+
+      const topBlocks = result.blocks.slice(0, 10);
+
+      const listHtml = topBlocks.map((block, index) => {
+        return `
+          <div class="day-card">
+            <div class="day-title">
+              <span>${index + 1}. ${block.title}</span>
+              <span class="tag">Score ${block.score}</span>
+            </div>
+            <div class="slot">
+              <h4>Match details</h4>
+              <p class="meta">
+                Region: ${block.region_id} |
+                Time: ${block.time_of_day} |
+                Pace: ${block.pace} |
+                Hours: ${block.duration_hours}
+              </p>
+              <p class="meta" style="margin-top:6px;">
+                Experiences: ${block.matchedExperiences.join(", ")}
+              </p>
+              <p class="meta" style="margin-top:6px;">
+                ${block.summary || "No summary available."}
+              </p>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      els.output.innerHTML =
+        warningHtml +
+        "<div class='hint' style='margin-bottom:12px;'><strong>Step 2 test mode:</strong> showing top ranked itinerary blocks before day-building.</div>" +
+        listHtml;
+    }
+
+
     function setEmailStatus(text, kind){
       if (!tripEmailEls.status) return;
       tripEmailEls.status.textContent = text;
@@ -2132,13 +2346,18 @@
     });
 
     els.generateBtn.addEventListener('click', () => {
-      const plan = generateItinerary();
-      state.lastPlan = plan;
-      renderItinerary(plan);
+      const result = buildRankedPool(DATA.blocks, {
+        days: state.days,
+        regions: Array.from(state.selectedRegionIds),
+        experiences: Array.from(state.selectedExperienceIds)
+      });
 
-      state.lastItineraryText = buildItineraryText(plan);
+      state.lastPlan = null;
+      state.lastItineraryText = "";
       enableEmailButtonIfReady();
       clearEmailStatus();
+
+      renderRankedPoolPreview(result);
     });
 
     els.resetBtn.addEventListener('click', () => {
