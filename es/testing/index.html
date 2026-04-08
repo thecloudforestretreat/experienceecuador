@@ -121,7 +121,7 @@
         </div>
         <div class="miniCard">
           <h3>Duracion tipica del viaje</h3>
-          <p>La mayoria de los viajes a la Costa funcionan mejor con 3 a 6 dias en una base principal y una o dos salidas cortas, en lugar de saltar de pueblo en pueblo sin pausa.</p>
+          <p>La mayoria de los viajes a la Costa funcionan mejor con 3 a 6 dias en una base principal y una o dos salidas cortas, en lugar de ir saltando de pueblo en pueblo sin pausa.</p>
         </div>
       </div>
     </section>
@@ -223,7 +223,7 @@
         <div class="sectionHeadCopy">
           <div class="sectionKicker">Cruce por intencion</div>
           <h2 class="hTitle">Experiencias en la region Costa</h2>
-          <p class="hSub">Estas son las rutas de experiencia mas conectadas con el viaje costero en Ecuador.</p>
+          <p class="hSub">Estas son las categorias de experiencia mas conectadas con el viaje costero en Ecuador.</p>
         </div>
         <a class="btn btnGhost btnSmall" href="/es/experiencias/">Ver todas las experiencias</a>
       </div>
@@ -241,7 +241,7 @@
         </a>
         <a class="miniCard" href="/es/experiencias/culinaria/">
           <h3>Culinaria</h3>
-          <p>Una opcion natural para quienes buscan cultura de mariscos, especialidades locales y experiencias gastronomicas ligadas al lugar.</p>
+          <p>Una opcion natural para quienes buscan cultura de mariscos, especialidades locales y experiencias gastronomicas ligadas a cada lugar.</p>
           <span class="go">Explorar culinaria</span>
         </a>
       </div>
@@ -411,7 +411,7 @@
         <div class="sectionHeadCopy">
           <div class="sectionKicker">Contexto visual</div>
           <h2 class="hTitle">La Costa en movimiento</h2>
-          <p class="hSub">Mantiene esta capa visual como parte de la experiencia de planificacion. Refuerza las playas, el ritmo de ruta y la identidad oceánica de la region.</p>
+          <p class="hSub">Conserva esta capa visual como parte de la experiencia de planificacion. Refuerza las playas, el ritmo de la ruta y la identidad oceanica de la region.</p>
         </div>
       </div>
       <div class="videoEmbed" aria-label="Video de la Costa">
@@ -430,7 +430,7 @@
         <div class="sectionHeadCopy">
           <div class="sectionKicker">Galeria y destacados</div>
           <h2 class="hTitle">Destacados visuales de la Costa</h2>
-          <p class="hSub">Esta capa visual se conserva como parte del hub regional. Usala para comparar el ambiente, el paisaje y el ritmo costero antes de que sigan creciendo las paginas de destino.</p>
+          <p class="hSub">Esta capa visual se conserva como parte del hub regional. Usala para comparar el ambiente, el paisaje y el ritmo costero mientras siguen creciendo las paginas de destino.</p>
         </div>
       </div>
 
@@ -536,113 +536,6 @@
         s.src = "/assets/js/site.js";
         document.body.appendChild(s);
       });
-    })();
-  </script>
-
-  <script>
-    (function(){
-      const root = document.getElementById("coastCarousel");
-      if(!root) return;
-
-      const track = root.querySelector(".carousel-track");
-      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
-      const prevBtn = root.querySelector(".carousel-btn.prev");
-      const nextBtn = root.querySelector(".carousel-btn.next");
-      const dotsWrap = root.querySelector(".carousel-dots");
-      const counter = root.querySelector("#coastCarouselCounter");
-      const viewport = root.querySelector(".carousel-viewport");
-
-      let index = 0;
-      const AUTOPLAY_MS = 5000;
-      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      let autoplayTimer = null;
-      let autoplayEnabled = !prefersReducedMotion;
-      let startX = 0;
-      let isDown = false;
-
-      function updateCounter(){
-        if(counter) counter.textContent = `${index + 1} / ${slides.length}`;
-      }
-
-      function updateDots(){
-        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
-        dots.forEach((d, i) => d.classList.toggle("active", i === index));
-      }
-
-      function setIndex(next){
-        index = (next + slides.length) % slides.length;
-        track.style.transform = `translateX(-${index * 100}%)`;
-        updateDots();
-        updateCounter();
-      }
-
-      function buildDots(){
-        dotsWrap.innerHTML = "";
-        slides.forEach((_, i) => {
-          const b = document.createElement("button");
-          b.type = "button";
-          b.className = "dot" + (i === 0 ? " active" : "");
-          b.setAttribute("aria-label", `Ir a la imagen ${i + 1}`);
-          b.addEventListener("click", () => {
-            setIndex(i);
-            stopAutoplay();
-          });
-          dotsWrap.appendChild(b);
-        });
-      }
-
-      function next(){ setIndex(index + 1); }
-      function prev(){ setIndex(index - 1); }
-
-      function startAutoplay(){
-        if(!autoplayEnabled) return;
-        stopAutoplay();
-        autoplayTimer = setInterval(next, AUTOPLAY_MS);
-      }
-
-      function stopAutoplay(){
-        if(autoplayTimer){
-          clearInterval(autoplayTimer);
-          autoplayTimer = null;
-        }
-      }
-
-      if(prevBtn) prevBtn.addEventListener("click", () => { prev(); stopAutoplay(); });
-      if(nextBtn) nextBtn.addEventListener("click", () => { next(); stopAutoplay(); });
-
-      root.addEventListener("keydown", (e) => {
-        if(e.key === "ArrowLeft"){ prev(); stopAutoplay(); }
-        if(e.key === "ArrowRight"){ next(); stopAutoplay(); }
-      });
-
-      viewport.addEventListener("pointerdown", (e) => {
-        isDown = true;
-        startX = e.clientX;
-        viewport.setPointerCapture(e.pointerId);
-      });
-
-      viewport.addEventListener("pointerup", (e) => {
-        if(!isDown) return;
-        isDown = false;
-        const dx = e.clientX - startX;
-        const threshold = 40;
-        if(dx > threshold){ prev(); stopAutoplay(); }
-        if(dx < -threshold){ next(); stopAutoplay(); }
-      });
-
-      viewport.addEventListener("pointercancel", () => { isDown = false; });
-
-      root.addEventListener("mouseenter", stopAutoplay);
-      root.addEventListener("mouseleave", startAutoplay);
-      root.addEventListener("focusin", stopAutoplay);
-      root.addEventListener("focusout", startAutoplay);
-
-      root.tabIndex = 0;
-      buildDots();
-      updateCounter();
-      setIndex(0);
-      startAutoplay();
-      window.addEventListener("resize", () => setIndex(index));
     })();
   </script>
 </body>
