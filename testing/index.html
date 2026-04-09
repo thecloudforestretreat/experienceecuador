@@ -525,7 +525,7 @@
         <button class="carousel-btn next" type="button" aria-label="Next image"><span aria-hidden="true"></span></button>
         <div class="carousel-ui">
           <div class="carousel-dots" aria-label="Carousel pagination"></div>
-          <div class="carousel-counter">1 / 10</div>
+          <div class="carousel-counter" id="andesCarouselCounter">1 / 10</div>
         </div>
       </div>
     </section>
@@ -603,5 +603,133 @@
       ]);
     })();
   </script>
+
+  <script>
+    (function(){
+      const root = document.getElementById("andesCarousel");
+      if(!root) return;
+
+      const track = root.querySelector(".carousel-track");
+      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+      const prevBtn = root.querySelector(".carousel-btn.prev");
+      const nextBtn = root.querySelector(".carousel-btn.next");
+      const dotsWrap = root.querySelector(".carousel-dots");
+      const counter = root.querySelector("#andesCarouselCounter");
+      const viewport = root.querySelector(".carousel-viewport");
+
+      if(!track || !slides.length || !prevBtn || !nextBtn || !dotsWrap || !counter || !viewport) return;
+
+      let index = 0;
+      const AUTOPLAY_MS = 5000;
+      const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let autoplayTimer = null;
+      let autoplayEnabled = !prefersReducedMotion;
+      let startX = 0;
+      let isDown = false;
+
+      function setIndex(next){
+        index = (next + slides.length) % slides.length;
+        track.style.transform = "translateX(-" + (index * 100) + "%)";
+        updateDots();
+        updateCounter();
+      }
+
+      function updateCounter(){
+        counter.textContent = (index + 1) + " / " + slides.length;
+      }
+
+      function updateDots(){
+        const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
+        dots.forEach((d, i) => d.classList.toggle("active", i === index));
+      }
+
+      function stopAutoplay(){
+        if(autoplayTimer){
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      function startAutoplay(){
+        if(!autoplayEnabled) return;
+        stopAutoplay();
+        autoplayTimer = setInterval(() => setIndex(index + 1), AUTOPLAY_MS);
+      }
+
+      function buildDots(){
+        dotsWrap.innerHTML = "";
+        slides.forEach((_, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "dot" + (i === 0 ? " active" : "");
+          b.setAttribute("aria-label", "Go to image " + (i + 1));
+          b.addEventListener("click", () => {
+            setIndex(i);
+            stopAutoplay();
+          });
+          dotsWrap.appendChild(b);
+        });
+      }
+
+      prevBtn.addEventListener("click", () => {
+        setIndex(index - 1);
+        stopAutoplay();
+      });
+
+      nextBtn.addEventListener("click", () => {
+        setIndex(index + 1);
+        stopAutoplay();
+      });
+
+      root.addEventListener("keydown", (e) => {
+        if(e.key === "ArrowLeft"){
+          setIndex(index - 1);
+          stopAutoplay();
+        }
+        if(e.key === "ArrowRight"){
+          setIndex(index + 1);
+          stopAutoplay();
+        }
+      });
+
+      viewport.addEventListener("pointerdown", (e) => {
+        isDown = true;
+        startX = e.clientX;
+        if(viewport.setPointerCapture) viewport.setPointerCapture(e.pointerId);
+      });
+
+      viewport.addEventListener("pointerup", (e) => {
+        if(!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        const threshold = 40;
+        if(dx > threshold){
+          setIndex(index - 1);
+          stopAutoplay();
+        }
+        if(dx < -threshold){
+          setIndex(index + 1);
+          stopAutoplay();
+        }
+      });
+
+      viewport.addEventListener("pointercancel", () => {
+        isDown = false;
+      });
+
+      root.addEventListener("mouseenter", stopAutoplay);
+      root.addEventListener("mouseleave", startAutoplay);
+      root.addEventListener("focusin", stopAutoplay);
+      root.addEventListener("focusout", startAutoplay);
+      window.addEventListener("resize", () => setIndex(index));
+
+      root.tabIndex = 0;
+      buildDots();
+      updateCounter();
+      setIndex(0);
+      startAutoplay();
+    })();
+  </script>
+
 </body>
 </html>
