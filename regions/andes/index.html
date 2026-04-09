@@ -525,7 +525,7 @@
         <button class="carousel-btn next" type="button" aria-label="Next image"><span aria-hidden="true"></span></button>
         <div class="carousel-ui">
           <div class="carousel-dots" aria-label="Carousel pagination"></div>
-          <div class="carousel-counter">1 / 10</div>
+          <div class="carousel-counter" id="andesCarouselCounter">1 / 10</div>
         </div>
       </div>
     </section>
@@ -590,13 +590,16 @@
 
   <script src="/assets/js/site.js"></script>
   <script>
-    (function(){
-      async function inject(id, url){
-        const el = document.getElementById(id);
-        if(!el) return;
-        const res = await fetch(url, { cache: "no-store" });
-        el.innerHTML = await res.text();
+    (function () {
+      function inject(id, url) {
+        var el = document.getElementById(id);
+        if (!el) return Promise.resolve();
+        return fetch(url, { cache: "no-store" })
+          .then(function (res) { return res.text(); })
+          .then(function (html) { el.innerHTML = html; })
+          .catch(function () {});
       }
+
       Promise.all([
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
