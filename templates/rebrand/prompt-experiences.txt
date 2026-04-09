@@ -17,15 +17,15 @@ NON-NEGOTIABLE RULES:
 - /assets/css/footer.css
 - /assets/css/site.css
 - NEVER use <style> blocks
-- NEVER inject page-level CSS
+- NEVER inject page-level CSS files
 
 ---
 
 3. GLOBAL JS (MANDATORY)
 - Shared components MUST be controlled via assets/js/site.js ONLY
-- DO NOT write page-level scripts for shared components (carousel, nav, toggles)
+- DO NOT write page-level scripts for shared components such as carousel, nav, toggles, or shared interaction systems
 - DO NOT duplicate logic already handled in site.js
-- If a component is broken -> FIX IT IN site.js, NOT the page
+- If a shared component is broken -> FIX IT IN site.js, NOT the page
 
 ---
 
@@ -35,12 +35,13 @@ The following are GLOBAL components and MUST NEVER be replaced:
 - Header / navigation
 - Mobile menu
 - Toggle buttons
-- Shared cards (grid system)
+- Shared cards and grid system
 
 FORBIDDEN:
 - Replacing carousel with static cards
 - Creating alternate carousel logic per page
-- Styling components inline instead of site.css
+- Creating alternate shared component systems per page
+- Styling shared components with page-level CSS
 
 ---
 
@@ -87,7 +88,7 @@ Each page must follow its correct template exactly.
   - .carousel-track
   - .carousel-slide
   - navigation buttons
-  - dots (if applicable)
+  - dots if applicable
 - MUST be initialized ONLY by site.js
 - NEVER include inline carousel script
 - NEVER modify carousel structure arbitrarily
@@ -98,7 +99,7 @@ Each page must follow its correct template exactly.
 
 - Structure must be IDENTICAL across languages
 - Only text changes
-- Slugs must match site.js mapping logic
+- Slugs must match approved site structure
 - Do not invent new slug formats unless explicitly approved
 
 ---
@@ -127,9 +128,12 @@ REMOVE:
 - Unused HTML
 - Broken logic
 
+EXCEPTION:
+- The small approved header/footer injection bootstrap script may remain if that is the established global pattern for the site
+
 ---
 
-13. ALWAYS FIX:
+13. ALWAYS FIX
 
 - Broken carousel
 - Spacing issues
@@ -138,6 +142,7 @@ REMOVE:
 - Layout gaps
 - Broken hero class usage
 - Missing global CSS references
+- Incorrect terminology drift
 
 ---
 
@@ -145,8 +150,9 @@ REMOVE:
 
 ALWAYS RETURN:
 - Complete updated HTML file(s)
-- Complete updated site.js (if touched)
-- Complete updated site.css (if touched)
+- Complete updated site.js if touched
+- Complete updated site.css if touched
+- Complete updated prompt file if touched
 
 IN .txt FORMAT ONLY
 
@@ -172,6 +178,7 @@ CHECK:
 - No valuable content removed without reason
 - Layout visually consistent
 - EN/ES parity maintained
+- Required terminology is consistent
 
 IF ANY FAILS -> DO NOT OUTPUT
 
@@ -225,6 +232,82 @@ If the current page is only a simple grid or listing page, you are allowed to ex
 - Do NOT hardcode hero background images inline
 - For new pages, use the appropriate pre-defined hero class whenever available
 - If a new hero class is truly needed, add it to site.css globally
+
+---
+
+21. HEADER / FOOTER INJECTION RULE
+
+- Keep the existing global header/footer injection system
+- Use /assets/includes/header.html
+- Use /assets/includes/footer.html
+- Do NOT introduce header-es.html or alternate header injection files unless explicitly approved
+
+---
+
+22. TERMINOLOGY LOCK RULE
+
+- English experience taxonomy MUST use "Wildlife & Birding"
+- NEVER use "Birdwatching" as the primary experience name on collection or hub pages
+- Spanish experience taxonomy MUST use "Vida silvestre y aves"
+- NEVER drift between alternate labels on parallel EN/ES experience hub pages
+
+Approved experience labels:
+
+English:
+- Adventure
+- Nature
+- Wildlife & Birding
+- Relaxation
+- Culinary
+- Culture
+
+Spanish:
+- Aventura
+- Naturaleza
+- Vida silvestre y aves
+- Relajación
+- Gastronomía
+- Cultura
+
+---
+
+23. LINK CONSISTENCY RULE
+
+Approved experience hub slugs:
+
+English:
+- /experiences/
+- /experiences/adventure/
+- /experiences/nature/
+- /experiences/wildlife-birding/
+- /experiences/relaxation/
+- /experiences/culinary/
+- /experiences/culture/
+
+Spanish:
+- /es/experiencias/
+- /es/experiencias/aventura/
+- /es/experiencias/naturaleza/
+- /es/experiencias/vida-silvestre-y-aves/
+- /es/experiencias/relajacion/
+- /es/experiencias/gastronomia/
+- /es/experiencias/cultura/
+
+Do NOT substitute alternate slugs unless explicitly approved.
+
+---
+
+24. APPROVED INLINE USAGE RULE
+
+The following are allowed as part of the approved page system:
+- Inline background-image usage on card image wrappers if that is the established approved pattern for the site
+- The small header/footer injection bootstrap script used to mount the global includes
+
+The following are still forbidden:
+- Inline style blocks
+- Inline carousel logic
+- Inline page-specific JS for shared components
+- Inline design hacks that bypass site.css
 
 ---
 
