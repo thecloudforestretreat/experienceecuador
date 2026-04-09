@@ -636,8 +636,7 @@
       </section>
 
       <!-- Bottom Carousel -->
-      
-    <section class="carousel" aria-label="Culture gallery carousel">
+      <section class="carousel" aria-label="Culture gallery carousel">
         <button class="carousel-btn prev" type="button" aria-label="Previous slide" id="ee_car_prev">
           <span aria-hidden="true"></span>
         </button>
@@ -670,7 +669,7 @@
           <div class="carousel-counter" id="ee_car_counter">1 / 15</div>
         </div>
       </section>
-</div>
+    </div>
   </main>
 
   <div id="siteFooter"></div>
@@ -905,7 +904,88 @@
       }
     })();
 
-    
+    /* ===== Carousel ===== */
+    (function(){
+      const track = document.getElementById("ee_car_track");
+      const viewport = document.getElementById("ee_car_viewport");
+      const prevBtn = document.getElementById("ee_car_prev");
+      const nextBtn = document.getElementById("ee_car_next");
+      const dotsWrap = document.getElementById("ee_car_dots");
+      const counter = document.getElementById("ee_car_counter");
+
+      if (!track || !viewport) return;
+
+      const slides = Array.from(track.children);
+      const total = slides.length;
+      let index = 0;
+      let startX = 0;
+      let currentX = 0;
+      let dragging = false;
+
+      function setCounter(){
+        if (!counter) return;
+        counter.textContent = (index + 1) + " / " + total;
+      }
+
+      function setDots(){
+        if (!dotsWrap) return;
+        dotsWrap.innerHTML = "";
+        for (let i = 0; i < total; i++){
+          const b = document.createElement("button");
+          b.className = "dot" + (i === index ? " active" : "");
+          b.type = "button";
+          b.setAttribute("aria-label", "Go to slide " + (i + 1));
+          b.addEventListener("click", () => goTo(i));
+          dotsWrap.appendChild(b);
+        }
+      }
+
+      function update(){
+        track.style.transform = "translateX(" + (-index * 100) + "%)";
+        setCounter();
+        setDots();
+      }
+
+      function goTo(i){
+        index = (i + total) % total;
+        update();
+      }
+
+      function next(){ goTo(index + 1); }
+      function prev(){ goTo(index - 1); }
+
+      if (nextBtn) nextBtn.addEventListener("click", next);
+      if (prevBtn) prevBtn.addEventListener("click", prev);
+
+      viewport.addEventListener("touchstart", (e) => {
+        if (e.touches.length !== 1) return;
+        dragging = true;
+        startX = e.touches[0].clientX;
+        currentX = startX;
+      }, { passive:true });
+
+      viewport.addEventListener("touchmove", (e) => {
+        if (!dragging || e.touches.length !== 1) return;
+        currentX = e.touches[0].clientX;
+      }, { passive:true });
+
+      viewport.addEventListener("touchend", () => {
+        if (!dragging) return;
+        const dx = currentX - startX;
+        dragging = false;
+        if (Math.abs(dx) > 45){
+          if (dx < 0) next();
+          else prev();
+        }
+      });
+
+      viewport.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") next();
+        if (e.key === "ArrowLeft") prev();
+      });
+
+      update();
+    })();
   </script>
 </body>
 </html>
