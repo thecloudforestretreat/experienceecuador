@@ -196,52 +196,65 @@ IF ANY FAILS -> DO NOT OUTPUT
 
 18. CHARACTER ENCODING RULE
 
-- English code files should remain plain and clean with no smart quotes or em dashes
-- Spanish pages may use proper UTF-8 characters for natural LATAM Spanish
+- English code files should remain plain and clean with no smart quotes, em dashes, or unnecessary special punctuation
+- Spanish pages may use proper UTF-8 characters when needed for natural, native LATAM Spanish
 - Do NOT corrupt Spanish copy by forcing ASCII replacements
+- Keep encoding valid and browser-safe
 
 ---
 
 19. EXPERIENCE PAGE RULE (CRITICAL)
 
-Required EXPERIENCE structure:
+For EXPERIENCE pages, use the EXPERIENCE template structure, not the REGION template.
 
-1. Hero  
-2. Quick Snapshot  
-3. Why This Experience  
-4. Where to Do This  
-5. Featured Members  
-6. What to Expect  
-7. Who This Is For  
-8. Best Time  
-9. Related Experiences  
-10. Related Planning Paths  
-11. FAQ  
-12. Gallery and Highlights  
-13. Final CTA  
+Required EXPERIENCE structure:
+1. Hero
+2. Quick Snapshot
+3. Why This Experience
+4. Where to Do This
+5. Featured Members
+6. What to Expect
+7. Who This Is For
+8. Best Time
+9. Related Experiences
+10. Related Planning Paths
+11. FAQ
+12. Gallery and Highlights
+13. Final CTA
+
+If the current page is only a simple grid or listing page, you are allowed to expand it into the full EXPERIENCE template.
 
 ---
 
 20. HERO SYSTEM RULE
 
-- Hero layout must remain global in site.css
-- Use reusable hero classes
-- NEVER inline background images
+- Hero layout behavior must remain global in site.css
+- Hero images must be controlled by reusable hero classes
+- Do NOT hardcode hero background images inline
+- For new pages, use the appropriate pre-defined hero class whenever available
+- If a new hero class is truly needed, add it to site.css globally
 
 ---
 
 21. HEADER / FOOTER INJECTION RULE
 
-- Use:
-  - /assets/includes/header.html
-  - /assets/includes/footer.html
-- Do NOT introduce alternate header systems
+- Keep the existing global header/footer injection system
+- Use /assets/includes/header.html
+- Use /assets/includes/footer.html
+- Do NOT introduce header-es.html or alternate header injection files unless explicitly approved
 
 ---
 
 22. TERMINOLOGY LOCK RULE
 
-EN:
+- English experience taxonomy MUST use "Wildlife & Birding"
+- NEVER use "Birdwatching" as the primary experience name on collection or hub pages
+- Spanish experience taxonomy MUST use "Vida silvestre y aves"
+- NEVER drift between alternate labels on parallel EN/ES experience hub pages
+
+Approved experience labels:
+
+English:
 - Adventure
 - Nature
 - Wildlife & Birding
@@ -249,7 +262,7 @@ EN:
 - Culinary
 - Culture
 
-ES:
+Spanish:
 - Aventura
 - Naturaleza
 - Vida silvestre y aves
@@ -261,25 +274,51 @@ ES:
 
 23. LINK CONSISTENCY RULE
 
-Use ONLY approved slugs.
+Approved experience hub slugs:
+
+English:
+- /experiences/
+- /experiences/adventure/
+- /experiences/nature/
+- /experiences/wildlife-birding/
+- /experiences/relaxation/
+- /experiences/culinary/
+- /experiences/culture/
+
+Spanish:
+- /es/experiencias/
+- /es/experiencias/aventura/
+- /es/experiencias/naturaleza/
+- /es/experiencias/vida-silvestre-y-aves/
+- /es/experiencias/relajacion/
+- /es/experiencias/gastronomia/
+- /es/experiencias/cultura/
+
+Do NOT substitute alternate slugs unless explicitly approved.
 
 ---
 
 24. APPROVED INLINE USAGE RULE
 
-Allowed:
-- inline background-image on cards
-- header/footer injection script
+The following are allowed as part of the approved page system:
+- Inline background-image usage on card image wrappers if that is the established approved pattern for the site
+- The small header/footer injection bootstrap script used to mount the global includes
 
-Forbidden:
-- inline CSS blocks
-- inline JS for shared components
+The following are still forbidden:
+- Inline style blocks
+- Inline carousel logic
+- Inline page-specific JS for shared components
+- Inline design hacks that bypass site.css
 
 ---
 
 25. DESTINATION LINKING RULE (CRITICAL)
 
-Destination cards MUST link to:
+On EXPERIENCE pages:
+
+- The "Where to Do This" / "Best Destinations" section MUST link to DESTINATION pages via the REGION path structure.
+
+Examples:
 
 EN:
 - /regions/andes/banos/
@@ -293,7 +332,15 @@ ES:
 - /es/regiones/andes/mindo/
 - /es/regiones/costa/
 
-NEVER link destination cards to experience pages.
+Explanation:
+You are experiencing the activity IN the destination, so destination cards MUST route to the destination page, not to experience subpages.
+
+FORBIDDEN:
+- Linking destination cards to /experiences/... or /es/experiencias/...
+- Mixing region-level and experience-level routing inside the same destination grid
+- Creating alternate destination slug systems
+
+This rule is NON-NEGOTIABLE.
 
 ---
 
@@ -304,8 +351,8 @@ NEVER link destination cards to experience pages.
   "Gallery and Highlights"
 
 - MUST be placed:
-  👉 AFTER FAQ  
-  👉 BEFORE FINAL CTA  
+  AFTER FAQ  
+  BEFORE FINAL CTA  
 
 - NEVER:
   - place carousel at very bottom
@@ -316,8 +363,12 @@ NEVER link destination cards to experience pages.
 - MUST match global carousel structure
 - MUST rely ONLY on site.js
 
+This rule is NON-NEGOTIABLE.
+
 ---
 
 FINAL RULE
 
 If ANY rule is violated -> OUTPUT IS INVALID
+
+Return ONLY the downloadable .txt file(s)
