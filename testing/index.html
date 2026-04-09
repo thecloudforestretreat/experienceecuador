@@ -912,7 +912,7 @@
         const block = data[levelKey] || data.intermediate;
         if (hintEl) hintEl.textContent = block.hint || "";
 
-        const htmlOut = block.recs.map((r) => {
+        const html = block.recs.map((r) => {
           const badges = (r.badges || []).map(b => `<span class="badge">${escapeHtml(b)}</span>`).join("");
           const chips = (r.chips || []).map(c => `
             <a class="chip" href="${escapeHtml(c.href)}" aria-label="${escapeHtml(c.label)}">${escapeHtml(c.label)}</a>
@@ -934,7 +934,7 @@
           `;
         }).join("");
 
-        recsEl.innerHTML = htmlOut;
+        recsEl.innerHTML = html;
       }
 
       render(levelEl ? levelEl.value : "intermediate");
