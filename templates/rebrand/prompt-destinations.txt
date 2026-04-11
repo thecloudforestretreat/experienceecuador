@@ -66,24 +66,23 @@ HERO RULE
 - Do not use a carousel as the hero
 - Hero must stay visually consistent with global site styling
 - Do not add page-level hero CSS hacks
-- If a reusable hero class exists, use it
-- If the destination image must be specified directly, keep it minimal and do not introduce page-level CSS blocks
+- Prefer reusable global hero classes when available
+- Inline background-image may be used ONLY as fallback
+- Do NOT duplicate hero styling logic across pages
+
+HERO TAGS GLOBAL RULE
+- Hero tags MUST use:
+  - .heroMetaRow
+  - .heroPill
+- These classes must be styled in global /assets/css/site.css only
+- Do NOT reuse .metaRow / .pillMini inside hero overlays
+- Do NOT create new pill systems
+- Do NOT use inline styling or page-level fixes
 
 TAGS / PILLS RULE
 - Keep destination tags / pills if they match the approved visual system
 - Do not invent alternate pill styling
 - Do not create local styling overrides
-
-HERO TAGS GLOBAL RULE
-- Hero destination tags must NOT reuse generic body-grid pills if they render incorrectly in the hero
-- Use dedicated global hook classes only:
-  - .heroMetaRow
-  - .heroPill
-- These classes must be styled in global /assets/css/site.css only
-- NEVER fix hero tags with page-level CSS
-- NEVER add local <style> blocks
-- NEVER patch hero tags with inline styles
-
 
 WEATHER RULE
 - Do NOT include weather widgets
@@ -116,11 +115,11 @@ CAROUSEL RULE
 - Do NOT remove it
 - Do NOT replace it with static cards
 - Do NOT move it into the hero
-- Destination page carousel placement must follow the approved reference behavior from the locked production system:
-  - Place the carousel near the bottom of the page
+- Must match EXPERIENCE page implementation (experiences/culture/index.html)
+- Placement:
   - After FAQ
   - Before Final CTA
-- Carousel must use the approved shared structure:
+- Structure must use:
   - .carousel
   - .carousel-viewport
   - .carousel-track
@@ -128,19 +127,27 @@ CAROUSEL RULE
   - prev / next buttons
   - dots
   - counter
-- Carousel must be controlled only by site.js
+- Controlled only by site.js
 
 GRID / CARD RULE
-- Keep cards in cards grids
-- Do not mix non-card components into the same grid
-- Do not break spacing with hacks
+- Keep cards in grids only
+- Do not mix non-card elements inside card grids
 - Use existing grid classes only
+- All cards in same grid must maintain equal visual height
+- Avoid long text that breaks alignment
+- Trim content when needed to preserve layout balance
 
 LINK RULES
 - Keep EN / ES parity
 - Use approved site slugs only
-- Region pages must link to valid region, destination, guide, recommendation, and planning URLs
 - Do not invent alternate slug systems
+
+CRITICAL SLUG RULE
+- English:
+  /trip-builder
+- Spanish:
+  /es/planificador-de-viajes/
+- NEVER mix or reuse incorrect versions
 
 LANGUAGE RULE
 - English page in English
