@@ -1,4 +1,4 @@
-DESTINATION PAGE SYSTEM PROMPT V2  
+DESTINATION PAGE SYSTEM PROMPT V2
 STRICT PRODUCTION RULES
 
 You are generating REGION DESTINATION pages for Experience Ecuador.
@@ -24,56 +24,45 @@ GLOBAL SYSTEM RULES
 - Shared interactions must rely on /assets/js/site.js
 - NEVER add inline carousel JS
 - NEVER add page-specific JS for shared components
-- The small approved header/footer injection bootstrap script may remain
+- The approved lightweight header/footer bootstrap script MAY remain when it is already part of the reference implementation
+- When rebuilding a page, match the approved reference file structure as closely as possible unless a rule below explicitly says otherwise
 
 --------------------------------------------------
 HEADER / FOOTER RULE
 --------------------------------------------------
-
 HEADER SYSTEM RULE:
+- Do NOT hardcode header markup
+- Do NOT recreate header structure
+- Do NOT duplicate navigation
+- Do NOT introduce alternate header systems
 
-- This project DOES NOT use:
-  - /assets/includes/header.html
-  - /assets/includes/header-es.html
+REFERENCE-COMPATIBLE HEADER RULE:
+- Destination pages MUST include:
+  <div id="siteHeader" data-current-lang="en"></div>
+  or
+  <div id="siteHeader" data-current-lang="es"></div>
+  depending on language
 
-- DO NOT reference or require those files
+- If the approved reference file uses the lightweight bootstrap injection script for header/footer, preserve that same pattern
+- The allowed reference-compatible bootstrap pattern is:
+  - inject("siteHeader", "/assets/includes/header.html")
+  - inject("siteFooter", "/assets/includes/footer.html")
 
-- Pages MUST rely on the EXISTING global header injection system:
-  - Header is injected dynamically into:
-    #siteHeader
-  - Behavior and interactions are controlled via:
-    /assets/js/site.js
-
-- You MUST include:
-  <div id="siteHeader"></div>
-
-- DO NOT:
-  - hardcode header markup
-  - recreate header structure
-  - duplicate navigation
-  - introduce alternate header systems
-
+- Do NOT require /assets/includes/header-es.html
+- Do NOT invent a second Spanish-only header include path unless the source file already uses one
+- Language handling should come from:
+  - data-current-lang on #siteHeader
+  - the existing site-wide JS/CSS behavior
 
 FOOTER RULE:
-
-- ALL pages MUST use the global footer include system
-
-- Include:
+- ALL pages MUST include:
   <div id="siteFooter"></div>
 
-- Footer content is injected via:
-  /assets/includes/footer.html
+- Footer may be populated by the same approved lightweight bootstrap script used in the reference implementation:
+  - /assets/includes/footer.html
 
-- DO NOT:
-  - hardcode footer HTML
-  - create alternate footer versions
-
-
-INJECTION SCRIPT RULE:
-
-- The standard lightweight injection/bootstrap script MAY be included if already used in the system
-- DO NOT modify or replace it
-- DO NOT create new injection logic
+- Do NOT hardcode footer HTML
+- Do NOT create alternate footer versions
 
 --------------------------------------------------
 PAGE TYPE RULE
@@ -91,6 +80,7 @@ CONTENT SOURCE HIERARCHY
 
 SMART MERGE RULE:
 - Preserve strong destination content
+- Preserve the structural implementation style of the approved reference page
 - Remove weak legacy structure
 - Keep useful links and planning guidance
 - Do NOT duplicate sections
@@ -123,6 +113,8 @@ HERO RULE
 - Use:
   - .heroImage
   - .heroImageInner
+- Match the approved reference implementation style
+- If the reference file uses inline background-image on .heroImage, preserve that pattern
 
 --------------------------------------------------
 HERO TAG / PILL RULE
@@ -146,7 +138,7 @@ WEATHER RULE
 --------------------------------------------------
 - Do NOT include weather widgets
 - Do NOT include forecast cards
-- Do NOT include “best months” UI
+- Do NOT include "best months" UI
 - Do NOT use APIs
 
 --------------------------------------------------
@@ -272,7 +264,7 @@ EN / ES PARITY RULE
 VALIDATION BEFORE OUTPUT
 --------------------------------------------------
 - No <style> blocks
-- No inline JS
+- No inline JS beyond the approved lightweight header/footer bootstrap script if it exists in the reference file
 - Global CSS included
 - site.js included
 - Header mount present (#siteHeader)
@@ -281,12 +273,18 @@ VALIDATION BEFORE OUTPUT
 - Best months removed
 - Carousel present and positioned correctly
 - More Destinations present
+- More Destinations order follows:
+  1. Closest pairing
+  2. Complementary
+  3. Contrast
+  4. Region hub
 - EN / ES parity maintained
 - No duplicated sections
 - No broken links
 - No weak alt text
 - Card text balanced
 - Hero pills valid and limited
+- Output should visually and structurally track the approved reference file
 
 --------------------------------------------------
 END OF PROMPT
