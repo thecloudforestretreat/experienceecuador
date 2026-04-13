@@ -29,18 +29,51 @@ GLOBAL SYSTEM RULES
 --------------------------------------------------
 HEADER / FOOTER RULE
 --------------------------------------------------
-HEADER LANGUAGE RULE:
-- English pages MUST use:
-  /assets/includes/header.html
 
-- Spanish pages MUST use:
-  /assets/includes/header-es.html
+HEADER SYSTEM RULE:
+
+- This project DOES NOT use:
+  - /assets/includes/header.html
+  - /assets/includes/header-es.html
+
+- DO NOT reference or require those files
+
+- Pages MUST rely on the EXISTING global header injection system:
+  - Header is injected dynamically into:
+    #siteHeader
+  - Behavior and interactions are controlled via:
+    /assets/js/site.js
+
+- You MUST include:
+  <div id="siteHeader"></div>
+
+- DO NOT:
+  - hardcode header markup
+  - recreate header structure
+  - duplicate navigation
+  - introduce alternate header systems
+
 
 FOOTER RULE:
-- ALL pages use:
+
+- ALL pages MUST use the global footer include system
+
+- Include:
+  <div id="siteFooter"></div>
+
+- Footer content is injected via:
   /assets/includes/footer.html
 
-- Do NOT introduce alternate header/footer systems
+- DO NOT:
+  - hardcode footer HTML
+  - create alternate footer versions
+
+
+INJECTION SCRIPT RULE:
+
+- The standard lightweight injection/bootstrap script MAY be included if already used in the system
+- DO NOT modify or replace it
+- DO NOT create new injection logic
 
 --------------------------------------------------
 PAGE TYPE RULE
@@ -242,7 +275,8 @@ VALIDATION BEFORE OUTPUT
 - No inline JS
 - Global CSS included
 - site.js included
-- Correct header (EN vs ES)
+- Header mount present (#siteHeader)
+- Footer mount present (#siteFooter)
 - Weather removed
 - Best months removed
 - Carousel present and positioned correctly
