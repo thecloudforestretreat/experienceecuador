@@ -1,146 +1,362 @@
-COLLECTION / SEO LANDING PAGE TEMPLATE
+COLLECTION / SEO LANDING PAGE SYSTEM PROMPT
+STRICT PRODUCTION RULES
 
-SECTION ORDER
+You are generating COLLECTION / SEO LANDING PAGES for Experience Ecuador.
 
+--------------------------------------------------
+OUTPUT REQUIREMENTS
+--------------------------------------------------
+- ALWAYS return COMPLETE, FULL, DROP-IN HTML files
+- NEVER return partial sections
+- NEVER return summaries instead of files
+- Provide .txt files only
+- Output must be production-ready without additional edits
+
+--------------------------------------------------
+GLOBAL SYSTEM RULES
+--------------------------------------------------
+- Use ONLY global CSS:
+  - /assets/css/header.css
+  - /assets/css/footer.css
+  - /assets/css/site.css
+- NEVER use <style> blocks
+- NEVER add page-level CSS files
+- Shared interactions must rely on /assets/js/site.js
+- NEVER add inline component JS
+- NEVER add page-specific JS for shared components
+- The approved lightweight header/footer bootstrap script MAY remain when it is already part of the reference implementation
+- Match the approved reference file structure as closely as possible unless a rule below explicitly says otherwise
+
+--------------------------------------------------
+HEADER / FOOTER RULE
+--------------------------------------------------
+HEADER SYSTEM RULE:
+- Do NOT hardcode header markup
+- Do NOT recreate header structure
+- Do NOT duplicate navigation
+- Do NOT introduce alternate header systems
+
+REFERENCE-COMPATIBLE HEADER RULE:
+- Collection pages MUST include:
+  <div id="siteHeader" data-current-lang="en"></div>
+  or
+  <div id="siteHeader" data-current-lang="es"></div>
+  depending on language
+
+- If the approved reference file uses the lightweight bootstrap injection script for header/footer, preserve that same pattern
+- The allowed reference-compatible bootstrap pattern is:
+  - inject("siteHeader", "/assets/includes/header.html")
+  - inject("siteFooter", "/assets/includes/footer.html")
+
+- Do NOT require /assets/includes/header-es.html
+- Do NOT invent a second Spanish-only header include path
+- Language handling should come from:
+  - data-current-lang on #siteHeader
+  - the existing site-wide JS/CSS behavior
+
+FOOTER RULE:
+- ALL pages MUST include:
+  <div id="siteFooter"></div>
+
+- Footer may be populated by the same approved lightweight bootstrap script used in the reference implementation:
+  - /assets/includes/footer.html
+
+- Do NOT hardcode footer HTML
+- Do NOT create alternate footer versions
+
+--------------------------------------------------
+PAGE TYPE RULE
+--------------------------------------------------
+- These pages are COLLECTION / SEO LANDING PAGES
+- Do NOT use destination-page structure
+- Do NOT use experience-page structure
+- Do NOT use legacy two-column layouts
+
+--------------------------------------------------
+CONTENT GOAL
+--------------------------------------------------
+Each page must:
+- Help users DECIDE, not just read
+- Build internal linking depth
+- Support SEO authority across regions, experiences, and destinations
+- Work cleanly on mobile and desktop
+- Match Experience Ecuador tone and UX patterns
+
+--------------------------------------------------
+COLLECTION PAGE STRUCTURE (MANDATORY ORDER)
+--------------------------------------------------
 1. Hero
 2. Quick Answer Strip
 3. SEO Intro
 4. Top Regions / Destinations
-5. Featured Members
-6. Comparison / How to Choose
-7. Who This Is For
-8. Related Planning Paths
-9. FAQ
-10. Final CTA
+5. Experience Layer
+6. Featured Members
+7. Comparison / How to Choose
+8. Who This Is For
+9. Related Planning Paths
+10. FAQ
+11. Final CTA
 
----
+--------------------------------------------------
+HERO RULE
+--------------------------------------------------
+- Use ONE strong image
+- Must match global styling
+- No page-level hero CSS
+- Use:
+  - .heroImage
+  - .heroImageInner
+- If the reference file uses inline background-image on .heroImage, preserve that pattern
 
-1. HERO SECTION
-- Kicker (short label)
-- H1 (main keyword)
-- 2-3 sentence intro
-- CTA 1 (primary action)
-- CTA 2 (secondary action)
-- 3 trust bullets
-- 1 hero image
+HERO CONTENT:
+- Kicker
+- H1
+- 2 to 3 sentence intro
+- CTA 1
+- CTA 2
+- 3 hero pills
 
----
+--------------------------------------------------
+HERO TAG / PILL RULE
+--------------------------------------------------
+- Use ONLY:
+  - .heroMetaRow
+  - .heroPill
 
-2. QUICK ANSWER STRIP
-- 3 to 5 cards:
+HERO TAG LIMIT:
+- Maximum 3 pills
+- Must represent:
+  1. Experience type
+  2. Positioning
+  3. Trip length or travel style
+
+--------------------------------------------------
+QUICK ANSWER STRIP RULE
+--------------------------------------------------
+- 3 to 5 cards only
+- Must help users choose quickly
+- Typical fields:
   - Best for
   - Top regions
   - Trip length
-  - Traveler type
+  - Travel style
   - Next step
 
----
-
-3. SEO INTRO
-- H2
-- 2 to 4 paragraphs
-- Include keywords naturally
-- Internal links to:
+--------------------------------------------------
+SEO INTRO RULE
+--------------------------------------------------
+- H2 plus 2 to 4 paragraphs
+- Must include internal links to:
   - Trip Builder
-  - Region / Experience page
+  - Relevant region pages
+  - Relevant experience pages
+- Must explain how to choose, not just describe
 
----
-
-4. TOP REGIONS / DESTINATIONS
-- H2
+--------------------------------------------------
+TOP REGIONS / DESTINATIONS RULE
+--------------------------------------------------
 - 3 to 6 cards
-Each card:
-- Image
-- Name
-- Short description
-- CTA link
+- Each card must include:
+  - Name
+  - Short description
+  - Link
+- Use existing grid/card classes only
 
----
+--------------------------------------------------
+EXPERIENCE LAYER RULE
+--------------------------------------------------
+- REQUIRED on all collection pages
+- Must link to relevant experience hubs
+- Usually include:
+  - Nature
+  - Wildlife and Birding
+  - Adventure
+  - Relaxation
 
-5. FEATURED MEMBERS
-- H2
-- 3 to 6 curated cards
-Each card:
-- Image
-- Name
-- Location
-- Category
-- Short summary
-- Best for
-- CTA to member page
+--------------------------------------------------
+FEATURED MEMBERS RULE
+--------------------------------------------------
+- 3 to 6 cards
+- Can include lodge, guide, curated path, or recommendation layer
+- Each card must help the user compare options
+- Keep copy short and balanced
 
----
+--------------------------------------------------
+COMPARISON / HOW TO CHOOSE RULE
+--------------------------------------------------
+- 3 to 4 cards or blocks
+- Must directly help users decide between options
+- Typical logic:
+  - Best for deeper immersion
+  - Best for easier access
+  - Best for comfort
+  - Best for private planning
 
-6. COMPARISON / HOW TO CHOOSE
-- H2
-- 2 to 4 comparison blocks
-Examples:
-- Best for families
-- Best for luxury
-- Best for nature
-- Best for access
+--------------------------------------------------
+WHO THIS IS FOR RULE
+--------------------------------------------------
+- 4 to 5 short audience-fit cards
+- Typical segments:
+  - Couples
+  - Families
+  - Wildlife travelers
+  - First-time travelers
+  - Luxury travelers
+- Keep it practical, not fluffy
 
----
-
-7. WHO THIS IS FOR
-- H2
-- 4 to 5 audience segments
-Examples:
-- Couples
-- Families
-- Birdwatchers
-- First-time travelers
-
----
-
-8. RELATED PLANNING PATHS
-- Links to:
-  - 2 to 4 collection pages
-  - 2 to 4 blog/guides
+--------------------------------------------------
+RELATED PLANNING PATHS RULE
+--------------------------------------------------
+- REQUIRED
+- Must include:
+  - Related collection pages
+  - Related guide pages
   - Trip Builder
+- Must strengthen internal linking and topical authority
 
----
-
-9. FAQ
-- H2
+--------------------------------------------------
+FAQ RULE
+--------------------------------------------------
 - 4 to 6 questions
+- Must align with real search intent
+- Must support FAQ schema
 
----
-
-10. FINAL CTA
-- Short headline
-- 1 supporting line
+--------------------------------------------------
+FINAL CTA RULE
+--------------------------------------------------
+- Headline
+- One supporting line
 - 2 CTA buttons
+- Typical:
+  - Trip Builder
+  - Contact or Explore
 
----
+--------------------------------------------------
+WEATHER / SEASONALITY RULE
+--------------------------------------------------
+- Do NOT include weather
+- Do NOT include "when to visit"
+- Do NOT include seasonal breakdowns
+- Do NOT include best months
+- Do NOT include weather notes
+- Do NOT include climate summaries
+- Do NOT include forecast widgets
 
-IMAGE RULES
-- Hero: 1 image
-- Cards: multiple images
-- Use placeholder for now
+--------------------------------------------------
+LANGUAGE RULE
+--------------------------------------------------
+ENGLISH:
+- Clean
+- Strategic
+- Helpful
+- Non-fluffy
 
----
+SPANISH:
+- Use full natural LATAM / South American Spanish
+- NOT literal translation
+- ALWAYS use proper accents
+- Examples:
+  - Amazonía
+  - planificación
+  - región
+  - guía
+  - Misahuallí (display text only)
+- URLs must remain ASCII-safe
+- Display text must use proper accents
 
-SPACING RULES
-- Tight vertical spacing
-- No empty sections
-- Maintain flow between sections
+--------------------------------------------------
+PLACE NAME ACCURACY RULE
+--------------------------------------------------
+- Always use correct official Ecuador place names
+- Display text must preserve native spelling and accents
+- URL slugs must remain ASCII-safe
 
----
+Example:
+- URL: /es/regiones/amazonia/misahualli/
+- Display text: Misahuallí
 
+--------------------------------------------------
+IMAGE SYSTEM RULE
+--------------------------------------------------
+- Use valid destination-relevant images when available
+- Do NOT replace valid existing images
+- ONLY if a specific image is missing, unavailable, or blank, use this placeholder:
+  /assets/images/EE-OG-Image-1.jpg
+- Never leave blank image blocks
+- Never invent missing image paths
+
+--------------------------------------------------
+OG IMAGE RULE
+--------------------------------------------------
+- For collection / SEO landing pages, always use:
+  https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg
+- Apply to:
+  - og:image
+  - og:image:secure_url
+  - twitter:image
+
+--------------------------------------------------
+INTERNAL LINKING RULES
+--------------------------------------------------
+- Always link to:
+  /trip-builder
+  /best-places-to-visit-in-ecuador/
+  /where-to-stay-in-ecuador/
+
+- Spanish equivalents must use:
+  /es/planificador-de-viajes/
+  /es/mejores-lugares-para-visitar-ecuador/
+  /es/donde-alojarse-ecuador/
+
+- Link to relevant:
+  - Region pages
+  - Destination pages
+  - Experience pages
+  - Related collection pages
+
+- Maintain EN / ES parity
+
+--------------------------------------------------
+LINK LANGUAGE RULE
+--------------------------------------------------
+- English pages must use English internal links
+- Spanish pages must use Spanish internal links
+- Never mix EN and ES links inside the wrong language page unless explicitly required for hreflang tags
+
+--------------------------------------------------
 SEO REQUIREMENTS
+--------------------------------------------------
 - Title tag
 - Meta description
 - Canonical
+- Alternate hreflang tags
 - OG tags
-- Internal linking
-- FAQ schema
 - Breadcrumb schema
+- FAQ schema
 
----
+--------------------------------------------------
+VALIDATION BEFORE OUTPUT
+--------------------------------------------------
+- No <style> blocks
+- No page-level CSS files
+- No inline JS beyond the approved lightweight header/footer bootstrap script
+- Global CSS included
+- site.js included
+- Header mount present with data-current-lang
+- Footer mount present
+- No weather
+- No "when to visit"
+- No best months
+- Proper accents in Spanish
+- Proper place-name spelling
+- Valid image paths only
+- Placeholder used only when an image is truly missing
+- OG image fixed to EE-OG-Image-1.jpg
+- EN / ES parity maintained
+- No broken links
+- No mixed-language internal links
+- Full continuous HTML output only
 
-CONVERSION REQUIREMENTS
-- CTA in hero
-- CTA in members section
-- CTA in planning section
-- Final CTA
+--------------------------------------------------
+END OF PROMPT
+--------------------------------------------------
