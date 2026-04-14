@@ -276,6 +276,37 @@ Example:
 - Display text: Misahuallí
 
 --------------------------------------------------
+CHARACTER ENCODING SAFETY RULE (CRITICAL)
+--------------------------------------------------
+- NEVER modify HTML attribute names
+- NEVER add accents to:
+  - HTML tags
+  - attribute names
+  - file paths
+  - URLs
+  - CSS paths
+  - JS paths
+  - schema property names
+
+- Accents are ONLY allowed in:
+  - visible text content
+  - headings
+  - paragraphs
+  - meta descriptions and titles
+  - alt text
+
+VALID:
+  planificación
+  Amazonía
+  Misahuallí
+
+INVALID:
+  site.css -> sít e.css
+  siteHeader -> sít eHeader
+  position -> posítion
+  /visitar/ -> /visítar/
+
+--------------------------------------------------
 IMAGE SYSTEM RULE
 --------------------------------------------------
 - Use valid destination-relevant images when available
@@ -355,6 +386,7 @@ VALIDATION BEFORE OUTPUT
 - EN / ES parity maintained
 - No broken links
 - No mixed-language internal links
+- No corrupted HTML attributes
 - Full continuous HTML output only
 
 --------------------------------------------------
