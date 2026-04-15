@@ -79,7 +79,7 @@ HERO RULE
 - Include:
   - kicker
   - H1
-  - EXACTLY 1 intro paragraph with 2 to 3 sentences
+  - 2 to 3 sentence intro
   - CTA 1
   - CTA 2
   - 3 hero pills
@@ -117,7 +117,7 @@ SEO INTRO RULE
 - Must include internal links to:
   - Trip Builder
   - Relevant region pages
-  - Relevant experience pages or confirmed Spanish equivalents
+  - Relevant experience pages
   - Best Places to Visit in Ecuador
   - Where to Stay in Ecuador
 
@@ -142,11 +142,7 @@ EXPERIENCE LAYER RULE (NON-NEGOTIABLE)
   - /experiences/wildlife-birding/
   - /experiences/adventure/
   - /experiences/relaxation/
-- Spanish pages must use ONLY confirmed Spanish URLs from sitemap
-- If a generic Spanish experience hub does NOT exist in sitemap, use the nearest confirmed Spanish equivalent that is still experience-oriented, such as:
-  - a collection page
-  - a guide page
-  - a destination page
+- Spanish pages must use ONLY confirmed Spanish experience URLs from sitemap
 - Do NOT omit this section
 
 --------------------------------------------------
@@ -267,11 +263,19 @@ SPANISH:
 SPANISH URL VALIDATION RULE (NON-NEGOTIABLE)
 --------------------------------------------------
 - Spanish pages MUST use ONLY confirmed URLs from sitemap
+- ALWAYS validate links against the uploaded sitemap before output
+- When sitemap contains both a raw page field and a page_link field, use the canonical URL path derived from page_link
 - NEVER manually translate a URL unless it is confirmed
 - NEVER guess Spanish slug structures
-- If unsure, use the confirmed sitemap version only
+- If unsure, use the confirmed sitemap page_link version only
 - This also applies to Spanish experience links
 - If a desired Spanish experience hub does not exist in sitemap, use the nearest confirmed Spanish equivalent instead of inventing a new slug
+- Do NOT preserve a typo or shorthand from a raw sitemap field when the canonical page_link shows the correct live URL
+- Canonical Spanish experience paths must follow the sitemap page_link values, for example:
+  - /es/experiencias/naturaleza/
+  - /es/experiencias/aventura/
+  - /es/experiencias/relajacion/
+  - /es/experiencias/vida-silvestre-y-aves/
 
 --------------------------------------------------
 IMAGE SYSTEM RULE
@@ -313,10 +317,9 @@ VALIDATION BEFORE OUTPUT
 - site.js included
 - Header mount present with data-current-lang
 - Footer mount present
-- Hero intro is 2 to 3 sentences inside a single paragraph
 - Experience Layer included
 - Required global internal links included
-- Spanish URLs validated against sitemap
+- Spanish URLs validated against sitemap using canonical page_link paths
 - Featured Members standardized when needed
 - Cross-collection linking included
 - FAQ count does not exceed 6
