@@ -30,39 +30,19 @@ GLOBAL SYSTEM RULES
 --------------------------------------------------
 HEADER / FOOTER RULE
 --------------------------------------------------
-HEADER SYSTEM RULE:
 - Do NOT hardcode header markup
 - Do NOT recreate header structure
 - Do NOT duplicate navigation
 - Do NOT introduce alternate header systems
-
-REFERENCE-COMPATIBLE HEADER RULE:
 - Collection pages MUST include:
   <div id="siteHeader" data-current-lang="en"></div>
   or
   <div id="siteHeader" data-current-lang="es"></div>
-  depending on language
-
-- If the approved reference file uses the lightweight bootstrap injection script for header/footer, preserve that same pattern
-- The allowed reference-compatible bootstrap pattern is:
+- Preserve the approved lightweight bootstrap pattern:
   - inject("siteHeader", "/assets/includes/header.html")
   - inject("siteFooter", "/assets/includes/footer.html")
-
-- Do NOT require /assets/includes/header-es.html
-- Do NOT invent a second Spanish-only header include path
-- Language handling should come from:
-  - data-current-lang on #siteHeader
-  - the existing site-wide JS/CSS behavior
-
-FOOTER RULE:
-- ALL pages MUST include:
+- Footer must include:
   <div id="siteFooter"></div>
-
-- Footer may be populated by the same approved lightweight bootstrap script used in the reference implementation:
-  - /assets/includes/footer.html
-
-- Do NOT hardcode footer HTML
-- Do NOT create alternate footer versions
 
 --------------------------------------------------
 PAGE TYPE RULE
@@ -73,16 +53,6 @@ PAGE TYPE RULE
 - Do NOT use legacy two-column layouts
 
 --------------------------------------------------
-CONTENT GOAL
---------------------------------------------------
-Each page must:
-- Help users DECIDE, not just read
-- Build internal linking depth
-- Support SEO authority across regions, experiences, and destinations
-- Work cleanly on mobile and desktop
-- Match Experience Ecuador tone and UX patterns
-
---------------------------------------------------
 COLLECTION PAGE STRUCTURE (MANDATORY ORDER)
 --------------------------------------------------
 1. Hero
@@ -90,7 +60,7 @@ COLLECTION PAGE STRUCTURE (MANDATORY ORDER)
 3. SEO Intro
 4. Top Regions / Destinations
 5. Experience Layer
-6. Featured Members
+6. Featured Members or Standardized Recommended Routes
 7. Comparison / How to Choose
 8. Who This Is For
 9. Related Planning Paths
@@ -106,15 +76,13 @@ HERO RULE
 - Use:
   - .heroImage
   - .heroImageInner
-- If the reference file uses inline background-image on .heroImage, preserve that pattern
-
-HERO CONTENT:
-- Kicker
-- H1
-- 2 to 3 sentence intro
-- CTA 1
-- CTA 2
-- 3 hero pills
+- Include:
+  - kicker
+  - H1
+  - 2 to 3 sentence intro
+  - CTA 1
+  - CTA 2
+  - 3 hero pills
 
 --------------------------------------------------
 HERO TAG / PILL RULE
@@ -122,8 +90,6 @@ HERO TAG / PILL RULE
 - Use ONLY:
   - .heroMetaRow
   - .heroPill
-
-HERO TAG LIMIT:
 - Maximum 3 pills
 - Must represent:
   1. Experience type
@@ -134,7 +100,7 @@ HERO TAG LIMIT:
 QUICK ANSWER STRIP RULE
 --------------------------------------------------
 - 3 to 5 cards only
-- Must help users choose quickly
+- Help users choose quickly
 - Typical fields:
   - Best for
   - Top regions
@@ -145,47 +111,61 @@ QUICK ANSWER STRIP RULE
 --------------------------------------------------
 SEO INTRO RULE
 --------------------------------------------------
-- H2 plus 2 to 4 paragraphs
+- H2
+- 2 to 4 paragraphs
+- Must explain how to choose
 - Must include internal links to:
   - Trip Builder
   - Relevant region pages
   - Relevant experience pages
-- Must explain how to choose, not just describe
+  - Best Places to Visit in Ecuador
+  - Where to Stay in Ecuador
 
 --------------------------------------------------
 TOP REGIONS / DESTINATIONS RULE
 --------------------------------------------------
 - 3 to 6 cards
 - Each card must include:
-  - Name
-  - Short description
-  - Link
-- Use existing grid/card classes only
+  - image
+  - name
+  - short comparison description
+  - CTA link
 
 --------------------------------------------------
-EXPERIENCE LAYER RULE
+EXPERIENCE LAYER RULE (NON-NEGOTIABLE)
 --------------------------------------------------
-- REQUIRED on all collection pages
-- Must link to relevant experience hubs
-- Usually include:
-  - Nature
-  - Wildlife and Birding
-  - Adventure
-  - Relaxation
+- REQUIRED on ALL collection pages
+- Must appear after Top Regions / Destinations
+- Must include 3 to 4 cards
+- English pages must link to confirmed experience hubs such as:
+  - /experiences/nature/
+  - /experiences/wildlife-birding/
+  - /experiences/adventure/
+  - /experiences/relaxation/
+- Spanish pages must use ONLY confirmed Spanish experience URLs from sitemap
+- Do NOT omit this section
 
 --------------------------------------------------
 FEATURED MEMBERS RULE
 --------------------------------------------------
-- 3 to 6 cards
-- Can include lodge, guide, curated path, or recommendation layer
-- Each card must help the user compare options
-- Keep copy short and balanced
+- If real members are available, use them
+- If real members are NOT available, standardize the section as:
+  - Recommended Routes
+  - Sample Planning Paths
+  - Curated Route Paths
+- Do NOT invent fake inventory
+- Do NOT use filler cards
+- Cards must still help users decide
 
 --------------------------------------------------
 COMPARISON / HOW TO CHOOSE RULE
 --------------------------------------------------
 - 3 to 4 cards or blocks
-- Must directly help users decide between options
+- Must directly help users decide
+- Use decision language such as:
+  - Best for...
+  - Choose this if...
+  - Best when...
 - Typical logic:
   - Best for deeper immersion
   - Best for easier access
@@ -208,17 +188,41 @@ WHO THIS IS FOR RULE
 RELATED PLANNING PATHS RULE
 --------------------------------------------------
 - REQUIRED
-- Must include:
-  - Related collection pages
-  - Related guide pages
-  - Trip Builder
 - Must strengthen internal linking and topical authority
+- MUST include:
+  - Trip Builder
+  - Best Places to Visit in Ecuador
+  - Where to Stay in Ecuador
+  - 2 to 4 related collection pages
+  - 2 to 4 related guide pages
+- Add cross-collection linking where relevant, for example:
+  - /ecuador-amazon-lodges/
+  - /ecuador-cloud-forest-lodges/
+  - /ecuador-private-tours/
+- Spanish pages must use confirmed Spanish equivalents from sitemap
+
+--------------------------------------------------
+GLOBAL INTERNAL LINKING RULE (NON-NEGOTIABLE)
+--------------------------------------------------
+English pages MUST include:
+- /trip-builder
+- /best-places-to-visit-in-ecuador/
+- /where-to-stay-in-ecuador/
+
+Spanish pages MUST include:
+- /es/planificador-de-viajes/
+- /es/mejores-lugares-para-visitar-ecuador/
+- /es/donde-alojarse-ecuador/
+
+These links must appear naturally in the page, not just once in a footer-like block.
 
 --------------------------------------------------
 FAQ RULE
 --------------------------------------------------
-- 4 to 6 questions
-- Must align with real search intent
+- 4 to 6 questions only
+- Never exceed 6
+- Keep layout consistent
+- Questions must align with real search intent
 - Must support FAQ schema
 
 --------------------------------------------------
@@ -227,9 +231,6 @@ FINAL CTA RULE
 - Headline
 - One supporting line
 - 2 CTA buttons
-- Typical:
-  - Trip Builder
-  - Contact or Explore
 
 --------------------------------------------------
 WEATHER / SEASONALITY RULE
@@ -254,65 +255,24 @@ ENGLISH:
 SPANISH:
 - Use full natural LATAM / South American Spanish
 - NOT literal translation
-- ALWAYS use proper accents
-- Examples:
-  - Amazonía
-  - planificación
-  - región
-  - guía
-  - Misahuallí (display text only)
+- ALWAYS use proper accents in visible text
 - URLs must remain ASCII-safe
 - Display text must use proper accents
 
 --------------------------------------------------
-PLACE NAME ACCURACY RULE
+SPANISH URL VALIDATION RULE (NON-NEGOTIABLE)
 --------------------------------------------------
-- Always use correct official Ecuador place names
-- Display text must preserve native spelling and accents
-- URL slugs must remain ASCII-safe
-
-Example:
-- URL: /es/regiones/amazonia/misahualli/
-- Display text: Misahuallí
-
---------------------------------------------------
-CHARACTER ENCODING SAFETY RULE (CRITICAL)
---------------------------------------------------
-- NEVER modify HTML attribute names
-- NEVER add accents to:
-  - HTML tags
-  - attribute names
-  - file paths
-  - URLs
-  - CSS paths
-  - JS paths
-  - schema property names
-
-- Accents are ONLY allowed in:
-  - visible text content
-  - headings
-  - paragraphs
-  - meta descriptions and titles
-  - alt text
-
-VALID:
-  planificación
-  Amazonía
-  Misahuallí
-
-INVALID:
-  site.css -> sít e.css
-  siteHeader -> sít eHeader
-  position -> posítion
-  /visitar/ -> /visítar/
+- Spanish pages MUST use ONLY confirmed URLs from sitemap
+- NEVER manually translate a URL unless it is confirmed
+- NEVER guess Spanish slug structures
+- If unsure, use the confirmed sitemap version only
 
 --------------------------------------------------
 IMAGE SYSTEM RULE
 --------------------------------------------------
 - Use valid destination-relevant images when available
 - Do NOT replace valid existing images
-- ONLY if a specific image is missing, unavailable, or blank, use this placeholder:
-  /assets/images/EE-OG-Image-1.jpg
+- If a required image is unavailable, use the approved placeholder image provided for that specific task
 - Never leave blank image blocks
 - Never invent missing image paths
 
@@ -325,34 +285,6 @@ OG IMAGE RULE
   - og:image
   - og:image:secure_url
   - twitter:image
-
---------------------------------------------------
-INTERNAL LINKING RULES
---------------------------------------------------
-- Always link to:
-  /trip-builder
-  /best-places-to-visit-in-ecuador/
-  /where-to-stay-in-ecuador/
-
-- Spanish equivalents must use:
-  /es/planificador-de-viajes/
-  /es/mejores-lugares-para-visitar-ecuador/
-  /es/donde-alojarse-ecuador/
-
-- Link to relevant:
-  - Region pages
-  - Destination pages
-  - Experience pages
-  - Related collection pages
-
-- Maintain EN / ES parity
-
---------------------------------------------------
-LINK LANGUAGE RULE
---------------------------------------------------
-- English pages must use English internal links
-- Spanish pages must use Spanish internal links
-- Never mix EN and ES links inside the wrong language page unless explicitly required for hreflang tags
 
 --------------------------------------------------
 SEO REQUIREMENTS
@@ -375,18 +307,15 @@ VALIDATION BEFORE OUTPUT
 - site.js included
 - Header mount present with data-current-lang
 - Footer mount present
+- Experience Layer included
+- Required global internal links included
+- Spanish URLs validated against sitemap
+- Featured Members standardized when needed
+- Cross-collection linking included
+- FAQ count does not exceed 6
 - No weather
-- No "when to visit"
-- No best months
-- Proper accents in Spanish
-- Proper place-name spelling
-- Valid image paths only
-- Placeholder used only when an image is truly missing
-- OG image fixed to EE-OG-Image-1.jpg
-- EN / ES parity maintained
+- No when-to-visit
 - No broken links
-- No mixed-language internal links
-- No corrupted HTML attributes
 - Full continuous HTML output only
 
 --------------------------------------------------
