@@ -89,6 +89,15 @@ Before drafting the HTML body, silently lock this exact package:
 7. New Schema Description
    - Must be the same as the meta description.
 
+8. Publish / Modified Dates
+   - Include datePublished and dateModified in JSON-LD.
+   - Include article:published_time and article:modified_time in the head.
+   - If no explicit date is provided, use the current production date.
+
+9. Schema Keywords and About
+   - Include a compact keywords array with the primary keyword and strongest secondary keywords.
+   - Include an about array for the main country, region, destination, or topic entities.
+
 Apply this package consistently to:
 - <title>
 - meta description
@@ -96,9 +105,14 @@ Apply this package consistently to:
 - og:description
 - twitter:title
 - twitter:description
+- twitter:image:alt
 - JSON-LD headline when relevant
 - JSON-LD name
 - JSON-LD description
+- JSON-LD datePublished
+- JSON-LD dateModified
+- JSON-LD keywords
+- JSON-LD about
 
 ==================================================
 MANDATORY PAGE STRUCTURE
@@ -226,6 +240,9 @@ OG / TWITTER RULE
 - New OG Description must be the same as the meta description.
 - Twitter title must match the SEO title.
 - Twitter description must match the meta description.
+- Include twitter:image:alt.
+- Include og:locale:alternate for the paired language.
+- Include article:published_time and article:modified_time for all blog / guide pages.
 - Use the approved image if no custom image exists.
 
 ==================================================
@@ -238,9 +255,13 @@ Choose the correct primary type:
 - TouristTrip for itinerary-led pages
 - Article for comparison / editorial pages when appropriate
 
+Always include BlogPosting as a supported article schema object in addition to the page-specific schema type.
+The page-specific schema type still matters for semantic clarity, but BlogPosting should be present for broad search-engine compatibility.
+
 Always include:
 - @context
 - @graph
+- BlogPosting
 - primary schema object
 - name
 - description
@@ -248,6 +269,11 @@ Always include:
 - inLanguage
 - mainEntityOfPage
 - image
+- datePublished
+- dateModified
+- keywords
+- about
+- isPartOf
 - author
 - publisher
 - BreadcrumbList
@@ -264,6 +290,8 @@ Schema alignment rules:
 - New Schema Description must be the same as the meta description.
 - FAQPage questions and answers must match the visible FAQ content.
 - Breadcrumb names must match the language of the page.
+- Author and publisher must be Organization objects with name "Experience Ecuador" and url "https://experienceecuador.com/".
+- isPartOf should reference the Experience Ecuador WebSite.
 
 ==================================================
 KEYWORD STRATEGY RULE
@@ -330,6 +358,17 @@ Also link naturally to relevant:
 Minimum linking expectation:
 - 3 required ecosystem links
 - 2 additional context-relevant links
+
+Inbound internal linking workflow:
+- Every new blog / guide page must also identify 3 to 6 existing hub or related pages that should link INTO the new page.
+- Include those suggested inbound links as a short implementation note after the file deliverables, unless the user asks for files only.
+- Priority inbound sources usually include:
+  - Best Things to Do in Ecuador / Mejores cosas que hacer en Ecuador
+  - Best Places to Visit in Ecuador / Mejores lugares para visitar en Ecuador
+  - Where to Stay in Ecuador / Dónde alojarse en Ecuador
+  - relevant region guides
+  - relevant comparison pages
+  - relevant private tour or trip planning pages
 
 Spanish URL rule:
 - Use ONLY sitemap-confirmed Spanish URLs.
@@ -564,7 +603,11 @@ Every file must include, in this order where practical:
 - canonical
 - hreflang alternates for en, es, x-default
 - Open Graph tags
+- og:locale:alternate
+- article:published_time
+- article:modified_time
 - Twitter tags
+- twitter:image:alt
 - icons / manifest / theme color
 - header.css, footer.css, site.css
 - JSON-LD schema
@@ -584,6 +627,15 @@ Before delivering any file, verify all of the following:
 - New OG Description same as meta description
 - New Schema Name equals title with pipe removed
 - New Schema Description same as meta description
+- BlogPosting schema present
+- Page-specific schema present where relevant
+- datePublished and dateModified present
+- article published/modified meta tags present
+- og:locale:alternate present
+- twitter:image:alt present
+- schema keywords present
+- schema about present
+- schema isPartOf present
 - Canonical present
 - Hreflang present
 - Visible EN / ES raw HTML links present
@@ -605,6 +657,7 @@ Before delivering any file, verify all of the following:
 - Real cards, not flat containers
 - Visual rhythm feels consistent with approved Experience Ecuador references
 - Good enough to be reviewed as a near-live candidate
+- Suggested inbound internal links identified when delivering a new page
 
 ==================================================
 REMAINING BLOG PAGE WORKFLOW
@@ -616,18 +669,20 @@ Use this workflow for every remaining blog page:
 3. Lock 3 secondary keywords.
 4. Lock canonical and alternate-language URLs.
 5. Lock Title, Meta Description, H1, New OG Title, New OG Description, New Schema Name, and New Schema Description.
-6. Build the head with SEO, OG, Twitter, canonical, hreflang, and JSON-LD.
-7. Build hero.
-8. Build intro.
-9. Build quick summary.
-10. Build core decision / comparison card section.
-11. Build main support sections.
-12. Add internal ecosystem links naturally.
-13. Add related destination / experience cards.
-14. Add related collections.
-15. Add FAQ and matching FAQPage schema.
-16. Add final CTA.
-17. Run final validation.
-18. Deliver complete downloadable .txt file only.
+6. Lock publish/modified dates, schema keywords, schema about entities, and inbound internal-link targets.
+7. Build the head with SEO, OG, Twitter, article dates, canonical, hreflang, and JSON-LD.
+8. Build hero.
+9. Build intro.
+10. Build quick summary.
+11. Build core decision / comparison card section.
+12. Build main support sections.
+13. Add internal ecosystem links naturally.
+14. Add related destination / experience cards.
+15. Add related collections.
+16. Add FAQ and matching FAQPage schema.
+17. Add final CTA.
+18. Run final validation.
+19. Deliver complete downloadable .txt file only.
+20. Provide suggested inbound links from existing pages unless explicitly asked not to.
 
 END PROMPT
