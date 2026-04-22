@@ -10,6 +10,17 @@ Create a polished, conversion-focused, SEO-maximized member page that can rank f
 
 The page must feel like a real Experience Ecuador guide page, not a thin directory listing.
 
+The page must also function as a standalone acquisition and analytics landing page for the service Experience Ecuador provides: helping travelers discover, compare, contact, and book trusted Ecuador travel businesses. Do not reduce member pages into short profile pages just because metadata and schema are present.
+
+Preserve the strategic purpose of the page:
+
+- Capture organic search demand for the member, destination, category, and experience type
+- Explain how the member fits into Ecuador trip planning
+- Provide enough crawlable content for Google to understand the page independently
+- Provide enough decision support for travelers to click, contact, or continue planning
+- Capture useful Google Analytics events for listing views, CTA clicks, outbound clicks, language clicks, and planning clicks
+- Support Experience Ecuador's broader service model through internal links to trip planning, destination guides, lodging guides, recommendations, and related experiences
+
 ---
 
 REQUIRED INPUTS
@@ -59,6 +70,18 @@ The file must include:
 
 Do not output a partial page.
 Do not rely on JavaScript to create SEO-critical metadata, schema, H1, canonical, hreflang, or bilingual source links.
+Do not shrink the page into a short or compressed version.
+Do not remove analytics instrumentation, rich section structure, internal links, carousel logic, or conversion tracking when generating final member files.
+
+Preferred final member page depth:
+
+- At least 450 lines when formatted readably, unless the existing site template is intentionally shorter
+- At least 9 visible content sections
+- At least 6 crawlable internal links
+- At least 3 member-specific images when available
+- At least 4 FAQ items
+- Dedicated analytics/event tracking script
+- Dedicated carousel/gallery script if the page uses image slides
 
 ---
 
@@ -169,6 +192,8 @@ Use this section order:
 11. FAQ
 12. Final CTA
 
+Do not combine these into only a few generic blocks. Each section should provide unique value: SEO context, traveler decision support, conversion support, or analytics clarity.
+
 ---
 
 1. HERO SECTION
@@ -220,6 +245,15 @@ Include:
 - Why it belongs in an Ecuador itinerary
 
 Avoid generic claims. Tie the member to its location, region, experience type, and user intent.
+
+This section should be substantial enough to stand alone for search. Include member-specific search intent such as:
+
+- Business name + location
+- Category + location
+- Region + destination
+- Experience type
+- Best-fit traveler
+- Nearby trip-planning context
 
 ---
 
@@ -294,6 +328,8 @@ Spanish order:
 2. Costa
 3. Andes
 4. Amazonía
+
+Location context must connect the member to Experience Ecuador planning pages. Include links to relevant city, region, destination, and itinerary-style pages where available.
 
 ---
 
@@ -484,6 +520,54 @@ Final section must include a CTA.
 
 ---
 
+GOOGLE ANALYTICS AND DATA REQUIREMENTS
+
+Every member page should be written as a data-rich standalone landing page.
+
+Include analytics instrumentation for:
+
+- Member/listing page view
+- Visit website click
+- WhatsApp click when WhatsApp exists
+- Email click when email exists
+- Phone click when phone exists
+- Trip builder / planning CTA click
+- Language switch click
+- Related internal link click where practical
+
+Use the existing site-compatible `gtag` pattern when available.
+
+Recommended event names:
+
+- `listing_detail_view`
+- `recommendation_click`
+- `member_language_switch`
+- `member_internal_link_click`
+- `member_trip_builder_click`
+
+Recommended event parameters:
+
+- `listing_id`
+- `listing_title`
+- `listing_region`
+- `listing_location`
+- `listing_category`
+- `cta_type`
+- `page_path`
+- `page_language`
+- `destination_url`
+
+Do not remove analytics scripts from existing member pages unless replacing them with an equal or stronger tracking implementation.
+
+If a contact method is missing, do not create an empty clickable CTA. Instead:
+
+- Omit that CTA, or
+- Link to the trip builder/contact page as the fallback
+
+Do not include empty `href=""` tracking links.
+
+---
+
 ACCESSIBILITY REQUIREMENTS
 
 - One H1 only
@@ -563,4 +647,3 @@ When complete, provide:
 - A short validation summary
 - Any image placeholders that still need replacement
 - Suggested inbound links from other Experience Ecuador pages
-
