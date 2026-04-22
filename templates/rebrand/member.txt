@@ -1,6 +1,160 @@
-MEMBER PAGE TEMPLATE
+EXPERIENCE ECUADOR MEMBER PAGE PROMPT
 
-SECTION ORDER
+Use this prompt to generate full, ready-to-publish member profile pages for Experience Ecuador partners, hotels, lodges, tour operators, restaurants, guides, and experience providers.
+
+The output must be a complete HTML file, not a partial section. It must include the full document structure, complete metadata, crawlable bilingual links, schema, header/footer mounts, content sections, FAQ, and final CTA.
+
+PRIMARY GOAL
+
+Create a polished, conversion-focused, SEO-maximized member page that can rank for branded and location/category intent while helping users understand why the member is worth contacting or booking.
+
+The page must feel like a real Experience Ecuador guide page, not a thin directory listing.
+
+---
+
+REQUIRED INPUTS
+
+Before generating the page, collect or infer:
+
+- Business / member name
+- English URL slug
+- Spanish URL slug
+- Language of this page: EN or ES
+- Page title target
+- Business category
+- Primary location
+- Region: Galapagos, Coast, Andes, or Amazon
+- Short positioning statement
+- Main services or experiences
+- Best audience fit
+- Website URL
+- WhatsApp or phone number
+- Email if available
+- Address if available
+- Opening hours if available
+- Price range if available
+- Real images if available
+- Related Experience Ecuador pages
+- Matching translated page URL
+
+If some business details are missing, do not invent precise claims such as prices, certifications, awards, exact schedules, or review counts. Use careful language and clear placeholders only where needed.
+
+---
+
+OUTPUT REQUIREMENTS
+
+Generate one complete `.html` page per language.
+
+The file must include:
+
+- Full `<!DOCTYPE html>`
+- `<html lang="en">` or `<html lang="es">`
+- Complete `<head>`
+- Complete `<body>`
+- Header mount
+- Main content
+- Footer mount
+- Required scripts
+- Closing `</body>` and `</html>`
+
+Do not output a partial page.
+Do not rely on JavaScript to create SEO-critical metadata, schema, H1, canonical, hreflang, or bilingual source links.
+
+---
+
+MAX SEO REQUIREMENTS
+
+Every member page must be optimized as close to a 10/10 technical and content SEO baseline as possible.
+
+Include all of the following exactly:
+
+1. Title (SEO optimized)
+   - Must be unique
+   - Must include the business name and primary location/category when useful
+   - Must include a `|` separator when appropriate
+   - Ideal length: 45-60 characters
+   - Example: `Mashpi Lodge Ecuador | Cloud Forest Hotel`
+
+2. Meta Description
+   - Must be unique
+   - Must describe the business, location, value, and booking/search intent
+   - Ideal length: 140-160 characters
+   - No keyword stuffing
+
+3. H1
+   - Must align with the title
+   - Can be identical to the title without the brand separator, or a natural page-facing version
+   - Must appear in raw HTML
+   - Only one H1 per page
+
+4. New OG Title
+   - Must be exactly the same text as the `<title>`
+
+5. New OG Description
+   - Must be exactly the same text as the meta description
+
+6. New Schema Name
+   - Must be the title text with the `|` removed
+   - Example:
+     - Title: `Mashpi Lodge Ecuador | Cloud Forest Hotel`
+     - Schema name: `Mashpi Lodge Ecuador Cloud Forest Hotel`
+
+7. New Schema Description
+   - Must be exactly the same text as the meta description
+
+Also include:
+
+- Canonical URL
+- Hreflang EN
+- Hreflang ES
+- Hreflang x-default
+- `meta name="robots" content="index,follow"`
+- Open Graph URL
+- Open Graph type
+- Open Graph image
+- Open Graph image alt
+- Open Graph locale
+- Open Graph alternate locale
+- Twitter card
+- Twitter title, same as title
+- Twitter description, same as meta description
+- Twitter image
+- Twitter image alt
+
+---
+
+BILINGUAL DISCOVERY REQUIREMENT
+
+Every page must have crawlable EN/ES links available in the raw source HTML.
+
+Hreflang is required, but hreflang must not be the only bilingual discovery method.
+
+Therefore, every member page must include:
+
+1. Hreflang tags in the `<head>`
+2. A visible or visually modest language switcher in raw HTML near the top or bottom of the page
+3. A contextual bilingual link in raw HTML, such as:
+   - English page links to Spanish version: `Ver esta página en español`
+   - Spanish page links to English version: `View this page in English`
+
+The bilingual links must be standard `<a href="...">` links in the HTML source.
+Do not inject these links only through JavaScript.
+Do not hide them with `display:none`.
+
+Example:
+
+```html
+<nav class="languageSwitch" aria-label="Language options">
+  <a href="/member-slug/">English</a>
+  <a href="/es/member-slug/">Español</a>
+</nav>
+```
+
+---
+
+REQUIRED PAGE STRUCTURE
+
+Use this section order:
 
 1. Hero
 2. Trust + Key Info Strip
@@ -18,130 +172,395 @@ SECTION ORDER
 ---
 
 1. HERO SECTION
-- Business Name (H1)
-- Location + Category
-- 1–2 sentence positioning
-- Primary CTA (Visit Website / Contact)
-- Secondary CTA (WhatsApp / Inquiry)
-- 3 highlights (best for, location, unique factor)
-- 1 strong image
+
+Required:
+
+- H1 aligned with SEO title
+- Business name
+- Location + category
+- 1-2 sentence positioning statement
+- Primary CTA: Visit Website, Book Direct, or Contact
+- Secondary CTA: WhatsApp, Email, or Inquiry
+- 3 concise highlights:
+  - Best for
+  - Location
+  - Unique factor
+- 1 strong hero image
+- Raw HTML language switcher
+
+The hero must make the member, place, and offer obvious in the first viewport.
 
 ---
 
 2. TRUST + KEY INFO STRIP
-- Quick facts:
-  - Location
-  - Category (Lodge, Tour, Hotel, etc.)
-  - Price range (optional)
-  - Best for
-  - Duration / offering type
+
+Include crawlable text facts:
+
+- Location
+- Region
+- Category
+- Best for
+- Offering type
+- Price range if available
+- Contact method
+
+Use concise labels and avoid empty fields.
 
 ---
 
 3. OVERVIEW
+
+Include:
+
 - H2
 - 2 to 4 paragraphs
 - Clear positioning
-- What makes this business unique
+- What makes the business unique
+- Who it is best for
+- Why it belongs in an Ecuador itinerary
+
+Avoid generic claims. Tie the member to its location, region, experience type, and user intent.
 
 ---
 
 4. GALLERY / MEDIA
-- 4 to 8 images (or video if available)
-- Real visuals of experience
+
+Include:
+
+- 4 to 8 real images when available
+- Descriptive alt text
+- Width and height attributes when known
+- Lazy loading for below-fold images
+
+If images are not finalized, use clear placeholder paths and descriptive alt text that can be replaced later.
 
 ---
 
 5. EXPERIENCE / OFFERING BREAKDOWN
+
+Include:
+
 - H2
-- Sections or cards:
+- Cards or sections for:
   - What they offer
   - Packages or services
-  - Key highlights
+  - Signature highlights
+  - What guests should expect
+
+Use crawlable text. Do not put important offering details only inside images.
 
 ---
 
 6. WHY CHOOSE THIS MEMBER
+
+Include:
+
 - H2
-- 3 to 5 bullets:
-  - Unique differentiators
-  - Value points
-  - Experience quality
+- 3 to 5 differentiators
+- Each differentiator should have a short heading and 1-2 sentences
+
+Focus on concrete value:
+
+- Location advantage
+- Guide or host expertise
+- Specialized access
+- Conservation or community angle if verified
+- Comfort or service level
+- Ease of planning
 
 ---
 
 7. LOCATION CONTEXT
+
+Include:
+
 - H2
-- Where it is located
-- Distance from key destinations
-- Map or directional context
+- Where the member is located
+- Distance or travel context from nearby hubs when known
+- Region context
+- Nearby destinations or experiences
+- Helpful planning note
+
+For regional order references, use:
+
+1. Galapagos
+2. Coast
+3. Andes
+4. Amazon
+
+Spanish order:
+
+1. Galápagos
+2. Costa
+3. Andes
+4. Amazonía
 
 ---
 
-8. REVIEWS / SOCIAL PROOF (OPTIONAL)
-- Testimonials or short quotes
-- Keep concise
+8. REVIEWS / SOCIAL PROOF
+
+Optional.
+
+Only include if real testimonials, ratings, review themes, or press mentions are available.
+
+Do not invent review counts, star ratings, awards, or quotes.
+
+If no reviews are available, replace this section with a concise "Good Fit For" section.
 
 ---
 
 9. RELATED EXPERIENCES
-- Links to:
-  - Experience pages relevant to this member
+
+Include internal links to relevant Experience Ecuador experience pages.
+
+Use descriptive anchor text.
+
+Examples:
+
+- Ecuador wildlife tours
+- Cloud forest experiences
+- Galapagos cruises
+- Amazon lodges
+- Andes cultural tours
+- Family-friendly Ecuador trips
+- Ecuador trip planner
 
 ---
 
 10. RELATED DESTINATIONS
-- Links to:
-  - Destination pages
-  - Region pages
+
+Include internal links to relevant destination and region pages.
+
+Every page should include at least 4 internal links where relevant.
+
+Use a mix of:
+
+- Region page
+- Destination guide
+- Planning guide
+- Experience page
+- Trip builder / inquiry page
+
+Required when relevant:
+
+English:
+
+- `/trip-builder/`
+- `/best-places-to-visit-in-ecuador/`
+- `/where-to-stay-in-ecuador/`
+
+Spanish:
+
+- `/es/planificador-de-viajes/`
+- `/es/mejores-lugares-para-visitar-ecuador/`
+- `/es/donde-alojarse-ecuador/`
 
 ---
 
 11. FAQ
-- 3 to 5 questions
+
+Include 3 to 5 useful FAQs.
+
+FAQs must be specific to the member, category, and location.
+
 Examples:
-- What is included?
-- How do I book?
-- Is it family-friendly?
+
+- What does this member offer?
+- Where is this member located?
+- Is this member good for families?
+- How do I contact or book this member?
+- Can this member fit into a custom Ecuador itinerary?
+
+FAQ answers must be crawlable text in raw HTML.
+FAQ schema must match the visible FAQ content.
 
 ---
 
 12. FINAL CTA
-- Strong conversion push
-- 2 CTAs:
-  - Visit Website
-  - Contact / WhatsApp
+
+Include:
+
+- Strong conversion headline
+- Short supportive copy
+- Primary CTA
+- Secondary CTA
+- Contact links if available
+- Contextual bilingual page link in raw HTML
+
+The CTA should be direct without sounding aggressive.
+
+---
+
+SCHEMA REQUIREMENTS
+
+Include JSON-LD in raw HTML.
+
+Use an `@graph` with:
+
+1. LocalBusiness or the most specific subtype available
+   - Use `Hotel`, `LodgingBusiness`, `TravelAgency`, `TouristInformationCenter`, `Restaurant`, or `LocalBusiness` as appropriate.
+
+2. WebPage
+
+3. FAQPage
+
+4. BreadcrumbList
+
+Required schema alignment:
+
+- Schema `name` = title without `|`
+- Schema `description` = meta description
+
+Recommended schema properties when available:
+
+- `url`
+- `image`
+- `logo`
+- `telephone`
+- `email`
+- `address`
+- `geo`
+- `openingHoursSpecification`
+- `priceRange`
+- `sameAs`
+- `areaServed`
+- `knowsAbout`
+- `makesOffer`
+- `hasMap`
+
+Do not include fake ratings or aggregate reviews.
+Do not include fake coordinates.
+Do not include fake prices.
+
+---
+
+INTERNAL LINKING REQUIREMENTS
+
+Every member page must include:
+
+- A link to the matching translated page in raw HTML
+- A link to the trip builder or contact page
+- A link to the relevant region page
+- A link to the relevant destination page if one exists
+- A link to at least one relevant planning guide
+- A link to at least one related experience or category page
+
+Use natural, descriptive anchor text.
+
+Avoid repeating the same anchor text too many times.
 
 ---
 
 IMAGE RULES
-- Hero: 1 image
-- Gallery: multiple images
-- Use real images whenever possible
 
----
+- Hero: 1 strong image
+- Gallery: 4 to 8 images if available
+- Use real member images whenever possible
+- All images need descriptive alt text
+- Use WebP/JPG/PNG paths already compatible with the site
+- If final images are pending, use replaceable placeholder paths and mark them clearly in comments
 
-SPACING RULES
-- Tight layout
-- No empty gaps
-- Content flows directly
-
----
-
-SEO REQUIREMENTS
-- Title tag (Business + Location + Category)
-- Meta description
-- Canonical
-- OG tags
-- Structured data (LocalBusiness recommended)
-- Internal linking
+Do not use stock-like generic imagery when real member images exist.
 
 ---
 
 CONVERSION REQUIREMENTS
-- Click tracking:
-  - Website click
-  - WhatsApp click
-  - Email click
-- CTA in hero
-- CTA in final section
+
+Include click tracking attributes for:
+
+- Website click
+- WhatsApp click
+- Email click
+- Phone click if available
+
+Use simple attributes compatible with the current site pattern, such as:
+
+```html
+<a href="https://example.com" data-track="member_website_click">Visit Website</a>
+```
+
+Hero must include a CTA.
+Final section must include a CTA.
+
+---
+
+ACCESSIBILITY REQUIREMENTS
+
+- One H1 only
+- Logical H2/H3 hierarchy
+- Descriptive link text
+- Descriptive image alt text
+- Buttons/links must be accessible as anchors when they navigate
+- Do not rely only on color for meaning
+- Use `aria-label` only when visible text is not enough
+
+---
+
+TECHNICAL REQUIREMENTS
+
+Use the same base site dependencies:
+
+```html
+<link rel="stylesheet" href="/assets/css/header.css" />
+<link rel="stylesheet" href="/assets/css/footer.css" />
+<link rel="stylesheet" href="/assets/css/site.css" />
+```
+
+Use header/footer mounts:
+
+```html
+<div id="siteHeader" data-current-lang="en"></div>
+<div id="siteFooter"></div>
+```
+
+or for Spanish:
+
+```html
+<div id="siteHeader" data-current-lang="es"></div>
+<div id="siteFooter"></div>
+```
+
+Include the existing site script if used by the site:
+
+```html
+<script src="/assets/js/site.js"></script>
+```
+
+The page must still contain crawlable primary content, bilingual links, and SEO metadata even if JavaScript does not run.
+
+---
+
+QUALITY CHECK BEFORE FINAL OUTPUT
+
+Before delivering the file, verify:
+
+- Full HTML document is present
+- Title is SEO optimized
+- Meta description is 140-160 characters when possible
+- H1 aligns with title
+- OG title exactly matches title
+- OG description exactly matches meta
+- Twitter title exactly matches title
+- Twitter description exactly matches meta
+- Schema name is title without `|`
+- Schema description exactly matches meta
+- Canonical is correct
+- Hreflang EN/ES/x-default are correct
+- Raw-source EN/ES links exist in visible HTML
+- Internal links are crawlable raw HTML anchors
+- FAQ schema matches visible FAQ
+- No fake review/rating data
+- No unfinished placeholder copy unless images/details are genuinely pending
+- File closes with `</body>` and `</html>`
+
+---
+
+FINAL DELIVERY FORMAT
+
+When complete, provide:
+
+- The full generated `.html` file
+- A short validation summary
+- Any image placeholders that still need replacement
+- Suggested inbound links from other Experience Ecuador pages
+
