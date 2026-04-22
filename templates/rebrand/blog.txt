@@ -84,6 +84,18 @@ Every page must explicitly produce and apply these fields:
    - Same as meta description.
    - Use in JSON-LD "description".
 
+8. Publish / Modified Dates
+   - Use in article:published_time and article:modified_time.
+   - Use in JSON-LD datePublished and dateModified.
+
+9. Schema Keywords
+   - Use primary keyword and strongest secondary keywords.
+   - Keep compact and natural.
+
+10. Schema About
+   - Use the main country, region, destination, experience, or topic entities.
+   - Prefer Place objects for destinations and Thing objects for concepts.
+
 ==================================================
 MANDATORY PAGE STRUCTURE
 ==================================================
@@ -144,6 +156,10 @@ Lock:
 - New OG Description
 - New Schema Name
 - New Schema Description
+- publish date
+- modified date
+- schema keywords
+- schema about entities
 
 7. CARD RHYTHM
 Choose where cards should appear:
@@ -507,6 +523,9 @@ OG / TWITTER
 - New OG Description must equal Meta Description.
 - Twitter title must equal Title.
 - Twitter description must equal Meta Description.
+- Include twitter:image:alt.
+- Include og:locale:alternate for the paired language.
+- Include article:published_time and article:modified_time.
 - Must include the approved OG image when no custom image exists.
 
 CANONICAL
@@ -529,9 +548,13 @@ Use the correct type depending on page intent:
 - TouristTrip for itinerary / trip recommendation pages
 - Article for comparison / editorial pages when more appropriate
 
+Always include BlogPosting as a supported article schema object in addition to the page-specific schema type.
+The page-specific schema type still helps describe the content, but BlogPosting should be present for broad search-engine compatibility.
+
 Always include:
 - @context
 - @graph
+- BlogPosting
 - primary schema object
 - name
 - description
@@ -541,6 +564,11 @@ Always include:
 - publisher
 - author
 - image
+- datePublished
+- dateModified
+- keywords
+- about
+- isPartOf
 - BreadcrumbList
 
 If FAQ exists:
@@ -551,6 +579,14 @@ Schema workflow rule:
 - New Schema Description = meta description.
 - Schema language must match the page language.
 - Breadcrumb language must match the page language.
+- Author and publisher must be Organization objects with name "Experience Ecuador" and url "https://experienceecuador.com/".
+- isPartOf should reference the Experience Ecuador WebSite.
+
+INBOUND INTERNAL LINKING NOTE
+- The generated page must include strong outgoing internal links.
+- The workflow must also identify 3 to 6 existing pages that should link INTO this new page.
+- Priority inbound sources usually include relevant hub pages, region guides, comparison pages, private tour pages, and planning pages.
+- If the user asks for downloadable files only, keep this as a brief note after the files are delivered.
 
 ==================================================
 KEYWORD STRATEGY
@@ -659,6 +695,7 @@ Use this skeleton as the production starting point. Replace bracketed placeholde
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Experience Ecuador" />
   <meta property="og:locale" content="[en_US|es_EC]" />
+  <meta property="og:locale:alternate" content="[paired locale: es_EC|en_US]" />
   <meta property="og:title" content="[New OG Title: same as Title]" />
   <meta property="og:description" content="[New OG Description: same as Meta Description]" />
   <meta property="og:url" content="[Canonical URL]" />
@@ -668,11 +705,14 @@ Use this skeleton as the production starting point. Replace bracketed placeholde
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="[Image alt text]" />
+  <meta property="article:published_time" content="[YYYY-MM-DD]" />
+  <meta property="article:modified_time" content="[YYYY-MM-DD]" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="[New OG Title: same as Title]" />
   <meta name="twitter:description" content="[New OG Description: same as Meta Description]" />
   <meta name="twitter:image" content="[OG Image URL]" />
+  <meta name="twitter:image:alt" content="[Image alt text]" />
 
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -689,6 +729,26 @@ Use this skeleton as the production starting point. Replace bracketed placeholde
     "@context":"https://schema.org",
     "@graph":[
       {
+        "@type":"BlogPosting",
+        "headline":"[New Schema Name: Title with pipe removed]",
+        "name":"[New Schema Name: Title with pipe removed]",
+        "description":"[New Schema Description: same as Meta Description]",
+        "url":"[Canonical URL]",
+        "inLanguage":"[en|es]",
+        "mainEntityOfPage":"[Canonical URL]",
+        "image":"[OG Image URL]",
+        "datePublished":"[YYYY-MM-DD]",
+        "dateModified":"[YYYY-MM-DD]",
+        "keywords":["[Primary keyword]","[Secondary keyword 1]","[Secondary keyword 2]","[Secondary keyword 3]"],
+        "about":[
+          {"@type":"Place","name":"[Primary place or country]"},
+          {"@type":"Thing","name":"[Primary topic or experience]"}
+        ],
+        "isPartOf":{"@type":"WebSite","name":"Experience Ecuador","url":"https://experienceecuador.com/"},
+        "author":{"@type":"Organization","name":"Experience Ecuador","url":"https://experienceecuador.com/"},
+        "publisher":{"@type":"Organization","name":"Experience Ecuador","url":"https://experienceecuador.com/"}
+      },
+      {
         "@type":"[TravelGuide|TouristTrip|Article]",
         "headline":"[H1 or title without value phrase when appropriate]",
         "name":"[New Schema Name: Title with pipe removed]",
@@ -697,8 +757,16 @@ Use this skeleton as the production starting point. Replace bracketed placeholde
         "inLanguage":"[en|es]",
         "mainEntityOfPage":"[Canonical URL]",
         "image":"[OG Image URL]",
-        "author":{"@type":"Organization","name":"Experience Ecuador"},
-        "publisher":{"@type":"Organization","name":"Experience Ecuador"}
+        "datePublished":"[YYYY-MM-DD]",
+        "dateModified":"[YYYY-MM-DD]",
+        "keywords":["[Primary keyword]","[Secondary keyword 1]","[Secondary keyword 2]","[Secondary keyword 3]"],
+        "about":[
+          {"@type":"Place","name":"[Primary place or country]"},
+          {"@type":"Thing","name":"[Primary topic or experience]"}
+        ],
+        "isPartOf":{"@type":"WebSite","name":"Experience Ecuador","url":"https://experienceecuador.com/"},
+        "author":{"@type":"Organization","name":"Experience Ecuador","url":"https://experienceecuador.com/"},
+        "publisher":{"@type":"Organization","name":"Experience Ecuador","url":"https://experienceecuador.com/"}
       },
       {
         "@type":"FAQPage",
@@ -901,6 +969,15 @@ Before delivering any file, verify all of the following:
 - New OG Description same as meta description.
 - New Schema Name equals title with pipe removed.
 - New Schema Description same as meta description.
+- BlogPosting schema present.
+- Page-specific schema present where relevant.
+- datePublished and dateModified present.
+- article published/modified meta tags present.
+- og:locale:alternate present.
+- twitter:image:alt present.
+- schema keywords present.
+- schema about present.
+- schema isPartOf present.
 - Canonical present.
 - Hreflang present.
 - Visible EN / ES raw HTML links present.
@@ -922,6 +999,7 @@ Before delivering any file, verify all of the following:
 - Real cards, not fake flat containers.
 - Visual rhythm feels consistent with approved Experience Ecuador references.
 - Page is good enough to be reviewed as a near-live candidate.
+- Suggested inbound internal links identified for implementation on existing pages.
 
 ==================================================
 REMAINING BLOG PAGE WORKFLOW
@@ -932,18 +1010,20 @@ Use this workflow for each remaining blog page:
 2. Lock primary + secondary keywords.
 3. Lock canonical and language alternate URLs.
 4. Lock Title, Meta Description, H1, New OG Title, New OG Description, New Schema Name, and New Schema Description.
-5. Build head metadata and schema.
-6. Build hero.
-7. Build intro.
-8. Build summary.
-9. Build strongest decision / comparison card section.
-10. Build main decision-support sections.
-11. Add internal ecosystem links naturally.
-12. Add related destination cards.
-13. Add related collections.
-14. Add FAQ.
-15. Add CTA.
-16. Run final validation.
-17. Deliver complete downloadable .txt file only.
+5. Lock publish/modified dates, schema keywords, schema about entities, and inbound internal-link targets.
+6. Build head metadata and schema.
+7. Build hero.
+8. Build intro.
+9. Build summary.
+10. Build strongest decision / comparison card section.
+11. Build main decision-support sections.
+12. Add internal ecosystem links naturally.
+13. Add related destination cards.
+14. Add related collections.
+15. Add FAQ.
+16. Add CTA.
+17. Run final validation.
+18. Deliver complete downloadable .txt file only.
+19. Provide suggested inbound links from existing pages unless the user explicitly requests files only.
 
 END TEMPLATE
