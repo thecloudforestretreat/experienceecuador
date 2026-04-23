@@ -1405,6 +1405,243 @@ img{
 }
 
 /* ==========================================================================
+   FAQ Pages
+   Scoped FAQ styles for /faqs/ and /es/preguntas-frecuentes/.
+   ========================================================================== */
+
+.faqPageGrid{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);
+  gap:24px;
+  align-items:start;
+  margin:28px 0 42px;
+}
+
+.faqPanel,
+.faqAsidePanel{
+  background:#fff;
+  border-radius:22px;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+
+.faqPanel{
+  padding:24px;
+}
+
+.faqPanel h2,
+.faqAsidePanel h2{
+  font-family:Montserrat,Inter,sans-serif;
+  color:var(--brand-blue-dark);
+  font-size:22px;
+  line-height:1.2;
+  font-weight:800;
+  margin:0 0 16px;
+  letter-spacing:0;
+}
+
+.faqList{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.faqList details{
+  background:#fff;
+  border:1px solid rgba(3,78,162,.14);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 12px 34px rgba(3,78,162,.08);
+}
+
+.faqList details[open]{
+  border-color:rgba(3,78,162,.32);
+}
+
+.faqList summary{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  cursor:pointer;
+  padding:18px 18px 17px;
+  color:var(--brand-blue-dark);
+  font-family:Montserrat,Inter,sans-serif;
+  font-weight:800;
+  line-height:1.25;
+}
+
+.faqList summary::-webkit-details-marker{
+  display:none;
+}
+
+.faqQuestion{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  min-width:0;
+}
+
+.faqBadge{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:rgba(3,78,162,.10);
+  color:var(--brand-blue);
+  font-size:13px;
+  font-weight:900;
+}
+
+.faqChevron{
+  flex:0 0 auto;
+  width:12px;
+  height:12px;
+  border-right:3px solid var(--brand-blue);
+  border-bottom:3px solid var(--brand-blue);
+  transform:rotate(45deg);
+  transition:transform .2s ease;
+  margin-right:2px;
+}
+
+.faqList details[open] .faqChevron{
+  transform:rotate(225deg);
+  margin-top:6px;
+}
+
+.faqAnswer{
+  padding:0 18px 18px 56px;
+  color:#2a2f36;
+  font-size:15px;
+  line-height:1.72;
+}
+
+.faqAnswer p{
+  margin:0;
+}
+
+.faqAnswer a{
+  color:var(--brand-blue);
+  font-weight:800;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+.faqNotes{
+  margin-top:18px;
+}
+
+.faqNotes p{
+  margin:0 0 12px;
+  color:#2a2f36;
+  font-size:15px;
+  line-height:1.7;
+}
+
+.faqAsideStack{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.faqAsidePanel{
+  padding:22px;
+}
+
+.faqAsidePanel p{
+  color:#586474;
+  font-size:14.5px;
+  line-height:1.65;
+  margin:0 0 14px;
+}
+
+.faqAsidePanel ul{
+  margin:0;
+  padding-left:19px;
+  color:#2a2f36;
+  line-height:1.7;
+  font-size:14.5px;
+}
+
+.faqLinkList{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.faqPillLink{
+  display:block;
+  border:1px solid rgba(3,78,162,.14);
+  border-radius:16px;
+  background:rgba(3,78,162,.04);
+  padding:13px 14px;
+  color:var(--brand-blue-dark);
+  font-weight:900;
+  line-height:1.25;
+}
+
+.faqPillLink span{
+  display:block;
+  color:#586474;
+  font-size:12.5px;
+  font-weight:700;
+  margin-top:4px;
+}
+
+.faqEmailRow{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  padding:13px 14px;
+  border-radius:16px;
+  border:1px solid rgba(3,78,162,.14);
+  background:#fff;
+}
+
+.faqEmailRow a{
+  color:var(--brand-blue-dark);
+  font-weight:900;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+.faqSideImage{
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+  background:#fff;
+}
+
+.faqSideImage img{
+  display:block;
+  width:100%;
+  height:auto;
+  user-select:none;
+  pointer-events:none;
+}
+
+@media(max-width:900px){
+  .faqPageGrid{
+    grid-template-columns:1fr;
+    margin-top:22px;
+  }
+
+  .faqPanel{
+    padding:18px;
+  }
+
+  .faqAnswer{
+    padding-left:18px;
+  }
+}
+
+/* ==========================================================================
    Contact Pages
    Scoped contact styles for /contact/ and /contacto/.
    ========================================================================== */
