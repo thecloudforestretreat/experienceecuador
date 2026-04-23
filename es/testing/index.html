@@ -340,6 +340,13 @@
         status.textContent = msg;
         status.classList.add("show");
       }
+      function publicErrorMessage(data, fallback){
+        var raw = (data && (data.email_error || data.message)) ? String(data.email_error || data.message) : "";
+        if(/TURNSTILE|SECRET|TOKEN|ENV|CONFIG/i.test(raw)){
+          return "No pudimos verificar la protección anti-spam. Intenta de nuevo en un momento o escríbenos directamente.";
+        }
+        return raw || fallback;
+      }
       if(form){
         ["first_name", "last_name"].forEach(function(id){
           var el = document.getElementById(id);
@@ -387,10 +394,10 @@
             if(data && data.ok){
               setStatus("success", "Enviado. Recibimos tu mensaje y te responderemos pronto.");
             }else{
-              setStatus("error", "No se pudo enviar. " + ((data && (data.email_error || data.message)) || "Intenta de nuevo."));
+              setStatus("error", "No se pudo enviar. " + publicErrorMessage(data, "Intenta de nuevo."));
             }
           }).catch(function(err){
-            setStatus("error", "No se pudo enviar. " + String(err || ""));
+            setStatus("error", "No se pudo enviar. Intenta de nuevo en un momento o escríbenos directamente.");
           }).finally(function(){
             if(submitBtn){
               submitBtn.disabled = false;
