@@ -45,7 +45,9 @@ CSS / IMPLEMENTATION RULE
 - Do not ship large page-level <style> blocks in production HTML.
 - Move repeated support-page styles into a shared stylesheet such as /assets/css/utility-pages.css or merge them into /assets/css/site.css.
 - HTML files should link the shared stylesheet instead of carrying the full CSS block.
-- Use one header/footer include system only. If /assets/js/site.js handles includes, do not also add custom fetch injection scripts.
+- Header/footer includes must render on file preview and live pages.
+- Current site standard: use a guarded include loader for #siteHeader and #siteFooter if the containers are still empty, then append /assets/js/site.js after the include attempt finishes.
+- The guarded loader must check whether the container already has children/text before fetching, preventing double-render if site.js later handles includes.
 
 COMMON STRUCTURE
 1. Raw language switch links
@@ -149,6 +151,11 @@ Recommended trust copy:
 FAQ PAGE
 Structure:
 - grouped questions by category
+- use FAQPage schema with the same visible questions and answers on the page
+- keep the body H1 natural and aligned with the title, not only "FAQ"
+- use the final route pair /faqs/ and /es/preguntas-frecuentes/ when generating the Experience Ecuador FAQ pages
+- include crawlable language links in the body plus hreflang in the head
+- do not include large inline CSS blocks; use scoped FAQ classes in /assets/css/site.css
 
 Categories:
 - Planning
@@ -162,6 +169,9 @@ Each item:
 
 SEO:
 - strong FAQPage schema opportunity
+- title, OG title, and Twitter title must match
+- meta description, OG description, Twitter description, and schema description must match
+- schema name should be the clean page name without a pipe, for example "Ecuador Travel FAQs" or "Preguntas Frecuentes Ecuador"
 
 CONTACT PAGE
 Structure:
@@ -247,6 +257,6 @@ Before publishing:
 - no generic OG placeholder image when a page image exists
 - no TODO, FIXME, undefined, or broken typo strings
 - no large inline <style> blocks in production HTML
-- only one header/footer include system is used
+- header/footer containers are present and a guarded include loader is present unless site.js is confirmed to inject them
 - layout keeps complete card rows
 - page ends with valid closing body and html tags
