@@ -1,16 +1,18 @@
-UTILITY / SUPPORT TEMPLATE
+UTILITY / SUPPORT TEMPLATE - SEO UPDATED
 
 PURPOSE
-Utility / Support pages are not SEO drivers, but they are CRITICAL for:
+Utility / Support pages are not always primary SEO drivers, but they are critical for:
 - trust
 - conversions
 - user confidence
 - legal compliance
 - reducing friction
+- internal linking support
 
-These pages support the ecosystem.
+These pages support the Experience Ecuador ecosystem.
 
 They include:
+- About
 - FAQ
 - Contact
 - Transportation
@@ -33,49 +35,120 @@ These pages should feel:
 - direct
 - easy to scan
 
-NOT:
+Not:
 - overly designed
 - cluttered
 - marketing-heavy
 
------------------------------------
+CSS / IMPLEMENTATION RULE
+- Prefer shared global CSS classes from /assets/css/site.css, /assets/css/header.css, and /assets/css/footer.css.
+- Do not ship large page-level <style> blocks in production HTML.
+- Move repeated support-page styles into a shared stylesheet such as /assets/css/utility-pages.css or merge them into /assets/css/site.css.
+- HTML files should link the shared stylesheet instead of carrying the full CSS block.
+- Header/footer includes must render on file preview and live pages.
+- Current site standard: load /assets/js/site.js, then use a guarded include loader for #siteHeader and #siteFooter if the containers are still empty.
+- The guarded loader must check whether the container already has children/text before fetching, preventing double-render if site.js later handles includes.
 
 COMMON STRUCTURE
+1. Raw language switch links
+2. Hero, minimal
+3. Page content, structured blocks
+4. Internal link support row or CTA
+5. Footer
 
-1. Hero (minimal)
-2. Page Content (structured blocks)
-3. CTA (optional depending on page)
+REQUIRED SEO FIELDS
+Every utility/support page must include:
+- Title: SEO optimized.
+- Meta Description: unique and aligned with the page language.
+- H1: aligned with the title but written naturally for humans.
+- New OG Title: exactly the same as the title.
+- New OG Description: exactly the same as the meta description.
+- New Schema Name: title without the pipe character.
+- New Schema Description: exactly the same as the meta description.
 
------------------------------------
+Important H1 rule:
+- Do not force the full title-without-pipe phrase into the visible H1 if it sounds awkward.
+- The H1 should be clean, readable, and trust-building.
+- Example title: About Experience Ecuador | Smarter Ecuador Trip Planning.
+- Example H1: About Experience Ecuador.
 
-1. HERO
+Important schema name exception:
+- For entity/trust pages such as About, Contact, Partners, and Join, use the clean entity/page name for schema name.
+- Example About schema name: About Experience Ecuador.
+- Example Spanish About schema name: Sobre Experience Ecuador.
+- For article, blog, guide, member, planning, and spotlight pages, keep using title without the pipe character unless it creates an unnatural entity signal.
 
+BILINGUAL DISCOVERY
+Every page must include:
+- canonical URL
+- hreflang en
+- hreflang es
+- hreflang x-default
+- crawlable raw-source EN/ES links in the HTML body
+
+Important:
+- Hreflang is required, but it must not be the only bilingual discovery method.
+- Do not rely only on JavaScript-injected navigation for English/Spanish discovery.
+
+STRUCTURED DATA
+Use JSON-LD where appropriate.
+
+Default utility/support schema:
+- WebPage
+- BreadcrumbList
+
+Page-specific schema:
+- About: add Organization
+- FAQ: add FAQPage
+- Contact: add ContactPage and Organization if useful
+- Transportation: add WebPage with rich about/mentions
+- Terms / Privacy: keep simple WebPage and BreadcrumbList
+- Join / Partners: add Organization and/or Service where appropriate
+
+Schema rules:
+- WebPage name should normally be the title without "|".
+- For entity/trust pages, WebPage name should use the clean page/entity name instead.
+- WebPage description must exactly match the meta description.
+- JSON-LD must parse cleanly.
+
+HERO
 Purpose:
-- establish page purpose quickly
+- Establish page purpose quickly.
 
 Content:
 - H1
 - 1 short sentence
 
-Example:
-H1: Frequently Asked Questions
-Copy: Answers to common questions about planning a trip to Ecuador.
-
 Rules:
-- very compact
-- no large images required
+- compact
+- no oversized hero
 - no wasted space
 
------------------------------------
+PAGE CONTENT STRUCTURE
+This varies by page type.
 
-2. PAGE CONTENT STRUCTURE
+ABOUT PAGE
+Structure:
+- short mission paragraph
+- what Experience Ecuador is building
+- trust paragraph explaining the Ecuador-only focus, curated approach, and practical planning value
+- who it helps
+- what users can expect next
+- internal links to regions, recommendations, and trip builder
 
-This varies by page type:
+Recommended About page titles:
+- EN: About Experience Ecuador | Smarter Ecuador Trip Planning
+- ES: Sobre Experience Ecuador | Planificación Inteligente
 
------------------------------------
+Recommended About page H1s:
+- EN: About Experience Ecuador
+- ES: Sobre Experience Ecuador
+
+Recommended trust copy:
+- EN: We focus only on Ecuador, so every page can stay practical, locally relevant, and easier to use when comparing routes, seasons, and travel styles.
+- ES: Nos enfocamos solo en Ecuador para que cada página sea práctica, localmente relevante y útil al comparar rutas, temporadas y estilos de viaje.
 
 FAQ PAGE
-
 Structure:
 - grouped questions by category
 
@@ -86,184 +159,96 @@ Categories:
 - Logistics
 
 Each item:
-- question (bold or expandable)
+- question
 - short answer
 
-Rules:
-- scannable
-- no long paragraphs
-- optional accordion UI
-
 SEO:
-- strong FAQ schema opportunity
-
------------------------------------
+- strong FAQPage schema opportunity
 
 CONTACT PAGE
-
 Structure:
 - short intro
 - contact methods
-
-Include:
-- email
-- form (optional)
 - response expectations
-
-Optional:
-- WhatsApp or messaging CTA
-
-Tone:
-- friendly
-- direct
-
------------------------------------
+- optional WhatsApp or messaging CTA
 
 TRANSPORTATION PAGE
-
 Structure:
 - overview
-- transport types
-
-Sections:
 - flights
 - private transport
 - buses
 - internal travel tips
-
-Include:
-- practical advice
 - internal links to regions
 
------------------------------------
-
 PRIVACY POLICY / TERMS
-
 Structure:
 - simple legal layout
-
-Rules:
-- clean typography
-- readable spacing
+- readable sections
 - no design distractions
 
------------------------------------
-
 PARTNERS PAGE
-
-Purpose:
-- showcase collaborations
-
 Structure:
 - intro
-- partner logos or cards
+- partner cards or logos
 - short descriptions
-
-Optional:
-- link to member pages
-
------------------------------------
+- links to member pages where relevant
 
 JOIN / BECOME A MEMBER
-
-Purpose:
-- monetization
-
 Structure:
 - value proposition
 - benefits
 - who it is for
-- CTA
-
-Sections:
-- why join
-- what you get
 - how it works
 - CTA button
 
-Tone:
-- clear and persuasive
-- not aggressive
-
------------------------------------
-
-3. CTA (OPTIONAL)
-
-Used on:
-- FAQ
+INTERNAL LINKING
+Each utility/support page should include crawlable links where relevant to:
+- Regions
+- Experiences
+- Recommendations
+- Trip Builder / Planificador
 - Contact
-- Join
+- FAQ
 
-Examples:
-- Start Planning Your Trip
-- Explore Regions
-- Apply to Join
-
------------------------------------
+For About pages, include a balanced 3-card row:
+- Regions
+- Recommendations
+- Trip Builder
 
 SPACING RULES
-
 - minimal vertical spacing
 - no empty sections
 - tight layout
 - prioritize readability
-
------------------------------------
+- if a section uses 3 columns, keep complete rows of 3 cards only
 
 MOBILE-FIRST RULES
-
 - stacked layout
 - short sections
 - easy tap targets
-- collapsible FAQs
-
------------------------------------
+- collapsible FAQs if needed
 
 DESKTOP RULES
-
-- narrow content width
-- centered layout
 - readable line length
+- centered or balanced layout
+- no orphan cards
 
------------------------------------
-
-SEO REQUIREMENTS
-
-Only apply where relevant:
-- FAQ page (high SEO value)
-- Transportation page (medium SEO value)
-
-Include:
-- proper headings
-- internal links
-
------------------------------------
-
-INTERNAL LINKING
-
-Use these pages to link back to:
-- regions
-- experiences
-- planning pages
-- trip builder
-
------------------------------------
-
-CONTENT TONE
-
-- clear
-- helpful
-- trustworthy
-- concise
-
------------------------------------
-
-FINAL NOTE
-
-These pages should feel like:
-- support infrastructure
-- trust builders
-
-Not:
-- marketing pages
-- content-heavy SEO pages
+VALIDATION CHECKLIST
+Before publishing:
+- title equals OG title and Twitter title
+- meta description equals OG description and Twitter description
+- H1 aligns with title but does not sound repetitive or robotic
+- schema name does not contain "|"
+- About/entity schema name is clean, not keyword-stuffed
+- schema description equals meta description
+- canonical and hreflang URLs are correct
+- raw EN/ES links exist in source HTML
+- JSON-LD parses cleanly
+- no empty href values
+- no generic OG placeholder image when a page image exists
+- no TODO, FIXME, undefined, or broken typo strings
+- no large inline <style> blocks in production HTML
+- header/footer containers are present and a guarded include loader is present unless site.js is confirmed to inject them
+- layout keeps complete card rows
+- page ends with valid closing body and html tags
