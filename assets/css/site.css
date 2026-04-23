@@ -1212,3 +1212,194 @@ img{
   }
 }
 
+/* ==========================================================================
+   Utility / Support Pages
+   Used by About, Contact, FAQ, Terms, Privacy, Partners, and Join pages.
+   Scoped classes prevent utility-page styles from changing region, blog,
+   member, planning, or spotlight pages that use shared .wrap/.card/.grid names.
+   ========================================================================== */
+
+.utilityPage{
+  padding-top:42px;
+}
+
+.utilityHero h1{
+  font-family:Montserrat,Inter,sans-serif;
+  font-size:clamp(36px,4.5vw,56px);
+  font-weight:800;
+  margin:0 0 10px;
+  letter-spacing:-0.02em;
+  color:var(--brand-blue);
+  line-height:1.08;
+}
+
+.utilityHero p{
+  max-width:72ch;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.65;
+  margin:0;
+}
+
+.languageSwitch{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+  margin:0 0 16px;
+}
+
+.languageSwitch a{
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:8px 12px;
+  border-radius:var(--radius-pill);
+  border:1px solid rgba(3,78,162,0.18);
+  background:#fff;
+  color:var(--brand-blue-dark);
+  font-size:13px;
+  font-weight:800;
+  box-shadow:0 10px 24px rgba(3,78,162,0.08);
+}
+
+.languageSwitch a[aria-current="page"]{
+  background:var(--brand-blue);
+  color:#fff;
+  border-color:var(--brand-blue);
+}
+
+.utilityGrid{
+  display:grid;
+  grid-template-columns:1.15fr 0.85fr;
+  gap:28px;
+  padding:36px 0 18px;
+  align-items:center;
+}
+
+.utilityCard{
+  background:#fff;
+  border-radius:22px;
+  padding:26px;
+  border:1px solid rgba(0,0,0,0.06);
+  box-shadow:0 18px 55px rgba(3,78,162,0.12);
+}
+
+.utilityCard h2{
+  font-family:Montserrat,Inter,sans-serif;
+  font-weight:800;
+  margin:0 0 12px;
+  font-size:22px;
+  color:var(--brand-blue-dark);
+  letter-spacing:-0.02em;
+}
+
+.utilityCard p{
+  line-height:1.75;
+  font-size:15.5px;
+  margin:0;
+  color:#2a2f36;
+}
+
+.utilityStack{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  justify-content:center;
+}
+
+.utilityMini{
+  background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+  border-radius:20px;
+  padding:20px;
+  border:1px solid rgba(3,78,162,0.12);
+}
+
+.utilityMini h3{
+  font-family:Montserrat,Inter,sans-serif;
+  font-weight:800;
+  margin:0 0 8px;
+  color:var(--brand-blue-dark);
+  font-size:16px;
+  letter-spacing:0;
+}
+
+.utilityMini ul{
+  margin:0;
+  padding-left:18px;
+  line-height:1.7;
+  font-size:14.5px;
+  color:var(--ink);
+}
+
+.utilityBreak{
+  margin:18px 0 40px;
+  border-radius:22px;
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,0.06);
+  box-shadow:0 18px 60px rgba(0,0,0,0.14);
+  background:transparent;
+}
+
+.utilityBreak img{
+  width:100%;
+  height:auto;
+  display:block;
+  user-select:none;
+  pointer-events:none;
+}
+
+.utilityLinkGrid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:18px;
+  margin:0 0 40px;
+}
+
+.utilityLinkCard{
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  border:1px solid rgba(0,0,0,0.06);
+  box-shadow:0 18px 55px rgba(3,78,162,0.10);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.utilityLinkCard h2{
+  font-family:Montserrat,Inter,sans-serif;
+  font-size:17px;
+  line-height:1.25;
+  margin:0;
+  color:var(--brand-blue-dark);
+  letter-spacing:0;
+}
+
+.utilityLinkCard p{
+  margin:0;
+  color:#2a2f36;
+  font-size:14.5px;
+  line-height:1.65;
+  flex:1;
+}
+
+.utilityLinkCard a{
+  color:var(--brand-blue);
+  font-size:13.5px;
+  font-weight:900;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  width:max-content;
+}
+
+@media(max-width:900px){
+  .utilityPage{
+    padding-top:28px;
+  }
+
+  .utilityGrid,
+  .utilityLinkGrid{
+    grid-template-columns:1fr;
+  }
+}
