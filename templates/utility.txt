@@ -40,6 +40,12 @@ Not:
 - cluttered
 - marketing-heavy
 
+CSS / IMPLEMENTATION RULE
+- Prefer shared global CSS classes from /assets/css/site.css, /assets/css/header.css, and /assets/css/footer.css.
+- Avoid large page-level <style> blocks in production when the same styles can live in the global CSS system.
+- For downloadable standalone review files, inline CSS is acceptable only as a preview convenience.
+- For final deployment, either use existing global utility classes or move repeated support-page styles into a shared utility/support CSS file.
+
 COMMON STRUCTURE
 1. Raw language switch links
 2. Hero, minimal
@@ -51,11 +57,18 @@ REQUIRED SEO FIELDS
 Every utility/support page must include:
 - Title: SEO optimized.
 - Meta Description: unique and aligned with the page language.
-- H1: aligned with the title.
+- H1: aligned with the title but written naturally for humans.
 - New OG Title: exactly the same as the title.
 - New OG Description: exactly the same as the meta description.
 - New Schema Name: title without the pipe character.
 - New Schema Description: exactly the same as the meta description.
+
+Important H1 rule:
+- Do not force the full title-without-pipe phrase into the visible H1 if it sounds awkward.
+- The schema name can follow the title-without-pipe rule, while the H1 should be clean, readable, and trust-building.
+- Example title: About Experience Ecuador | Smarter Ecuador Trip Planning.
+- Example schema name: About Experience Ecuador Smarter Ecuador Trip Planning.
+- Example H1: About Experience Ecuador.
 
 BILINGUAL DISCOVERY
 Every page must include:
@@ -109,9 +122,22 @@ ABOUT PAGE
 Structure:
 - short mission paragraph
 - what Experience Ecuador is building
+- trust paragraph explaining the Ecuador-only focus, curated approach, and practical planning value
 - who it helps
 - what users can expect next
 - internal links to regions, recommendations, and trip builder
+
+Recommended About page titles:
+- EN: About Experience Ecuador | Smarter Ecuador Trip Planning
+- ES: Sobre Experience Ecuador | Planificación Inteligente
+
+Recommended About page H1s:
+- EN: About Experience Ecuador
+- ES: Sobre Experience Ecuador
+
+Recommended trust copy:
+- EN: We focus only on Ecuador, so every page can stay practical, locally relevant, and easier to use when comparing routes, seasons, and travel styles.
+- ES: Nos enfocamos solo en Ecuador para que cada página sea práctica, localmente relevante y útil al comparar rutas, temporadas y estilos de viaje.
 
 FAQ PAGE
 Structure:
@@ -203,7 +229,7 @@ VALIDATION CHECKLIST
 Before publishing:
 - title equals OG title and Twitter title
 - meta description equals OG description and Twitter description
-- H1 aligns with title
+- H1 aligns with title but does not sound repetitive or robotic
 - schema name does not contain "|"
 - schema description equals meta description
 - canonical and hreflang URLs are correct
