@@ -340,6 +340,13 @@
         status.textContent = msg;
         status.classList.add("show");
       }
+      function publicErrorMessage(data, fallback){
+        var raw = (data && (data.email_error || data.message)) ? String(data.email_error || data.message) : "";
+        if(/TURNSTILE|SECRET|TOKEN|ENV|CONFIG/i.test(raw)){
+          return "We could not verify the anti-spam check. Please try again in a moment or email us directly.";
+        }
+        return raw || fallback;
+      }
       if(form){
         ["first_name", "last_name"].forEach(function(id){
           var el = document.getElementById(id);
@@ -387,10 +394,10 @@
             if(data && data.ok){
               setStatus("success", "Submitted. We received your message and will get back to you soon.");
             }else{
-              setStatus("error", "Submission failed. " + ((data && (data.email_error || data.message)) || "Please try again."));
+              setStatus("error", "Submission failed. " + publicErrorMessage(data, "Please try again."));
             }
           }).catch(function(err){
-            setStatus("error", "Submission failed. " + String(err || ""));
+            setStatus("error", "Submission failed. Please try again in a moment or email us directly.");
           }).finally(function(){
             if(submitBtn){
               submitBtn.disabled = false;
