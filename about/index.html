@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Experience Ecuador | Smarter Ecuador Trip Planning</title>
-  <meta name="description" content="Learn how Experience Ecuador helps travelers plan Ecuador trips with local focus, trusted recommendations, curated stays, and practical route guidance." />
+  <meta name="description" content="Learn how Experience Ecuador helps travelers plan better routes, compare regions, and build stronger Ecuador itineraries." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://experienceecuador.com/about/" />
   <link rel="alternate" hreflang="en" href="https://experienceecuador.com/about/" />
@@ -16,7 +16,7 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="es_EC" />
   <meta property="og:title" content="About Experience Ecuador | Smarter Ecuador Trip Planning" />
-  <meta property="og:description" content="Learn how Experience Ecuador helps travelers plan Ecuador trips with local focus, trusted recommendations, curated stays, and practical route guidance." />
+  <meta property="og:description" content="Learn how Experience Ecuador helps travelers plan better routes, compare regions, and build stronger Ecuador itineraries." />
   <meta property="og:url" content="https://experienceecuador.com/about/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/pages/EE-Assets-12-Hero-About.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/pages/EE-Assets-12-Hero-About.jpg" />
@@ -26,7 +26,7 @@
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="About Experience Ecuador | Smarter Ecuador Trip Planning" />
-  <meta name="twitter:description" content="Learn how Experience Ecuador helps travelers plan Ecuador trips with local focus, trusted recommendations, curated stays, and practical route guidance." />
+  <meta name="twitter:description" content="Learn how Experience Ecuador helps travelers plan better routes, compare regions, and build stronger Ecuador itineraries." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/pages/EE-Assets-12-Hero-About.jpg" />
   <meta name="twitter:image:alt" content="Experience Ecuador travel planning inspiration" />
   <!-- Favicons (root) -->
@@ -52,7 +52,7 @@
         "@id": "https://experienceecuador.com/about/#webpage",
         "url": "https://experienceecuador.com/about/",
         "name": "About Experience Ecuador",
-        "description": "Learn how Experience Ecuador helps travelers plan Ecuador trips with local focus, trusted recommendations, curated stays, and practical route guidance.",
+        "description": "Learn how Experience Ecuador helps travelers plan better routes, compare regions, and build stronger Ecuador itineraries.",
         "inLanguage": "en",
         "isPartOf": {
           "@type": "WebSite",
@@ -98,13 +98,13 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="utility_page" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="https://experienceecuador.com/about/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/sobre-nosotros/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
   <main class="wrap utilityPage">
-    <nav class="languageSwitch" aria-label="Language options">
-      <a href="/about/" aria-current="page">English</a>
-      <a href="/es/sobre-nosotros/">Español</a>
-    </nav>
     <section class="utilityHero">
       <h1>About Experience Ecuador</h1>
       <p>
@@ -153,22 +153,97 @@
   <div class="utilityLinkCard">
     <h2>Explore Ecuador by region</h2>
     <p>Compare the Galapagos, Coast, Andes, and Amazon before choosing the route that fits your travel style.</p>
-    <a href="/regions/">View Regions</a>
+    <a href="/regions/" data-analytics-event="primary_cta_click" data-analytics-label="View Regions" data-analytics-location="utility_links">View Regions</a>
   </div>
   <div class="utilityLinkCard">
     <h2>Find curated recommendations</h2>
     <p>Browse stays, experiences, and local partners selected to help travelers plan with more confidence.</p>
-    <a href="/recommendations/">View Recommendations</a>
+    <a href="/recommendations/" data-analytics-event="primary_cta_click" data-analytics-label="View Recommendations" data-analytics-location="utility_links">View Recommendations</a>
   </div>
   <div class="utilityLinkCard">
     <h2>Start planning your trip</h2>
     <p>Use the trip builder to connect your timing, interests, and preferred Ecuador destinations into a clearer plan.</p>
-    <a href="/trip-builder/">Try Trip Builder</a>
+    <a href="/trip-builder/" data-analytics-event="primary_cta_click" data-analytics-label="Try Trip Builder" data-analytics-location="utility_links">Try Trip Builder</a>
   </div>
 </section>
   </main>
   <div id="siteFooter"></div>
-  <script src="/assets/js/site.js"></script>
+  <script>
+    (function () {
+      var body = document.body;
+      var pageType = body.getAttribute("data-page-type") || "page";
+      var pageLanguage = body.getAttribute("data-page-language") || document.documentElement.lang || "en";
+      var pageTitle = document.title;
+      var pagePath = location.pathname;
+      var firedScroll = {};
+
+      function emit(eventName, params) {
+        var payload = Object.assign({
+          page_type: pageType,
+          page_language: pageLanguage,
+          page_title: pageTitle,
+          page_path: pagePath
+        }, params || {});
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(Object.assign({ event: eventName }, payload));
+        if (typeof window.gtag === "function") {
+          window.gtag("event", eventName, payload);
+        }
+      }
+
+      function sectionNameFor(el) {
+        var section = el.closest("section[aria-label]");
+        return section ? section.getAttribute("aria-label") : "";
+      }
+
+      window.eeAnalytics = window.eeAnalytics || {};
+      window.eeAnalytics.emit = emit;
+
+      emit("page_view_enhanced");
+
+      document.addEventListener("click", function (event) {
+        var link = event.target.closest("a[href]");
+        if (!link) return;
+
+        var explicitEvent = link.getAttribute("data-analytics-event");
+        if (explicitEvent) {
+          emit(explicitEvent, {
+            cta_label: link.getAttribute("data-analytics-label") || link.textContent.trim(),
+            cta_location: link.getAttribute("data-analytics-location") || sectionNameFor(link),
+            link_url: link.href,
+            section_name: sectionNameFor(link)
+          });
+          return;
+        }
+
+        var href = link.getAttribute("href") || "";
+        var absoluteHref = link.href || href;
+        var isInternal = absoluteHref.indexOf(location.origin) === 0 || href.indexOf("/") === 0;
+        emit(isInternal ? "internal_link_click" : "outbound_link_click", {
+          link_text: link.textContent.trim(),
+          link_url: absoluteHref,
+          link_type: isInternal ? "internal" : "outbound",
+          section_name: sectionNameFor(link)
+        });
+      }, true);
+
+      function onScroll() {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        if (max <= 0) return;
+        var pct = Math.round((window.scrollY / max) * 100);
+        [25, 50, 75, 90].forEach(function (mark) {
+          if (pct >= mark && !firedScroll[mark]) {
+            firedScroll[mark] = true;
+            emit("scroll_depth", { scroll_percent: mark });
+          }
+        });
+      }
+
+      document.addEventListener("scroll", onScroll, { passive: true });
+    })();
+  </script>
   <script>
     (function(){
       async function injectInclude(id, url){
@@ -177,8 +252,16 @@
         const res = await fetch(url, { cache: "no-store" });
         el.innerHTML = await res.text();
       }
-      injectInclude("siteHeader", "/assets/includes/header.html");
-      injectInclude("siteFooter", "/assets/includes/footer.html");
+      Promise.all([
+        injectInclude("siteHeader", "/assets/includes/header.html"),
+        injectInclude("siteFooter", "/assets/includes/footer.html")
+      ]).finally(function () {
+        var existing = document.querySelector('script[src="/assets/js/site.js"]');
+        if (existing) return;
+        var script = document.createElement("script");
+        script.src = "/assets/js/site.js";
+        document.body.appendChild(script);
+      });
     })();
   </script>
 </body>
