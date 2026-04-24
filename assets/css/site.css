@@ -5578,4 +5578,74 @@ white-space: normal;
         font-size:12.5px;
       }
     }
+
+    /* ===== STANDARD RAW HTML EN/ES LANGUAGE SWITCH ===== */
+    #siteHeader[data-current-lang] + .rawLangLinks{
+      max-width:1100px;
+      margin:16px auto 18px;
+      padding:0 18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    #siteHeader[data-current-lang] + .rawLangLinks a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:36px;
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.18);
+      background:rgba(255,255,255,0.92);
+      color:#0f2f62;
+      font-family:Inter, sans-serif;
+      font-size:14px;
+      font-weight:800;
+      line-height:1;
+      text-decoration:none;
+      box-shadow:0 14px 34px rgba(3,78,162,0.08);
+      transition:background-color .18s ease, border-color .18s ease, color .18s ease, transform .18s ease, box-shadow .18s ease;
+    }
+
+    #siteHeader[data-current-lang] + .rawLangLinks a:hover,
+    #siteHeader[data-current-lang] + .rawLangLinks a:focus-visible{
+      background:#f3f7ff;
+      border-color:rgba(3,78,162,0.28);
+      color:#0f2f62;
+      transform:translateY(-1px);
+      outline:none;
+    }
+
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"],
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]{
+      background:#0f5cc0;
+      border-color:#0f5cc0;
+      color:#ffffff;
+      box-shadow:0 16px 34px rgba(15,92,192,0.18);
+    }
+
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:hover,
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:focus-visible,
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:hover,
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:focus-visible{
+      background:#0c4f9c;
+      border-color:#0c4f9c;
+      color:#ffffff;
+    }
+
+    @media (max-width:900px){
+      #siteHeader[data-current-lang] + .rawLangLinks{
+        margin:14px auto 16px;
+        padding:0 16px;
+        gap:10px;
+      }
+
+      #siteHeader[data-current-lang] + .rawLangLinks a{
+        min-height:34px;
+        padding:8px 13px;
+        font-size:13.5px;
+      }
+    }
   
