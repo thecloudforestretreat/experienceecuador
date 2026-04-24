@@ -1,0 +1,198 @@
+EXPERIENCE ECUADOR ANALYTICS IMPLEMENTATION STANDARD
+
+PURPOSE
+Use this standard on all future page updates so analytics stay consistent across English and Spanish pages while the site is still in staging and after launch.
+
+CORE PRINCIPLES
+- One concept = one event name.
+- Reuse the same parameter names across all pages.
+- Prefer shared JS plus data-* attributes over one-off inline tracking code.
+- Track intent, navigation, and conversion signals, not decorative interactions.
+- Apply sitewide analytics first, then add template-specific analytics only where relevant.
+
+SITEWIDE EVENTS
+These are the default events to support across the site where applicable:
+
+- page_view_enhanced
+- language_switch_click
+- primary_cta_click
+- secondary_cta_click
+- internal_link_click
+- outbound_link_click
+- member_card_click
+- partner_click
+- scroll_depth
+- form_start
+- form_submit_success
+- form_submit_error
+- faq_expand
+
+STANDARD PARAMETERS
+Use these parameter names consistently when relevant:
+
+- page_type
+- page_language
+- page_path
+- page_title
+- cta_label
+- cta_location
+- link_text
+- link_url
+- link_type
+- section_name
+- region
+- experience_type
+- member_name
+- member_category
+- member_location
+- partner_name
+- form_name
+- error_message
+- scroll_percent
+
+PAGE-TYPE-SPECIFIC EVENTS
+
+BLOG / GUIDE / SPOTLIGHT PAGES
+- hero_cta_click
+- related_content_click
+- content_section_view
+- inline_recommendation_click
+- inline_member_click
+- toc_click
+
+MEMBER PAGES
+- member_gallery_click
+- member_contact_click
+- member_whatsapp_click
+- member_email_click
+- member_booking_click
+- member_external_website_click
+- member_cta_click
+
+RECOMMENDATIONS HUB / COLLECTION PAGES
+- recommendation_filter_use
+- recommendation_sort_use
+- recommendation_card_click
+- recommendation_pagination_click
+- recommendation_load_more
+
+TRIP BUILDER / PLANNING PAGES
+- trip_builder_region_select
+- trip_builder_experience_select
+- trip_builder_days_change
+- trip_builder_generate_itinerary
+- trip_builder_email_itinerary
+- trip_builder_add_traveler
+- trip_builder_flight_search
+- trip_builder_itinerary_item_click
+
+UTILITY / SUPPORT PAGES
+- contact_method_click
+- contact_form_submit
+- utility_cta_click
+- policy_crosslink_click
+- faq_expand
+
+PARTNER PAGES
+- partner_cta_click
+- partner_package_interest
+- partner_application_start
+- partner_application_submit
+- partner_benefit_click
+- partner_proof_point_click
+
+REGION / EXPERIENCE HUB PAGES
+- hub_card_click
+- hub_section_cta_click
+- hub_comparison_click
+- hub_related_link_click
+
+IMPLEMENTATION METHOD
+
+1. USE DATA ATTRIBUTES
+Tracked elements should use data-* attributes whenever possible.
+
+Required pattern:
+- data-analytics-event
+
+Recommended supporting attributes:
+- data-analytics-label
+- data-analytics-location
+- data-analytics-page-type
+- data-analytics-region
+- data-analytics-experience
+- data-analytics-member
+- data-analytics-partner
+- data-analytics-form
+
+EXAMPLE CTA
+<a
+  href="/trip-builder/"
+  data-analytics-event="primary_cta_click"
+  data-analytics-label="Start With the Trip Builder"
+  data-analytics-location="hero"
+  data-analytics-page-type="guide"
+>
+  Start With the Trip Builder
+</a>
+
+2. USE SHARED JS
+Shared JS should read data-* attributes and send events through one common analytics helper.
+
+3. DO NOT CREATE ONE-OFF EVENT NAMES
+Do not rename the same concept on different pages.
+
+Correct:
+- primary_cta_click
+
+Incorrect:
+- main_cta_click
+- cta_click_primary
+- hero_button_click
+
+4. TRACK LANGUAGE SWITCHES EVERY TIME
+When a user clicks the raw HTML EN/ES language switch, always track:
+- event: language_switch_click
+
+Recommended parameters:
+- page_language
+- page_path
+- link_text
+- link_url
+
+5. TRACK FORMS CONSISTENTLY
+For form workflows:
+- fire form_start on first user engagement
+- fire form_submit_success on successful completion
+- fire form_submit_error on visible failure state
+
+6. SCROLL DEPTH
+Use milestone-based scroll tracking, not noisy continuous tracking.
+Recommended milestones:
+- 25
+- 50
+- 75
+- 90
+
+7. OUTBOUND VS INTERNAL LINKS
+Internal Experience Ecuador page links:
+- internal_link_click
+
+External destinations:
+- outbound_link_click
+
+Member partner destinations may also use:
+- member_external_website_click
+- partner_click
+
+ROLL OUT IN THIS ORDER
+1. Shared analytics standard
+2. Trip builder pages
+3. Partner pages
+4. Member pages
+5. Recommendations hubs
+6. Blog / guide / spotlight pages
+7. Utility / legal pages
+
+GOOGLE ANALYTICS / GA4 NOTE
+Do not configure custom dimensions or conversions until implementation is finalized. After rollout begins, review the final event and parameter list, then register only the dimensions needed for reporting.
