@@ -95,11 +95,11 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="collection_page" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
   <nav class="rawLangLinks" aria-label="Language switch">
-    <a href="https://experienceecuador.com/ecuador-birdwatching-tours/" lang="en">English</a>
-    <a href="https://experienceecuador.com/es/tours-avistamiento-aves-ecuador/" lang="es">Español</a>
+    <a href="https://experienceecuador.com/ecuador-birdwatching-tours/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/tours-avistamiento-aves-ecuador/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
   </nav>
 
   <section class="heroImage hero-regions-andes" aria-label="Ecuador birdwatching tours hero image" style="background-image:url('/assets/images/new/ee_mindo_001.jpg');">
@@ -108,8 +108,8 @@
       <h1 class="heroTitle">Ecuador Birdwatching Tours</h1>
       <p class="heroLead">Find the best Ecuador birdwatching tours for cloud forest birding, hummingbirds, foothill diversity, Amazon wildlife, and broader private nature routes. This guide helps you compare the main birding regions, trip styles, and planning paths that make Ecuador such a strong birding destination.</p>
       <div class="heroActions">
-        <a class="btn btnPrimary" href="/trip-builder">Start With the Trip Builder</a>
-        <a class="btn btnGhost" href="/experiences/wildlife-birding/">Explore Wildlife and Birding</a>
+        <a class="btn btnPrimary" href="/trip-builder" data-analytics-event="primary_cta_click" data-analytics-label="Start With the Trip Builder" data-analytics-location="hero">Start With the Trip Builder</a>
+        <a class="btn btnGhost" href="/experiences/wildlife-birding/" data-analytics-event="secondary_cta_click" data-analytics-label="Explore Wildlife and Birding" data-analytics-location="hero">Explore Wildlife and Birding</a>
       </div>
       <div class="heroMetaRow">
         <span class="heroPill">Birding and wildlife</span>
@@ -397,6 +397,82 @@
 
   <div id="siteFooter"></div>
 
+  <script>
+    (function () {
+      var body = document.body;
+      var pageType = body.getAttribute("data-page-type") || "page";
+      var pageLanguage = body.getAttribute("data-page-language") || document.documentElement.lang || "en";
+      var pageTitle = document.title;
+      var pagePath = location.pathname;
+      var firedScroll = {};
+
+      function emit(eventName, params) {
+        var payload = Object.assign({
+          page_type: pageType,
+          page_language: pageLanguage,
+          page_title: pageTitle,
+          page_path: pagePath
+        }, params || {});
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(Object.assign({ event: eventName }, payload));
+        if (typeof window.gtag === "function") {
+          window.gtag("event", eventName, payload);
+        }
+      }
+
+      function sectionNameFor(el) {
+        var section = el.closest("section[aria-label]");
+        return section ? section.getAttribute("aria-label") : "";
+      }
+
+      window.eeAnalytics = window.eeAnalytics || {};
+      window.eeAnalytics.emit = emit;
+
+      emit("page_view_enhanced");
+
+      document.addEventListener("click", function (event) {
+        var link = event.target.closest("a[href]");
+        if (!link) return;
+
+        var explicitEvent = link.getAttribute("data-analytics-event");
+        if (explicitEvent) {
+          emit(explicitEvent, {
+            cta_label: link.getAttribute("data-analytics-label") || link.textContent.trim(),
+            cta_location: link.getAttribute("data-analytics-location") || sectionNameFor(link),
+            link_url: link.href,
+            section_name: sectionNameFor(link)
+          });
+          return;
+        }
+
+        var href = link.getAttribute("href") || "";
+        var absoluteHref = link.href || href;
+        var isInternal = absoluteHref.indexOf(location.origin) === 0 || href.indexOf("/") === 0;
+        emit(isInternal ? "internal_link_click" : "outbound_link_click", {
+          link_text: link.textContent.trim(),
+          link_url: absoluteHref,
+          link_type: isInternal ? "internal" : "outbound",
+          section_name: sectionNameFor(link)
+        });
+      }, true);
+
+      function onScroll() {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        if (max <= 0) return;
+        var pct = Math.round((window.scrollY / max) * 100);
+        [25, 50, 75, 90].forEach(function (mark) {
+          if (pct >= mark && !firedScroll[mark]) {
+            firedScroll[mark] = true;
+            emit("scroll_depth", { scroll_percent: mark });
+          }
+        });
+      }
+
+      document.addEventListener("scroll", onScroll, { passive: true });
+    })();
+  </script>
   <script>
     (function () {
       function inject(id, url) {
