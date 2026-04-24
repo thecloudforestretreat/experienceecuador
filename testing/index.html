@@ -1667,6 +1667,34 @@
         listHtml;
     }
 
+    function buildRankedPoolText(result){
+      if (!result || !result.ok || !Array.isArray(result.blocks) || !result.blocks.length) return "";
+
+      const lines = [];
+      lines.push("Experience Ecuador Trip Builder");
+      lines.push("");
+      lines.push(`Trip length: ${state.days} days`);
+      lines.push(`Regions: ${Array.from(state.selectedRegionIds).map(regionName).join(", ") || "N/A"}`);
+      lines.push(`Experiences: ${Array.from(state.selectedExperienceIds).map(experienceName).join(", ") || "N/A"}`);
+      lines.push("");
+      lines.push("Suggested itinerary blocks");
+      lines.push("");
+
+      result.blocks.slice(0, 10).forEach((block, index) => {
+        const when = block.time_of_day ? capitalize(block.time_of_day) : "Day";
+        const region = block.region_id ? regionName(block.region_id) : "Ecuador";
+        const location = block.location_id ? locationName(block.region_id, block.location_id) : "";
+        const duration = block.duration_hours ? `${block.duration_hours}h` : "";
+        const meta = [region, location, duration].filter(Boolean).join(" | ");
+        lines.push(`${index + 1}. ${block.title}`);
+        if (meta) lines.push(`   ${when} | ${meta}`);
+        if (block.summary) lines.push(`   ${String(block.summary).trim()}`);
+        lines.push("");
+      });
+
+      return lines.join("\n").trim();
+    }
+
 
     function setEmailStatus(text, kind){
       if (!tripEmailEls.status) return;
@@ -2618,12 +2646,17 @@ function regionName(id){
       }
       const result = buildRankedPoolStep2(DATA.blocks, rawSelection);
 
-      state.lastPlan = null;
-      state.lastItineraryText = "";
-      enableEmailButtonIfReady();
       clearEmailStatus();
-
       renderRankedPoolPreviewStep2(result);
+
+      if (result.ok) {
+        state.lastPlan = result;
+        state.lastItineraryText = buildRankedPoolText(result);
+      } else {
+        state.lastPlan = null;
+        state.lastItineraryText = "";
+      }
+      enableEmailButtonIfReady();
     });
 
     els.resetBtn.addEventListener('click', () => {
