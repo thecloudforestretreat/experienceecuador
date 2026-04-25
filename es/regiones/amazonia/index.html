@@ -15,7 +15,7 @@
   <meta property="og:site_name" content="Experience Ecuador" />
   <meta property="og:locale" content="es_EC" />
   <meta property="og:title" content="Explora la región Amazonía de Ecuador | Puertas de entrada, lodges, vida silvestre e itinerarios amazónicos" />
-  <meta property="og:description" content="Compara puertas de entrada a la Amazonía ecuatoriana, zonas de lodge, reservas, experiencias de fauna y lógica de planificación en una sola guía regional práctica." />
+  <meta property="og:description" content="Explora la región Amazonía de Ecuador. Compara puertas de entrada, reservas, viajes a lodges, experiencias de vida silvestre y consejos prácticos para construir un itinerario amazónico más inteligente." />
   <meta property="og:url" content="https://experienceecuador.com/es/regiones/amazonia/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
@@ -26,7 +26,7 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Explora la región Amazonía de Ecuador | Puertas de entrada, lodges, vida silvestre e itinerarios amazónicos" />
-  <meta name="twitter:description" content="Compara puertas de entrada a la Amazonía ecuatoriana, zonas de lodge, reservas, experiencias de fauna y lógica de planificación en una sola guía regional práctica." />
+  <meta name="twitter:description" content="Explora la región Amazonía de Ecuador. Compara puertas de entrada, reservas, viajes a lodges, experiencias de vida silvestre y consejos prácticos para construir un itinerario amazónico más inteligente." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -49,7 +49,7 @@
     "@graph":[
       {
         "@type":"CollectionPage",
-        "name":"Región Amazonía de Ecuador",
+        "name":"Explora la región Amazonía de Ecuador",
         "url":"https://experienceecuador.com/es/regiones/amazonia/",
         "description":"Explora la región Amazonía de Ecuador. Compara puertas de entrada, reservas, viajes a lodges, experiencias de vida silvestre y consejos prácticos para construir un itinerario amazónico más inteligente.",
         "isPartOf":{"@type":"WebSite","name":"Experience Ecuador","url":"https://experienceecuador.com/"}
@@ -66,8 +66,12 @@
   }
   </script>
 </head>
-<body>
-  <div id="siteHeader"></div>
+<body data-page-type="region_detail_page" data-page-language="es">
+  <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/regions/amazon/" lang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch" data-analytics-target-language="en">English</a>
+    <a href="https://experienceecuador.com/es/regiones/amazonia/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch" data-analytics-target-language="es">Español</a>
+  </nav>
 
   <section class="heroImage hero-amazon" aria-label="Imagen principal de la Amazonía">
     <div class="heroImageInner">
@@ -75,8 +79,8 @@
       <h1 class="heroTitle">Explora la región Amazonía de Ecuador</h1>
       <p class="heroLead">Compara puertas de entrada a la selva, reservas, zonas de lodge y estilos de viaje enfocados en vida silvestre para elegir el nivel de inmersión adecuado según tu tiempo, comodidad e intereses.</p>
       <div class="heroActions">
-        <a class="btn btnPrimary" href="/es/planificador-de-viajes/">Empieza a planificar tu viaje</a>
-        <a class="btn btnGhost" href="/es/experiencias/naturaleza/">Explora naturaleza</a>
+        <a class="btn btnPrimary" href="/es/planificador-de-viajes/" data-analytics-event="primary_cta_click" data-analytics-label="Empieza a planificar tu viaje" data-analytics-location="hero" data-analytics-page-type="region_detail_page">Empieza a planificar tu viaje</a>
+        <a class="btn btnGhost" href="/es/experiencias/naturaleza/" data-analytics-event="secondary_cta_click" data-analytics-label="Explora naturaleza" data-analytics-location="hero" data-analytics-page-type="region_detail_page">Explora naturaleza</a>
       </div>
     </div>
   </section>
@@ -492,8 +496,8 @@
           <p>Profundiza en puertas de entrada a la selva, compara experiencias y usa apoyo curado de planificación para convertir una idea amplia de jungla en un viaje más claro y gratificante.</p>
         </div>
         <div class="ctaRight">
-          <a class="btn btnPrimary" href="/es/regiones/amazonia/tena/">Explorar destinos</a>
-          <a class="btn btnGhost" href="/es/planificador-de-viajes/">Empezar a planificar</a>
+          <a class="btn btnPrimary" href="/es/regiones/amazonia/tena/" data-analytics-event="primary_cta_click" data-analytics-label="Explorar destinos" data-analytics-location="final_cta" data-analytics-page-type="region_detail_page">Explorar destinos</a>
+          <a class="btn btnGhost" href="/es/planificador-de-viajes/" data-analytics-event="secondary_cta_click" data-analytics-label="Empezar a planificar" data-analytics-location="final_cta" data-analytics-page-type="region_detail_page">Empezar a planificar</a>
         </div>
       </div>
     </section>
@@ -501,7 +505,52 @@
 
   <div id="siteFooter"></div>
 
-  <script src="/assets/js/site.js"></script>
+  <script>
+    (function(){
+      const pageType = document.body.dataset.pageType || "region_detail_page";
+      const pageLanguage = document.body.dataset.pageLanguage || "es";
+      const pagePath = window.location.pathname;
+      const pageTitle = document.title;
+      const pushedScrollDepths = new Set();
+
+      function track(eventName, params){
+        const payload = Object.assign({
+          page_type: pageType,
+          page_language: pageLanguage,
+          page_path: pagePath,
+          page_title: pageTitle
+        }, params || {});
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(Object.assign({ event: eventName }, payload));
+      }
+
+      track("page_view_enhanced");
+
+      document.addEventListener("click", function(event){
+        const target = event.target.closest("[data-analytics-event]");
+        if(!target) return;
+        track(target.dataset.analyticsEvent, {
+          cta_label: target.dataset.analyticsLabel || target.textContent.trim(),
+          cta_location: target.dataset.analyticsLocation || "",
+          target_url: target.href || "",
+          target_language: target.dataset.analyticsTargetLanguage || ""
+        });
+      });
+
+      window.addEventListener("scroll", function(){
+        const doc = document.documentElement;
+        const maxScroll = doc.scrollHeight - window.innerHeight;
+        if(maxScroll <= 0) return;
+        const percent = Math.round((window.scrollY / maxScroll) * 100);
+        [25, 50, 75, 90].forEach(function(threshold){
+          if(percent >= threshold && !pushedScrollDepths.has(threshold)){
+            pushedScrollDepths.add(threshold);
+            track("scroll_depth", { scroll_percent: threshold });
+          }
+        });
+      }, { passive: true });
+    })();
+  </script>
   <script>
     (function () {
       function inject(id, url) {
@@ -516,7 +565,19 @@
       Promise.all([
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
-      ]);
+      ]).then(function () {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      }).catch(function () {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      });
     })();
   </script>
 </body>
