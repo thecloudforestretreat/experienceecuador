@@ -99,15 +99,14 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="utility_page" data-page-language="es">
   <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/mission/" lang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/mision/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
   <main class="wrap utilityPage">
-    <nav class="languageSwitch" aria-label="Opciones de idioma">
-      <a href="/mission/">English</a>
-      <a href="/es/mision/" aria-current="page">Español</a>
-    </nav>
-
     <section class="utilityHero">
       <h1>Nuestra Misión</h1>
       <p>
@@ -155,23 +154,77 @@
       <div class="utilityLinkCard">
         <h2>Explora por región</h2>
         <p>Compara las cuatro grandes regiones de Ecuador y elige la ruta que encaja mejor con tus fechas e intereses.</p>
-        <a href="/es/regiones/">Ver Regiones</a>
+        <a href="/es/regiones/" data-analytics-event="internal_link_click" data-analytics-label="Ver Regiones" data-analytics-location="utility_links">Ver Regiones</a>
       </div>
       <div class="utilityLinkCard">
         <h2>Revisa recomendados</h2>
         <p>Encuentra alojamientos, actividades y socios locales curados para planificar con mayor confianza.</p>
-        <a href="/es/recomendados/">Ver Recomendados</a>
+        <a href="/es/recomendados/" data-analytics-event="internal_link_click" data-analytics-label="Ver Recomendados" data-analytics-location="utility_links">Ver Recomendados</a>
       </div>
       <div class="utilityLinkCard">
         <h2>Arma tu itinerario</h2>
         <p>Usa el planificador para conectar regiones, estilo de viaje y prioridades prácticas en una ruta más clara.</p>
-        <a href="/es/planificador-de-viajes/">Usar Planificador</a>
+        <a href="/es/planificador-de-viajes/" data-analytics-event="primary_cta_click" data-analytics-label="Usar Planificador" data-analytics-location="utility_links">Usar Planificador</a>
       </div>
     </section>
   </main>
 
   <div id="siteFooter"></div>
 
+  <script>
+    (function(){
+      const w = window;
+      const dl = w.dataLayer = w.dataLayer || [];
+      const firedScroll = new Set();
+      function emit(eventName, params){
+        dl.push(Object.assign({
+          event: eventName,
+          page_type: document.body.dataset.pageType || "",
+          page_language: document.body.dataset.pageLanguage || "",
+          page_path: location.pathname,
+          page_title: document.title
+        }, params || {}));
+      }
+      w.eeAnalytics = w.eeAnalytics || { emit };
+      emit("page_view_enhanced");
+
+      document.addEventListener("click", function(e){
+        const target = e.target.closest("a,button");
+        if(!target) return;
+        const explicitEvent = target.dataset.analyticsEvent;
+        if(explicitEvent){
+          emit(explicitEvent, {
+            cta_label: target.dataset.analyticsLabel || target.textContent.trim(),
+            cta_location: target.dataset.analyticsLocation || "",
+            link_url: target.getAttribute("href") || ""
+          });
+          return;
+        }
+        if(target.tagName === "A"){
+          const href = target.getAttribute("href") || "";
+          const isOutbound = /^https?:\/\//.test(href) && !href.includes(location.hostname);
+          emit(isOutbound ? "outbound_link_click" : "internal_link_click", {
+            link_text: target.textContent.trim(),
+            link_url: href,
+            link_type: isOutbound ? "outbound" : "internal"
+          });
+        }
+      }, { passive: true });
+
+      document.addEventListener("scroll", function(){
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - w.innerHeight;
+        if(max <= 0) return;
+        const pct = Math.round((w.scrollY / max) * 100);
+        [25, 50, 75, 90].forEach(function(mark){
+          if(pct >= mark && !firedScroll.has(mark)){
+            firedScroll.add(mark);
+            emit("scroll_depth", { scroll_percent: mark });
+          }
+        });
+      }, { passive: true });
+    })();
+  </script>
   <script>
     (function(){
       async function injectInclude(id, url){
@@ -185,6 +238,8 @@
         injectInclude("siteHeader", "/assets/includes/header.html"),
         injectInclude("siteFooter", "/assets/includes/footer.html")
       ]).finally(() => {
+        const existing = document.querySelector('script[src="/assets/js/site.js"]');
+        if(existing) return;
         const s = document.createElement("script");
         s.src = "/assets/js/site.js";
         document.body.appendChild(s);
