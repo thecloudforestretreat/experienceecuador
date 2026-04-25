@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Mission | Experience Ecuador Travel Planning</title>
-  <meta name="description" content="Discover the mission behind Experience Ecuador: a local-focused travel hub helping visitors plan Ecuador with trusted guidance and curated recommendations." />
+  <title>Our Mission | Experience Ecuador</title>
+  <meta name="description" content="See the mission behind Experience Ecuador and how the platform is built to help travelers plan smarter trips across Ecuador." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://experienceecuador.com/mission/" />
   <link rel="alternate" hreflang="en" href="https://experienceecuador.com/mission/" />
@@ -15,8 +15,8 @@
   <meta property="og:site_name" content="Experience Ecuador" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="es_EC" />
-  <meta property="og:title" content="Our Mission | Experience Ecuador Travel Planning" />
-  <meta property="og:description" content="Discover the mission behind Experience Ecuador: a local-focused travel hub helping visitors plan Ecuador with trusted guidance and curated recommendations." />
+  <meta property="og:title" content="Our Mission | Experience Ecuador" />
+  <meta property="og:description" content="See the mission behind Experience Ecuador and how the platform is built to help travelers plan smarter trips across Ecuador." />
   <meta property="og:url" content="https://experienceecuador.com/mission/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/pages/EE-Assets-13-Hero-Mission.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/pages/EE-Assets-13-Hero-Mission.jpg" />
@@ -25,8 +25,8 @@
   <meta property="og:image:alt" content="Experience Ecuador mission and travel planning inspiration" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Our Mission | Experience Ecuador Travel Planning" />
-  <meta name="twitter:description" content="Discover the mission behind Experience Ecuador: a local-focused travel hub helping visitors plan Ecuador with trusted guidance and curated recommendations." />
+  <meta name="twitter:title" content="Our Mission | Experience Ecuador" />
+  <meta name="twitter:description" content="See the mission behind Experience Ecuador and how the platform is built to help travelers plan smarter trips across Ecuador." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/pages/EE-Assets-13-Hero-Mission.jpg" />
   <meta name="twitter:image:alt" content="Experience Ecuador mission and travel planning inspiration" />
 
@@ -52,8 +52,8 @@
         "@type": "WebPage",
         "@id": "https://experienceecuador.com/mission/#webpage",
         "url": "https://experienceecuador.com/mission/",
-        "name": "Experience Ecuador Mission",
-        "description": "Discover the mission behind Experience Ecuador: a local-focused travel hub helping visitors plan Ecuador with trusted guidance and curated recommendations.",
+        "name": "Our Mission",
+        "description": "See the mission behind Experience Ecuador and how the platform is built to help travelers plan smarter trips across Ecuador.",
         "inLanguage": "en",
         "isPartOf": {
           "@type": "WebSite",
@@ -99,15 +99,14 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="utility_page" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="https://experienceecuador.com/mission/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/mision/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
   <main class="wrap utilityPage">
-    <nav class="languageSwitch" aria-label="Language options">
-      <a href="/mission/" aria-current="page">English</a>
-      <a href="/es/mision/">Español</a>
-    </nav>
-
     <section class="utilityHero">
       <h1>Our Mission</h1>
       <p>
@@ -155,23 +154,77 @@
       <div class="utilityLinkCard">
         <h2>Explore by region</h2>
         <p>Start with Ecuador's four major travel regions and compare which route best fits your timing and interests.</p>
-        <a href="/regions/">View Regions</a>
+        <a href="/regions/" data-analytics-event="internal_link_click" data-analytics-label="View Regions" data-analytics-location="utility_links">View Regions</a>
       </div>
       <div class="utilityLinkCard">
         <h2>Browse recommendations</h2>
         <p>Find curated stays, activities, and local partners that support more confident Ecuador trip planning.</p>
-        <a href="/recommendations/">View Recommendations</a>
+        <a href="/recommendations/" data-analytics-event="internal_link_click" data-analytics-label="View Recommendations" data-analytics-location="utility_links">View Recommendations</a>
       </div>
       <div class="utilityLinkCard">
         <h2>Build your itinerary</h2>
         <p>Use the trip builder to connect regions, travel style, and practical planning priorities into a clearer route.</p>
-        <a href="/trip-builder/">Try Trip Builder</a>
+        <a href="/trip-builder/" data-analytics-event="primary_cta_click" data-analytics-label="Try Trip Builder" data-analytics-location="utility_links">Try Trip Builder</a>
       </div>
     </section>
   </main>
 
   <div id="siteFooter"></div>
 
+  <script>
+    (function(){
+      const w = window;
+      const dl = w.dataLayer = w.dataLayer || [];
+      const firedScroll = new Set();
+      function emit(eventName, params){
+        dl.push(Object.assign({
+          event: eventName,
+          page_type: document.body.dataset.pageType || "",
+          page_language: document.body.dataset.pageLanguage || "",
+          page_path: location.pathname,
+          page_title: document.title
+        }, params || {}));
+      }
+      w.eeAnalytics = w.eeAnalytics || { emit };
+      emit("page_view_enhanced");
+
+      document.addEventListener("click", function(e){
+        const target = e.target.closest("a,button");
+        if(!target) return;
+        const explicitEvent = target.dataset.analyticsEvent;
+        if(explicitEvent){
+          emit(explicitEvent, {
+            cta_label: target.dataset.analyticsLabel || target.textContent.trim(),
+            cta_location: target.dataset.analyticsLocation || "",
+            link_url: target.getAttribute("href") || ""
+          });
+          return;
+        }
+        if(target.tagName === "A"){
+          const href = target.getAttribute("href") || "";
+          const isOutbound = /^https?:\/\//.test(href) && !href.includes(location.hostname);
+          emit(isOutbound ? "outbound_link_click" : "internal_link_click", {
+            link_text: target.textContent.trim(),
+            link_url: href,
+            link_type: isOutbound ? "outbound" : "internal"
+          });
+        }
+      }, { passive: true });
+
+      document.addEventListener("scroll", function(){
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - w.innerHeight;
+        if(max <= 0) return;
+        const pct = Math.round((w.scrollY / max) * 100);
+        [25, 50, 75, 90].forEach(function(mark){
+          if(pct >= mark && !firedScroll.has(mark)){
+            firedScroll.add(mark);
+            emit("scroll_depth", { scroll_percent: mark });
+          }
+        });
+      }, { passive: true });
+    })();
+  </script>
   <script>
     (function(){
       async function injectInclude(id, url){
@@ -185,6 +238,8 @@
         injectInclude("siteHeader", "/assets/includes/header.html"),
         injectInclude("siteFooter", "/assets/includes/footer.html")
       ]).finally(() => {
+        const existing = document.querySelector('script[src="/assets/js/site.js"]');
+        if(existing) return;
         const s = document.createElement("script");
         s.src = "/assets/js/site.js";
         document.body.appendChild(s);
