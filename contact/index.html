@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Experience Ecuador | Trip Planning & Partnerships</title>
-  <meta name="description" content="Contact Experience Ecuador for trip planning questions, partnerships, media requests, or curated travel opportunities across Ecuador." />
+  <meta name="description" content="Contact Experience Ecuador about trip planning, private tours, recommendations, partnerships, or destination questions." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://experienceecuador.com/contact/" />
   <link rel="alternate" hreflang="en" href="https://experienceecuador.com/contact/" />
-  <link rel="alternate" hreflang="es" href="https://experienceecuador.com/contacto/" />
+  <link rel="alternate" hreflang="es" href="https://experienceecuador.com/es/contacto/" />
   <link rel="alternate" hreflang="x-default" href="https://experienceecuador.com/contact/" />
 
   <meta property="og:type" content="website" />
@@ -16,7 +16,7 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="es_EC" />
   <meta property="og:title" content="Contact Experience Ecuador | Trip Planning & Partnerships" />
-  <meta property="og:description" content="Contact Experience Ecuador for trip planning questions, partnerships, media requests, or curated travel opportunities across Ecuador." />
+  <meta property="og:description" content="Contact Experience Ecuador about trip planning, private tours, recommendations, partnerships, or destination questions." />
   <meta property="og:url" content="https://experienceecuador.com/contact/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/pages/EE-Assets-72-Contact.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/pages/EE-Assets-72-Contact.jpg" />
@@ -26,7 +26,7 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Contact Experience Ecuador | Trip Planning & Partnerships" />
-  <meta name="twitter:description" content="Contact Experience Ecuador for trip planning questions, partnerships, media requests, or curated travel opportunities across Ecuador." />
+  <meta name="twitter:description" content="Contact Experience Ecuador about trip planning, private tours, recommendations, partnerships, or destination questions." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/pages/EE-Assets-72-Contact.jpg" />
   <meta name="twitter:image:alt" content="Contact Experience Ecuador for travel planning and partnerships" />
 
@@ -53,7 +53,7 @@
         "@id": "https://experienceecuador.com/contact/#webpage",
         "url": "https://experienceecuador.com/contact/",
         "name": "Contact Experience Ecuador",
-        "description": "Contact Experience Ecuador for trip planning questions, partnerships, media requests, or curated travel opportunities across Ecuador.",
+        "description": "Contact Experience Ecuador about trip planning, private tours, recommendations, partnerships, or destination questions.",
         "inLanguage": "en",
         "isPartOf": {
           "@type": "WebSite",
@@ -106,15 +106,14 @@
   </script>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
-<body>
+<body data-page-type="utility_page" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="https://experienceecuador.com/contact/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/contacto/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
   <main class="wrap utilityPage">
-    <nav class="languageSwitch" aria-label="Language options">
-      <a href="/contact/" aria-current="page">English</a>
-      <a href="/contacto/">Español</a>
-    </nav>
-
     <section class="utilityHero">
       <h1>Contact Experience Ecuador</h1>
       <p>
@@ -232,7 +231,7 @@
           <p>Send partnerships, features, and collaboration inquiries here.</p>
           <div class="contactLinkList" aria-label="Email">
             <div class="contactValue">
-              <a class="email-link" href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
+              <a class="email-link" href="mailto:info@experienceecuador.com" data-analytics-event="contact_method_click" data-analytics-label="info@experienceecuador.com" data-analytics-location="reach_us">info@experienceecuador.com</a>
               <button class="copyIconBtn" id="copyContactEmail" type="button" aria-label="Copy email">
                 <svg class="copyIcon" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M9 9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V9z"></path>
@@ -251,7 +250,7 @@
             <a class="contactPillLink" href="/faqs/">FAQs <span>Common Questions</span></a>
             <a class="contactPillLink" href="/privacy-policy/">Privacy Policy <span>How We Handle Data</span></a>
             <a class="contactPillLink" href="/recommendations/">Recommendations <span>Curated Partners</span></a>
-            <a class="contactPillLink" href="/trip-builder/">Trip Builder <span>Start Planning</span></a>
+            <a class="contactPillLink" href="/trip-builder/" data-analytics-event="utility_cta_click" data-analytics-label="Trip Builder" data-analytics-location="related_pages">Trip Builder <span>Start Planning</span></a>
           </div>
         </div>
 
@@ -263,6 +262,97 @@
   </main>
 
   <div id="siteFooter"></div>
+
+  <script>
+    (function () {
+      var pageType = document.body.getAttribute("data-page-type") || "utility_page";
+      var pageLanguage = document.body.getAttribute("data-page-language") || document.documentElement.lang || "en";
+      var pageTitle = document.title;
+      var pagePath = window.location.pathname;
+      var firedScroll = {};
+      var formStarted = false;
+
+      window.dataLayer = window.dataLayer || [];
+      window.eeAnalytics = window.eeAnalytics || {};
+      window.eeAnalytics.emit = function (eventName, params) {
+        var payload = Object.assign({
+          event: eventName,
+          page_type: pageType,
+          page_language: pageLanguage,
+          page_path: pagePath,
+          page_title: pageTitle
+        }, params || {});
+        window.dataLayer.push(payload);
+      };
+
+      function emit(eventName, params) {
+        window.eeAnalytics.emit(eventName, params);
+      }
+
+      function sectionNameFor(element) {
+        var section = element.closest("section, aside, nav, div");
+        if (!section) return "";
+        return section.getAttribute("aria-label") || section.className || "";
+      }
+
+      window.eeAnalytics.markContactFormStarted = function () {
+        if (formStarted) return;
+        formStarted = true;
+        emit("form_start", { form_name: "ee_contact_form" });
+      };
+      window.eeAnalytics.trackContactFormResult = function (ok, message) {
+        emit(ok ? "form_submit_success" : "form_submit_error", {
+          form_name: "ee_contact_form",
+          error_message: ok ? "" : (message || "")
+        });
+      };
+
+      emit("page_view_enhanced");
+
+      document.addEventListener("click", function (event) {
+        var link = event.target.closest("a, button");
+        if (!link) return;
+        var explicitEvent = link.getAttribute("data-analytics-event");
+        if (explicitEvent) {
+          emit(explicitEvent, {
+            cta_label: link.getAttribute("data-analytics-label") || link.textContent.trim(),
+            cta_location: link.getAttribute("data-analytics-location") || sectionNameFor(link),
+            link_url: link.href || "",
+            section_name: sectionNameFor(link)
+          });
+          return;
+        }
+        var href = link.getAttribute("href") || "";
+        var absoluteHref = link.href || href;
+        var isInternal = absoluteHref.indexOf(location.origin) === 0 || href.indexOf("/") === 0 || href.indexOf("mailto:") === 0;
+        emit(isInternal ? "internal_link_click" : "outbound_link_click", {
+          link_text: link.textContent.trim(),
+          link_url: absoluteHref,
+          link_type: isInternal ? "internal" : "outbound",
+          section_name: sectionNameFor(link)
+        });
+      }, true);
+
+      document.addEventListener("input", function (event) {
+        if (event.target && event.target.closest("#eeContactForm")) {
+          window.eeAnalytics.markContactFormStarted();
+        }
+      }, true);
+
+      document.addEventListener("scroll", function () {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        if (max <= 0) return;
+        var pct = Math.round((window.scrollY / max) * 100);
+        [25, 50, 75, 90].forEach(function (mark) {
+          if (pct >= mark && !firedScroll[mark]) {
+            firedScroll[mark] = true;
+            emit("scroll_depth", { scroll_percent: mark });
+          }
+        });
+      }, { passive: true });
+    })();
+  </script>
 
   <script>
     (function(){
@@ -355,10 +445,16 @@
 
         form.addEventListener("submit", function(ev){
           ev.preventDefault();
+          if(window.eeAnalytics && window.eeAnalytics.markContactFormStarted){
+            window.eeAnalytics.markContactFormStarted();
+          }
           var tsInput = form.querySelector('input[name="cf-turnstile-response"]');
           var tsToken = tsInput ? (tsInput.value || "").trim() : "";
           if(!tsToken){
             setStatus("error", "Please complete the anti-spam verification before submitting.");
+            if(window.eeAnalytics && window.eeAnalytics.trackContactFormResult){
+              window.eeAnalytics.trackContactFormResult(false, "Missing anti-spam verification");
+            }
             return;
           }
 
@@ -393,11 +489,21 @@
           }).then(function(data){
             if(data && data.ok){
               setStatus("success", "Submitted. We received your message and will get back to you soon.");
+              if(window.eeAnalytics && window.eeAnalytics.trackContactFormResult){
+                window.eeAnalytics.trackContactFormResult(true, "");
+              }
             }else{
-              setStatus("error", "Submission failed. " + publicErrorMessage(data, "Please try again."));
+              var publicMessage = publicErrorMessage(data, "Please try again.");
+              setStatus("error", "Submission failed. " + publicMessage);
+              if(window.eeAnalytics && window.eeAnalytics.trackContactFormResult){
+                window.eeAnalytics.trackContactFormResult(false, publicMessage);
+              }
             }
           }).catch(function(err){
             setStatus("error", "Submission failed. Please try again in a moment or email us directly.");
+            if(window.eeAnalytics && window.eeAnalytics.trackContactFormResult){
+              window.eeAnalytics.trackContactFormResult(false, "Network or submit error");
+            }
           }).finally(function(){
             if(submitBtn){
               submitBtn.disabled = false;
@@ -425,6 +531,8 @@
         injectInclude("siteHeader", "/assets/includes/header.html"),
         injectInclude("siteFooter", "/assets/includes/footer.html")
       ]).finally(() => {
+        const existing = document.querySelector('script[src="/assets/js/site.js"]');
+        if(existing) return;
         const s = document.createElement("script");
         s.src = "/assets/js/site.js";
         document.body.appendChild(s);
