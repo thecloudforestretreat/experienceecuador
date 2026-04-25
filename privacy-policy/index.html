@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy | Experience Ecuador</title>
-  <meta name="description" content="Learn what data Experience Ecuador collects, how we use cookies and analytics, and how to request access, updates, or deletion of your information." />
+  <meta name="description" content="Read how Experience Ecuador collects, uses, and protects personal information across site forms, communications, and trip planning inquiries." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://experienceecuador.com/privacy-policy/" />
   <link rel="alternate" hreflang="en" href="https://experienceecuador.com/privacy-policy/" />
@@ -16,7 +16,7 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="es_EC" />
   <meta property="og:title" content="Privacy Policy | Experience Ecuador" />
-  <meta property="og:description" content="Learn what data Experience Ecuador collects, how we use cookies and analytics, and how to request access, updates, or deletion of your information." />
+  <meta property="og:description" content="Read how Experience Ecuador collects, uses, and protects personal information across site forms, communications, and trip planning inquiries." />
   <meta property="og:url" content="https://experienceecuador.com/privacy-policy/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/pages/EE-Assets-32-Privacy-Policy.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/pages/EE-Assets-32-Privacy-Policy.jpg" />
@@ -26,7 +26,7 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Privacy Policy | Experience Ecuador" />
-  <meta name="twitter:description" content="Learn what data Experience Ecuador collects, how we use cookies and analytics, and how to request access, updates, or deletion of your information." />
+  <meta name="twitter:description" content="Read how Experience Ecuador collects, uses, and protects personal information across site forms, communications, and trip planning inquiries." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/pages/EE-Assets-32-Privacy-Policy.jpg" />
   <meta name="twitter:image:alt" content="Experience Ecuador privacy policy and data practices" />
 
@@ -53,7 +53,7 @@
         "@id": "https://experienceecuador.com/privacy-policy/#webpage",
         "url": "https://experienceecuador.com/privacy-policy/",
         "name": "Privacy Policy",
-        "description": "Learn what data Experience Ecuador collects, how we use cookies and analytics, and how to request access, updates, or deletion of your information.",
+        "description": "Read how Experience Ecuador collects, uses, and protects personal information across site forms, communications, and trip planning inquiries.",
         "inLanguage": "en",
         "isPartOf": {
           "@type": "WebSite",
@@ -98,15 +98,14 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="utility_page" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="https://experienceecuador.com/privacy-policy/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/politica-de-privacidad/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
   <main class="wrap utilityPage">
-    <nav class="languageSwitch" aria-label="Language options">
-      <a href="/privacy-policy/" aria-current="page">English</a>
-      <a href="/es/politica-de-privacidad/">Español</a>
-    </nav>
-
     <section class="utilityHero">
       <h1>Privacy Policy</h1>
       <p>
@@ -218,10 +217,10 @@
             For privacy questions, data requests, or corrections, email us and include a brief description of what you need.
           </p>
           <div class="policyLinkList" aria-label="Related pages">
-            <a class="policyPillLink" href="/faqs/">FAQs <span>Read common questions</span></a>
-            <a class="policyPillLink" href="/terms/">Terms and Conditions <span>General site terms</span></a>
-            <a class="policyPillLink" href="/terms-of-service/">Terms of Service <span>Service rules</span></a>
-            <a class="policyPillLink" href="/contact/">Contact page <span>Write us</span></a>
+            <a class="policyPillLink" href="/faqs/" data-analytics-event="internal_link_click" data-analytics-label="FAQs" data-analytics-location="policy_links">FAQs <span>Read common questions</span></a>
+            <a class="policyPillLink" href="/terms/" data-analytics-event="internal_link_click" data-analytics-label="Terms and Conditions" data-analytics-location="policy_links">Terms and Conditions <span>General site terms</span></a>
+            <a class="policyPillLink" href="/terms-of-service/" data-analytics-event="internal_link_click" data-analytics-label="Terms of Service" data-analytics-location="policy_links">Terms of Service <span>Service rules</span></a>
+            <a class="policyPillLink" href="/contact/" data-analytics-event="primary_cta_click" data-analytics-label="Contact page" data-analytics-location="policy_links">Contact page <span>Write us</span></a>
             <div class="policyEmailRow" aria-label="Email row">
               <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
               <button class="copyIconBtn" id="copyPrivacyEmail" type="button" aria-label="Copy email">
@@ -254,6 +253,60 @@
 
   <div id="siteFooter"></div>
 
+  <script>
+    (function(){
+      const w = window;
+      const dl = w.dataLayer = w.dataLayer || [];
+      const firedScroll = new Set();
+      function emit(eventName, params){
+        dl.push(Object.assign({
+          event: eventName,
+          page_type: document.body.dataset.pageType || "",
+          page_language: document.body.dataset.pageLanguage || "",
+          page_path: location.pathname,
+          page_title: document.title
+        }, params || {}));
+      }
+      w.eeAnalytics = w.eeAnalytics || { emit };
+      emit("page_view_enhanced");
+
+      document.addEventListener("click", function(e){
+        const target = e.target.closest("a,button");
+        if(!target) return;
+        const explicitEvent = target.dataset.analyticsEvent;
+        if(explicitEvent){
+          emit(explicitEvent, {
+            cta_label: target.dataset.analyticsLabel || target.textContent.trim(),
+            cta_location: target.dataset.analyticsLocation || "",
+            link_url: target.getAttribute("href") || ""
+          });
+          return;
+        }
+        if(target.tagName === "A"){
+          const href = target.getAttribute("href") || "";
+          const isOutbound = /^https?:\/\//.test(href) && !href.includes(location.hostname);
+          emit(isOutbound ? "outbound_link_click" : "internal_link_click", {
+            link_text: target.textContent.trim(),
+            link_url: href,
+            link_type: isOutbound ? "outbound" : "internal"
+          });
+        }
+      }, { passive: true });
+
+      document.addEventListener("scroll", function(){
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - w.innerHeight;
+        if(max <= 0) return;
+        const pct = Math.round((w.scrollY / max) * 100);
+        [25, 50, 75, 90].forEach(function(mark){
+          if(pct >= mark && !firedScroll.has(mark)){
+            firedScroll.add(mark);
+            emit("scroll_depth", { scroll_percent: mark });
+          }
+        });
+      }, { passive: true });
+    })();
+  </script>
   <script>
     document.addEventListener("contextmenu", function(e){
       if(e.target && e.target.tagName === "IMG") e.preventDefault();
@@ -309,6 +362,8 @@
         injectInclude("siteHeader", "/assets/includes/header.html"),
         injectInclude("siteFooter", "/assets/includes/footer.html")
       ]).finally(() => {
+        const existing = document.querySelector('script[src="/assets/js/site.js"]');
+        if(existing) return;
         const s = document.createElement("script");
         s.src = "/assets/js/site.js";
         document.body.appendChild(s);
