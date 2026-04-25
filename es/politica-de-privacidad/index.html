@@ -98,15 +98,14 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="utility_page" data-page-language="es">
   <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/privacy-policy/" lang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/politica-de-privacidad/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
   <main class="wrap utilityPage">
-    <nav class="languageSwitch" aria-label="Opciones de idioma">
-      <a href="/privacy-policy/">English</a>
-      <a href="/es/politica-de-privacidad/" aria-current="page">Español</a>
-    </nav>
-
     <section class="utilityHero">
       <h1>Política de Privacidad</h1>
       <p>
@@ -217,10 +216,10 @@
           <h2>Enlaces útiles</h2>
           <p>Accede rápido a políticas, preguntas frecuentes y contacto.</p>
           <div class="policyLinkList" aria-label="Enlaces de ayuda">
-            <a class="policyPillLink" href="/es/preguntas-frecuentes/">Preguntas Frecuentes <span>Respuestas rápidas</span></a>
-            <a class="policyPillLink" href="/es/terminos/">Términos y Condiciones <span>Uso del sitio</span></a>
-            <a class="policyPillLink" href="/es/terminos-de-servicio/">Términos de Servicio <span>Reglas de servicio</span></a>
-            <a class="policyPillLink" href="/contacto/">Página de Contacto <span>Escríbenos</span></a>
+            <a class="policyPillLink" href="/es/preguntas-frecuentes/" data-analytics-event="internal_link_click" data-analytics-label="Preguntas Frecuentes" data-analytics-location="policy_links">Preguntas Frecuentes <span>Respuestas rápidas</span></a>
+            <a class="policyPillLink" href="/es/terminos/" data-analytics-event="internal_link_click" data-analytics-label="Términos y Condiciones" data-analytics-location="policy_links">Términos y Condiciones <span>Uso del sitio</span></a>
+            <a class="policyPillLink" href="/es/terminos-de-servicio/" data-analytics-event="internal_link_click" data-analytics-label="Términos de Servicio" data-analytics-location="policy_links">Términos de Servicio <span>Reglas de servicio</span></a>
+            <a class="policyPillLink" href="/contacto/" data-analytics-event="primary_cta_click" data-analytics-label="Página de Contacto" data-analytics-location="policy_links">Página de Contacto <span>Escríbenos</span></a>
             <div class="policyEmailRow" aria-label="Fila de email">
               <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
               <button class="copyIconBtn" id="copyPrivacyEmail" type="button" aria-label="Copiar email">
@@ -243,6 +242,60 @@
 
   <div id="siteFooter"></div>
 
+  <script>
+    (function(){
+      const w = window;
+      const dl = w.dataLayer = w.dataLayer || [];
+      const firedScroll = new Set();
+      function emit(eventName, params){
+        dl.push(Object.assign({
+          event: eventName,
+          page_type: document.body.dataset.pageType || "",
+          page_language: document.body.dataset.pageLanguage || "",
+          page_path: location.pathname,
+          page_title: document.title
+        }, params || {}));
+      }
+      w.eeAnalytics = w.eeAnalytics || { emit };
+      emit("page_view_enhanced");
+
+      document.addEventListener("click", function(e){
+        const target = e.target.closest("a,button");
+        if(!target) return;
+        const explicitEvent = target.dataset.analyticsEvent;
+        if(explicitEvent){
+          emit(explicitEvent, {
+            cta_label: target.dataset.analyticsLabel || target.textContent.trim(),
+            cta_location: target.dataset.analyticsLocation || "",
+            link_url: target.getAttribute("href") || ""
+          });
+          return;
+        }
+        if(target.tagName === "A"){
+          const href = target.getAttribute("href") || "";
+          const isOutbound = /^https?:\/\//.test(href) && !href.includes(location.hostname);
+          emit(isOutbound ? "outbound_link_click" : "internal_link_click", {
+            link_text: target.textContent.trim(),
+            link_url: href,
+            link_type: isOutbound ? "outbound" : "internal"
+          });
+        }
+      }, { passive: true });
+
+      document.addEventListener("scroll", function(){
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - w.innerHeight;
+        if(max <= 0) return;
+        const pct = Math.round((w.scrollY / max) * 100);
+        [25, 50, 75, 90].forEach(function(mark){
+          if(pct >= mark && !firedScroll.has(mark)){
+            firedScroll.add(mark);
+            emit("scroll_depth", { scroll_percent: mark });
+          }
+        });
+      }, { passive: true });
+    })();
+  </script>
   <script>
     document.addEventListener("contextmenu", function(e){
       if(e.target && e.target.tagName === "IMG") e.preventDefault();
@@ -298,6 +351,8 @@
         injectInclude("siteHeader", "/assets/includes/header.html"),
         injectInclude("siteFooter", "/assets/includes/footer.html")
       ]).finally(() => {
+        const existing = document.querySelector('script[src="/assets/js/site.js"]');
+        if(existing) return;
         const s = document.createElement("script");
         s.src = "/assets/js/site.js";
         document.body.appendChild(s);
