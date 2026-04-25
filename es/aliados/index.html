@@ -96,13 +96,13 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="partner_page" data-page-language="es">
   <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/partners/" lang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/aliados/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 <main class="partnersPage" aria-label="Aliados">
-    <nav class="languageSwitch" aria-label="Opciones de idioma">
-      <a href="/partners/">English</a>
-      <a href="/es/aliados/" aria-current="page">Español</a>
-    </nav>
     <section class="hero" aria-label="Hero de aliados">
       <div class="heroCard" aria-label="Resumen del programa de aliados">
         <div class="heroTop">
@@ -110,9 +110,7 @@
             <img src="/assets/images/pages/ee_logo_transparent.png" alt="Logo de Experience Ecuador" loading="eager" decoding="async" />
             <span class="pill">Programa de Aliados</span>
           </div>
-          <a class="pill" href="/partners/" aria-label="Ver en inglés">Ver en inglés</a>
         </div>
-
         <h1>Conviértase en aliado de Experience Ecuador</h1>
 
         <p class="lede">
@@ -128,8 +126,8 @@
         </p>
 
         <div class="ctaRow" aria-label="Acciones principales">
-          <a class="btn btnPrimary" href="https://experienceecuador.com/es/aliados/unirse/?lang=es" target="_blank" rel="noopener" aria-label="Postular (se abre en una nueva pestaña)">Postular</a>
-          <a class="btn btnGhost" href="/es/recomendados/" aria-label="Ver Recomendados">Ver Recomendados</a>
+          <a class="btn btnPrimary" href="https://experienceecuador.com/es/aliados/unirse/?lang=es" target="_blank" rel="noopener" aria-label="Postular (se abre en una nueva pestaña)" data-analytics-event="partner_application_start" data-analytics-label="Postular" data-analytics-location="partners_hero">Postular</a>
+          <a class="btn btnGhost" href="/es/recomendados/" aria-label="Ver Recomendados" data-analytics-event="primary_cta_click" data-analytics-label="Ver Recomendados" data-analytics-location="partners_hero">Ver Recomendados</a>
         </div>
 
         <div class="noteRow" aria-label="Notas rápidas">
@@ -368,20 +366,65 @@
         <p>Postula una sola vez y te guiaremos hacia el nivel que tenga más sentido según tu encaje, tus objetivos y el tipo de visibilidad que quieres construir con el tiempo.</p>
       </div>
       <div class="ctaRight">
-        <a class="btn btnPrimary" href="https://experienceecuador.com/es/aliados/unirse/?lang=es" target="_blank" rel="noopener" aria-label="Postular (se abre en una nueva pestaña)">Postular</a>
-        <a class="btn btnGhost" href="/es/contacto/" aria-label="Contacto Experience Ecuador">Contacto</a>
+        <a class="btn btnPrimary" href="https://experienceecuador.com/es/aliados/unirse/?lang=es" target="_blank" rel="noopener" aria-label="Postular (se abre en una nueva pestaña)" data-analytics-event="partner_application_start" data-analytics-label="Postular" data-analytics-location="partners_cta_band">Postular</a>
+        <a class="btn btnGhost" href="/es/contacto/" aria-label="Contacto Experience Ecuador" data-analytics-event="primary_cta_click" data-analytics-label="Contacto Experience Ecuador" data-analytics-location="partners_cta_band">Contacto</a>
       </div>
     </section>
 <section class="partnersSeoLinks" aria-label="Enlaces relacionados para aliados">
   <h2>Explora páginas relacionadas</h2>
   <div class="partnersLinkGrid">
-    <a href="/es/recomendados/">Ver Recomendados<span>Así descubren los viajeros a los negocios</span></a>
-    <a href="/contacto/">Contacto<span>Consulte sobre encaje, niveles o tiempos</span></a>
-    <a href="/es/preguntas-frecuentes/">Preguntas Frecuentes<span>Revise cómo funciona la plataforma</span></a>
+    <a href="/es/recomendados/" data-analytics-event="internal_link_click" data-analytics-label="Ver Recomendados" data-analytics-location="partners_related_links">Ver Recomendados<span>Así descubren los viajeros a los negocios</span></a>
+    <a href="/contacto/" data-analytics-event="internal_link_click" data-analytics-label="Contacto" data-analytics-location="partners_related_links">Contacto<span>Consulte sobre encaje, niveles o tiempos</span></a>
+    <a href="/es/preguntas-frecuentes/" data-analytics-event="internal_link_click" data-analytics-label="Preguntas Frecuentes" data-analytics-location="partners_related_links">Preguntas Frecuentes<span>Revise cómo funciona la plataforma</span></a>
   </div>
 </section>
   </main>
   <div id="siteFooter"></div>
+  <script>
+    (function(){
+      const w = window;
+      const dl = w.dataLayer = w.dataLayer || [];
+      const firedScroll = new Set();
+      function emit(eventName, params){
+        dl.push(Object.assign({
+          event: eventName,
+          page_type: document.body.dataset.pageType || "",
+          page_language: document.body.dataset.pageLanguage || "",
+          page_path: location.pathname,
+          page_title: document.title
+        }, params || {}));
+      }
+      w.eeAnalytics = w.eeAnalytics || { emit };
+      emit("page_view_enhanced");
+      document.addEventListener("click", function(e){
+        const target = e.target.closest("a,button");
+        if(!target) return;
+        const eventName = target.dataset.analyticsEvent;
+        if(eventName){
+          emit(eventName, {
+            cta_label: target.dataset.analyticsLabel || target.textContent.trim(),
+            cta_location: target.dataset.analyticsLocation || "",
+            link_url: target.getAttribute("href") || ""
+          });
+        }
+      });
+      const marks = [25, 50, 75, 100];
+      function handleScroll(){
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - window.innerHeight;
+        if(max <= 0) return;
+        const pct = Math.round((window.scrollY / max) * 100);
+        marks.forEach(function(mark){
+          if(pct >= mark && !firedScroll.has(mark)){
+            firedScroll.add(mark);
+            emit("scroll_depth", { scroll_percent: mark });
+          }
+        });
+      }
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      handleScroll();
+    })();
+  </script>
   <script>
     (function(){
       async function injectInclude(id, url){
@@ -395,9 +438,11 @@
         injectInclude("siteHeader", "/assets/includes/header.html"),
         injectInclude("siteFooter", "/assets/includes/footer.html")
       ]).finally(() => {
-        const s = document.createElement("script");
-        s.src = "/assets/js/site.js";
-        document.body.appendChild(s);
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          const s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
       });
     })();
   </script>
