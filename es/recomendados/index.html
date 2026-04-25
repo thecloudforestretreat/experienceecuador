@@ -140,15 +140,15 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="recommendations_hub" data-page-language="es">
   <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/recommendations/" lang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/recomendados/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
 <main class="recommendationsHub" aria-label="Recomendados">
-    <nav class="languageSwitch" aria-label="Opciones de idioma">
-      <a href="/recommendations/">English</a>
-      <a href="/es/recomendados/" aria-current="page">Español</a>
-    </nav>
-    <h1>Mejores Recomendados de Ecuador | Alojamientos, Tours y Servicios</h1>
+    <h1>Mejores Recomendados de Ecuador</h1>
     <p class="lede">
       Explora recomendados de Ecuador por región, ubicación, experiencia y categoría para encontrar alojamientos, restaurantes, servicios, tours y actividades confiables para tu viaje.
     </p>
@@ -199,8 +199,8 @@
 
     <div class="actionsRow" aria-label="Acciones">
       <div class="btnRow">
-        <button class="btn" id="btnReset" type="button" aria-label="Restablecer filtros">Restablecer</button>
-        <a class="btn primary" href="/es/aliados/" aria-label="Quiero ser aliado">Quiero ser aliado</a>
+        <button class="btn" id="btnReset" type="button" aria-label="Restablecer filtros" data-analytics-event="recommendation_filter_use" data-analytics-label="Restablecer filtros" data-analytics-location="filters">Restablecer</button>
+        <a class="btn primary" href="/es/aliados/" aria-label="Quiero ser aliado" data-analytics-event="primary_cta_click" data-analytics-label="Quiero ser aliado" data-analytics-location="recommendations_actions">Quiero ser aliado</a>
       </div>
       <div class="count" id="resultCount" aria-label="Cantidad de resultados">Cargando recomendados...</div>
     </div>
@@ -211,12 +211,12 @@
     <section class="recommendationsSeoLinks" aria-label="Enlaces de recomendados destacados">
       <h2>Explora recomendados destacados</h2>
       <div class="recommendationsLinkGrid">
-        <a href="/es/recomendados/miembros/andes/mindo/mindo-eco-chalet-river-and-waterfalls/">Mindo Eco Chalet<span>Río, cascadas y bosque nublado</span></a>
-        <a href="/es/recomendados/miembros/andes/mindo/mindo-eco-suite-river-and-cascadita/">Mindo Eco Suite<span>Suite privada cerca del río y cascadita</span></a>
-        <a href="/es/recomendados/miembros/andes/mindo/mindo-glamping-yurt-river-and-cascadita/">Mindo Glamping Yurt<span>Glamping cerca del río y cascadita</span></a>
-        <a href="/es/recomendados/miembros/andes/mindo/mindo-bird-watching/">Mindo Bird Watching<span>Avistamiento de aves en Mindo</span></a>
-        <a href="/es/recomendados/miembros/andes/choco-andino/the-cloud-forest-retreat/">The Cloud Forest Retreat<span>Lodge en el Choco Andino cerca de Quito</span></a>
-        <a href="/es/recomendados/miembros/andes/choco-andino/hacienda-verde-niebla/">Hacienda Verde Niebla<span>Hospedaje de bosque nublado en el Choco Andino</span></a>
+        <a href="/es/recomendados/miembros/andes/mindo/mindo-eco-chalet-river-and-waterfalls/" data-analytics-event="internal_link_click" data-analytics-label="Mindo Eco Chalet" data-analytics-location="featured_recommendations">Mindo Eco Chalet<span>Río, cascadas y bosque nublado</span></a>
+        <a href="/es/recomendados/miembros/andes/mindo/mindo-eco-suite-river-and-cascadita/" data-analytics-event="internal_link_click" data-analytics-label="Mindo Eco Suite" data-analytics-location="featured_recommendations">Mindo Eco Suite<span>Suite privada cerca del río y cascadita</span></a>
+        <a href="/es/recomendados/miembros/andes/mindo/mindo-glamping-yurt-river-and-cascadita/" data-analytics-event="internal_link_click" data-analytics-label="Mindo Glamping Yurt" data-analytics-location="featured_recommendations">Mindo Glamping Yurt<span>Glamping cerca del río y cascadita</span></a>
+        <a href="/es/recomendados/miembros/andes/mindo/mindo-bird-watching/" data-analytics-event="internal_link_click" data-analytics-label="Mindo Bird Watching" data-analytics-location="featured_recommendations">Mindo Bird Watching<span>Avistamiento de aves en Mindo</span></a>
+        <a href="/es/recomendados/miembros/andes/choco-andino/the-cloud-forest-retreat/" data-analytics-event="internal_link_click" data-analytics-label="The Cloud Forest Retreat" data-analytics-location="featured_recommendations">The Cloud Forest Retreat<span>Lodge en el Choco Andino cerca de Quito</span></a>
+        <a href="/es/recomendados/miembros/andes/choco-andino/hacienda-verde-niebla/" data-analytics-event="internal_link_click" data-analytics-label="Hacienda Verde Niebla" data-analytics-location="featured_recommendations">Hacienda Verde Niebla<span>Hospedaje de bosque nublado en el Choco Andino</span></a>
       </div>
     </section>
 
@@ -224,6 +224,54 @@
   </main>
 
   <div id="siteFooter"></div>
+
+<script>
+    (function(){
+      const w = window;
+      const dl = w.dataLayer = w.dataLayer || [];
+      const firedScroll = new Set();
+      function emit(eventName, params){
+        dl.push(Object.assign({
+          event: eventName,
+          page_type: document.body.dataset.pageType || "",
+          page_language: document.body.dataset.pageLanguage || "",
+          page_path: location.pathname,
+          page_title: document.title
+        }, params || {}));
+      }
+      w.eeAnalytics = w.eeAnalytics || { emit };
+      emit("page_view_enhanced");
+
+      document.addEventListener("click", function(e){
+        const target = e.target.closest("a,button");
+        if(!target) return;
+        const eventName = target.dataset.analyticsEvent;
+        if(eventName){
+          emit(eventName, {
+            cta_label: target.dataset.analyticsLabel || target.textContent.trim(),
+            cta_location: target.dataset.analyticsLocation || "",
+            link_url: target.getAttribute("href") || ""
+          });
+        }
+      });
+
+      const marks = [25, 50, 75, 100];
+      function handleScroll(){
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - window.innerHeight;
+        if(max <= 0) return;
+        const pct = Math.round((window.scrollY / max) * 100);
+        marks.forEach(function(mark){
+          if(pct >= mark && !firedScroll.has(mark)){
+            firedScroll.add(mark);
+            emit("scroll_depth", { scroll_percent: mark });
+          }
+        });
+      }
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      handleScroll();
+    })();
+  </script>
 
 <script>
     (function(){
@@ -912,9 +960,11 @@
         injectInclude("siteHeader", "/assets/includes/header.html"),
         injectInclude("siteFooter", "/assets/includes/footer.html")
       ]).finally(() => {
-        const s = document.createElement("script");
-        s.src = "/assets/js/site.js";
-        document.body.appendChild(s);
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          const s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
       });
     })();
   </script>
