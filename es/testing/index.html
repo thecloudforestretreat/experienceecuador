@@ -44,8 +44,8 @@
     "@graph":[
       {
         "@type":"BlogPosting",
-        "headline":"Mejor Época para Visitar Ecuador Por Región",
-        "name":"Mejor Época para Visitar Ecuador Por Región",
+        "headline":"Mejor Época para Visitar Ecuador",
+        "name":"Mejor Época para Visitar Ecuador",
         "description":"Encuentra la mejor época para visitar Ecuador por región, incluyendo Galápagos, Andes, Costa, Amazonía y Mindo, con clima, fauna y rutas.",
         "url":"https://experienceecuador.com/es/mejor-epoca-para-visitar-ecuador/",
         "inLanguage":"es",
@@ -67,8 +67,8 @@
       },
       {
         "@type":"TravelGuide",
-        "headline":"Mejor Época para Visitar Ecuador Por Región",
-        "name":"Mejor Época para Visitar Ecuador Por Región",
+        "headline":"Mejor Época para Visitar Ecuador",
+        "name":"Mejor Época para Visitar Ecuador",
         "description":"Encuentra la mejor época para visitar Ecuador por región, incluyendo Galápagos, Andes, Costa, Amazonía y Mindo, con clima, fauna y rutas.",
         "url":"https://experienceecuador.com/es/mejor-epoca-para-visitar-ecuador/",
         "inLanguage":"es",
@@ -122,25 +122,28 @@
         "@type":"BreadcrumbList",
         "itemListElement":[
           {"@type":"ListItem","position":1,"name":"Inicio","item":"https://experienceecuador.com/es/"},
-          {"@type":"ListItem","position":2,"name":"Mejor Época para Visitar Ecuador Por Región","item":"https://experienceecuador.com/es/mejor-epoca-para-visitar-ecuador/"}
+          {"@type":"ListItem","position":2,"name":"Mejor Época para Visitar Ecuador","item":"https://experienceecuador.com/es/mejor-epoca-para-visitar-ecuador/"}
         ]
       }
     ]
   }
   </script>
 </head>
-<body>
+<body data-page-type="guide_page" data-page-language="es">
   <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/best-time-to-visit-ecuador/" lang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/mejor-epoca-para-visitar-ecuador/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
   <section class="heroImage hero-regions-andes" aria-label="Imagen principal de mejor época para visitar Ecuador" style="background-image:url('https://experienceecuador.com/assets/images/EE-Carousel-Andes-4.jpg');">
     <div class="heroImageInner">
       <div class="sectionKicker sectionKicker--overlay">Guía de temporada</div>
       <h1 class="heroTitle">Mejor Época para Visitar Ecuador</h1>
       <p class="heroLead">Elige cuándo visitar Ecuador conectando tu mes de viaje con las regiones, fauna, clima y tipo de ruta que más importan.</p>
-      <p><a href="/best-time-to-visit-ecuador/">English</a> | <a href="/es/mejor-epoca-para-visitar-ecuador/">Español</a></p>
       <div class="heroActions">
-        <a class="btn btnPrimary" href="/es/planificador-de-viajes/">Empezar con el Planificador</a>
-        <a class="btn btnGhost" href="/es/guia-viaje-ecuador/">Guía de Viaje Ecuador</a>
+        <a class="btn btnPrimary" href="/es/planificador-de-viajes/" data-analytics-event="primary_cta_click" data-analytics-label="Empezar con el Planificador" data-analytics-location="hero">Empezar con el Planificador</a>
+        <a class="btn btnGhost" href="/es/guia-viaje-ecuador/" data-analytics-event="secondary_cta_click" data-analytics-label="Guía de Viaje Ecuador" data-analytics-location="hero">Guía de Viaje Ecuador</a>
       </div>
       <div class="heroMetaRow">
         <span class="heroPill">Clima</span>
@@ -243,24 +246,107 @@
       <div class="overviewBand">
         <div class="sectionHead"><div class="sectionHeadCopy"><div class="sectionKicker">Listo para planear</div><h2 class="hTitle">Elige la Ruta Correcta por Ecuador para tus Fechas</h2><p class="hSub">Usa el Planificador o compara las regiones principales antes de cerrar vuelos, lodges o planes de islas.</p></div></div>
         <div class="heroActions">
-          <a class="btn btnPrimary" href="/es/planificador-de-viajes/">Empezar a planificar</a>
-          <a class="btn btnGhost" href="/es/guia-viaje-ecuador/">Abrir guía de viaje</a>
+          <a class="btn btnPrimary" href="/es/planificador-de-viajes/" data-analytics-event="primary_cta_click" data-analytics-label="Empezar a planificar" data-analytics-location="final_cta">Empezar a planificar</a>
+          <a class="btn btnGhost" href="/es/guia-viaje-ecuador/" data-analytics-event="secondary_cta_click" data-analytics-label="Abrir guía de viaje" data-analytics-location="final_cta">Abrir guía de viaje</a>
         </div>
       </div>
     </section>
   </main>
 
   <div id="siteFooter"></div>
-
-  <script src="/assets/js/site.js"></script>
   <script>
-    (function(){
-      function inject(id, url){
+    (function () {
+      var pageType = document.body.getAttribute("data-page-type") || "guide_page";
+      var pageLanguage = document.body.getAttribute("data-page-language") || document.documentElement.lang || "es";
+      var pageTitle = document.title;
+      var pagePath = window.location.pathname;
+      var firedScroll = {};
+
+      window.dataLayer = window.dataLayer || [];
+      window.eeAnalytics = window.eeAnalytics || {};
+      window.eeAnalytics.emit = function (eventName, params) {
+        var payload = Object.assign({
+          event: eventName,
+          page_type: pageType,
+          page_language: pageLanguage,
+          page_path: pagePath,
+          page_title: pageTitle
+        }, params || {});
+        window.dataLayer.push(payload);
+      };
+
+      function emit(eventName, params) {
+        window.eeAnalytics.emit(eventName, params);
+      }
+
+      function sectionNameFor(element) {
+        var section = element.closest("section");
+        if (!section) return "";
+        return section.getAttribute("aria-label") || "";
+      }
+
+      emit("page_view_enhanced");
+
+      document.addEventListener("click", function (event) {
+        var link = event.target.closest("a, button");
+        if (!link) return;
+        var explicitEvent = link.getAttribute("data-analytics-event");
+        if (explicitEvent) {
+          emit(explicitEvent, {
+            cta_label: link.getAttribute("data-analytics-label") || link.textContent.trim(),
+            cta_location: link.getAttribute("data-analytics-location") || sectionNameFor(link),
+            link_url: link.href || "",
+            section_name: sectionNameFor(link)
+          });
+          return;
+        }
+        var href = link.getAttribute("href") || "";
+        var absoluteHref = link.href || href;
+        var isInternal = absoluteHref.indexOf(location.origin) === 0 || href.indexOf("/") === 0;
+        emit(isInternal ? "internal_link_click" : "outbound_link_click", {
+          link_text: link.textContent.trim(),
+          link_url: absoluteHref,
+          link_type: isInternal ? "internal" : "outbound",
+          section_name: sectionNameFor(link)
+        });
+      }, true);
+
+      document.addEventListener("scroll", function () {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        if (max <= 0) return;
+        var pct = Math.round((window.scrollY / max) * 100);
+        [25, 50, 75, 90].forEach(function (mark) {
+          if (pct >= mark && !firedScroll[mark]) {
+            firedScroll[mark] = true;
+            emit("scroll_depth", { scroll_percent: mark });
+          }
+        });
+      }, { passive: true });
+    })();
+  </script>
+  <script>
+    (function () {
+      function inject(id, url) {
         var el = document.getElementById(id);
         if(!el) return Promise.resolve();
-        return fetch(url, { cache: "no-store" }).then(function(res){ return res.text(); }).then(function(html){ el.innerHTML = html; }).catch(function(){});
+        if (el.children.length || (el.innerHTML || "").trim()) return Promise.resolve();
+        return fetch(url, { cache: "no-store" })
+          .then(function(res){ return res.text(); })
+          .then(function(html){
+            if (!el.children.length && !(el.innerHTML || "").trim()) {
+              el.innerHTML = html;
+            }
+          })
+          .catch(function(){});
       }
-      Promise.all([inject("siteHeader", "/assets/includes/header.html"), inject("siteFooter", "/assets/includes/footer.html")]);
+      Promise.all([inject("siteHeader", "/assets/includes/header.html"), inject("siteFooter", "/assets/includes/footer.html")]).finally(function () {
+        var existing = document.querySelector('script[src="/assets/js/site.js"]');
+        if (existing) return;
+        var script = document.createElement("script");
+        script.src = "/assets/js/site.js";
+        document.body.appendChild(script);
+      });
     })();
   </script>
 </body>
