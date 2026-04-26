@@ -49,7 +49,7 @@
     "@graph":[
       {
         "@type":"CollectionPage",
-        "name":"Cuyabeno Wildlife Reserve",
+        "name":"Cuyabeno Wildlife Reserve Ecuador Travel Guide Amazon Lodges, Wildlife & Routes",
         "url":"https://experienceecuador.com/regions/amazon/cuyabeno-wildlife-reserve/",
         "description":"Plan your trip to Cuyabeno Wildlife Reserve, Ecuador with lagoon canoe exploration, strong wildlife sightings, blackwater scenery, and immersive 3 to 5+ day Amazon lodge stays.",
         "isPartOf":{"@type":"WebSite","name":"Experience Ecuador","url":"https://experienceecuador.com/"}
@@ -92,8 +92,12 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="region_destination_page" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="https://experienceecuador.com/regions/amazon/cuyabeno-wildlife-reserve/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch" data-analytics-target-language="en">English</a>
+    <a href="https://experienceecuador.com/es/regiones/amazonia/cuyabeno-reserva-faunistica/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch" data-analytics-target-language="es">Español</a>
+  </nav>
 
   <section class="heroImage hero-regions-amazon" aria-label="Cuyabeno Wildlife Reserve hero image" style="background-image:url('/assets/images/EE-Carousel-Cuyabeno-1.jpg');">
     <div class="heroImageInner">
@@ -101,8 +105,8 @@
       <h1 class="heroTitle">Cuyabeno Wildlife Reserve, Ecuador</h1>
       <p class="heroLead">A water-led Amazon experience where blackwater lagoons, canoe exploration, wildlife encounters, and lodge immersion shape one of Ecuador's strongest multi-day rainforest stays.</p>
       <div class="heroActions">
-        <a class="btn btnPrimary" href="#top-experiences">Explore Things to Do</a>
-        <a class="btn btnGhost" href="#where-to-stay">View Recommended Stays</a>
+        <a class="btn btnPrimary" href="#top-experiences" data-analytics-event="primary_cta_click" data-analytics-label="Explore Things to Do" data-analytics-location="hero" data-analytics-page-type="region_destination_page">Explore Things to Do</a>
+        <a class="btn btnGhost" href="#where-to-stay" data-analytics-event="secondary_cta_click" data-analytics-label="View Recommended Stays" data-analytics-location="hero" data-analytics-page-type="region_destination_page">View Recommended Stays</a>
       </div>
       <div class="heroMetaRow">
         <span class="heroPill">Wildlife and canoe travel</span>
@@ -428,8 +432,8 @@
           <p>Use Cuyabeno as a wildlife-first Amazon anchor, then build the rest of your Ecuador route around the right pace, lodge structure, and rainforest contrasts.</p>
         </div>
         <div class="ctaRight">
-          <a class="btn btnPrimary" href="/trip-builder">Start Planning</a>
-          <a class="btn btnGhost" href="/contact/">Ask About Your Route</a>
+          <a class="btn btnPrimary" href="/trip-builder/" data-analytics-event="primary_cta_click" data-analytics-label="Start Planning" data-analytics-location="final_cta" data-analytics-page-type="region_destination_page">Start Planning</a>
+          <a class="btn btnGhost" href="/contact/" data-analytics-event="secondary_cta_click" data-analytics-label="Ask About Your Route" data-analytics-location="final_cta" data-analytics-page-type="region_destination_page">Ask About Your Route</a>
         </div>
       </div>
     </section>
@@ -437,7 +441,52 @@
 
   <div id="siteFooter"></div>
 
-  <script src="/assets/js/site.js"></script>
+  <script>
+    (function(){
+      const pageType = document.body.dataset.pageType || "region_destination_page";
+      const pageLanguage = document.body.dataset.pageLanguage || "en";
+      const pagePath = window.location.pathname;
+      const pageTitle = document.title;
+      const pushedScrollDepths = new Set();
+
+      function track(eventName, params){
+        const payload = Object.assign({
+          page_type: pageType,
+          page_language: pageLanguage,
+          page_path: pagePath,
+          page_title: pageTitle
+        }, params || {});
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(Object.assign({ event: eventName }, payload));
+      }
+
+      track("page_view_enhanced");
+
+      document.addEventListener("click", function(event){
+        const target = event.target.closest("[data-analytics-event]");
+        if(!target) return;
+        track(target.dataset.analyticsEvent, {
+          cta_label: target.dataset.analyticsLabel || target.textContent.trim(),
+          cta_location: target.dataset.analyticsLocation || "",
+          target_url: target.href || "",
+          target_language: target.dataset.analyticsTargetLanguage || ""
+        });
+      });
+
+      window.addEventListener("scroll", function(){
+        const doc = document.documentElement;
+        const maxScroll = doc.scrollHeight - window.innerHeight;
+        if(maxScroll <= 0) return;
+        const percent = Math.round((window.scrollY / maxScroll) * 100);
+        [25, 50, 75, 90].forEach(function(threshold){
+          if(percent >= threshold && !pushedScrollDepths.has(threshold)){
+            pushedScrollDepths.add(threshold);
+            track("scroll_depth", { scroll_percent: threshold });
+          }
+        });
+      }, { passive: true });
+    })();
+  </script>
   <script>
     (function () {
       function inject(id, url) {
@@ -451,7 +500,19 @@
       Promise.all([
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
-      ]);
+      ]).then(function () {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      }).catch(function () {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      });
     })();
   </script>
 </body>
