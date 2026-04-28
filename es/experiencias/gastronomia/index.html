@@ -91,8 +91,12 @@
   }
   </script>
 </head>
-<body>
-  <div id="siteHeader"></div>
+<body data-page-type="experience_detail_page" data-page-language="es">
+  <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/experiences/culinary/" lang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch" data-analytics-target-language="en">English</a>
+    <a href="https://experienceecuador.com/es/experiencias/gastronomia/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch" data-analytics-target-language="es">Español</a>
+  </nav>
 
   <section class="heroImage hero-experiences-culinary" aria-label="Imagen principal de gastronomía">
     <div class="heroImageInner">
@@ -100,8 +104,8 @@
       <h1 class="heroTitle">Gastronomía en Ecuador</h1>
       <p class="heroLead">Construye un itinerario por Ecuador centrado en la comida a través de mercados, mariscos, cacao, café, panaderías y clásicos regionales, y luego conecta esos sabores con la región correcta y los proveedores adecuados.</p>
       <div class="heroActions">
-        <a class="btn btnPrimary" href="/es/regiones/">Explorar lugares</a>
-        <a class="btn btnGhost" href="/es/recomendados/">Ver recomendados</a>
+        <a class="btn btnPrimary" href="/es/regiones/" data-analytics-event="primary_cta_click" data-analytics-label="Explorar lugares" data-analytics-location="hero" data-analytics-page-type="experience_detail_page">Explorar lugares</a>
+        <a class="btn btnGhost" href="/es/recomendados/" data-analytics-event="secondary_cta_click" data-analytics-label="Ver recomendados" data-analytics-location="hero" data-analytics-page-type="experience_detail_page">Ver recomendados</a>
       </div>
     </div>
   </section>
@@ -304,7 +308,7 @@
             <div class="timelineDay">Paso 4</div>
             <div class="timelineCopy">
               <h3>Usa proveedores y herramientas para afinar la ruta</h3>
-              <p>Una vez claro el estilo de comida, usa las rutas de proveedores y el <a href="/es/planificador-de-viajes/">planificador de viajes</a> para dar mejor secuencia a comidas, mercados y cambios de destino.</p>
+              <p>Una vez claro el estilo de comida, usa las rutas de proveedores y el <a href="/es/planificador-de-viajes/" data-analytics-event="internal_link_click" data-analytics-label="Planificador de viajes" data-analytics-location="timeline">Planificador de viajes</a> para dar mejor secuencia a comidas, mercados y cambios de destino.</p>
             </div>
           </div>
         </div>
@@ -408,22 +412,22 @@
         </div>
 
         <div class="grid4">
-          <a class="miniCard" href="/es/regiones/">
+          <a class="miniCard" href="/es/regiones/" data-analytics-event="internal_link_click" data-analytics-label="Explorar regiones" data-analytics-location="planning_paths">
             <h3>Explorar regiones</h3>
             <p>Empieza aquí si quieres comparar qué parte de Ecuador encaja mejor con los sabores, el ritmo y el estilo de viaje gastronómico que buscas.</p>
             <span class="go">Abrir regiones</span>
           </a>
-          <a class="miniCard" href="/es/donde-alojarse-ecuador/">
+          <a class="miniCard" href="/es/donde-alojarse-ecuador/" data-analytics-event="internal_link_click" data-analytics-label="Dónde alojarse en Ecuador" data-analytics-location="planning_paths">
             <h3>Dónde alojarse en Ecuador</h3>
             <p>Muy útil cuando ya sabes si tu mejor base culinaria debe ser de mercado, costera, urbana o más rural.</p>
             <span class="go">Abrir guía</span>
           </a>
-          <a class="miniCard" href="/es/planificador-de-viajes/">
+          <a class="miniCard" href="/es/planificador-de-viajes/" data-analytics-event="internal_link_click" data-analytics-label="Planificador de viajes" data-analytics-location="planning_paths">
             <h3>Planificador de viajes</h3>
             <p>Usa la herramienta cuando ya estés listo para convertir tus prioridades culinarias en una ruta realista con mejor ritmo.</p>
             <span class="go">Abrir planificador</span>
           </a>
-          <a class="miniCard" href="/es/experiencias/gastronomia/imperdibles/">
+          <a class="miniCard" href="/es/experiencias/gastronomia/imperdibles/" data-analytics-event="internal_link_click" data-analytics-label="Imperdibles" data-analytics-location="planning_paths">
             <h3>Imperdibles</h3>
             <p>Usa esta página cuando quieras la lista corta de platos, snacks y favoritos locales alrededor de los cuales vale la pena planear.</p>
             <span class="go">Abrir imperdibles</span>
@@ -501,8 +505,8 @@
           <p>Elige los sabores y experiencias que quieres vivir, y luego conéctalos con la región correcta, los proveedores indicados y las mejores herramientas de planificación.</p>
         </div>
         <div class="ctaRight">
-          <a class="btn btnPrimary" href="/es/regiones/">Explorar lugares</a>
-          <a class="btn btnGhost" href="/es/planificador-de-viajes/">Empezar a planificar</a>
+          <a class="btn btnPrimary" href="/es/regiones/" data-analytics-event="primary_cta_click" data-analytics-label="Explorar lugares" data-analytics-location="final_cta" data-analytics-page-type="experience_detail_page">Explorar lugares</a>
+          <a class="btn btnGhost" href="/es/planificador-de-viajes/" data-analytics-event="secondary_cta_click" data-analytics-label="Empezar a planificar" data-analytics-location="final_cta" data-analytics-page-type="experience_detail_page">Empezar a planificar</a>
         </div>
       </div>
     </section>
@@ -510,9 +514,40 @@
 
   <div id="siteFooter"></div>
 
-  <script src="/assets/js/site.js"></script>
   <script>
     (function () {
+      window.dataLayer = window.dataLayer || [];
+      function emit(name, params) {
+        window.dataLayer.push(Object.assign({ event: name }, params || {}));
+      }
+      document.addEventListener("click", function (event) {
+        var target = event.target.closest("[data-analytics-event]");
+        if (!target) return;
+        emit(target.getAttribute("data-analytics-event"), {
+          label: target.getAttribute("data-analytics-label") || "",
+          location: target.getAttribute("data-analytics-location") || "",
+          page_type: target.getAttribute("data-analytics-page-type") || "",
+          target_language: target.getAttribute("data-analytics-target-language") || ""
+        });
+      });
+      var milestones = [25, 50, 75, 100];
+      var fired = {};
+      function onScroll() {
+        var root = document.documentElement;
+        var scrollTop = root.scrollTop || document.body.scrollTop;
+        var max = root.scrollHeight - root.clientHeight;
+        if (max <= 0) return;
+        var pct = Math.round((scrollTop / max) * 100);
+        milestones.forEach(function (m) {
+          if (pct >= m && !fired[m]) {
+            fired[m] = true;
+            emit("scroll_depth", { percent: m, page_type: "experience_detail_page" });
+          }
+        });
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      emit("page_view_enhanced", { page_type: "experience_detail_page", page_language: "es" });
+
       function inject(id, url) {
         var el = document.getElementById(id);
         if (!el) return Promise.resolve();
@@ -525,7 +560,13 @@
       Promise.all([
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
-      ]);
+      ]).finally(function () {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var script = document.createElement("script");
+          script.src = "/assets/js/site.js";
+          document.body.appendChild(script);
+        }
+      });
     })();
   </script>
 </body>
