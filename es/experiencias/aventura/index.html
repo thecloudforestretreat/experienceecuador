@@ -91,8 +91,12 @@
   }
   </script>
 </head>
-<body>
-  <div id="siteHeader"></div>
+<body data-page-type="experience_detail_page" data-page-language="es">
+  <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/experiences/adventure/" lang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch" data-analytics-target-language="en">English</a>
+    <a href="https://experienceecuador.com/es/experiencias/aventura/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch" data-analytics-target-language="es">Español</a>
+  </nav>
 
   <section class="heroImage hero-experiencias-aventura" aria-label="Imagen principal de aventura">
     <div class="heroImageInner">
@@ -100,8 +104,8 @@
       <h1 class="heroTitle">Aventura en Ecuador</h1>
       <p class="heroLead">Construye un itinerario activo en Ecuador a través de rutas de volcanes, rafting, canyoning, canopy, movimiento en bosque nublado y energía costera, y luego alinea ese ritmo con la región correcta y la mejor ruta de proveedores.</p>
       <div class="heroActions">
-        <a class="btn btnPrimary" href="/es/regiones/">Explorar lugares</a>
-        <a class="btn btnGhost" href="/es/recomendados/">Ver proveedores</a>
+        <a class="btn btnPrimary" href="/es/regiones/" data-analytics-event="primary_cta_click" data-analytics-label="Explorar lugares" data-analytics-location="hero" data-analytics-page-type="experience_detail_page">Explorar lugares</a>
+        <a class="btn btnGhost" href="/es/recomendados/" data-analytics-event="secondary_cta_click" data-analytics-label="Ver proveedores" data-analytics-location="hero" data-analytics-page-type="experience_detail_page">Ver proveedores</a>
       </div>
     </div>
   </section>
@@ -304,7 +308,7 @@
             <div class="timelineDay">Paso 4</div>
             <div class="timelineCopy">
               <h3>Usa proveedores y herramientas de planificación para cerrar la logística</h3>
-              <p>Una vez clara la mezcla de actividades, usa la ruta de proveedores y el <a href="/trip-builder/">trip builder</a> para ajustar tiempos, traslados y ritmo.</p>
+              <p>Una vez clara la mezcla de actividades, usa la ruta de proveedores y el <a href="/es/planificador-de-viajes/" data-analytics-event="internal_link_click" data-analytics-label="Planificador de viajes" data-analytics-location="timeline">Planificador de viajes</a> para ajustar tiempos, traslados y ritmo.</p>
             </div>
           </div>
         </div>
@@ -423,10 +427,10 @@
             <p>Muy útil cuando ya sabes qué tipo de base debe sostener tus días de actividad sin volver la logística un caos.</p>
             <span class="go">Abrir guía</span>
           </a>
-          <a class="miniCard" href="/trip-builder/">
-            <h3>Trip Builder</h3>
+          <a class="miniCard" href="/es/planificador-de-viajes/" data-analytics-event="internal_link_click" data-analytics-label="Planificador de viajes" data-analytics-location="planning_paths">
+            <h3>Planificador de viajes</h3>
             <p>Usa la herramienta cuando ya estés listo para convertir tu mezcla de actividades en una ruta realista y mejor balanceada.</p>
-            <span class="go">Abrir trip builder</span>
+            <span class="go">Abrir planificador</span>
           </a>
         </div>
       </div>
@@ -502,8 +506,8 @@
           <p>Elige el tipo de aventura que debe liderar la ruta y luego usa regiones, proveedores y herramientas de planificación para convertir esa energía en un viaje más inteligente.</p>
         </div>
         <div class="ctaRight">
-          <a class="btn btnPrimary" href="/es/regiones/">Explorar lugares</a>
-          <a class="btn btnGhost" href="/trip-builder/">Empezar a planificar</a>
+          <a class="btn btnPrimary" href="/es/regiones/" data-analytics-event="primary_cta_click" data-analytics-label="Explorar lugares" data-analytics-location="final_cta" data-analytics-page-type="experience_detail_page">Explorar lugares</a>
+          <a class="btn btnGhost" href="/es/planificador-de-viajes/" data-analytics-event="secondary_cta_click" data-analytics-label="Empezar a planificar" data-analytics-location="final_cta" data-analytics-page-type="experience_detail_page">Empezar a planificar</a>
         </div>
       </div>
     </section>
@@ -511,9 +515,40 @@
 
   <div id="siteFooter"></div>
 
-  <script src="/assets/js/site.js"></script>
   <script>
     (function () {
+      window.dataLayer = window.dataLayer || [];
+      function emit(name, params) {
+        window.dataLayer.push(Object.assign({ event: name }, params || {}));
+      }
+      document.addEventListener("click", function (event) {
+        var target = event.target.closest("[data-analytics-event]");
+        if (!target) return;
+        emit(target.getAttribute("data-analytics-event"), {
+          label: target.getAttribute("data-analytics-label") || "",
+          location: target.getAttribute("data-analytics-location") || "",
+          page_type: target.getAttribute("data-analytics-page-type") || "",
+          target_language: target.getAttribute("data-analytics-target-language") || ""
+        });
+      });
+      var milestones = [25, 50, 75, 100];
+      var fired = {};
+      function onScroll() {
+        var root = document.documentElement;
+        var scrollTop = root.scrollTop || document.body.scrollTop;
+        var max = root.scrollHeight - root.clientHeight;
+        if (max <= 0) return;
+        var pct = Math.round((scrollTop / max) * 100);
+        milestones.forEach(function (m) {
+          if (pct >= m && !fired[m]) {
+            fired[m] = true;
+            emit("scroll_depth", { percent: m, page_type: "experience_detail_page" });
+          }
+        });
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      emit("page_view_enhanced", { page_type: "experience_detail_page", page_language: "es" });
+
       function inject(id, url) {
         var el = document.getElementById(id);
         if (!el) return Promise.resolve();
@@ -526,7 +561,13 @@
       Promise.all([
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
-      ]);
+      ]).finally(function () {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var script = document.createElement("script");
+          script.src = "/assets/js/site.js";
+          document.body.appendChild(script);
+        }
+      });
     })();
   </script>
 </body>
