@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Galápagos Travel Guide | Islands, Routes, Wildlife and Trip Planning</title>
-  <meta name="description" content="Use this Galápagos travel guide to compare islands, wildlife-focused routes, planning styles, and extensions from mainland Ecuador. Explore the strongest ways to build a better Galapagos trip." />
+  <title>Galápagos Travel Guide | Islands, Wildlife & Trip Planning</title>
+  <meta name="description" content="Plan a smarter Galápagos trip with island guidance, wildlife highlights, route ideas, and practical travel tips." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://experienceecuador.com/galapagos-travel-guide/" />
   <link rel="alternate" hreflang="en" href="https://experienceecuador.com/galapagos-travel-guide/" />
@@ -14,8 +14,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="Galápagos Travel Guide | Islands, Routes, Wildlife and Trip Planning" />
-  <meta property="og:description" content="Use this Galápagos travel guide to compare islands, wildlife-focused routes, planning styles, and extensions from mainland Ecuador. Explore the strongest ways to build a better Galapagos trip." />
+  <meta property="og:title" content="Galápagos Travel Guide | Islands, Wildlife & Trip Planning" />
+  <meta property="og:description" content="Plan a smarter Galápagos trip with island guidance, wildlife highlights, route ideas, and practical travel tips." />
   <meta property="og:url" content="https://experienceecuador.com/galapagos-travel-guide/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
@@ -25,8 +25,8 @@
   <meta property="og:image:alt" content="Experience Ecuador Galápagos trip planning" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Galápagos Travel Guide | Islands, Routes, Wildlife and Trip Planning" />
-  <meta name="twitter:description" content="Use this Galápagos travel guide to compare islands, wildlife-focused routes, planning styles, and extensions from mainland Ecuador. Explore the strongest ways to build a better Galapagos trip." />
+  <meta name="twitter:title" content="Galápagos Travel Guide | Islands, Wildlife & Trip Planning" />
+  <meta name="twitter:description" content="Plan a smarter Galápagos trip with island guidance, wildlife highlights, route ideas, and practical travel tips." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -95,8 +95,12 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="guide_page" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="https://experienceecuador.com/galapagos-travel-guide/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/guia-viaje-galapagos/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
   <section class="heroImage hero-regions-andes" aria-label="Galápagos travel guide hero image" style="background-image:url('/assets/images/EE-Carousel-SantaCruzIsland-5.jpg');">
     <div class="heroImageInner">
@@ -393,9 +397,24 @@
 
   <div id="siteFooter"></div>
 
-  <script src="/assets/js/site.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view_enhanced",
+      page_type: "guide_page",
+      page_language: "en",
+      page_path: "/galapagos-travel-guide/"
+    });
+  </script>
   <script>
     (function () {
+      function loadSiteScript() {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      }
       function inject(id, url) {
         var el = document.getElementById(id);
         if (!el) return Promise.resolve();
@@ -407,7 +426,7 @@
       Promise.all([
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
-      ]);
+      ]).finally(loadSiteScript);
     })();
   </script>
 </body>
