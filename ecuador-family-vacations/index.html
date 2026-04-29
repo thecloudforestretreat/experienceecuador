@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ecuador Family Vacations | Flexible Private Trips for All Ages</title>
-  <meta name="description" content="Plan Ecuador family vacations with flexible private routes across the Andes, Amazon, cloud forest, coast, and Galápagos. Compare the best family-friendly regions, experiences, and planning paths." />
+  <title>Ecuador Family Vacations | Private Trips for All Ages</title>
+  <meta name="description" content="Plan family vacations in Ecuador with flexible private routes, wildlife, culture, and age-friendly pacing." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://experienceecuador.com/ecuador-family-vacations/" />
   <link rel="alternate" hreflang="en" href="https://experienceecuador.com/ecuador-family-vacations/" />
@@ -14,8 +14,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="Ecuador Family Vacations | Flexible Private Trips for All Ages" />
-  <meta property="og:description" content="Plan Ecuador family vacations with flexible private routes across the Andes, Amazon, cloud forest, coast, and Galápagos. Compare the best family-friendly regions, experiences, and planning paths." />
+  <meta property="og:title" content="Ecuador Family Vacations | Private Trips for All Ages" />
+  <meta property="og:description" content="Plan family vacations in Ecuador with flexible private routes, wildlife, culture, and age-friendly pacing." />
   <meta property="og:url" content="https://experienceecuador.com/ecuador-family-vacations/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
@@ -25,8 +25,8 @@
   <meta property="og:image:alt" content="Experience Ecuador family vacation planning across Ecuador" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ecuador Family Vacations | Flexible Private Trips for All Ages" />
-  <meta name="twitter:description" content="Plan Ecuador family vacations with flexible private routes across the Andes, Amazon, cloud forest, coast, and Galápagos. Compare the best family-friendly regions, experiences, and planning paths." />
+  <meta name="twitter:title" content="Ecuador Family Vacations | Private Trips for All Ages" />
+  <meta name="twitter:description" content="Plan family vacations in Ecuador with flexible private routes, wildlife, culture, and age-friendly pacing." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -51,7 +51,7 @@
         "@type":"CollectionPage",
         "name":"Ecuador Family Vacations",
         "url":"https://experienceecuador.com/ecuador-family-vacations/",
-        "description":"Plan Ecuador family vacations with flexible private routes across the Andes, Amazon, cloud forest, coast, and Galápagos. Compare the best family-friendly regions, experiences, and planning paths.",
+        "description":"Plan family vacations in Ecuador with flexible private routes, wildlife, culture, and age-friendly pacing.",
         "isPartOf":{"@type":"WebSite","name":"Experience Ecuador","url":"https://experienceecuador.com/"}
       },
       {
@@ -95,8 +95,12 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="collection_page" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="https://experienceecuador.com/ecuador-family-vacations/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/vacaciones-familiares-ecuador/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
   <section class="heroImage hero-regions-andes" aria-label="Ecuador family vacations hero image" style="background-image:url('/assets/images/new/ee_family_vacations_001.jpg');">
     <div class="heroImageInner">
@@ -393,9 +397,24 @@
 
   <div id="siteFooter"></div>
 
-  <script src="/assets/js/site.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view_enhanced",
+      page_type: "collection_page",
+      page_language: "en",
+      page_path: "/ecuador-family-vacations/"
+    });
+  </script>
   <script>
     (function () {
+      function loadSiteScript() {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      }
       function inject(id, url) {
         var el = document.getElementById(id);
         if (!el) return Promise.resolve();
@@ -407,7 +426,7 @@
       Promise.all([
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
-      ]);
+      ]).finally(loadSiteScript);
     })();
   </script>
 </body>
