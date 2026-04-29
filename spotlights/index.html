@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ecuador Travel Spotlights | Events & Seasonal Highlights</title>
-  <meta name="description" content="Discover Ecuador travel spotlights with seasonal events, wildlife moments, planning windows, and trip ideas across the Andes, Amazon, Coast, and Galapagos." />
+  <meta name="description" content="Discover Ecuador travel spotlights with seasonal events, wildlife moments, planning windows, and trip ideas across the Andes, Amazon, Coast, and Galápagos." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://experienceecuador.com/spotlights/" />
   <link rel="alternate" hreflang="en" href="https://experienceecuador.com/spotlights/" />
@@ -16,7 +16,7 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="es_EC" />
   <meta property="og:title" content="Ecuador Travel Spotlights | Events & Seasonal Highlights" />
-  <meta property="og:description" content="Discover Ecuador travel spotlights with seasonal events, wildlife moments, planning windows, and trip ideas across the Andes, Amazon, Coast, and Galapagos." />
+  <meta property="og:description" content="Discover Ecuador travel spotlights with seasonal events, wildlife moments, planning windows, and trip ideas across the Andes, Amazon, Coast, and Galápagos." />
   <meta property="og:url" content="https://experienceecuador.com/spotlights/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/pages/spotlights/ee_spotlights_florecimiento_01.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/pages/spotlights/ee_spotlights_florecimiento_01.jpg" />
@@ -26,7 +26,7 @@
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ecuador Travel Spotlights | Events & Seasonal Highlights" />
-  <meta name="twitter:description" content="Discover Ecuador travel spotlights with seasonal events, wildlife moments, planning windows, and trip ideas across the Andes, Amazon, Coast, and Galapagos." />
+  <meta name="twitter:description" content="Discover Ecuador travel spotlights with seasonal events, wildlife moments, planning windows, and trip ideas across the Andes, Amazon, Coast, and Galápagos." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/pages/spotlights/ee_spotlights_florecimiento_01.jpg" />
   <meta name="twitter:image:alt" content="Ecuador travel spotlights for seasonal events and planning windows" />
   <!-- Favicons (root) -->
@@ -52,7 +52,7 @@
         "@id": "https://experienceecuador.com/spotlights/#webpage",
         "url": "https://experienceecuador.com/spotlights/",
         "name": "Ecuador Travel Spotlights Events & Seasonal Highlights",
-        "description": "Discover Ecuador travel spotlights with seasonal events, wildlife moments, planning windows, and trip ideas across the Andes, Amazon, Coast, and Galapagos.",
+        "description": "Discover Ecuador travel spotlights with seasonal events, wildlife moments, planning windows, and trip ideas across the Andes, Amazon, Coast, and Galápagos.",
         "inLanguage": "en",
         "isPartOf": {
           "@type": "WebSite",
@@ -64,7 +64,7 @@
           { "@type": "Place", "name": "Andes" },
           { "@type": "Place", "name": "Amazon" },
           { "@type": "Place", "name": "Pacific Coast" },
-          { "@type": "Place", "name": "Galapagos" }
+          { "@type": "Place", "name": "Galápagos" }
         ],
         "primaryImageOfPage": {
           "@type": "ImageObject",
@@ -163,30 +163,52 @@
       line-height:1.65;
       margin:0;
     }
-    .languageSwitch{
+    #siteHeader[data-current-lang] + .rawLangLinks{
+      max-width:var(--max);
+      margin:18px auto 0;
+      padding:0 18px;
       display:flex;
       flex-wrap:wrap;
       gap:8px;
       align-items:center;
-      margin:0 0 16px;
     }
-    .languageSwitch a{
+    #siteHeader[data-current-lang] + .rawLangLinks a{
       display:inline-flex;
       align-items:center;
-      min-height:34px;
-      padding:8px 12px;
+      justify-content:center;
+      min-height:32px;
+      padding:7px 12px;
+      border:1px solid rgba(3,78,162,.18);
       border-radius:999px;
-      border:1px solid rgba(3,78,162,0.18);
       background:#fff;
-      color:#0f2f62;
-      font-size:13px;
-      font-weight:800;
-      box-shadow:0 10px 24px rgba(3,78,162,0.08);
+      color:var(--charcoal);
+      font-size:12.5px;
+      font-weight:900;
+      line-height:1;
+      box-shadow:0 10px 24px rgba(3,78,162,.08);
+      transition:background-color .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease;
     }
-    .languageSwitch a[aria-current="page"]{
-      background:var(--brand-blue);
+    #siteHeader[data-current-lang] + .rawLangLinks a:hover,
+    #siteHeader[data-current-lang] + .rawLangLinks a:focus-visible{
+      background:rgba(3,78,162,.06);
+      border-color:rgba(3,78,162,.32);
+      color:var(--brand-blue);
+      outline:none;
+    }
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"],
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]{
+      background:#0f5cc0;
+      border-color:#0f5cc0;
       color:#fff;
-      border-color:var(--brand-blue);
+      box-shadow:0 16px 34px rgba(15,92,192,.18);
+    }
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:hover,
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:focus-visible,
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:hover,
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:focus-visible{
+      background:#0c4f9c;
+      border-color:#0c4f9c;
+      color:#fff;
     }
 
     .card{
@@ -492,6 +514,16 @@
     }
 
     @media(max-width:950px){
+      #siteHeader[data-current-lang] + .rawLangLinks{
+        margin:14px auto 16px;
+        padding:0 16px;
+        gap:10px;
+      }
+      #siteHeader[data-current-lang] + .rawLangLinks a{
+        min-height:34px;
+        padding:8px 13px;
+        font-size:13.5px;
+      }
       .wrap{ padding-top:28px; }
       .gridBelow{ grid-template-columns:1fr; }
       .navPrev{ left:6px; }
@@ -504,13 +536,13 @@
     }
   </style>
 </head>
-<body>
+<body data-page-type="guide_page" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="https://experienceecuador.com/spotlights/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/destacados/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
   <main class="wrap">
-    <nav class="languageSwitch" aria-label="Language options">
-      <a href="/spotlights/" aria-current="page">English</a>
-      <a href="/es/destacados/">Espanol</a>
-    </nav>
     <section class="hero" aria-label="Spotlights hero">
       <h1>Ecuador Travel Spotlights Events & Seasonal Highlights</h1>
       <p>
@@ -703,17 +735,34 @@
 <div style="height:40px;"></div>
   </main>
   <div id="siteFooter"></div>
-  <script src="/assets/js/site.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view_enhanced",
+      page_type: "guide_page",
+      page_language: "en",
+      page_path: "/spotlights/"
+    });
+  </script>
   <script>
     (function(){
+      function loadSiteScript(){
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      }
       async function inject(id, url){
         const el = document.getElementById(id);
         if(!el) return;
         const res = await fetch(url, { cache: "no-store" });
         el.innerHTML = await res.text();
       }
-      inject("siteHeader", "/assets/includes/header.html");
-      inject("siteFooter", "/assets/includes/footer.html");
+      Promise.all([
+        inject("siteHeader", "/assets/includes/header.html"),
+        inject("siteFooter", "/assets/includes/footer.html")
+      ]).finally(loadSiteScript);
     })();
   </script>
   <script>
