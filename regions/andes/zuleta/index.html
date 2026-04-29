@@ -6,17 +6,17 @@
   <title>Zuleta Ecuador Travel Guide | Embroidery, Countryside Walks and Quiet Northern Andes Routes</title>
   <meta name="description" content="Plan your trip to Zuleta, Ecuador with quiet countryside walks, embroidery tradition, open northern Andes scenery, and an easy half day to 1 night route." />
   <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://experienceecuador.com/regions/andes/zuleta/" />
-  <link rel="alternate" hreflang="en" href="https://experienceecuador.com/regions/andes/zuleta/" />
+  <link rel="canonical" href="https://experienceecuador.com/region/andes/zuleta/" />
+  <link rel="alternate" hreflang="en" href="https://experienceecuador.com/region/andes/zuleta/" />
   <link rel="alternate" hreflang="es" href="https://experienceecuador.com/es/regiones/andes/zuleta/" />
-  <link rel="alternate" hreflang="x-default" href="https://experienceecuador.com/regions/andes/zuleta/" />
+  <link rel="alternate" hreflang="x-default" href="https://experienceecuador.com/region/andes/zuleta/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:title" content="Zuleta Ecuador Travel Guide | Embroidery, Countryside Walks and Quiet Northern Andes Routes" />
   <meta property="og:description" content="Plan your trip to Zuleta, Ecuador with quiet countryside walks, embroidery tradition, open northern Andes scenery, and an easy half day to 1 night route." />
-  <meta property="og:url" content="https://experienceecuador.com/regions/andes/zuleta/" />
+  <meta property="og:url" content="https://experienceecuador.com/region/andes/zuleta/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/regions/andes/zuleta/EE-Carousel-Zuleta-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/regions/andes/zuleta/EE-Carousel-Zuleta-1.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -92,8 +92,12 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="region_destination_page" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="https://experienceecuador.com/region/andes/zuleta/" hreflang="en" lang="en">English</a>
+    <a href="https://experienceecuador.com/es/regiones/andes/zuleta/" hreflang="es" lang="es">Español</a>
+  </nav>
 
   <section class="heroImage hero-regions-andes" aria-label="Zuleta hero image" style="background-image:url('/assets/images/regions/andes/zuleta/EE-Carousel-Zuleta-1.jpg');">
     <div class="heroImageInner">
@@ -101,8 +105,8 @@
       <h1 class="heroTitle">Zuleta, Ecuador</h1>
       <p class="heroLead">A quiet northern Andes valley where embroidery tradition, open countryside, and easy walks create one of Ecuador's calmest cultural nature stops.</p>
       <div class="heroActions">
-        <a class="btn btnPrimary" href="#top-experiences">Explore Things to Do</a>
-        <a class="btn btnGhost" href="#where-to-stay">View Recommended Stays</a>
+        <a class="btn btnPrimary" href="#top-experiences" data-analytics-event="hero_cta_click" data-analytics-label="explore_things_to_do">Explore Things to Do</a>
+        <a class="btn btnGhost" href="#where-to-stay" data-analytics-event="hero_cta_click" data-analytics-label="view_recommended_stays">View Recommended Stays</a>
       </div>
       <div class="heroMetaRow">
         <span class="heroPill">Countryside and culture</span>
@@ -475,9 +479,15 @@
   </main>
 
   <div id="siteFooter"></div>
-
-  <script src="/assets/js/site.js"></script>
   <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view_enhanced",
+      page_type: "region_destination_page",
+      page_language: "en",
+      page_path: "/region/andes/zuleta/"
+    });
+
     (function () {
       function inject(id, url) {
         var el = document.getElementById(id);
@@ -490,7 +500,13 @@
       Promise.all([
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
-      ]);
+      ]).then(function () {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      });
     })();
   </script>
 </body>
