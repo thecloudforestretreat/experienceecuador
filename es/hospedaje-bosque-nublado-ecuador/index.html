@@ -54,8 +54,12 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="collection_page" data-page-language="es">
   <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/ecuador-cloud-forest-lodges/" lang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/hospedaje-bosque-nublado-ecuador/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
   <section class="heroImage hero-regions-andes" aria-label="Hospedaje bosque nublado Ecuador hero image" style="background-image:url('/assets/images/new/ee_andes_ca_002.jpg');">
     <div class="heroImageInner">
       <div class="sectionKicker sectionKicker--overlay">Colección</div>
@@ -127,7 +131,11 @@
         <div class="miniCard"><h3>Observadores de aves</h3><p>Muy útil cuando la estadía debe sostener guianza, feeders y acceso fácil a biodiversidad desde el lodge.</p></div>
         <div class="miniCard"><h3>Primeros viajeros</h3><p>Muy fuerte cuando quieres un bloque más suave de naturaleza que encaje limpiamente entre regiones más intensas.</p></div>
         <div class="miniCard"><h3>Familias</h3><p>Ayuda cuando buscas inmersión de naturaleza más sencilla que la lógica de traslados de selvas más profundas.</p></div>
-        <div class="miniCard"><h3>Parejas</h3><p>Ideal cuando la estadía debe sentirse íntima, escénica y con ritmo más suave entre regiones más intensas.</p></div><div class="miniCard"><h3>Viajeros de lujo</h3><p>Ideal cuando mejor confort, ritmo más calmado y calidad de lodge importan tanto como el valor de fauna.</p></div>
+        <div class="miniCard"><h3>Parejas</h3><p>Ideal cuando la estadía debe sentirse íntima, escénica y con ritmo más suave entre regiones más intensas.</p></div>
+        <div class="miniCard"><h3>Viajeros de lujo</h3><p>Ideal cuando mejor confort, ritmo más calmado y calidad de lodge importan tanto como el valor de fauna.</p></div>
+        <div class="miniCard"><h3>Fotógrafos</h3><p>Muy útil cuando la estadía debe favorecer follaje, luz suave, miradores por capas y tiempo paciente alrededor de aves o cascadas.</p></div>
+        <div class="miniCard"><h3>Viajeros enfocados en bienestar</h3><p>Ideal cuando quieres que el bosque nublado se sienta más restaurador, más tranquilo y mejor integrado entre tramos fuertes de la ruta.</p></div>
+        <div class="miniCard"><h3>Viajeros de ruta privada</h3><p>Muy fuerte cuando la elección del lodge debe sostener mejores traslados, ritmo a medida y un encaje más limpio con el resto de Ecuador.</p></div>
       </div>
     </section>
     <section class="section" aria-label="Rutas de planificación relacionadas">
@@ -161,9 +169,24 @@
     </section>
   </main>
   <div id="siteFooter"></div>
-  <script src="/assets/js/site.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view_enhanced",
+      page_type: "collection_page",
+      page_language: "es",
+      page_path: "/es/hospedaje-bosque-nublado-ecuador/"
+    });
+  </script>
   <script>
     (function () {
+      function loadSiteScript() {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      }
       function inject(id, url) {
         var el = document.getElementById(id);
         if (!el) return Promise.resolve();
@@ -175,7 +198,7 @@
       Promise.all([
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
-      ]);
+      ]).finally(loadSiteScript);
     })();
   </script>
 </body>
