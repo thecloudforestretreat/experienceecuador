@@ -38,6 +38,65 @@
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
   <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    #siteHeader[data-current-lang] + .rawLangLinks{
+      width:min(1120px,calc(100% - 32px));
+      margin:18px auto 0;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-start;
+    }
+    #siteHeader[data-current-lang] + .rawLangLinks a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:40px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,.18);
+      background:#fff;
+      color:#16315c;
+      font:600 14px/1 Inter,system-ui,sans-serif;
+      text-decoration:none;
+      transition:background-color .18s ease,color .18s ease,border-color .18s ease,box-shadow .18s ease;
+    }
+    #siteHeader[data-current-lang] + .rawLangLinks a:hover,
+    #siteHeader[data-current-lang] + .rawLangLinks a:focus-visible{
+      background:#eef4ff;
+      border-color:rgba(3,78,162,.28);
+      color:#034ea2;
+      outline:none;
+    }
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"],
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]{
+      background:#034ea2;
+      border-color:#034ea2;
+      color:#fff;
+      box-shadow:0 10px 24px rgba(3,78,162,.18);
+    }
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:hover,
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:focus-visible,
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:hover,
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:focus-visible{
+      background:#023a7a;
+      border-color:#023a7a;
+      color:#fff;
+    }
+    @media (max-width:640px){
+      #siteHeader[data-current-lang] + .rawLangLinks{
+        width:min(100% - 24px,1120px);
+        margin-top:14px;
+        gap:8px;
+      }
+      #siteHeader[data-current-lang] + .rawLangLinks a{
+        min-height:38px;
+        padding:0 14px;
+        font-size:13px;
+      }
+    }
+  </style>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -99,7 +158,7 @@
     <a href="https://experienceecuador.com/es/regiones/amazonia/cuyabeno-reserva-faunistica/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch" data-analytics-target-language="es">Español</a>
   </nav>
 
-  <section class="heroImage hero-regions-amazon" aria-label="Imagen hero de la Reserva Faunística Cuyabeno" style="background-image:url('/assets/images/new/ee_cuyabeno_001.jpg');">
+  <section class="heroImage hero-regions-amazon" aria-label="Imagen hero de la Reserva Faunística Cuyabeno" style="background-image:url('/assets/images/EE-Carousel-Cuyabeno-1.jpg');">
     <div class="heroImageInner">
       <div class="sectionKicker sectionKicker--overlay">Destino amazónico</div>
       <h1 class="heroTitle">Reserva Faunística Cuyabeno, Ecuador</h1>
@@ -160,7 +219,7 @@
       </div>
       <div class="grid2">
         <a class="cardLink" href="/es/experiencias/naturaleza/" aria-label="Abrir experiencias de lagunas y fauna">
-          <div class="cardImg" style="background-image:url('/assets/images/new/ee_cuyabeno_004.jpg');"></div>
+          <div class="cardImg" style="background-image:url('/assets/images/EE-Carousel-Cuyabeno-1.jpg');"></div>
           <div class="cardBody">
             <div class="metaRow"><span class="pillMini">Fauna</span><span class="pillMini light">Mayor atractivo</span></div>
             <h3>Observación de Fauna en Lagunas</h3>
@@ -169,7 +228,7 @@
           </div>
         </a>
         <a class="cardLink" href="/es/experiencias/naturaleza/" aria-label="Abrir experiencias de exploración en canoa">
-          <div class="cardImg" style="background-image:url('/assets/images/new/ee_cuyabeno_002.jpg');"></div>
+          <div class="cardImg" style="background-image:url('/assets/images/EE-Carousel-Cuyabeno-2.jpg');"></div>
           <div class="cardBody">
             <div class="metaRow"><span class="pillMini">Canoa</span><span class="pillMini light">Favorita fácil</span></div>
             <h3>Exploración Silenciosa en Canoa</h3>
@@ -187,7 +246,7 @@
           </div>
         </a>
         <a class="cardLink" href="/es/experiencias/relajacion/" aria-label="Abrir experiencias inmersivas en lodge">
-          <div class="cardImg" style="background-image:url('/assets/images/new/ee_cuyabeno_006.jpg');"></div>
+          <div class="cardImg" style="background-image:url('/assets/images/EE-Carousel-Cuyabeno-4.jpg');"></div>
           <div class="cardBody">
             <div class="metaRow"><span class="pillMini">Inmersión</span><span class="pillMini light">Mejor ritmo</span></div>
             <h3>Ritmo de Lodge en Selva</h3>
@@ -209,7 +268,7 @@
       </div>
       <div class="grid3">
         <a class="cardLink" href="/es/recomendados/" aria-label="Abrir planificación clásica de Cuyabeno">
-          <div class="cardImg" style="background-image:url('/assets/images/new/ee_cuyabeno_005.jpg');"></div>
+          <div class="cardImg" style="background-image:url('/assets/images/EE-Carousel-Cuyabeno-5.jpg');"></div>
           <div class="cardBody">
             <div class="metaRow"><span class="pillMini">Planificación</span><span class="pillMini light">3 a 4 días</span></div>
             <h3>Flujo Clásico de Fauna en Cuyabeno</h3>
@@ -227,7 +286,7 @@
           </div>
         </a>
         <a class="cardLink" href="/es/recomendados/" aria-label="Abrir ayuda de ruta amazónica con Cuyabeno">
-          <div class="cardImg" style="background-image:url('/assets/images/new/ee_cuyabeno_007.jpg');"></div>
+          <div class="cardImg" style="background-image:url('/assets/images/EE-Carousel-Cuyabeno-1.jpg');"></div>
           <div class="cardBody">
             <div class="metaRow"><span class="pillMini">Ruta</span><span class="pillMini light">Tramo profundo</span></div>
             <h3>Cuyabeno Dentro de una Ruta Amazónica</h3>
