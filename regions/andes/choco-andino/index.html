@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chocó Andino Ecuador Travel Guide | Cloud Forest, Birding and Nature Routes Near Quito</title>
-  <meta name="description" content="Plan your trip to Chocó Andino, Ecuador with cloud forest trails, birding, waterfalls, biodiversity, and an easy 1 to 3 night nature route near Quito." />
+  <title>Chocó Andino Ecuador Travel Guide | Best Things to Do & Stay</title>
+  <meta name="description" content="Plan Chocó Andino, Ecuador with top things to do, where to stay, and practical route ideas." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://experienceecuador.com/regions/andes/choco-andino/" />
   <link rel="alternate" hreflang="en" href="https://experienceecuador.com/regions/andes/choco-andino/" />
@@ -14,8 +14,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="Chocó Andino Ecuador Travel Guide | Cloud Forest, Birding and Nature Routes Near Quito" />
-  <meta property="og:description" content="Plan your trip to Chocó Andino, Ecuador with cloud forest trails, birding, waterfalls, biodiversity, and an easy 1 to 3 night nature route near Quito." />
+  <meta property="og:title" content="Chocó Andino Ecuador Travel Guide | Best Things to Do & Stay" />
+  <meta property="og:description" content="Plan Chocó Andino, Ecuador with top things to do, where to stay, and practical route ideas." />
   <meta property="og:url" content="https://experienceecuador.com/regions/andes/choco-andino/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-Carousel-ChocoAndino-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-Carousel-ChocoAndino-1.jpg" />
@@ -25,8 +25,8 @@
   <meta property="og:image:alt" content="Chocó Andino in Ecuador with cloud forest scenery and biodiversity-rich nature routes" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chocó Andino Ecuador Travel Guide | Cloud Forest, Birding and Nature Routes Near Quito" />
-  <meta name="twitter:description" content="Plan your trip to Chocó Andino, Ecuador with cloud forest trails, birding, waterfalls, biodiversity, and an easy 1 to 3 night nature route near Quito." />
+  <meta name="twitter:title" content="Chocó Andino Ecuador Travel Guide | Best Things to Do & Stay" />
+  <meta name="twitter:description" content="Plan Chocó Andino, Ecuador with top things to do, where to stay, and practical route ideas." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-Carousel-ChocoAndino-1.jpg" />
 
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -92,8 +92,12 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="region_destination_page" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="https://experienceecuador.com/regions/andes/choco-andino/" hreflang="en" lang="en">English</a>
+    <a href="https://experienceecuador.com/es/regiones/andes/choco-andino/" hreflang="es" lang="es">Español</a>
+  </nav>
 
   <section class="heroImage hero-regions-andes" aria-label="Chocó Andino hero image" style="background-image:url('/assets/images/EE-Carousel-ChocoAndino-6.jpg');">
     <div class="heroImageInner">
@@ -101,8 +105,8 @@
       <h1 class="heroTitle">Chocó Andino, Ecuador</h1>
       <p class="heroLead">A cloud forest corridor near Quito where birdlife, waterfalls, green mountain roads, and flexible nature pacing make it one of the easiest biodiversity-rich Andes escapes.</p>
       <div class="heroActions">
-        <a class="btn btnPrimary" href="#top-experiences">Explore Things to Do</a>
-        <a class="btn btnGhost" href="#where-to-stay">View Recommended Stays</a>
+        <a class="btn btnPrimary" href="#top-experiences" data-analytics-event="hero_cta_click" data-analytics-label="explore_things_to_do">Explore Things to Do</a>
+        <a class="btn btnGhost" href="#where-to-stay" data-analytics-event="hero_cta_click" data-analytics-label="view_recommended_stays">View Recommended Stays</a>
       </div>
       <div class="heroMetaRow">
         <span class="heroPill">Cloud forest and birding</span>
@@ -435,9 +439,15 @@
   </main>
 
   <div id="siteFooter"></div>
-
-  <script src="/assets/js/site.js"></script>
   <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view_enhanced",
+      page_type: "region_destination_page",
+      page_language: "en",
+      page_path: "/regions/andes/choco-andino/"
+    });
+
     (function () {
       function inject(id, url) {
         var el = document.getElementById(id);
@@ -450,7 +460,13 @@
       Promise.all([
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
-      ]);
+      ]).then(function () {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      });
     })();
   </script>
 </body>
