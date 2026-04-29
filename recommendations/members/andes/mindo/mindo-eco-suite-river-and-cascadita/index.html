@@ -208,8 +208,12 @@
     @media (prefers-reduced-motion: reduce){.carouselTrack{transition:none !important}}
   </style>
 </head>
-<body>
+<body data-page-type="recommendation_member_page" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="https://experienceecuador.com/recommendations/members/andes/mindo/mindo-eco-suite-river-and-cascadita/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/recomendados/miembros/andes/mindo/mindo-eco-suite-river-and-cascadita/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
   <main class="wrap" aria-label="Mindo Eco Suite (River and Cascadita) listing page">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -220,11 +224,6 @@
       <a href="/regions/andes/mindo/">Mindo</a>
       <span class="sep">/</span>
       <span aria-current="page">Mindo Eco Suite (River and Cascadita)</span>
-    </nav>
-
-    <nav class="languageSwitch" aria-label="Language options">
-      <a href="/recommendations/members/andes/mindo/mindo-eco-suite-river-and-cascadita/" aria-current="page">English</a>
-      <a href="/es/recomendados/miembros/andes/mindo/mindo-eco-suite-river-and-cascadita/">Español</a>
     </nav>
 
     <section class="hero" aria-label="Mindo Eco Suite (River and Cascadita) hero">
@@ -388,6 +387,15 @@
   <div id="siteFooter"></div>
 
   <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view_enhanced",
+      page_type: "recommendation_member_page",
+      page_language: "en",
+      page_path: "/recommendations/members/andes/mindo/mindo-eco-suite-river-and-cascadita/"
+    });
+  </script>
+  <script>
     (function(){
       async function inject(id, url){
         var el = document.getElementById(id);
@@ -395,11 +403,19 @@
         var res = await fetch(url, { cache: "no-store" });
         el.innerHTML = await res.text();
       }
-      inject("siteHeader", "/assets/includes/header.html");
-      inject("siteFooter", "/assets/includes/footer.html");
+      Promise.all([
+        inject("siteHeader", "/assets/includes/header.html"),
+        inject("siteFooter", "/assets/includes/footer.html")
+      ]).then(function(){
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          s.defer = true;
+          document.body.appendChild(s);
+        }
+      });
     })();
   </script>
-  <script src="/assets/js/site.js"></script>
   <script>
     (function(){
       function getPageLanguage(){
