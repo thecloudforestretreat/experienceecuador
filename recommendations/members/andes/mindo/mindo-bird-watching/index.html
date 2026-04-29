@@ -144,9 +144,53 @@
     .breadcrumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px;color:var(--slate);font-size:13px;font-weight:700}
     .breadcrumbs a{color:var(--ink)}
     .breadcrumbs .sep{opacity:.55}
-    .languageSwitch{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px}
-    .languageSwitch a{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(3,78,162,.18);border-radius:999px;padding:7px 11px;background:#fff;color:var(--ink);font-size:12.5px;font-weight:900;box-shadow:0 10px 24px rgba(3,78,162,.08)}
-    .languageSwitch a[aria-current="page"]{background:rgba(3,78,162,.08);border-color:rgba(3,78,162,.26)}
+    #siteHeader[data-current-lang] + .rawLangLinks{
+      max-width:var(--max);
+      margin:18px auto 0;
+      padding:0 18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+    #siteHeader[data-current-lang] + .rawLangLinks a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:32px;
+      padding:7px 12px;
+      border:1px solid rgba(3,78,162,.18);
+      border-radius:999px;
+      background:#fff;
+      color:var(--ink);
+      font-size:12.5px;
+      font-weight:900;
+      line-height:1;
+      box-shadow:0 10px 24px rgba(3,78,162,.08);
+      transition:background-color .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease;
+    }
+    #siteHeader[data-current-lang] + .rawLangLinks a:hover,
+    #siteHeader[data-current-lang] + .rawLangLinks a:focus-visible{
+      background:rgba(3,78,162,.06);
+      border-color:rgba(3,78,162,.32);
+      color:var(--brand-blue);
+      outline:none;
+    }
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"],
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]{
+      background:#0f5cc0;
+      border-color:#0f5cc0;
+      color:#fff;
+      box-shadow:0 16px 34px rgba(15,92,192,.18);
+    }
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:hover,
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:focus-visible,
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:hover,
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:focus-visible{
+      background:#0c4f9c;
+      border-color:#0c4f9c;
+      color:#fff;
+    }
     .hero{display:grid;grid-template-columns:1.02fr .98fr;gap:16px;align-items:stretch}
     .heroCard,.heroMedia,.section,.ctaBand{background:var(--card);border:1px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--shadow)}
     .heroCard{padding:18px;min-width:0}
@@ -204,6 +248,16 @@
     .ctaRight{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
     @media (max-width:980px){
       .wrap{padding:18px 14px 64px}
+      #siteHeader[data-current-lang] + .rawLangLinks{
+        margin:14px auto 16px;
+        padding:0 16px;
+        gap:10px;
+      }
+      #siteHeader[data-current-lang] + .rawLangLinks a{
+        min-height:34px;
+        padding:8px 13px;
+        font-size:13.5px;
+      }
       .hero,.grid2,.nearbyGrid,.faqGrid,.linkGrid,.galleryGrid{grid-template-columns:1fr}
       .carousel{min-height:340px}
       .phLabel{bottom:66px}
@@ -212,8 +266,12 @@
     @media (prefers-reduced-motion: reduce){.carouselTrack{transition:none !important}}
   </style>
 </head>
-<body>
+<body data-page-type="recommendation_member_page" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="https://experienceecuador.com/recommendations/members/andes/mindo/mindo-bird-watching/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/recomendados/miembros/andes/mindo/mindo-bird-watching/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
   <main class="wrap" aria-label="Mindo Bird Watching listing page">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -225,19 +283,14 @@
       <span class="sep">/</span>
       <span aria-current="page">Mindo Bird Watching</span>
     </nav>
-    <nav class="languageSwitch" aria-label="Language options">
-      <a href="/recommendations/members/andes/mindo/mindo-bird-watching/" aria-current="page">English</a>
-      <a href="/es/recomendados/miembros/andes/mindo/mindo-bird-watching/">Espanol</a>
-    </nav>
-
     <section class="hero" aria-label="Mindo Bird Watching hero">
       <div class="heroCard" aria-label="Mindo Bird Watching overview">
         <div class="heroTop">
           <span class="pill">Services</span>
-          <a class="pill js-language-switch" href="/es/recomendados/miembros/andes/mindo/mindo-bird-watching/" aria-label="View this page in Spanish" data-action="language_switch" data-from="en" data-to="es">Ver esta pagina en Espanol</a>
+          <a class="pill js-language-switch" href="/es/recomendados/miembros/andes/mindo/mindo-bird-watching/" aria-label="View this page in Spanish" data-action="language_switch" data-from="en" data-to="es">Ver en español</a>
         </div>
 
-        <h1>Mindo Bird Watching Guided Cloud Forest Tours</h1>
+        <h1>Mindo Bird Watching</h1>
 
         <p class="lede">Expert-led tours in Mindo's cloud forest combining birdwatching, wildlife, and scenic waterfalls for an unforgettable nature experience.</p>
         <p class="lede">Ideal for birders, photographers, and nature travelers wanting expert guidance in one of Ecuador's top cloud forest destinations.</p>
@@ -372,7 +425,7 @@
         <article class="linkCard"><div class="linkBody"><h3><a href="/regions/andes/">Explore the Andes region</a></h3><p>Learn more about the Andes as a travel region within Experience Ecuador's destination structure.</p></div></article>
         <article class="linkCard"><div class="linkBody"><h3><a href="/regions/andes/mindo/">Discover Mindo</a></h3><p>Visit the Mindo destination page for broader travel context, ideas, and planning support.</p></div></article>
         <article class="linkCard"><div class="linkBody"><h3><a href="/trip-builder/">Build a custom Ecuador trip</a></h3><p>Use the trip builder to connect this Mindo tour with transfers, lodging, and other Ecuador regions.</p></div></article>
-        <article class="linkCard"><div class="linkBody"><h3><a href="/best-places-to-visit-in-ecuador/">Compare top Ecuador destinations</a></h3><p>See how Mindo fits with the Galapagos, Coast, Andes, and Amazon when choosing where to go.</p></div></article>
+        <article class="linkCard"><div class="linkBody"><h3><a href="/best-places-to-visit-in-ecuador/">Compare top Ecuador destinations</a></h3><p>See how Mindo fits with the Galápagos, Coast, Andes, and Amazon when choosing where to go.</p></div></article>
         <article class="linkCard"><div class="linkBody"><h3><a href="/where-to-stay-in-ecuador/">Find where to stay in Ecuador</a></h3><p>Compare lodging styles across Ecuador when pairing birdwatching tours with the right overnight base.</p></div></article>
       </div>
     </section>
@@ -393,6 +446,15 @@
   <div id="siteFooter"></div>
 
   <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view_enhanced",
+      page_type: "recommendation_member_page",
+      page_language: "en",
+      page_path: "/recommendations/members/andes/mindo/mindo-bird-watching/"
+    });
+  </script>
+  <script>
     (function(){
       async function inject(id, url){
         var el = document.getElementById(id);
@@ -400,11 +462,18 @@
         var res = await fetch(url, { cache: "no-store" });
         el.innerHTML = await res.text();
       }
-      inject("siteHeader", "/assets/includes/header.html");
-      inject("siteFooter", "/assets/includes/footer.html");
+      Promise.all([
+        inject("siteHeader", "/assets/includes/header.html"),
+        inject("siteFooter", "/assets/includes/footer.html")
+      ]).then(function(){
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      });
     })();
   </script>
-  <script src="/assets/js/site.js"></script>
   <script>
     (function(){
       function safeTrack(name, params){
