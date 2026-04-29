@@ -98,18 +98,21 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="comparison_page" data-page-language="es">
   <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/ecuador-amazon-vs-galapagos/" hreflang="en" lang="en">English</a>
+    <a href="https://experienceecuador.com/es/amazonia-vs-galapagos/" hreflang="es" lang="es">Español</a>
+  </nav>
 
   <section class="heroImage" aria-label="Imagen principal de comparación entre Amazonía y Galápagos" style="background-image:url('https://experienceecuador.com/assets/images/new/ee_a_g_001.jpg');">
     <div class="heroImageInner">
       <div class="sectionKicker sectionKicker--overlay">Comparación</div>
       <h1 class="heroTitle">Amazonía vs Galápagos: Qué Conviene Más para Tu Viaje</h1>
       <p class="heroLead">Compara las dos regiones de fauna más fuertes de Ecuador por experiencia, costo, logística, temporada y tipo de viajero.</p>
-      <p><a href="/ecuador-amazon-vs-galapagos/">English</a> | <a href="/es/amazonia-vs-galapagos/">Español</a></p>
       <div class="heroActions">
-        <a class="btn btnPrimary" href="/es/planificador-de-viajes/">Empezar con el Planificador</a>
-        <a class="btn btnGhost" href="/es/mejores-cosas-que-hacer-en-ecuador/">Mejores cosas que hacer</a>
+        <a class="btn btnPrimary" href="/es/planificador-de-viajes/" data-analytics-event="hero_cta_click" data-analytics-label="empezar_con_el_planificador">Empezar con el Planificador</a>
+        <a class="btn btnGhost" href="/es/mejores-cosas-que-hacer-en-ecuador/" data-analytics-event="hero_cta_click" data-analytics-label="mejores_cosas_que_hacer">Mejores cosas que hacer</a>
       </div>
       <div class="heroMetaRow">
         <span class="heroPill">Fauna</span>
@@ -318,15 +321,43 @@
           </div>
         </div>
         <div class="heroActions">
-          <a class="btn btnPrimary" href="/es/planificador-de-viajes/">Empezar a planificar</a>
-          <a class="btn btnGhost" href="/es/mejores-lugares-para-visitar-ecuador/">Explorar lugares</a>
+          <a class="btn btnPrimary" href="/es/planificador-de-viajes/" data-analytics-event="final_cta_click" data-analytics-label="empezar_a_planificar">Empezar a planificar</a>
+          <a class="btn btnGhost" href="/es/mejores-lugares-para-visitar-ecuador/" data-analytics-event="final_cta_click" data-analytics-label="explorar_lugares">Explorar lugares</a>
         </div>
       </div>
     </section>
   </main>
 
   <div id="siteFooter"></div>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view_enhanced",
+      page_type: "comparison_page",
+      page_language: "es",
+      page_path: "/es/amazonia-vs-galapagos/"
+    });
 
-  <script src="/assets/js/site.js"></script>
+    (function () {
+      function inject(id, url) {
+        var el = document.getElementById(id);
+        if (!el) return Promise.resolve();
+        return fetch(url, { cache: "no-store" })
+          .then(function (res) { return res.text(); })
+          .then(function (html) { el.innerHTML = html; })
+          .catch(function () {});
+      }
+      Promise.all([
+        inject("siteHeader", "/assets/includes/header.html"),
+        inject("siteFooter", "/assets/includes/footer.html")
+      ]).then(function () {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
