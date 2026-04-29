@@ -92,8 +92,12 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="region_destination_page" data-page-language="es">
   <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/regions/andes/papallacta/" hreflang="en" lang="en">English</a>
+    <a href="https://experienceecuador.com/es/regiones/andes/papallacta/" hreflang="es" lang="es">Español</a>
+  </nav>
 
   <section class="heroImage hero-regions-andes" aria-label="Imagen hero de Papallacta" style="background-image:url('/assets/images/EE-Carousel-Papallacta-2.jpg');">
     <div class="heroImageInner">
@@ -101,8 +105,8 @@
       <h1 class="heroTitle">Papallacta, Ecuador</h1>
       <p class="heroLead">Una escapada andina de aguas termales cerca de Quito donde las piscinas calientes, el aire frío de montaña y el paisaje de páramo hacen muy fácil bajar el ritmo sin una logística complicada.</p>
       <div class="heroActions">
-        <a class="btn btnPrimary" href="#top-experiences">Explorar qué hacer</a>
-        <a class="btn btnGhost" href="#where-to-stay">Ver estadías recomendadas</a>
+        <a class="btn btnPrimary" href="#top-experiences" data-analytics-event="hero_cta_click" data-analytics-label="explorar_que_hacer">Explorar qué hacer</a>
+        <a class="btn btnGhost" href="#where-to-stay" data-analytics-event="hero_cta_click" data-analytics-label="ver_estadias_recomendadas">Ver estadías recomendadas</a>
       </div>
       <div class="heroMetaRow">
         <span class="heroPill">Termas y bienestar</span>
@@ -185,10 +189,10 @@
         <a class="cardLink" href="/es/experiencias/relajacion/" aria-label="Abrir experiencias de bienestar">
           <div class="cardImg" style="background-image:url('/assets/images/new/ee_papallacta_001.jpg');"></div>
           <div class="cardBody">
-            <div class="metaRow"><span class="pillMini">Relax</span><span class="pillMini light">Mejor ritmo</span></div>
+            <div class="metaRow"><span class="pillMini">Relajación</span><span class="pillMini light">Mejor ritmo</span></div>
             <h3>Tiempo Lento de Bienestar</h3>
             <p>Un horario más suave es lo que convierte a Papallacta en algo más que una parada rápida.</p>
-            <span class="go">Explorar relax</span>
+            <span class="go">Explorar relajación</span>
           </div>
         </a>
       </div>
@@ -435,9 +439,15 @@
   </main>
 
   <div id="siteFooter"></div>
-
-  <script src="/assets/js/site.js"></script>
   <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view_enhanced",
+      page_type: "region_destination_page",
+      page_language: "es",
+      page_path: "/es/regiones/andes/papallacta/"
+    });
+
     (function () {
       function inject(id, url) {
         var el = document.getElementById(id);
@@ -450,7 +460,13 @@
       Promise.all([
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
-      ]);
+      ]).then(function () {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      });
     })();
   </script>
 </body>
