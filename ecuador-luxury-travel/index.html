@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ecuador Luxury Travel | Private High-Comfort Routes Across Ecuador</title>
-  <meta name="description" content="Plan Ecuador luxury travel with private routes, high-comfort stays, curated pacing, and standout experiences across the Andes, cloud forest, Amazon, coast, and Galápagos." />
+  <title>Ecuador Luxury Travel | Private High-Comfort Trips</title>
+  <meta name="description" content="Plan luxury travel in Ecuador with private routes, premium stays, and high-comfort experiences across key regions." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://experienceecuador.com/ecuador-luxury-travel/" />
   <link rel="alternate" hreflang="en" href="https://experienceecuador.com/ecuador-luxury-travel/" />
@@ -14,8 +14,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="Ecuador Luxury Travel | Private High-Comfort Routes Across Ecuador" />
-  <meta property="og:description" content="Plan Ecuador luxury travel with private routes, high-comfort stays, curated pacing, and standout experiences across the Andes, cloud forest, Amazon, coast, and Galápagos." />
+  <meta property="og:title" content="Ecuador Luxury Travel | Private High-Comfort Trips" />
+  <meta property="og:description" content="Plan luxury travel in Ecuador with private routes, premium stays, and high-comfort experiences across key regions." />
   <meta property="og:url" content="https://experienceecuador.com/ecuador-luxury-travel/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
@@ -25,8 +25,8 @@
   <meta property="og:image:alt" content="Experience Ecuador luxury travel planning across Ecuador" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ecuador Luxury Travel | Private High-Comfort Routes Across Ecuador" />
-  <meta name="twitter:description" content="Plan Ecuador luxury travel with private routes, high-comfort stays, curated pacing, and standout experiences across the Andes, cloud forest, Amazon, coast, and Galápagos." />
+  <meta name="twitter:title" content="Ecuador Luxury Travel | Private High-Comfort Trips" />
+  <meta name="twitter:description" content="Plan luxury travel in Ecuador with private routes, premium stays, and high-comfort experiences across key regions." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
 
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -51,7 +51,7 @@
         "@type":"CollectionPage",
         "name":"Ecuador Luxury Travel",
         "url":"https://experienceecuador.com/ecuador-luxury-travel/",
-        "description":"Plan Ecuador luxury travel with private routes, high-comfort stays, curated pacing, and standout experiences across the Andes, cloud forest, Amazon, coast, and Galápagos.",
+        "description":"Plan luxury travel in Ecuador with private routes, premium stays, and high-comfort experiences across key regions.",
         "isPartOf":{"@type":"WebSite","name":"Experience Ecuador","url":"https://experienceecuador.com/"}
       },
       {
@@ -95,8 +95,12 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="collection_page" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="https://experienceecuador.com/ecuador-luxury-travel/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/viajes-de-lujo-ecuador/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
   <section class="heroImage hero-regions-andes" aria-label="Ecuador luxury travel hero image" style="background-image:url('/assets/images/new/ee_lux_001.jpg');">
     <div class="heroImageInner">
@@ -393,9 +397,24 @@
 
   <div id="siteFooter"></div>
 
-  <script src="/assets/js/site.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view_enhanced",
+      page_type: "collection_page",
+      page_language: "en",
+      page_path: "/ecuador-luxury-travel/"
+    });
+  </script>
   <script>
     (function () {
+      function loadSiteScript() {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      }
       function inject(id, url) {
         var el = document.getElementById(id);
         if (!el) return Promise.resolve();
@@ -407,7 +426,7 @@
       Promise.all([
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
-      ]);
+      ]).finally(loadSiteScript);
     })();
   </script>
 </body>
