@@ -129,15 +129,18 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="guide_page" data-page-language="es">
   <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/ecuador-travel-guide/" lang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/guia-viaje-ecuador/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
   <section class="heroImage hero-regions-andes" aria-label="Imagen principal de guía de viaje por Ecuador" style="background-image:url('https://experienceecuador.com/assets/images/EE-Carousel-ChocoAndino-6.jpg');">
     <div class="heroImageInner">
       <div class="sectionKicker sectionKicker--overlay">Guía</div>
       <h1 class="heroTitle">Guía de Viaje por Ecuador</h1>
       <p class="heroLead">Usa esta guía para comparar regiones, elegir una ruta más inteligente y evitar errores que hacen que un viaje compacto se sienta apurado.</p>
-      <p><a href="/ecuador-travel-guide/">English</a> | <a href="/es/guia-viaje-ecuador/">Español</a></p>
       <div class="heroActions">
         <a class="btn btnPrimary" href="/es/planificador-de-viajes/">Empezar con el Planificador</a>
         <a class="btn btnGhost" href="/es/mejores-lugares-para-visitar-ecuador/">Mejores lugares para visitar</a>
@@ -252,15 +255,30 @@
 
   <div id="siteFooter"></div>
 
-  <script src="/assets/js/site.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view_enhanced",
+      page_type: "guide_page",
+      page_language: "es",
+      page_path: "/es/guia-viaje-ecuador/"
+    });
+  </script>
   <script>
     (function(){
+      function loadSiteScript() {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      }
       function inject(id, url){
         var el = document.getElementById(id);
         if(!el) return Promise.resolve();
         return fetch(url, { cache: "no-store" }).then(function(res){ return res.text(); }).then(function(html){ el.innerHTML = html; }).catch(function(){});
       }
-      Promise.all([inject("siteHeader", "/assets/includes/header.html"), inject("siteFooter", "/assets/includes/footer.html")]);
+      Promise.all([inject("siteHeader", "/assets/includes/header.html"), inject("siteFooter", "/assets/includes/footer.html")]).finally(loadSiteScript);
     })();
   </script>
 </body>
