@@ -64,7 +64,7 @@
           {"@type":"Place","name":"Andes, Ecuador"},
           {"@type":"Place","name":"Amazon Rainforest, Ecuador"},
           {"@type":"Place","name":"Pacific Coast, Ecuador"},
-          {"@type":"Place","name":"Galapagos Islands"}
+          {"@type":"Place","name":"Galápagos Islands"}
         ]
       },
       {
@@ -83,15 +83,15 @@
             "name":"How many days do you need in Ecuador?",
             "acceptedAnswer":{
               "@type":"Answer",
-              "text":"Many travelers spend 7 to 14 days in Ecuador. Shorter trips often focus on one or two regions, while longer trips can combine the Andes, Amazon, Coast, or Galapagos."
+              "text":"Many travelers spend 7 to 14 days in Ecuador. Shorter trips often focus on one or two regions, while longer trips can combine the Andes, Amazon, Coast, or Galápagos."
             }
           },
           {
             "@type":"Question",
-            "name":"Can you combine Galapagos with mainland Ecuador?",
+            "name":"Can you combine Galápagos with mainland Ecuador?",
             "acceptedAnswer":{
               "@type":"Answer",
-              "text":"Yes. Many travelers combine Quito or the Andes with Galapagos, and longer itineraries may also add the Amazon or Coast depending on flight and transfer time."
+              "text":"Yes. Many travelers combine Quito or the Andes with Galápagos, and longer itineraries may also add the Amazon or Coast depending on flight and transfer time."
             }
           },
           {
@@ -107,7 +107,7 @@
             "name":"What regions should first-time travelers visit in Ecuador?",
             "acceptedAnswer":{
               "@type":"Answer",
-              "text":"That depends on your pace and interests. Many first-time travelers start with Quito and the Andes, then add the Amazon, Coast, or Galapagos depending on time."
+              "text":"That depends on your pace and interests. Many first-time travelers start with Quito and the Andes, then add the Amazon, Coast, or Galápagos depending on time."
             }
           }
         ]
@@ -187,7 +187,7 @@
     .metaRow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
     .pillMini{display:inline-flex;align-items:center;gap:8px;padding:6px 9px;border-radius:999px;border:1px solid rgba(3,78,162,0.18);background:rgba(3,78,162,0.06);color:var(--brand-blue-dark);font-weight:900;font-size:11.5px;white-space:nowrap}
     .pillMini.light{border-color:rgba(0,0,0,0.08);background:rgba(0,0,0,0.03);color:#1f2a3a;font-weight:800}
-                                .trustBand{padding:22px;background:#fff;border-radius:var(--radius-xl);border:1px solid var(--border);box-shadow:var(--shadow)}
+    .trustBand{padding:22px;background:#fff;border-radius:var(--radius-xl);border:1px solid var(--border);box-shadow:var(--shadow)}
     .trustItem{border-radius:18px;padding:14px;border:1px solid rgba(3,78,162,0.14);background:rgba(3,78,162,0.06)}
     .trustItem strong{display:block;font-family:Montserrat,Inter,sans-serif;font-weight:800;letter-spacing:-0.02em;color:var(--brand-blue-dark);font-size:17px;margin-bottom:4px}
     .trustItem span{display:block;color:var(--ink);opacity:.94;font-weight:700;font-size:12.8px;line-height:1.4}
@@ -197,6 +197,56 @@
     .ctaLeft{min-width:260px;flex:1}
     .ctaRight{display:flex;gap:10px;flex-wrap:wrap}
     .closingNote{margin-top:22px;padding-top:18px;border-top:1px solid rgba(0,0,0,0.06);color:var(--ink);opacity:.85;font-weight:700;font-size:13px;line-height:1.6;text-align:center}
+    #siteHeader[data-current-lang] + .rawLangLinks{
+      max-width:1100px;
+      margin:16px auto 18px;
+      padding:0 18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    #siteHeader[data-current-lang] + .rawLangLinks a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:36px;
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.18);
+      background:rgba(255,255,255,0.92);
+      color:#0f2f62;
+      font-family:Inter,sans-serif;
+      font-size:14px;
+      font-weight:800;
+      line-height:1;
+      text-decoration:none;
+      box-shadow:0 14px 34px rgba(3,78,162,0.08);
+      transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s ease,box-shadow .18s ease;
+    }
+    #siteHeader[data-current-lang] + .rawLangLinks a:hover,
+    #siteHeader[data-current-lang] + .rawLangLinks a:focus-visible{
+      background:#f3f7ff;
+      border-color:rgba(3,78,162,0.28);
+      color:#0f2f62;
+      transform:translateY(-1px);
+      outline:none;
+    }
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"],
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]{
+      background:#0f5cc0;
+      border-color:#0f5cc0;
+      color:#ffffff;
+      box-shadow:0 16px 34px rgba(15,92,192,0.18);
+    }
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:hover,
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:focus-visible,
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:hover,
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:focus-visible{
+      background:#0c4f9c;
+      border-color:#0c4f9c;
+      color:#ffffff;
+    }
     @media (max-width:950px){
       .heroShell,.valueGrid,.planGrid,.experienceGrid,.spotGrid,.memberGrid,.seoGrid,.faqGrid,.trustGrid{grid-template-columns:1fr}
       .heroLeft{min-height:auto}
@@ -204,6 +254,16 @@
       .heroTitle{max-width:none}
       .heroMeta{grid-template-columns:1fr}
       .section{padding:18px 0}
+      #siteHeader[data-current-lang] + .rawLangLinks{
+        margin:14px auto 16px;
+        padding:0 16px;
+        gap:10px;
+      }
+      #siteHeader[data-current-lang] + .rawLangLinks a{
+        min-height:34px;
+        padding:7px 12px;
+        font-size:13px;
+      }
     }
     @media (prefers-reduced-motion: reduce){.btn,.cardLink{transition:none !important}}
   </style>
@@ -221,7 +281,7 @@
           <div class="heroLeft">
             <div class="sectionKicker sectionKicker--overlay">Plan Ecuador with more clarity</div>
             <h1 class="heroTitle">Ecuador Travel Guide</h1>
-            <p class="heroLead">Research destinations, compare experiences, discover curated recommendations, and build a more realistic Ecuador itinerary across the Andes, Amazon, Coast, and Galapagos.</p>
+            <p class="heroLead">Research destinations, compare experiences, discover curated recommendations, and build a more realistic Ecuador itinerary across the Andes, Amazon, Coast, and Galápagos.</p>
             <div class="heroActions">
               <a class="btn btnPrimary" href="/trip-builder/" data-analytics-event="primary_cta_click" data-analytics-label="Start Planning Your Trip" data-analytics-location="hero">Start Planning Your Trip</a>
               <a class="btn btnGhost" href="/regions/" data-analytics-event="secondary_cta_click" data-analytics-label="Explore Regions" data-analytics-location="hero">Explore Regions</a>
@@ -253,7 +313,7 @@
           </div>
         </div>
         <div class="valueGrid">
-          <a class="miniCard" href="/regions/"><h3>Research Destinations</h3><p>Start broad, then go deeper. Compare the Andes, Amazon, Coast, and Galapagos before narrowing down where to spend your time.</p><span class="go">Explore Regions</span></a>
+          <a class="miniCard" href="/regions/"><h3>Research Destinations</h3><p>Start broad, then go deeper. Compare the Andes, Amazon, Coast, and Galápagos before narrowing down where to spend your time.</p><span class="go">Explore Regions</span></a>
           <a class="miniCard" href="/experiences/"><h3>Compare Experiences</h3><p>Wildlife, culture, adventure, culinary, relaxation, and nature. Choose what matters most before you decide where to go.</p><span class="go">Explore Experiences</span></a>
           <a class="miniCard" href="/recommendations/"><h3>Find Curated Recommendations</h3><p>Discover selected stays and experiences that fit a trip style, region, or route instead of sifting through random options.</p><span class="go">Browse Recommendations</span></a>
           <a class="miniCard" href="/trip-builder/"><h3>Build a Realistic Itinerary</h3><p>Use time, regions, and travel pace to shape an itinerary that feels practical rather than rushed or overstuffed.</p><span class="go">Open Trip Builder</span></a>
@@ -272,7 +332,7 @@
           <a class="btn btnGhost btnSmall" href="/regions/">View all regions</a>
         </div>
         <div class="valueGrid">
-          <a class="cardLink" href="/regions/galapagos/"><div class="cardImg" style="background-image:url('/assets/images/EE-Assets-25-Homepage-card-galapagos.jpg');"></div><div class="cardBody"><h3>Galapagos</h3><p>Iconic wildlife, conservation-focused travel, island logistics, and one of the world’s most distinctive natural destinations.</p><span class="go">Explore Galapagos</span></div></a>
+          <a class="cardLink" href="/regions/galapagos/"><div class="cardImg" style="background-image:url('/assets/images/EE-Assets-25-Homepage-card-galapagos.jpg');"></div><div class="cardBody"><h3>Galápagos</h3><p>Iconic wildlife, conservation-focused travel, island logistics, and one of the world’s most distinctive natural destinations.</p><span class="go">Explore Galápagos</span></div></a>
           <a class="cardLink" href="/regions/coast/"><div class="cardImg" style="background-image:url('/assets/images/EE-Assets-26-Homepage-card-costa.jpg');"></div><div class="cardBody"><h3>Coast</h3><p>Beach towns, food culture, warm weather, surf energy, and seasonal marine wildlife along Ecuador’s Pacific corridor.</p><span class="go">Explore Coast</span></div></a>
           <a class="cardLink" href="/regions/andes/"><div class="cardImg" style="background-image:url('/assets/images/EE-Assets-27-Homepage-card-andes.jpg');"></div><div class="cardBody"><h3>Andes</h3><p>High-altitude cities, volcanoes, markets, cloud forest gateways, and strong cultural contrast packed into one region.</p><span class="go">Explore Andes</span></div></a>
           <a class="cardLink" href="/regions/amazon/"><div class="cardImg" style="background-image:url('/assets/images/EE-Assets-28-Homepage-card-amazon.jpg');"></div><div class="cardBody"><h3>Amazon</h3><p>Rainforest lodges, river systems, wildlife encounters, and immersive nature experiences that reward slower pacing.</p><span class="go">Explore Amazon</span></div></a>
@@ -417,7 +477,7 @@
           </div>
         </div>
         <div class="seoGrid">
-          <div class="miniCard"><h3>Use Regions to Narrow the Trip</h3><p>Start with the <a href="/regions/andes/">Andes</a>, <a href="/regions/amazon/">Amazon</a>, <a href="/regions/coast/">Coast</a>, or <a href="/regions/galapagos/">Galapagos</a>. Each creates a different travel rhythm and should influence where you stay and how long you move around.</p></div>
+          <div class="miniCard"><h3>Use Regions to Narrow the Trip</h3><p>Start with the <a href="/regions/andes/">Andes</a>, <a href="/regions/amazon/">Amazon</a>, <a href="/regions/coast/">Coast</a>, or <a href="/regions/galapagos/">Galápagos</a>. Each creates a different travel rhythm and should influence where you stay and how long you move around.</p></div>
           <div class="miniCard"><h3>Use Experiences to Refine It</h3><p>Then compare <a href="/experiences/">experiences</a> and explore pages like <a href="/ecuador-birdwatching-tours/">birdwatching tours</a>, <a href="/ecuador-cloud-forest-lodges/">cloud forest lodges</a>, <a href="/ecuador-private-tours/">private tours</a>, and <a href="/ecuador-luxury-travel/">luxury travel</a> to move from broad ideas to better decisions.</p></div>
         </div>
       </div>
@@ -435,8 +495,8 @@
         <div class="faqGrid">
           <div class="faqItem"><h3>What is the best way to plan a trip to Ecuador?</h3><p>Start with regions, then layer in experiences and trip length. That makes it easier to avoid unrealistic route combinations and find places that fit the pace you want.</p></div>
           <div class="faqItem"><h3>How many days do you need in Ecuador?</h3><p>Many trips work best in the 7 to 14 day range. Shorter trips usually focus on one or two regions, while longer trips can combine multiple landscapes more comfortably.</p></div>
-          <div class="faqItem"><h3>Can you combine Galapagos with mainland Ecuador?</h3><p>Yes. Many travelers pair Galapagos with Quito, the Andes, or another mainland region, especially when they have enough time to absorb the transfers.</p></div>
-          <div class="faqItem"><h3>What regions should first-time travelers visit?</h3><p>That depends on your priorities. Some travelers start with Quito and the Andes, while others build around the Amazon, the Coast, or Galapagos depending on interests and timing.</p></div>
+          <div class="faqItem"><h3>Can you combine Galápagos with mainland Ecuador?</h3><p>Yes. Many travelers pair Galápagos with Quito, the Andes, or another mainland region, especially when they have enough time to absorb the transfers.</p></div>
+          <div class="faqItem"><h3>What regions should first-time travelers visit?</h3><p>That depends on your priorities. Some travelers start with Quito and the Andes, while others build around the Amazon, the Coast, or Galápagos depending on interests and timing.</p></div>
         </div>
         <div class="ctaBand" aria-label="Homepage final call to action">
           <div class="ctaLeft">
