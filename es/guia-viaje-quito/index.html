@@ -44,8 +44,8 @@
     "@graph":[
       {
         "@type":"BlogPosting",
-        "headline":"Guía de Viaje Quito Qué Saber",
-        "name":"Guía de Viaje Quito Qué Saber",
+        "headline":"Guía de Viaje de Quito",
+        "name":"Guía de Viaje de Quito",
         "description":"Usa esta guía de viaje de Quito para planificar mejores días, elegir bases, manejar la altura y conectar la ciudad con Mindo, Andes, Galápagos o Amazonía.",
         "url":"https://experienceecuador.com/es/guia-viaje-quito/",
         "inLanguage":"es",
@@ -66,8 +66,8 @@
       },
       {
         "@type":"TravelGuide",
-        "headline":"Guía de Viaje Quito Qué Saber",
-        "name":"Guía de Viaje Quito Qué Saber",
+        "headline":"Guía de Viaje de Quito",
+        "name":"Guía de Viaje de Quito",
         "description":"Usa esta guía de viaje de Quito para planificar mejores días, elegir bases, manejar la altura y conectar la ciudad con Mindo, Andes, Galápagos o Amazonía.",
         "url":"https://experienceecuador.com/es/guia-viaje-quito/",
         "inLanguage":"es",
@@ -120,15 +120,19 @@
         "@type":"BreadcrumbList",
         "itemListElement":[
           {"@type":"ListItem","position":1,"name":"Inicio","item":"https://experienceecuador.com/es/"},
-          {"@type":"ListItem","position":2,"name":"Guía de Viaje Quito Qué Saber","item":"https://experienceecuador.com/es/guia-viaje-quito/"}
+          {"@type":"ListItem","position":2,"name":"Guía de Viaje de Quito","item":"https://experienceecuador.com/es/guia-viaje-quito/"}
         ]
       }
     ]
   }
   </script>
 </head>
-<body>
+<body data-page-type="guide_page" data-page-language="es">
   <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/quito-travel-guide/" lang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/guia-viaje-quito/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
   <section class="heroImage hero-regions-andes" aria-label="Imagen principal de guía de viaje de Quito" style="background-image:url('https://experienceecuador.com/assets/images/EE-Carousel-Quito-2.jpg');">
     <div class="heroImageInner">
@@ -249,15 +253,30 @@
 
   <div id="siteFooter"></div>
 
-  <script src="/assets/js/site.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view_enhanced",
+      page_type: "guide_page",
+      page_language: "es",
+      page_path: "/es/guia-viaje-quito/"
+    });
+  </script>
   <script>
     (function(){
+      function loadSiteScript() {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      }
       function inject(id, url){
         var el = document.getElementById(id);
         if(!el) return Promise.resolve();
         return fetch(url, { cache: "no-store" }).then(function(res){ return res.text(); }).then(function(html){ el.innerHTML = html; }).catch(function(){});
       }
-      Promise.all([inject("siteHeader", "/assets/includes/header.html"), inject("siteFooter", "/assets/includes/footer.html")]);
+      Promise.all([inject("siteHeader", "/assets/includes/header.html"), inject("siteFooter", "/assets/includes/footer.html")]).finally(loadSiteScript);
     })();
   </script>
 </body>
