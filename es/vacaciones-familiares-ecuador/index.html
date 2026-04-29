@@ -95,8 +95,12 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="collection_page" data-page-language="es">
   <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/ecuador-family-vacations/" lang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/vacaciones-familiares-ecuador/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
   <section class="heroImage hero-regions-andes" aria-label="Imagen hero de vacaciones familiares en Ecuador" style="background-image:url('/assets/images/new/ee_family_vacations_001.jpg');">
     <div class="heroImageInner">
@@ -143,7 +147,7 @@
         <div class="overviewCopy">
           <p>Ecuador funciona especialmente bien para viajes en familia porque ofrece una verdadera variedad sin exigir la misma escala de movimiento interno que suelen pedir países más grandes de Sudamérica. Puedes combinar ciudades andinas, fauna de bosque nublado, naturaleza amazónica, tiempo de costa e incluso extensiones a Galápagos manteniendo una ruta legible para niños y adultos viajando juntos.</p>
           <p>La clave está en no sobrecargar el itinerario. Para muchas familias, los mejores resultados vienen de combinar un ancla cultural o urbana como <a href="/es/guia-viaje-andes/">los Andes</a> o <a href="/es/regiones/andes/quito/">Quito</a> con una región más guiada por la naturaleza como <a href="/es/regiones/andes/mindo/">Mindo</a>, <a href="/es/regiones/andes/choco-andino/">Chocó Andino</a> o la <a href="/es/guia-viaje-amazonia/">Amazonía</a>. Si la fauna es la prioridad principal, <a href="/es/guia-viaje-galapagos/">Galápagos</a> puede convertirse en la gran extensión del viaje en lugar de un añadido apretado dentro de una ruta ya llena.</p>
-          <p>Esta página está pensada para ayudarte a comparar esas opciones con claridad y llevarte a la siguiente capa correcta de planificación, ya sea el <a href="/es/planificador-de-viajes/">Planificador de viajes</a>, la guía de <a href="/es/mejores-lugares-para-visitar-ecuador/">Mejores lugares para visitar en Ecuador</a>, la lógica más amplia de estadías en <a href="/es/donde-alojarse-ecuador/">Dónde alojarse en Ecuador</a>, o experiencias relacionadas como <a href="/es/experencias/naturaleza">Naturaleza</a> y <a href="/es/experencias/vida-silvestre-y-aves">Vida silvestre y aves</a>.</p>
+          <p>Esta página está pensada para ayudarte a comparar esas opciones con claridad y llevarte a la siguiente capa correcta de planificación, ya sea el <a href="/es/planificador-de-viajes/">Planificador de viajes</a>, la guía de <a href="/es/mejores-lugares-para-visitar-ecuador/">Mejores lugares para visitar en Ecuador</a>, la lógica más amplia de estadías en <a href="/es/donde-alojarse-ecuador/">Dónde alojarse en Ecuador</a>, o experiencias relacionadas como <a href="/es/experiencias/naturaleza/">Naturaleza</a> y <a href="/es/experiencias/vida-silvestre-y-aves/">Vida silvestre y aves</a>.</p>
         </div>
       </div>
     </section>
@@ -206,17 +210,17 @@
           </div>
         </div>
         <div class="grid4">
-          <a class="miniCard" href="/es/experencias/naturaleza">
+          <a class="miniCard" href="/es/experiencias/naturaleza/">
             <h3>Naturaleza</h3>
             <p>Ideal cuando el viaje debe mantenerse escénico, al aire libre y amplio, sin volverse demasiado técnico.</p>
             <span class="go">Explorar naturaleza</span>
           </a>
-          <a class="miniCard" href="/es/experencias/vida-silvestre-y-aves">
+          <a class="miniCard" href="/es/experiencias/vida-silvestre-y-aves/">
             <h3>Vida silvestre y aves</h3>
             <p>Muy útil cuando los encuentros con animales deben convertirse en una parte fuerte del viaje.</p>
             <span class="go">Explorar vida silvestre y aves</span>
           </a>
-          <a class="miniCard" href="/es/experencias/aventura">
+          <a class="miniCard" href="/es/experiencias/aventura/">
             <h3>Aventura</h3>
             <p>Ayuda para familias activas que quieren rafting, canopy, caminatas o más movimiento durante el viaje.</p>
             <span class="go">Explorar aventura</span>
@@ -393,9 +397,24 @@
 
   <div id="siteFooter"></div>
 
-  <script src="/assets/js/site.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view_enhanced",
+      page_type: "collection_page",
+      page_language: "es",
+      page_path: "/es/vacaciones-familiares-ecuador/"
+    });
+  </script>
   <script>
     (function () {
+      function loadSiteScript() {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      }
       function inject(id, url) {
         var el = document.getElementById(id);
         if (!el) return Promise.resolve();
@@ -407,7 +426,7 @@
       Promise.all([
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
-      ]);
+      ]).finally(loadSiteScript);
     })();
   </script>
 </body>
