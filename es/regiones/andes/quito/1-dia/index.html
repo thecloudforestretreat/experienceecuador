@@ -71,16 +71,20 @@
   }
   </script>
 </head>
-<body>
+<body data-page-type="region_destination_page" data-page-language="es">
   <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/regions/andes/quito/1-day/" hreflang="en" lang="en">English</a>
+    <a href="https://experienceecuador.com/es/regiones/andes/quito/1-dia/" hreflang="es" lang="es">Español</a>
+  </nav>
   <section class="heroImage hero-regions-andes" aria-label="Imagen hero de Quito en 1 día" style="background-image:url('/assets/images/new/ee_quito_001.jpg');">
     <div class="heroImageInner">
       <div class="sectionKicker sectionKicker--overlay">Itinerario de 1 día</div>
       <h1 class="heroTitle">Quito en 1 día</h1>
       <p class="heroLead">Usa este plan de un día en Quito para una primera visita de mucho valor, con centro histórico, una parada cultural fuerte y un gran mirador que mantienen el día claro y manejable.</p>
       <div class="heroActions">
-        <a class="btn btnPrimary" href="#top-experiences">Explorar el plan del día</a>
-        <a class="btn btnGhost" href="#where-to-stay">Ver estadías recomendadas</a>
+        <a class="btn btnPrimary" href="#top-experiences" data-analytics-event="hero_cta_click" data-analytics-label="explorar_el_plan_del_dia">Explorar el plan del día</a>
+        <a class="btn btnGhost" href="#where-to-stay" data-analytics-event="hero_cta_click" data-analytics-label="ver_estadias_recomendadas">Ver estadías recomendadas</a>
       </div>
       <div class="heroMetaRow">
         <span class="heroPill">Primera visita</span>
@@ -163,7 +167,7 @@
       <div class="grid4">
         <a class="miniCard" href="/es/regiones/andes/quito/"><h3>Resumen de Quito</h3><p>Usa la página principal cuando todavía estás decidiendo cuánto tiempo debería recibir Quito.</p><span class="go">Abrir resumen de Quito</span></a>
         <a class="miniCard" href="/es/regiones/andes/quito/2-dias/"><h3>Quito en 2 días</h3><p>Ideal cuando un día empieza a sentirse muy comprimido y quieres una versión más equilibrada.</p><span class="go">Abrir plan de 2 días</span></a>
-        <a class="miniCard" href="/es/regiones/andes/quito/3-dias/"><h3>Quito en 3 días</h3><p>Úsalo cuando quieres Quito más un day trip y suficiente tiempo para que la ciudad respire.</p><span class="go">Abrir plan de 3 días</span></a>
+        <a class="miniCard" href="/es/regiones/andes/quito/3-dias/"><h3>Quito en 3 días</h3><p>Úsalo cuando quieres Quito más una excursión y suficiente tiempo para que la ciudad respire.</p><span class="go">Abrir plan de 3 días</span></a>
         <a class="miniCard" href="/es/planificador-de-viajes/"><h3>Planificador de viajes</h3><p>Da forma a una ruta que use bien Quito sin sobrecargar una agenda corta.</p><span class="go">Abrir planificador</span></a>
       </div></div>
     </section>
@@ -197,7 +201,6 @@
     </section>
   </main>
   <div id="siteFooter"></div>
-  <script src="/assets/js/site.js"></script>
   <script>
     (function () {
       function inject(id, url) {
@@ -208,10 +211,23 @@
           .then(function (html) { el.innerHTML = html; })
           .catch(function () {});
       }
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "page_view_enhanced",
+        page_type: "region_destination_page",
+        page_language: "es",
+        page_path: "/es/regiones/andes/quito/1-dia/"
+      });
       Promise.all([
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
-      ]);
+      ]).then(function () {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var script = document.createElement("script");
+          script.src = "/assets/js/site.js";
+          document.body.appendChild(script);
+        }
+      });
     })();
   </script>
 </body>
