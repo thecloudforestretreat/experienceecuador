@@ -1,192 +1,384 @@
-Use the two master templates `listing-detail-en-map-ready.txt` and `listing-detail-es-map-ready.txt` with one row from `listing_pages_input.csv`.
+UPDATED MASTER RULES FOR LISTING DETAIL PAGE GENERATION
 
-Rules:
-1. Header and footer MUST use the same inline fetch injection pattern as the site's working pages.
-   - Add `<div id="siteHeader"></div>` immediately after opening `<body>`
-   - Add `<div id="siteFooter"></div>` immediately before the header/footer injection script block
-   - Do NOT use `/assets/js/includes.js`
-   - Do NOT hardcode header or footer HTML
-   - Do NOT modify header/footer structure
-   - English pages must inject:
-     - `inject("siteHeader", "/assets/includes/header.html");`
-     - `inject("siteFooter", "/assets/includes/footer.html");`
-   - Spanish pages must use the SAME live include files as the working Spanish site:
-     - `inject("siteHeader", "/assets/includes/header.html");`
-     - `inject("siteFooter", "/assets/includes/footer.html");`
-   - Injection must follow the working site pattern:
-     - Use `Promise.all([...])` to inject header and footer
-     - Load `/assets/js/site.js` ONLY AFTER injection completes
-     - Also load `/assets/js/site.js` in the catch fallback if injection fails
-   - Required injection block structure:
+Use the updated master templates:
+- listing-detail-en-map-ready-SEO-lang-analytics.txt
+- listing-detail-es-map-ready-SEO-lang-analytics.txt
 
-<script>
-  (function(){
-    async function inject(id, url){
-      const el = document.getElementById(id);
-      if(!el) return;
-      const res = await fetch(url, { cache: "no-store" });
-      el.innerHTML = await res.text();
-    }
+These rules are the source of truth. Do not use older template names or older conflicting instructions.
 
-    Promise.all([
-      inject("siteHeader", "/assets/includes/header.html"),
-      inject("siteFooter", "/assets/includes/footer.html")
-    ]).then(() => {
-      const s = document.createElement("script");
-      s.src = "/assets/js/site.js";
-      document.body.appendChild(s);
-    }).catch(() => {
-      const s = document.createElement("script");
-      s.src = "/assets/js/site.js";
-      document.body.appendChild(s);
-    });
-  })();
-</script>
+SEO MAXIMIZATION
 
-2. Preserve all CSS, JS, analytics tracking, schema structure, and section order from the master templates.
+1. Use the row values exactly for:
+   - {{META_TITLE_EN}} -> <title>, og:title, twitter:title, WebPage schema name
+   - {{META_TITLE_ES}} -> <title>, og:title, twitter:title, WebPage schema name
+   - {{META_DESCRIPTION_EN}} -> meta description, og:description, twitter:description, WebPage schema description
+   - {{META_DESCRIPTION_ES}} -> meta description, og:description, twitter:description, WebPage schema description
 
-3. Fill placeholders only. Do not rewrite layout, rename classes, remove sections, or simplify scripts.
+2. Do not replace meta titles with {{TITLE_EN}} or {{TITLE_ES}}.
 
-4. Output two complete files:
-   - English final file path: `/recommendations/members/<region_id_en>/<location_id_en>/<listing_slug>/index.html`
-   - Spanish final file path: `/es/recomendados/miembros/<region_id_es>/<location_id_es>/<listing_slug>/index.html`
+3. Do not append "| Experience Ecuador" to OG or Twitter titles unless it is already included in the provided meta title field.
 
-5. English filtered links:
-   - `/recommendations/?region=<region_id_en>`
-   - `/recommendations/?region=<region_id_en>&location=<location_id_en>`
-   - `/recommendations/?experience=<experience_filter_id>`
+4. Keep UI titles short:
+   - Use {{TITLE_EN}} and {{TITLE_ES}} for H1, breadcrumbs, CTAs, member labels, and page-visible business names.
+   - Use {{META_TITLE_EN}} and {{META_TITLE_ES}} only for SEO title fields and WebPage schema name.
 
-6. Spanish filtered links:
-   - `/es/recomendados/?region=<region_id_es>`
-   - `/es/recomendados/?region=<region_id_es>&ubicacion=<location_id_es>`
-   - `/es/recomendados/?experience=<experience_filter_id>`
+5. Use SEO paragraphs, headings, FAQ, nearby content, image alt text, image captions, and schema fields to reinforce the listing's strongest differentiator.
 
-7. Region/location backlinks:
-   - EN from `region_page_en`, `location_page_en`
-   - ES from `region_page_es`, `location_page_es`
+6. For each listing, prioritize this SEO hierarchy:
+   - property / business name
+   - category or experience type
+   - location
+   - unique differentiator
 
-8. Spanish copy must be natural Latin American / South American Spanish, not Spain Spanish.
+7. Never keyword-stuff. Titles and descriptions must stay readable and click-worthy.
 
-9. Keep `experience_highlights_*` and `best_for_*` pipe-separated values split into exactly 4 bullets each.
+8. Strong examples:
+   - Roca Mía | Birdwatching Lodge in Mindo Ecuador with Cock-of-the-Rock
+   - Roca Mía | Lodge de Aviturismo en Mindo Ecuador con Gallito de las Rocas
+   - Mindo Glambird | Cloud Forest Glamping Lodge in Mindo Ecuador
+   - Hacienda Verde Niebla | Coffee Farm Stay in Chocó Andino Ecuador
 
-10. Keep all links, canonicals, hreflang, IDs, schema fields, and CTA tracking attributes aligned with the row values.
+LANGUAGE SWITCH STANDARD
 
-11. If `phone` lacks a leading plus, normalize it to include `+` in the rendered page and schema.
+1. Every generated page must include raw HTML language links immediately after #siteHeader and before main content.
 
-12. All image-caption placeholders MUST be fully replaced in both languages.
-   - Required carousel caption replacements:
-     - `{{IMAGE_1_CAPTION_EN}}`, `{{IMAGE_2_CAPTION_EN}}`, `{{IMAGE_3_CAPTION_EN}}`
-     - `{{IMAGE_1_CAPTION_ES}}`, `{{IMAGE_2_CAPTION_ES}}`, `{{IMAGE_3_CAPTION_ES}}`
-   - Required gallery caption replacements:
-     - `{{IMAGE_1_GALLERY_CAPTION_EN}}`, `{{IMAGE_2_GALLERY_CAPTION_EN}}`, `{{IMAGE_3_GALLERY_CAPTION_EN}}`
-     - `{{IMAGE_1_GALLERY_CAPTION_ES}}`, `{{IMAGE_2_GALLERY_CAPTION_ES}}`, `{{IMAGE_3_GALLERY_CAPTION_ES}}`
-   - No unresolved placeholder tokens may remain anywhere in the output HTML.
-   - Spanish caption enforcement:
-     - Spanish carousel overlays MUST display real Spanish text, never raw placeholder tokens
-     - Spanish gallery captions MUST display real Spanish text, never raw placeholder tokens
-     - If any `{{IMAGE_*_CAPTION_ES}}` or `{{IMAGE_*_GALLERY_CAPTION_ES}}` token remains unresolved, the output is invalid and must be regenerated before delivery
+2. English page must use:
+   <div id="siteHeader" data-current-lang="en"></div>
+   <nav class="rawLangLinks" aria-label="Language switch">
 
-13. Output ASCII-safe content in rendered pages whenever possible.
-   - Replace smart apostrophes and smart quotes with plain ASCII equivalents
-   - Do not leave curly quotes in final HTML unless they already exist intentionally inside template code
+3. Spanish page must use:
+   <div id="siteHeader" data-current-lang="es"></div>
+   <nav class="rawLangLinks" aria-label="Selector de idioma">
 
-Required placeholder mapping:
+4. Both switch links must include:
+   - href
+   - lang
+   - hreflang
+   - correct aria-current only on the active language
+   - data-analytics-event="language_switch_click"
+   - data-analytics-label
+   - data-analytics-location="language_switch"
+   - data-analytics-page-type="member"
+   - data-analytics-target-language
+
+5. Keep class name exactly:
+   rawLangLinks
+
+6. Use shared /assets/css/site.css for switch styling. Do not create page-level language switch CSS.
+
+ANALYTICS STANDARD
+
+1. Use data-* attributes for all important actions.
+
+2. Use only these event names on generated member pages unless explicitly instructed otherwise:
+   - page_view_enhanced
+   - language_switch_click
+   - internal_link_click
+   - member_gallery_click
+   - member_external_website_click
+   - member_whatsapp_click
+   - member_cta_click
+
+3. Do not use older one-off names like:
+   - listing_detail_view
+   - recommendation_click
+   - main_cta_click
+   - cta_click_primary
+
+4. Website buttons must use:
+   data-analytics-event="member_external_website_click"
+
+5. WhatsApp buttons must use:
+   data-analytics-event="member_whatsapp_click"
+
+6. Breadcrumb links and Explore More links must use:
+   data-analytics-event="internal_link_click"
+
+7. Gallery and carousel controls must use:
+   data-analytics-event="member_gallery_click"
+
+8. The body must include:
+   - data-page-type="recommendation_member_page"
+   - data-page-language="en" or data-page-language="es"
+
+HEADER, FOOTER, AND JS INJECTION
+
+1. Use the inline fetch injection pattern already present in the master templates.
+
+2. Do not use /assets/js/includes.js.
+
+3. Do not hardcode header or footer HTML.
+
+4. Do not modify header/footer structure.
+
+5. Use:
+   - <div id="siteHeader" data-current-lang="en"></div> on English pages
+   - <div id="siteHeader" data-current-lang="es"></div> on Spanish pages
+   - <div id="siteFooter"></div> before the injection script
+
+6. Use Promise.all to inject header and footer.
+
+7. Load /assets/js/site.js only after injection completes, and also in the catch fallback if injection fails.
+
+8. Do not duplicate the site.js loader.
+
+SPANISH AND ACCENT RULES
+
+1. Spanish pages must use natural Latin American / South American Spanish, not Spain Spanish.
+
+2. Spanish visible copy and metadata must use proper accents.
+
+3. Proper names must keep their real accents on both English and Spanish pages.
+
+4. Keep URLs, slugs, asset paths, IDs, and technical fields unaccented unless intentionally accented.
+
+5. Spanish labels must use accents where required:
+   - Galería
+   - Descripción
+   - Qué hacer cerca
+   - Ver más
+   - región
+   - ubicación
+   - Por qué hospedarse aquí
+   - Planifica tu estadía
+
+6. Do not strip accents from Spanish output. Accent correctness is more important than ASCII-only rendering for visible copy and metadata.
+
+PLACEHOLDER AND QA RULES
+
+1. Fill placeholders only. Do not rewrite layout, rename classes, remove sections, or simplify scripts.
+
+2. No unresolved placeholder tokens may remain in the final HTML.
+
+3. All image alt text, carousel captions, and gallery captions must be replaced in both languages.
+
+4. Keep pipe-separated highlight and best-for values split into exactly 4 bullets each.
+
+5. Normalize phone numbers with a leading + in rendered page text and schema when the source phone lacks one.
+
+6. Before handoff, verify:
+   - SEO title and meta description
+   - OG/Twitter title and description
+   - WebPage schema name and description
+   - raw language switch placement
+   - language switch hreflang and analytics
+   - CTA analytics
+   - breadcrumb and Explore More analytics
+   - Spanish accents
+   - canonical and hreflang links
+   - final paths
+   - no unresolved placeholders
+
+OUTPUT
+
+Generate two complete files:
+- English final file path: /recommendations/members/<region_id_en>/<location_id_en>/<listing_slug>/index.html
+- Spanish final file path: /es/recomendados/miembros/<region_id_es>/<location_id_es>/<listing_slug>/index.html
+
+Do not modify layout or structure.
+
+REQUIRED PLACEHOLDER MAPPING
 
 Core:
-{{ID}}, {{CATEGORY}}, {{SCHEMA_TYPE}}, {{REGION_ID_EN}}, {{REGION_ID_ES}}, {{LOCATION_ID_EN}}, {{LOCATION_ID_ES}},
-{{REGION_NAME_EN}}, {{REGION_NAME_ES}}, {{LOCATION_NAME_EN}}, {{LOCATION_NAME_ES}},
-{{TITLE_EN}}, {{TITLE_ES}}, {{CANONICAL_URL_EN}}, {{CANONICAL_URL_ES}},
-{{WEBSITE_URL}}, {{WHATSAPP_URL}}, {{PHONE}},
-{{IMAGE_1}}, {{IMAGE_2}}, {{IMAGE_3}}
+{{ID}}
+{{CATEGORY}}
+{{SCHEMA_TYPE}}
+{{REGION_ID_EN}}
+{{REGION_ID_ES}}
+{{LOCATION_ID_EN}}
+{{LOCATION_ID_ES}}
+{{REGION_NAME_EN}}
+{{REGION_NAME_ES}}
+{{LOCATION_NAME_EN}}
+{{LOCATION_NAME_ES}}
+{{TITLE_EN}}
+{{TITLE_ES}}
+{{CANONICAL_URL_EN}}
+{{CANONICAL_URL_ES}}
+{{WEBSITE_URL}}
+{{WHATSAPP_URL}}
+{{PHONE}}
+{{IMAGE_1}}
+{{IMAGE_2}}
+{{IMAGE_3}}
 
 Meta:
-{{META_TITLE_EN}}, {{META_TITLE_ES}}, {{META_DESCRIPTION_EN}}, {{META_DESCRIPTION_ES}}
+{{META_TITLE_EN}}
+{{META_TITLE_ES}}
+{{META_DESCRIPTION_EN}}
+{{META_DESCRIPTION_ES}}
 
 Body copy:
-{{DESCRIPTION_SHORT_EN}}, {{DESCRIPTION_SHORT_ES}}
-{{SEO_PARAGRAPH_1_EN}}, {{SEO_PARAGRAPH_1_ES}}
-{{SEO_PARAGRAPH_2_EN}}, {{SEO_PARAGRAPH_2_ES}}
-{{WHY_SECTION_EN}}, {{WHY_SECTION_ES}}
-{{LOCATION_CONTEXT_EN}}, {{LOCATION_CONTEXT_ES}}
+{{DESCRIPTION_SHORT_EN}}
+{{DESCRIPTION_SHORT_ES}}
+{{SEO_PARAGRAPH_1_EN}}
+{{SEO_PARAGRAPH_1_ES}}
+{{SEO_PARAGRAPH_2_EN}}
+{{SEO_PARAGRAPH_2_ES}}
+{{WHY_SECTION_EN}}
+{{WHY_SECTION_ES}}
+{{LOCATION_CONTEXT_EN}}
+{{LOCATION_CONTEXT_ES}}
 
 Derived hero/support labels:
-{{CATEGORY_LABEL_EN}}, {{CATEGORY_LABEL_ES}}
-{{HERO_SUPPORT_EN}}, {{HERO_SUPPORT_ES}}
-{{META_TAG_1_EN}}, {{META_TAG_1_ES}}
-{{META_TAG_2_EN}}, {{META_TAG_2_ES}}
-{{META_TAG_3_EN}}, {{META_TAG_3_ES}}
+{{CATEGORY_LABEL_EN}}
+{{CATEGORY_LABEL_ES}}
+{{HERO_SUPPORT_EN}}
+{{HERO_SUPPORT_ES}}
+{{META_TAG_1_EN}}
+{{META_TAG_1_ES}}
+{{META_TAG_2_EN}}
+{{META_TAG_2_ES}}
+{{META_TAG_3_EN}}
+{{META_TAG_3_ES}}
 
 Section headings:
-{{SECTION_SHORT_HEADING_EN}}, {{SECTION_SHORT_HEADING_ES}}
-{{SECTION_SEO_HEADING_EN}}, {{SECTION_SEO_HEADING_ES}}
-{{SECTION_WHY_HEADING_EN}}, {{SECTION_WHY_HEADING_ES}}
-{{SECTION_LOCATION_HEADING_EN}}, {{SECTION_LOCATION_HEADING_ES}}
-{{GALLERY_HEADING_EN}}, {{GALLERY_HEADING_ES}}
+{{SECTION_SHORT_HEADING_EN}}
+{{SECTION_SHORT_HEADING_ES}}
+{{SECTION_SEO_HEADING_EN}}
+{{SECTION_SEO_HEADING_ES}}
+{{SECTION_WHY_HEADING_EN}}
+{{SECTION_WHY_HEADING_ES}}
+{{SECTION_LOCATION_HEADING_EN}}
+{{SECTION_LOCATION_HEADING_ES}}
+{{GALLERY_HEADING_EN}}
+{{GALLERY_HEADING_ES}}
 
 Pipe-split bullet fields:
-{{EXPERIENCE_HIGHLIGHT_1_EN}} ... {{EXPERIENCE_HIGHLIGHT_4_EN}}
-{{EXPERIENCE_HIGHLIGHT_1_ES}} ... {{EXPERIENCE_HIGHLIGHT_4_ES}}
-{{BEST_FOR_1_EN}} ... {{BEST_FOR_4_EN}}
-{{BEST_FOR_1_ES}} ... {{BEST_FOR_4_ES}}
+{{EXPERIENCE_HIGHLIGHT_1_EN}}
+{{EXPERIENCE_HIGHLIGHT_2_EN}}
+{{EXPERIENCE_HIGHLIGHT_3_EN}}
+{{EXPERIENCE_HIGHLIGHT_4_EN}}
+{{EXPERIENCE_HIGHLIGHT_1_ES}}
+{{EXPERIENCE_HIGHLIGHT_2_ES}}
+{{EXPERIENCE_HIGHLIGHT_3_ES}}
+{{EXPERIENCE_HIGHLIGHT_4_ES}}
+{{BEST_FOR_1_EN}}
+{{BEST_FOR_2_EN}}
+{{BEST_FOR_3_EN}}
+{{BEST_FOR_4_EN}}
+{{BEST_FOR_1_ES}}
+{{BEST_FOR_2_ES}}
+{{BEST_FOR_3_ES}}
+{{BEST_FOR_4_ES}}
 
 Nearby:
-{{NEARBY_1_TITLE_EN}}, {{NEARBY_1_TITLE_ES}}, {{NEARBY_1_TEXT_EN}}, {{NEARBY_1_TEXT_ES}}
-{{NEARBY_2_TITLE_EN}}, {{NEARBY_2_TITLE_ES}}, {{NEARBY_2_TEXT_EN}}, {{NEARBY_2_TEXT_ES}}
-{{NEARBY_3_TITLE_EN}}, {{NEARBY_3_TITLE_ES}}, {{NEARBY_3_TEXT_EN}}, {{NEARBY_3_TEXT_ES}}
+{{NEARBY_1_TITLE_EN}}
+{{NEARBY_1_TITLE_ES}}
+{{NEARBY_1_TEXT_EN}}
+{{NEARBY_1_TEXT_ES}}
+{{NEARBY_2_TITLE_EN}}
+{{NEARBY_2_TITLE_ES}}
+{{NEARBY_2_TEXT_EN}}
+{{NEARBY_2_TEXT_ES}}
+{{NEARBY_3_TITLE_EN}}
+{{NEARBY_3_TITLE_ES}}
+{{NEARBY_3_TEXT_EN}}
+{{NEARBY_3_TEXT_ES}}
 
 FAQ:
-{{FAQ_1_Q_EN}}, {{FAQ_1_Q_ES}}, {{FAQ_1_A_EN}}, {{FAQ_1_A_ES}}
-{{FAQ_2_Q_EN}}, {{FAQ_2_Q_ES}}, {{FAQ_2_A_EN}}, {{FAQ_2_A_ES}}
-{{FAQ_3_Q_EN}}, {{FAQ_3_Q_ES}}, {{FAQ_3_A_EN}}, {{FAQ_3_A_ES}}
-{{FAQ_4_Q_EN}}, {{FAQ_4_Q_ES}}, {{FAQ_4_A_EN}}, {{FAQ_4_A_ES}}
+{{FAQ_1_Q_EN}}
+{{FAQ_1_Q_ES}}
+{{FAQ_1_A_EN}}
+{{FAQ_1_A_ES}}
+{{FAQ_2_Q_EN}}
+{{FAQ_2_Q_ES}}
+{{FAQ_2_A_EN}}
+{{FAQ_2_A_ES}}
+{{FAQ_3_Q_EN}}
+{{FAQ_3_Q_ES}}
+{{FAQ_3_A_EN}}
+{{FAQ_3_A_ES}}
+{{FAQ_4_Q_EN}}
+{{FAQ_4_Q_ES}}
+{{FAQ_4_A_EN}}
+{{FAQ_4_A_ES}}
 
 Gallery and carousel alts/captions:
-{{IMAGE_1_ALT_EN}}, {{IMAGE_1_ALT_ES}}, {{IMAGE_1_CAPTION_EN}}, {{IMAGE_1_CAPTION_ES}}, {{IMAGE_1_GALLERY_CAPTION_EN}}, {{IMAGE_1_GALLERY_CAPTION_ES}}
-{{IMAGE_2_ALT_EN}}, {{IMAGE_2_ALT_ES}}, {{IMAGE_2_CAPTION_EN}}, {{IMAGE_2_CAPTION_ES}}, {{IMAGE_2_GALLERY_CAPTION_EN}}, {{IMAGE_2_GALLERY_CAPTION_ES}}
-{{IMAGE_3_ALT_EN}}, {{IMAGE_3_ALT_ES}}, {{IMAGE_3_CAPTION_EN}}, {{IMAGE_3_CAPTION_ES}}, {{IMAGE_3_GALLERY_CAPTION_EN}}, {{IMAGE_3_GALLERY_CAPTION_ES}}
+{{IMAGE_1_ALT_EN}}
+{{IMAGE_1_ALT_ES}}
+{{IMAGE_1_CAPTION_EN}}
+{{IMAGE_1_CAPTION_ES}}
+{{IMAGE_1_GALLERY_CAPTION_EN}}
+{{IMAGE_1_GALLERY_CAPTION_ES}}
+{{IMAGE_2_ALT_EN}}
+{{IMAGE_2_ALT_ES}}
+{{IMAGE_2_CAPTION_EN}}
+{{IMAGE_2_CAPTION_ES}}
+{{IMAGE_2_GALLERY_CAPTION_EN}}
+{{IMAGE_2_GALLERY_CAPTION_ES}}
+{{IMAGE_3_ALT_EN}}
+{{IMAGE_3_ALT_ES}}
+{{IMAGE_3_CAPTION_EN}}
+{{IMAGE_3_CAPTION_ES}}
+{{IMAGE_3_GALLERY_CAPTION_EN}}
+{{IMAGE_3_GALLERY_CAPTION_ES}}
 
 Explore section:
 {{EXPERIENCE_FILTER_ID}}
-{{EXPERIENCE_LINK_LABEL_EN}}, {{EXPERIENCE_LINK_LABEL_ES}}
-{{EXPERIENCE_LINK_TEXT_EN}}, {{EXPERIENCE_LINK_TEXT_ES}}
-{{REGION_PAGE_EN}}, {{REGION_PAGE_ES}}, {{LOCATION_PAGE_EN}}, {{LOCATION_PAGE_ES}}
-{{REGION_LINK_TEXT_EN}}, {{REGION_LINK_TEXT_ES}}
-{{LOCATION_LINK_TEXT_EN}}, {{LOCATION_LINK_TEXT_ES}}
-{{EXPLORE_SECTION_INTRO_EN}}, {{EXPLORE_SECTION_INTRO_ES}}
+{{EXPERIENCE_LINK_LABEL_EN}}
+{{EXPERIENCE_LINK_LABEL_ES}}
+{{EXPERIENCE_LINK_TEXT_EN}}
+{{EXPERIENCE_LINK_TEXT_ES}}
+{{REGION_PAGE_EN}}
+{{REGION_PAGE_ES}}
+{{LOCATION_PAGE_EN}}
+{{LOCATION_PAGE_ES}}
+{{REGION_LINK_TEXT_EN}}
+{{REGION_LINK_TEXT_ES}}
+{{LOCATION_LINK_TEXT_EN}}
+{{LOCATION_LINK_TEXT_ES}}
+{{EXPLORE_SECTION_INTRO_EN}}
+{{EXPLORE_SECTION_INTRO_ES}}
 
 CTA:
-{{CTA_HEADING_EN}}, {{CTA_HEADING_ES}}
-{{CTA_TEXT_EN}}, {{CTA_TEXT_ES}}
+{{CTA_HEADING_EN}}
+{{CTA_HEADING_ES}}
+{{CTA_TEXT_EN}}
+{{CTA_TEXT_ES}}
 
-Recommended derivations:
-- CATEGORY_LABEL_EN / ES from category:
-  lodging = Lodging / Alojamiento
-  restaurants = Restaurants / Restaurantes
-  services = Services / Servicios
-  activities = Activities / Actividades
+Map:
+{{MAP_SECTION_EN}}
+{{MAP_SECTION_ES}}
 
-- SCHEMA_TYPE:
-  lodging -> LodgingBusiness
-  restaurants -> Restaurant
-  services -> LocalBusiness
-  activities -> LocalBusiness
+RECOMMENDED DERIVATIONS
 
-- HERO_SUPPORT_* should be a concise second supporting sentence.
+CATEGORY_LABEL_EN / CATEGORY_LABEL_ES:
+- lodging -> Lodging / Alojamiento
+- restaurants -> Restaurants / Restaurantes
+- services -> Services / Servicios
+- activities -> Activities / Actividades
 
-- META_TAG_* can be derived from region, location, and three strongest themes.
+SCHEMA_TYPE:
+- lodging -> LodgingBusiness
+- restaurants -> Restaurant
+- services -> LocalBusiness
+- activities -> LocalBusiness
 
-- EXPERIENCE_LINK_LABEL_EN example: "View birdwatching lodges in Ecuador"
-- EXPERIENCE_LINK_LABEL_ES example: "Ver lodges de aviturismo en Ecuador"
+HERO_SUPPORT:
+- Concise second supporting sentence.
+- Should reinforce the unique differentiator without repeating the first paragraph.
 
-Validation requirements before output:
-- No unresolved `{{...}}` placeholders may remain
-- English output must use the live English header/footer injection paths
-- Spanish output must use the SAME live header/footer injection paths as the working Spanish site
-- Header/footer injection must use the inline fetch + Promise.all pattern above
-- Do not use `header-es.html` or `footer-es.html`
-- Do not use `includes.js`
-- Carousel caption overlays must display real replaced text in both EN and ES
-- Spanish caption overlays must display real Spanish text in all slides
-- Spanish gallery captions must display real Spanish text in all images
+META_TAG fields:
+- Use region, location, and the three strongest themes from the row.
 
-When filling a row, keep factual details grounded in the CSV and existing listing data. Do not invent phone numbers, links, or amenities.
+Experience filter links:
+- English: /recommendations/?experience={{EXPERIENCE_FILTER_ID}}
+- Spanish: /es/recomendados/?experience={{EXPERIENCE_FILTER_ID}}
+
+Region/location filtered links:
+- English region: /recommendations/?region={{REGION_ID_EN}}
+- English location: /recommendations/?region={{REGION_ID_EN}}&location={{LOCATION_ID_EN}}
+- Spanish region: /es/recomendados/?region={{REGION_ID_ES}}
+- Spanish location: /es/recomendados/?region={{REGION_ID_ES}}&ubicacion={{LOCATION_ID_ES}}
+
+SPANISH EXPERIENCE FILTER SLUGS
+
+When generating Spanish text labels, use natural Spanish labels:
+- wildlife-birding -> aviturismo / vida silvestre
+- adventure -> aventura
+- culinary -> gastronomía
+- relaxation -> relajación
+- nature -> naturaleza
+
+Do not use "relax" as the Spanish label or slug for relaxation. Use "relajación" in visible Spanish copy and "relajacion" in technical slugs when needed.
