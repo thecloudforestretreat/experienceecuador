@@ -15,7 +15,7 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
-  <meta property="og:title" content="{{TITLE_EN}} | Experience Ecuador" />
+  <meta property="og:title" content="{{META_TITLE_EN}}" />
   <meta property="og:description" content="{{META_DESCRIPTION_EN}}" />
   <meta property="og:url" content="{{CANONICAL_URL_EN}}" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
@@ -26,7 +26,7 @@
   <meta property="og:image:alt" content="Experience Ecuador - plan your trip to Ecuador" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{TITLE_EN}} | Experience Ecuador" />
+  <meta name="twitter:title" content="{{META_TITLE_EN}}" />
   <meta name="twitter:description" content="{{META_DESCRIPTION_EN}}" />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta name="twitter:image:alt" content="Experience Ecuador - plan your trip to Ecuador" />
@@ -39,6 +39,7 @@
 
   <link rel="stylesheet" href="/assets/css/header.css" />
   <link rel="stylesheet" href="/assets/css/footer.css" />
+  <link rel="stylesheet" href="/assets/css/site.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -48,6 +49,19 @@
   {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "{{META_TITLE_EN}}",
+        "url": "{{CANONICAL_URL_EN}}",
+        "description": "{{META_DESCRIPTION_EN}}",
+        "inLanguage": "en",
+        "isPartOf": { "@type": "WebSite", "name": "Experience Ecuador", "url": "https://experienceecuador.com/" },
+        "about": [
+          { "@type": "Place", "name": "{{LOCATION_NAME_EN}}" },
+          { "@type": "Place", "name": "{{REGION_NAME_EN}}" },
+          { "@type": "Thing", "name": "{{META_TAG_1_EN}}" }
+        ]
+      },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
@@ -192,16 +206,20 @@
     @media (prefers-reduced-motion: reduce){.carouselTrack{transition:none !important}}
   </style>
 </head>
-<body>
-  <div id="siteHeader"></div>
+<body data-page-type="recommendation_member_page" data-page-language="en">
+  <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="{{CANONICAL_URL_EN}}" lang="en" hreflang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch" data-analytics-page-type="member" data-analytics-target-language="en">English</a>
+    <a href="{{CANONICAL_URL_ES}}" lang="es" hreflang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch" data-analytics-page-type="member" data-analytics-target-language="es">Español</a>
+  </nav>
 
   <main class="wrap" aria-label="{{TITLE_EN}} listing page">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/recommendations/">Recommendations</a>
+      <a href="/recommendations/" data-analytics-event="internal_link_click" data-analytics-label="Recommendations" data-analytics-location="breadcrumb" data-analytics-page-type="member">Recommendations</a>
       <span class="sep">/</span>
-      <a href="{{REGION_PAGE_EN}}">{{REGION_NAME_EN}}</a>
+      <a href="{{REGION_PAGE_EN}}" data-analytics-event="internal_link_click" data-analytics-label="{{REGION_NAME_EN}}" data-analytics-location="breadcrumb" data-analytics-page-type="member" data-analytics-region="{{REGION_ID_EN}}">{{REGION_NAME_EN}}</a>
       <span class="sep">/</span>
-      <a href="{{LOCATION_PAGE_EN}}">{{LOCATION_NAME_EN}}</a>
+      <a href="{{LOCATION_PAGE_EN}}" data-analytics-event="internal_link_click" data-analytics-label="{{LOCATION_NAME_EN}}" data-analytics-location="breadcrumb" data-analytics-page-type="member" data-analytics-region="{{REGION_ID_EN}}">{{LOCATION_NAME_EN}}</a>
       <span class="sep">/</span>
       <span aria-current="page">{{TITLE_EN}}</span>
     </nav>
@@ -210,7 +228,7 @@
       <div class="heroCard" aria-label="{{TITLE_EN}} overview">
         <div class="heroTop">
           <span class="pill">{{CATEGORY_LABEL_EN}}</span>
-          <a class="pill" href="{{CANONICAL_URL_ES}}" aria-label="View in Spanish">Ver en Espanol</a>
+          <a class="pill js-language-switch" href="{{CANONICAL_URL_ES}}" lang="es" hreflang="es" aria-label="View this page in Spanish" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="hero" data-analytics-page-type="member" data-analytics-target-language="es">Ver en español</a>
         </div>
 
         <h1>{{TITLE_EN}}</h1>
@@ -227,8 +245,8 @@
         </div>
 
         <div class="ctaRow" aria-label="Primary actions">
-          <a id="ctaVisitWebsite" class="btn btnPrimary js-rec-action" href="{{WEBSITE_URL}}" target="_blank" rel="noopener" data-action="visit_website" data-id="{{ID}}" data-title="{{TITLE_EN}}" data-region="{{REGION_ID_EN}}" data-location="{{LOCATION_ID_EN}}" data-category="{{CATEGORY}}">Visit Website</a>
-          <a id="ctaWhatsApp" class="btn btnGhost js-rec-action" href="{{WHATSAPP_URL}}" target="_blank" rel="noopener" data-action="whatsapp" data-id="{{ID}}" data-title="{{TITLE_EN}}" data-region="{{REGION_ID_EN}}" data-location="{{LOCATION_ID_EN}}" data-category="{{CATEGORY}}">WhatsApp</a>
+          <a id="ctaVisitWebsite" class="btn btnPrimary js-rec-action" href="{{WEBSITE_URL}}" target="_blank" rel="noopener" data-action="visit_website" data-id="{{ID}}" data-title="{{TITLE_EN}}" data-region="{{REGION_ID_EN}}" data-location="{{LOCATION_ID_EN}}" data-category="{{CATEGORY}}" data-analytics-event="member_external_website_click" data-analytics-label="Visit Website" data-analytics-location="hero" data-analytics-page-type="member" data-analytics-member="{{TITLE_EN}}" data-analytics-region="{{REGION_ID_EN}}">Visit Website</a>
+          <a id="ctaWhatsApp" class="btn btnGhost js-rec-action" href="{{WHATSAPP_URL}}" target="_blank" rel="noopener" data-action="whatsapp" data-id="{{ID}}" data-title="{{TITLE_EN}}" data-region="{{REGION_ID_EN}}" data-location="{{LOCATION_ID_EN}}" data-category="{{CATEGORY}}" data-analytics-event="member_whatsapp_click" data-analytics-label="WhatsApp" data-analytics-location="hero" data-analytics-page-type="member" data-analytics-member="{{TITLE_EN}}" data-analytics-region="{{REGION_ID_EN}}">WhatsApp</a>
         </div>
       </div>
 
@@ -254,9 +272,9 @@
             </div>
           </div>
           <div class="carouselControls" aria-label="Carousel controls">
-            <button class="navBtn prev" type="button" aria-label="Previous image"><span aria-hidden="true"></span></button>
+            <button class="navBtn prev" type="button" aria-label="Previous image" data-analytics-event="member_gallery_click" data-analytics-label="Previous image" data-analytics-location="carousel" data-analytics-page-type="member" data-analytics-member="{{TITLE_EN}}"><span aria-hidden="true"></span></button>
             <div class="dots" aria-label="Choose image"></div>
-            <button class="navBtn next" type="button" aria-label="Next image"><span aria-hidden="true"></span></button>
+            <button class="navBtn next" type="button" aria-label="Next image" data-analytics-event="member_gallery_click" data-analytics-label="Next image" data-analytics-location="carousel" data-analytics-page-type="member" data-analytics-member="{{TITLE_EN}}"><span aria-hidden="true"></span></button>
           </div>
         </div>
       </div>
@@ -342,12 +360,12 @@
       <h2 class="h2">Explore more with Experience Ecuador</h2>
       <p class="p">{{EXPLORE_SECTION_INTRO_EN}}</p>
       <div class="linkGrid">
-        <article class="linkCard"><div class="linkBody"><h3><a href="/recommendations/">Browse all recommendations</a></h3><p>Return to the main recommendations page to compare lodges, activities, and services across Ecuador.</p></div></article>
-        <article class="linkCard"><div class="linkBody"><h3><a href="/recommendations/?region={{REGION_ID_EN}}">Explore {{REGION_NAME_EN}} listings</a></h3><p>See more curated recommendation results already filtered to the {{REGION_NAME_EN}} region.</p></div></article>
-        <article class="linkCard"><div class="linkBody"><h3><a href="/recommendations/?region={{REGION_ID_EN}}&location={{LOCATION_ID_EN}}">See more in {{LOCATION_NAME_EN}}</a></h3><p>View all categories and experiences currently available in recommendation results for {{LOCATION_NAME_EN}}.</p></div></article>
-        <article class="linkCard"><div class="linkBody"><h3><a href="/recommendations/?experience={{EXPERIENCE_FILTER_ID}}">{{EXPERIENCE_LINK_LABEL_EN}}</a></h3><p>{{EXPERIENCE_LINK_TEXT_EN}}</p></div></article>
-        <article class="linkCard"><div class="linkBody"><h3><a href="{{REGION_PAGE_EN}}">Explore the {{REGION_NAME_EN}} region</a></h3><p>{{REGION_LINK_TEXT_EN}}</p></div></article>
-        <article class="linkCard"><div class="linkBody"><h3><a href="{{LOCATION_PAGE_EN}}">Discover {{LOCATION_NAME_EN}}</a></h3><p>{{LOCATION_LINK_TEXT_EN}}</p></div></article>
+        <article class="linkCard"><div class="linkBody"><h3><a href="/recommendations/" data-analytics-event="internal_link_click" data-analytics-label="Browse all recommendations" data-analytics-location="explore_more" data-analytics-page-type="member">Browse all recommendations</a></h3><p>Return to the main recommendations page to compare lodges, activities, and services across Ecuador.</p></div></article>
+        <article class="linkCard"><div class="linkBody"><h3><a href="/recommendations/?region={{REGION_ID_EN}}" data-analytics-event="internal_link_click" data-analytics-label="Explore {{REGION_NAME_EN}} listings" data-analytics-location="explore_more" data-analytics-page-type="member" data-analytics-region="{{REGION_ID_EN}}">Explore {{REGION_NAME_EN}} listings</a></h3><p>See more curated recommendation results already filtered to the {{REGION_NAME_EN}} region.</p></div></article>
+        <article class="linkCard"><div class="linkBody"><h3><a href="/recommendations/?region={{REGION_ID_EN}}&location={{LOCATION_ID_EN}}" data-analytics-event="internal_link_click" data-analytics-label="See more in {{LOCATION_NAME_EN}}" data-analytics-location="explore_more" data-analytics-page-type="member" data-analytics-region="{{REGION_ID_EN}}">See more in {{LOCATION_NAME_EN}}</a></h3><p>View all categories and experiences currently available in recommendation results for {{LOCATION_NAME_EN}}.</p></div></article>
+        <article class="linkCard"><div class="linkBody"><h3><a href="/recommendations/?experience={{EXPERIENCE_FILTER_ID}}" data-analytics-event="internal_link_click" data-analytics-label="{{EXPERIENCE_LINK_LABEL_EN}}" data-analytics-location="explore_more" data-analytics-page-type="member" data-analytics-experience="{{EXPERIENCE_FILTER_ID}}">{{EXPERIENCE_LINK_LABEL_EN}}</a></h3><p>{{EXPERIENCE_LINK_TEXT_EN}}</p></div></article>
+        <article class="linkCard"><div class="linkBody"><h3><a href="{{REGION_PAGE_EN}}" data-analytics-event="internal_link_click" data-analytics-label="Explore the {{REGION_NAME_EN}} region" data-analytics-location="explore_more" data-analytics-page-type="member" data-analytics-region="{{REGION_ID_EN}}">Explore the {{REGION_NAME_EN}} region</a></h3><p>{{REGION_LINK_TEXT_EN}}</p></div></article>
+        <article class="linkCard"><div class="linkBody"><h3><a href="{{LOCATION_PAGE_EN}}" data-analytics-event="internal_link_click" data-analytics-label="Discover {{LOCATION_NAME_EN}}" data-analytics-location="explore_more" data-analytics-page-type="member" data-analytics-region="{{REGION_ID_EN}}">Discover {{LOCATION_NAME_EN}}</a></h3><p>{{LOCATION_LINK_TEXT_EN}}</p></div></article>
       </div>
     </section>
 
@@ -357,8 +375,8 @@
         <p>{{CTA_TEXT_EN}}</p>
       </div>
       <div class="ctaRight">
-        <a id="ctaVisitWebsiteBottom" class="btn btnPrimary js-rec-action" href="{{WEBSITE_URL}}" target="_blank" rel="noopener" data-action="visit_website" data-id="{{ID}}" data-title="{{TITLE_EN}}" data-region="{{REGION_ID_EN}}" data-location="{{LOCATION_ID_EN}}" data-category="{{CATEGORY}}">Visit Website</a>
-        <a id="ctaWhatsAppBottom" class="btn btnGhost js-rec-action" href="{{WHATSAPP_URL}}" target="_blank" rel="noopener" data-action="whatsapp" data-id="{{ID}}" data-title="{{TITLE_EN}}" data-region="{{REGION_ID_EN}}" data-location="{{LOCATION_ID_EN}}" data-category="{{CATEGORY}}">WhatsApp</a>
+        <a id="ctaVisitWebsiteBottom" class="btn btnPrimary js-rec-action" href="{{WEBSITE_URL}}" target="_blank" rel="noopener" data-action="visit_website" data-id="{{ID}}" data-title="{{TITLE_EN}}" data-region="{{REGION_ID_EN}}" data-location="{{LOCATION_ID_EN}}" data-category="{{CATEGORY}}" data-analytics-event="member_external_website_click" data-analytics-label="Visit Website" data-analytics-location="bottom_cta" data-analytics-page-type="member" data-analytics-member="{{TITLE_EN}}" data-analytics-region="{{REGION_ID_EN}}">Visit Website</a>
+        <a id="ctaWhatsAppBottom" class="btn btnGhost js-rec-action" href="{{WHATSAPP_URL}}" target="_blank" rel="noopener" data-action="whatsapp" data-id="{{ID}}" data-title="{{TITLE_EN}}" data-region="{{REGION_ID_EN}}" data-location="{{LOCATION_ID_EN}}" data-category="{{CATEGORY}}" data-analytics-event="member_whatsapp_click" data-analytics-label="WhatsApp" data-analytics-location="bottom_cta" data-analytics-page-type="member" data-analytics-member="{{TITLE_EN}}" data-analytics-region="{{REGION_ID_EN}}">WhatsApp</a>
       </div>
     </section>
   </main>
@@ -390,90 +408,40 @@
   </script>
   <script>
     (function(){
-      function getPageLanguage(){
-        return (window.location.pathname || "/").indexOf("/es/") === 0 ? "es" : "en";
-      }
-
       function safeTrack(name, params){
         if (typeof window.gtag !== "function") return;
         try { window.gtag("event", name, params || {}); } catch(e){}
       }
-
       function safeTrackWhenReady(name, params, attempts){
         var tries = typeof attempts === "number" ? attempts : 20;
-        if (typeof window.gtag === "function") {
-          try { window.gtag("event", name, params || {}); } catch(e){}
-          return;
-        }
+        if (typeof window.gtag === "function") { safeTrack(name, params); return; }
         if (tries <= 0) return;
-        setTimeout(function(){
-          safeTrackWhenReady(name, params, tries - 1);
-        }, 300);
+        setTimeout(function(){ safeTrackWhenReady(name, params, tries - 1); }, 300);
       }
-
-      var listingMeta = {
-        listing_id: "{{ID}}",
-        listing_title: "{{TITLE_EN}}",
-        listing_region: "{{REGION_ID_EN}}",
-        listing_location: "{{LOCATION_ID_EN}}",
-        listing_category: "{{CATEGORY}}",
+      var pageMeta = {
+        page_type: "member",
+        page_language: "en",
         page_path: window.location.pathname || "/",
-        page_language: getPageLanguage()
+        page_title: "{{META_TITLE_EN}}",
+        member_name: "{{TITLE_EN}}",
+        member_category: "{{CATEGORY}}",
+        member_location: "{{LOCATION_ID_EN}}",
+        region: "{{REGION_ID_EN}}",
+        experience_type: "{{EXPERIENCE_FILTER_ID}}"
       };
-
-      function trackAction(ctaType){
-        safeTrack("recommendation_click", {
-          listing_id: listingMeta.listing_id,
-          listing_title: listingMeta.listing_title,
-          listing_region: listingMeta.listing_region,
-          listing_location: listingMeta.listing_location,
-          listing_category: listingMeta.listing_category,
-          cta_type: ctaType,
-          page_path: listingMeta.page_path,
-          page_language: listingMeta.page_language,
-          debug_mode: true
+      safeTrackWhenReady("page_view_enhanced", pageMeta);
+      document.addEventListener("click", function(e){
+        var el = e.target && e.target.closest ? e.target.closest("[data-analytics-event]") : null;
+        if(!el) return;
+        var params = Object.assign({}, pageMeta, {
+          cta_label: el.getAttribute("data-analytics-label") || (el.textContent || "").trim(),
+          cta_location: el.getAttribute("data-analytics-location") || "",
+          link_text: (el.textContent || "").trim(),
+          link_url: el.getAttribute("href") || "",
+          section_name: el.getAttribute("data-analytics-location") || ""
         });
-      }
-
-      safeTrackWhenReady("listing_detail_view", {
-        listing_id: listingMeta.listing_id,
-        listing_title: listingMeta.listing_title,
-        listing_region: listingMeta.listing_region,
-        listing_location: listingMeta.listing_location,
-        listing_category: listingMeta.listing_category,
-        page_path: listingMeta.page_path,
-        page_language: listingMeta.page_language,
-        debug_mode: true
-      });
-
-      var btnWebsite = document.getElementById("ctaVisitWebsite");
-      var btnWebsiteBottom = document.getElementById("ctaVisitWebsiteBottom");
-      var btnWhatsApp = document.getElementById("ctaWhatsApp");
-      var btnWhatsAppBottom = document.getElementById("ctaWhatsAppBottom");
-
-      if (btnWebsite) {
-        btnWebsite.addEventListener("click", function(){
-          trackAction("visit_website");
-        }, true);
-      }
-
-      if (btnWebsiteBottom) {
-        btnWebsiteBottom.addEventListener("click", function(){
-          trackAction("visit_website");
-        }, true);
-      }
-
-      if (btnWhatsApp) {
-        btnWhatsApp.addEventListener("click", function(){
-          trackAction("whatsapp");
-        }, true);
-      }
-
-      if (btnWhatsAppBottom) {
-        btnWhatsAppBottom.addEventListener("click", function(){
-          trackAction("whatsapp");
-        }, true);
-      }
+        safeTrack(el.getAttribute("data-analytics-event"), params);
+      }, true);
     })();
   </script>
   <script>
