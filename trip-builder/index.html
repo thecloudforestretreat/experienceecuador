@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ecuador Trip Planner | Build Your Custom Itinerary</title>
-  <meta name="description" content="Plan your Ecuador trip with a custom itinerary builder. Choose regions, travel style, and trip length, then create a personalized Ecuador itinerary with ideas for the Andes, Amazon, Coast, and Galapagos." />
+  <title>Ecuador Trip Planner | Build a Custom Ecuador Itinerary</title>
+  <meta name="description" content="Build a custom Ecuador itinerary by region, trip length, and travel style. Compare the Andes, Amazon, Coast, and Galapagos in one trip planner." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://experienceecuador.com/trip-builder/" />
   <link rel="alternate" hreflang="en" href="https://experienceecuador.com/trip-builder/" />
@@ -13,19 +13,21 @@
   <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Experience Ecuador" />
-<meta property="og:title" content="Ecuador Trip Planner | Build Your Custom Itinerary" />
-<meta property="og:description" content="Plan your Ecuador trip with a custom itinerary builder. Choose regions, travel style, and trip length, then create a personalized Ecuador itinerary with ideas for the Andes, Amazon, Coast, and Galapagos." />
+<meta property="og:title" content="Ecuador Trip Planner | Build a Custom Ecuador Itinerary" />
+<meta property="og:description" content="Build a custom Ecuador itinerary by region, trip length, and travel style. Compare the Andes, Amazon, Coast, and Galapagos in one trip planner." />
 <meta property="og:url" content="https://experienceecuador.com/trip-builder/" />
-<meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
-<meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="es_EC" />
+<meta property="og:image" content="https://experienceecuador.com/assets/images/EE-Assets-55-Hero-Trip-builder.jpg" />
+<meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-Assets-55-Hero-Trip-builder.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Ecuador trip planner for building a custom itinerary by region and travel experience" />
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Ecuador Trip Planner | Build Your Custom Itinerary" />
-<meta name="twitter:description" content="Plan your Ecuador trip with a custom itinerary builder. Choose regions, travel style, and trip length, then create a personalized Ecuador itinerary with ideas for the Andes, Amazon, Coast, and Galapagos." />
-<meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
+<meta name="twitter:title" content="Ecuador Trip Planner | Build a Custom Ecuador Itinerary" />
+<meta name="twitter:description" content="Build a custom Ecuador itinerary by region, trip length, and travel style. Compare the Andes, Amazon, Coast, and Galapagos in one trip planner." />
+<meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-Assets-55-Hero-Trip-builder.jpg" />
 <!-- Favicons -->
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -38,9 +40,10 @@
   "@graph":[
     {
       "@type":"WebPage",
-      "name":"Ecuador Trip Planner | Build Your Custom Itinerary",
+      "name":"Ecuador Trip Planner Build a Custom Ecuador Itinerary",
       "url":"https://experienceecuador.com/trip-builder/",
-      "description":"Plan your Ecuador trip with a custom itinerary builder. Choose regions, travel style, and trip length, then create a personalized Ecuador itinerary with ideas for the Andes, Amazon, Coast, and Galapagos.",
+      "description":"Build a custom Ecuador itinerary by region, trip length, and travel style. Compare the Andes, Amazon, Coast, and Galapagos in one trip planner.",
+      "inLanguage":"en",
       "isPartOf":{
         "@type":"WebSite",
         "name":"Experience Ecuador",
@@ -93,9 +96,10 @@
   ]
 }
 </script>
-<!-- Global header/footer CSS -->
+  <!-- Global header/footer CSS -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
+  <link rel="stylesheet" href="/assets/css/site.css">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,6 +113,54 @@
 
       /* Forces the Flights form "input column" to start at a consistent left edge */
       --mini-label-col: 78px;
+    }
+
+    #siteHeader[data-current-lang] + .rawLangLinks{
+      max-width:var(--max);
+      margin:18px auto 0;
+      padding:0 18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+    #siteHeader[data-current-lang] + .rawLangLinks a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:40px;
+      padding:0 14px;
+      border:1px solid rgba(3,78,162,.18);
+      border-radius:999px;
+      background:#fff;
+      color:#0f2f62;
+      font-size:12.5px;
+      font-weight:800;
+      box-shadow:0 10px 24px rgba(3,78,162,.08);
+      text-decoration:none;
+      transition:background-color .18s ease,color .18s ease,border-color .18s ease,box-shadow .18s ease;
+    }
+    #siteHeader[data-current-lang] + .rawLangLinks a:hover,
+    #siteHeader[data-current-lang] + .rawLangLinks a:focus-visible{
+      background:#eef4ff;
+      border-color:rgba(3,78,162,.28);
+      color:#034ea2;
+      outline:none;
+    }
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"],
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]{
+      background:#034ea2;
+      border-color:#034ea2;
+      color:#fff;
+      box-shadow:0 10px 24px rgba(3,78,162,.18);
+    }
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:hover,
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:focus-visible,
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:hover,
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:focus-visible{
+      background:#023a7a;
+      border-color:#023a7a;
+      color:#fff;
     }
 
     *{box-sizing:border-box}
@@ -792,102 +844,11 @@
 
 
     
-    .seo-link-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:16px;
-      margin-top:14px;
-      margin-bottom:12px;
-    }
-
-    .seo-link-card{
-      text-decoration:none;
-
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-      min-height:190px;
-      padding:18px;
-      border-radius:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      background:#fff;
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
-      text-decoration:none;
-      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    }
-
-    .seo-link-card:hover,
-    .seo-link-card:focus{
-      transform:translateY(-2px);
-      box-shadow:0 20px 42px rgba(3,78,162,.16);
-      border-color:rgba(3,78,162,0.14);
-      text-decoration:none;
-    }
-
-    .seo-link-card-title{
-      text-decoration:none;
-
-      display:block;
-      color:#0f2f62;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:18px;
-      line-height:1.25;
-      letter-spacing:-0.02em;
-      text-decoration:none;
-    }
-
-    .seo-link-card-copy{
-      text-decoration:none;
-
-      display:block;
-      margin-top:10px;
-      color:#24324a;
-      font-size:15px;
-      line-height:1.65;
-      font-weight:500;
-      text-decoration:none;
-    }
-
-    .seo-link-card-cta{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      margin-top:auto;
-      padding:12px 14px;
-      border-radius:16px;
-      border:1px solid rgba(3,78,162,0.35);
-      background:#034EA2;
-      color:#fff;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      font-weight:900;
-      font-size:14px;
-      line-height:1;
-      letter-spacing:-0.01em;
-      box-shadow:0 14px 30px rgba(3,78,162,0.10);
-      text-decoration:none;
-      white-space:nowrap;
-    }
-
-    .seo-link-card:hover .seo-link-card-cta,
-    .seo-link-card:focus .seo-link-card-cta{
-      background:#034EA2;
-      color:#fff;
-      border-color:rgba(3,78,162,0.35);
-      text-decoration:none;
-    }
-
 /* ===== MOBILE ===== */
     @media(max-width:900px){
       .hero-banner{min-height:290px}
 
       .seo-grid{ grid-template-columns:1fr; }
-      .seo-link-grid{ grid-template-columns:1fr; }
-
-      .seo-grid{ grid-template-columns:1fr; }
-
-      .seo-link-grid{ grid-template-columns:1fr; }
 
       .builder-layout{
         grid-template-columns:1fr;
@@ -986,14 +947,18 @@
     }
   </style>
 </head>
-<body>
-  <div id="siteHeader"></div>
+<body data-page-type="trip_builder" data-page-language="en">
+  <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="/trip-builder/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="/es/planificador-de-viajes/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
   <main>
     <section class="hero" aria-label="Trip Builder hero">
       <div class="hero-banner" role="img" aria-label="Trip Builder hero image placeholder">
         <div class="hero-content">
           <div>
-            <h1 class="hero-title">Ecuador Trip Planner</h1>
+            <h1 class="hero-title">Build Your Custom Ecuador Itinerary</h1>
           </div>
         </div>
       </div>
@@ -1030,8 +995,8 @@
       </div>
 
       <div class="actions">
-        <button class="btn primary" id="generateBtn" type="button" disabled>Generate Itinerary</button>
-        <button class="btn" id="resetBtn" type="button">Reset</button>
+        <button class="btn primary" id="generateBtn" type="button" disabled data-analytics-event="primary_cta_click" data-analytics-label="Generate Itinerary" data-analytics-location="builder_panel">Generate Itinerary</button>
+        <button class="btn" id="resetBtn" type="button" data-analytics-event="secondary_cta_click" data-analytics-label="Reset" data-analytics-location="builder_panel">Reset</button>
       </div>
     </section>
 
@@ -1059,12 +1024,12 @@
 
       <div class="mini-actions">
         <span class="mini-spacer" aria-hidden="true"></span>
-        <button class="btn primary" id="flightSearchBtnDesktop" type="button">Search flights</button>
+        <button class="btn primary" id="flightSearchBtnDesktop" type="button" data-analytics-event="primary_cta_click" data-analytics-label="Search flights" data-analytics-location="desktop_flights_widget">Search flights</button>
       </div>
 
       <div class="mini-hint">
         When flights and itinerary are confirmed, check out local safe transportation:
-        <a class="mini-link" href="/transportation/">Transportation</a>
+        <a class="mini-link" href="/transportation/" data-analytics-event="internal_link_click" data-analytics-label="Transportation" data-analytics-location="desktop_flights_widget" data-analytics-link-type="internal">Transportation</a>
       </div>
     </aside>
   </section>
@@ -1081,7 +1046,7 @@
           Generate an itinerary first, then enter your details. You can invite up to 3 additional travelers.
         </p>
 
-        <form id="eeTripEmailForm" autocomplete="on">
+        <form id="eeTripEmailForm" autocomplete="on" data-analytics-form="trip_builder_email_form">
           <div class="email-grid">
             <div class="field">
               <label for="tb_first_name">First Name</label>
@@ -1102,7 +1067,7 @@
           <div class="invite-card" aria-label="Invite travelers">
             <div class="invite-card-head">
               <div class="invite-title">Invite travelers (optional)</div>
-              <button class="btn" id="tb_add_traveler" type="button">Add traveler</button>
+              <button class="btn" id="tb_add_traveler" type="button" data-analytics-event="secondary_cta_click" data-analytics-label="Add traveler" data-analytics-location="email_form">Add traveler</button>
             </div>
 
             <div id="tb_invite_list"></div>
@@ -1114,7 +1079,7 @@
 
           <div class="recipients-wrap">
             <div class="recipient-count" id="tb_recipient_count">Recipients: 1 email(s)</div>
-            <button class="btn primary send-btn" id="tb_send_btn" type="submit" disabled>Email itinerary</button>
+            <button class="btn primary send-btn" id="tb_send_btn" type="submit" disabled data-analytics-event="primary_cta_click" data-analytics-label="Email itinerary" data-analytics-location="email_form">Email itinerary</button>
           </div>
 
           <div class="statusPill" id="tb_status" role="status" aria-live="polite"></div>
@@ -1147,12 +1112,12 @@
 
     <div class="mini-actions">
       <span class="mini-spacer" aria-hidden="true"></span>
-      <button class="btn primary" id="flightSearchBtnMobile" type="button">Search flights</button>
+      <button class="btn primary" id="flightSearchBtnMobile" type="button" data-analytics-event="primary_cta_click" data-analytics-label="Search flights" data-analytics-location="mobile_flights_widget">Search flights</button>
     </div>
 
     <div class="mini-hint">
       When flights and itinerary are confirmed, check out local safe transportation:
-      <a class="mini-link" href="/transportation/">Transportation</a>
+      <a class="mini-link" href="/transportation/" data-analytics-event="internal_link_click" data-analytics-label="Transportation" data-analytics-location="mobile_flights_widget" data-analytics-link-type="internal">Transportation</a>
     </div>
   </aside>
 
@@ -1183,36 +1148,54 @@
   </p>
 
   <h3>Explore Ecuador by region and travel style</h3>
+  <p>
+    Use these priority links to move from itinerary planning into deeper research. After you choose a route, browse <a href="/recommendations/">recommended stays and experiences in Ecuador</a> to connect the plan with curated places, services, and local members.
+  </p>
 
 <div class="seo-link-grid" aria-label="Explore Ecuador destination and experience links">
-  <a class="seo-link-card" href="/regions/andes/">
-    <span class="seo-link-card-title">Andes travel ideas</span>
-    <span class="seo-link-card-copy">Mountain cities, culture, volcano views, and scenic highland routes.</span>
-    <span class="seo-link-card-cta">View</span>
-  </a>
-  <a class="seo-link-card" href="/regions/amazon/">
-    <span class="seo-link-card-title">Amazon travel ideas</span>
-    <span class="seo-link-card-copy">Rainforest lodges, wildlife encounters, and immersive nature experiences.</span>
-    <span class="seo-link-card-cta">View</span>
-  </a>
-  <a class="seo-link-card" href="/regions/coast/">
-    <span class="seo-link-card-title">Coast travel ideas</span>
-    <span class="seo-link-card-copy">Beach time, coastal towns, seafood, and relaxed Pacific escapes.</span>
-    <span class="seo-link-card-cta">View</span>
-  </a>
-  <a class="seo-link-card" href="/regions/galapagos/">
+  <a class="seo-link-card" href="/regions/galapagos/" data-analytics-event="internal_link_click" data-analytics-label="Galapagos itinerary ideas" data-analytics-location="priority_links" data-analytics-link-type="internal">
     <span class="seo-link-card-title">Galapagos travel ideas</span>
     <span class="seo-link-card-copy">Island hopping, iconic wildlife, and expedition-style trip planning.</span>
     <span class="seo-link-card-cta">View</span>
   </a>
-  <a class="seo-link-card" href="/experiences/wildlife/">
+  <a class="seo-link-card" href="/regions/coast/" data-analytics-event="internal_link_click" data-analytics-label="Coast itinerary ideas" data-analytics-location="priority_links" data-analytics-link-type="internal">
+    <span class="seo-link-card-title">Coast travel ideas</span>
+    <span class="seo-link-card-copy">Beach time, coastal towns, seafood, and relaxed Pacific escapes.</span>
+    <span class="seo-link-card-cta">View</span>
+  </a>
+  <a class="seo-link-card" href="/regions/andes/" data-analytics-event="internal_link_click" data-analytics-label="Andes itinerary ideas" data-analytics-location="priority_links" data-analytics-link-type="internal">
+    <span class="seo-link-card-title">Andes travel ideas</span>
+    <span class="seo-link-card-copy">Mountain cities, culture, volcano views, and scenic highland routes.</span>
+    <span class="seo-link-card-cta">View</span>
+  </a>
+  <a class="seo-link-card" href="/regions/amazon/" data-analytics-event="internal_link_click" data-analytics-label="Amazon itinerary ideas" data-analytics-location="priority_links" data-analytics-link-type="internal">
+    <span class="seo-link-card-title">Amazon travel ideas</span>
+    <span class="seo-link-card-copy">Rainforest lodges, wildlife encounters, and immersive nature experiences.</span>
+    <span class="seo-link-card-cta">View</span>
+  </a>
+  <a class="seo-link-card" href="/experiences/wildlife-birding/" data-analytics-event="internal_link_click" data-analytics-label="Wildlife and birding experiences" data-analytics-location="priority_links" data-analytics-link-type="internal">
     <span class="seo-link-card-title">Wildlife and birding experiences</span>
     <span class="seo-link-card-copy">Nature-focused travel for birdwatching, biodiversity, and expert-led outings.</span>
     <span class="seo-link-card-cta">View</span>
   </a>
-  <a class="seo-link-card" href="/experiences/adventure/">
+  <a class="seo-link-card" href="/experiences/adventure/" data-analytics-event="internal_link_click" data-analytics-label="Adventure travel experiences" data-analytics-location="priority_links" data-analytics-link-type="internal">
     <span class="seo-link-card-title">Adventure travel experiences</span>
     <span class="seo-link-card-copy">Active itineraries with hiking, outdoor activities, and multi-region exploration.</span>
+    <span class="seo-link-card-cta">View</span>
+  </a>
+  <a class="seo-link-card" href="/ecuador-travel-guide/" data-analytics-event="internal_link_click" data-analytics-label="Ecuador travel guide" data-analytics-location="priority_links" data-analytics-link-type="internal">
+    <span class="seo-link-card-title">Ecuador travel guide</span>
+    <span class="seo-link-card-copy">Start with the full country guide before choosing regions and pacing.</span>
+    <span class="seo-link-card-cta">View</span>
+  </a>
+  <a class="seo-link-card" href="/best-time-to-visit-ecuador/" data-analytics-event="internal_link_click" data-analytics-label="Best time to visit Ecuador" data-analytics-location="priority_links" data-analytics-link-type="internal">
+    <span class="seo-link-card-title">Best time to visit Ecuador</span>
+    <span class="seo-link-card-copy">Compare weather, wildlife seasons, and regional timing before building your route.</span>
+    <span class="seo-link-card-cta">View</span>
+  </a>
+  <a class="seo-link-card" href="/where-to-stay-in-ecuador/" data-analytics-event="internal_link_click" data-analytics-label="Where to stay in Ecuador" data-analytics-location="priority_links" data-analytics-link-type="internal">
+    <span class="seo-link-card-title">Where to stay in Ecuador</span>
+    <span class="seo-link-card-copy">Compare lodging styles and locations after you choose your itinerary structure.</span>
     <span class="seo-link-card-cta">View</span>
   </a>
 </div>
@@ -1242,6 +1225,110 @@
 </div>
   </main>
   <div id="siteFooter"></div>
+  <script>
+    (function(){
+      const pageLanguage = document.documentElement.lang && document.documentElement.lang.toLowerCase().startsWith("es") ? "es" : "en";
+      const pageType = document.body.dataset.pageType || "generic";
+      const scrollMilestones = [25, 50, 75, 90];
+      const firedScroll = new Set();
+      const startedForms = new Set();
+
+      function normalizeText(value){
+        return String(value || "").replace(/\s+/g, " ").trim();
+      }
+
+      function baseParams(){
+        return {
+          page_type: pageType,
+          page_language: pageLanguage,
+          page_path: window.location.pathname,
+          page_title: document.title
+        };
+      }
+
+      function emit(eventName, params){
+        const payload = Object.assign({}, baseParams(), params || {});
+        if (typeof window.gtag === "function") {
+          window.gtag("event", eventName, payload);
+          return;
+        }
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(Object.assign({ event: eventName }, payload));
+      }
+
+      function trackFromElement(el){
+        if (!el) return;
+        const params = {};
+        if (el.dataset.analyticsLabel) params.cta_label = el.dataset.analyticsLabel;
+        if (el.dataset.analyticsLocation) params.cta_location = el.dataset.analyticsLocation;
+        if (el.dataset.analyticsRegion) params.region = el.dataset.analyticsRegion;
+        if (el.dataset.analyticsExperience) params.experience_type = el.dataset.analyticsExperience;
+        if (el.dataset.analyticsMember) params.member_name = el.dataset.analyticsMember;
+        if (el.dataset.analyticsPartner) params.partner_name = el.dataset.analyticsPartner;
+        if (el.dataset.analyticsForm) params.form_name = el.dataset.analyticsForm;
+        if (el.dataset.analyticsLinkType) params.link_type = el.dataset.analyticsLinkType;
+        if (el.getAttribute("href")) {
+          params.link_url = el.href;
+          params.link_text = normalizeText(el.textContent);
+        }
+        emit(el.dataset.analyticsEvent, params);
+      }
+
+      function markFormStart(formName){
+        if (!formName || startedForms.has(formName)) return;
+        startedForms.add(formName);
+        emit("form_start", { form_name: formName });
+      }
+
+      document.addEventListener("click", function(ev){
+        const el = ev.target.closest("[data-analytics-event]");
+        if (!el) return;
+        trackFromElement(el);
+      });
+
+      document.addEventListener("focusin", function(ev){
+        const form = ev.target.closest("form[data-analytics-form]");
+        if (!form) return;
+        markFormStart(form.dataset.analyticsForm);
+      });
+
+      document.addEventListener("input", function(ev){
+        const form = ev.target.closest("form[data-analytics-form]");
+        if (!form) return;
+        markFormStart(form.dataset.analyticsForm);
+      });
+
+      function handleScrollDepth(){
+        const doc = document.documentElement;
+        const maxScroll = doc.scrollHeight - window.innerHeight;
+        if (maxScroll <= 0) return;
+        const percent = Math.round((window.scrollY / maxScroll) * 100);
+        scrollMilestones.forEach(function(mark){
+          if (percent >= mark && !firedScroll.has(mark)) {
+            firedScroll.add(mark);
+            emit("scroll_depth", { scroll_percent: mark });
+          }
+        });
+      }
+
+      let scrollTicking = false;
+      window.addEventListener("scroll", function(){
+        if (scrollTicking) return;
+        scrollTicking = true;
+        window.requestAnimationFrame(function(){
+          handleScrollDepth();
+          scrollTicking = false;
+        });
+      }, { passive:true });
+
+      window.eeAnalytics = {
+        emit: emit,
+        markFormStart: markFormStart
+      };
+
+      emit("page_view_enhanced");
+    })();
+  </script>
   <script>
     // ===== CONFIG: your Apps Script Web App URL =====
     const TRIP_EMAIL_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxUGlWoLwj5wlYXhqNa4fh4FZjBhQr_QOVbA8MhSfJwC_IV_6hqC5_leMG6RskFXTkj/exec";
@@ -1295,6 +1382,246 @@
         btn: document.getElementById('flightSearchBtnMobile')
       }
     };
+
+    function normalizeSelectionStep2(raw) {
+      const days = Number(raw.days || 0);
+
+      const regions = Array.from(new Set((raw.regions || []).filter(Boolean)));
+      const experiences = Array.from(new Set((raw.experiences || []).filter(Boolean)));
+
+      const errors = [];
+      const warnings = [];
+
+      if (!Number.isFinite(days) || days < 1) {
+        errors.push("Please select a valid number of days.");
+      }
+
+      if (!regions.length) {
+        errors.push("Please select at least one region.");
+      }
+
+      if (!experiences.length) {
+        errors.push("Please select at least one experience.");
+      }
+
+      const maxRegions = days >= 11 ? 4 : 3;
+
+      if (regions.length > maxRegions) {
+        errors.push(
+          days >= 11
+            ? "Please select no more than 4 regions for this trip."
+            : "Trips of 10 days or less should use no more than 3 regions."
+        );
+      }
+
+      if (days <= 7 && regions.length === 3) {
+        warnings.push("Three regions in a short trip can feel rushed. Consider simplifying for a smoother route.");
+      }
+
+      if (days >= 11 && regions.length === 4) {
+        warnings.push("Four regions can work for longer trips, but expect more transfers and a faster pace.");
+      }
+
+      return {
+        valid: errors.length === 0,
+        errors,
+        warnings,
+        selection: {
+          days,
+          regions,
+          experiences,
+          maxRegions
+        }
+      };
+    }
+
+    function scoreBlockStep2(block, selection) {
+      const blockExperiences = Array.isArray(block.experiences) ? block.experiences : [];
+      const matchedExperiences = blockExperiences.filter(exp =>
+        selection.experiences.includes(exp)
+      );
+
+      if (!matchedExperiences.length) {
+        return null;
+      }
+
+      const regionId = block.region_id || "all";
+      const matchedRegion = selection.regions.includes(regionId);
+      const isGenericRegion = regionId === "all";
+
+      if (!matchedRegion && !isGenericRegion) {
+        return null;
+      }
+
+      const durationHours = Number(block.duration_hours || 0);
+      if (!Number.isFinite(durationHours) || durationHours <= 0) {
+        return null;
+      }
+
+      let score = 0;
+
+      score += matchedExperiences.length * 50;
+
+      if (matchedRegion) score += 30;
+      if (isGenericRegion) score += 10;
+
+      const pace = block.pace || "any";
+      if (pace === "easy") score += 8;
+      else if (pace === "any") score += 5;
+      else if (pace === "moderate") score += 3;
+
+      const isLongBlock = durationHours >= 24;
+      if (isLongBlock && selection.days <= 4) {
+        score -= 20;
+      } else if (isLongBlock && selection.days >= 7) {
+        score += 8;
+      }
+
+      return {
+        id: block.id,
+        title: block.title,
+        summary: block.summary || "",
+        region_id: regionId,
+        location_id: block.location_id || "all",
+        experiences: blockExperiences,
+        time_of_day: block.time_of_day || "afternoon",
+        pace,
+        duration_hours: durationHours,
+        notes: block.notes || "",
+        tags: Array.isArray(block.tags) ? block.tags : [],
+        sub_experience: block.sub_experience || "",
+        level_focus: block.level_focus || "",
+        score,
+        matchedExperiences,
+        matchedRegion,
+        isGenericRegion,
+        isLongBlock,
+        timesUsed: 0
+      };
+    }
+
+    function buildRankedPoolStep2(itineraryBlocks, rawSelection) {
+      const normalized = normalizeSelectionStep2(rawSelection);
+
+      if (!normalized.valid) {
+        return {
+          ok: false,
+          errors: normalized.errors,
+          warnings: normalized.warnings,
+          selection: normalized.selection || null,
+          blocks: []
+        };
+      }
+
+      const selection = normalized.selection;
+
+      const rawBlocks = Array.isArray(itineraryBlocks)
+        ? itineraryBlocks
+        : Array.isArray(itineraryBlocks?.blocks)
+          ? itineraryBlocks.blocks
+          : [];
+
+      const rankedBlocks = rawBlocks
+        .map(block => scoreBlockStep2(block, selection))
+        .filter(Boolean)
+        .sort((a, b) => b.score - a.score);
+
+      if (!rankedBlocks.length) {
+        return {
+          ok: false,
+          errors: ["No matching itinerary blocks were found for this combination."],
+          warnings: normalized.warnings,
+          selection,
+          blocks: []
+        };
+      }
+
+      return {
+        ok: true,
+        errors: [],
+        warnings: normalized.warnings,
+        selection,
+        blocks: rankedBlocks
+      };
+    }
+
+    function renderRankedPoolPreviewStep2(result) {
+      if (!els.output) return;
+
+      if (!result.ok) {
+        els.output.innerHTML =
+          "<div class='hint'><strong>Unable to build ranked pool:</strong><br>" +
+          result.errors.map(e => "- " + e).join("<br>") +
+          "</div>";
+        return;
+      }
+
+      const warningHtml = (result.warnings || []).length
+        ? "<div class='hint' style='margin-bottom:12px;'><strong>Planning notes:</strong><br>" +
+          result.warnings.map(w => "- " + w).join("<br>") +
+          "</div>"
+        : "";
+
+      const topBlocks = result.blocks.slice(0, 10);
+
+      const listHtml = topBlocks.map((block, index) => {
+        return `
+          <div class="day-card">
+            <div class="day-title">
+              <span>${index + 1}. ${block.title}</span>
+            </div>
+            <div class="slot">
+              <h4>Match details</h4>
+              <p class="meta">
+                Region: ${block.region_id} |
+                Time: ${block.time_of_day} |
+                Pace: ${block.pace} |
+                Hours: ${block.duration_hours}
+              </p>
+              <p class="meta" style="margin-top:6px;">
+                Experiences: ${block.matchedExperiences.join(", ")}
+              </p>
+              <p class="meta" style="margin-top:6px;">
+                ${block.summary || "No summary available."}
+              </p>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      els.output.innerHTML =
+        warningHtml +
+        listHtml;
+    }
+
+    function buildRankedPoolText(result){
+      if (!result || !result.ok || !Array.isArray(result.blocks) || !result.blocks.length) return "";
+
+      const lines = [];
+      lines.push("Experience Ecuador Trip Builder");
+      lines.push("");
+      lines.push(`Trip length: ${state.days} days`);
+      lines.push(`Regions: ${Array.from(state.selectedRegionIds).map(regionName).join(", ") || "N/A"}`);
+      lines.push(`Experiences: ${Array.from(state.selectedExperienceIds).map(experienceName).join(", ") || "N/A"}`);
+      lines.push("");
+      lines.push("Suggested itinerary blocks");
+      lines.push("");
+
+      result.blocks.slice(0, 10).forEach((block, index) => {
+        const when = block.time_of_day ? capitalize(block.time_of_day) : "Day";
+        const region = block.region_id ? regionName(block.region_id) : "Ecuador";
+        const location = block.location_id ? locationName(block.region_id, block.location_id) : "";
+        const duration = block.duration_hours ? `${block.duration_hours}h` : "";
+        const meta = [region, location, duration].filter(Boolean).join(" | ");
+        lines.push(`${index + 1}. ${block.title}`);
+        if (meta) lines.push(`   ${when} | ${meta}`);
+        if (block.summary) lines.push(`   ${String(block.summary).trim()}`);
+        lines.push("");
+      });
+
+      return lines.join("\n").trim();
+    }
+
 
     function setEmailStatus(text, kind){
       if (!tripEmailEls.status) return;
@@ -1469,6 +1796,9 @@
         tripEmailEls.inviteList.appendChild(r.wrap);
         updateInviteControls();
         updateRecipientCount();
+        if (window.eeAnalytics) {
+          window.eeAnalytics.emit("trip_builder_add_traveler", { traveler_count: inviteRows.length });
+        }
       });
     }
 
@@ -1564,24 +1894,73 @@
       return item.name_en || item.name_es || item.id || "";
     }
 
-    function createPill(item, type) {
+    
+    function getMaxRegionsForDays(days) {
+      return Number(days || 0) >= 11 ? 4 : 3;
+    }
+
+    function updateGenerateState() {
+      const days = Number(els.daysSelect ? els.daysSelect.value : state.days || 0);
+      const maxRegions = getMaxRegionsForDays(days);
+      const hasDays = days >= 1;
+      const hasRegions = state.selectedRegionIds.size >= 1;
+      const hasExperiences = state.selectedExperienceIds.size >= 1;
+      const validRegionCount = state.selectedRegionIds.size <= maxRegions;
+      els.generateBtn.disabled = !(hasDays && hasRegions && hasExperiences && validRegionCount);
+    }
+
+function createPill(item, type) {
       const id = item.id;
       const b = document.createElement('button');
       b.type = "button";
       b.className = "pill";
       b.textContent = getLabel(item, "en");
       b.setAttribute('data-id', id);
-      b.setAttribute('aria-pressed', 'false');
+
+      const set = type === "region" ? state.selectedRegionIds : state.selectedExperienceIds;
+      b.setAttribute('aria-pressed', set.has(id) ? 'true' : 'false');
 
       b.addEventListener('click', () => {
-        const set = type === "region" ? state.selectedRegionIds : state.selectedExperienceIds;
-        if (set.has(id)) set.delete(id);
-        else set.add(id);
+        if (type === "region") {
+          const days = Number(els.daysSelect ? els.daysSelect.value : state.days || 0);
+          const maxRegions = getMaxRegionsForDays(days);
 
-        b.setAttribute('aria-pressed', set.has(id) ? 'true' : 'false');
+          if (state.selectedRegionIds.has(id)) {
+            state.selectedRegionIds.delete(id);
+          } else {
+            if (state.selectedRegionIds.size >= maxRegions) {
+              updateHints();
+              updateGenerateState();
+              return;
+            }
+            state.selectedRegionIds.add(id);
+          }
+
+          renderRegionPills();
+          if (window.eeAnalytics) {
+            window.eeAnalytics.emit("trip_builder_region_select", {
+              region: id,
+              selected_regions: Array.from(state.selectedRegionIds).join("|")
+            });
+          }
+          updateHints();
+          updateGenerateState();
+          syncDefaultFlightToFromRegions();
+          return;
+        }
+
+        if (state.selectedExperienceIds.has(id)) state.selectedExperienceIds.delete(id);
+        else state.selectedExperienceIds.add(id);
+
+        renderExperiencePills();
+        if (window.eeAnalytics) {
+          window.eeAnalytics.emit("trip_builder_experience_select", {
+            experience_type: id,
+            selected_experiences: Array.from(state.selectedExperienceIds).join("|")
+          });
+        }
         updateHints();
         updateGenerateState();
-        syncDefaultFlightToFromRegions();
       });
 
       return b;
@@ -1628,10 +2007,11 @@
 
       const selectedRegions = Array.from(state.selectedRegionIds);
       const selectedExperiences = Array.from(state.selectedExperienceIds);
+      const days = Number(els.daysSelect ? els.daysSelect.value : state.days || 0);
+      const maxRegions = getMaxRegionsForDays(days);
 
-      if (selectedRegions.length === 0 || selectedExperiences.length === 0) {
-        els.regionHint.textContent =
-          "Select at least one region and one experience. You can choose multiple regions and multiple experiences for a multi-stop trip.";
+      if (selectedRegions.length === 0) {
+        els.regionHint.textContent = "Select at least one region. Trips of 10 days or less work best with up to 3 regions. Trips of 11+ days can include up to 4 regions.";
         return;
       }
 
@@ -1643,15 +2023,32 @@
         return `${r ? getLabel(r, "en") : rid}${suffix}`;
       });
 
-      els.regionHint.textContent = "Selected: " + lines.join(" · ");
+      const hints = ["Selected: " + lines.join(" · ")];
+
+      if (selectedRegions.length > maxRegions) {
+        hints.push("Please select no more than 4 regions for this trip.");
+      } else if (days <= 10) {
+        hints.push("Trips of 10 days or less work best with up to 3 regions.");
+      } else {
+        hints.push("Trips of 11+ days can include up to 4 regions, but expect more transfers.");
+      }
+
+      if (days <= 7 && selectedRegions.length === 3) {
+        hints.push("Planning note: three regions in a short trip can feel rushed.");
+      }
+
+      if (days >= 11 && selectedRegions.length === 4) {
+        hints.push("Planning note: four regions can work for longer trips, but expect more transfers.");
+      }
+
+      if (selectedExperiences.length === 0) {
+        hints.push("Select at least one experience to generate your itinerary.");
+      }
+
+      els.regionHint.textContent = hints.join(" ");
     }
 
-    function updateGenerateState() {
-      const ok = state.selectedRegionIds.size > 0 && state.selectedExperienceIds.size > 0;
-      els.generateBtn.disabled = !ok;
-    }
-
-    function regionName(id){
+function regionName(id){
       const r = DATA.regions.regions.find(x => x.id === id);
       return r ? getLabel(r, "en") : id;
     }
@@ -2082,8 +2479,24 @@
       window.open(url, "_blank", "noopener,noreferrer");
     }
 
-    flightEls.desktop.btn.addEventListener('click', () => openFlightsFrom("desktop"));
-    if (flightEls.mobile.btn) flightEls.mobile.btn.addEventListener('click', () => openFlightsFrom("mobile"));
+    flightEls.desktop.btn.addEventListener('click', () => {
+      if (window.eeAnalytics) {
+        window.eeAnalytics.emit("trip_builder_flight_search", {
+          flight_origin: normalizeAirportCode(flightEls.desktop.from.value),
+          flight_destination: String(flightEls.desktop.to.value || "").trim().toUpperCase()
+        });
+      }
+      openFlightsFrom("desktop");
+    });
+    if (flightEls.mobile.btn) flightEls.mobile.btn.addEventListener('click', () => {
+      if (window.eeAnalytics) {
+        window.eeAnalytics.emit("trip_builder_flight_search", {
+          flight_origin: normalizeAirportCode(flightEls.mobile.from.value),
+          flight_destination: String(flightEls.mobile.to.value || "").trim().toUpperCase()
+        });
+      }
+      openFlightsFrom("mobile");
+    });
 
     async function loadJSON(path){
       const res = await fetch(path, { cache: "no-store" });
@@ -2129,16 +2542,43 @@
 
     els.daysSelect.addEventListener('change', () => {
       state.days = Number(els.daysSelect.value);
+      if (window.eeAnalytics) {
+        window.eeAnalytics.emit("trip_builder_days_change", { trip_days: state.days });
+      }
+
+      const maxRegions = getMaxRegionsForDays(state.days);
+      const selected = Array.from(state.selectedRegionIds);
+      if (selected.length > maxRegions) {
+        state.selectedRegionIds = new Set(selected.slice(0, maxRegions));
+      }
+
+      renderRegionPills();
+      updateHints();
+      updateGenerateState();
+      syncDefaultFlightToFromRegions();
     });
 
     els.generateBtn.addEventListener('click', () => {
+      const rawSelection = {
+        days: Number(els.daysSelect ? els.daysSelect.value : state.days || 0),
+        regions: Array.from(state.selectedRegionIds),
+        experiences: Array.from(state.selectedExperienceIds)
+      };
+      if (window.eeAnalytics) {
+        window.eeAnalytics.emit("trip_builder_generate_itinerary", {
+          trip_days: rawSelection.days,
+          selected_regions: rawSelection.regions.join("|"),
+          selected_experiences: rawSelection.experiences.join("|")
+        });
+      }
+
       const plan = generateItinerary();
+
+      clearEmailStatus();
       state.lastPlan = plan;
       renderItinerary(plan);
-
       state.lastItineraryText = buildItineraryText(plan);
       enableEmailButtonIfReady();
-      clearEmailStatus();
     });
 
     els.resetBtn.addEventListener('click', () => {
@@ -2180,6 +2620,7 @@
       tripEmailEls.form.addEventListener('submit', async (ev) => {
         ev.preventDefault();
         clearEmailStatus();
+        if (window.eeAnalytics) window.eeAnalytics.markFormStart("trip_builder_email_form");
 
         if (!TRIP_EMAIL_WEBAPP_URL || TRIP_EMAIL_WEBAPP_URL.indexOf("http") !== 0) {
           setEmailStatus("Missing Web App URL. Paste your Apps Script deployment URL into TRIP_EMAIL_WEBAPP_URL.", "error");
@@ -2236,6 +2677,9 @@
 
         if (!payload.first_name || !payload.last_name) {
           setEmailStatus("Please fill first name and last name for the main traveler.", "error");
+          if (window.eeAnalytics) {
+            window.eeAnalytics.emit("form_submit_error", { form_name: "trip_builder_email_form", error_message: "missing_name_fields" });
+          }
           return;
         }
 
@@ -2256,6 +2700,9 @@
           } else {
             await res.text().catch(() => "");
             setEmailStatus("Email failed. Your Apps Script Web App access is likely not set to Anyone. Update Deploy settings and try again.", "error");
+            if (window.eeAnalytics) {
+              window.eeAnalytics.emit("form_submit_error", { form_name: "trip_builder_email_form", error_message: "webapp_access_error" });
+            }
             tripEmailEls.btn.textContent = "Email itinerary";
             enableEmailButtonIfReady();
             return;
@@ -2263,13 +2710,27 @@
 
           if (!res.ok || !json || json.ok !== true) {
             setEmailStatus("Something went wrong sending your itinerary. Please try again.", "error");
+            if (window.eeAnalytics) {
+              window.eeAnalytics.emit("form_submit_error", { form_name: "trip_builder_email_form", error_message: "submit_failed" });
+            }
             return;
           }
 
           const total = (json.total_recipients || 1);
           setEmailStatus(`Sent to ${total} recipient(s). Check inboxes in a minute.`, "ok");
+          if (window.eeAnalytics) {
+            window.eeAnalytics.emit("form_submit_success", { form_name: "trip_builder_email_form" });
+            window.eeAnalytics.emit("trip_builder_email_itinerary", {
+              form_name: "trip_builder_email_form",
+              trip_days: state.days,
+              traveler_count: total
+            });
+          }
         } catch (err) {
           setEmailStatus("Network error. Please try again.", "error");
+          if (window.eeAnalytics) {
+            window.eeAnalytics.emit("form_submit_error", { form_name: "trip_builder_email_form", error_message: "network_error" });
+          }
         } finally {
           tripEmailEls.btn.textContent = "Email itinerary";
           enableEmailButtonIfReady();
@@ -2280,17 +2741,25 @@
 
     init();
   </script>
-  <script src="/assets/js/site.js"></script>
   <script>
     (function(){
       async function inject(id, url){
         const el = document.getElementById(id);
         if(!el) return;
+        if (el.children.length || (el.innerHTML && el.innerHTML.trim())) return;
         const res = await fetch(url, { cache: "no-store" });
         el.innerHTML = await res.text();
       }
-      inject("siteHeader", "/assets/includes/header.html");
-      inject("siteFooter", "/assets/includes/footer.html");
+      Promise.all([
+        inject("siteHeader", "/assets/includes/header.html"),
+        inject("siteFooter", "/assets/includes/footer.html")
+      ]).finally(() => {
+        var existing = document.querySelector('script[src="/assets/js/site.js"]');
+        if (existing) return;
+        var script = document.createElement("script");
+        script.src = "/assets/js/site.js";
+        document.body.appendChild(script);
+      });
     })();
   </script>
 </body>

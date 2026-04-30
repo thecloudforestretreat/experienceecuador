@@ -1,0 +1,208 @@
+You are working in a strict production workflow.
+
+NON-NEGOTIABLE RULES:
+
+---
+
+1. ALWAYS return COMPLETE, FULL, DROP-IN FILES
+- No partials
+- No summaries
+- No "only updated sections"
+- Files must be immediately usable
+
+---
+
+2. GLOBAL CSS (MANDATORY)
+- /assets/css/header.css
+- /assets/css/footer.css
+- /assets/css/site.css
+- NEVER use <style> blocks
+- NEVER inject page-level CSS
+
+---
+
+3. GLOBAL JS (MANDATORY)
+- Shared components MUST be controlled via assets/js/site.js ONLY
+- DO NOT write page-level scripts for shared components (carousel, nav, toggles)
+- DO NOT duplicate logic already handled in site.js
+- If a component is broken → FIX IT IN site.js, NOT the page
+
+---
+
+4. SHARED COMPONENT RULE (CRITICAL)
+The following are GLOBAL components and MUST NEVER be replaced:
+- Carousel
+- Header / navigation
+- Mobile menu
+- Toggle buttons
+- Shared cards (grid system)
+
+FORBIDDEN:
+- Replacing carousel with static cards
+- Creating alternate carousel logic per page
+- Styling components inline instead of site.css
+
+---
+
+5. ALWAYS IMPLEMENT FULL TEMPLATE STRUCTURE
+
+The page MUST include ALL:
+- Hero
+- Region Overview
+- Key Highlights
+- Destinations
+- Experiences
+- Recommended Members
+- Sample Itinerary
+- Planning Tips
+- Related Guides
+- Trip Builder CTA
+- FAQ
+- Final CTA
+
+---
+
+6. STRICT CONTENT PRESERVATION (CRITICAL)
+
+YOU MUST MERGE, NOT REPLACE
+
+NEVER REMOVE:
+- Carousels
+- Video embeds
+- Image blocks
+- Existing layouts
+- Existing sections
+- Existing content
+
+If content does not fit template:
+→ ADAPT template, NOT content
+
+---
+
+7. REFERENCE HIERARCHY (CRITICAL)
+
+1. CURRENT PAGE → CONTENT SOURCE OF TRUTH
+2. REFERENCE PAGE → STRUCTURE + INTERACTION SOURCE OF TRUTH
+3. TEMPLATE → SECTION FRAMEWORK ONLY
+
+---
+
+8. CAROUSEL RULE (CRITICAL)
+
+- Carousel structure must EXACTLY match approved reference page
+- Must include:
+  - .carousel
+  - .carousel-track
+  - .carousel-slide
+  - navigation buttons
+  - dots (if applicable)
+- MUST be initialized ONLY by site.js
+- NEVER include inline carousel script
+- NEVER modify carousel structure arbitrarily
+
+---
+
+9. EN / ES PARITY RULE
+
+- Structure must be IDENTICAL across languages
+- Only text changes
+- Slugs must match site.js mapping logic
+- Do not invent new slug formats
+
+---
+
+10. GRID CONSISTENCY RULE
+
+- Do NOT mix cards and non-card components in same grid
+- Do NOT break spacing system
+- If layout breaks → fix structure, not spacing hacks
+
+---
+
+11. UI CONSISTENCY RULE
+
+- Buttons, toggles, pills must follow global styles
+- Do NOT override colors locally
+- If change is needed → update site.css ONLY
+
+---
+
+12. DEAD CODE RULE
+
+REMOVE:
+- Inline scripts for shared components
+- Duplicate JS
+- Unused HTML
+- Broken logic
+
+---
+
+13. ALWAYS FIX:
+
+- Broken carousel
+- Spacing issues
+- Broken links
+- Wrong href paths
+- Layout gaps
+
+---
+
+14. OUTPUT RULE
+
+ALWAYS RETURN:
+- Complete updated HTML file(s)
+- Complete updated site.js (if touched)
+- Complete updated site.css (if touched)
+
+IN .txt FORMAT ONLY
+
+---
+
+15. LANGUAGE RULE
+
+- English page → English
+- Spanish page → native LATAM Spanish
+
+---
+
+16. VALIDATION BEFORE OUTPUT (MANDATORY)
+
+CHECK:
+- No <style> blocks
+- Global CSS included
+- Carousel works with site.js
+- No inline JS for carousel
+- All sections present
+- No content removed
+- Layout visually consistent
+- EN/ES parity maintained
+
+IF ANY FAILS → DO NOT OUTPUT
+
+---
+
+FINAL RULE
+
+If ANY rule is violated → OUTPUT IS INVALID
+
+Return ONLY the downloadable .txt file(s)
+
+
+---
+
+17. COMPONENT TYPE CLARITY RULE
+
+- Gallery / highlights section = carousel
+- Recommended Members section = 3-card grid
+- NEVER convert Recommended Members into a carousel
+- NEVER convert the gallery carousel into static cards
+- Keep these component types consistent across all region pages
+
+---
+
+18. CHARACTER ENCODING RULE
+
+- English code files should remain plain and clean with no smart quotes, em dashes, or unnecessary special punctuation
+- Spanish pages may use proper UTF-8 characters when needed for natural, native LATAM Spanish
+- Do NOT corrupt Spanish copy by forcing ASCII replacements
+- Keep encoding valid and browser-safe

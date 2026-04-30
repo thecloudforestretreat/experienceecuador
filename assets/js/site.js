@@ -44,6 +44,30 @@
     return String(str || "").replace(/^\/+|\/+$/g, "");
   }
 
+  function mapExperienceSlugToSpanish(slug) {
+    var map = {
+      "birdwatching": "observacion-de-aves",
+      "nature": "naturaleza",
+      "adventure": "aventura",
+      "culture": "cultura",
+      "relaxation": "relajacion",
+      "culinary": "culinaria"
+    };
+    return map[slug] || slug;
+  }
+
+  function mapExperienceSlugToEnglish(slug) {
+    var map = {
+      "observacion-de-aves": "birdwatching",
+      "naturaleza": "nature",
+      "aventura": "adventure",
+      "cultura": "culture",
+      "relajacion": "relaxation",
+      "culinaria": "culinary"
+    };
+    return map[slug] || slug;
+  }
+
   function buildSpanishPath(enPath) {
     var p = normalizePath(enPath || "/");
     if (isSpanishPath(p)) return p;
@@ -79,7 +103,10 @@
     if (p === "/experiences/") return "/es/experiencias/";
     if (p.indexOf("/experiences/") === 0) {
       var expRest = trimSlashes(p.replace(/^\/experiences\//, ""));
-      return "/es/experiencias/" + expRest + "/";
+      var expParts = expRest ? expRest.split("/") : [];
+      if (!expParts.length) return "/es/experiencias/";
+      expParts[0] = mapExperienceSlugToSpanish(expParts[0]);
+      return "/es/experiencias/" + expParts.join("/") + "/";
     }
 
     return "/es" + p;
@@ -120,7 +147,10 @@
     if (p === "/es/experiencias/") return "/experiences/";
     if (p.indexOf("/es/experiencias/") === 0) {
       var expRest = trimSlashes(p.replace(/^\/es\/experiencias\//, ""));
-      return "/experiences/" + expRest + "/";
+      var expParts = expRest ? expRest.split("/") : [];
+      if (!expParts.length) return "/experiences/";
+      expParts[0] = mapExperienceSlugToEnglish(expParts[0]);
+      return "/experiences/" + expParts.join("/") + "/";
     }
 
     return p.replace(/^\/es\//, "/");
@@ -437,9 +467,167 @@
     }
   }
 
+
+  function initCarousel(root) {
+    if (!root || root.__eeCarouselInit) return;
+    root.__eeCarouselInit = true;
+
+    var track = qs(".carousel-track", root);
+    var slides = qsa(".carousel-slide", root);
+    var prevBtn = qs(".carousel-btn.prev", root);
+    var nextBtn = qs(".carousel-btn.next", root);
+    var dotsWrap = qs(".carousel-dots", root);
+    var counter = qs(".carousel-counter", root);
+    var viewport = qs(".carousel-viewport", root);
+
+    if (!track || !slides.length || !viewport) return;
+
+    var index = 0;
+    var AUTOPLAY_MS = 5000;
+    var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var autoplayTimer = null;
+    var autoplayEnabled = !prefersReducedMotion;
+    var startX = 0;
+    var isDown = false;
+    var isSpanish = isSpanishPath(window.location.pathname || "/");
+
+    function updateCounter() {
+      if (counter) counter.textContent = (index + 1) + " / " + slides.length;
+    }
+
+    function updateDots() {
+      qsa(".dot", dotsWrap || root).forEach(function (d, i) {
+        d.classList.toggle("active", i === index);
+      });
+    }
+
+    function setIndex(next) {
+      index = (next + slides.length) % slides.length;
+      track.style.transform = "translateX(-" + (index * 100) + "%)";
+      updateDots();
+      updateCounter();
+    }
+
+    function stopAutoplay() {
+      if (autoplayTimer) {
+        clearInterval(autoplayTimer);
+        autoplayTimer = null;
+      }
+    }
+
+    function startAutoplay() {
+      if (!autoplayEnabled) return;
+      stopAutoplay();
+      autoplayTimer = setInterval(function () {
+        setIndex(index + 1);
+      }, AUTOPLAY_MS);
+    }
+
+    function buildDots() {
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = "";
+      slides.forEach(function (_, i) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "dot" + (i === 0 ? " active" : "");
+        b.setAttribute("aria-label", (isSpanish ? "Ir a la imagen " : "Go to image ") + (i + 1));
+        b.addEventListener("click", function () {
+          setIndex(i);
+          stopAutoplay();
+        });
+        dotsWrap.appendChild(b);
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", function () {
+        setIndex(index - 1);
+        stopAutoplay();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function () {
+        setIndex(index + 1);
+        stopAutoplay();
+      });
+    }
+
+    root.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") {
+        setIndex(index - 1);
+        stopAutoplay();
+      }
+      if (e.key === "ArrowRight") {
+        setIndex(index + 1);
+        stopAutoplay();
+      }
+    });
+
+    viewport.addEventListener("pointerdown", function (e) {
+      isDown = true;
+      startX = e.clientX;
+      if (viewport.setPointerCapture) viewport.setPointerCapture(e.pointerId);
+    });
+
+    viewport.addEventListener("pointerup", function (e) {
+      if (!isDown) return;
+      isDown = false;
+      var dx = e.clientX - startX;
+      var threshold = 40;
+      if (dx > threshold) {
+        setIndex(index - 1);
+        stopAutoplay();
+      }
+      if (dx < -threshold) {
+        setIndex(index + 1);
+        stopAutoplay();
+      }
+    });
+
+    viewport.addEventListener("pointercancel", function () {
+      isDown = false;
+    });
+
+    root.addEventListener("mouseenter", stopAutoplay);
+    root.addEventListener("mouseleave", startAutoplay);
+    root.addEventListener("focusin", stopAutoplay);
+    root.addEventListener("focusout", startAutoplay);
+    window.addEventListener("resize", function () {
+      setIndex(index);
+    });
+
+    root.tabIndex = 0;
+    buildDots();
+    updateCounter();
+    setIndex(0);
+    startAutoplay();
+  }
+
+  function bootCarouselsWhenReady() {
+    function tryInit() {
+      var carousels = qsa(".carousel");
+      if (!carousels.length) return false;
+      carousels.forEach(initCarousel);
+      return true;
+    }
+
+    if (!tryInit()) {
+      var observer = new MutationObserver(function () {
+        if (tryInit()) observer.disconnect();
+      });
+
+      observer.observe(document.documentElement, {
+        childList: true,
+        subtree: true
+      });
+    }
+  }
+
   function bootAll() {
     bootHeaderWhenReady();
     bootWhatsAppWhenReady();
+    bootCarouselsWhenReady();
   }
 
   if (document.readyState === "loading") {

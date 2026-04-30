@@ -3,25 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recomendados | Experience Ecuador</title>
-  <meta name="description" content="Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria para encontrar lugares y servicios confiables para tu viaje." />
+  <title>Mejores Recomendados de Ecuador | Alojamientos, Tours y Servicios</title>
+  <meta name="description" content="Explora recomendados de Ecuador por región, ubicación, experiencia y categoría, incluyendo alojamientos, tours, restaurantes, servicios y actividades confiables." />
+  <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://experienceecuador.com/es/recomendados/" />
+  <link rel="alternate" hreflang="en" href="https://experienceecuador.com/recommendations/" />
+  <link rel="alternate" hreflang="es" href="https://experienceecuador.com/es/recomendados/" />
+  <link rel="alternate" hreflang="x-default" href="https://experienceecuador.com/recommendations/" />
+
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
-  <meta property="og:title" content="Recomendados | Experience Ecuador" />
-  <meta property="og:description" content="Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria." />
+  <meta property="og:locale" content="es_EC" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:title" content="Mejores Recomendados de Ecuador | Alojamientos, Tours y Servicios" />
+  <meta property="og:description" content="Explora recomendados de Ecuador por región, ubicación, experiencia y categoría, incluyendo alojamientos, tours, restaurantes, servicios y actividades confiables." />
   <meta property="og:url" content="https://experienceecuador.com/es/recomendados/" />
   <meta property="og:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:secure_url" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Experience Ecuador - plan your trip to Ecuador" />
+  <meta property="og:image:alt" content="Recomendados de Ecuador curados por Experience Ecuador" />
+
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Recomendados | Experience Ecuador" />
-  <meta name="twitter:description" content="Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria." />
+  <meta name="twitter:title" content="Mejores Recomendados de Ecuador | Alojamientos, Tours y Servicios" />
+  <meta name="twitter:description" content="Explora recomendados de Ecuador por región, ubicación, experiencia y categoría, incluyendo alojamientos, tours, restaurantes, servicios y actividades confiables." />
   <meta name="twitter:image" content="https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg" />
-  <meta name="twitter:image:alt" content="Experience Ecuador - plan your trip to Ecuador" />
+  <meta name="twitter:image:alt" content="Recomendados de Ecuador curados por Experience Ecuador" />
 
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -31,546 +39,141 @@
 
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
 
-  <style>
-    :root{
-      --brand-blue:#034EA2;
-      --slate:#6E7B8B;
-      --text:#1F1F1F;
-      --line: rgba(0,0,0,.08);
-      --card:#ffffff;
-      --shadow: 0 18px 55px rgba(3,78,162,.12);
-      --r: 22px;
-      --max: 1120px;
-    }
-
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:#f6f8fb;
-      color:var(--text);
-    }
-    a{ text-decoration:none; color:inherit; }
-    img{ max-width:100%; display:block; user-select:none; -webkit-user-drag:none; }
-
-    .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 40px 18px 64px;
-    }
-
-    h1{
-      font-family:Montserrat,Inter,sans-serif;
-      font-size: clamp(34px, 4vw, 54px);
-      color: var(--brand-blue);
-      margin: 0 0 10px;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-    }
-
-    .lede{
-      color: var(--slate);
-      line-height: 1.7;
-      max-width: 92ch;
-      margin: 0;
-      font-size: 16.8px;
-    }
-
-    .metaRow{
-      margin-top: 14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-      align-items:center;
-      color:#162b55;
-      font-weight:800;
-      font-size:13.5px;
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(3,78,162,.06);
-      border: 1px solid rgba(3,78,162,.14);
-      color:#0f2f62;
-      font-weight:900;
-      white-space:nowrap;
-    }
-
-    .filters{
-      margin-top: 18px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      padding: 14px;
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      gap: 12px;
-      align-items:end;
-    }
-
-    .fGroup label{
-      display:block;
-      font-size: 12.8px;
-      font-weight: 900;
-      color:#0f2f62;
-      letter-spacing: -0.01em;
-      margin: 0 0 6px;
-    }
-
-    .fGroup select{
-      width:100%;
-      appearance:none;
-      -webkit-appearance:none;
-      padding: 11px 42px 11px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(3,78,162,.18);
-      background: rgba(255,255,255,.88);
-      color:#0f2f62;
-      font-weight: 800;
-      font-size: 14px;
-      outline: none;
-      cursor: pointer;
-      box-shadow: 0 14px 30px rgba(3,78,162,.08);
-    }
-
-    .fGroup{
-      position: relative;
-      min-width: 0;
-    }
-
-    .fGroup:after{
-      content:"";
-      position:absolute;
-      right: 14px;
-      top: 38px;
-      width: 10px;
-      height: 10px;
-      border-right: 2px solid rgba(15,47,98,.75);
-      border-bottom: 2px solid rgba(15,47,98,.75);
-      transform: rotate(45deg);
-      pointer-events:none;
-    }
-
-    .actionsRow{
-      margin-top: 12px;
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items:center;
-      justify-content: space-between;
-    }
-
-    .btnRow{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items:center;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-weight: 900;
-      border: 1px solid rgba(3,78,162,.18);
-      background: rgba(255,255,255,.78);
-      color:#0f2f62;
-      cursor: pointer;
-      line-height: 1;
-      box-shadow: 0 14px 30px rgba(3,78,162,.08);
-    }
-
-    .btn.primary{
-      background: rgba(3,78,162,.92);
-      color: #fff;
-      border-color: rgba(3,78,162,.30);
-      box-shadow: 0 14px 30px rgba(3,78,162,.22);
-    }
-
-    .btn:active{ transform: translateY(1px); }
-
-    .btn[aria-disabled="true"]{
-      opacity: .55;
-      pointer-events:none;
-      cursor: default;
-    }
-
-    .count{
-      color: #0f2f62;
-      font-weight: 900;
-      font-size: 13px;
-      opacity: .9;
-      white-space: nowrap;
-    }
-
-    .grid{
-      margin-top: 16px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      align-items: stretch;
-    }
-
-    .card{
-      background: #fff;
-      border-radius: var(--r);
-      border: 1px solid rgba(0,0,0,.06);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      display:flex;
-      flex-direction: column;
-      min-width: 0;
-    }
-
-    .media{
-      width:100%;
-      aspect-ratio: 1 / 1;
-      min-height: 320px;
-      border-bottom: 1px solid rgba(0,0,0,.06);
-      position: relative;
-      overflow:hidden;
-      background: rgba(255,255,255,.75);
-    }
-
-    .carouselViewport{
-      position:absolute;
-      inset:0;
-      overflow:hidden;
-      touch-action: pan-y;
-    }
-
-    .carouselTrack{
-      height:100%;
-      display:flex;
-      transform: translateX(0);
-      transition: transform 450ms ease;
-      will-change: transform;
-    }
-
-    .carouselSlide{
-      min-width:100%;
-      height:100%;
-      background: rgba(255,255,255,.75);
-    }
-
-    .carouselSlide img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
-    }
-
-    .navBtn{
-      position:absolute;
-      top:50%;
-      transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.35);
-      background: rgba(0,0,0,0.26);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index: 6;
-      padding: 0;
-    }
-
-    .navBtn:hover{ background: rgba(0,0,0,0.38); }
-    .navBtn.prev{ left: 12px; }
-    .navBtn.next{ right: 12px; }
-
-    .navBtn span{
-      display:block;
-      width: 10px;
-      height: 10px;
-      border-right: 2px solid rgba(255,255,255,0.95);
-      border-bottom: 2px solid rgba(255,255,255,0.95);
-      opacity: 0.95;
-    }
-
-    .navBtn.prev span{ transform: rotate(135deg); }
-    .navBtn.next span{ transform: rotate(-45deg); }
-
-    .dots{
-      position:absolute;
-      left: 12px;
-      right: 12px;
-      top: 12px;
-      display:flex;
-      justify-content:flex-end;
-      gap: 8px;
-      flex-wrap: wrap;
-      z-index: 6;
-      pointer-events: none;
-    }
-
-    .dot{
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.45);
-      background: rgba(255,255,255,0.22);
-      box-shadow: 0 10px 22px rgba(0,0,0,0.18);
-      pointer-events: none;
-    }
-
-    .dot.active{
-      background: rgba(255,255,255,0.85);
-      border-color: rgba(255,255,255,0.85);
-    }
-
-    .badgeRow{
-      position:absolute;
-      left: 12px;
-      right: 12px;
-      bottom: 12px;
-      display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items:center;
-      pointer-events:none;
-      z-index: 7;
-    }
-
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.35);
-      background: rgba(0,0,0,.34);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      color: rgba(255,255,255,.96);
-      font-weight: 900;
-      font-size: 12.5px;
-      letter-spacing: -0.01em;
-      line-height: 1;
-      white-space: nowrap;
-    }
-
-    .tag.featured{
-      border-color: rgba(255,255,255,.45);
-      background: rgba(3,78,162,.60);
-    }
-
-    .body{
-      padding: 14px;
-      display:flex;
-      flex-direction: column;
-      gap: 10px;
-      min-width: 0;
-      flex: 1;
-    }
-
-    .titleRow{
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-      justify-content:flex-start;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .title{
-      margin:0;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      font-size: 18px;
-      line-height: 1.15;
-      color:#0f2f62;
-      min-width: 0;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-      min-height: calc(1.15em * 2);
-    }
-
-    .chips{
-      display:flex;
-      gap: 8px;
-      flex-wrap: nowrap;
-      align-items:center;
-      justify-content:flex-start;
-      min-width: 0;
-      min-height: 40px;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      white-space: nowrap;
-      padding-right: 10px;
-      padding-bottom: 2px;
-    }
-
-    .chips::-webkit-scrollbar{
-      display:none;
-    }
-
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      flex: 0 0 auto;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(3,78,162,.14);
-      background: rgba(3,78,162,.06);
-      font-weight: 900;
-      font-size: 12.5px;
-      color:#0f2f62;
-      white-space: nowrap;
-    }
-
-    .desc{
-      margin:0;
-      color:#1f2b3f;
-      line-height: 1.65;
-      font-size: 15px;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
-      overflow: hidden;
-      min-height: calc(1.65em * 3);
-    }
-
-    .why{
-      border: 1px solid rgba(0,0,0,.06);
-      border-radius: 16px;
-      background: rgba(3,78,162,.035);
-      padding: 10px 12px;
-      color:#162b55;
-      font-size: 13px;
-      line-height: 1.55;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-      min-height: calc(1.55em * 2 + 20px);
-    }
-
-    .links{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items:center;
-      margin-top: 2px;
-      margin-top: auto;
-    }
-
-    .noResults{
-      margin-top: 16px;
-      border-radius: var(--r);
-      border: 1px dashed rgba(3,78,162,.26);
-      background: rgba(255,255,255,.70);
-      box-shadow: 0 14px 30px rgba(3,78,162,.08);
-      padding: 14px;
-      color:#0f2f62;
-      font-weight: 900;
-      display:none;
-    }
-
-    .disclosure{
-      margin-top: 14px;
-      border-radius: var(--r);
-      border: 1px solid rgba(0,0,0,.06);
-      background: rgba(255,255,255,.75);
-      box-shadow: 0 14px 30px rgba(3,78,162,.08);
-      padding: 14px;
-      color: var(--slate);
-      font-size: 13px;
-      line-height: 1.6;
-      max-width: 92ch;
-    }
-
-    .disclosure strong{ color:#0f2f62; }
-
-    @media (max-width: 980px){
-      .filters{ grid-template-columns: 1fr; }
-      .fGroup:after{ top: 38px; }
-      .grid{ grid-template-columns: 1fr; }
-      .media{ min-height: 280px; }
-      .title{
-        font-size: 17px;
-        min-height: calc(1.15em * 2);
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://experienceecuador.com/es/recomendados/#webpage",
+        "url": "https://experienceecuador.com/es/recomendados/",
+        "name": "Mejores Recomendados de Ecuador",
+        "description": "Explora recomendados de Ecuador por región, ubicación, experiencia y categoría, incluyendo alojamientos, tours, restaurantes, servicios y actividades confiables.",
+        "inLanguage": "es",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Experience Ecuador",
+          "url": "https://experienceecuador.com/"
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "Mejores Recomendados de Ecuador"
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://experienceecuador.com/assets/images/EE-OG-Image-1.jpg"
+        },
+        "mainEntity": {
+          "@type": "ItemList",
+          "name": "Recomendados destacados de Ecuador",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Mindo Eco Chalet",
+              "url": "https://experienceecuador.com/es/recomendados/miembros/andes/mindo/mindo-eco-chalet-river-and-waterfalls/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Mindo Eco Suite",
+              "url": "https://experienceecuador.com/es/recomendados/miembros/andes/mindo/mindo-eco-suite-river-and-cascadita/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Mindo Glamping Yurt",
+              "url": "https://experienceecuador.com/es/recomendados/miembros/andes/mindo/mindo-glamping-yurt-river-and-cascadita/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "Mindo Bird Watching",
+              "url": "https://experienceecuador.com/es/recomendados/miembros/andes/mindo/mindo-bird-watching/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "The Cloud Forest Retreat",
+              "url": "https://experienceecuador.com/es/recomendados/miembros/andes/choco-andino/the-cloud-forest-retreat/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "name": "Hacienda Verde Niebla",
+              "url": "https://experienceecuador.com/es/recomendados/miembros/andes/choco-andino/hacienda-verde-niebla/"
+            }
+          ]
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://experienceecuador.com/#organization",
+        "name": "Experience Ecuador",
+        "url": "https://experienceecuador.com/",
+        "email": "info@experienceecuador.com"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://experienceecuador.com/es/recomendados/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://experienceecuador.com/es/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Recomendados",
+            "item": "https://experienceecuador.com/es/recomendados/"
+          }
+        ]
       }
-      .chips{
-        width: 100%;
-        justify-content: flex-start;
-      }
-      .why{
-        display:block;
-        -webkit-line-clamp:unset;
-        overflow:visible;
-        min-height:0;
-      }
-    }
-
-    @media (max-width: 480px){
-      .navBtn{ width: 40px; height: 40px; }
-      .body{ gap: 12px; }
-      .links{ gap: 8px; }
-      .title{
-        font-size: 16px;
-      }
-      .chips{
-        gap: 6px;
-      }
-      .why{
-        font-size:14px;
-        line-height:1.6;
-      }
-    }
-  </style>
+    ]
+  }
+  </script>
 </head>
-<body>
-  <div id="siteHeader"></div>
+<body data-page-type="recommendations_hub" data-page-language="es">
+  <div id="siteHeader" data-current-lang="es"></div>
+  <nav class="rawLangLinks" aria-label="Selector de idioma">
+    <a href="https://experienceecuador.com/recommendations/" lang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="https://experienceecuador.com/es/recomendados/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
 
-  <main class="wrap" aria-label="Recomendados">
-    <h1>Recomendados</h1>
+<main class="recommendationsHub" aria-label="Recomendados">
+    <h1>Mejores Recomendados de Ecuador</h1>
     <p class="lede">
-      Recomendado por Experience Ecuador. Filtra por region, ubicacion, experiencia y categoria para encontrar lugares y servicios confiables para tu viaje.
+      Explora recomendados de Ecuador por región, ubicación, experiencia y categoría para encontrar alojamientos, restaurantes, servicios, tours y actividades confiables para tu viaje.
     </p>
 
     <div class="metaRow" aria-label="Quick summary">
-      <span class="pill">Recomendado por Experience Ecuador</span>
-      <span class="pill">Sin precios publicos</span>
-      <span class="pill">Espacios destacados: proximamente</span>
+      <span class="pill">Curación independiente</span>
+      <span class="pill">Sin manipulación de ranking público</span>
+      <span class="pill">Espacios destacados divulgados</span>
     </div>
 
     <div class="disclosure" aria-label="Disclosure">
-      <strong>Aviso:</strong> Algunas fichas podran mostrarse como Aliado Destacado en el futuro. Los espacios destacados ayudaran a sostener este proyecto.
+      <strong>Nota de confianza:</strong> Los recomendados se curan por afinidad con el viajero, claridad y utilidad. Los espacios pagados o destacados se divulgarán claramente y no cambiarán el objetivo editorial: ayudar a comparar opciones de Ecuador con confianza.
     </div>
 
     <section class="filters" aria-label="Filtros">
       <div class="fGroup">
-        <label for="fRegion">Region</label>
-        <select id="fRegion" aria-label="Filtrar por region">
+        <label for="fRegion">Región</label>
+        <select id="fRegion" aria-label="Filtrar por región">
           <option value="">Todas las regiones</option>
         </select>
       </div>
 
       <div class="fGroup">
-        <label for="fLocation">Ubicacion</label>
-        <select id="fLocation" aria-label="Filtrar por ubicacion" disabled>
+        <label for="fLocation">Ubicación</label>
+        <select id="fLocation" aria-label="Filtrar por ubicación" disabled>
           <option value="">Todas las ubicaciones</option>
         </select>
       </div>
@@ -583,9 +186,9 @@
       </div>
 
       <div class="fGroup">
-        <label for="fCategory">Categoria</label>
-        <select id="fCategory" aria-label="Filtrar por categoria">
-          <option value="">Todas las categorias</option>
+        <label for="fCategory">Categoría</label>
+        <select id="fCategory" aria-label="Filtrar por categoría">
+          <option value="">Todas las categorías</option>
           <option value="lodging">Alojamiento</option>
           <option value="restaurants">Restaurantes</option>
           <option value="services">Servicios</option>
@@ -596,21 +199,81 @@
 
     <div class="actionsRow" aria-label="Acciones">
       <div class="btnRow">
-        <button class="btn" id="btnReset" type="button" aria-label="Restablecer filtros">Restablecer</button>
-        <a class="btn primary" href="/es/aliados/" aria-label="Quiero ser aliado">Quiero ser aliado</a>
+        <button class="btn" id="btnReset" type="button" aria-label="Restablecer filtros" data-analytics-event="recommendation_filter_use" data-analytics-label="Restablecer filtros" data-analytics-location="filters">Restablecer</button>
+        <a class="btn primary" href="/es/aliados/" aria-label="Quiero ser aliado" data-analytics-event="primary_cta_click" data-analytics-label="Quiero ser aliado" data-analytics-location="recommendations_actions">Quiero ser aliado</a>
       </div>
-      <div class="count" id="resultCount" aria-label="Cantidad de resultados">0 resultados</div>
+      <div class="count" id="resultCount" aria-label="Cantidad de resultados">Cargando recomendados...</div>
     </div>
 
     <div class="noResults" id="noResults" aria-label="Mensaje sin resultados">No hay recomendados que coincidan con tus filtros por ahora.</div>
+
+    
+    <section class="recommendationsSeoLinks" aria-label="Enlaces de recomendados destacados">
+      <h2>Explora recomendados destacados</h2>
+      <div class="recommendationsLinkGrid">
+        <a href="/es/recomendados/miembros/andes/mindo/mindo-eco-chalet-river-and-waterfalls/" data-analytics-event="internal_link_click" data-analytics-label="Mindo Eco Chalet" data-analytics-location="featured_recommendations">Mindo Eco Chalet<span>Río, cascadas y bosque nublado</span></a>
+        <a href="/es/recomendados/miembros/andes/mindo/mindo-eco-suite-river-and-cascadita/" data-analytics-event="internal_link_click" data-analytics-label="Mindo Eco Suite" data-analytics-location="featured_recommendations">Mindo Eco Suite<span>Suite privada cerca del río y cascadita</span></a>
+        <a href="/es/recomendados/miembros/andes/mindo/mindo-glamping-yurt-river-and-cascadita/" data-analytics-event="internal_link_click" data-analytics-label="Mindo Glamping Yurt" data-analytics-location="featured_recommendations">Mindo Glamping Yurt<span>Glamping cerca del río y cascadita</span></a>
+        <a href="/es/recomendados/miembros/andes/mindo/mindo-bird-watching/" data-analytics-event="internal_link_click" data-analytics-label="Mindo Bird Watching" data-analytics-location="featured_recommendations">Mindo Bird Watching<span>Avistamiento de aves en Mindo</span></a>
+        <a href="/es/recomendados/miembros/andes/choco-andino/the-cloud-forest-retreat/" data-analytics-event="internal_link_click" data-analytics-label="The Cloud Forest Retreat" data-analytics-location="featured_recommendations">The Cloud Forest Retreat<span>Lodge en el Choco Andino cerca de Quito</span></a>
+        <a href="/es/recomendados/miembros/andes/choco-andino/hacienda-verde-niebla/" data-analytics-event="internal_link_click" data-analytics-label="Hacienda Verde Niebla" data-analytics-location="featured_recommendations">Hacienda Verde Niebla<span>Hospedaje de bosque nublado en el Choco Andino</span></a>
+      </div>
+    </section>
 
     <section class="grid" id="cards" aria-label="Tarjetas de recomendados"></section>
   </main>
 
   <div id="siteFooter"></div>
 
-  <script src="/assets/js/site.js"></script>
-  <script>
+<script>
+    (function(){
+      const w = window;
+      const dl = w.dataLayer = w.dataLayer || [];
+      const firedScroll = new Set();
+      function emit(eventName, params){
+        dl.push(Object.assign({
+          event: eventName,
+          page_type: document.body.dataset.pageType || "",
+          page_language: document.body.dataset.pageLanguage || "",
+          page_path: location.pathname,
+          page_title: document.title
+        }, params || {}));
+      }
+      w.eeAnalytics = w.eeAnalytics || { emit };
+      emit("page_view_enhanced");
+
+      document.addEventListener("click", function(e){
+        const target = e.target.closest("a,button");
+        if(!target) return;
+        const eventName = target.dataset.analyticsEvent;
+        if(eventName){
+          emit(eventName, {
+            cta_label: target.dataset.analyticsLabel || target.textContent.trim(),
+            cta_location: target.dataset.analyticsLocation || "",
+            link_url: target.getAttribute("href") || ""
+          });
+        }
+      });
+
+      const marks = [25, 50, 75, 100];
+      function handleScroll(){
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - window.innerHeight;
+        if(max <= 0) return;
+        const pct = Math.round((window.scrollY / max) * 100);
+        marks.forEach(function(mark){
+          if(pct >= mark && !firedScroll.has(mark)){
+            firedScroll.add(mark);
+            emit("scroll_depth", { scroll_percent: mark });
+          }
+        });
+      }
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      handleScroll();
+    })();
+  </script>
+
+<script>
     (function(){
       "use strict";
 
@@ -619,7 +282,7 @@
           all_regions: "Todas las regiones",
           all_locations: "Todas las ubicaciones",
           all_experiences: "Todas las experiencias",
-          all_categories: "Todas las categorias",
+          all_categories: "Todas las categorías",
           results_one: "resultado",
           results_many: "resultados",
           no_results: "No hay recomendados que coincidan con tus filtros por ahora.",
@@ -627,7 +290,7 @@
           view_details: "Ver detalles",
           visit_website: "Visitar sitio",
           whatsapp: "WhatsApp",
-          download_menu: "Descargar menu (PDF)"
+          download_menu: "Descargar menú (PDF)"
         }
       };
 
@@ -930,7 +593,7 @@
             + ' data-action="view_details"'
             + ' data-id="' + esc(item.id) + '"'
             + ' data-title="' + esc(title) + '"'
-            + ' data-region="' + esc(item.region_id) + '"'
+            + ' data-región="' + esc(item.region_id) + '"'
             + ' data-location="' + esc(item.location_id) + '"'
             + ' data-category="' + esc(item.category) + '"'
             + ' aria-label="Ver detalles">'
@@ -948,7 +611,7 @@
             + ' data-action="visit_website"'
             + ' data-id="' + esc(item.id) + '"'
             + ' data-title="' + esc(title) + '"'
-            + ' data-region="' + esc(item.region_id) + '"'
+            + ' data-región="' + esc(item.region_id) + '"'
             + ' data-location="' + esc(item.location_id) + '"'
             + ' data-category="' + esc(item.category) + '"'
             + ' aria-label="Visitar sitio">'
@@ -967,7 +630,7 @@
             + ' data-action="whatsapp"'
             + ' data-id="' + esc(item.id) + '"'
             + ' data-title="' + esc(title) + '"'
-            + ' data-region="' + esc(item.region_id) + '"'
+            + ' data-región="' + esc(item.region_id) + '"'
             + ' data-location="' + esc(item.location_id) + '"'
             + ' data-category="' + esc(item.category) + '"'
             + ' aria-label="WhatsApp">'
@@ -986,10 +649,10 @@
             + ' data-action="menu_pdf"'
             + ' data-id="' + esc(item.id) + '"'
             + ' data-title="' + esc(title) + '"'
-            + ' data-region="' + esc(item.region_id) + '"'
+            + ' data-región="' + esc(item.region_id) + '"'
             + ' data-location="' + esc(item.location_id) + '"'
             + ' data-category="' + esc(item.category) + '"'
-            + ' aria-label="Descargar menu">'
+            + ' aria-label="Descargar menú">'
             + esc(t("download_menu"))
             + '</a>'
           );
@@ -1009,7 +672,7 @@
         var whyBlock = why ? ('<div class="why" aria-label="Por que lo recomendamos"><strong>Por que lo recomendamos:</strong> ' + esc(why) + '</div>') : '';
 
         return ''
-          + '<article class="card" data-id="' + esc(item.id) + '" data-region="' + esc(item.region_id) + '" data-location="' + esc(item.location_id) + '" data-category="' + esc(item.category) + '" data-experiences="' + esc((item.experiences || []).join(",")) + '">'
+          + '<article class="card" data-id="' + esc(item.id) + '" data-región="' + esc(item.region_id) + '" data-location="' + esc(item.location_id) + '" data-category="' + esc(item.category) + '" data-experiences="' + esc((item.experiences || []).join(",")) + '">'
           +   '<div class="media recCarousel" data-interval="2500" aria-label="' + aria + ' carousel">'
           +     '<div class="carouselViewport" aria-label="Visor del carrusel">'
           +       '<div class="carouselTrack">' + slides + '</div>'
@@ -1219,7 +882,7 @@
           safeTrack("recommendation_click", {
             listing_id: a.getAttribute("data-id") || "",
             listing_title: a.getAttribute("data-title") || "",
-            listing_region: a.getAttribute("data-region") || "",
+            listing_region: a.getAttribute("data-región") || "",
             listing_location: a.getAttribute("data-location") || "",
             listing_category: a.getAttribute("data-category") || "",
             action_type: a.getAttribute("data-action") || "",
@@ -1286,14 +949,23 @@
 
   <script>
     (function(){
-      async function inject(id, url){
-        var el = document.getElementById(id);
-        if(!el) return;
-        var res = await fetch(url, { cache: "no-store" });
+      async function injectInclude(id, url){
+        const el = document.getElementById(id);
+        if(!el || el.children.length || el.textContent.trim()) return;
+        const res = await fetch(url, { cache: "no-store" });
         el.innerHTML = await res.text();
       }
-      inject("siteHeader", "/assets/includes/header.html");
-      inject("siteFooter", "/assets/includes/footer.html");
+
+      Promise.all([
+        injectInclude("siteHeader", "/assets/includes/header.html"),
+        injectInclude("siteFooter", "/assets/includes/footer.html")
+      ]).finally(() => {
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          const s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
+      });
     })();
   </script>
 </body>
