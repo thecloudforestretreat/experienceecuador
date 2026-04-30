@@ -115,7 +115,7 @@
       --mini-label-col: 78px;
     }
 
-    .rawLangLinks{
+    #siteHeader[data-current-lang] + .rawLangLinks{
       max-width:var(--max);
       margin:18px auto 0;
       padding:0 18px;
@@ -124,23 +124,43 @@
       gap:8px;
       align-items:center;
     }
-    .rawLangLinks a{
+    #siteHeader[data-current-lang] + .rawLangLinks a{
       display:inline-flex;
       align-items:center;
       justify-content:center;
+      min-height:40px;
+      padding:0 14px;
       border:1px solid rgba(3,78,162,.18);
       border-radius:999px;
-      padding:7px 11px;
       background:#fff;
       color:#0f2f62;
       font-size:12.5px;
       font-weight:800;
       box-shadow:0 10px 24px rgba(3,78,162,.08);
       text-decoration:none;
+      transition:background-color .18s ease,color .18s ease,border-color .18s ease,box-shadow .18s ease;
     }
-    .rawLangLinks a[aria-current="page"]{
-      background:rgba(3,78,162,.08);
-      border-color:rgba(3,78,162,.26);
+    #siteHeader[data-current-lang] + .rawLangLinks a:hover,
+    #siteHeader[data-current-lang] + .rawLangLinks a:focus-visible{
+      background:#eef4ff;
+      border-color:rgba(3,78,162,.28);
+      color:#034ea2;
+      outline:none;
+    }
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"],
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]{
+      background:#034ea2;
+      border-color:#034ea2;
+      color:#fff;
+      box-shadow:0 10px 24px rgba(3,78,162,.18);
+    }
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:hover,
+    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:focus-visible,
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:hover,
+    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:focus-visible{
+      background:#023a7a;
+      border-color:#023a7a;
+      color:#fff;
     }
 
     *{box-sizing:border-box}
@@ -1020,11 +1040,11 @@
 </head>
 <body data-page-type="trip_builder" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
+  <nav class="rawLangLinks" aria-label="Language switch">
+    <a href="/trip-builder/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+    <a href="/es/planificador-de-viajes/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+  </nav>
   <main>
-    <nav class="rawLangLinks" aria-label="Language switch">
-      <a href="/trip-builder/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="header_language_switch">English</a>
-      <a href="/es/planificador-de-viajes/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="header_language_switch">Español</a>
-    </nav>
     <section class="hero" aria-label="Trip Builder hero">
       <div class="hero-banner" role="img" aria-label="Trip Builder hero image placeholder">
         <div class="hero-content">
