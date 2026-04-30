@@ -2571,18 +2571,13 @@ function regionName(id){
           selected_experiences: rawSelection.experiences.join("|")
         });
       }
-      const result = buildRankedPoolStep2(DATA.blocks, rawSelection);
+
+      const plan = generateItinerary();
 
       clearEmailStatus();
-      renderRankedPoolPreviewStep2(result);
-
-      if (result.ok) {
-        state.lastPlan = result;
-        state.lastItineraryText = buildRankedPoolText(result);
-      } else {
-        state.lastPlan = null;
-        state.lastItineraryText = "";
-      }
+      state.lastPlan = plan;
+      renderItinerary(plan);
+      state.lastItineraryText = buildItineraryText(plan);
       enableEmailButtonIfReady();
     });
 
