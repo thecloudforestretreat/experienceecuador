@@ -1,0 +1,299 @@
+You are converting ONE row from the Google Sheet tab "Partners / Listings" into ONE row for "listing_pages_input.csv".
+
+--------------------------------------------------
+CRITICAL OUTPUT RULES (STRICT)
+--------------------------------------------------
+
+- Return EXACTLY ONE LINE
+- Use TAB as separator
+- Output EXACTLY 74 columns (no more, no less)
+- NO line breaks
+- NO tabs inside fields
+- NO quotes
+- NO markdown
+- NO JSON
+- NO explanations
+
+If unsure -> leave field blank
+
+--------------------------------------------------
+CANONICAL DATA RULE (CRITICAL)
+--------------------------------------------------
+
+- The input Listings row is the SINGLE source of truth
+- DO NOT modify or reinterpret:
+  uid, id, category, region_id, location_id
+- Use them EXACTLY as provided
+- NEVER regenerate IDs
+- NEVER fix IDs
+- NEVER derive region/location from anything else
+
+--------------------------------------------------
+INPUT RULE (VERY IMPORTANT)
+--------------------------------------------------
+
+- Input is ONE TSV row from "Partners / Listings"
+- The input row is NOT in final schema
+- DO NOT reuse column positions
+- Extract values and remap into TARGET schema
+
+--------------------------------------------------
+SOURCE COLUMN MAP (FROM INPUT ROW)
+--------------------------------------------------
+
+1 uid
+2 id
+3 category
+4 category_label_en
+5 category_label_es
+6 region_id
+7 location_id
+8 experiences
+9 featured
+10 title_en
+11 title_es
+12 description_en
+13 description_es
+14 why_en
+15 why_es
+16 tags_en
+17 tags_es
+18 image_1
+19 image_2
+20 image_3
+21 website_url
+22 whatsapp_url
+23 phone
+24 menu_pdf
+25 details_url
+26 admin_notes
+
+--------------------------------------------------
+TARGET COLUMN ORDER (STRICT - 74 COLUMNS)
+--------------------------------------------------
+
+uid	id	category	region_id_en	region_id_es	location_id_en	location_id_es	listing_slug	title_en	title_es	meta_title_en	meta_title_es	meta_description_en	meta_description_es	description_short_en	description_short_es	seo_paragraph_1_en	seo_paragraph_1_es	seo_paragraph_2_en	seo_paragraph_2_es	why_section_en	why_section_es	experience_highlights_en	experience_highlights_es	best_for_en	best_for_es	location_context_en	location_context_es	nearby_1_title_en	nearby_1_title_es	nearby_1_text_en	nearby_1_text_es	nearby_2_title_en	nearby_2_title_es	nearby_2_text_en	nearby_2_text_es	nearby_3_title_en	nearby_3_title_es	nearby_3_text_en	nearby_3_text_es	faq_1_q_en	faq_1_q_es	faq_1_a_en	faq_1_a_es	faq_2_q_en	faq_2_q_es	faq_2_a_en	faq_2_a_es	faq_3_q_en	faq_3_q_es	faq_3_a_en	faq_3_a_es	faq_4_q_en	faq_4_q_es	faq_4_a_en	faq_4_a_es	image_1	image_2	image_3	website_url	whatsapp_url	phone	experience_filter_id	experience_filter_slug_es	region_page_en	region_page_es	location_page_en	location_page_es	canonical_url_en	canonical_url_es
+
+--------------------------------------------------
+DERIVED HELPERS
+--------------------------------------------------
+
+listing_slug:
+- lowercase
+- hyphenated
+- based on title_en
+
+human_readable_location:
+- convert location_id to Title Case words
+- example: chocoandino -> Choco Andino
+
+human_readable_region:
+- convert region_id to Title Case words
+
+experience_filter_slug_es:
+- map from experience_filter_id
+- wildlife-birding -> vida-silvestre-aviturismo
+- adventure -> aventura
+- culinary -> gastronomia
+- relaxation -> relax
+- nature -> naturaleza
+
+--------------------------------------------------
+FIELD MAPPING RULES
+--------------------------------------------------
+
+- uid -> same
+- id -> same
+- category -> same
+
+- region_id_en -> region_id
+- region_id_es -> region_id
+- location_id_en -> location_id
+- location_id_es -> location_id
+
+- title_en -> same
+- title_es -> same
+
+- description_short_en -> from description_en
+- description_short_es -> from description_es
+
+- why_section_en -> from why_en
+- why_section_es -> from why_es
+
+- image_1 -> same
+- image_2 -> same
+- image_3 -> same
+
+- website_url -> same
+- whatsapp_url -> same
+- phone -> same
+
+--------------------------------------------------
+META RULES
+--------------------------------------------------
+
+meta_title_en:
+<title_en> in <human_readable_location>
+
+meta_title_es:
+<title_es> en <human_readable_location>
+
+meta_description_en:
+140-160 characters using description_short_en
+
+meta_description_es:
+140-160 characters using description_short_es
+
+--------------------------------------------------
+SEO PARAGRAPHS
+--------------------------------------------------
+
+seo_paragraph_1:
+- keywords + discoverability
+- max 40 words
+
+seo_paragraph_2:
+- traveler intent + experience
+- max 40 words
+
+--------------------------------------------------
+WHY SECTION
+--------------------------------------------------
+
+- Use existing why field
+- Improve slightly if needed
+- Max 20 words
+
+--------------------------------------------------
+EXPERIENCE HIGHLIGHTS
+--------------------------------------------------
+
+- EXACTLY 4 items
+- pipe separated
+- short phrases only
+- NO extra pipes inside items
+
+--------------------------------------------------
+BEST FOR
+--------------------------------------------------
+
+- EXACTLY 4 traveler types
+- pipe separated
+- NO extra pipes inside items
+
+--------------------------------------------------
+LOCATION CONTEXT
+--------------------------------------------------
+
+- Explain why destination matters
+- Use human_readable_region + human_readable_location
+
+--------------------------------------------------
+NEARBY
+--------------------------------------------------
+
+Generate EXACTLY 3 nearby blocks.
+
+For each block output:
+- nearby_N_title_en
+- nearby_N_title_es
+- nearby_N_text_en
+- nearby_N_text_es
+
+Rules:
+- generic surroundings only
+- NO business names
+- NO extra pipes
+- Keep titles short
+- Keep text concise and factual
+
+--------------------------------------------------
+FAQ
+--------------------------------------------------
+
+Generate EXACTLY 4 FAQs.
+
+For each FAQ output:
+- faq_N_q_en
+- faq_N_q_es
+- faq_N_a_en
+- faq_N_a_es
+
+Rules:
+- NO extra pipes
+- concise, factual, travel-useful
+- no invented claims
+
+--------------------------------------------------
+IMAGE TEXT RULES
+--------------------------------------------------
+
+- If image field is blank:
+  leave ONLY that image path blank
+- Do NOT generate extra image caption/alt columns
+- Do NOT invent specific visual details
+
+--------------------------------------------------
+URL RULES
+--------------------------------------------------
+
+region_page_en:
+/regions/<region_id>/
+
+region_page_es:
+/es/regiones/<region_id>/
+
+location_page_en:
+/regions/<region_id>/<location_id>/
+
+location_page_es:
+/es/regiones/<region_id>/<location_id>/
+
+canonical_url_en:
+https://experienceecuador.com/recommendations/members/<region_id>/<location_id>/<listing_slug>/
+
+canonical_url_es:
+https://experienceecuador.com/es/recomendados/miembros/<region_id>/<location_id>/<listing_slug>/
+
+--------------------------------------------------
+FILTER RULE (IMPORTANT)
+--------------------------------------------------
+
+Select ONE primary value from experiences:
+- wildlife-birding
+- adventure
+- culinary
+- relaxation
+- nature
+
+Priority:
+1. wildlife-birding
+2. adventure
+3. culinary
+4. relaxation
+5. nature
+
+If multiple are present, choose the highest priority from this list.
+
+--------------------------------------------------
+TEXT SAFETY RULE
+--------------------------------------------------
+
+- No line breaks
+- No tabs inside fields
+- No extra pipes
+- Keep clean single-line text
+
+--------------------------------------------------
+FINAL INSTRUCTION
+--------------------------------------------------
+
+Return ONLY the TSV row.
+
+--------------------------------------------------
+INPUT
+--------------------------------------------------
+
+<<<
+[paste ONE Listings row here]
+>>>
