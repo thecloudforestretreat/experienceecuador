@@ -16,7 +16,7 @@ CORE GOAL
 Generate standalone recommendation member pages that behave like SEO landing pages, not thin directory listings.
 
 Every page must:
-- preserve the global header/footer include system
+- preserve the global header/footer include system using /assets/includes/header.html and /assets/includes/footer.html
 - use SEO-specific meta fields
 - use clean bilingual hreflang
 - include strong schema
@@ -24,6 +24,63 @@ Every page must:
 - adapt content blocks to the listing's actual strengths
 - avoid false claims and keyword stuffing
 - avoid generic one-size-fits-all copy
+
+
+---
+
+GLOBAL HEADER AND FOOTER INCLUDE RULES
+
+Every generated listing page MUST use the shared Experience Ecuador global includes.
+
+Required mount points:
+
+EN and ES pages both use the SAME shared files:
+- /assets/includes/header.html
+- /assets/includes/footer.html
+
+There is NO header-es.html and NO footer-es.html for these listing pages.
+Do not create language-specific header/footer include paths.
+
+Immediately after <body>:
+EN:
+<div id="siteHeader" data-current-lang="en"></div>
+
+ES:
+<div id="siteHeader" data-current-lang="es"></div>
+
+Immediately after </main>:
+<div id="siteFooter"></div>
+
+Every page MUST include this injection script after #siteFooter and before page-specific JavaScript:
+
+<script>
+  (function(){
+    async function inject(id, url){
+      var el = document.getElementById(id);
+      if(!el) return;
+      var res = await fetch(url, { cache: "no-store" });
+      el.innerHTML = await res.text();
+    }
+    Promise.all([
+      inject("siteHeader", "/assets/includes/header.html"),
+      inject("siteFooter", "/assets/includes/footer.html")
+    ]).then(function(){
+      if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+        var s = document.createElement("script");
+        s.src = "/assets/js/site.js";
+        document.body.appendChild(s);
+      }
+    });
+  })();
+</script>
+
+Rules:
+- Do not hardcode page-level header markup.
+- Do not hardcode page-level footer markup.
+- Do not use header-es.html or footer-es.html.
+- Keep the rawLangLinks language switch directly after #siteHeader.
+- Keep /assets/css/header.css, /assets/css/footer.css, /assets/css/site.css, and /assets/css/listing-member-seo.css in the head.
+- Load /assets/js/site.js only after the shared header and footer are injected.
 
 ---
 
@@ -269,6 +326,9 @@ Before output:
 - no placeholders
 - no page-level CSS
 - CSS file linked
+- #siteHeader and #siteFooter mount points present
+- shared header/footer injection script present
+- /assets/js/site.js loads after includes
 - language switch correct
 - map logic correct
 - analytics present
