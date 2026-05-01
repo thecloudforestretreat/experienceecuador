@@ -9,6 +9,31 @@ PAGE INFORMATION
 - Page type:
 - Priority:
 
+
+CENTRAL EXECUTION STANDARD
+All analytics execution should be centralized in:
+/assets/js/site.js
+
+Page files should NOT duplicate page-level analytics scripts for:
+- page_view_enhanced
+- scroll_depth
+- [data-analytics-event] click listeners
+
+Each page should only provide:
+- correct body data-page-type and data-page-language
+- correct data-analytics-* attributes on tracked elements
+- correct #siteHeader / #siteFooter loader that injects /assets/js/site.js
+- correct canonical / hreflang / schema / language switch
+
+Before handoff, confirm:
+- [ ] /assets/js/site.js is loaded
+- [ ] no conflicting page-level analytics script exists
+- [ ] important CTAs have data-analytics-event
+- [ ] member external website links use member_external_website_click
+- [ ] member WhatsApp links use member_whatsapp_click
+- [ ] normal internal links use internal_link_click unless they are page-type-specific cards or CTAs
+- [ ] outbound non-member links use outbound_link_click
+
 SITEWIDE ANALYTICS REQUIRED
 Confirm which of these apply on the page:
 - [ ] page_view_enhanced
