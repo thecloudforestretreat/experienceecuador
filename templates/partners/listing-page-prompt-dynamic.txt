@@ -178,13 +178,14 @@ Switch must:
 THIS IS CRITICAL — DO NOT BREAK THIS
 
 1. IF google_maps_embed_url EXISTS:
-   - Render live iframe map
-   - Include "Open map" button
-   - Preferred implementation
+   - Render a live iframe map preview
+   - Also include an "Open map" button if google_maps_share_url exists
+   - Use this only when the URL is a true Google Maps embed URL
+   - Never use a maps.app.goo.gl share URL inside an iframe
 
 2. IF ONLY google_maps_share_url EXISTS:
    - DO NOT render iframe
-   - Render clickable map card
+   - Render a clickable map card linking to Google Maps
    - Button text:
      EN: Open in Google Maps
      ES: Abrir en Google Maps
@@ -192,25 +193,39 @@ THIS IS CRITICAL — DO NOT BREAK THIS
 3. IF ONLY latitude + longitude EXIST:
    - Generate link:
      https://www.google.com/maps/search/?api=1&query=LAT,LNG
-   - Render map card with that link
+   - Render a clickable map/location card with that generated link
    - DO NOT render iframe
 
-4. IF NO MAP DATA EXISTS:
-   - DO NOT render map UI
-   - Render location context section ONLY
+4. IF NO google_maps_embed_url, NO google_maps_share_url, and NO latitude/longitude EXIST:
+   - DO NOT render .mapSplit
+   - DO NOT render .mapCard
+   - DO NOT render any empty map placeholder
+   - Render a normal full-width .section only
+   - Use aria-label:
+     EN: Location guidance
+     ES: Guía de ubicación
    - Include:
      - region
-     - destination
+     - destination/location
      - arrival note
      - contact instruction
-   - Example:
-     "Contact the property directly for exact directions"
+     - CTA buttons if website_url or whatsapp_url exists
+   - Example EN:
+     "A public map preview is not available yet, so travelers should contact the property directly to confirm the exact arrival point, current road conditions, and best route before traveling."
+   - Example ES:
+     "Esta ficha todavía no incluye una vista previa pública del mapa, por lo que los viajeros deben contactar directamente al alojamiento para confirmar el punto exacto de llegada, el estado actual de la vía y la mejor ruta antes de viajar."
 
 5. NEVER:
-   - show empty iframe
-   - show broken map
-   - leave placeholder
+   - show an empty iframe
+   - show a broken map
+   - show a blank map card
+   - leave a map placeholder
+   - invent coordinates
    - fake map content
+
+6. Schema rule:
+   - Add GeoCoordinates only when latitude and longitude are provided
+   - Do not add GeoCoordinates from guesses
 
 ---
 
