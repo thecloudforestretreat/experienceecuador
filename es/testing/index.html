@@ -1231,32 +1231,7 @@
 
     </div>
   </main>
-  <div id="siteFooter"></div>
-
-  <script>
-    (function(){
-      async function inject(id, url){
-        var el = document.getElementById(id);
-        if(!el) return;
-        var res = await fetch(url, { cache: "no-store" });
-        el.innerHTML = await res.text();
-      }
-      Promise.all([
-        inject("siteHeader", "/assets/includes/header.html"),
-        inject("siteFooter", "/assets/includes/footer.html")
-      ]).then(function(){
-        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
-          var s = document.createElement("script");
-          s.src = "/assets/js/site.js";
-          document.body.appendChild(s);
-        }
-      });
-    })();
-  </script>
-
-
-
-  <script>
+<script>
     // ===== CONFIG: your Apps Script Web App URL =====
     const TRIP_EMAIL_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxUGlWoLwj5wlYXhqNa4fh4FZjBhQr_QOVbA8MhSfJwC_IV_6hqC5_leMG6RskFXTkj/exec";
 
@@ -2487,6 +2462,23 @@ function regionName(id){
       syncDefaultFlightToFromRegions();
     });
 
+    // Safety fallback: keep Generate Itinerary synced even if a browser extension, cached script,
+    // or future markup change interrupts a direct pill handler.
+    function eeTripBuilderStateSyncFallback() {
+      document.addEventListener("click", function(e) {
+        const pill = e.target && e.target.closest ? e.target.closest(".pill[data-id]") : null;
+        if (!pill) return;
+        window.setTimeout(updateGenerateState, 0);
+      });
+      if (els.daysSelect) {
+        els.daysSelect.addEventListener("change", function() {
+          window.setTimeout(updateGenerateState, 0);
+        });
+      }
+    }
+
+    eeTripBuilderStateSyncFallback();
+
     els.generateBtn.addEventListener('click', () => {
       const rawSelection = {
         days: Number(els.daysSelect ? els.daysSelect.value : state.days || 0),
@@ -2672,25 +2664,26 @@ function regionName(id){
   </script>
 
   <!-- Inject global header/footer first, then load site.js (so nav JS never runs before header exists) -->
+
+  <div id="siteFooter"></div>
+
   <script>
     (function(){
       async function inject(id, url){
-        const el = document.getElementById(id);
+        var el = document.getElementById(id);
         if(!el) return;
-        if (el.children.length || (el.innerHTML && el.innerHTML.trim())) return;
-        const res = await fetch(url, { cache: "no-store" });
+        var res = await fetch(url, { cache: "no-store" });
         el.innerHTML = await res.text();
       }
-
       Promise.all([
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
-      ]).finally(() => {
-        const existing = document.querySelector('script[src="/assets/js/site.js"]');
-        if (existing) return;
-        const s = document.createElement("script");
-        s.src = "/assets/js/site.js";
-        document.body.appendChild(s);
+      ]).then(function(){
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
       });
     })();
   </script>
