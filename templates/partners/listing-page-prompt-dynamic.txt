@@ -9,6 +9,8 @@ Use this shared CSS:
 
 These rules are the source of truth. Ignore older conflicting instructions.
 
+---
+
 CORE GOAL
 
 Generate standalone recommendation member pages that behave like SEO landing pages, not thin directory listings.
@@ -23,6 +25,8 @@ Every page must:
 - avoid false claims and keyword stuffing
 - avoid generic one-size-fits-all copy
 
+---
+
 SEO FIELD RULES
 
 1. Use:
@@ -31,22 +35,22 @@ SEO FIELD RULES
    {{META_DESCRIPTION_EN}} -> meta description, og:description, twitter:description, WebPage schema description
    {{META_DESCRIPTION_ES}} -> meta description, og:description, twitter:description, WebPage schema description
 
-2. Do not replace meta titles with {{TITLE_EN}} or {{TITLE_ES}}.
+2. Do not replace meta titles with {{TITLE_EN}} or {{TITLE_ES}}
 
-3. Do not append "| Experience Ecuador" unless already provided.
+3. Do not append "| Experience Ecuador" unless already provided
 
 4. UI fields:
-   {{TITLE_EN}} / {{TITLE_ES}} are used for H1, breadcrumbs, CTAs, labels, and visible business names.
+   {{TITLE_EN}} / {{TITLE_ES}} are used for H1, breadcrumbs, CTAs, labels
 
-5. Use readable, honest copy. Do not overclaim with phrases like:
-   "best lodge"
-   "number one"
-   "top rated"
-   unless the row explicitly provides proof.
+5. Do NOT use:
+   - "best"
+   - "top"
+   - "number one"
+   unless explicitly justified by data
+
+---
 
 DYNAMIC SEO INPUT FIELDS
-
-The generator should use these optional fields when available:
 
 PRIMARY SEO DRIVERS
 - primary_topic
@@ -59,111 +63,87 @@ EXPERIENCE SIGNALS
 - has_waterfalls
 - has_river
 - has_private_reserve
-- has_farm
 - has_culinary
-- has_wellness
 - has_adventure
 - is_luxury
 - is_budget
 - is_remote
 - is_family_friendly
-- is_couples_friendly
-- is_accessible
 
-SEARCH INTENT FIELDS
+SEARCH INTENT
 - search_intent_primary
 - search_intent_secondary
-- comparison_angle
-- decision_reason
-- traveler_fit
 
-LOCATION FIELDS
+LOCATION
 - latitude
 - longitude
 - google_maps_share_url
 - google_maps_embed_url
 
+---
+
 DYNAMIC SECTION RULES
 
-Always include these base sections:
+Always include:
 1. Hero
 2. Short description
-3. SEO paragraph section
+3. SEO paragraph
 4. Why section
 5. Experience breakdown
 6. Location context
 7. Decision guide
-8. Entity/topic guide
+8. Entity/topic section
 9. Map and location
-10. Nearby section
+10. Nearby
 11. Gallery
 12. FAQ
-13. Explore more / internal links
-14. Final CTA
+13. Internal links
+14. CTA
 
-Then activate these conditional sections:
+---
 
-IF has_birdwatching = true:
-- Add a birdwatching value section.
-- Mention habitat, timing, ecosystem, and birding traveler intent.
-- If entity_highlight exists, explain why that entity matters.
-- Link to birdwatching or wildlife pages when available.
+CONDITIONAL SEO BLOCKS
 
-IF has_river = true:
-- Add a riverside setting / relaxation signal.
-- Target phrases like river setting, riverside cabins, peaceful stay, nature stay.
+IF has_birdwatching:
+→ Add birdwatching SEO section
 
-IF has_private_reserve = true:
-- Add a private reserve / conservation habitat signal.
-- Target phrases like private reserve, cloud forest habitat, nature access.
+IF has_river:
+→ Add riverside / relaxation section
 
-IF is_remote = true:
-- Add quiet escape / away from town positioning.
-- Clarify this is good for travelers prioritizing nature over central convenience.
+IF has_private_reserve:
+→ Add private reserve / habitat section
 
-IF is_budget = true:
-- Mention practical, rustic, value-conscious travel.
-- Do not imply luxury.
+IF is_remote:
+→ Add quiet escape positioning
 
-IF is_family_friendly = true:
-- Mention family fit only if supported by row data.
-- Avoid inventing amenities.
+IF has_culinary:
+→ Add food-focused section
 
-IF has_culinary = true:
-- Add food/culinary intent section.
-- Link to culinary experience pages when available.
+IF has_waterfalls:
+→ Add nature / waterfall section
 
-IF has_waterfalls = true:
-- Add waterfall / nature route section.
-- Link to nearby destination guides where appropriate.
+IF none:
+→ Use location + traveler fit as differentiator
 
-IF has_adventure = true:
-- Add adventure planning section.
-- Mention activity type honestly based on row data.
-
-IF no special feature exists:
-- Use location, category, traveler fit, and nearby context as the differentiator.
+---
 
 INTERNAL LINKING RULES
 
-Each page should include contextual links to:
+Include links to:
 - region page
 - location page
-- category or recommendations page
-- relevant experience page
-- relevant guide/article page if available
-- filtered recommendations page for same region/location/category/experience
+- category page
+- experience page
+- filtered listings
 
-Links must use:
+Use:
 data-analytics-event="internal_link_click"
-data-analytics-location="<section_name>"
-data-analytics-page-type="member"
 
-Avoid excessive links. Use 5 to 10 high-quality internal links per page.
+---
 
-ANALYTICS RULES
+ANALYTICS EVENTS
 
-Use these event names:
+Use:
 - page_view_enhanced
 - language_switch_click
 - internal_link_click
@@ -174,106 +154,119 @@ Use these event names:
 - scroll_depth
 - faq_expand
 
-Required attributes on important links:
-- data-analytics-event
-- data-analytics-label
-- data-analytics-location
-- data-analytics-page-type="member"
-
-Recommended section attributes:
-- data-analytics-section="seo_context"
-- data-analytics-section="decision"
-- data-analytics-section="entity"
-- data-analytics-section="map"
-- data-analytics-section="faq"
+---
 
 LANGUAGE SWITCH RULES
 
 Immediately after #siteHeader:
 
-English:
+EN:
 <div id="siteHeader" data-current-lang="en"></div>
-<nav class="rawLangLinks" aria-label="Language switch">
 
-Spanish:
+ES:
 <div id="siteHeader" data-current-lang="es"></div>
-<nav class="rawLangLinks" aria-label="Selector de idioma">
 
-Each link must include:
-- href
-- lang
-- hreflang
-- aria-current only on active language
-- data-analytics-event="language_switch_click"
-- data-analytics-target-language
+Switch must:
+- be left aligned
+- include hreflang
+- include analytics tracking
 
-The switch is visually left aligned through listing-member-seo.css.
+---
 
-MAP RULES
+🔥 MAP RULES (FINAL SYSTEM)
 
-If google_maps_embed_url exists:
-- Render a live iframe map preview.
-- Also include a button to google_maps_share_url if present.
+THIS IS CRITICAL — DO NOT BREAK THIS
 
-If only google_maps_share_url exists:
-- Render a map card that links to Google Maps.
+1. IF google_maps_embed_url EXISTS:
+   - Render live iframe map
+   - Include "Open map" button
+   - Preferred implementation
 
-If latitude and longitude exist:
-- Add GeoCoordinates to LodgingBusiness schema.
+2. IF ONLY google_maps_share_url EXISTS:
+   - DO NOT render iframe
+   - Render clickable map card
+   - Button text:
+     EN: Open in Google Maps
+     ES: Abrir en Google Maps
 
-If no map data exists:
-- Render location context without an iframe.
+3. IF ONLY latitude + longitude EXIST:
+   - Generate link:
+     https://www.google.com/maps/search/?api=1&query=LAT,LNG
+   - Render map card with that link
+   - DO NOT render iframe
+
+4. IF NO MAP DATA EXISTS:
+   - DO NOT render map UI
+   - Render location context section ONLY
+   - Include:
+     - region
+     - destination
+     - arrival note
+     - contact instruction
+   - Example:
+     "Contact the property directly for exact directions"
+
+5. NEVER:
+   - show empty iframe
+   - show broken map
+   - leave placeholder
+   - fake map content
+
+---
 
 SCHEMA RULES
 
 Use:
 - WebPage
 - BreadcrumbList
-- LodgingBusiness for lodging
-- Restaurant for restaurants
-- LocalBusiness for services/activities
+- LodgingBusiness / Restaurant / LocalBusiness
 - FAQPage
-- TouristDestination when page has location context
-- ItemList for related links
-- Article for decision-guide content
+- TouristDestination
+- ItemList
+- Article
 
 Add when available:
 - dateModified
-- geo latitude/longitude
-- sameAs
+- geo coordinates
 - telephone
-- image array
+- images
+
+---
 
 SPANISH RULES
 
-Use natural Latin American Spanish.
-Use accents in visible copy and metadata.
-Do not use accents in URLs, slugs, IDs, query parameters, or data attribute names.
-
-Correct examples:
+Use proper accents in text:
 - región
 - ubicación
-- Galería
-- Qué hacer cerca
-- Por qué hospedarse aquí
-- Planifica tu estadía
-- relajación
+- Qué hacer
 
-Technical slug:
-- relaxation -> relajacion
+DO NOT use accents in:
+- URLs
+- slugs
+- data attributes
 
-QA BEFORE HANDOFF
+---
 
-Confirm:
-- no unresolved placeholders
+FINAL QA
+
+Before output:
+
+- no placeholders
 - no page-level CSS
-- listing-member-seo.css is linked
-- language switch is directly below #siteHeader
-- hreflang/canonical are correct
-- live map renders if embed URL exists
-- analytics are present
-- Spanish visible accents are correct
-- no accented technical URLs or data attributes
-- no unsupported ranking claims
-- schema validates logically
-- mobile grids collapse correctly
+- CSS file linked
+- language switch correct
+- map logic correct
+- analytics present
+- schema valid
+- mobile responsive
+- no fake claims
+
+---
+
+FINAL GOAL
+
+Each page should:
+- rank for multiple intents
+- adapt to listing features
+- scale across 100+ listings
+- outperform standard directory listings
