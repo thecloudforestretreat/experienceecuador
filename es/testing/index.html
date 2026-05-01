@@ -72,7 +72,7 @@
             "name":"¿Cuántos días necesito para un itinerario por Ecuador?",
             "acceptedAnswer":{
               "@type":"Answer",
-              "text":"Muchos viajeros dedican entre 7 y 14 días para combinar Quito o los Andes con la Amazonía, la Costa del Pacifico o Galápagos. Los viajes cortos funcionan mejor con una o dos regiones, mientras que los viajes mas largos permiten un itinerario multirregion."
+              "text":"Muchos viajeros dedican entre 7 y 14 días para combinar Quito o los Andes con la Amazonía, la Costa del Pacífico o Galápagos. Los viajes cortos funcionan mejor con una o dos regiones, mientras que los viajes mas largos permiten un itinerario multirregion."
             }
           },
           {
@@ -1131,7 +1131,7 @@
 <section class="seo-block" aria-label="Guia del planificador de viajes a Ecuador">
   <h2>Planifica tu viaje a Ecuador con una base mas realista</h2>
   <p>
-    Ecuador es uno de los destinos mas diversos de Sudamerica. En un solo viaje puedes combinar ciudades andinas, lodges en la Amazonía, tiempo de playa en la Costa del Pacifico y viajes enfocados en naturaleza o fauna en Galápagos. Esta pagina te ayuda a construir un itinerario por Ecuador mucho más realista según la duración del viaje, las regiones elegidas y las experiencias que mas te interesan.
+    Ecuador es uno de los destinos mas diversos de Sudamerica. En un solo viaje puedes combinar ciudades andinas, lodges en la Amazonía, tiempo de playa en la Costa del Pacífico y viajes enfocados en naturaleza o fauna en Galápagos. Esta pagina te ayuda a construir un itinerario por Ecuador mucho más realista según la duración del viaje, las regiones elegidas y las experiencias que mas te interesan.
   </p>
 
   <div class="seo-grid">
@@ -1500,7 +1500,7 @@
       if (!result || !result.ok || !Array.isArray(result.blocks) || !result.blocks.length) return "";
 
       const lines = [];
-      lines.push("Experience Ecuador - Planificador de viajes");
+      lines.push("Experience Ecuador - Planificador de Viajes");
       lines.push("");
       lines.push(`Duracion: ${state.days} dias`);
       lines.push(`Regiones: ${Array.from(state.selectedRegionIds).map(regionName).join(", ") || "N/A"}`);
@@ -2160,7 +2160,7 @@ function regionName(id){
 
       const disclaimer = document.createElement('div');
       disclaimer.className = "hint";
-      disclaimer.innerHTML = "<strong>Nota:</strong> Este es un itinerario sugerido generado según tus selecciones. Los tiempos y la logistica pueden variar según la temporada, el trafico y los puntos exactos de recogida.";
+      disclaimer.innerHTML = "<strong>Nota:</strong> Este es un itinerario sugerido generado segun tus selecciones. Los tiempos y la logistica pueden variar segun la temporada, el trafico y los puntos exactos de recogida.";
       wrap.appendChild(disclaimer);
 
       plan.forEach(d => {
@@ -2177,7 +2177,7 @@ function regionName(id){
 
         const blocks = Array.isArray(d.blocks) ? d.blocks : [];
         if (blocks.length === 0) {
-          card.appendChild(renderEmptySlot("Dia", "No se encontraron actividades para esta region según las experiencias seleccionadas. Agrega mas bloques a esta region en itinerary_blocks.json."));
+          card.appendChild(renderEmptySlot("Dia", "No se encontraron actividades para esta region segun las experiencias seleccionadas. Agrega mas bloques a esta region en itinerary_blocks.json."));
         } else {
           const ordered = blocks.slice().sort((a,b) => {
             const ai = TIME_ORDER.includes(a.time_of_day) ? TIME_ORDER.indexOf(a.time_of_day) : 99;
@@ -2283,7 +2283,7 @@ function regionName(id){
       if (!plan || !plan.length) return "";
 
       const lines = [];
-      lines.push("Experience Ecuador - Planificador de viajes");
+      lines.push("Experience Ecuador - Planificador de Viajes");
       lines.push("");
       lines.push(`Duracion: ${state.days} dias`);
       lines.push(`Regiones: ${Array.from(state.selectedRegionIds).map(regionName).join(", ") || "N/A"}`);
@@ -2297,7 +2297,7 @@ function regionName(id){
 
         const blocks = Array.isArray(d.blocks) ? d.blocks : [];
         if (!blocks.length) {
-          lines.push("  - No se encontraron actividades para esta region según las experiencias seleccionadas.");
+          lines.push("  - No se encontraron actividades para esta region segun las experiencias seleccionadas.");
         } else {
           const ordered = blocks.slice().sort((a,b) => {
             const ai = TIME_ORDER.includes(a.time_of_day) ? TIME_ORDER.indexOf(a.time_of_day) : 99;
@@ -2461,23 +2461,6 @@ function regionName(id){
       updateGenerateState();
       syncDefaultFlightToFromRegions();
     });
-
-    // Safety fallback: keep Generate Itinerary synced even if a browser extension, cached script,
-    // or future markup change interrupts a direct pill handler.
-    function eeTripBuilderStateSyncFallback() {
-      document.addEventListener("click", function(e) {
-        const pill = e.target && e.target.closest ? e.target.closest(".pill[data-id]") : null;
-        if (!pill) return;
-        window.setTimeout(updateGenerateState, 0);
-      });
-      if (els.daysSelect) {
-        els.daysSelect.addEventListener("change", function() {
-          window.setTimeout(updateGenerateState, 0);
-        });
-      }
-    }
-
-    eeTripBuilderStateSyncFallback();
 
     els.generateBtn.addEventListener('click', () => {
       const rawSelection = {
