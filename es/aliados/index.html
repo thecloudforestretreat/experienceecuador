@@ -99,8 +99,8 @@
 <body data-page-type="partner_page" data-page-language="es">
   <div id="siteHeader" data-current-lang="es"></div>
   <nav class="rawLangLinks" aria-label="Selector de idioma">
-    <a href="https://experienceecuador.com/partners/" lang="en" hreflang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch" data-analytics-target-language="en">English</a>
-    <a href="https://experienceecuador.com/es/aliados/" lang="es" hreflang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch" data-analytics-target-language="es">Español</a>
+    <a href="https://experienceecuador.com/partners/" lang="en" hreflang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch" data-analytics-page-type="partner_page" data-analytics-target-language="en">English</a>
+    <a href="https://experienceecuador.com/es/aliados/" lang="es" hreflang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch" data-analytics-page-type="partner_page" data-analytics-target-language="es">Español</a>
   </nav>
 <main class="partnersPage" aria-label="Aliados">
     <section class="hero" aria-label="Hero de aliados">
@@ -380,72 +380,8 @@
 </section>
   </main>
   <div id="siteFooter"></div>
-  <script>
-    (function(){
-      const w = window;
-      const dl = w.dataLayer = w.dataLayer || [];
-      const firedScroll = new Set();
-      function emit(eventName, params){
-        dl.push(Object.assign({
-          event: eventName,
-          page_type: document.body.dataset.pageType || "",
-          page_language: document.body.dataset.pageLanguage || "",
-          page_path: location.pathname,
-          page_title: document.title
-        }, params || {}));
-      }
-      w.eeAnalytics = w.eeAnalytics || { emit };
-      emit("page_view_enhanced");
-      document.addEventListener("click", function(e){
-        const target = e.target.closest("a,button");
-        if(!target) return;
-        const eventName = target.dataset.analyticsEvent;
-        if(eventName){
-          emit(eventName, {
-            cta_label: target.dataset.analyticsLabel || target.textContent.trim(),
-            cta_location: target.dataset.analyticsLocation || "",
-            link_url: target.getAttribute("href") || ""
-          });
-        }
-      });
-      const marks = [25, 50, 75, 100];
-      function handleScroll(){
-        const doc = document.documentElement;
-        const max = doc.scrollHeight - window.innerHeight;
-        if(max <= 0) return;
-        const pct = Math.round((window.scrollY / max) * 100);
-        marks.forEach(function(mark){
-          if(pct >= mark && !firedScroll.has(mark)){
-            firedScroll.add(mark);
-            emit("scroll_depth", { scroll_percent: mark });
-          }
-        });
-      }
-      window.addEventListener("scroll", handleScroll, { passive: true });
-      handleScroll();
-    })();
-  </script>
-  <script>
-    (function(){
-      async function injectInclude(id, url){
-        const el = document.getElementById(id);
-        if(!el || el.children.length || el.textContent.trim()) return;
-        const res = await fetch(url, { cache: "no-store" });
-        el.innerHTML = await res.text();
-      }
-
-      Promise.all([
-        injectInclude("siteHeader", "/assets/includes/header.html"),
-        injectInclude("siteFooter", "/assets/includes/footer.html")
-      ]).finally(() => {
-        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
-          const s = document.createElement("script");
-          s.src = "/assets/js/site.js";
-          document.body.appendChild(s);
-        }
-      });
-    })();
-  </script>
+  
+  
 <script>
     (function(){
       function initCarousel(root){
@@ -576,5 +512,25 @@
       initCarousel(document.querySelector(".carousel"));
     })();
   </script>
+<script>
+  (function(){
+    async function inject(id, url){
+      var el = document.getElementById(id);
+      if(!el) return;
+      var res = await fetch(url, { cache: "no-store" });
+      el.innerHTML = await res.text();
+    }
+    Promise.all([
+      inject("siteHeader", "/assets/includes/header.html"),
+      inject("siteFooter", "/assets/includes/footer.html")
+    ]).then(function(){
+      if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+        var s = document.createElement("script");
+        s.src = "/assets/js/site.js";
+        document.body.appendChild(s);
+      }
+    });
+  })();
+</script>
 </body>
 </html>
