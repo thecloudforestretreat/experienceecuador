@@ -16,7 +16,7 @@
     gtag('config', MID, {
       anonymize_ip: true,
       send_page_view: true,
-      debug_mode: true
+      debug_mode: /[?&]debug_mode=true\b/.test(window.location.search)
     });
   })();
 
@@ -624,7 +624,184 @@
     }
   }
 
+
+  /* ==========================================================================
+     EXPERIENCE ECUADOR GLOBAL ANALYTICS ENGINE
+     Central source for all page analytics. Pages provide data-analytics-* only.
+     ========================================================================== */
+
+  function eeAnalyticsGetPageMeta() {
+    var body = document.body || {};
+    var path = window.location.pathname || "/";
+    return {
+      page_type: body.getAttribute ? (body.getAttribute("data-page-type") || "") : "",
+      page_language: body.getAttribute ? (body.getAttribute("data-page-language") || (isSpanishPath(path) ? "es" : "en")) : "",
+      page_path: path,
+      page_title: (document.title || "").trim(),
+      region: body.getAttribute ? (body.getAttribute("data-region") || "") : "",
+      destination: body.getAttribute ? (body.getAttribute("data-destination") || "") : "",
+      experience_type: body.getAttribute ? (body.getAttribute("data-experience-type") || "") : "",
+      member_name: body.getAttribute ? (body.getAttribute("data-member-name") || "") : "",
+      member_category: body.getAttribute ? (body.getAttribute("data-member-category") || "") : "",
+      member_location: body.getAttribute ? (body.getAttribute("data-member-location") || "") : ""
+    };
+  }
+
+  function eeAnalyticsCleanPayload(payload) {
+    var cleaned = {};
+    Object.keys(payload || {}).forEach(function (key) {
+      var value = payload[key];
+      if (value === undefined || value === null) return;
+      if (typeof value === "string" && value.trim() === "") return;
+      cleaned[key] = value;
+    });
+    return cleaned;
+  }
+
+  function eeAnalyticsSend(eventName, payload) {
+    if (!eventName) return false;
+    var data = eeAnalyticsCleanPayload(payload || {});
+    try {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", eventName, data);
+        return true;
+      }
+      if (window.dataLayer && Array.isArray(window.dataLayer)) {
+        window.dataLayer.push(Object.assign({ event: eventName }, data));
+        return true;
+      }
+    } catch (e) {}
+    return false;
+  }
+
+  function eeAnalyticsGetLinkType(href) {
+    href = String(href || "");
+    if (!href) return "";
+    if (/^mailto:/i.test(href)) return "email";
+    if (/^tel:/i.test(href)) return "phone";
+    if (/^(https?:)?\/\/wa\.me\//i.test(href) || href.indexOf("whatsapp") !== -1) return "whatsapp";
+    if (/^#/i.test(href)) return "anchor";
+    if (/^https?:\/\//i.test(href) && href.indexOf("experienceecuador.com") === -1) return "outbound";
+    return "internal";
+  }
+
+  function eeAnalyticsPayloadFromElement(el) {
+    var pageMeta = eeAnalyticsGetPageMeta();
+    var href = el.getAttribute("href") || "";
+    var text = (el.textContent || "").replace(/\s+/g, " ").trim();
+    return Object.assign({}, pageMeta, {
+      cta_label: el.getAttribute("data-analytics-label") || text,
+      cta_location: el.getAttribute("data-analytics-location") || "",
+      link_text: text,
+      link_url: href,
+      link_type: eeAnalyticsGetLinkType(href),
+      section_name: el.getAttribute("data-analytics-section") || el.getAttribute("data-analytics-location") || "",
+      target_language: el.getAttribute("data-analytics-target-language") || "",
+      region: el.getAttribute("data-analytics-region") || pageMeta.region,
+      experience_type: el.getAttribute("data-analytics-experience") || pageMeta.experience_type,
+      member_name: el.getAttribute("data-analytics-member") || pageMeta.member_name || el.getAttribute("data-title") || "",
+      member_category: el.getAttribute("data-category") || pageMeta.member_category,
+      member_location: el.getAttribute("data-location") || pageMeta.member_location,
+      partner_name: el.getAttribute("data-analytics-partner") || "",
+      form_name: el.getAttribute("data-analytics-form") || "",
+      item_id: el.getAttribute("data-id") || "",
+      action: el.getAttribute("data-action") || ""
+    });
+  }
+
+  function eeAnalyticsInferEvent(el) {
+    if (!el || !el.getAttribute) return "";
+    var explicit = el.getAttribute("data-analytics-event");
+    if (explicit) return explicit;
+    var href = el.getAttribute("href") || "";
+    var type = eeAnalyticsGetLinkType(href);
+    if (type === "email") return "member_email_click";
+    if (type === "whatsapp") return "member_whatsapp_click";
+    if (type === "outbound") return "outbound_link_click";
+    if (type === "internal" || type === "anchor") return "internal_link_click";
+    return "";
+  }
+
+  function eeAnalyticsTrackClick(el) {
+    var eventName = eeAnalyticsInferEvent(el);
+    if (!eventName) return;
+    eeAnalyticsSend(eventName, eeAnalyticsPayloadFromElement(el));
+  }
+
+  function eeAnalyticsInitClicks() {
+    if (document.__eeAnalyticsClicksInit) return;
+    document.__eeAnalyticsClicksInit = true;
+    document.addEventListener("click", function (e) {
+      var el = e.target && e.target.closest ? e.target.closest("[data-analytics-event], a[href]") : null;
+      if (!el) return;
+      if (!el.getAttribute("data-analytics-event") && el.tagName !== "A") return;
+      eeAnalyticsTrackClick(el);
+    }, true);
+  }
+
+  function eeAnalyticsInitPageView() {
+    if (window.__eeAnalyticsPageViewSent) return;
+    window.__eeAnalyticsPageViewSent = true;
+    eeAnalyticsSend("page_view_enhanced", eeAnalyticsGetPageMeta());
+  }
+
+  function eeAnalyticsInitScrollDepth() {
+    if (window.__eeAnalyticsScrollDepthInit) return;
+    window.__eeAnalyticsScrollDepthInit = true;
+    var marks = {25:false, 50:false, 75:false, 90:false};
+    function checkScrollDepth() {
+      var doc = document.documentElement;
+      var body = document.body;
+      if (!doc || !body) return;
+      var scrollTop = window.pageYOffset || doc.scrollTop || body.scrollTop || 0;
+      var height = Math.max(body.scrollHeight, doc.scrollHeight, body.offsetHeight, doc.offsetHeight, body.clientHeight, doc.clientHeight);
+      var viewport = window.innerHeight || doc.clientHeight || 0;
+      var percent = height <= viewport ? 100 : Math.round(((scrollTop + viewport) / height) * 100);
+      [25, 50, 75, 90].forEach(function (mark) {
+        if (!marks[mark] && percent >= mark) {
+          marks[mark] = true;
+          eeAnalyticsSend("scroll_depth", Object.assign({}, eeAnalyticsGetPageMeta(), { scroll_percent: mark }));
+        }
+      });
+    }
+    window.addEventListener("scroll", checkScrollDepth, { passive: true });
+    window.addEventListener("load", checkScrollDepth);
+    setTimeout(checkScrollDepth, 800);
+  }
+
+  function eeAnalyticsInitForms() {
+    if (document.__eeAnalyticsFormsInit) return;
+    document.__eeAnalyticsFormsInit = true;
+    document.addEventListener("submit", function (e) {
+      var form = e.target;
+      if (!form || !form.getAttribute) return;
+      var formName = form.getAttribute("data-analytics-form") || form.getAttribute("name") || form.getAttribute("id") || "form";
+      eeAnalyticsSend("form_submit_success", Object.assign({}, eeAnalyticsGetPageMeta(), { form_name: formName }));
+    }, true);
+    document.addEventListener("focusin", function (e) {
+      var form = e.target && e.target.closest ? e.target.closest("form") : null;
+      if (!form || form.__eeAnalyticsFormStarted) return;
+      form.__eeAnalyticsFormStarted = true;
+      var formName = form.getAttribute("data-analytics-form") || form.getAttribute("name") || form.getAttribute("id") || "form";
+      eeAnalyticsSend("form_start", Object.assign({}, eeAnalyticsGetPageMeta(), { form_name: formName }));
+    }, true);
+  }
+
+  function eeAnalyticsBoot() {
+    eeAnalyticsInitPageView();
+    eeAnalyticsInitScrollDepth();
+    eeAnalyticsInitClicks();
+    eeAnalyticsInitForms();
+  }
+
+  window.eeAnalytics = {
+    send: eeAnalyticsSend,
+    pageMeta: eeAnalyticsGetPageMeta,
+    trackClick: eeAnalyticsTrackClick
+  };
+
   function bootAll() {
+    eeAnalyticsBoot();
     bootHeaderWhenReady();
     bootWhatsAppWhenReady();
     bootCarouselsWhenReady();
