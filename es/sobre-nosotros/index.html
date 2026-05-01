@@ -61,6 +61,7 @@
         "name": "Sobre Experience Ecuador",
         "description": "Conoce cómo Experience Ecuador ayuda a planificar mejores rutas, comparar regiones y construir itinerarios más fuertes por Ecuador.",
         "inLanguage": "es",
+        "dateModified": "2026-05-01",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Experience Ecuador",
@@ -110,8 +111,8 @@
 <body data-page-type="utility_page" data-page-language="es">
   <div id="siteHeader" data-current-lang="es"></div>
   <nav class="rawLangLinks" aria-label="Selector de idioma">
-    <a href="https://experienceecuador.com/about/" lang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
-    <a href="https://experienceecuador.com/es/sobre-nosotros/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+    <a href="https://experienceecuador.com/about/" lang="en" hreflang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch" data-analytics-page-type="utility_page" data-analytics-target-language="en">English</a>
+    <a href="https://experienceecuador.com/es/sobre-nosotros/" lang="es" hreflang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch" data-analytics-page-type="utility_page" data-analytics-target-language="es">Español</a>
   </nav>
 
   <main class="wrap utilityPage">
@@ -125,7 +126,7 @@
     </section>
 
     <section class="utilityGrid">
-      <div class="utilityCard">
+      <div class="utilityCard data-analytics-event="content_section_view" data-analytics-label="About content" data-analytics-location="about_body" data-analytics-page-type="utility_page">>
         <h2>Lo que estamos construyendo</h2>
         <p>
           Una plataforma cuidadosamente curada que te ayuda a explorar Ecuador por región y por experiencia.
@@ -137,7 +138,7 @@
       </div>
 
       <div class="utilityStack">
-        <div class="utilityMini">
+        <div class="utilityMini data-analytics-event="content_section_view" data-analytics-label="About content" data-analytics-location="about_body" data-analytics-page-type="utility_page">>
           <h3>Hecho para viajeros como tú</h3>
           <ul>
             <li>Visitantes internacionales que buscan guía y planificación</li>
@@ -147,7 +148,7 @@
           </ul>
         </div>
 
-        <div class="utilityMini">
+        <div class="utilityMini data-analytics-event="content_section_view" data-analytics-label="About content" data-analytics-location="about_body" data-analytics-page-type="utility_page">>
           <h3>Qué viene después</h3>
           <ul>
             <li>Centros regionales: Galápagos, Costa, Andes, Amazonía</li>
@@ -166,116 +167,39 @@
       <div class="utilityLinkCard">
         <h2>Explora Ecuador por región</h2>
         <p>Compara Galápagos, Costa, Andes y Amazonía antes de elegir la ruta que encaja con tu estilo de viaje.</p>
-        <a href="/es/regiones/" data-analytics-event="primary_cta_click" data-analytics-label="Ver Regiones" data-analytics-location="utility_links">Ver Regiones</a>
+        <a href="/es/regiones/" data-analytics-event="utility_cta_click" data-analytics-label="Ver Regiones" data-analytics-location="utility_links" data-analytics-page-type="utility_page">Ver Regiones</a>
       </div>
       <div class="utilityLinkCard">
         <h2>Encuentra recomendados curados</h2>
         <p>Explora alojamientos, experiencias y socios locales seleccionados para planificar con más confianza.</p>
-        <a href="/es/recomendados/" data-analytics-event="primary_cta_click" data-analytics-label="Ver Recomendados" data-analytics-location="utility_links">Ver Recomendados</a>
+        <a href="/es/recomendados/" data-analytics-event="utility_cta_click" data-analytics-label="Ver Recomendados" data-analytics-location="utility_links" data-analytics-page-type="utility_page">Ver Recomendados</a>
       </div>
       <div class="utilityLinkCard">
         <h2>Empieza a planificar tu viaje</h2>
         <p>Usa el planificador para conectar fechas, intereses y destinos de Ecuador en una ruta más clara.</p>
-        <a href="/es/planificador-de-viajes/" data-analytics-event="primary_cta_click" data-analytics-label="Usar Planificador" data-analytics-location="utility_links">Usar Planificador</a>
+        <a href="/es/planificador-de-viajes/" data-analytics-event="utility_cta_click" data-analytics-label="Usar Planificador" data-analytics-location="utility_links" data-analytics-page-type="utility_page">Usar Planificador</a>
       </div>
     </section>
   </main>
-
   <div id="siteFooter"></div>
 
   <script>
-    (function () {
-      var body = document.body;
-      var pageType = body.getAttribute("data-page-type") || "page";
-      var pageLanguage = body.getAttribute("data-page-language") || document.documentElement.lang || "es";
-      var pageTitle = document.title;
-      var pagePath = location.pathname;
-      var firedScroll = {};
-
-      function emit(eventName, params) {
-        var payload = Object.assign({
-          page_type: pageType,
-          page_language: pageLanguage,
-          page_title: pageTitle,
-          page_path: pagePath
-        }, params || {});
-
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push(Object.assign({ event: eventName }, payload));
-        if (typeof window.gtag === "function") {
-          window.gtag("event", eventName, payload);
-        }
-      }
-
-      function sectionNameFor(el) {
-        var section = el.closest("section[aria-label]");
-        return section ? section.getAttribute("aria-label") : "";
-      }
-
-      window.eeAnalytics = window.eeAnalytics || {};
-      window.eeAnalytics.emit = emit;
-
-      emit("page_view_enhanced");
-
-      document.addEventListener("click", function (event) {
-        var link = event.target.closest("a[href]");
-        if (!link) return;
-
-        var explicitEvent = link.getAttribute("data-analytics-event");
-        if (explicitEvent) {
-          emit(explicitEvent, {
-            cta_label: link.getAttribute("data-analytics-label") || link.textContent.trim(),
-            cta_location: link.getAttribute("data-analytics-location") || sectionNameFor(link),
-            link_url: link.href,
-            section_name: sectionNameFor(link)
-          });
-          return;
-        }
-
-        var href = link.getAttribute("href") || "";
-        var absoluteHref = link.href || href;
-        var isInternal = absoluteHref.indexOf(location.origin) === 0 || href.indexOf("/") === 0;
-        emit(isInternal ? "internal_link_click" : "outbound_link_click", {
-          link_text: link.textContent.trim(),
-          link_url: absoluteHref,
-          link_type: isInternal ? "internal" : "outbound",
-          section_name: sectionNameFor(link)
-        });
-      }, true);
-
-      function onScroll() {
-        var doc = document.documentElement;
-        var max = doc.scrollHeight - window.innerHeight;
-        if (max <= 0) return;
-        var pct = Math.round((window.scrollY / max) * 100);
-        [25, 50, 75, 90].forEach(function (mark) {
-          if (pct >= mark && !firedScroll[mark]) {
-            firedScroll[mark] = true;
-            emit("scroll_depth", { scroll_percent: mark });
-          }
-        });
-      }
-
-      document.addEventListener("scroll", onScroll, { passive: true });
-    })();
-  </script>
-  <script>
     (function(){
-      async function injectInclude(id, url){
-        const el = document.getElementById(id);
-        if(!el || el.children.length || el.textContent.trim()) return;
-        const res = await fetch(url, { cache: "no-store" });
+      async function inject(id, url){
+        var el = document.getElementById(id);
+        if(!el) return;
+        var res = await fetch(url, { cache: "no-store" });
         el.innerHTML = await res.text();
       }
       Promise.all([
-        injectInclude("siteHeader", "/assets/includes/header.html"),
-        injectInclude("siteFooter", "/assets/includes/footer.html")
-      ]).finally(function () {
-        var existing = document.querySelector('script[src="/assets/js/site.js"]');
-        if (existing) return;
-        var script = document.createElement("script");
-        script.src = "/assets/js/site.js";
-        document.body.appendChild(script);
+        inject("siteHeader", "/assets/includes/header.html"),
+        inject("siteFooter", "/assets/includes/footer.html")
+      ]).then(function(){
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
       });
     })();
   </script>
