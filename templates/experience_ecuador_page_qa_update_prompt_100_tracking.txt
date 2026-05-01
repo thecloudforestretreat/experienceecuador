@@ -128,6 +128,42 @@ Rules:
 - If page-level CSS must remain, explain why in the final QA summary
 - Never alter shared CSS unless I explicitly ask to update CSS
 
+
+CENTRAL ANALYTICS EXECUTION LAYER - MANDATORY
+Experience Ecuador analytics must be executed centrally through /assets/js/site.js.
+
+A page is NOT ready to go live if it only has data-analytics-* attributes but does not load /assets/js/site.js.
+
+Every page must either:
+- load /assets/js/site.js through the guarded header/footer include loader, OR
+- include a direct /assets/js/site.js script only if the page does not use the guarded loader.
+
+Preferred standard:
+The footer/header include loader injects /assets/js/site.js exactly once.
+
+Do NOT add page-level analytics scripts for page_view_enhanced, scroll_depth, or click tracking unless explicitly requested.
+Do NOT create duplicate analytics logic in individual pages.
+Do NOT add /assets/js/analytics.js unless the site architecture is changed later.
+
+site.js must contain the global analytics engine that:
+- loads GA4 using G-3EDLVGV2HD
+- exposes window.gtag
+- sends page_view_enhanced
+- sends scroll_depth for 25, 50, 75, and 90
+- listens globally for clicks on [data-analytics-event]
+- sends the exact data-analytics-event value to GA4
+- builds payloads from data-analytics-label, data-analytics-location, data-analytics-page-type, data-analytics-region, data-analytics-experience, data-analytics-member, data-analytics-partner, and data-analytics-form
+- supports internal links, outbound links, member links, language switch, WhatsApp, gallery, FAQ, and CTAs centrally
+
+Hard fail conditions:
+- /assets/js/site.js is not loaded
+- gtag is undefined on a live page after site.js loads
+- data-analytics-* attributes exist but no central click listener exists in site.js
+- page_view_enhanced is missing from site.js
+- scroll_depth is missing from site.js
+- [data-analytics-event] click listener is missing from site.js
+- page contains duplicate page-level analytics scripts that conflict with site.js
+
 ANALYTICS STANDARD
 Use consistent event names and data attributes.
 
@@ -311,6 +347,11 @@ Confirm:
 - [ ] Schema URLs and breadcrumbs are correct
 - [ ] Header/footer include loader exists exactly once
 - [ ] site.js is dynamically loaded once through the guarded loader
+- [ ] /assets/js/site.js is loaded exactly once, preferably through the guarded include loader
+- [ ] /assets/js/site.js contains the global analytics engine
+- [ ] No duplicate page-level analytics script conflicts with /assets/js/site.js
+- [ ] Central [data-analytics-event] click listener exists in /assets/js/site.js
+- [ ] page_view_enhanced and scroll_depth are executed by /assets/js/site.js, not duplicated page-by-page
 - [ ] No duplicate simple site.js script tag
 - [ ] Global CSS is used where possible
 - [ ] Page-level CSS is removed unless necessary
