@@ -1,0 +1,346 @@
+EXPERIENCE ECUADOR EN/ES PAGE QA + UPDATE PROMPT
+
+Use this prompt when I upload an English page and its Spanish counterpart and ask you to review, audit, or update them.
+
+GOAL
+Audit and fully update the two uploaded HTML files so they are ready to go live. Return complete downloadable .txt files for both pages. Do not return partial snippets unless I explicitly ask for snippets.
+
+MOST IMPORTANT PRIORITIES
+1. Language switch
+2. Analytics
+3. Global CSS
+4. Header/footer injection
+5. Correct EN/ES paths and hreflang/canonical
+6. Spanish accents only in user-facing Spanish copy and metadata
+7. Never add accents to URLs, slugs, classes, IDs, data attributes, file paths, image paths, schema URLs, asset paths, or technical identifiers
+
+CRITICAL RULE ABOUT ACCENTS
+Spanish pages must use correct South American Spanish accents in visible copy and metadata.
+Proper names must keep their real accents on both EN and ES pages, such as Galapagos/Galápagos when the official page style requires it, Yasuní, Misahuallí, San Cristóbal, Montañita, Puerto López, Chocó Andino, etc.
+Do NOT add accents to:
+- URLs
+- slugs
+- image paths
+- file paths
+- CSS class names
+- IDs
+- data attributes
+- schema URLs
+- JavaScript identifiers
+- analytics event names
+- page_type values
+- region IDs
+- location IDs
+- asset folder names
+
+Example:
+Correct technical path:
+  /assets/images/regions/andes/cotacachi/EE-Carousel-Cotacachi-1.jpg
+
+Incorrect technical path:
+  /assets/images/regións/andes/cotacachi/EE-Carousel-Cotacachi-1.jpg
+
+Correct analytics/page type:
+  data-analytics-page-type="region_destination_page"
+
+Incorrect:
+  data-analytics-page-type="región_destination_page"
+
+LANGUAGE SWITCH STANDARD
+Every bilingual page must have the raw EN/ES language switch immediately after the site header container and before hero/main content.
+
+English page pattern:
+<div id="siteHeader" data-current-lang="en"></div>
+<nav class="rawLangLinks" aria-label="Language switch">
+  <a href="FULL_EN_URL" lang="en" hreflang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch" data-analytics-page-type="PAGE_TYPE" data-analytics-target-language="en">English</a>
+  <a href="FULL_ES_URL" lang="es" hreflang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch" data-analytics-page-type="PAGE_TYPE" data-analytics-target-language="es">Español</a>
+</nav>
+
+Spanish page pattern:
+<div id="siteHeader" data-current-lang="es"></div>
+<nav class="rawLangLinks" aria-label="Selector de idioma">
+  <a href="FULL_EN_URL" lang="en" hreflang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch" data-analytics-page-type="PAGE_TYPE" data-analytics-target-language="en">English</a>
+  <a href="FULL_ES_URL" lang="es" hreflang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch" data-analytics-page-type="PAGE_TYPE" data-analytics-target-language="es">Español</a>
+</nav>
+
+Language switch rules:
+- Keep class exactly: rawLangLinks
+- Use real raw HTML anchor tags
+- Do not rely only on JavaScript-injected language links
+- Use hreflang on both links
+- Use aria-current="page" only on the active language
+- Add language_switch_click analytics to both links
+- Keep the switch directly under #siteHeader
+- Do not add page-level switch CSS unless truly necessary
+
+HEADER AND FOOTER STANDARD
+Every page must include:
+<div id="siteHeader" data-current-lang="en"></div>
+or
+<div id="siteHeader" data-current-lang="es"></div>
+
+And:
+<div id="siteFooter"></div>
+
+The footer/header include loader must be present exactly once:
+<script>
+  (function(){
+    async function inject(id, url){
+      var el = document.getElementById(id);
+      if(!el) return;
+      var res = await fetch(url, { cache: "no-store" });
+      el.innerHTML = await res.text();
+    }
+    Promise.all([
+      inject("siteHeader", "/assets/includes/header.html"),
+      inject("siteFooter", "/assets/includes/footer.html")
+    ]).then(function(){
+      if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+        var s = document.createElement("script");
+        s.src = "/assets/js/site.js";
+        document.body.appendChild(s);
+      }
+    });
+  })();
+</script>
+
+Rules:
+- Do not use header-es.html or footer-es.html
+- Both EN and ES pages use the same /assets/includes/header.html and /assets/includes/footer.html
+- Do not include a separate simple <script src="/assets/js/site.js"></script> if the guarded loader is already used
+- Do not duplicate the include loader
+- The loader must remain valid JavaScript
+
+GLOBAL CSS STANDARD
+Use global CSS whenever possible.
+Default CSS stack:
+<link rel="stylesheet" href="/assets/css/header.css">
+<link rel="stylesheet" href="/assets/css/footer.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+
+For listing member pages, also include:
+<link rel="stylesheet" href="/assets/css/listing-member-seo.css">
+
+Rules:
+- Prefer shared classes from site.css and listing-member-seo.css
+- Do not add page-level CSS unless a page truly needs a unique module that is not available globally
+- If page-level CSS exists, audit whether it can be removed
+- If page-level CSS must remain, explain why in the final QA summary
+- Never alter shared CSS unless I explicitly ask to update CSS
+
+ANALYTICS STANDARD
+Use consistent event names and data attributes.
+
+Sitewide events where applicable:
+- page_view_enhanced
+- language_switch_click
+- primary_cta_click
+- secondary_cta_click
+- internal_link_click
+- outbound_link_click
+- scroll_depth
+- faq_expand
+
+Region / experience hub pages:
+- hub_card_click
+- hub_section_cta_click
+- hub_comparison_click
+- hub_related_link_click
+
+Member pages:
+- member_gallery_click
+- member_contact_click
+- member_whatsapp_click
+- member_email_click
+- member_booking_click
+- member_external_website_click
+- member_cta_click
+
+Recommendations hub pages:
+- recommendation_filter_use
+- recommendation_sort_use
+- recommendation_card_click
+- recommendation_pagination_click
+- recommendation_load_more
+
+Use these parameter/data attribute names consistently:
+- page_type
+- page_language
+- page_path
+- page_title
+- cta_label
+- cta_location
+- link_text
+- link_url
+- link_type
+- section_name
+- region
+- experience_type
+- member_name
+- member_category
+- member_location
+- partner_name
+- form_name
+- error_message
+- scroll_percent
+
+Tracked elements should use:
+- data-analytics-event
+- data-analytics-label
+- data-analytics-location
+- data-analytics-page-type
+- data-analytics-region
+- data-analytics-experience
+- data-analytics-member
+- data-analytics-partner
+- data-analytics-form
+
+Analytics rules:
+- Do not invent one-off event names
+- Do not rename the same concept across pages
+- Track language switch with language_switch_click
+- Track scroll milestones: 25, 50, 75, 90
+- Internal Experience Ecuador links use internal_link_click unless they are hub cards or hub CTAs
+- External links use outbound_link_click unless they are member-specific links
+- Member partner website links use member_external_website_click
+- Member WhatsApp links use member_whatsapp_click
+- Region hub cards use hub_card_click
+- Region hub buttons use hub_section_cta_click
+- FAQ items use faq_expand where applicable
+
+URL, HREFLANG, CANONICAL QA
+For both pages:
+- Canonical must match that page's actual live URL
+- EN alternate must point to EN URL
+- ES alternate must point to ES URL
+- x-default should usually point to EN URL
+- og:url must match canonical
+- Schema URL and breadcrumb URLs must match the correct paths
+- No singular/plural path mismatch, for example /region/ vs /regions/
+- Do not change English image URLs on Spanish pages unless the actual file path is different. Spanish pages normally reuse the same image asset paths as English pages.
+
+IMAGE AND ASSET PATH QA
+Before handoff, verify:
+- No accented characters in image URLs
+- No accented characters in CSS URLs
+- No accented characters in JS URLs
+- Same image URLs are preserved across EN and ES pages unless the source page intentionally differs
+- Paths like /assets/images/regions/... must remain unaccented
+- Class names like hero-regions-andes must remain unaccented
+
+SPANISH COPY QA
+Spanish page visible copy and metadata should use correct accents and local Spanish phrasing.
+Examples:
+- Qué
+- Cómo
+- Dónde
+- también
+- fácil
+- días
+- estadía
+- ubicación
+- región when visible text
+- planificación
+- guía
+- imágenes
+
+But do not change technical strings like:
+- regions
+- data-region
+- region_destination_page
+- /assets/images/regions/
+- hero-regions-andes
+
+AUDIT-FIRST WORKFLOW
+Before editing:
+1. Identify page type for both files
+2. Identify EN URL and ES URL
+3. Check language switch
+4. Check header/footer loader
+5. Check CSS stack and page-level CSS
+6. Check canonical/hreflang/og/schema URLs
+7. Check analytics coverage
+8. Check image paths and technical attributes
+9. Check Spanish visible copy and metadata accents
+10. Check unresolved placeholders
+
+UPDATE WORKFLOW
+When updating:
+1. Preserve the page content and layout unless a fix is required
+2. Preserve image URLs exactly unless they are broken or technically incorrect
+3. Use global CSS wherever possible
+4. Add or repair only the missing/incorrect standards
+5. Do not introduce new page-level CSS if global CSS can handle the page
+6. Do not change unrelated content
+7. Never add accents to technical strings
+8. Return full complete .txt files, not snippets
+
+
+MANDATORY 100% TRACKING PASS
+Do not return files that are only "safe enough" or "close." Before handoff, bring the pages as close to 100% as possible in the same pass. This means:
+- Remove duplicate rawLangLinks blocks.
+- Add exactly one fully compliant rawLangLinks block.
+- Add full language_switch_click attributes including aria-current, data-analytics-label, data-analytics-location, data-analytics-page-type, data-analytics-region when applicable, and data-analytics-target-language.
+- Add scroll_depth tracking for 25, 50, 75, and 90.
+- Normalize hero_cta_click to hub_section_cta_click on region/destination pages.
+- Add hub_card_click to region/destination cards and mini-cards.
+- Add internal_link_click to ordinary internal links.
+- Add outbound_link_click to external links.
+- Add faq_expand to FAQ cards/items.
+- Add gallery/carousel button tracking where carousel controls exist.
+- Preserve global CSS and do not add page-level CSS unless it is absolutely necessary.
+- Preserve all image URLs exactly unless broken.
+- Never add accents to technical paths, file names, IDs, classes, URLs, or data attributes.
+- Add dateModified in schema when updating page schema, but do not add <meta name="last-modified">.
+- Return only files that pass the final QA checklist as ready to go live.
+
+
+FINAL QA CHECKLIST BEFORE SAYING READY TO GO LIVE
+Confirm:
+- [ ] Valid HTML structure and doctype
+- [ ] Correct html lang
+- [ ] Correct body data-page-language
+- [ ] #siteHeader has correct data-current-lang
+- [ ] rawLangLinks is directly under #siteHeader
+- [ ] Active language has aria-current="page"
+- [ ] Both language links have lang and hreflang
+- [ ] Both language links track language_switch_click
+- [ ] Canonical is correct
+- [ ] hreflang EN, ES, and x-default are correct
+- [ ] og:url is correct
+- [ ] Schema URLs and breadcrumbs are correct
+- [ ] Header/footer include loader exists exactly once
+- [ ] site.js is dynamically loaded once through the guarded loader
+- [ ] No duplicate simple site.js script tag
+- [ ] Global CSS is used where possible
+- [ ] Page-level CSS is removed unless necessary
+- [ ] Analytics events match the page type
+- [ ] scroll_depth tracking exists where page-level analytics are present
+- [ ] Important CTAs, cards, FAQs, internal links, and outbound/member links are tracked
+- [ ] No unresolved placeholders like {{...}}
+- [ ] No accented technical paths or attributes
+- [ ] No accented image/CSS/JS URLs
+- [ ] Spanish page has proper accents in visible copy and metadata
+- [ ] English page does not contain accidental Spanish UI copy, except proper names
+- [ ] EN/ES image paths remain consistent unless intentionally different
+
+FINAL RESPONSE FORMAT
+When you return files, always state clearly:
+
+Ready to go live: YES or NO
+
+Then list the downloadable files:
+- English file
+- Spanish file
+
+Then give a short QA summary:
+- Language switch: passed/failed
+- Analytics: passed/failed
+- Global CSS: passed/failed
+- Header/footer: passed/failed
+- Canonical/hreflang: passed/failed
+- Technical paths: passed/failed
+- Spanish accents: passed/failed
+
+If not ready, explain exactly what is still blocking.
+Do not say ready to go live unless the QA checklist passes.
