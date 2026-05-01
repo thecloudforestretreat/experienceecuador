@@ -1002,7 +1002,7 @@
           </div>
 
           <div class="actions">
-            <button class="btn primary" id="generateBtn" type="button" disabled data-analytics-event="trip_builder_generate_itinerary" data-analytics-label="Generar itinerario" data-analytics-location="builder_panel" data-analytics-page-type="trip_builder">Generar Itinerario</button>
+            <button class="btn primary" id="generateBtn" type="button" disabled>Generar Itinerario</button>
             <button class="btn" id="resetBtn" type="button" data-analytics-event="secondary_cta_click" data-analytics-label="Reiniciar" data-analytics-location="builder_panel" data-analytics-page-type="trip_builder">Reiniciar</button>
           </div>
         </section>
@@ -1237,6 +1237,31 @@
 
     // ===== TRIP BUILDER =====
     const DATA = { regions: null, experiences: null, blocks: null };
+
+    function safeAnalyticsEmit(eventName, params) {
+      try {
+        if (window.eeAnalytics && typeof window.eeAnalytics.emit === "function") {
+          window.eeAnalytics.emit(eventName, params || {});
+        } else if (typeof window.gtag === "function") {
+          window.gtag("event", eventName, params || {});
+        }
+      } catch (e) {
+        console.warn("Trip Builder analytics skipped:", eventName, e);
+      }
+    }
+
+    function safeAnalyticsFormStart(formName) {
+      try {
+        if (window.eeAnalytics && typeof window.eeAnalytics.markFormStart === "function") {
+          window.eeAnalytics.markFormStart(formName);
+        } else {
+          safeAnalyticsEmit("form_start", { form_name: formName });
+        }
+      } catch (e) {
+        console.warn("Trip Builder form analytics skipped:", formName, e);
+      }
+    }
+
 
     const state = {
       days: 5,
@@ -1699,9 +1724,7 @@
         tripEmailEls.inviteList.appendChild(r.wrap);
         updateInviteControls();
         updateRecipientCount();
-        if (window.eeAnalytics) {
-          window.eeAnalytics.emit("trip_builder_add_traveler", { traveler_count: inviteRows.length });
-        }
+        safeAnalyticsEmit("trip_builder_add_traveler", { traveler_count: inviteRows.length });
       });
     }
 
@@ -1839,12 +1862,10 @@ function createPill(item, type) {
           }
 
           renderRegionPills();
-          if (window.eeAnalytics) {
-            window.eeAnalytics.emit("trip_builder_region_select", {
-              region: id,
-              selected_regions: Array.from(state.selectedRegionIds).join("|")
-            });
-          }
+          safeAnalyticsEmit("trip_builder_region_select", {
+            region: id,
+            selected_regions: Array.from(state.selectedRegionIds).join("|")
+          });
           updateHints();
           updateGenerateState();
           syncDefaultFlightToFromRegions();
@@ -1855,12 +1876,10 @@ function createPill(item, type) {
         else state.selectedExperienceIds.add(id);
 
         renderExperiencePills();
-        if (window.eeAnalytics) {
-          window.eeAnalytics.emit("trip_builder_experience_select", {
-            experience_type: id,
-            selected_experiences: Array.from(state.selectedExperienceIds).join("|")
-          });
-        }
+        safeAnalyticsEmit("trip_builder_experience_select", {
+          experience_type: id,
+          selected_experiences: Array.from(state.selectedExperienceIds).join("|")
+        });
         updateHints();
         updateGenerateState();
       });
@@ -2446,9 +2465,7 @@ function regionName(id){
 
     els.daysSelect.addEventListener('change', () => {
       state.days = Number(els.daysSelect.value);
-      if (window.eeAnalytics) {
-        window.eeAnalytics.emit("trip_builder_days_change", { trip_days: state.days });
-      }
+      safeAnalyticsEmit("trip_builder_days_change", { trip_days: state.days });
 
       const maxRegions = getMaxRegionsForDays(state.days);
       const selected = Array.from(state.selectedRegionIds);
@@ -2463,18 +2480,13 @@ function regionName(id){
     });
 
     els.generateBtn.addEventListener('click', () => {
+      if (els.generateBtn.disabled) return;
+
       const rawSelection = {
         days: Number(els.daysSelect ? els.daysSelect.value : state.days || 0),
         regions: Array.from(state.selectedRegionIds),
         experiences: Array.from(state.selectedExperienceIds)
       };
-      if (window.eeAnalytics) {
-        window.eeAnalytics.emit("trip_builder_generate_itinerary", {
-          trip_days: rawSelection.days,
-          selected_regions: rawSelection.regions.join("|"),
-          selected_experiences: rawSelection.experiences.join("|")
-        });
-      }
 
       const plan = generateItinerary();
 
@@ -2483,6 +2495,12 @@ function regionName(id){
       renderItinerary(plan);
       state.lastItineraryText = buildItineraryText(plan);
       enableEmailButtonIfReady();
+
+      safeAnalyticsEmit("trip_builder_generate_itinerary", {
+        trip_days: rawSelection.days,
+        selected_regions: rawSelection.regions.join("|"),
+        selected_experiences: rawSelection.experiences.join("|")
+      });
     });
 
     els.resetBtn.addEventListener('click', () => {
@@ -2524,7 +2542,7 @@ function regionName(id){
       tripEmailEls.form.addEventListener('submit', async (ev) => {
         ev.preventDefault();
         clearEmailStatus();
-        if (window.eeAnalytics) window.eeAnalytics.markFormStart("trip_builder_email_form");
+        safeAnalyticsFormStart("trip_builder_email_form");
 
         if (!TRIP_EMAIL_WEBAPP_URL || TRIP_EMAIL_WEBAPP_URL.indexOf("http") !== 0) {
           setEmailStatus("Falta la URL del Web App. Pega tu URL de Apps Script en TRIP_EMAIL_WEBAPP_URL.", "error");
@@ -2581,9 +2599,7 @@ function regionName(id){
 
         if (!payload.first_name || !payload.last_name) {
           setEmailStatus("Por favor completa nombre y apellido del viajero principal.", "error");
-          if (window.eeAnalytics) {
-            window.eeAnalytics.emit("form_submit_error", { form_name: "trip_builder_email_form", error_message: "missing_name_fields" });
-          }
+          safeAnalyticsEmit("form_submit_error", { form_name: "trip_builder_email_form", error_message: "missing_name_fields" });
           return;
         }
 
@@ -2604,9 +2620,7 @@ function regionName(id){
           } else {
             await res.text().catch(() => "");
             setEmailStatus("Fallo el envio. Revisa que el Web App este publicado con acceso para cualquiera e intentalo de nuevo.", "error");
-            if (window.eeAnalytics) {
-              window.eeAnalytics.emit("form_submit_error", { form_name: "trip_builder_email_form", error_message: "webapp_access_error" });
-            }
+            safeAnalyticsEmit("form_submit_error", { form_name: "trip_builder_email_form", error_message: "webapp_access_error" });
             tripEmailEls.btn.textContent = "Enviar itinerario";
             enableEmailButtonIfReady();
             return;
@@ -2614,27 +2628,21 @@ function regionName(id){
 
           if (!res.ok || !json || json.ok !== true) {
             setEmailStatus("Ocurrio un error al enviar tu itinerario. Intenta de nuevo.", "error");
-            if (window.eeAnalytics) {
-              window.eeAnalytics.emit("form_submit_error", { form_name: "trip_builder_email_form", error_message: "submit_failed" });
-            }
+            safeAnalyticsEmit("form_submit_error", { form_name: "trip_builder_email_form", error_message: "submit_failed" });
             return;
           }
 
           const total = (json.total_recipients || 1);
           setEmailStatus(`Enviado a ${total} destinatario(s). Revisa las bandejas en un minuto.`, "ok");
-          if (window.eeAnalytics) {
-            window.eeAnalytics.emit("form_submit_success", { form_name: "trip_builder_email_form" });
-            window.eeAnalytics.emit("trip_builder_email_itinerary", {
-              form_name: "trip_builder_email_form",
-              trip_days: state.days,
-              traveler_count: total
-            });
-          }
+          safeAnalyticsEmit("form_submit_success", { form_name: "trip_builder_email_form" });
+          safeAnalyticsEmit("trip_builder_email_itinerary", {
+            form_name: "trip_builder_email_form",
+            trip_days: state.days,
+            traveler_count: total
+          });
         } catch (err) {
           setEmailStatus("Error de red. Intenta de nuevo.", "error");
-          if (window.eeAnalytics) {
-            window.eeAnalytics.emit("form_submit_error", { form_name: "trip_builder_email_form", error_message: "network_error" });
-          }
+          safeAnalyticsEmit("form_submit_error", { form_name: "trip_builder_email_form", error_message: "network_error" });
         } finally {
           tripEmailEls.btn.textContent = "Enviar itinerario";
           enableEmailButtonIfReady();
