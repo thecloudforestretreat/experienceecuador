@@ -55,6 +55,7 @@
         "name": "Our Mission",
         "description": "See the mission behind Experience Ecuador and how the platform is built to help travelers plan smarter trips across Ecuador.",
         "inLanguage": "en",
+        "dateModified": "2026-05-01",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Experience Ecuador",
@@ -102,8 +103,8 @@
 <body data-page-type="utility_page" data-page-language="en">
   <div id="siteHeader" data-current-lang="en"></div>
   <nav class="rawLangLinks" aria-label="Language switch">
-    <a href="https://experienceecuador.com/mission/" lang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
-    <a href="https://experienceecuador.com/es/mision/" lang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+    <a href="https://experienceecuador.com/mission/" lang="en" hreflang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch" data-analytics-page-type="utility_page" data-analytics-target-language="en">English</a>
+    <a href="https://experienceecuador.com/es/mision/" lang="es" hreflang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch" data-analytics-page-type="utility_page" data-analytics-target-language="es">Español</a>
   </nav>
 
   <main class="wrap utilityPage">
@@ -116,7 +117,7 @@
     </section>
 
     <section class="utilityGrid">
-      <div class="utilityCard">
+      <div class="utilityCard data-analytics-event="content_section_view" data-analytics-label="Mission content" data-analytics-location="mission_body" data-analytics-page-type="utility_page">>
         <h2>What We Stand For</h2>
         <p>
           Ecuador deserves a modern travel hub that goes beyond random lists and paid hype.
@@ -126,7 +127,7 @@
       </div>
 
       <div class="utilityStack">
-        <div class="utilityMini">
+        <div class="utilityMini data-analytics-event="content_section_view" data-analytics-label="Mission content" data-analytics-location="mission_body" data-analytics-page-type="utility_page">>
           <h3>How We Curate</h3>
           <ul>
             <li>Region-first: Galapagos, Coast, Andes, and Amazon</li>
@@ -135,7 +136,7 @@
           </ul>
         </div>
 
-        <div class="utilityMini">
+        <div class="utilityMini data-analytics-event="content_section_view" data-analytics-label="Mission content" data-analytics-location="mission_body" data-analytics-page-type="utility_page">>
           <h3>What Success Looks Like</h3>
           <ul>
             <li>A trusted starting point for Ecuador travel planning</li>
@@ -154,95 +155,39 @@
       <div class="utilityLinkCard">
         <h2>Explore by region</h2>
         <p>Start with Ecuador's four major travel regions and compare which route best fits your timing and interests.</p>
-        <a href="/regions/" data-analytics-event="internal_link_click" data-analytics-label="View Regions" data-analytics-location="utility_links">View Regions</a>
+        <a href="/regions/" data-analytics-event="utility_cta_click" data-analytics-label="View Regions" data-analytics-location="utility_links" data-analytics-page-type="utility_page">View Regions</a>
       </div>
       <div class="utilityLinkCard">
         <h2>Browse recommendations</h2>
         <p>Find curated stays, activities, and local partners that support more confident Ecuador trip planning.</p>
-        <a href="/recommendations/" data-analytics-event="internal_link_click" data-analytics-label="View Recommendations" data-analytics-location="utility_links">View Recommendations</a>
+        <a href="/recommendations/" data-analytics-event="utility_cta_click" data-analytics-label="View Recommendations" data-analytics-location="utility_links" data-analytics-page-type="utility_page">View Recommendations</a>
       </div>
       <div class="utilityLinkCard">
         <h2>Build your itinerary</h2>
         <p>Use the trip builder to connect regions, travel style, and practical planning priorities into a clearer route.</p>
-        <a href="/trip-builder/" data-analytics-event="primary_cta_click" data-analytics-label="Try Trip Builder" data-analytics-location="utility_links">Try Trip Builder</a>
+        <a href="/trip-builder/" data-analytics-event="utility_cta_click" data-analytics-label="Try Trip Builder" data-analytics-location="utility_links" data-analytics-page-type="utility_page">Try Trip Builder</a>
       </div>
     </section>
   </main>
-
-  <div id="siteFooter"></div>
+<div id="siteFooter"></div>
 
   <script>
     (function(){
-      const w = window;
-      const dl = w.dataLayer = w.dataLayer || [];
-      const firedScroll = new Set();
-      function emit(eventName, params){
-        dl.push(Object.assign({
-          event: eventName,
-          page_type: document.body.dataset.pageType || "",
-          page_language: document.body.dataset.pageLanguage || "",
-          page_path: location.pathname,
-          page_title: document.title
-        }, params || {}));
-      }
-      w.eeAnalytics = w.eeAnalytics || { emit };
-      emit("page_view_enhanced");
-
-      document.addEventListener("click", function(e){
-        const target = e.target.closest("a,button");
-        if(!target) return;
-        const explicitEvent = target.dataset.analyticsEvent;
-        if(explicitEvent){
-          emit(explicitEvent, {
-            cta_label: target.dataset.analyticsLabel || target.textContent.trim(),
-            cta_location: target.dataset.analyticsLocation || "",
-            link_url: target.getAttribute("href") || ""
-          });
-          return;
-        }
-        if(target.tagName === "A"){
-          const href = target.getAttribute("href") || "";
-          const isOutbound = /^https?:\/\//.test(href) && !href.includes(location.hostname);
-          emit(isOutbound ? "outbound_link_click" : "internal_link_click", {
-            link_text: target.textContent.trim(),
-            link_url: href,
-            link_type: isOutbound ? "outbound" : "internal"
-          });
-        }
-      }, { passive: true });
-
-      document.addEventListener("scroll", function(){
-        const doc = document.documentElement;
-        const max = doc.scrollHeight - w.innerHeight;
-        if(max <= 0) return;
-        const pct = Math.round((w.scrollY / max) * 100);
-        [25, 50, 75, 90].forEach(function(mark){
-          if(pct >= mark && !firedScroll.has(mark)){
-            firedScroll.add(mark);
-            emit("scroll_depth", { scroll_percent: mark });
-          }
-        });
-      }, { passive: true });
-    })();
-  </script>
-  <script>
-    (function(){
-      async function injectInclude(id, url){
-        const el = document.getElementById(id);
-        if(!el || el.children.length || el.textContent.trim()) return;
-        const res = await fetch(url, { cache: "no-store" });
+      async function inject(id, url){
+        var el = document.getElementById(id);
+        if(!el) return;
+        var res = await fetch(url, { cache: "no-store" });
         el.innerHTML = await res.text();
       }
-
       Promise.all([
-        injectInclude("siteHeader", "/assets/includes/header.html"),
-        injectInclude("siteFooter", "/assets/includes/footer.html")
-      ]).finally(() => {
-        const existing = document.querySelector('script[src="/assets/js/site.js"]');
-        if(existing) return;
-        const s = document.createElement("script");
-        s.src = "/assets/js/site.js";
-        document.body.appendChild(s);
+        inject("siteHeader", "/assets/includes/header.html"),
+        inject("siteFooter", "/assets/includes/footer.html")
+      ]).then(function(){
+        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+          var s = document.createElement("script");
+          s.src = "/assets/js/site.js";
+          document.body.appendChild(s);
+        }
       });
     })();
   </script>
