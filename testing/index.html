@@ -2448,23 +2448,6 @@ function regionName(id){
       syncDefaultFlightToFromRegions();
     });
 
-    // Safety fallback: keep Generate Itinerary synced even if a browser extension, cached script,
-    // or future markup change interrupts a direct pill handler.
-    function eeTripBuilderStateSyncFallback() {
-      document.addEventListener("click", function(e) {
-        const pill = e.target && e.target.closest ? e.target.closest(".pill[data-id]") : null;
-        if (!pill) return;
-        window.setTimeout(updateGenerateState, 0);
-      });
-      if (els.daysSelect) {
-        els.daysSelect.addEventListener("change", function() {
-          window.setTimeout(updateGenerateState, 0);
-        });
-      }
-    }
-
-    eeTripBuilderStateSyncFallback();
-
     els.generateBtn.addEventListener('click', () => {
       const rawSelection = {
         days: Number(els.daysSelect ? els.daysSelect.value : state.days || 0),
