@@ -1124,6 +1124,16 @@
             <div aria-live="polite" class="carousel-counter" id="languageImmersionCarouselCounter">1 / 6</div>
           </div>
         </div>
+
+        <div class="ctaBand mt18">
+          <div class="ctaLeft">
+            <h3>Does this feel like your kind of Ecuador experience?</h3>
+            <p>Share your interest below so the organizing partners can shape the first pilot around real traveler preferences.</p>
+          </div>
+          <div class="ctaRight">
+            <a class="btn btnPrimary" href="#interest-form" data-analytics-event="primary_cta_click" data-analytics-label="Gallery Express Interest" data-analytics-location="gallery_cta" data-analytics-page-type="utility_page">Express Interest</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1150,12 +1160,17 @@
             <h2>Express Interest</h2>
             <p>Fields marked <span class="req">*</span> are required.</p>
 
-            <form class="interestForm" id="languageImmersionForm" method="POST" data-action="" data-sheet-id="1XP7Bz_1GCI5GtkxhK8qzr5cjKaLMSnS1YzBCerB-tIc" data-sheet-tab="contact_form" data-analytics-form="language_immersion_interest_form" data-analytics-page-type="utility_page" data-analytics-event="contact_form_submit">
+            <form class="interestForm" id="languageImmersionForm" method="POST" data-action="https://script.google.com/macros/s/AKfycbw8ySZryz9K5r_n9r88XScz1LZJ-Ib2UxBgxZCWkvJYt_WWqrwYBBfWpNKIqhTChcPNmw/exec" data-sheet-id="1XP7Bz_1GCI5GtkxhK8qzr5cjKaLMSnS1YzBCerB-tIc" data-sheet-tab="contact_form" data-analytics-form="language_immersion_interest_form" data-analytics-page-type="utility_page" data-analytics-event="contact_form_submit">
               <input type="hidden" name="source" value="Language Immersion Ecuador">
               <input type="hidden" name="status" value="New">
               <input type="hidden" name="language" value="en">
               <input type="hidden" name="page_url" value="https://experienceecuador.com/language-immersion-ecuador/">
               <input type="hidden" name="referrer" id="referrer" value="">
+              <input type="hidden" name="utm_source" id="utm_source" value="">
+              <input type="hidden" name="utm_medium" id="utm_medium" value="">
+              <input type="hidden" name="utm_campaign" id="utm_campaign" value="">
+              <input type="hidden" name="utm_term" id="utm_term" value="">
+              <input type="hidden" name="utm_content" id="utm_content" value="">
               <input type="hidden" name="user_agent" id="user_agent" value="">
 
               <div class="formGrid2">
@@ -1380,6 +1395,12 @@
       function fillTrackingFields(){
         var ref = document.getElementById("referrer");
         if(ref) ref.value = document.referrer || "";
+
+        var params = new URLSearchParams(window.location.search || "");
+        ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].forEach(function(key){
+          var el = document.getElementById(key);
+          if(el) el.value = params.get(key) || "";
+        });
       }
 
       var form = document.getElementById("languageImmersionForm");
@@ -1393,6 +1414,14 @@
         status.dataset.state = kind || "info";
         status.textContent = msg;
         status.classList.add("show");
+      }
+
+      function publicErrorMessage(data, fallback){
+        var raw = (data && (data.email_error || data.message)) ? String(data.email_error || data.message) : "";
+        if(/TURNSTILE|SECRET|TOKEN|ENV|CONFIG/i.test(raw)){
+          return "We could not verify the anti-spam check. Please try again in a moment.";
+        }
+        return raw || fallback;
       }
 
       if(phone){
@@ -1475,6 +1504,7 @@
               setStatus("success", "Submitted. We received your interest and will share updates as this experience develops.");
               trackFormResult(true, "");
               form.reset();
+              fillTrackingFields();
             }else{
               var publicMessage = publicErrorMessage(data, "Please try again.");
               setStatus("error", "Submission failed. " + publicMessage);
