@@ -54,6 +54,7 @@
         "url": "https://experienceecuador.com/es/terminos/",
         "name": "Términos y Condiciones",
         "description": "Lee los Términos y Condiciones de Experience Ecuador, incluyendo uso aceptable, enlaces de terceros, derechos de contenido, avisos legales y limitación de responsabilidad.",
+        "dateModified": "2026-05-01",
         "inLanguage": "es",
         "isPartOf": {
           "@type": "WebSite",
@@ -101,8 +102,8 @@
 <body data-page-type="utility_page" data-page-language="es">
   <div id="siteHeader" data-current-lang="es"></div>
   <nav class="rawLangLinks" aria-label="Selector de idioma">
-    <a href="https://experienceecuador.com/terms/" lang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
-    <a href="https://experienceecuador.com/es/terminos/" lang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+    <a href="https://experienceecuador.com/terms/" lang="en" hreflang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch" data-analytics-page-type="utility_page" data-analytics-target-language="en">English</a>
+    <a href="https://experienceecuador.com/es/terminos/" lang="es" hreflang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch" data-analytics-page-type="utility_page" data-analytics-target-language="es">Español</a>
   </nav>
 
   <main class="wrap utilityPage">
@@ -199,7 +200,7 @@
           <h2>Contacto</h2>
           <p>
             Las preguntas sobre estos Términos y Condiciones pueden enviarse a
-            <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>.
+            <a href="mailto:info@experienceecuador.com" data-analytics-event="contact_method_click" data-analytics-location="email" data-analytics-label="Policy link" data-analytics-page-type="utility_page">info@experienceecuador.com</a>.
           </p>
         </article>
       </div>
@@ -209,13 +210,13 @@
           <h2>Políticas relacionadas</h2>
           <p>Revisa las páginas complementarias de privacidad, reglas de servicio y preguntas comunes.</p>
           <div class="policyLinkList" aria-label="Páginas relacionadas">
-            <a class="policyPillLink" href="/es/terminos-de-servicio/" data-analytics-event="internal_link_click" data-analytics-label="Términos de Servicio" data-analytics-location="policy_links">Términos de Servicio <span>Reglas de servicio</span></a>
-            <a class="policyPillLink" href="/es/politica-de-privacidad/" data-analytics-event="internal_link_click" data-analytics-label="Política de Privacidad" data-analytics-location="policy_links">Política de Privacidad <span>Cómo manejamos información</span></a>
-            <a class="policyPillLink" href="/es/preguntas-frecuentes/" data-analytics-event="internal_link_click" data-analytics-label="Preguntas Frecuentes" data-analytics-location="policy_links">Preguntas Frecuentes <span>Preguntas comunes</span></a>
-            <a class="policyPillLink" href="/contacto/" data-analytics-event="primary_cta_click" data-analytics-label="Página de Contacto" data-analytics-location="policy_links">Página de Contacto <span>Escribir</span></a>
+            <a class="policyPillLink" href="/es/terminos-de-servicio/" data-analytics-event="policy_crosslink_click" data-analytics-label="Términos de Servicio" data-analytics-location="policy_links" data-analytics-page-type="utility_page">Términos de Servicio <span>Reglas de servicio</span></a>
+            <a class="policyPillLink" href="/es/politica-de-privacidad/" data-analytics-event="policy_crosslink_click" data-analytics-label="Política de Privacidad" data-analytics-location="policy_links" data-analytics-page-type="utility_page">Política de Privacidad <span>Cómo manejamos información</span></a>
+            <a class="policyPillLink" href="/es/preguntas-frecuentes/" data-analytics-event="policy_crosslink_click" data-analytics-label="Preguntas Frecuentes" data-analytics-location="policy_links" data-analytics-page-type="utility_page">Preguntas Frecuentes <span>Preguntas comunes</span></a>
+            <a class="policyPillLink" href="/es/contacto/" data-analytics-event="utility_cta_click" data-analytics-label="Página de Contacto" data-analytics-location="policy_links" data-analytics-page-type="utility_page">Página de Contacto <span>Escribir</span></a>
             <div class="policyEmailRow" aria-label="Fila de email">
-              <a href="mailto:info@experienceecuador.com">info@experienceecuador.com</a>
-              <button class="copyIconBtn" id="copyTermsEmail" type="button" aria-label="Copiar correo">
+              <a href="mailto:info@experienceecuador.com" data-analytics-event="contact_method_click" data-analytics-location="email" data-analytics-label="Policy link" data-analytics-page-type="utility_page">info@experienceecuador.com</a>
+              <button class="copyIconBtn" id="copyTermsEmail" type="button" aria-label="Copiar correo" data-analytics-event="contact_method_click" data-analytics-label="Copy terms email" data-analytics-location="terms_email" data-analytics-page-type="utility_page">
                 <svg class="copyIcon" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M9 9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V9z"></path>
                   <path d="M7 15H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"></path>
@@ -232,58 +233,7 @@
       </aside>
     </section>
   </main>
-
-  <div id="siteFooter"></div>
-
-  <script>
-    (function(){
-      const w = window;
-      const dl = w.dataLayer = w.dataLayer || [];
-      const firedScroll = new Set();
-      function emit(eventName, params){
-        dl.push(Object.assign({
-          event: eventName,
-          page_type: document.body.dataset.pageType || "",
-          page_language: document.body.dataset.pageLanguage || "",
-          page_path: location.pathname,
-          page_title: document.title
-        }, params || {}));
-      }
-      w.eeAnalytics = w.eeAnalytics || { emit };
-      emit("page_view_enhanced");
-
-      document.addEventListener("click", function(e){
-        const target = e.target.closest("a,button");
-        if(!target) return;
-        const eventName = target.dataset.analyticsEvent;
-        if(eventName){
-          emit(eventName, {
-            cta_label: target.dataset.analyticsLabel || target.textContent.trim(),
-            cta_location: target.dataset.analyticsLocation || "",
-            link_url: target.getAttribute("href") || ""
-          });
-        }
-      });
-
-      const marks = [25, 50, 75, 100];
-      function handleScroll(){
-        const doc = document.documentElement;
-        const max = doc.scrollHeight - window.innerHeight;
-        if(max <= 0) return;
-        const pct = Math.round((window.scrollY / max) * 100);
-        marks.forEach(function(mark){
-          if(pct >= mark && !firedScroll.has(mark)){
-            firedScroll.add(mark);
-            emit("scroll_depth", { scroll_percent: mark });
-          }
-        });
-      }
-      window.addEventListener("scroll", handleScroll, { passive: true });
-      handleScroll();
-    })();
-  </script>
-
-  <script>
+<script>
     document.addEventListener("contextmenu", function(e){
       if(e.target && e.target.tagName === "IMG") e.preventDefault();
     });
@@ -324,22 +274,22 @@
       });
     })();
   </script>
+  <div id="siteFooter"></div>
 
   <script>
     (function(){
-      async function injectInclude(id, url){
-        const el = document.getElementById(id);
-        if(!el || el.children.length || el.textContent.trim()) return;
-        const res = await fetch(url, { cache: "no-store" });
+      async function inject(id, url){
+        var el = document.getElementById(id);
+        if(!el) return;
+        var res = await fetch(url, { cache: "no-store" });
         el.innerHTML = await res.text();
       }
-
       Promise.all([
-        injectInclude("siteHeader", "/assets/includes/header.html"),
-        injectInclude("siteFooter", "/assets/includes/footer.html")
-      ]).finally(() => {
+        inject("siteHeader", "/assets/includes/header.html"),
+        inject("siteFooter", "/assets/includes/footer.html")
+      ]).then(function(){
         if (!document.querySelector('script[src="/assets/js/site.js"]')) {
-          const s = document.createElement("script");
+          var s = document.createElement("script");
           s.src = "/assets/js/site.js";
           document.body.appendChild(s);
         }
