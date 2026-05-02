@@ -859,7 +859,7 @@
         <div class="liHeroShell">
           <div class="liHeroInner">
             <div class="liKicker">Pilot concept now exploring interest</div>
-            <h1 class="liHeroTitle">Learn Spanish in Ecuador. Then live it the same day.</h1>
+            <h1 class="liHeroTitle">Learn Spanish in Ecuador.<br>Then live it the same day.</h1>
             <p class="liHeroLead">
               A curated small-group travel concept combining morning language learning with afternoon cultural, nature, food, and sightseeing experiences around Quito, Mindo, and beyond.
             </p>
@@ -1095,6 +1095,38 @@
       </div>
     </section>
 
+
+    <section aria-label="Ecuador language immersion gallery" class="section">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div class="sectionHeadCopy">
+            <div class="sectionKicker">Gallery and inspiration</div>
+            <h2 class="hTitle">Picture the experience</h2>
+            <p class="hSub">Use this gallery to imagine how Spanish practice could connect naturally with Quito culture, local food, Mindo cloud forest, and relaxed day-to-day discovery.</p>
+          </div>
+        </div>
+
+        <div aria-label="Ecuador language immersion gallery carousel" class="carousel" id="languageImmersionCarousel">
+          <button aria-label="Previous image" class="carousel-btn prev" data-analytics-event="utility_cta_click" data-analytics-label="Carousel previous" data-analytics-location="language_immersion_gallery" data-analytics-page-type="utility_page" type="button"><span aria-hidden="true"></span></button>
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img alt="Quito cultural experience for Ecuador Spanish immersion" loading="lazy" src="/assets/images/EE-Carousel-Quito-2.jpg"></div>
+              <div class="carousel-slide"><img alt="Quito city experience for Ecuador language immersion" loading="lazy" src="/images/EE-Carousel-Quito-5.jpg"></div>
+              <div class="carousel-slide"><img alt="Quito travel setting for Spanish practice in Ecuador" loading="lazy" src="/assets/images/EE-Carousel-Quito-3.jpg"></div>
+              <div class="carousel-slide"><img alt="Ecuador culinary experience and ceviche" loading="lazy" src="/assets/images/experiences/culinary/EE-Assets-82-Ceviche.jpg"></div>
+              <div class="carousel-slide"><img alt="Mindo cloud forest inspiration for language immersion" loading="lazy" src="/assets/images/EE-Carousel-Mindo-1.jpg"></div>
+              <div class="carousel-slide"><img alt="Mindo nature experience for Ecuador immersion travel" loading="lazy" src="/assets/images/EE-Carousel-Mindo-2.jpg"></div>
+            </div>
+          </div>
+          <button aria-label="Next image" class="carousel-btn next" data-analytics-event="utility_cta_click" data-analytics-label="Carousel next" data-analytics-location="language_immersion_gallery" data-analytics-page-type="utility_page" type="button"><span aria-hidden="true"></span></button>
+          <div class="carousel-ui">
+            <div aria-label="Carousel pagination" class="carousel-dots"></div>
+            <div aria-live="polite" class="carousel-counter" id="languageImmersionCarouselCounter">1 / 6</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="interest-form" aria-label="Interest form">
       <div class="wrap">
         <div class="liFormShell">
@@ -1118,17 +1150,12 @@
             <h2>Express Interest</h2>
             <p>Fields marked <span class="req">*</span> are required.</p>
 
-            <form class="interestForm" id="languageImmersionForm" method="POST" data-action="" data-analytics-form="language_immersion_interest_form" data-analytics-page-type="utility_page" data-analytics-event="contact_form_submit">
+            <form class="interestForm" id="languageImmersionForm" method="POST" data-action="" data-sheet-id="1XP7Bz_1GCI5GtkxhK8qzr5cjKaLMSnS1YzBCerB-tIc" data-sheet-tab="contact_form" data-analytics-form="language_immersion_interest_form" data-analytics-page-type="utility_page" data-analytics-event="contact_form_submit">
               <input type="hidden" name="source" value="Language Immersion Ecuador">
               <input type="hidden" name="status" value="New">
               <input type="hidden" name="language" value="en">
               <input type="hidden" name="page_url" value="https://experienceecuador.com/language-immersion-ecuador/">
               <input type="hidden" name="referrer" id="referrer" value="">
-              <input type="hidden" name="utm_source" id="utm_source" value="">
-              <input type="hidden" name="utm_medium" id="utm_medium" value="">
-              <input type="hidden" name="utm_campaign" id="utm_campaign" value="">
-              <input type="hidden" name="utm_term" id="utm_term" value="">
-              <input type="hidden" name="utm_content" id="utm_content" value="">
               <input type="hidden" name="user_agent" id="user_agent" value="">
 
               <div class="formGrid2">
@@ -1151,8 +1178,7 @@
 
                 <div class="field">
                   <label for="phone">Phone Number</label>
-                  <div class="help">Optional. US numbers only. Format: (555) 555-5555.</div>
-                  <input class="input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(555) 555-5555" maxlength="14">
+                  <input class="input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(555) 555-5555" maxlength="14" aria-label="Phone number">
                 </div>
               </div>
 
@@ -1351,22 +1377,9 @@
         }).join(" ");
       }
 
-      function fillUtmFields(){
-        var params = new URLSearchParams(window.location.search || "");
-        ["utm_source","utm_medium","utm_campaign","utm_term","utm_content"].forEach(function(key){
-          var el = document.getElementById(key);
-          if(el) el.value = params.get(key) || "";
-        });
+      function fillTrackingFields(){
         var ref = document.getElementById("referrer");
         if(ref) ref.value = document.referrer || "";
-      }
-
-      function publicErrorMessage(data, fallback){
-        var raw = (data && (data.email_error || data.message)) ? String(data.email_error || data.message) : "";
-        if(/TURNSTILE|SECRET|TOKEN|ENV|CONFIG/i.test(raw)){
-          return "We could not verify the anti-spam check. Please try again in a moment.";
-        }
-        return raw || fallback;
       }
 
       var form = document.getElementById("languageImmersionForm");
@@ -1389,7 +1402,7 @@
       }
 
       if(form){
-        fillUtmFields();
+        fillTrackingFields();
 
         form.addEventListener("input", function(){
           if(!hasStarted){
