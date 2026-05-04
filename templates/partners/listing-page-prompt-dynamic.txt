@@ -1,4 +1,4 @@
-DYNAMIC MASTER RULES FOR EXPERIENCE ECUADOR LISTING DETAIL PAGE GENERATION
+DYNAMIC MASTER RULES FOR EXPERIENCE ECUADOR LISTING DETAIL PAGE GENERATION - VERSION 2
 
 Use these master templates:
 - listing-detail-en-map-ready-SEO-lang-analytics.txt
@@ -9,10 +9,7 @@ Use this shared CSS:
 
 These rules are the source of truth. Ignore older conflicting instructions.
 
----
-
 CORE GOAL
-
 Generate standalone recommendation member pages that behave like SEO landing pages, not thin directory listings.
 
 Every page must:
@@ -24,24 +21,12 @@ Every page must:
 - adapt content blocks to the listing's actual strengths
 - avoid false claims and keyword stuffing
 - avoid generic one-size-fits-all copy
-
-
----
+- build enough authority content that the page can rank for multiple relevant long-tail search intents
 
 GLOBAL HEADER AND FOOTER INCLUDE RULES
-
 Every generated listing page MUST use the shared Experience Ecuador global includes.
 
 Required mount points:
-
-EN and ES pages both use the SAME shared files:
-- /assets/includes/header.html
-- /assets/includes/footer.html
-
-There is NO header-es.html and NO footer-es.html for these listing pages.
-Do not create language-specific header/footer include paths.
-
-Immediately after <body>:
 EN:
 <div id="siteHeader" data-current-lang="en"></div>
 
@@ -82,40 +67,26 @@ Rules:
 - Keep /assets/css/header.css, /assets/css/footer.css, /assets/css/site.css, and /assets/css/listing-member-seo.css in the head.
 - Load /assets/js/site.js only after the shared header and footer are injected.
 
----
-
 SEO FIELD RULES
+Use:
+- META_TITLE_EN -> <title>, og:title, twitter:title, WebPage schema name
+- META_TITLE_ES -> <title>, og:title, twitter:title, WebPage schema name
+- META_DESCRIPTION_EN -> meta description, og:description, twitter:description, WebPage schema description
+- META_DESCRIPTION_ES -> meta description, og:description, twitter:description, WebPage schema description
 
-1. Use:
-   {{META_TITLE_EN}} -> <title>, og:title, twitter:title, WebPage schema name
-   {{META_TITLE_ES}} -> <title>, og:title, twitter:title, WebPage schema name
-   {{META_DESCRIPTION_EN}} -> meta description, og:description, twitter:description, WebPage schema description
-   {{META_DESCRIPTION_ES}} -> meta description, og:description, twitter:description, WebPage schema description
-
-2. Do not replace meta titles with {{TITLE_EN}} or {{TITLE_ES}}
-
-3. Do not append "| Experience Ecuador" unless already provided
-
-4. UI fields:
-   {{TITLE_EN}} / {{TITLE_ES}} are used for H1, breadcrumbs, CTAs, labels
-
-5. Do NOT use:
-   - "best"
-   - "top"
-   - "number one"
-   unless explicitly justified by data
-
----
+Do not replace meta titles with TITLE_EN or TITLE_ES.
+Do not append "| Experience Ecuador" unless already provided.
+UI fields TITLE_EN and TITLE_ES are used for H1, breadcrumbs, CTAs, and labels.
+Do not use "best", "top", or "number one" unless explicitly justified by data.
 
 DYNAMIC SEO INPUT FIELDS
-
-PRIMARY SEO DRIVERS
+Primary SEO drivers:
 - primary_topic
 - secondary_topics
 - key_feature
 - entity_highlight
 
-EXPERIENCE SIGNALS
+Experience signals:
 - has_birdwatching
 - has_waterfalls
 - has_river
@@ -126,21 +97,21 @@ EXPERIENCE SIGNALS
 - is_budget
 - is_remote
 - is_family_friendly
+- is_historic_center
+- is_colonial
+- is_high_visual_intent
 
-SEARCH INTENT
+Search intent:
 - search_intent_primary
 - search_intent_secondary
 
-LOCATION
+Location:
 - latitude
 - longitude
 - google_maps_share_url
 - google_maps_embed_url
 
----
-
 DYNAMIC SECTION RULES
-
 Always include:
 1. Hero
 2. Short description
@@ -152,40 +123,67 @@ Always include:
 8. Entity/topic section
 9. Map and location
 10. Nearby
-11. Gallery
+11. Rich narrative gallery
 12. FAQ
 13. Internal links
 14. CTA
 
----
+MANDATORY SEO EXPANSION RULES
+For every listing page, include at least 2 SEO expansion sections beyond the short description:
+- one "where to stay / where to eat / what to do / how to choose" section based on category
+- one decision-stage section that helps the traveler compare options or understand fit
+
+For lodging pages, strongly prefer:
+- Where to stay in LOCATION
+- How to choose lodging in LOCATION
+- Staying in ENTITY_OR_NEIGHBORHOOD
+- Things to know before booking
+
+These sections must:
+- be factual
+- avoid hype
+- include natural keyword layering
+- include internal links where useful
+- answer traveler decision questions
+- not invent amenities, addresses, pricing, or claims
+
+LODGING VISUAL AUTHORITY RULE
+For lodging listings:
+- Always treat the page as high visual intent.
+- Always use a rich carousel-style gallery in the hero.
+- Always include a narrative photo gallery section.
+- Do not downgrade lodging pages to a plain static image grid without captions.
+- Each image must include descriptive alt text and contextual caption.
+- Captions should explain travel meaning, setting, architecture, room feel, nearby context, or guest-use relevance.
+- Preserve the provided image URLs exactly.
+- Do not invent amenities shown in photos.
 
 CONDITIONAL SEO BLOCKS
-
 IF has_birdwatching:
-→ Add birdwatching SEO section
+- Add birdwatching SEO section.
 
 IF has_river:
-→ Add riverside / relaxation section
+- Add riverside / relaxation section.
 
 IF has_private_reserve:
-→ Add private reserve / habitat section
+- Add private reserve / habitat section.
 
 IF is_remote:
-→ Add quiet escape positioning
+- Add quiet escape positioning.
 
 IF has_culinary:
-→ Add food-focused section
+- Add food-focused section.
 
 IF has_waterfalls:
-→ Add nature / waterfall section
+- Add nature / waterfall section.
+
+IF category is lodging:
+- Add lodging decision content and visual intent content even if other signals are weak.
 
 IF none:
-→ Use location + traveler fit as differentiator
-
----
+- Use location + traveler fit as differentiator.
 
 INTERNAL LINKING RULES
-
 Include links to:
 - region page
 - location page
@@ -196,10 +194,11 @@ Include links to:
 Use:
 data-analytics-event="internal_link_click"
 
----
+Use sitemap-approved URLs when available.
+Do not invent pages that do not exist in the sitemap.
+If unsure, use broad filtered recommendations URLs that exist.
 
 ANALYTICS EVENTS
-
 Use:
 - page_view_enhanced
 - language_switch_click
@@ -210,84 +209,42 @@ Use:
 - member_cta_click
 - scroll_depth
 - faq_expand
-
----
+- outbound_link_click
 
 LANGUAGE SWITCH RULES
-
 Immediately after #siteHeader:
-
-EN:
-<div id="siteHeader" data-current-lang="en"></div>
-
-ES:
-<div id="siteHeader" data-current-lang="es"></div>
-
-Switch must:
-- be left aligned
+- use nav.rawLangLinks
 - include hreflang
-- include analytics tracking
+- include lang
+- include aria-current only on active language
+- include language_switch_click analytics attributes
 
----
+MAP RULES
+1. IF google_maps_embed_url exists:
+- Render a live iframe map preview.
+- Also include an "Open map" button if google_maps_share_url exists.
+- Use iframe only when the URL is a true Google Maps embed URL.
+- Never use a maps.app.goo.gl share URL inside an iframe.
 
-🔥 MAP RULES (FINAL SYSTEM)
+2. IF only google_maps_share_url exists:
+- Do not render iframe.
+- Render a clickable map card linking to Google Maps.
 
-THIS IS CRITICAL — DO NOT BREAK THIS
+3. IF only latitude + longitude exist:
+- Generate link: https://www.google.com/maps/search/?api=1&query=LAT,LNG
+- Render clickable map/location card.
+- Do not render iframe.
 
-1. IF google_maps_embed_url EXISTS:
-   - Render a live iframe map preview
-   - Also include an "Open map" button if google_maps_share_url exists
-   - Use this only when the URL is a true Google Maps embed URL
-   - Never use a maps.app.goo.gl share URL inside an iframe
+4. IF no map data exists:
+- Do not render .mapSplit or .mapCard.
+- Render a full-width location guidance section.
+- Include region, destination, arrival note, contact instruction, and CTAs if available.
 
-2. IF ONLY google_maps_share_url EXISTS:
-   - DO NOT render iframe
-   - Render a clickable map card linking to Google Maps
-   - Button text:
-     EN: Open in Google Maps
-     ES: Abrir en Google Maps
+5. Never show empty iframe, broken map, blank map card, placeholder, invented coordinates, or fake map content.
 
-3. IF ONLY latitude + longitude EXIST:
-   - Generate link:
-     https://www.google.com/maps/search/?api=1&query=LAT,LNG
-   - Render a clickable map/location card with that generated link
-   - DO NOT render iframe
-
-4. IF NO google_maps_embed_url, NO google_maps_share_url, and NO latitude/longitude EXIST:
-   - DO NOT render .mapSplit
-   - DO NOT render .mapCard
-   - DO NOT render any empty map placeholder
-   - Render a normal full-width .section only
-   - Use aria-label:
-     EN: Location guidance
-     ES: Guía de ubicación
-   - Include:
-     - region
-     - destination/location
-     - arrival note
-     - contact instruction
-     - CTA buttons if website_url or whatsapp_url exists
-   - Example EN:
-     "A public map preview is not available yet, so travelers should contact the property directly to confirm the exact arrival point, current road conditions, and best route before traveling."
-   - Example ES:
-     "Esta ficha todavía no incluye una vista previa pública del mapa, por lo que los viajeros deben contactar directamente al alojamiento para confirmar el punto exacto de llegada, el estado actual de la vía y la mejor ruta antes de viajar."
-
-5. NEVER:
-   - show an empty iframe
-   - show a broken map
-   - show a blank map card
-   - leave a map placeholder
-   - invent coordinates
-   - fake map content
-
-6. Schema rule:
-   - Add GeoCoordinates only when latitude and longitude are provided
-   - Do not add GeoCoordinates from guesses
-
----
+6. Schema GeoCoordinates only when latitude and longitude are provided.
 
 SCHEMA RULES
-
 Use:
 - WebPage
 - BreadcrumbList
@@ -297,49 +254,63 @@ Use:
 - ItemList
 - Article
 
+Mandatory schema for every listing:
+- WebPage
+- BreadcrumbList
+- business schema
+- FAQPage
+- ItemList
+- Article
+
 Add when available:
 - dateModified
 - geo coordinates
 - telephone
 - images
-
----
+- sameAs
 
 SPANISH RULES
-
-Use proper accents in text:
+Use proper accents in visible Spanish text:
 - región
 - ubicación
-- Qué hacer
+- qué
+- cómo
+- dónde
+- histórico
+- estadía
+- guía
+- turístico
+- gastronomía
 
-DO NOT use accents in:
+Do NOT use accents in:
 - URLs
 - slugs
 - data attributes
-
----
+- CSS classes
+- IDs
+- file names
+- schema URLs
 
 FINAL QA
-
 Before output:
-
 - no placeholders
-- no page-level CSS
-- CSS file linked
+- no page-level CSS unless explicitly required by the template
+- CSS files linked
 - #siteHeader and #siteFooter mount points present
 - shared header/footer injection script present
 - /assets/js/site.js loads after includes
-- language switch correct
+- rawLangLinks correct
 - map logic correct
 - analytics present
 - schema valid
-- mobile responsive
+- mobile responsive through shared CSS
 - no fake claims
-
----
+- rich lodging gallery applied
+- Article schema present
+- ItemList schema present
+- SEO expansion sections present
 
 FINAL GOAL
-
 Each page should:
 - rank for multiple intents
 - adapt to listing features
