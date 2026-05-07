@@ -1,0 +1,135 @@
+// Trip Builder QA script
+// Usage:
+// node trip-builder-qa-script.js english.html spanish.html itinerary_blocks.json
+
+const fs = require("fs");
+const vm = require("vm");
+
+const [enFile, esFile, blocksFile] = process.argv.slice(2);
+
+if (!enFile || !esFile || !blocksFile) {
+  console.error("Usage: node trip-builder-qa-script.js english.html spanish.html itinerary_blocks.json");
+  process.exit(1);
+}
+
+function fail(message) {
+  console.error("FAIL:", message);
+  process.exitCode = 1;
+}
+
+function pass(message) {
+  console.log("PASS:", message);
+}
+
+function read(file) {
+  return fs.readFileSync(file, "utf8");
+}
+
+function checkHtml(file, expectedLang, expectedCanonical) {
+  const html = read(file);
+  const label = `${expectedLang.toUpperCase()} page`;
+
+  if (!html.includes(`<html lang="${expectedLang}"`)) fail(`${label}: incorrect html lang`);
+  else pass(`${label}: html lang`);
+
+  if (!html.includes(`data-page-language="${expectedLang}"`)) fail(`${label}: missing body data-page-language`);
+  else pass(`${label}: body language`);
+
+  if (!html.includes(`data-current-lang="${expectedLang}"`)) fail(`${label}: missing siteHeader current language`);
+  else pass(`${label}: siteHeader language`);
+
+  if (!html.includes(`<link rel="canonical" href="${expectedCanonical}"`)) fail(`${label}: incorrect canonical`);
+  else pass(`${label}: canonical`);
+
+  if (!html.includes("/assets/js/site.js")) fail(`${label}: missing guarded site.js loader`);
+  else pass(`${label}: site.js loader`);
+
+  if (!html.includes("language_switch_click")) fail(`${label}: missing language switch analytics`);
+  else pass(`${label}: language switch analytics`);
+
+  if (!html.includes("safeAnalyticsEmit(\"trip_builder_flight_search\"")) fail(`${label}: flight analytics is not using safeAnalyticsEmit`);
+  else pass(`${label}: safe flight analytics`);
+
+  if (!html.includes("through ${ret}")) fail(`${label}: Google Flights return date wording is not using through`);
+  else pass(`${label}: flight return query`);
+
+  const scripts = [...html.matchAll(/<script(?![^>]*application\/ld\+json)[^>]*>([\s\S]*?)<\/script>/gi)].map(m => m[1]);
+  scripts.forEach((script, index) => new vm.Script(script, { filename: `${file}:script-${index}` }));
+  pass(`${label}: JavaScript syntax`);
+
+  const jsonLd = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/gi)].map(m => m[1]);
+  jsonLd.forEach((json, index) => JSON.parse(json));
+  pass(`${label}: JSON-LD syntax`);
+
+  const ids = [...html.matchAll(/id="([^"]+)"/g)].map(m => m[1]);
+  const seen = new Set();
+  const duplicates = [];
+  ids.forEach(id => {
+    if (seen.has(id)) duplicates.push(id);
+    seen.add(id);
+  });
+  if (duplicates.length) fail(`${label}: duplicate ids: ${duplicates.join(", ")}`);
+  else pass(`${label}: no duplicate ids`);
+}
+
+function checkBlocks(file) {
+  const data = JSON.parse(read(file));
+  const blocks = data.blocks || [];
+  const ids = new Set();
+  const duplicateIds = [];
+  const missing = [];
+  const badDurations = [];
+  const badExperiences = [];
+  const accentedTechnicalValues = [];
+  const accent = /[áéíóúñÁÉÍÓÚÑ]/;
+
+  blocks.forEach(block => {
+    if (ids.has(block.id)) duplicateIds.push(block.id);
+    ids.add(block.id);
+
+    ["id", "title", "summary", "title_es", "summary_es", "region_id", "location_id", "experiences", "time_of_day", "pace", "duration_hours", "notes", "notes_es"].forEach(key => {
+      if (block[key] === undefined || block[key] === null || block[key] === "") missing.push(`${block.id}:${key}`);
+    });
+
+    if (!Array.isArray(block.experiences) || !block.experiences.length) badExperiences.push(block.id);
+    if (!Number.isFinite(Number(block.duration_hours)) || Number(block.duration_hours) <= 0) badDurations.push(block.id);
+
+    ["id", "region_id", "location_id", "sub_experience", "level_focus", "pace", "pace_raw"].forEach(key => {
+      if (accent.test(String(block[key] || ""))) accentedTechnicalValues.push(`${block.id}:${key}`);
+    });
+
+    ["experiences", "tags"].forEach(key => {
+      (block[key] || []).forEach(value => {
+        if (accent.test(String(value))) accentedTechnicalValues.push(`${block.id}:${key}:${value}`);
+      });
+    });
+  });
+
+  if (blocks.length < 1) fail("itinerary blocks: no blocks found");
+  else pass(`itinerary blocks: ${blocks.length} blocks`);
+
+  if (duplicateIds.length) fail(`itinerary blocks: duplicate ids: ${duplicateIds.join(", ")}`);
+  else pass("itinerary blocks: no duplicate ids");
+
+  if (missing.length) fail(`itinerary blocks: missing required fields: ${missing.slice(0, 20).join(", ")}`);
+  else pass("itinerary blocks: required fields");
+
+  if (badDurations.length) fail(`itinerary blocks: bad durations: ${badDurations.join(", ")}`);
+  else pass("itinerary blocks: durations");
+
+  if (badExperiences.length) fail(`itinerary blocks: bad experiences: ${badExperiences.join(", ")}`);
+  else pass("itinerary blocks: experiences");
+
+  if (accentedTechnicalValues.length) fail(`itinerary blocks: accented technical values: ${accentedTechnicalValues.slice(0, 20).join(", ")}`);
+  else pass("itinerary blocks: technical values unaccented");
+}
+
+checkHtml(enFile, "en", "https://experienceecuador.com/trip-builder/");
+checkHtml(esFile, "es", "https://experienceecuador.com/es/planificador-de-viajes/");
+checkBlocks(blocksFile);
+
+if (process.exitCode) {
+  process.exit(process.exitCode);
+}
+
+console.log("PASS: Trip Builder QA complete");
