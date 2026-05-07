@@ -2364,7 +2364,7 @@ function regionName(id){
       let q = `Flights to ${to}`;
       if (from) q += ` from ${from}`;
       if (depart) q += ` on ${depart}`;
-      if (ret) q += ` return ${ret}`;
+      if (ret) q += ` through ${ret}`;
       return "https://www.google.com/travel/flights?q=" + encodeURIComponent(q);
     }
 
@@ -2389,22 +2389,18 @@ function regionName(id){
     }
 
     flightEls.desktop.btn.addEventListener('click', () => {
-      if (window.eeAnalytics) {
-        window.eeAnalytics.emit("trip_builder_flight_search", {
-          flight_origin: normalizeAirportCode(flightEls.desktop.from.value),
-          flight_destination: String(flightEls.desktop.to.value || "").trim().toUpperCase()
-        });
-      }
       openFlightsFrom("desktop");
+      safeAnalyticsEmit("trip_builder_flight_search", {
+        flight_origin: normalizeAirportCode(flightEls.desktop.from.value),
+        flight_destination: String(flightEls.desktop.to.value || "").trim().toUpperCase()
+      });
     });
     if (flightEls.mobile.btn) flightEls.mobile.btn.addEventListener('click', () => {
-      if (window.eeAnalytics) {
-        window.eeAnalytics.emit("trip_builder_flight_search", {
-          flight_origin: normalizeAirportCode(flightEls.mobile.from.value),
-          flight_destination: String(flightEls.mobile.to.value || "").trim().toUpperCase()
-        });
-      }
       openFlightsFrom("mobile");
+      safeAnalyticsEmit("trip_builder_flight_search", {
+        flight_origin: normalizeAirportCode(flightEls.mobile.from.value),
+        flight_destination: String(flightEls.mobile.to.value || "").trim().toUpperCase()
+      });
     });
 
     async function loadJSON(path){
