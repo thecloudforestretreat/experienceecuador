@@ -626,6 +626,58 @@
       line-height:1.6;
     }
 
+    .itinerary-actions{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+    }
+
+    .copy-status{
+      color:#24324a;
+      font-size:13px;
+      font-weight:700;
+      min-height:18px;
+    }
+
+    .selection-links{
+      margin-top:14px;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(3,78,162,0.12);
+      background:rgba(3,78,162,0.04);
+    }
+
+    .selection-links-title{
+      margin:0 0 8px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:14px;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    .selection-link-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .selection-link{
+      display:inline-flex;
+      align-items:center;
+      min-height:34px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.18);
+      background:#fff;
+      color:#0f2f62;
+      text-decoration:none;
+      font-weight:800;
+      font-size:13px;
+      line-height:1.2;
+    }
+
     /* ===== EMAIL ITINERARY SECTION ===== */
     .email-divider{
       margin-top:16px;
@@ -1035,6 +1087,10 @@
     <div class="itinerary-shell" aria-label="Itinerary output container">
       <h2 class="section-title" style="margin:0 0 12px;">Your Suggested Itinerary</h2>
       <div id="output" class="hint">Select days, regions, and experiences. Then click “Generate Itinerary.”</div>
+      <div class="itinerary-actions" aria-label="Itinerary actions">
+        <button class="btn" id="copyItineraryBtn" type="button" disabled data-analytics-event="secondary_cta_click" data-analytics-label="Copy itinerary" data-analytics-location="itinerary_output">Copy itinerary</button>
+        <span class="copy-status" id="copyItineraryStatus" role="status" aria-live="polite"></span>
+      </div>
 
       <!-- Email itinerary -->
       <div class="email-divider" aria-label="Email itinerary section">
@@ -1268,6 +1324,8 @@
       generateBtn: document.getElementById('generateBtn'),
       resetBtn: document.getElementById('resetBtn'),
       output: document.getElementById('output'),
+      copyBtn: document.getElementById('copyItineraryBtn'),
+      copyStatus: document.getElementById('copyItineraryStatus'),
       regionHint: document.getElementById('regionHint')
     };
 
@@ -1298,6 +1356,22 @@
         ret: document.getElementById('flightReturnMobile'),
         btn: document.getElementById('flightSearchBtnMobile')
       }
+    };
+
+    const REGION_LINKS = {
+      andes: "/regions/andes/",
+      amazon: "/regions/amazon/",
+      coast: "/regions/coast/",
+      galapagos: "/regions/galapagos/"
+    };
+
+    const EXPERIENCE_LINKS = {
+      adventure: "/experiences/adventure/",
+      nature: "/experiences/nature/",
+      "wildlife-birding": "/experiences/wildlife-birding/",
+      relaxation: "/experiences/relaxation/",
+      culinary: "/experiences/culinary/",
+      culture: "/experiences/culture/"
     };
 
     function normalizeSelectionStep2(raw) {
@@ -2160,6 +2234,7 @@ function regionName(id){
     function renderItinerary(plan) {
       if (!plan || plan.length === 0) {
         els.output.innerHTML = "<div class='hint'>No itinerary generated. Make sure you selected regions and experiences.</div>";
+        updateCopyButton();
         return;
       }
 
@@ -2215,8 +2290,74 @@ function regionName(id){
         wrap.appendChild(card);
       });
 
+      wrap.appendChild(renderSelectionLinks());
       els.output.innerHTML = "";
       els.output.appendChild(wrap);
+      updateCopyButton();
+    }
+
+    function renderSelectionLinks(){
+      const box = document.createElement("div");
+      box.className = "selection-links";
+
+      const title = document.createElement("div");
+      title.className = "selection-links-title";
+      title.textContent = "Explore more for your route";
+      box.appendChild(title);
+
+      const row = document.createElement("div");
+      row.className = "selection-link-row";
+
+      const links = [
+        ...Array.from(state.selectedRegionIds).map(id => ({ label: regionName(id), href: REGION_LINKS[id] })),
+        ...Array.from(state.selectedExperienceIds).map(id => ({ label: experienceName(id), href: EXPERIENCE_LINKS[id] }))
+      ].filter(link => link.href);
+
+      links.forEach(link => {
+        const a = document.createElement("a");
+        a.className = "selection-link";
+        a.href = link.href;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = link.label;
+        a.setAttribute("data-analytics-event", "internal_link_click");
+        a.setAttribute("data-analytics-label", link.label);
+        a.setAttribute("data-analytics-location", "itinerary_output_links");
+        a.setAttribute("data-analytics-link-type", "internal");
+        a.setAttribute("data-analytics-page-type", "trip_builder");
+        row.appendChild(a);
+      });
+
+      box.appendChild(row);
+      return box;
+    }
+
+    function updateCopyButton(){
+      if (!els.copyBtn) return;
+      els.copyBtn.disabled = !state.lastItineraryText;
+    }
+
+    async function copyItineraryToClipboard(){
+      if (!state.lastItineraryText) return;
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(state.lastItineraryText);
+        } else {
+          const ta = document.createElement("textarea");
+          ta.value = state.lastItineraryText;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+        }
+        if (els.copyStatus) els.copyStatus.textContent = "Copied.";
+      } catch (e) {
+        if (els.copyStatus) els.copyStatus.textContent = "Copy failed. Please try again.";
+      }
     }
 
     function extractPartLabelFromTitleOrId(block){
@@ -2476,6 +2617,7 @@ function regionName(id){
       state.lastPlan = plan;
       renderItinerary(plan);
       state.lastItineraryText = buildItineraryText(plan);
+      updateCopyButton();
       enableEmailButtonIfReady();
 
       safeAnalyticsEmit("trip_builder_generate_itinerary", {
@@ -2511,6 +2653,8 @@ function regionName(id){
 
       state.lastPlan = null;
       state.lastItineraryText = "";
+      if (els.copyStatus) els.copyStatus.textContent = "";
+      updateCopyButton();
       enableEmailButtonIfReady();
       clearEmailStatus();
 
@@ -2519,6 +2663,10 @@ function regionName(id){
       els.output.textContent = "Select days, regions, and experiences. Then click “Generate itinerary.”";
       updateRecipientCount();
     });
+
+    if (els.copyBtn) {
+      els.copyBtn.addEventListener("click", copyItineraryToClipboard);
+    }
 
     if (tripEmailEls.form) {
       tripEmailEls.form.addEventListener('submit', async (ev) => {
