@@ -639,6 +639,58 @@
       line-height:1.6;
     }
 
+    .itinerary-actions{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+    }
+
+    .copy-status{
+      color:#24324a;
+      font-size:13px;
+      font-weight:700;
+      min-height:18px;
+    }
+
+    .selection-links{
+      margin-top:14px;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(3,78,162,0.12);
+      background:rgba(3,78,162,0.04);
+    }
+
+    .selection-links-title{
+      margin:0 0 8px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:14px;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    .selection-link-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .selection-link{
+      display:inline-flex;
+      align-items:center;
+      min-height:34px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.18);
+      background:#fff;
+      color:#0f2f62;
+      text-decoration:none;
+      font-weight:800;
+      font-size:13px;
+      line-height:1.2;
+    }
+
     /* ===== EMAIL ITINERARY SECTION ===== */
     .email-divider{
       margin-top:16px;
@@ -1002,7 +1054,7 @@
           </div>
 
           <div class="actions">
-            <button class="btn primary" id="generateBtn" type="button" disabled>Generar Itinerario</button>
+            <button class="btn primary" id="generateBtn" type="button" disabled>Generar itinerario</button>
             <button class="btn" id="resetBtn" type="button" data-analytics-event="secondary_cta_click" data-analytics-label="Reiniciar" data-analytics-location="builder_panel" data-analytics-page-type="trip_builder">Reiniciar</button>
           </div>
         </section>
@@ -1043,11 +1095,15 @@
 
       <section class="itinerary" aria-label="Itinerario generado">
         <div class="itinerary-shell" aria-label="Contenedor de salida del itinerario">
-          <h2 class="section-title" style="margin:0 0 12px;">Tu Itinerario Sugerido</h2>
+          <h2 class="section-title" style="margin:0 0 12px;">Tu itinerario sugerido</h2>
           <div id="output" class="hint">Selecciona días, regiones y experiencias. Luego haz clic en "Generar itinerario".</div>
+          <div class="itinerary-actions" aria-label="Acciones del itinerario">
+            <button class="btn" id="copyItineraryBtn" type="button" disabled data-analytics-event="secondary_cta_click" data-analytics-label="Copiar itinerario" data-analytics-location="itinerary_output">Copiar itinerario</button>
+            <span class="copy-status" id="copyItineraryStatus" role="status" aria-live="polite"></span>
+          </div>
 
           <!-- Email itinerary -->
-          <div class="email-divider" aria-label="Seccion para enviar el itinerario por email">
+          <div class="email-divider" aria-label="Sección para enviar el itinerario por email">
             <h3 class="email-title">Enviar este itinerario por email</h3>
             <p class="email-sub">
               Primero genera un itinerario, luego ingresa tus datos. Puedes invitar hasta 3 viajeros adicionales.
@@ -1080,13 +1136,13 @@
                 <div id="tb_invite_list"></div>
 
                 <div class="invite-hint">
-                  Los viajeros invitados reciben un solo email con el itinerario y una linea corta de invitacion.
+                Los viajeros invitados reciben un solo email con el itinerario y una línea corta de invitación.
                 </div>
               </div>
 
               <div class="recipients-wrap">
                 <div class="recipient-count" id="tb_recipient_count">Destinatarios: 1 email(s)</div>
-                <button class="btn primary send-btn" id="tb_send_btn" type="submit" disabled data-analytics-event="primary_cta_click" data-analytics-label="Enviar itinerario" data-analytics-location="email_form">Enviar Itinerario</button>
+                <button class="btn primary send-btn" id="tb_send_btn" type="submit" disabled data-analytics-event="primary_cta_click" data-analytics-label="Enviar itinerario" data-analytics-location="email_form">Enviar itinerario</button>
               </div>
 
               <div class="statusPill" id="tb_status" role="status" aria-live="polite"></div>
@@ -1095,7 +1151,7 @@
         </div>
       </section>
 
-      <aside class="card flights-card" id="flightsMobile" aria-label="Vuelos (movil)" style="display:none;">
+      <aside class="card flights-card" id="flightsMobile" aria-label="Vuelos (móvil)" style="display:none;">
         <p class="mini-title">Vuelos</p>
 
         <div class="mini-grid">
@@ -1186,7 +1242,7 @@
     </a>
     <a class="seo-link-card" href="/es/experiencias/aventura/" data-analytics-event="internal_link_click" data-analytics-label="Experiencias de aventura" data-analytics-location="priority_links" data-analytics-link-type="internal" data-analytics-page-type="trip_builder">
       <span class="seo-link-card-title">Experiencias de aventura</span>
-      <span class="seo-link-card-copy">Itinerarios activos con senderismo, actividades al aire libre y exploracion multirregion.</span>
+      <span class="seo-link-card-copy">Itinerarios activos con senderismo, actividades al aire libre y exploración multirregión.</span>
       <span class="seo-link-card-cta">Ver</span>
     </a>
     <a class="seo-link-card" href="/es/guia-viaje-ecuador/" data-analytics-event="internal_link_click" data-analytics-label="Guía de viaje a Ecuador" data-analytics-location="priority_links" data-analytics-link-type="internal" data-analytics-page-type="trip_builder">
@@ -1278,6 +1334,8 @@
       generateBtn: document.getElementById('generateBtn'),
       resetBtn: document.getElementById('resetBtn'),
       output: document.getElementById('output'),
+      copyBtn: document.getElementById('copyItineraryBtn'),
+      copyStatus: document.getElementById('copyItineraryStatus'),
       regionHint: document.getElementById('regionHint')
     };
 
@@ -1308,6 +1366,22 @@
         ret: document.getElementById('flightReturnMobile'),
         btn: document.getElementById('flightSearchBtnMobile')
       }
+    };
+
+    const REGION_LINKS = {
+      andes: "/es/regiones/andes/",
+      amazon: "/es/regiones/amazonia/",
+      coast: "/es/regiones/costa/",
+      galapagos: "/es/regiones/galapagos/"
+    };
+
+    const EXPERIENCE_LINKS = {
+      adventure: "/es/experiencias/aventura/",
+      nature: "/es/experiencias/naturaleza/",
+      "wildlife-birding": "/es/experiencias/vida-silvestre-y-aves/",
+      relaxation: "/es/experiencias/relajacion/",
+      culinary: "/es/experiencias/gastronomia/",
+      culture: "/es/experiencias/cultura/"
     };
 
     function normalizeSelectionStep2(raw) {
@@ -2185,6 +2259,7 @@ function regionName(id){
     function renderItinerary(plan) {
       if (!plan || plan.length === 0) {
         els.output.innerHTML = "<div class='hint'>No se generó ningún itinerario. Asegúrate de seleccionar regiones y experiencias.</div>";
+        updateCopyButton();
         return;
       }
 
@@ -2240,8 +2315,74 @@ function regionName(id){
         wrap.appendChild(card);
       });
 
+      wrap.appendChild(renderSelectionLinks());
       els.output.innerHTML = "";
       els.output.appendChild(wrap);
+      updateCopyButton();
+    }
+
+    function renderSelectionLinks(){
+      const box = document.createElement("div");
+      box.className = "selection-links";
+
+      const title = document.createElement("div");
+      title.className = "selection-links-title";
+      title.textContent = "Explora más para tu ruta";
+      box.appendChild(title);
+
+      const row = document.createElement("div");
+      row.className = "selection-link-row";
+
+      const links = [
+        ...Array.from(state.selectedRegionIds).map(id => ({ label: regionName(id), href: REGION_LINKS[id] })),
+        ...Array.from(state.selectedExperienceIds).map(id => ({ label: experienceName(id), href: EXPERIENCE_LINKS[id] }))
+      ].filter(link => link.href);
+
+      links.forEach(link => {
+        const a = document.createElement("a");
+        a.className = "selection-link";
+        a.href = link.href;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = link.label;
+        a.setAttribute("data-analytics-event", "internal_link_click");
+        a.setAttribute("data-analytics-label", link.label);
+        a.setAttribute("data-analytics-location", "itinerary_output_links");
+        a.setAttribute("data-analytics-link-type", "internal");
+        a.setAttribute("data-analytics-page-type", "trip_builder");
+        row.appendChild(a);
+      });
+
+      box.appendChild(row);
+      return box;
+    }
+
+    function updateCopyButton(){
+      if (!els.copyBtn) return;
+      els.copyBtn.disabled = !state.lastItineraryText;
+    }
+
+    async function copyItineraryToClipboard(){
+      if (!state.lastItineraryText) return;
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(state.lastItineraryText);
+        } else {
+          const ta = document.createElement("textarea");
+          ta.value = state.lastItineraryText;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+        }
+        if (els.copyStatus) els.copyStatus.textContent = "Copiado.";
+      } catch (e) {
+        if (els.copyStatus) els.copyStatus.textContent = "No se pudo copiar. Inténtalo de nuevo.";
+      }
     }
 
     function extractPartLabelFromTitleOrId(block){
@@ -2503,6 +2644,7 @@ function regionName(id){
       state.lastPlan = plan;
       renderItinerary(plan);
       state.lastItineraryText = buildItineraryText(plan);
+      updateCopyButton();
       enableEmailButtonIfReady();
 
       safeAnalyticsEmit("trip_builder_generate_itinerary", {
@@ -2538,6 +2680,8 @@ function regionName(id){
 
       state.lastPlan = null;
       state.lastItineraryText = "";
+      if (els.copyStatus) els.copyStatus.textContent = "";
+      updateCopyButton();
       enableEmailButtonIfReady();
       clearEmailStatus();
 
@@ -2546,6 +2690,10 @@ function regionName(id){
       els.output.textContent = 'Selecciona días, regiones y experiencias. Luego haz clic en "Generar itinerario".';
       updateRecipientCount();
     });
+
+    if (els.copyBtn) {
+      els.copyBtn.addEventListener("click", copyItineraryToClipboard);
+    }
 
     if (tripEmailEls.form) {
       tripEmailEls.form.addEventListener('submit', async (ev) => {
@@ -2559,13 +2707,13 @@ function regionName(id){
         }
 
         if (!state.lastPlan || !state.lastItineraryText) {
-          setEmailStatus("Primero genera un itinerario y luego envialo.", "error");
+          setEmailStatus("Primero genera un itinerario y luego envíalo.", "error");
           return;
         }
 
         const primaryEmail = (tripEmailEls.email.value || "").trim();
         if (!primaryEmail || !isValidEmail(primaryEmail)) {
-          setEmailStatus("Por favor ingresa un email valido para el viajero principal.", "error");
+          setEmailStatus("Por favor ingresa un email válido para el viajero principal.", "error");
           return;
         }
 
@@ -2573,7 +2721,7 @@ function regionName(id){
 
         for (const inv of invitees) {
           if (inv.email && !isValidEmail(inv.email)) {
-            setEmailStatus("Uno de los emails de viajeros invitados no es valido. Corrigelo o elimina ese viajero.", "error");
+            setEmailStatus("Uno de los emails de viajeros invitados no es válido. Corrígelo o elimina ese viajero.", "error");
             return;
           }
         }
