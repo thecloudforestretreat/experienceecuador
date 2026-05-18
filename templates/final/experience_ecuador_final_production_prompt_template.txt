@@ -478,3 +478,51 @@ Explain exact blockers clearly.
 
 Do not return partial snippets unless explicitly requested.
 Always return complete downloadable files.
+
+
+CRITICAL TSV PATCHING RULE
+Never regenerate a TSV row from scratch.
+
+Use the ORIGINAL uploaded TSV row as the base structure.
+Patch ONLY the fields intentionally changed during production optimization.
+
+Preserve ALL untouched columns exactly as provided in the source row.
+
+Do NOT manually modify crawl-observed fields unless a NEW crawl export was provided.
+
+This includes:
+- crawl_title
+- crawl_title_length
+- crawl_meta_description
+- crawl_meta_description_length
+- crawl_h1
+- crawl_h1_length
+- crawl_h2_1
+- crawl_canonical
+- crawl_last_modified
+- crawl_language
+- crawl_source_file
+
+CQ crawl_last_modified must remain exactly aligned.
+CR crawl_language must remain exactly aligned.
+CS crawl_source_file must remain exactly aligned.
+
+Never:
+- rebuild the full row from memory
+- infer missing tabs
+- collapse blank fields
+- shift downstream columns
+- rewrite crawl metrics manually
+
+FINAL TSV POSITIONAL VALIDATION
+Before returning TSV rows:
+- validate exact total column count matches source CSV
+- validate all downstream columns remain aligned
+- validate CQ remains blank if originally blank
+- validate CR still contains the language value
+- validate CS still contains the crawl source file
+- validate trailing empty columns remain preserved
+- validate Google Sheets paste integrity
+
+If ANY downstream field shifts:
+DO NOT return the TSV row until corrected.
