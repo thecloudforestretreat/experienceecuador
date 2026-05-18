@@ -280,6 +280,93 @@ then prioritize:
 
 instead of structural rewrites.
 
+
+CRITICAL JSON-LD VALIDATION RULE
+Before finalizing any page:
+- JSON-LD must parse successfully as valid JSON.
+- All schema objects must remain INSIDE the same @graph array.
+- Never append a schema object after the closing @graph array or after the closing root object.
+- No orphan schema objects may exist outside the root JSON-LD object.
+- No trailing commas may exist.
+- Schema should be compatible with Schema.org Validator and Google Rich Results Test.
+
+NEVER output this broken pattern:
+]
+}
+,
+{
+  "@type": "TouristDestination"
+}
+
+Correct pattern:
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { ... },
+    { ... },
+    {
+      "@type": "TouristDestination",
+      ...
+    }
+  ]
+}
+
+If adding TouristDestination, LocalBusiness, FAQPage, WebPage, CollectionPage, BreadcrumbList, Article, or any other schema object, it MUST be inserted as an item inside the existing @graph array.
+
+METADATA PARITY RULE
+Before handoff, verify semantic consistency between:
+- <title>
+- og:title
+- twitter:title
+
+And between:
+- meta description
+- og:description
+- twitter:description
+
+Do not leave old title or description variants behind after updating metadata. Minor wording variation is acceptable only when intent remains identical.
+
+SPANISH ACCENT RESTORATION RULE
+ASCII-safe drafting is allowed during generation, but final production output must restore correct visible Spanish accents in:
+- title
+- meta description
+- og:title
+- og:description
+- twitter:title
+- twitter:description
+- headings
+- visible paragraphs
+- buttons
+- CTAs
+- FAQ copy
+
+Never add accents to:
+- URLs
+- slugs
+- image paths
+- file paths
+- IDs
+- classes
+- schema URLs
+- analytics event names
+- data attributes
+- JavaScript identifiers
+
+FINAL PRE-LIVE QA RULE
+Before marking Ready to go live: YES, verify:
+- JSON-LD parses as valid JSON
+- every schema object is inside @graph
+- metadata parity is complete
+- no orphan schema objects exist
+- EN/ES parity is complete
+- analytics attributes are preserved
+- internal links are valid
+- CTA paths are valid
+- canonical is correct
+- hreflang and x-default are correct
+- no mixed-language metadata exists
+- no ASCII-safe Spanish leftovers remain in visible copy or metadata
+
 OUTPUT REQUIREMENTS
 Return:
 
@@ -331,6 +418,8 @@ QA Summary:
 - Header/footer: passed/failed
 - Canonical/hreflang: passed/failed
 - Schema/breadcrumbs: passed/failed
+- JSON-LD graph validity: passed/failed
+- Metadata parity: passed/failed
 - Technical paths: passed/failed
 - Spanish accents: passed/failed
 - TSV synchronization: passed/failed
