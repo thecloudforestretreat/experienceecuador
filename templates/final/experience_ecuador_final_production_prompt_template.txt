@@ -367,6 +367,50 @@ Before marking Ready to go live: YES, verify:
 - no mixed-language metadata exists
 - no ASCII-safe Spanish leftovers remain in visible copy or metadata
 
+
+CRITICAL TSV COLUMN INTEGRITY RULE
+The TSV output must preserve:
+- exact source CSV column count
+- exact source CSV column order
+- exact empty-column placement
+- exact trailing empty columns
+
+Never:
+- collapse empty fields
+- omit trailing tabs
+- compress repeated tabs
+- remove placeholder empty columns
+- reconstruct the full row from memory
+
+If a field is intentionally blank, preserve the empty TSV position by keeping the tab separator.
+The returned TSV row must paste directly into Google Sheets without shifting any later columns.
+
+SOURCE-ROW PATCH RULE
+When generating updated TSV rows:
+- use the original uploaded TSV row as the base structure
+- preserve all existing columns exactly unless intentionally updated
+- modify only fields changed during production optimization
+- never regenerate the full row from scratch
+- never infer missing empty columns
+- never remove blank fields in the middle or at the end of the row
+
+TSV VALIDATION RULE
+Before returning final TSV rows, verify:
+- exact total column count matches the source row
+- column CQ and all later columns remain aligned
+- no missing empty placeholders exist
+- no merged fields exist
+- no accidental tab removal occurred
+- no markdown table formatting is used
+- no line breaks exist inside a TSV row
+
+TSV OUTPUT RULE
+Return the TSV rows in a plain TSV code block for copy/paste.
+Do not use markdown tables.
+Do not wrap each field in quotes.
+Do not add bullets inside the TSV block.
+If returning multiple TSV rows, put each row on its own line.
+
 OUTPUT REQUIREMENTS
 Return:
 
