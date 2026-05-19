@@ -526,3 +526,110 @@ Before returning TSV rows:
 
 If ANY downstream field shifts:
 DO NOT return the TSV row until corrected.
+
+CRAWL-OBSERVED FIELD PRESERVATION RULE
+
+The TSV contains TWO different categories of SEO fields:
+
+1. Editable planning/production fields
+2. Crawl-observed fields from Screaming Frog or crawl exports
+
+These MUST be treated differently.
+
+EDITABLE FIELDS MAY BE UPDATED:
+- SEO title planning fields
+- production QA fields
+- optimization notes
+- implementation status
+- indexing workflow fields
+- internal strategy fields
+- production readiness fields
+- authority classification fields
+- action/status tracking fields
+
+CRAWL-OBSERVED FIELDS MUST REMAIN UNCHANGED
+unless a NEW crawl export is explicitly provided.
+
+NEVER manually rewrite:
+- crawl_title
+- crawl_title_length
+- crawl_meta_description
+- crawl_meta_description_length
+- crawl_h1
+- crawl_h1_length
+- crawl_h2_1
+- crawl_canonical
+- crawl_last_modified
+- crawl_language
+- crawl_source_file
+- crawl word counts
+- crawl response metrics
+- crawl status metrics
+- crawl-derived measurements
+
+These fields represent historical crawl-state data.
+
+IMPORTANT:
+The live HTML page may be updated successfully while crawl-observed TSV fields still show old values.
+
+This is EXPECTED behavior until:
+- the updated page is deployed live
+- a new crawl is run
+- the crawl export is re-imported
+
+DO NOT:
+- manually synchronize crawl fields to match updated HTML
+- overwrite crawl metrics by inference
+- regenerate crawl snapshots from memory
+- assume crawl fields should match immediately
+
+If the HTML title/meta/H1 changes:
+- update ONLY editable planning/production fields
+- preserve crawl-observed fields exactly
+- preserve all downstream TSV alignment
+
+QA SUMMARY REQUIREMENT
+
+The QA summary MUST explicitly state:
+
+- Live page metadata updated: YES/NO
+- Crawl-observed fields preserved intentionally: YES/NO
+- Recrawl required to refresh crawl fields: YES/NO
+
+Example:
+
+TSV Change Log:
+- Updated production SEO title field
+- Updated production QA status
+- Preserved crawl_title intentionally from previous crawl export
+- Preserved crawl_meta_description intentionally from previous crawl export
+- Recrawl required after deployment to refresh crawl-observed fields
+
+VALIDATION RULE
+
+Before returning TSV rows:
+- verify crawl-observed fields remain byte-for-byte unchanged unless a new crawl file was provided
+- verify editable planning fields updated correctly
+- verify no downstream column shifting occurred
+- verify TSV alignment integrity preserved
+
+If crawl fields were modified accidentally:
+DO NOT return the TSV rows until restored correctly.
+
+FINAL CRAWL FIELD SAFETY RULE
+
+When updating TSV rows:
+- preserve all crawl-derived metrics exactly as originally provided
+- preserve crawl timestamps exactly
+- preserve crawl source references exactly
+- preserve crawl language markers exactly
+- preserve crawl-export measurements exactly
+
+Only update:
+- planning fields
+- QA fields
+- production state fields
+- SEO strategy fields
+- implementation tracking fields
+
+Never update historical crawl-state data manually.
