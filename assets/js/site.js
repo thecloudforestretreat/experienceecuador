@@ -1,6 +1,27 @@
 (function () {
   "use strict";
 
+  // GTM LOADER
+  (function(){
+    var GTM_ID = "GTM-WJQXQR2H";
+    if (window.__eeGtmLoaded) return;
+    window.__eeGtmLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      "gtm.start": new Date().getTime(),
+      event: "gtm.js"
+    });
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtm.js?id=" + GTM_ID;
+    var firstScript = document.getElementsByTagName("script")[0];
+    if (firstScript && firstScript.parentNode) {
+      firstScript.parentNode.insertBefore(s, firstScript);
+    } else {
+      document.head.appendChild(s);
+    }
+  })();
+
   // GA LOADER
   (function(){
     var MID = "G-3EDLVGV2HD";
@@ -661,17 +682,18 @@
   function eeAnalyticsSend(eventName, payload) {
     if (!eventName) return false;
     var data = eeAnalyticsCleanPayload(payload || {});
+    var sent = false;
     try {
-      if (typeof window.gtag === "function") {
-        window.gtag("event", eventName, data);
-        return true;
-      }
       if (window.dataLayer && Array.isArray(window.dataLayer)) {
         window.dataLayer.push(Object.assign({ event: eventName }, data));
-        return true;
+        sent = true;
+      }
+      if (typeof window.gtag === "function") {
+        window.gtag("event", eventName, data);
+        sent = true;
       }
     } catch (e) {}
-    return false;
+    return sent;
   }
 
   function eeAnalyticsGetLinkType(href) {
