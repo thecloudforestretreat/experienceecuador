@@ -229,7 +229,11 @@
       });
       const result=await waitForResult(id);
       if(!result.ok){
-        throw new Error(result.message||result.errors?.join("; ")||"The form was not accepted.");
+        const details=Array.isArray(result.errors)&&result.errors.length
+          ?result.errors.join("; ")
+          :result.message||"The form was not accepted.";
+        const code=result.diagnostic_code?" ["+result.diagnostic_code+"]":"";
+        throw new Error(details+code);
       }
       status.textContent=isSpanish
         ?"¡Gracias! Recibimos tu perfil y te responderemos personalmente."
@@ -238,9 +242,10 @@
       localStorage.removeItem(draftKey);
       form.reset();
     }catch(error){
+      const detail=String(error?.message||error||"Unknown submission error");
       status.textContent=isSpanish
-        ?"No se pudo enviar. Escríbenos a info@experienceecuador.com."
-        :"We could not submit the form. Please email info@experienceecuador.com.";
+        ?"No se pudo enviar: "+detail+" Si necesitas ayuda, escribe a info@experienceecuador.com."
+        :"We could not submit the form: "+detail+" If you need help, email info@experienceecuador.com.";
       push("form_submit_error",{form_name:"regional_trip_intake",error_message:String(error)});
     }finally{
       submit.disabled=false;
