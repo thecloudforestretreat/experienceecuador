@@ -99,6 +99,7 @@
     if (p === "/contact/") return "/es/contacto/";
     if (p === "/trip-builder/") return "/es/planificador-de-viajes/";
     if (p === "/partners/") return "/es/aliados/";
+    if (p === "/explore/") return "/es/explora/";
 
     if (p === "/regions/") return "/es/regiones/";
     if (p.indexOf("/regions/") === 0) {
@@ -143,6 +144,7 @@
     if (p === "/es/contacto/") return "/contact/";
     if (p === "/es/planificador-de-viajes/") return "/trip-builder/";
     if (p === "/es/aliados/") return "/partners/";
+    if (p === "/es/explora/") return "/explore/";
 
     if (p === "/es/regiones/") return "/regions/";
     if (p.indexOf("/es/regiones/") === 0) {

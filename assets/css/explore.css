@@ -1,0 +1,197 @@
+/* Experience Ecuador affiliate network hub */
+
+.exploreHero{
+  padding:34px 0 18px;
+}
+
+.exploreHeroCard{
+  position:relative;
+  overflow:hidden;
+  padding:clamp(26px,5vw,52px);
+  text-align:center;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(247,200,67,.24), transparent 28%),
+    radial-gradient(circle at 88% 92%, rgba(3,78,162,.14), transparent 32%),
+    #ffffff;
+}
+
+.exploreHeroCard::after{
+  content:"";
+  position:absolute;
+  inset:auto -60px -90px auto;
+  width:240px;
+  aspect-ratio:1;
+  border:34px solid rgba(3,78,162,.05);
+  border-radius:50%;
+  pointer-events:none;
+}
+
+.exploreBrandMark{
+  width:clamp(84px,13vw,118px);
+  height:auto;
+  margin:0 auto 18px;
+}
+
+.exploreHero .sectionKicker{
+  margin-inline:auto;
+}
+
+.exploreTitle{
+  max-width:17ch;
+  margin:0 auto 12px;
+  color:var(--brand-blue-dark);
+  font-family:Montserrat,Inter,sans-serif;
+  font-size:clamp(34px,6vw,58px);
+  font-weight:800;
+  letter-spacing:-.035em;
+  line-height:1.02;
+}
+
+.exploreLead{
+  max-width:720px;
+  margin:0 auto;
+  color:#2a2f36;
+  font-size:clamp(15.5px,2vw,18px);
+  line-height:1.7;
+}
+
+.affiliateSection{
+  padding:18px 0 42px;
+}
+
+.affiliateGrid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+  margin-top:18px;
+}
+
+.affiliateCard{
+  min-width:0;
+  min-height:220px;
+  display:flex;
+  align-items:center;
+  gap:22px;
+  padding:22px;
+  background:#ffffff;
+  border:1px solid var(--border);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-soft);
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.affiliateCard:hover,
+.affiliateCard:focus-visible{
+  transform:translateY(-3px);
+  border-color:var(--border-strong);
+  box-shadow:var(--shadow-strong);
+  outline:none;
+}
+
+.affiliateLogo{
+  width:clamp(118px,15vw,154px);
+  aspect-ratio:1;
+  flex:0 0 auto;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  border-radius:50%;
+  background:#ffffff;
+}
+
+.affiliateLogo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.affiliateCopy{
+  min-width:0;
+  flex:1;
+}
+
+.affiliateType{
+  display:block;
+  margin-bottom:7px;
+  color:var(--brand-blue);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.08em;
+  line-height:1.3;
+  text-transform:uppercase;
+}
+
+.affiliateName{
+  display:block;
+  margin:0 0 8px;
+  color:var(--brand-blue-dark);
+  font-family:Montserrat,Inter,sans-serif;
+  font-size:clamp(17px,2vw,21px);
+  font-weight:800;
+  letter-spacing:-.02em;
+  line-height:1.15;
+}
+
+.affiliateDescription{
+  display:block;
+  margin:0 0 14px;
+  color:#2a2f36;
+  font-size:14px;
+  line-height:1.55;
+}
+
+.affiliateAction{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:var(--brand-blue);
+  font-size:13.5px;
+  font-weight:900;
+}
+
+.affiliateAction::after{
+  content:"\2192";
+  transition:transform .18s ease;
+}
+
+.affiliateCard:hover .affiliateAction::after,
+.affiliateCard:focus-visible .affiliateAction::after{
+  transform:translateX(3px);
+}
+
+.exploreNote{
+  margin-top:18px;
+  padding:18px 20px;
+  text-align:center;
+  color:var(--ink);
+  font-size:13.5px;
+  font-weight:700;
+  line-height:1.6;
+  background:rgba(3,78,162,.06);
+  border:1px solid rgba(3,78,162,.12);
+  border-radius:var(--radius-lg);
+}
+
+@media (max-width:760px){
+  .exploreHero{padding-top:22px}
+  .affiliateCard{
+    min-height:250px;
+    flex-direction:column;
+    gap:14px;
+    padding:18px 14px;
+    text-align:center;
+  }
+  .affiliateLogo{width:min(124px,76%)}
+  .affiliateDescription{font-size:13.2px}
+  .affiliateAction{justify-content:center}
+}
+
+@media (max-width:360px){
+  .affiliateGrid{grid-template-columns:1fr}
+  .affiliateCard{min-height:0}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .affiliateCard,
+  .affiliateAction::after{transition:none}
+}
