@@ -1,4 +1,19 @@
 (()=>{
+  const GA_MEASUREMENT_ID="G-ZD68Y7WF7S";
+  if(typeof window.gtag!=="function"){
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){window.dataLayer.push(arguments);};
+    const analyticsScript=document.createElement("script");
+    analyticsScript.async=true;
+    analyticsScript.src="https://www.googletagmanager.com/gtag/js?id="+GA_MEASUREMENT_ID;
+    document.head.appendChild(analyticsScript);
+    window.gtag("js",new Date());
+    window.gtag("config",GA_MEASUREMENT_ID,{
+      anonymize_ip:true,
+      send_page_view:true,
+      debug_mode:/[?&]debug_mode=true\b/.test(window.location.search)
+    });
+  }
   const ENDPOINT="https://script.google.com/macros/s/AKfycbw3VE2lIwy5cg_XqZmVVFBsA-dkXlLcDDiIRiPi6sW_8PWnP7yVdLLbh0xiV7I9tQXkqg/exec";
   const form=document.querySelector("#tripIntake");
   const isSpanish=document.documentElement.lang==="es";
