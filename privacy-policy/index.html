@@ -142,6 +142,7 @@
               <li>Basic device and browser data used for security and performance</li>
               <li>Approximate location inferred from IP address at the city or region level, used for analytics</li>
               <li>Pages viewed and interactions, used to understand what content is useful</li>
+              <li>Campaign and referral details, such as UTM parameters and advertising click identifiers, when they are present in a link</li>
             </ul>
           </div>
         </article>
@@ -162,6 +163,11 @@
           <p>
             We may use cookies or similar technologies to keep the site reliable and measure performance.
             Cookies may be used for basic analytics, security, and remembering simple preferences.
+          </p>
+          <p>
+            To understand which campaigns and partner referrals lead to inquiries, we store first-touch and most-recent-touch
+            attribution in your browser for up to 90 days. This can include the referring site, landing page, campaign labels,
+            and advertising click identifiers supplied in the link. These details may be included with a form you submit.
           </p>
           <p>
             If you prefer, you can control cookies using your browser settings. Disabling cookies may impact certain site features.
@@ -306,9 +312,9 @@
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(function(){
-        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+        if (!document.querySelector('script[src="/assets/js/site.js?v=20260922c"]')) {
           var s = document.createElement("script");
-          s.src = "/assets/js/site.js";
+          s.src = "/assets/js/site.js?v=20260922c";
           document.body.appendChild(s);
         }
       });

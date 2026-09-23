@@ -17,6 +17,14 @@
     document.head.appendChild(s);
   })();
 
+  if (!window.__eeAttributionLoading && !window.EEAttribution) {
+    window.__eeAttributionLoading = true;
+    var attributionScript = document.createElement("script");
+    attributionScript.async = true;
+    attributionScript.src = "/assets/js/attribution.js?v=20260922a";
+    document.head.appendChild(attributionScript);
+  }
+
 
   function qs(sel, root) {
     return (root || document).querySelector(sel);
@@ -659,7 +667,10 @@
 
   function eeAnalyticsSend(eventName, payload) {
     if (!eventName) return false;
-    var data = eeAnalyticsCleanPayload(payload || {});
+    var attribution = window.EEAttribution && window.EEAttribution.getEventParameters
+      ? window.EEAttribution.getEventParameters()
+      : {};
+    var data = eeAnalyticsCleanPayload(Object.assign({}, attribution, payload || {}));
     try {
       if (typeof window.gtag === "function") {
         window.gtag("event", eventName, data);

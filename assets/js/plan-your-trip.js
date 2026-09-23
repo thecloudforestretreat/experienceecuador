@@ -10,6 +10,7 @@
       page_language:document.documentElement.lang,
       page_path:location.pathname,
       region:document.body.dataset.region||"ecuador",
+      ...(window.EEAttribution?.getEventParameters?.()||{}),
       ...extra
     });
   };
@@ -219,6 +220,7 @@
     try{
       const id=submissionId();
       const payload=values();
+      window.EEAttribution?.decoratePayload?.(payload);
       payload.client_submission_id=id;
       payload.full_submission_json=JSON.stringify(payload);
       await fetch(ENDPOINT,{

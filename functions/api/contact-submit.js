@@ -130,7 +130,28 @@ export async function onRequestPost({ request, env }) {
     source: String(payload.source || "EE Contact"),
     user_agent: String(payload.user_agent || ua),
     "ip_best-effort": String(payload["ip_best-effort"] || ip),
-    status: String(payload.status || "New")
+    status: String(payload.status || "New"),
+    first_touch_source: String(payload.first_touch_source || ""),
+    first_touch_medium: String(payload.first_touch_medium || ""),
+    first_touch_campaign: String(payload.first_touch_campaign || ""),
+    first_touch_term: String(payload.first_touch_term || ""),
+    first_touch_content: String(payload.first_touch_content || ""),
+    first_landing_page: String(payload.first_landing_page || ""),
+    first_referrer: String(payload.first_referrer || ""),
+    first_touch_at: String(payload.first_touch_at || ""),
+    last_touch_source: String(payload.last_touch_source || ""),
+    last_touch_medium: String(payload.last_touch_medium || ""),
+    last_touch_campaign: String(payload.last_touch_campaign || ""),
+    last_touch_term: String(payload.last_touch_term || ""),
+    last_touch_content: String(payload.last_touch_content || ""),
+    last_landing_page: String(payload.last_landing_page || ""),
+    last_referrer: String(payload.last_referrer || ""),
+    last_touch_at: String(payload.last_touch_at || ""),
+    first_gclid: String(payload.first_gclid || ""),
+    last_gclid: String(payload.last_gclid || ""),
+    first_fbclid: String(payload.first_fbclid || ""),
+    last_fbclid: String(payload.last_fbclid || ""),
+    current_page: String(payload.current_page || "")
   };
 
   let gasJson = null;

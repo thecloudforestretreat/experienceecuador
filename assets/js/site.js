@@ -9,6 +9,13 @@
     tagManagerScript.src="https://www.googletagmanager.com/gtm.js?id="+GTM_ID;
     document.head.appendChild(tagManagerScript);
   }
+  if(!window.__eeAttributionLoading&&!window.EEAttribution){
+    window.__eeAttributionLoading=true;
+    const attributionScript=document.createElement("script");
+    attributionScript.async=true;
+    attributionScript.src="/assets/js/attribution.js?v=20260922a";
+    document.head.appendChild(attributionScript);
+  }
   const ENDPOINT="https://script.google.com/macros/s/AKfycbw3VE2lIwy5cg_XqZmVVFBsA-dkXlLcDDiIRiPi6sW_8PWnP7yVdLLbh0xiV7I9tQXkqg/exec";
   const form=document.querySelector("#tripIntake");
   const isSpanish=document.documentElement.lang==="es";
@@ -20,6 +27,7 @@
       page_language:document.documentElement.lang,
       page_path:location.pathname,
       region:document.body.dataset.region||"ecuador",
+      ...(window.EEAttribution?.getEventParameters?.()||{}),
       ...extra
     });
   };
@@ -213,6 +221,7 @@
     try{
       const id=submissionId();
       const payload=values();
+      window.EEAttribution?.decoratePayload?.(payload);
       payload.client_submission_id=id;
       payload.full_submission_json=JSON.stringify(payload);
       await fetch(ENDPOINT,{

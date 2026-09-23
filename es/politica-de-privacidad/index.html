@@ -137,6 +137,7 @@
               <li>Información que nos envías directamente, como nombre, correo y mensaje al contactarnos.</li>
               <li>Datos técnicos básicos, como tipo de navegador, página visitada, fecha, hora y rendimiento.</li>
               <li>Datos de analítica agregada para entender el uso del sitio, como páginas más vistas.</li>
+              <li>Datos de campaña y referencia, como parámetros UTM e identificadores de clic publicitario, cuando estén presentes en un enlace.</li>
             </ul>
 
             <h3>2. Cómo usamos la información</h3>
@@ -150,6 +151,12 @@
             <p>
               Podemos usar cookies para funciones básicas y analítica. Puedes controlar cookies desde tu navegador.
               Si las deshabilitas, algunas funciones pueden no comportarse igual.
+            </p>
+            <p>
+              Para entender qué campañas y referencias de aliados generan consultas, guardamos en tu navegador la atribución
+              del primer contacto y del contacto más reciente durante un máximo de 90 días. Esto puede incluir el sitio de referencia,
+              la página de llegada, etiquetas de campaña e identificadores de clic incluidos en el enlace. Estos datos pueden
+              acompañar un formulario que envíes.
             </p>
 
             <h3>4. Compartir información</h3>
@@ -295,9 +302,9 @@
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(function(){
-        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+        if (!document.querySelector('script[src="/assets/js/site.js?v=20260922c"]')) {
           var s = document.createElement("script");
-          s.src = "/assets/js/site.js";
+          s.src = "/assets/js/site.js?v=20260922c";
           document.body.appendChild(s);
         }
       });

@@ -446,6 +446,9 @@
           payload.turnstile_token = tsToken;
           payload.language = "es";
           payload.source = payload.source || "EE Contact ES";
+          if(window.EEAttribution && window.EEAttribution.decoratePayload){
+            window.EEAttribution.decoratePayload(payload);
+          }
 
           if(submitBtn){
             submitBtn.disabled = true;
@@ -500,9 +503,9 @@
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(function(){
-        if (!document.querySelector('script[src="/assets/js/site.js"]')) {
+        if (!document.querySelector('script[src="/assets/js/site.js?v=20260922c"]')) {
           var s = document.createElement("script");
-          s.src = "/assets/js/site.js";
+          s.src = "/assets/js/site.js?v=20260922c";
           document.body.appendChild(s);
         }
       });
