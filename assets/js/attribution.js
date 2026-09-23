@@ -170,6 +170,7 @@
           form.appendChild(input);
         }
         input.value = values[name];
+        input.setAttribute("value", values[name]);
       });
     });
   }

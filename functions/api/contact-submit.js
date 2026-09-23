@@ -149,8 +149,16 @@ export async function onRequestPost({ request, env }) {
     last_touch_at: String(payload.last_touch_at || ""),
     first_gclid: String(payload.first_gclid || ""),
     last_gclid: String(payload.last_gclid || ""),
+    first_gbraid: String(payload.first_gbraid || ""),
+    last_gbraid: String(payload.last_gbraid || ""),
+    first_wbraid: String(payload.first_wbraid || ""),
+    last_wbraid: String(payload.last_wbraid || ""),
     first_fbclid: String(payload.first_fbclid || ""),
     last_fbclid: String(payload.last_fbclid || ""),
+    first_msclkid: String(payload.first_msclkid || ""),
+    last_msclkid: String(payload.last_msclkid || ""),
+    first_ttclid: String(payload.first_ttclid || ""),
+    last_ttclid: String(payload.last_ttclid || ""),
     current_page: String(payload.current_page || "")
   };
 
