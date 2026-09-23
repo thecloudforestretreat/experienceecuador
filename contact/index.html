@@ -199,7 +199,7 @@
             Fields marked <span class="req">*</span> are required.
           </p>
 
-          <form class="contactForm" data-ga="contact_form" id="eeContactForm" method="POST" data-action="/api/contact-submit" data-analytics-form="ee_contact_form" data-analytics-page-type="utility_page" data-analytics-event="contact_form_submit">
+          <form class="contactForm" data-ga="contact_form" id="eeContactForm" method="POST" data-action="/api/contact-submit" data-analytics-form="ee_contact_form" data-analytics-page-type="utility_page">
             <input type="hidden" name="user_agent" id="user_agent" value="">
             <input type="hidden" name="source" id="source" value="EE Contact">
             <input type="hidden" name="status" value="New">
@@ -269,7 +269,7 @@
             </div>
 
             <div class="actionsRow">
-              <button class="btn btnPrimary" id="submitBtn" type="submit" data-analytics-event="contact_form_submit" data-analytics-label="Submit" data-analytics-location="contact_form" data-analytics-page-type="utility_page">Submit</button>
+              <button class="btn btnPrimary" id="submitBtn" type="submit" data-analytics-event="contact_form_attempt" data-analytics-label="Submit" data-analytics-location="contact_form" data-analytics-page-type="utility_page">Submit</button>
               <button class="btn btnGhost" type="reset" data-analytics-event="utility_cta_click" data-analytics-label="Reset" data-analytics-location="contact_form" data-analytics-page-type="utility_page">Reset</button>
             </div>
 
@@ -336,6 +336,7 @@
           form_name: "ee_contact_form",
           error_message: ok ? "" : (message || "")
         });
+        if(ok) safeAnalyticsEmit("contact_form_submit", { form_name: "ee_contact_form" });
       }
 
       var email = "info@experienceecuador.com";
@@ -503,9 +504,9 @@
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(function(){
-        if (!document.querySelector('script[src="/assets/js/site.js?v=20260922e"]')) {
+        if (!document.querySelector('script[src="/assets/js/site.js?v=20260922f"]')) {
           var s = document.createElement("script");
-          s.src = "/assets/js/site.js?v=20260922e";
+          s.src = "/assets/js/site.js?v=20260922f";
           document.body.appendChild(s);
         }
       });

@@ -241,6 +241,7 @@
         ?"¡Gracias! Recibimos tu perfil y te responderemos personalmente."
         :"Thank you! We received your profile and will follow up personally.";
       push("form_submit_success",{form_name:"regional_trip_intake"});
+      push("trip_builder_submit",{form_name:"regional_trip_intake"});
       localStorage.removeItem(draftKey);
       form.reset();
     }catch(error){

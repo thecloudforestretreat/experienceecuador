@@ -791,7 +791,7 @@
       var form = e.target;
       if (!form || !form.getAttribute) return;
       var formName = form.getAttribute("data-analytics-form") || form.getAttribute("name") || form.getAttribute("id") || "form";
-      eeAnalyticsSend("form_submit_success", Object.assign({}, eeAnalyticsGetPageMeta(), { form_name: formName }));
+      eeAnalyticsSend("form_submit_attempt", Object.assign({}, eeAnalyticsGetPageMeta(), { form_name: formName }));
     }, true);
     document.addEventListener("focusin", function (e) {
       var form = e.target && e.target.closest ? e.target.closest("form") : null;
