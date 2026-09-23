@@ -7,6 +7,7 @@
     if (window.__eeGtmLoaded) return;
     window.__eeGtmLoaded = true;
     window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
     window.dataLayer.push({
       "gtm.start": new Date().getTime(),
       event: "gtm.js"
@@ -21,7 +22,7 @@
     window.__eeAttributionLoading = true;
     var attributionScript = document.createElement("script");
     attributionScript.async = true;
-    attributionScript.src = "/assets/js/attribution.js?v=20260922b";
+    attributionScript.src = "/assets/js/attribution.js?v=20260922c";
     document.head.appendChild(attributionScript);
   }
 
@@ -672,6 +673,10 @@
       : {};
     var data = eeAnalyticsCleanPayload(Object.assign({}, attribution, payload || {}));
     try {
+      if (eventName.indexOf("partner_") === 0 && window.dataLayer && Array.isArray(window.dataLayer)) {
+        window.dataLayer.push(Object.assign({ event: eventName }, data));
+        return true;
+      }
       if (typeof window.gtag === "function") {
         window.gtag("event", eventName, data);
         return true;

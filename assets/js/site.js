@@ -3,6 +3,7 @@
   if(!window.__eeGtmLoaded){
     window.__eeGtmLoaded=true;
     window.dataLayer=window.dataLayer||[];
+    window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
     window.dataLayer.push({"gtm.start":Date.now(),event:"gtm.js"});
     const tagManagerScript=document.createElement("script");
     tagManagerScript.async=true;
@@ -13,7 +14,7 @@
     window.__eeAttributionLoading=true;
     const attributionScript=document.createElement("script");
     attributionScript.async=true;
-    attributionScript.src="/assets/js/attribution.js?v=20260922b";
+    attributionScript.src="/assets/js/attribution.js?v=20260922c";
     document.head.appendChild(attributionScript);
   }
   const ENDPOINT="https://script.google.com/macros/s/AKfycbw3VE2lIwy5cg_XqZmVVFBsA-dkXlLcDDiIRiPi6sW_8PWnP7yVdLLbh0xiV7I9tQXkqg/exec";
@@ -21,15 +22,17 @@
   const isSpanish=document.documentElement.lang==="es";
   const push=(event,extra={})=>{
     window.dataLayer=window.dataLayer||[];
-    window.dataLayer.push({
-      event,
+    const payload={
       page_type:document.body.dataset.pageType||"plan_your_trip",
       page_language:document.documentElement.lang,
       page_path:location.pathname,
       region:document.body.dataset.region||"ecuador",
       ...(window.EEAttribution?.getEventParameters?.()||{}),
       ...extra
-    });
+    };
+    if(event.startsWith("partner_")) window.dataLayer.push({event,...payload});
+    else if(typeof window.gtag==="function") window.gtag("event",event,payload);
+    else window.dataLayer.push({event,...payload});
   };
   const capitalizeName=value=>String(value||"").trim().replace(
     /(^|[\s'’-])([a-záéíóúüñ])/giu,
