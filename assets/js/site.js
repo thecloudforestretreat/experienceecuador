@@ -1,18 +1,13 @@
 (()=>{
-  const GA_MEASUREMENT_ID="G-ZD68Y7WF7S";
-  if(typeof window.gtag!=="function"){
+  const GTM_ID="GTM-WJQXQR2H";
+  if(!window.__eeGtmLoaded){
+    window.__eeGtmLoaded=true;
     window.dataLayer=window.dataLayer||[];
-    window.gtag=function(){window.dataLayer.push(arguments);};
-    const analyticsScript=document.createElement("script");
-    analyticsScript.async=true;
-    analyticsScript.src="https://www.googletagmanager.com/gtag/js?id="+GA_MEASUREMENT_ID;
-    document.head.appendChild(analyticsScript);
-    window.gtag("js",new Date());
-    window.gtag("config",GA_MEASUREMENT_ID,{
-      anonymize_ip:true,
-      send_page_view:true,
-      debug_mode:/[?&]debug_mode=true\b/.test(window.location.search)
-    });
+    window.dataLayer.push({"gtm.start":Date.now(),event:"gtm.js"});
+    const tagManagerScript=document.createElement("script");
+    tagManagerScript.async=true;
+    tagManagerScript.src="https://www.googletagmanager.com/gtm.js?id="+GTM_ID;
+    document.head.appendChild(tagManagerScript);
   }
   const ENDPOINT="https://script.google.com/macros/s/AKfycbw3VE2lIwy5cg_XqZmVVFBsA-dkXlLcDDiIRiPi6sW_8PWnP7yVdLLbh0xiV7I9tQXkqg/exec";
   const form=document.querySelector("#tripIntake");

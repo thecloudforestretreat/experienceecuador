@@ -1,23 +1,20 @@
 (function () {
   "use strict";
 
-  // GA LOADER
+  // GTM LOADER
   (function(){
-    var MID = "G-ZD68Y7WF7S";
-    if (window.gtag) return;
+    var GTM_ID = "GTM-WJQXQR2H";
+    if (window.__eeGtmLoaded) return;
+    window.__eeGtmLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      "gtm.start": new Date().getTime(),
+      event: "gtm.js"
+    });
     var s = document.createElement("script");
     s.async = true;
-    s.src = "https://www.googletagmanager.com/gtag/js?id=" + MID;
+    s.src = "https://www.googletagmanager.com/gtm.js?id=" + GTM_ID;
     document.head.appendChild(s);
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', MID, {
-      anonymize_ip: true,
-      send_page_view: true,
-      debug_mode: /[?&]debug_mode=true\b/.test(window.location.search)
-    });
   })();
 
 
