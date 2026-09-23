@@ -21,7 +21,7 @@
     window.__eeAttributionLoading = true;
     var attributionScript = document.createElement("script");
     attributionScript.async = true;
-    attributionScript.src = "/assets/js/attribution.js?v=20260922a";
+    attributionScript.src = "/assets/js/attribution.js?v=20260922b";
     document.head.appendChild(attributionScript);
   }
 

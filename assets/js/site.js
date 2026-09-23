@@ -13,7 +13,7 @@
     window.__eeAttributionLoading=true;
     const attributionScript=document.createElement("script");
     attributionScript.async=true;
-    attributionScript.src="/assets/js/attribution.js?v=20260922a";
+    attributionScript.src="/assets/js/attribution.js?v=20260922b";
     document.head.appendChild(attributionScript);
   }
   const ENDPOINT="https://script.google.com/macros/s/AKfycbw3VE2lIwy5cg_XqZmVVFBsA-dkXlLcDDiIRiPi6sW_8PWnP7yVdLLbh0xiV7I9tQXkqg/exec";
