@@ -89,6 +89,17 @@
     }
   };
 
+  var PAGE_CLUSTERS = Object.freeze({
+    discovery: "cluster-discovery.css",
+    hubs: "cluster-hubs.css",
+    destinations: "cluster-destinations.css",
+    experiences: "cluster-experiences.css",
+    editorial: "cluster-editorial.css",
+    recommendations: "cluster-recommendations.css",
+    planning: "cluster-planning.css",
+    trust: "cluster-trust.css"
+  });
+
   function normalizePath(path) {
     var normalized = String(path || "/").split("?")[0].split("#")[0] || "/";
     if (normalized.charAt(0) !== "/") normalized = "/" + normalized;
@@ -99,6 +110,46 @@
   function isSpanishPath(path) {
     var normalized = normalizePath(path);
     return normalized === "/es/" || normalized.indexOf("/es/") === 0;
+  }
+
+  function getPageCluster(path, pageType) {
+    var normalized = normalizePath(path || window.location.pathname);
+    var type = String(pageType || "").toLowerCase();
+    if (normalized === "/" || normalized === "/es/") return "discovery";
+    if (normalized === "/regions/" || normalized === "/es/regiones/") return "hubs";
+    if (/^\/(?:regions|es\/regiones)\//.test(normalized)) return "destinations";
+    if (/^\/(?:experiences|es\/experiencias)\//.test(normalized)) return "experiences";
+    if (/^\/(es\/)?(recommendations|recomendados)\//.test(normalized)) return "recommendations";
+    if (/trip-builder|plan-your-trip|planificador-de-viajes|planifica-tu-viaje|itinerary|itinerario/.test(normalized + " " + type)) return "planning";
+    if (/editorial|blog|guide|guia|comparison|packing|best-|mejores-|where-to|donde-/.test(normalized + " " + type)) return "editorial";
+    if (/region_index|regions_hub/.test(type)) return "hubs";
+    if (/location_page|region_page/.test(type)) return "destinations";
+    if (/experience/.test(type)) return "experiences";
+    if (/member|recommendation/.test(type)) return "recommendations";
+    if (/trip_planning|regional_trip|tool_page/.test(type)) return "planning";
+    if (/editorial|blog/.test(type)) return "editorial";
+    return "trust";
+  }
+
+  function loadPageClusterStylesheet() {
+    var body = document.body;
+    var requested = body && body.getAttribute("data-page-cluster");
+    var cluster = PAGE_CLUSTERS[requested] ? requested : getPageCluster(window.location.pathname, body && body.dataset.pageType);
+    var filename = PAGE_CLUSTERS[cluster];
+    if (!filename) return;
+    var current = document.getElementById("eePageClusterCss");
+    if (!current) {
+      current = document.createElement("link");
+      current.id = "eePageClusterCss";
+      current.rel = "stylesheet";
+      document.head.appendChild(current);
+    }
+    current.href = "/assets/css/" + filename + "?v=20261001b";
+    current.dataset.cluster = cluster;
+    if (body) {
+      body.classList.add("eeClusterPage", "eeCluster--" + cluster);
+      body.dataset.pageCluster = cluster;
+    }
   }
 
   function merge(base, override) {
@@ -216,15 +267,22 @@
   window.EE_SITE_CONFIG = {
     contact: CONTACT,
     whatsappWidget: WHATSAPP_WIDGET,
+    pageClusters: PAGE_CLUSTERS,
     buildWhatsAppUrl: buildWhatsAppUrl,
     getWhatsAppWidgetConfig: getWhatsAppWidgetConfig,
+    getPageCluster: getPageCluster,
+    loadPageClusterStylesheet: loadPageClusterStylesheet,
     initWhatsAppWidget: initWhatsAppWidget,
     initWhatsAppWidgets: initWhatsAppWidgets
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initWhatsAppWidgets);
+    document.addEventListener("DOMContentLoaded", function () {
+      loadPageClusterStylesheet();
+      initWhatsAppWidgets();
+    });
   } else {
+    loadPageClusterStylesheet();
     initWhatsAppWidgets();
   }
 

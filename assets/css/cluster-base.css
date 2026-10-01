@@ -1,0 +1,73 @@
+/* Experience Ecuador page-cluster foundation.
+   Loaded after site.css and before the intent-specific cluster bundle. */
+:root{
+  --ee-cluster-accent:var(--brand-blue,#034ea2);
+  --ee-cluster-accent-dark:var(--brand-blue-dark,#0f2f62);
+  --ee-cluster-soft:#edf5ff;
+  --ee-cluster-warm:#fff8e7;
+}
+
+.eeClusterPage main{overflow:hidden}
+.eeClusterPage .eeAnswer,
+.eeClusterPage .eeDecision,
+.eeClusterPage .eeRoute,
+.eeClusterPage .eeEvidence,
+.eeClusterPage .eeRelated{
+  max-width:1100px;
+  margin:24px auto;
+  padding:clamp(22px,4vw,38px);
+  border:1px solid rgba(3,78,162,.14);
+  border-radius:24px;
+  background:#fff;
+  box-shadow:0 16px 44px rgba(3,78,162,.09);
+}
+.eeClusterPage .eeAnswer{border-left:6px solid var(--ee-cluster-accent)}
+.eeClusterPage .eeAnswer__label{
+  display:block;
+  margin-bottom:8px;
+  color:var(--ee-cluster-accent-dark);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.eeClusterPage .eeAnswer h2,
+.eeClusterPage .eeDecision h2,
+.eeClusterPage .eeRoute h2,
+.eeClusterPage .eeRelated h2{margin:0 0 10px;color:var(--ee-cluster-accent-dark);font:800 clamp(26px,4vw,40px)/1.08 Montserrat,Inter,sans-serif}
+.eeClusterPage .eeAnswer p,
+.eeClusterPage .eeDecision p,
+.eeClusterPage .eeRoute p,
+.eeClusterPage .eeEvidence p{font-size:16px;line-height:1.72}
+.eeClusterPage .eeDecisionTableWrap{overflow-x:auto;margin-top:18px;border:1px solid rgba(3,78,162,.13);border-radius:16px}
+.eeClusterPage .eeDecisionTable{width:100%;border-collapse:collapse;min-width:720px;background:#fff}
+.eeClusterPage .eeDecisionTable th,
+.eeClusterPage .eeDecisionTable td{padding:14px 16px;border-bottom:1px solid rgba(3,78,162,.11);text-align:left;vertical-align:top;line-height:1.5}
+.eeClusterPage .eeDecisionTable th{background:var(--ee-cluster-accent-dark);color:#fff;font-size:13px}
+.eeClusterPage .eeDecisionTable tbody tr:nth-child(even){background:var(--ee-cluster-soft)}
+.eeClusterPage .eeDecisionTable tbody tr:last-child td{border-bottom:0}
+.eeClusterPage .eeFacts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0}
+.eeClusterPage .eeFact{padding:16px;border:1px solid rgba(3,78,162,.13);border-radius:16px;background:var(--ee-cluster-soft)}
+.eeClusterPage .eeFact strong,.eeClusterPage .eeFact span{display:block}
+.eeClusterPage .eeFact strong{color:var(--ee-cluster-accent-dark);font-size:14px}
+.eeClusterPage .eeFact span{margin-top:5px;color:#526176;font-size:13px;line-height:1.45}
+.eeClusterPage .eeRouteSteps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.eeClusterPage .eeRouteStep{position:relative;padding:20px;border-radius:18px;background:var(--ee-cluster-soft);border:1px solid rgba(3,78,162,.12)}
+.eeClusterPage .eeRouteStep b{display:block;margin-bottom:8px;color:var(--ee-cluster-accent-dark)}
+.eeClusterPage .eeRouteStep p{margin:0;font-size:14px}
+.eeClusterPage .eeEvidence{background:var(--ee-cluster-warm);box-shadow:none}
+.eeClusterPage .eeEvidence small{display:block;color:#5a6270;line-height:1.55}
+.eeClusterPage .eeRelatedGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.eeClusterPage .eeRelatedCard{display:block;padding:18px;border:1px solid rgba(3,78,162,.14);border-radius:17px;background:#fff;transition:transform .18s ease,box-shadow .18s ease}
+.eeClusterPage .eeRelatedCard:hover{transform:translateY(-2px);box-shadow:0 13px 30px rgba(3,78,162,.12)}
+.eeClusterPage .eeRelatedCard strong{display:block;color:var(--ee-cluster-accent-dark)}
+.eeClusterPage .eeRelatedCard span{display:block;margin-top:7px;color:#5d6979;font-size:14px;line-height:1.5}
+.eeClusterPage [data-ee-answer],.eeClusterPage [data-ee-decision],.eeClusterPage [data-ee-route]{scroll-margin-top:96px}
+
+@media(max-width:780px){
+  .eeClusterPage .eeFacts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .eeClusterPage .eeRouteSteps,.eeClusterPage .eeRelatedGrid{grid-template-columns:1fr}
+  .eeClusterPage .eeAnswer,.eeClusterPage .eeDecision,.eeClusterPage .eeRoute,.eeClusterPage .eeEvidence,.eeClusterPage .eeRelated{margin:18px;}
+}
+@media(max-width:480px){.eeClusterPage .eeFacts{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.eeClusterPage .eeRelatedCard{transition:none}}

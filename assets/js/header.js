@@ -41,7 +41,7 @@
     window.__eeSiteConfigLoading = true;
     var siteConfigScript = document.createElement("script");
     siteConfigScript.async = false;
-    siteConfigScript.src = "/assets/js/site-config.js?v=20260930d";
+    siteConfigScript.src = "/assets/js/site-config.js?v=20261001b";
     siteConfigScript.addEventListener("load", function () { window.__eeSiteConfigLoading = false; });
     siteConfigScript.addEventListener("error", function () { window.__eeSiteConfigLoading = false; });
     document.head.appendChild(siteConfigScript);
@@ -125,6 +125,13 @@
     var p = normalizePath(enPath || "/");
     if (isSpanishPath(p)) return p;
 
+    var itineraryMap = {
+      "/ecuador-coast-itinerary/": "/es/itinerario-costa-ecuador/",
+      "/ecuador-amazon-galapagos-itinerary/": "/es/itinerario-amazonia-galapagos/",
+      "/ecuador-birdwatching-itinerary/": "/es/itinerario-aviturismo-ecuador/"
+    };
+    if (itineraryMap[p]) return itineraryMap[p];
+
     if (p === "/") return "/es/";
     if (p === "/about/") return "/es/sobre-nosotros/";
     if (p === "/mission/") return "/es/mision/";
@@ -169,6 +176,13 @@
   function buildEnglishPath(esPath) {
     var p = normalizePath(esPath || "/");
     if (!isSpanishPath(p)) return p;
+
+    var itineraryMap = {
+      "/es/itinerario-costa-ecuador/": "/ecuador-coast-itinerary/",
+      "/es/itinerario-amazonia-galapagos/": "/ecuador-amazon-galapagos-itinerary/",
+      "/es/itinerario-aviturismo-ecuador/": "/ecuador-birdwatching-itinerary/"
+    };
+    if (itineraryMap[p]) return itineraryMap[p];
 
     if (p === "/es/") return "/";
     if (p === "/es/sobre-nosotros/") return "/about/";
