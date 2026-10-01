@@ -6,6 +6,9 @@
   <title>Transportation | Experience Ecuador</title>
   <meta name="description" content="Estimate transfer times across Ecuador. Pick a start and destination, adjust passengers and bags, and plan airport and city transport before you arrive." />
   <link rel="canonical" href="https://experienceecuador.com/transportation/" />
+  <link rel="alternate" hreflang="en" href="https://experienceecuador.com/transportation/" />
+  <link rel="alternate" hreflang="es" href="https://experienceecuador.com/es/transporte/" />
+  <link rel="alternate" hreflang="x-default" href="https://experienceecuador.com/transportation/" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Experience Ecuador" />
@@ -31,10 +34,25 @@
   <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
+  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-planning.css?v=20261001c" data-cluster="planning">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {"@type":"WebPage","@id":"https://experienceecuador.com/transportation/#webpage","url":"https://experienceecuador.com/transportation/","name":"Transportation Planning in Ecuador","description":"Estimate transfer times and plan airport, Quito, Mindo, and Cotacachi ground transportation before traveling in Ecuador.","inLanguage":"en","isPartOf":{"@id":"https://experienceecuador.com/#website"}},
+      {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://experienceecuador.com/"},{"@type":"ListItem","position":2,"name":"Transportation","item":"https://experienceecuador.com/transportation/"}]},
+      {"@type":"FAQPage","mainEntity":[
+        {"@type":"Question","name":"Are the transfer times guaranteed?","acceptedAnswer":{"@type":"Answer","text":"No. They are planning estimates. Traffic, road works, weather, pickup logistics, stops, and the selected route can change the actual time."}},
+        {"@type":"Question","name":"Does the estimator provide confirmed prices?","acceptedAnswer":{"@type":"Answer","text":"Not yet. Routes without verified commercial pricing display Coming soon. Request a trip plan for a current, operator-confirmed transport option."}},
+        {"@type":"Question","name":"Should I add extra time before a flight?","acceptedAnswer":{"@type":"Answer","text":"Yes. Build in a buffer appropriate to the airport, route, time of day, weather, and airline check-in requirements rather than treating a road estimate as a departure guarantee."}}
+      ]}
+    ]
+  }
+  </script>
   <style>
     :root{
       --brand-blue:#034EA2;
@@ -317,9 +335,29 @@
     }
     .status.ok{ border-color: rgba(15,138,95,0.25); background: rgba(15,138,95,0.08); color: var(--ok); }
     .status.warn{ border-color: rgba(182,91,0,0.25); background: rgba(182,91,0,0.08); color: var(--warn); }
+    .language-links{max-width:1100px;margin:0 auto;padding:0 18px 8px;display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+    .language-links a{padding:8px 12px;border:1px solid rgba(3,78,162,.18);border-radius:999px;background:#fff;color:#0f2f62;font-size:13px;font-weight:800}
+    .language-links a[aria-current="page"]{background:#0f2f62;color:#fff}
+    .transport-intro{max-width:1100px;margin:18px auto 0;padding:0 18px}
+    .transport-intro .card{border-left:6px solid var(--brand-blue)}
+    .transport-intro h2,.transport-section h2{font-family:Montserrat,Inter,sans-serif;color:#0f2f62;letter-spacing:-.025em}
+    .transport-section{max-width:1100px;margin:24px auto;padding:0 18px}
+    .transport-section>.card{padding:clamp(22px,4vw,38px)}
+    .transport-section p{line-height:1.72}
+    .planning-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+    .planning-item{padding:18px;border:1px solid rgba(3,78,162,.14);border-radius:17px;background:#eef5fd}
+    .planning-item h3{margin:0 0 8px;color:#0f2f62;font:800 17px/1.25 Montserrat,Inter,sans-serif}
+    .planning-item p{margin:0;color:#526176;font-size:14px;line-height:1.55}
+    .cta-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:20px}
+    .transport-faq details{margin-top:10px;padding:16px 18px;border:1px solid rgba(3,78,162,.14);border-radius:15px;background:#fff}
+    .transport-faq summary{cursor:pointer;color:#0f2f62;font-weight:800}
+    .transport-faq details p{margin:10px 0 0}
+    .pill{max-width:100%;white-space:normal;line-height:1.35}
+    @media(max-width:780px){.planning-grid{grid-template-columns:1fr}}
+    @media(max-width:620px){.kv{grid-template-columns:1fr}.status{white-space:normal;text-align:center}.selector-body{padding:16px}.card{padding:18px}}
   </style>
 </head>
-<body>
+<body class="eeClusterPage eeCluster--planning" data-page-type="transportation_guide" data-page-language="en" data-page-cluster="planning" data-topic-cluster="ecuador-transportation" data-funnel-stage="consideration">
   <div id="siteHeader"></div>
   <main>
     <section class="hero" aria-label="Transportation hero">
@@ -331,7 +369,18 @@
         </div>
       </div>
     </section>
-<main class="wrap">
+    <nav class="language-links" aria-label="Language options">
+      <a href="/transportation/" lang="en" hreflang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+      <a href="/es/transporte/" lang="es" hreflang="es" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+    </nav>
+    <section class="transport-intro" data-ee-answer>
+      <div class="card">
+        <span class="eeAnswer__label">Planning answer</span>
+        <h2>Use transfer estimates as a planning baseline</h2>
+        <p>Ecuador travel times depend on more than distance. Mountain roads, city traffic, weather, road works, pickup timing, luggage, and planned stops can all reshape a transfer. Use the estimator to compare known routes, then confirm the schedule and current price before booking. It is a research tool, not a live quote or a guaranteed arrival time.</p>
+      </div>
+    </section>
+<div class="wrap">
 
   <section class="selector-card" aria-label="Transportation estimator">
     <div class="selector-top">
@@ -421,16 +470,16 @@
           <div class="card" style="margin:0;">
             <h2 style="margin-bottom:10px;">What We Will Estimate</h2>
             <p>
-              This is designed to grow with you. Start with simple transfer prices, then expand.
+              We publish only planning information that can be explained clearly. Commercial prices will appear only after route, vehicle, inclusions, and operator availability are verified.
             </p>
 
             <div class="hint" aria-label="Estimator roadmap">
-              <div class="hint-title">Next Upgrades (Easy)</div>
+              <div class="hint-title">What a confirmed quote should cover</div>
               <ul>
-                <li>Per route travel times (minutes) and distance (km)</li>
-                <li>Car and SUV price ranges in USD</li>
-                <li>Extra bag fee, oversized luggage, child seat</li>
-                <li>Optional add-ons: quick stop, grocery stop, viewpoint stop</li>
+                <li>Pickup point, route, date, and approximate departure time</li>
+                <li>Vehicle capacity for passengers and luggage</li>
+                <li>Included waiting time, stops, and any special equipment</li>
+                <li>Current operator availability and final price in USD</li>
               </ul>
             </div>
 
@@ -438,7 +487,7 @@
               <div class="hint-title">Transparency</div>
               <ul>
                 <li>All estimates can show a range so expectations stay realistic</li>
-                <li>Final pricing can include a note: traffic and weather may change times</li>
+                <li>Traffic, weather, and road conditions may change travel times</li>
               </ul>
             </div>
           </div>
@@ -448,7 +497,40 @@
     </div>
   </section>
 
-</main>
+      <section class="transport-section" aria-labelledby="plan-transfer-heading">
+        <div class="card">
+          <h2 id="plan-transfer-heading">Plan the transfer in the right order</h2>
+          <div class="planning-grid">
+            <article class="planning-item"><h3>1. Anchor fixed times</h3><p>Start with flight check-in, lodge transfers, boat departures, and any reservation with a fixed arrival window.</p></article>
+            <article class="planning-item"><h3>2. Add route margin</h3><p>Allow additional time for traffic, weather, road conditions, comfort stops, and airport pickup coordination.</p></article>
+            <article class="planning-item"><h3>3. Confirm the vehicle</h3><p>Match passenger count, luggage, accessibility needs, child seats, and road type before accepting a quote.</p></article>
+          </div>
+          <div class="cta-row"><a class="btn btnPrimary" href="/trip-builder/" data-analytics-event="trip_builder_start" data-analytics-label="Build a transport-aware itinerary" data-analytics-location="transportation_guide">Build your trip plan</a><a class="btn btnGhost" href="/contact/" data-analytics-event="contact_click" data-analytics-label="Ask about transportation" data-analytics-location="transportation_guide">Ask about transportation</a></div>
+        </div>
+      </section>
+
+      <section class="eeRelated" aria-labelledby="transport-links-heading">
+        <h2 id="transport-links-heading">Connect transportation to your Ecuador route</h2>
+        <div class="eeRelatedGrid">
+          <a class="eeRelatedCard" href="/regions/andes/quito/"><strong>Quito planning guide</strong><span>Coordinate airport arrival, altitude adjustment, and time in the capital.</span></a>
+          <a class="eeRelatedCard" href="/regions/andes/mindo/"><strong>Mindo travel guide</strong><span>Plan the road into the cloud forest and the time needed around Mindo.</span></a>
+          <a class="eeRelatedCard" href="/regions/andes/cotacachi/"><strong>Cotacachi travel guide</strong><span>Connect northern Andes stops with a practical regional sequence.</span></a>
+          <a class="eeRelatedCard" href="/ecuador-coast-itinerary/"><strong>Ecuador coast itinerary</strong><span>Compare gateways and transfer logic for a coast-focused route.</span></a>
+          <a class="eeRelatedCard" href="/ecuador-amazon-galapagos-itinerary/"><strong>Amazon and Galápagos itinerary</strong><span>Protect the flight and transfer connections between two complex regions.</span></a>
+          <a class="eeRelatedCard" href="/regions/galapagos/"><strong>Galápagos planning guide</strong><span>Understand why island flights and confirmed transfer sequences need extra margin.</span></a>
+        </div>
+      </section>
+
+      <section class="transport-section transport-faq" aria-labelledby="transport-faq-heading">
+        <div class="card">
+          <h2 id="transport-faq-heading">Transportation planning questions</h2>
+          <details><summary>Are the transfer times guaranteed?</summary><p>No. They are planning estimates. Traffic, road works, weather, pickup logistics, stops, and the selected route can change the actual time.</p></details>
+          <details><summary>Does the estimator provide confirmed prices?</summary><p>Not yet. Routes without verified commercial pricing display “Coming soon.” Request a trip plan for a current, operator-confirmed transport option.</p></details>
+          <details><summary>Should I add extra time before a flight?</summary><p>Yes. Build in a buffer appropriate to the airport, route, time of day, weather, and airline check-in requirements. Never treat a road estimate as a departure guarantee.</p></details>
+        </div>
+      </section>
+
+</div>
   </main>
   <div id="siteFooter"></div>
   <script>
@@ -630,11 +712,11 @@
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(() => {
         const s = document.createElement("script");
-        s.src = "/assets/js/site.js?v=20261001b";
+        s.src = "/assets/js/site.js?v=20261001j";
         document.body.appendChild(s);
       }).catch(() => {
         const s = document.createElement("script");
-        s.src = "/assets/js/site.js?v=20261001b";
+        s.src = "/assets/js/site.js?v=20261001j";
         document.body.appendChild(s);
       });
     })();

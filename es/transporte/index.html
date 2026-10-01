@@ -7,6 +7,9 @@
   <title>Transporte | Experience Ecuador</title>
   <meta name="description" content="Estima tiempos de traslado en Ecuador. Elige origen y destino, ajusta pasajeros y maletas, y planifica transporte antes de llegar." />
   <link rel="canonical" href="https://experienceecuador.com/es/transporte/" />
+  <link rel="alternate" hreflang="es" href="https://experienceecuador.com/es/transporte/" />
+  <link rel="alternate" hreflang="en" href="https://experienceecuador.com/transportation/" />
+  <link rel="alternate" hreflang="x-default" href="https://experienceecuador.com/transportation/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -36,11 +39,26 @@
   <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
+  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-planning.css?v=20261001c" data-cluster="planning">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {"@type":"WebPage","@id":"https://experienceecuador.com/es/transporte/#webpage","url":"https://experienceecuador.com/es/transporte/","name":"Planificación de transporte en Ecuador","description":"Estima tiempos de traslado y planifica transporte terrestre entre el aeropuerto, Quito, Mindo y Cotacachi antes de viajar por Ecuador.","inLanguage":"es","isPartOf":{"@id":"https://experienceecuador.com/#website"}},
+      {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://experienceecuador.com/es/"},{"@type":"ListItem","position":2,"name":"Transporte","item":"https://experienceecuador.com/es/transporte/"}]},
+      {"@type":"FAQPage","mainEntity":[
+        {"@type":"Question","name":"¿Los tiempos de traslado están garantizados?","acceptedAnswer":{"@type":"Answer","text":"No. Son estimaciones para planificar. El tráfico, las obras viales, el clima, la logística de recogida, las paradas y la ruta elegida pueden cambiar el tiempo real."}},
+        {"@type":"Question","name":"¿El estimador ofrece precios confirmados?","acceptedAnswer":{"@type":"Answer","text":"Todavía no. Las rutas sin precios comerciales verificados muestran Próximamente. Solicita un plan de viaje para recibir una opción de transporte actual y confirmada por el operador."}},
+        {"@type":"Question","name":"¿Debo añadir tiempo adicional antes de un vuelo?","acceptedAnswer":{"@type":"Answer","text":"Sí. Añade un margen adecuado para el aeropuerto, la ruta, la hora, el clima y los requisitos de registro de la aerolínea; no trates una estimación vial como garantía de llegada."}}
+      ]}
+    ]
+  }
+  </script>
 
   <style>
     :root{
@@ -324,10 +342,30 @@
     }
     .status.ok{ border-color: rgba(15,138,95,0.25); background: rgba(15,138,95,0.08); color: var(--ok); }
     .status.warn{ border-color: rgba(182,91,0,0.25); background: rgba(182,91,0,0.08); color: var(--warn); }
+    .language-links{max-width:1100px;margin:0 auto;padding:0 18px 8px;display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+    .language-links a{padding:8px 12px;border:1px solid rgba(3,78,162,.18);border-radius:999px;background:#fff;color:#0f2f62;font-size:13px;font-weight:800}
+    .language-links a[aria-current="page"]{background:#0f2f62;color:#fff}
+    .transport-intro{max-width:1100px;margin:18px auto 0;padding:0 18px}
+    .transport-intro .card{border-left:6px solid var(--brand-blue)}
+    .transport-intro h2,.transport-section h2{font-family:Montserrat,Inter,sans-serif;color:#0f2f62;letter-spacing:-.025em}
+    .transport-section{max-width:1100px;margin:24px auto;padding:0 18px}
+    .transport-section>.card{padding:clamp(22px,4vw,38px)}
+    .transport-section p{line-height:1.72}
+    .planning-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+    .planning-item{padding:18px;border:1px solid rgba(3,78,162,.14);border-radius:17px;background:#eef5fd}
+    .planning-item h3{margin:0 0 8px;color:#0f2f62;font:800 17px/1.25 Montserrat,Inter,sans-serif}
+    .planning-item p{margin:0;color:#526176;font-size:14px;line-height:1.55}
+    .cta-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:20px}
+    .transport-faq details{margin-top:10px;padding:16px 18px;border:1px solid rgba(3,78,162,.14);border-radius:15px;background:#fff}
+    .transport-faq summary{cursor:pointer;color:#0f2f62;font-weight:800}
+    .transport-faq details p{margin:10px 0 0}
+    .pill{max-width:100%;white-space:normal;line-height:1.35}
+    @media(max-width:780px){.planning-grid{grid-template-columns:1fr}}
+    @media(max-width:620px){.kv{grid-template-columns:1fr}.status{white-space:normal;text-align:center}.selector-body{padding:16px}.card{padding:18px}}
   </style>
 </head>
 
-<body>
+<body class="eeClusterPage eeCluster--planning" data-page-type="transportation_guide" data-page-language="es" data-page-cluster="planning" data-topic-cluster="ecuador-transportation" data-funnel-stage="consideration">
   <div id="siteHeader"></div>
 
   <main>
@@ -340,8 +378,19 @@
         </div>
       </div>
     </section>
+    <nav class="language-links" aria-label="Opciones de idioma">
+      <a href="/transportation/" lang="en" hreflang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch">English</a>
+      <a href="/es/transporte/" lang="es" hreflang="es" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="Español" data-analytics-location="language_switch">Español</a>
+    </nav>
+    <section class="transport-intro" data-ee-answer>
+      <div class="card">
+        <span class="eeAnswer__label">Respuesta para planificar</span>
+        <h2>Usa las estimaciones como punto de partida</h2>
+        <p>Los tiempos de viaje en Ecuador dependen de mucho más que la distancia. Las vías de montaña, el tráfico urbano, el clima, las obras, la hora de recogida, el equipaje y las paradas pueden modificar un traslado. Usa el estimador para comparar rutas conocidas y luego confirma el horario y el precio vigentes antes de reservar. Es una herramienta de investigación, no una cotización en vivo ni una garantía de llegada.</p>
+      </div>
+    </section>
 
-    <main class="wrap">
+    <div class="wrap">
       <section class="selector-card" aria-label="Estimador de transporte">
         <div class="selector-top">
           <div></div>
@@ -430,16 +479,16 @@
               <div class="card" style="margin:0;">
                 <h2 style="margin-bottom:10px;">Qué estimaremos</h2>
                 <p>
-                  Esto está diseñado para crecer contigo. Empieza con precios simples de traslados y luego amplía.
+                  Publicamos solo información de planificación que podemos explicar con claridad. Los precios aparecerán cuando estén verificados la ruta, el vehículo, las inclusiones y la disponibilidad del operador.
                 </p>
 
                 <div class="hint" aria-label="Roadmap del estimador">
-                  <div class="hint-title">Siguientes mejoras (fáciles)</div>
+                  <div class="hint-title">Qué debe incluir una cotización confirmada</div>
                   <ul>
-                    <li>Tiempos por ruta (minutos) y distancia (km)</li>
-                    <li>Rangos de precio en USD para Auto y SUV</li>
-                    <li>Tarifa por maleta extra, equipaje sobredimensionado, silla para niños</li>
-                    <li>Add-ons opcionales: parada rápida, parada de compras, parada en mirador</li>
+                    <li>Punto de recogida, ruta, fecha y hora aproximada de salida</li>
+                    <li>Capacidad del vehículo para pasajeros y equipaje</li>
+                    <li>Tiempo de espera, paradas y equipo especial incluidos</li>
+                    <li>Disponibilidad actual del operador y precio final en USD</li>
                   </ul>
                 </div>
 
@@ -447,7 +496,7 @@
                   <div class="hint-title">Transparencia</div>
                   <ul>
                     <li>Las estimaciones pueden mostrar rangos para mantener expectativas realistas</li>
-                    <li>El precio final puede incluir una nota: tráfico y clima pueden cambiar los tiempos</li>
+                    <li>El tráfico, el clima y el estado de las vías pueden cambiar los tiempos</li>
                   </ul>
                 </div>
               </div>
@@ -456,7 +505,40 @@
           </div>
         </div>
       </section>
-    </main>
+      <section class="transport-section" aria-labelledby="planificar-traslado-heading">
+        <div class="card">
+          <h2 id="planificar-traslado-heading">Planifica el traslado en el orden correcto</h2>
+          <div class="planning-grid">
+            <article class="planning-item"><h3>1. Fija los horarios clave</h3><p>Empieza con el registro del vuelo, los traslados de lodges, las salidas en bote y cualquier reserva con una hora de llegada definida.</p></article>
+            <article class="planning-item"><h3>2. Añade margen a la ruta</h3><p>Reserva tiempo adicional para el tráfico, el clima, el estado de las vías, las paradas y la coordinación de recogida.</p></article>
+            <article class="planning-item"><h3>3. Confirma el vehículo</h3><p>Verifica pasajeros, equipaje, necesidades de accesibilidad, sillas infantiles y tipo de camino antes de aceptar una cotización.</p></article>
+          </div>
+          <div class="cta-row"><a class="btn btnPrimary" href="/es/planificador-de-viajes/" data-analytics-event="trip_builder_start" data-analytics-label="Crear itinerario con transporte" data-analytics-location="transportation_guide">Crea tu plan de viaje</a><a class="btn btnGhost" href="/es/contacto/" data-analytics-event="contact_click" data-analytics-label="Consultar sobre transporte" data-analytics-location="transportation_guide">Consulta sobre transporte</a></div>
+        </div>
+      </section>
+
+      <section class="eeRelated" aria-labelledby="enlaces-transporte-heading">
+        <h2 id="enlaces-transporte-heading">Conecta el transporte con tu ruta por Ecuador</h2>
+        <div class="eeRelatedGrid">
+          <a class="eeRelatedCard" href="/es/regiones/andes/quito/"><strong>Guía de Quito</strong><span>Coordina la llegada al aeropuerto, la adaptación a la altura y el tiempo en la capital.</span></a>
+          <a class="eeRelatedCard" href="/es/regiones/andes/mindo/"><strong>Guía de Mindo</strong><span>Planifica la carretera hacia el bosque nublado y el tiempo necesario en Mindo.</span></a>
+          <a class="eeRelatedCard" href="/es/regiones/andes/cotacachi/"><strong>Guía de Cotacachi</strong><span>Conecta las paradas de los Andes del norte en una secuencia regional práctica.</span></a>
+          <a class="eeRelatedCard" href="/es/itinerario-costa-ecuador/"><strong>Itinerario por la Costa</strong><span>Compara puertas de entrada y traslados para una ruta enfocada en la Costa.</span></a>
+          <a class="eeRelatedCard" href="/es/itinerario-amazonia-galapagos/"><strong>Itinerario Amazonía y Galápagos</strong><span>Protege los vuelos y traslados entre dos regiones con conexiones complejas.</span></a>
+          <a class="eeRelatedCard" href="/es/regiones/galapagos/"><strong>Guía de Galápagos</strong><span>Entiende por qué los vuelos y traslados insulares necesitan una secuencia confirmada.</span></a>
+        </div>
+      </section>
+
+      <section class="transport-section transport-faq" aria-labelledby="preguntas-transporte-heading">
+        <div class="card">
+          <h2 id="preguntas-transporte-heading">Preguntas sobre transporte</h2>
+          <details><summary>¿Los tiempos de traslado están garantizados?</summary><p>No. Son estimaciones para planificar. El tráfico, las obras viales, el clima, la logística de recogida, las paradas y la ruta elegida pueden cambiar el tiempo real.</p></details>
+          <details><summary>¿El estimador ofrece precios confirmados?</summary><p>Todavía no. Las rutas sin precios comerciales verificados muestran “Próximamente”. Solicita un plan de viaje para recibir una opción de transporte actual y confirmada por el operador.</p></details>
+          <details><summary>¿Debo añadir tiempo adicional antes de un vuelo?</summary><p>Sí. Añade un margen adecuado para el aeropuerto, la ruta, la hora, el clima y los requisitos de registro de la aerolínea. Nunca trates una estimación vial como garantía de llegada.</p></details>
+        </div>
+      </section>
+
+    </div>
   </main>
 
   <div id="siteFooter"></div>
@@ -643,11 +725,11 @@
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(() => {
         const s = document.createElement("script");
-        s.src = "/assets/js/site.js?v=20261001b";
+        s.src = "/assets/js/site.js?v=20261001j";
         document.body.appendChild(s);
       }).catch(() => {
         const s = document.createElement("script");
-        s.src = "/assets/js/site.js?v=20261001b";
+        s.src = "/assets/js/site.js?v=20261001j";
         document.body.appendChild(s);
       });
     })();
