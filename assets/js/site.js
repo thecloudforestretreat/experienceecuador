@@ -2,9 +2,13 @@
   const PRODUCTION_HOSTS=new Set(["experienceecuador.com","www.experienceecuador.com"]);
   const IS_PRODUCTION=PRODUCTION_HOSTS.has(location.hostname.toLowerCase());
   const query=new URLSearchParams(location.search);
-  if(query.get("ee_analytics_debug")==="1") sessionStorage.setItem("ee_analytics_debug","1");
-  if(query.get("ee_analytics_debug")==="0") sessionStorage.removeItem("ee_analytics_debug");
-  const ANALYTICS_ENABLED=IS_PRODUCTION||sessionStorage.getItem("ee_analytics_debug")==="1";
+  let analyticsDebug=query.get("ee_analytics_debug")==="1";
+  try{
+    if(query.get("ee_analytics_debug")==="1") sessionStorage.setItem("ee_analytics_debug","1");
+    if(query.get("ee_analytics_debug")==="0") sessionStorage.removeItem("ee_analytics_debug");
+    analyticsDebug=analyticsDebug||sessionStorage.getItem("ee_analytics_debug")==="1";
+  }catch(error){}
+  const ANALYTICS_ENABLED=IS_PRODUCTION||analyticsDebug;
   window.EE_ENV=Object.freeze({
     name:IS_PRODUCTION?"production":"staging",
     isProduction:IS_PRODUCTION,
@@ -34,7 +38,7 @@
     window.__eeSiteConfigLoading=true;
     const siteConfigScript=document.createElement("script");
     siteConfigScript.async=false;
-    siteConfigScript.src="/assets/js/site-config.js?v=20260930b";
+    siteConfigScript.src="/assets/js/site-config.js?v=20260930c";
     siteConfigScript.addEventListener("load",()=>{window.__eeSiteConfigLoading=false;});
     siteConfigScript.addEventListener("error",()=>{window.__eeSiteConfigLoading=false;});
     document.head.appendChild(siteConfigScript);
@@ -43,7 +47,7 @@
     window.__eeHeaderLoading=true;
     const headerScript=document.createElement("script");
     headerScript.async=false;
-    headerScript.src="/assets/js/header.js?v=20260930b";
+    headerScript.src="/assets/js/header.js?v=20260930c";
     headerScript.addEventListener("load",()=>{window.__eeHeaderLoading=false;});
     headerScript.addEventListener("error",()=>{window.__eeHeaderLoading=false;});
     document.head.appendChild(headerScript);
