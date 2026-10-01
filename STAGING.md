@@ -26,8 +26,10 @@ These eighteen URLs are planning and interest pages, not bookable package pages.
 
 - `/plan-your-trip/` ↔ `/es/planifica-tu-viaje/`
 - `/plan-your-trip/amazon/` ↔ `/es/planifica-tu-viaje/amazonia/`
+- `/plan-your-trip/andes/` ↔ `/es/planifica-tu-viaje/andes/`
+- `/plan-your-trip/coast/` ↔ `/es/planifica-tu-viaje/costa/`
 
-Progress: 2 of 5 trip-planning pairs are staged (4 bilingual pages). The Andes, Coast and Galápagos intake pairs remain in the build queue.
+Progress: 4 of 5 trip-planning pairs are staged (8 bilingual pages). The Galápagos intake pair remains in the build queue.
 
 The staged pages use the planning cluster, the shared injectable runtime and centralized `site-config.js`. The Amazon forms retain the connected intake endpoint, Turnstile protection, first- and last-touch attribution payloads, draft persistence, five-step validation and explicit success/error analytics. The hub does not load form-only Turnstile or intake JavaScript. All four canonical URLs are present in `sitemap.xml`.
 
