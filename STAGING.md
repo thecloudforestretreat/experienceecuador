@@ -47,3 +47,17 @@ Before merging the release to `main`:
 4. Remove `_headers` from the production release so the live site remains indexable.
 5. Confirm `robots.txt` and the canonical sitemap are production-ready.
 6. After all staging build work is complete, rerun the full Screaming Frog crawl and resolve the release-blocking findings before any page is promoted, indexed or submitted for reindexing.
+
+## Screaming Frog release-gate snapshot
+
+Staging sitemap-list crawl completed on 2026-10-01 with Screaming Frog SEO Spider 24.3 against 211 staging URLs.
+
+- 202 URLs returned `200`.
+- 2 URLs returned `301` and 7 returned `308`; sitemap redirect targets must be normalized before release.
+- All four new Galápagos route URLs returned `200`, contained exactly one H1, contained 560–686 words, exposed 9 unique internal outlinks, and carried the staging `noindex, nofollow, noarchive, nosnippet` directive.
+- No `200` HTML page was missing a meta description.
+- 15 `200` HTML pages contained fewer than 300 words; review intent before expanding them.
+- `/transportation/` and `/es/transporte/` had zero unique internal outlinks and remain release-blocking internal-authority work.
+- Legacy metadata still includes 68 titles longer than 60 characters, 3 titles shorter than 30 characters, and 56 descriptions longer than 160 characters. Treat these as prioritization flags rather than automatic rewrites; preserve search intent and improve the highest-value pages first.
+
+Do not promote or request indexing until the redirecting sitemap entries, zero-outlink transportation pair, and other agreed release blockers are resolved and the crawl is rerun.
