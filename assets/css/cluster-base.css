@@ -5,6 +5,8 @@
   --ee-cluster-accent-dark:var(--brand-blue-dark,#0f2f62);
   --ee-cluster-soft:#edf5ff;
   --ee-cluster-warm:#fff8e7;
+  --ee-action-gold:#f2b441;
+  --ee-action-gold-hover:#ffd06f;
 }
 
 .eeClusterPage main{overflow:hidden}
@@ -51,8 +53,10 @@
 .eeClusterPage .eeFact strong,.eeClusterPage .eeFact span{display:block}
 .eeClusterPage .eeFact strong{color:var(--ee-cluster-accent-dark);font-size:14px}
 .eeClusterPage .eeFact span{margin-top:5px;color:#526176;font-size:13px;line-height:1.45}
-.eeClusterPage .eeRouteSteps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
-.eeClusterPage .eeRouteStep{position:relative;padding:20px;border-radius:18px;background:var(--ee-cluster-soft);border:1px solid rgba(3,78,162,.12)}
+.eeClusterPage .eeRouteSteps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin-top:18px}
+.eeClusterPage .eeRouteStep{grid-column:span 2;position:relative;min-width:0;padding:20px;border-radius:18px;background:var(--ee-cluster-soft);border:1px solid rgba(3,78,162,.12)}
+.eeClusterPage .eeRouteSteps:has(.eeRouteStep:nth-child(4):last-child) .eeRouteStep{grid-column:span 3}
+.eeClusterPage .eeRouteSteps:has(.eeRouteStep:nth-child(5):last-child) .eeRouteStep:nth-child(n+4){grid-column:span 3}
 .eeClusterPage .eeRouteStep b{display:block;margin-bottom:8px;color:var(--ee-cluster-accent-dark)}
 .eeClusterPage .eeRouteStep p{margin:0;font-size:14px}
 .eeClusterPage .eeEvidence{background:var(--ee-cluster-warm);box-shadow:none}
@@ -67,6 +71,9 @@
 @media(max-width:780px){
   .eeClusterPage .eeFacts{grid-template-columns:repeat(2,minmax(0,1fr))}
   .eeClusterPage .eeRouteSteps,.eeClusterPage .eeRelatedGrid{grid-template-columns:1fr}
+  .eeClusterPage .eeRouteStep,
+  .eeClusterPage .eeRouteSteps:has(.eeRouteStep:nth-child(4):last-child) .eeRouteStep,
+  .eeClusterPage .eeRouteSteps:has(.eeRouteStep:nth-child(5):last-child) .eeRouteStep:nth-child(n+4){grid-column:1}
   .eeClusterPage .eeAnswer,.eeClusterPage .eeDecision,.eeClusterPage .eeRoute,.eeClusterPage .eeEvidence,.eeClusterPage .eeRelated{margin:18px;}
 }
 @media(max-width:480px){.eeClusterPage .eeFacts{grid-template-columns:1fr}}
