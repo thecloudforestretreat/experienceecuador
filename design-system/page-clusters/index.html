@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Experience Ecuador Page Cluster Review</title>
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+  <meta name="description" content="Internal staging review of Experience Ecuador page clusters and proposed design patterns.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/assets/css/page-cluster-preview.css?v=20261001a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Montserrat:wght@700;800&amp;display=swap" rel="stylesheet">
+  <script defer src="/assets/js/page-cluster-preview.js?v=20261001a"></script>
+</head>
+<body>
+  <header class="reviewHeader">
+    <a class="brand" href="/" aria-label="Experience Ecuador staging home">
+      <span class="brandMark">⌖</span><span>Experience Ecuador</span>
+    </a>
+    <div class="reviewLabel">Design system review · staging only</div>
+  </header>
+
+  <main class="reviewShell">
+    <section class="intro">
+      <div>
+        <span class="eyebrow">Page cluster architecture</span>
+        <h1>One system. Twelve page intents.</h1>
+        <p>Compare the current representative page with a proposed intent-led design. The mockups preserve the brand while creating clearer hierarchy, stronger answers, better internal-link pathways, and reusable bilingual components.</p>
+      </div>
+      <div class="summary" aria-label="Design system summary">
+        <div><strong>12</strong><span>page clusters</span></div>
+        <div><strong>8</strong><span>cluster styles</span></div>
+        <div><strong>EN + ES</strong><span>shared patterns</span></div>
+      </div>
+    </section>
+
+    <section class="workspace" aria-label="Page cluster comparison">
+      <aside class="clusterRail">
+        <div class="railHead">
+          <span class="railKicker">Choose a cluster</span>
+          <span id="clusterCount">01 / 12</span>
+        </div>
+        <div id="clusterNav" class="clusterNav" role="list"></div>
+      </aside>
+
+      <div class="reviewStage">
+        <header class="clusterHeader">
+          <div>
+            <span id="clusterFamily" class="eyebrow">Discovery</span>
+            <h2 id="clusterTitle">Homepage &amp; entry pages</h2>
+            <p id="clusterPurpose"></p>
+          </div>
+          <div class="viewControls" role="group" aria-label="Preview width">
+            <button class="viewButton isActive" type="button" data-view="desktop" aria-pressed="true">Desktop</button>
+            <button class="viewButton" type="button" data-view="mobile" aria-pressed="false">Mobile</button>
+          </div>
+        </header>
+
+        <div class="clusterMeta">
+          <div><span>Representative</span><a id="representativeLink" href="/" target="_blank" rel="noopener">Homepage</a></div>
+          <div><span>Proposed CSS</span><code id="cssLayer">cluster-discovery.css</code></div>
+          <div><span>Primary outcome</span><strong id="clusterOutcome">Orient and route</strong></div>
+        </div>
+
+        <div id="comparison" class="comparison isDesktop">
+          <article class="comparisonPanel currentPanel">
+            <div class="panelBar">
+              <div><span class="stateDot currentDot"></span><strong>Current</strong></div>
+              <span>Live staging page</span>
+            </div>
+            <div class="browserFrame">
+              <div class="browserTop"><i></i><i></i><i></i><span id="currentPath">/</span></div>
+              <div class="viewport currentViewport">
+                <iframe id="currentFrame" title="Current representative page" loading="lazy"></iframe>
+              </div>
+            </div>
+          </article>
+
+          <article class="comparisonPanel mockupPanel">
+            <div class="panelBar">
+              <div><span class="stateDot mockupDot"></span><strong>Proposed</strong></div>
+              <span>Cluster mockup</span>
+            </div>
+            <div class="browserFrame">
+              <div class="browserTop"><i></i><i></i><i></i><span id="mockPath">Proposed pattern</span></div>
+              <div id="mockupViewport" class="viewport mockupViewport"></div>
+            </div>
+          </article>
+        </div>
+
+        <section class="decisionStrip" aria-label="Design decisions">
+          <div>
+            <span class="railKicker">What changes</span>
+            <ul id="changesList"></ul>
+          </div>
+          <div>
+            <span class="railKicker">Shared modules</span>
+            <div id="moduleList" class="moduleList"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="architecture" aria-labelledby="architectureTitle">
+      <div class="architectureIntro">
+        <span class="eyebrow">Proposed stylesheet architecture</span>
+        <h2 id="architectureTitle">Global foundations first; cluster CSS only where intent changes.</h2>
+        <p>English and Spanish counterparts use identical layout CSS. Language, URLs, schema, content length, and analytics metadata change—presentation rules do not.</p>
+      </div>
+      <div class="layerMap">
+        <div class="layer global"><span>01</span><strong>tokens.css</strong><small>color, type, space, radius</small></div>
+        <div class="layer global"><span>02</span><strong>site.css</strong><small>base, grid, buttons, cards</small></div>
+        <div class="layer global"><span>03</span><strong>header + footer</strong><small>navigation and global conversion</small></div>
+        <div class="layer cluster"><span>04</span><strong>cluster-*.css</strong><small>intent-specific composition</small></div>
+        <div class="layer page"><span>05</span><strong>page exceptions</strong><small>only truly unique modules</small></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/assets/js/site.js?v=20260930d"></script>
+</body>
+</html>

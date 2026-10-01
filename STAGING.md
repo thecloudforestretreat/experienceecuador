@@ -2,6 +2,10 @@
 
 This branch is the pre-production integration environment for the site-wide update.
 
+## Design review
+
+- Page cluster comparison and mockups: `/design-system/page-clusters/`
+
 ## Safety controls
 
 - Cloudflare serves `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet` from `_headers`.
