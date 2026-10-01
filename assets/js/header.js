@@ -133,7 +133,9 @@
       "/tours/ecuador-photo-tour/": "/es/tours/tour-fotografia-ecuador/",
       "/tours/ecuador-birds-mammals/": "/es/tours/aves-mamiferos-ecuador/",
       "/tours/ecuador-enigmatic-reptiles-amphibians/": "/es/tours/reptiles-anfibios-ecuador/",
-      "/tours/ecuador-southern-endemic-birds/": "/es/tours/aves-endemicas-sur-ecuador/"
+      "/tours/ecuador-southern-endemic-birds/": "/es/tours/aves-endemicas-sur-ecuador/",
+      "/tours/ecuador-the-andes-and-amazon-exotic/": "/es/tours/andes-amazonia-exotica-ecuador/",
+      "/tours/ecuador-wild-andes-bears-birds-explorer/": "/es/tours/andes-salvajes-osos-aves-ecuador/"
     };
     if (itineraryMap[p]) return itineraryMap[p];
 
@@ -190,7 +192,9 @@
       "/es/tours/tour-fotografia-ecuador/": "/tours/ecuador-photo-tour/",
       "/es/tours/aves-mamiferos-ecuador/": "/tours/ecuador-birds-mammals/",
       "/es/tours/reptiles-anfibios-ecuador/": "/tours/ecuador-enigmatic-reptiles-amphibians/",
-      "/es/tours/aves-endemicas-sur-ecuador/": "/tours/ecuador-southern-endemic-birds/"
+      "/es/tours/aves-endemicas-sur-ecuador/": "/tours/ecuador-southern-endemic-birds/",
+      "/es/tours/andes-amazonia-exotica-ecuador/": "/tours/ecuador-the-andes-and-amazon-exotic/",
+      "/es/tours/andes-salvajes-osos-aves-ecuador/": "/tours/ecuador-wild-andes-bears-birds-explorer/"
     };
     if (itineraryMap[p]) return itineraryMap[p];
 
