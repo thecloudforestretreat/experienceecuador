@@ -4,7 +4,7 @@ Load after header.css, footer.css and site.css. */
 .pytPage {
   --pyt-blue:var(--brand-blue,#034EA2);
   --pyt-dark:var(--brand-blue-dark,#0f2f62);
-  --pyt-yellow:#FFD100;
+  --pyt-yellow:var(--ee-action-gold,#f2b441);
   --pyt-ink:var(--ink,#24324a);
   --pyt-muted:var(--muted,#6E7B8B);
   --pyt-line:rgba(3,78,162,.16);
@@ -90,6 +90,7 @@ Load after header.css, footer.css and site.css. */
 .pytHero h1 {
   max-width:900px;
   margin:17px 0 13px;
+  color:#fff;
   font:800 clamp(39px,7vw,74px)/1 Montserrat,Inter,sans-serif;
   letter-spacing:-.04em
 }
@@ -109,6 +110,39 @@ Load after header.css, footer.css and site.css. */
 
 .pytPage button,.pytPage .btn {
   font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif
+}
+.pytPage .pytBtn {
+  display:inline-flex;
+  min-height:46px;
+  align-items:center;
+  justify-content:center;
+  padding:12px 18px;
+  border:1px solid transparent;
+  border-radius:13px;
+  font-weight:900;
+  line-height:1.15;
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease
+}
+.pytPage .pytBtn:hover,.pytPage .pytBtn:focus-visible {
+  transform:translateY(-2px)
+}
+.pytPage .btnPrimary {
+  border-color:var(--pyt-yellow);
+  background:var(--pyt-yellow);
+  color:#13233d;
+  box-shadow:0 12px 28px rgba(242,180,65,.28)
+}
+.pytPage .btnPrimary:hover,.pytPage .btnPrimary:focus-visible {
+  border-color:var(--ee-action-gold-hover,#ffd06f);
+  background:var(--ee-action-gold-hover,#ffd06f);
+  color:#13233d;
+  box-shadow:0 16px 34px rgba(242,180,65,.34)
+}
+.pytPage .btnGhost {
+  border-color:rgba(3,78,162,.22);
+  background:#fff;
+  color:var(--pyt-dark);
+  box-shadow:0 10px 24px rgba(15,47,98,.12)
 }
 .pytPage h1,.pytPage h2,.pytPage h3 {
   font-family:Montserrat,Inter,sans-serif

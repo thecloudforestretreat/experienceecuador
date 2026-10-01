@@ -22,6 +22,15 @@ Progress: 9 of 9 specialist route pairs are staged (18 bilingual pages); the pla
 
 These eighteen URLs are planning and interest pages, not bookable package pages. Keep their current Article, BreadcrumbList and FAQPage schema until the operator of record, permissions and access, exact itinerary, guide capacity, transport, lodging, meals, pricing, inclusions and exclusions, cancellation terms, activity and accessibility details, emergency procedures, and live availability are approved. Do not add Product, Offer or TouristTrip schema before those facts are visible and verified.
 
+## Staged trip-planning pairs
+
+- `/plan-your-trip/` ↔ `/es/planifica-tu-viaje/`
+- `/plan-your-trip/amazon/` ↔ `/es/planifica-tu-viaje/amazonia/`
+
+Progress: 2 of 5 trip-planning pairs are staged (4 bilingual pages). The Andes, Coast and Galápagos intake pairs remain in the build queue.
+
+The staged pages use the planning cluster, the shared injectable runtime and centralized `site-config.js`. The Amazon forms retain the connected intake endpoint, Turnstile protection, first- and last-touch attribution payloads, draft persistence, five-step validation and explicit success/error analytics. The hub does not load form-only Turnstile or intake JavaScript. All four canonical URLs are present in `sitemap.xml`.
+
 ## Shared runtime foundation
 
 - Every staged page loads `assets/js/site.js`, which injects `assets/js/site-config.js` before initializing the site runtime.
