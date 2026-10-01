@@ -1,6 +1,55 @@
 (()=>{
+  const PRODUCTION_HOSTS=new Set(["experienceecuador.com","www.experienceecuador.com"]);
+  const IS_PRODUCTION=PRODUCTION_HOSTS.has(location.hostname.toLowerCase());
+  const query=new URLSearchParams(location.search);
+  if(query.get("ee_analytics_debug")==="1") sessionStorage.setItem("ee_analytics_debug","1");
+  if(query.get("ee_analytics_debug")==="0") sessionStorage.removeItem("ee_analytics_debug");
+  const ANALYTICS_ENABLED=IS_PRODUCTION||sessionStorage.getItem("ee_analytics_debug")==="1";
+  window.EE_ENV=Object.freeze({
+    name:IS_PRODUCTION?"production":"staging",
+    isProduction:IS_PRODUCTION,
+    analyticsEnabled:ANALYTICS_ENABLED
+  });
+  document.documentElement.dataset.eeEnvironment=window.EE_ENV.name;
+  if(!IS_PRODUCTION){
+    let robots=document.querySelector('meta[name="robots"]');
+    if(!robots){
+      robots=document.createElement("meta");
+      robots.name="robots";
+      document.head.appendChild(robots);
+    }
+    robots.content="noindex,nofollow,noarchive,nosnippet";
+    const style=document.createElement("style");
+    style.textContent=".eeStagingBanner{position:fixed;left:0;right:0;bottom:0;z-index:2147483647;padding:7px 12px;background:#18392b;color:#fff;font:700 12px/1.2 system-ui,sans-serif;text-align:center;letter-spacing:.04em;box-shadow:0 -2px 8px rgba(0,0,0,.2)}";
+    document.head.appendChild(style);
+    addEventListener("DOMContentLoaded",()=>{
+      const banner=document.createElement("div");
+      banner.className="eeStagingBanner";
+      banner.setAttribute("role","status");
+      banner.textContent="STAGING PREVIEW · "+(ANALYTICS_ENABLED?"analytics debug enabled":"analytics disabled");
+      document.body.appendChild(banner);
+    },{once:true});
+  }
+  if(!window.__eeSiteConfigLoading&&!window.EE_SITE_CONFIG){
+    window.__eeSiteConfigLoading=true;
+    const siteConfigScript=document.createElement("script");
+    siteConfigScript.async=false;
+    siteConfigScript.src="/assets/js/site-config.js?v=20260930a";
+    siteConfigScript.addEventListener("load",()=>{window.__eeSiteConfigLoading=false;});
+    siteConfigScript.addEventListener("error",()=>{window.__eeSiteConfigLoading=false;});
+    document.head.appendChild(siteConfigScript);
+  }
+  if(!window.__eeHeaderLoading&&!window.__eeHeaderLoaded){
+    window.__eeHeaderLoading=true;
+    const headerScript=document.createElement("script");
+    headerScript.async=false;
+    headerScript.src="/assets/js/header.js?v=20260930a";
+    headerScript.addEventListener("load",()=>{window.__eeHeaderLoading=false;});
+    headerScript.addEventListener("error",()=>{window.__eeHeaderLoading=false;});
+    document.head.appendChild(headerScript);
+  }
   const GTM_ID="GTM-WJQXQR2H";
-  if(!window.__eeGtmLoaded){
+  if(ANALYTICS_ENABLED&&!window.__eeGtmLoaded){
     window.__eeGtmLoaded=true;
     window.dataLayer=window.dataLayer||[];
     window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
@@ -84,20 +133,11 @@
       allInput.checked=others.length>0&&others.every(item=>item.checked);
     }));
   });
-  document.querySelectorAll("[data-analytics-event]").forEach(el=>el.addEventListener("click",()=>push(
-    el.dataset.analyticsEvent,
-    {
-      cta_label:el.dataset.analyticsLabel||el.textContent.trim(),
-      cta_location:el.dataset.analyticsLocation||"",
-      link_url:el.href||""
-    }
-  )));
   document.querySelectorAll(".pytFaq details").forEach(details=>details.addEventListener("toggle",()=>{
     if(details.open) push("faq_expand",{section_name:details.querySelector("summary")?.textContent.trim()||""});
   }));
   if(!form) return;
   let step=1;
-  let started=false;
   const q=selector=>document.querySelector(selector);
   const steps=[...document.querySelectorAll(".pytStep")];
   const draftKey="ee-pyt-draft-"+document.documentElement.lang+"-"+document.body.dataset.region;
@@ -147,10 +187,6 @@
   }catch(error){}
   syncDateLimits();
   form.addEventListener("input",()=>{
-    if(!started){
-      started=true;
-      push("form_start",{form_name:"regional_trip_intake"});
-    }
     localStorage.setItem(draftKey,JSON.stringify(values()));
   });
   q("#nextStep").onclick=()=>{
