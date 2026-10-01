@@ -60,4 +60,15 @@ Staging sitemap-list crawl completed on 2026-10-01 with Screaming Frog SEO Spide
 - `/transportation/` and `/es/transporte/` had zero unique internal outlinks and remain release-blocking internal-authority work.
 - Legacy metadata still includes 68 titles longer than 60 characters, 3 titles shorter than 30 characters, and 56 descriptions longer than 160 characters. Treat these as prioritization flags rather than automatic rewrites; preserve search intent and improve the highest-value pages first.
 
-Do not promote or request indexing until the redirecting sitemap entries, zero-outlink transportation pair, and other agreed release blockers are resolved and the crawl is rerun.
+### Focused remediation recrawl
+
+Commit `d66b4ed` was deployed only to `experienceecuador-staging` and checked on `staging.experienceecuador.com` on 2026-10-01. Screaming Frog SEO Spider 24.3 then recrawled the eleven affected canonical targets.
+
+- All eleven URLs returned a direct `200`; none redirected.
+- Every checked URL contained exactly one H1 and the staging `noindex, nofollow, noarchive, nosnippet` directive.
+- `/transportation/` increased from 177 to 494 crawl-visible words and from 0 to 10 unique internal outlinks.
+- `/es/transporte/` increased from 180 to 573 crawl-visible words and from 0 to 10 unique internal outlinks.
+- The sitemap no longer contains `/home/`, `/es/inicio/`, or the seven non-canonical no-trailing-slash variants recorded above.
+- The transportation pair now includes reciprocal hreflang, WebPage/BreadcrumbList/FAQPage JSON-LD, the planning cluster CSS, crawlable language navigation, contextual related links, tracked CTAs, and the current shared runtime that injects `site-config.js`.
+
+The redirecting-sitemap and zero-outlink transportation blockers are resolved. Production remains unchanged and indexing remains prohibited until the remaining site-wide QA, prioritized metadata work, analytics validation, and final full sitemap crawl are complete.
