@@ -8,7 +8,7 @@
     window.__eeSiteConfigLoading = true;
     var siteConfigScript = document.createElement("script");
     siteConfigScript.async = false;
-    siteConfigScript.src = "/assets/js/site-config.js?v=20260930a";
+    siteConfigScript.src = "/assets/js/site-config.js?v=20260930b";
     siteConfigScript.addEventListener("load", function () { window.__eeSiteConfigLoading = false; });
     siteConfigScript.addEventListener("error", function () { window.__eeSiteConfigLoading = false; });
     document.head.appendChild(siteConfigScript);
@@ -17,6 +17,11 @@
   // GTM LOADER
   (function(){
     var GTM_ID = "GTM-WJQXQR2H";
+    var productionHosts = ["experienceecuador.com", "www.experienceecuador.com"];
+    var isProduction = productionHosts.indexOf(location.hostname.toLowerCase()) !== -1;
+    var analyticsDebug = new URLSearchParams(location.search).get("ee_analytics_debug") === "1";
+    try { analyticsDebug = analyticsDebug || sessionStorage.getItem("ee_analytics_debug") === "1"; } catch (error) {}
+    if (!isProduction && !analyticsDebug) return;
     if (window.__eeGtmLoaded) return;
     window.__eeGtmLoaded = true;
     window.dataLayer = window.dataLayer || [];
