@@ -144,7 +144,7 @@
       current.rel = "stylesheet";
       document.head.appendChild(current);
     }
-    current.href = "/assets/css/" + filename + "?v=20261001b";
+    current.href = "/assets/css/" + filename + "?v=20261001c";
     current.dataset.cluster = cluster;
     if (body) {
       body.classList.add("eeClusterPage", "eeCluster--" + cluster);

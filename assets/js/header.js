@@ -41,7 +41,7 @@
     window.__eeSiteConfigLoading = true;
     var siteConfigScript = document.createElement("script");
     siteConfigScript.async = false;
-    siteConfigScript.src = "/assets/js/site-config.js?v=20261001b";
+    siteConfigScript.src = "/assets/js/site-config.js?v=20261001c";
     siteConfigScript.addEventListener("load", function () { window.__eeSiteConfigLoading = false; });
     siteConfigScript.addEventListener("error", function () { window.__eeSiteConfigLoading = false; });
     document.head.appendChild(siteConfigScript);
@@ -128,7 +128,9 @@
     var itineraryMap = {
       "/ecuador-coast-itinerary/": "/es/itinerario-costa-ecuador/",
       "/ecuador-amazon-galapagos-itinerary/": "/es/itinerario-amazonia-galapagos/",
-      "/ecuador-birdwatching-itinerary/": "/es/itinerario-aviturismo-ecuador/"
+      "/ecuador-birdwatching-itinerary/": "/es/itinerario-aviturismo-ecuador/",
+      "/tours/ecuador-choco-biodiversity/": "/es/tours/biodiversidad-choco-ecuador/",
+      "/tours/ecuador-photo-tour/": "/es/tours/tour-fotografia-ecuador/"
     };
     if (itineraryMap[p]) return itineraryMap[p];
 
@@ -180,7 +182,9 @@
     var itineraryMap = {
       "/es/itinerario-costa-ecuador/": "/ecuador-coast-itinerary/",
       "/es/itinerario-amazonia-galapagos/": "/ecuador-amazon-galapagos-itinerary/",
-      "/es/itinerario-aviturismo-ecuador/": "/ecuador-birdwatching-itinerary/"
+      "/es/itinerario-aviturismo-ecuador/": "/ecuador-birdwatching-itinerary/",
+      "/es/tours/biodiversidad-choco-ecuador/": "/tours/ecuador-choco-biodiversity/",
+      "/es/tours/tour-fotografia-ecuador/": "/tours/ecuador-photo-tour/"
     };
     if (itineraryMap[p]) return itineraryMap[p];
 

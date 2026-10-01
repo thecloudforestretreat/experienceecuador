@@ -6,6 +6,13 @@ This branch is the pre-production integration environment for the site-wide upda
 
 - Page cluster comparison and mockups: `/design-system/page-clusters/`
 
+## Staged specialist route pairs
+
+- `/tours/ecuador-choco-biodiversity/` ↔ `/es/tours/biodiversidad-choco-ecuador/`
+- `/tours/ecuador-photo-tour/` ↔ `/es/tours/tour-fotografia-ecuador/`
+
+These four URLs are planning and interest pages, not bookable package pages. Keep their current Article, BreadcrumbList and FAQPage schema until the operator of record, permissions and access, exact itinerary, guide capacity, transport, lodging, meals, pricing, inclusions and exclusions, cancellation terms, activity and accessibility details, emergency procedures, and live availability are approved. Do not add Product, Offer or TouristTrip schema before those facts are visible and verified.
+
 ## Safety controls
 
 - Cloudflare serves `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet` from `_headers`.
