@@ -27,6 +27,7 @@
     style.textContent=".eeStagingBanner{position:fixed;left:0;right:0;bottom:0;z-index:2147483647;padding:7px 12px;background:#18392b;color:#fff;font:700 12px/1.2 system-ui,sans-serif;text-align:center;letter-spacing:.04em;box-shadow:0 -2px 8px rgba(0,0,0,.2)}";
     document.head.appendChild(style);
     addEventListener("DOMContentLoaded",()=>{
+      if(document.querySelector(".eeStagingBanner")) return;
       const banner=document.createElement("div");
       banner.className="eeStagingBanner";
       banner.setAttribute("role","status");
@@ -38,7 +39,7 @@
     window.__eeSiteConfigLoading=true;
     const siteConfigScript=document.createElement("script");
     siteConfigScript.async=false;
-    siteConfigScript.src="/assets/js/site-config.js?v=20260930c";
+    siteConfigScript.src="/assets/js/site-config.js?v=20260930d";
     siteConfigScript.addEventListener("load",()=>{window.__eeSiteConfigLoading=false;});
     siteConfigScript.addEventListener("error",()=>{window.__eeSiteConfigLoading=false;});
     document.head.appendChild(siteConfigScript);
@@ -47,7 +48,7 @@
     window.__eeHeaderLoading=true;
     const headerScript=document.createElement("script");
     headerScript.async=false;
-    headerScript.src="/assets/js/header.js?v=20260930c";
+    headerScript.src="/assets/js/header.js?v=20260930d";
     headerScript.addEventListener("load",()=>{window.__eeHeaderLoading=false;});
     headerScript.addEventListener("error",()=>{window.__eeHeaderLoading=false;});
     document.head.appendChild(headerScript);

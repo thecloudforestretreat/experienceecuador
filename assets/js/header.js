@@ -4,11 +4,44 @@
   if (window.__eeHeaderLoaded) return;
   window.__eeHeaderLoaded = true;
 
+  var eeProductionHosts = ["experienceecuador.com", "www.experienceecuador.com"];
+  var eeIsProduction = eeProductionHosts.indexOf(location.hostname.toLowerCase()) !== -1;
+  var eeAnalyticsDebug = new URLSearchParams(location.search).get("ee_analytics_debug") === "1";
+  try { eeAnalyticsDebug = eeAnalyticsDebug || sessionStorage.getItem("ee_analytics_debug") === "1"; } catch (error) {}
+  window.EE_ENV = Object.freeze({
+    name: eeIsProduction ? "production" : "staging",
+    isProduction: eeIsProduction,
+    analyticsEnabled: eeIsProduction || eeAnalyticsDebug
+  });
+  document.documentElement.dataset.eeEnvironment = window.EE_ENV.name;
+  if (!eeIsProduction) {
+    var robotsMeta = document.querySelector('meta[name="robots"]');
+    if (!robotsMeta) {
+      robotsMeta = document.createElement("meta");
+      robotsMeta.name = "robots";
+      document.head.appendChild(robotsMeta);
+    }
+    robotsMeta.content = "noindex,nofollow,noarchive,nosnippet";
+    var stagingStyle = document.createElement("style");
+    stagingStyle.textContent = ".eeStagingBanner{position:fixed;left:0;right:0;bottom:0;z-index:2147483647;padding:7px 12px;background:#18392b;color:#fff;font:700 12px/1.2 system-ui,sans-serif;text-align:center;letter-spacing:.04em;box-shadow:0 -2px 8px rgba(0,0,0,.2)}";
+    document.head.appendChild(stagingStyle);
+    var addStagingBanner = function () {
+      if (document.querySelector(".eeStagingBanner")) return;
+      var banner = document.createElement("div");
+      banner.className = "eeStagingBanner";
+      banner.setAttribute("role", "status");
+      banner.textContent = "STAGING PREVIEW · " + (window.EE_ENV.analyticsEnabled ? "analytics debug enabled" : "analytics disabled");
+      document.body.appendChild(banner);
+    };
+    if (document.body) addStagingBanner();
+    else addEventListener("DOMContentLoaded", addStagingBanner, { once: true });
+  }
+
   if (!window.__eeSiteConfigLoading && !window.EE_SITE_CONFIG) {
     window.__eeSiteConfigLoading = true;
     var siteConfigScript = document.createElement("script");
     siteConfigScript.async = false;
-    siteConfigScript.src = "/assets/js/site-config.js?v=20260930c";
+    siteConfigScript.src = "/assets/js/site-config.js?v=20260930d";
     siteConfigScript.addEventListener("load", function () { window.__eeSiteConfigLoading = false; });
     siteConfigScript.addEventListener("error", function () { window.__eeSiteConfigLoading = false; });
     document.head.appendChild(siteConfigScript);
@@ -17,11 +50,7 @@
   // GTM LOADER
   (function(){
     var GTM_ID = "GTM-WJQXQR2H";
-    var productionHosts = ["experienceecuador.com", "www.experienceecuador.com"];
-    var isProduction = productionHosts.indexOf(location.hostname.toLowerCase()) !== -1;
-    var analyticsDebug = new URLSearchParams(location.search).get("ee_analytics_debug") === "1";
-    try { analyticsDebug = analyticsDebug || sessionStorage.getItem("ee_analytics_debug") === "1"; } catch (error) {}
-    if (!isProduction && !analyticsDebug) return;
+    if (!window.EE_ENV.analyticsEnabled) return;
     if (window.__eeGtmLoaded) return;
     window.__eeGtmLoaded = true;
     window.dataLayer = window.dataLayer || [];
