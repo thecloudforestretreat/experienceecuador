@@ -41,7 +41,7 @@
     window.__eeSiteConfigLoading = true;
     var siteConfigScript = document.createElement("script");
     siteConfigScript.async = false;
-    siteConfigScript.src = "/assets/js/site-config.js?v=20261001c";
+    siteConfigScript.src = "/assets/js/site-config.js?v=20261001d";
     siteConfigScript.addEventListener("load", function () { window.__eeSiteConfigLoading = false; });
     siteConfigScript.addEventListener("error", function () { window.__eeSiteConfigLoading = false; });
     document.head.appendChild(siteConfigScript);
@@ -131,7 +131,9 @@
       "/ecuador-birdwatching-itinerary/": "/es/itinerario-aviturismo-ecuador/",
       "/tours/ecuador-choco-biodiversity/": "/es/tours/biodiversidad-choco-ecuador/",
       "/tours/ecuador-photo-tour/": "/es/tours/tour-fotografia-ecuador/",
-      "/tours/ecuador-birds-mammals/": "/es/tours/aves-mamiferos-ecuador/"
+      "/tours/ecuador-birds-mammals/": "/es/tours/aves-mamiferos-ecuador/",
+      "/tours/ecuador-enigmatic-reptiles-amphibians/": "/es/tours/reptiles-anfibios-ecuador/",
+      "/tours/ecuador-southern-endemic-birds/": "/es/tours/aves-endemicas-sur-ecuador/"
     };
     if (itineraryMap[p]) return itineraryMap[p];
 
@@ -186,7 +188,9 @@
       "/es/itinerario-aviturismo-ecuador/": "/ecuador-birdwatching-itinerary/",
       "/es/tours/biodiversidad-choco-ecuador/": "/tours/ecuador-choco-biodiversity/",
       "/es/tours/tour-fotografia-ecuador/": "/tours/ecuador-photo-tour/",
-      "/es/tours/aves-mamiferos-ecuador/": "/tours/ecuador-birds-mammals/"
+      "/es/tours/aves-mamiferos-ecuador/": "/tours/ecuador-birds-mammals/",
+      "/es/tours/reptiles-anfibios-ecuador/": "/tours/ecuador-enigmatic-reptiles-amphibians/",
+      "/es/tours/aves-endemicas-sur-ecuador/": "/tours/ecuador-southern-endemic-birds/"
     };
     if (itineraryMap[p]) return itineraryMap[p];
 
