@@ -34,7 +34,7 @@
   <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
-  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-planning.css?v=20261001c" data-cluster="planning">
+  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-planning.css?v=20261001d" data-cluster="planning">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -357,7 +357,7 @@
     @media(max-width:620px){.kv{grid-template-columns:1fr}.status{white-space:normal;text-align:center}.selector-body{padding:16px}.card{padding:18px}}
   </style>
 </head>
-<body class="eeClusterPage eeCluster--planning" data-page-type="transportation_guide" data-page-language="en" data-page-cluster="planning" data-topic-cluster="ecuador-transportation" data-funnel-stage="consideration">
+<body class="eeClusterPage eeCluster--planning eeTransportPage" data-page-type="transportation_guide" data-page-language="en" data-page-cluster="planning" data-topic-cluster="ecuador-transportation" data-funnel-stage="consideration">
   <div id="siteHeader"></div>
   <main>
     <section class="hero" aria-label="Transportation hero">
@@ -375,16 +375,32 @@
     </nav>
     <section class="transport-intro" data-ee-answer>
       <div class="card">
-        <span class="eeAnswer__label">Planning answer</span>
-        <h2>Use transfer estimates as a planning baseline</h2>
-        <p>Ecuador travel times depend on more than distance. Mountain roads, city traffic, weather, road works, pickup timing, luggage, and planned stops can all reshape a transfer. Use the estimator to compare known routes, then confirm the schedule and current price before booking. It is a research tool, not a live quote or a guaranteed arrival time.</p>
+        <div>
+          <span class="eeAnswer__label">Planning answer</span>
+          <h2>Use transfer estimates as a planning baseline</h2>
+          <p>Ecuador travel times depend on more than distance. Mountain roads, city traffic, weather, road works, pickup timing, luggage, and planned stops can all reshape a transfer. Use the estimator to compare known routes, then confirm the schedule and current price before booking. It is a research tool, not a live quote or a guaranteed arrival time.</p>
+        </div>
+        <div class="transport-intro__signals" aria-label="Important planning principles">
+          <div class="transport-signal">Plan with a time buffer</div>
+          <div class="transport-signal">Match vehicle to luggage</div>
+          <div class="transport-signal">Confirm price before booking</div>
+        </div>
       </div>
     </section>
 <div class="wrap">
 
   <section class="selector-card" aria-label="Transportation estimator">
     <div class="selector-top">
-      <div></div>
+      <div class="selector-copy" aria-label="Estimator intro copy">
+        <span class="pill">Quick ride estimates</span>
+        <h2>Build a realistic transfer plan</h2>
+        <p>Select a starting point and destination, then add your group and luggage. Known routes return a planning estimate; unverified routes remain clearly marked.</p>
+        <div class="route-visual" aria-label="Selected route overview">
+          <div class="route-node"><small>From</small><strong id="routeFromBadge">Choose</strong></div>
+          <div class="route-line"><span class="route-time" id="routeTimeBadge">Route estimate</span></div>
+          <div class="route-node"><small>To</small><strong id="routeToBadge">Choose</strong></div>
+        </div>
+      </div>
 
       <div class="selector-controls" aria-label="Transportation controls">
         <label for="fromSelect">Location</label>
@@ -419,23 +435,11 @@
         </select>
       </div>
 
-      <div class="selector-copy" aria-label="Estimator intro copy">
-        <div style="padding:14px 0 6px 0;">
-          <span class="pill">Quick Ride Estimates</span>
-        </div>
-      </div>
     </div>
 
     <div class="selector-body">
-      <div class="card" style="box-shadow:none;border:0;padding:0;background:transparent;">
-        <h2 style="margin-bottom:10px;">Plan Transfers Before You Land</h2>
-        <p>
-          Choose where you are and where you are going, then adjust passengers and bags.
-          This page will show estimated travel time plus a rough transport cost range once pricing is added.
-        </p>
-
         <div class="results-grid" aria-label="Estimator results grid">
-          <div class="card" style="margin:0;">
+          <div class="card result-card result-card--route">
             <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
               <h2 style="margin:0;color:#0f2f62;font-size:20px;">Your Route</h2>
               <span id="statusPill" class="status warn" aria-live="polite">Select two places</span>
@@ -465,10 +469,20 @@
               Tip: When you add pricing later, you can set different ranges for day vs night, weekday vs weekend,
               and airport pickup vs city pickup.
             </p>
+            <div class="route-checklist">
+              <div class="hint" aria-label="Before confirming a transfer">
+                <div class="hint-title">Before you confirm</div>
+                <ul>
+                  <li>Share the exact pickup point and flight or reservation time</li>
+                  <li>Count full-size bags, specialty equipment, and mobility needs</li>
+                  <li>Ask whether stops and waiting time are included</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
-          <div class="card" style="margin:0;">
-            <h2 style="margin-bottom:10px;">What We Will Estimate</h2>
+          <div class="card result-card result-card--quote">
+            <h2 style="margin-bottom:10px;">What a useful estimate includes</h2>
             <p>
               We publish only planning information that can be explained clearly. Commercial prices will appear only after route, vehicle, inclusions, and operator availability are verified.
             </p>
@@ -492,8 +506,10 @@
             </div>
           </div>
         </div>
-
-      </div>
+        <div class="estimator-footer">
+          <div><h3>Need the route checked around your itinerary?</h3><p>Use the trip builder to connect transfers with flights, lodges, fixed departures, and realistic buffers.</p></div>
+          <a class="btn btnPrimary" href="/trip-builder/" data-analytics-event="trip_builder_start" data-analytics-label="Plan transportation from estimator" data-analytics-location="transportation_estimator">Plan the full route</a>
+        </div>
     </div>
   </section>
 
@@ -501,9 +517,9 @@
         <div class="card">
           <h2 id="plan-transfer-heading">Plan the transfer in the right order</h2>
           <div class="planning-grid">
-            <article class="planning-item"><h3>1. Anchor fixed times</h3><p>Start with flight check-in, lodge transfers, boat departures, and any reservation with a fixed arrival window.</p></article>
-            <article class="planning-item"><h3>2. Add route margin</h3><p>Allow additional time for traffic, weather, road conditions, comfort stops, and airport pickup coordination.</p></article>
-            <article class="planning-item"><h3>3. Confirm the vehicle</h3><p>Match passenger count, luggage, accessibility needs, child seats, and road type before accepting a quote.</p></article>
+            <article class="planning-item"><span class="step-number">1</span><h3>Anchor fixed times</h3><p>Start with flight check-in, lodge transfers, boat departures, and any reservation with a fixed arrival window.</p></article>
+            <article class="planning-item"><span class="step-number">2</span><h3>Add route margin</h3><p>Allow additional time for traffic, weather, road conditions, comfort stops, and airport pickup coordination.</p></article>
+            <article class="planning-item"><span class="step-number">3</span><h3>Confirm the vehicle</h3><p>Match passenger count, luggage, accessibility needs, child seats, and road type before accepting a quote.</p></article>
           </div>
           <div class="cta-row"><a class="btn btnPrimary" href="/trip-builder/" data-analytics-event="trip_builder_start" data-analytics-label="Build a transport-aware itinerary" data-analytics-location="transportation_guide">Build your trip plan</a><a class="btn btnGhost" href="/contact/" data-analytics-event="contact_click" data-analytics-label="Ask about transportation" data-analytics-location="transportation_guide">Ask about transportation</a></div>
         </div>
@@ -523,10 +539,12 @@
 
       <section class="transport-section transport-faq" aria-labelledby="transport-faq-heading">
         <div class="card">
-          <h2 id="transport-faq-heading">Transportation planning questions</h2>
-          <details><summary>Are the transfer times guaranteed?</summary><p>No. They are planning estimates. Traffic, road works, weather, pickup logistics, stops, and the selected route can change the actual time.</p></details>
-          <details><summary>Does the estimator provide confirmed prices?</summary><p>Not yet. Routes without verified commercial pricing display “Coming soon.” Request a trip plan for a current, operator-confirmed transport option.</p></details>
-          <details><summary>Should I add extra time before a flight?</summary><p>Yes. Build in a buffer appropriate to the airport, route, time of day, weather, and airline check-in requirements. Never treat a road estimate as a departure guarantee.</p></details>
+          <div class="faq-intro"><span class="pill">Clear answers</span><h2 id="transport-faq-heading">Transportation planning questions</h2><p>Use these answers to avoid treating a planning estimate as a confirmed service or guaranteed schedule.</p></div>
+          <div class="faq-list">
+            <details><summary>Are the transfer times guaranteed?</summary><p>No. They are planning estimates. Traffic, road works, weather, pickup logistics, stops, and the selected route can change the actual time.</p></details>
+            <details><summary>Does the estimator provide confirmed prices?</summary><p>Not yet. Routes without verified commercial pricing display “Coming soon.” Request a trip plan for a current, operator-confirmed transport option.</p></details>
+            <details><summary>Should I add extra time before a flight?</summary><p>Yes. Build in a buffer appropriate to the airport, route, time of day, weather, and airline check-in requirements. Never treat a road estimate as a departure guarantee.</p></details>
+          </div>
         </div>
       </section>
 
@@ -576,6 +594,9 @@
     const carOut = byId("carOut");
     const suvOut = byId("suvOut");
     const noteOut = byId("noteOut");
+    const routeFromBadge = byId("routeFromBadge");
+    const routeToBadge = byId("routeToBadge");
+    const routeTimeBadge = byId("routeTimeBadge");
 
     function formatTime(minutes){
       if (!Number.isFinite(minutes)) return "Add route data";
@@ -633,6 +654,9 @@
 
       fromOut.textContent = getLocName(from);
       toOut.textContent = getLocName(to);
+      routeFromBadge.textContent = from ? getLocName(from) : "Choose";
+      routeToBadge.textContent = to ? getLocName(to) : "Choose";
+      routeTimeBadge.textContent = "Route estimate";
 
       vehicleOut.textContent = suggestVehicle(pax, bags);
 
@@ -642,6 +666,7 @@
         carOut.textContent = "Coming soon";
         suvOut.textContent = "Coming soon";
         noteOut.textContent = "Choose two different places to estimate travel time and cost.";
+        routeTimeBadge.textContent = "Choose another destination";
         return;
       }
 
@@ -652,6 +677,7 @@
         suvOut.textContent = "Coming soon";
         noteOut.textContent =
           "Once you add route pricing, this will show car and SUV ranges based on passengers and bags.";
+        routeTimeBadge.textContent = "Select two places";
         return;
       }
 
@@ -665,11 +691,13 @@
         suvOut.textContent = "Coming soon";
         noteOut.textContent =
           "You can add this route to ROUTE_DATA in the script. Keep travel time in minutes, then add car and SUV ranges.";
+        routeTimeBadge.textContent = "Route not verified";
         return;
       }
 
       setStatus("Estimate ready", "ok");
       timeOut.textContent = formatTime(data.minutes);
+      routeTimeBadge.textContent = formatTime(data.minutes);
       carOut.textContent = formatUSDRange(data.carMin, data.carMax);
       suvOut.textContent = formatUSDRange(data.suvMin, data.suvMax);
 

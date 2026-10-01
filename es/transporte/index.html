@@ -39,7 +39,7 @@
   <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
-  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-planning.css?v=20261001c" data-cluster="planning">
+  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-planning.css?v=20261001d" data-cluster="planning">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -365,7 +365,7 @@
   </style>
 </head>
 
-<body class="eeClusterPage eeCluster--planning" data-page-type="transportation_guide" data-page-language="es" data-page-cluster="planning" data-topic-cluster="ecuador-transportation" data-funnel-stage="consideration">
+<body class="eeClusterPage eeCluster--planning eeTransportPage" data-page-type="transportation_guide" data-page-language="es" data-page-cluster="planning" data-topic-cluster="ecuador-transportation" data-funnel-stage="consideration">
   <div id="siteHeader"></div>
 
   <main>
@@ -384,16 +384,32 @@
     </nav>
     <section class="transport-intro" data-ee-answer>
       <div class="card">
-        <span class="eeAnswer__label">Respuesta para planificar</span>
-        <h2>Usa las estimaciones como punto de partida</h2>
-        <p>Los tiempos de viaje en Ecuador dependen de mucho más que la distancia. Las vías de montaña, el tráfico urbano, el clima, las obras, la hora de recogida, el equipaje y las paradas pueden modificar un traslado. Usa el estimador para comparar rutas conocidas y luego confirma el horario y el precio vigentes antes de reservar. Es una herramienta de investigación, no una cotización en vivo ni una garantía de llegada.</p>
+        <div>
+          <span class="eeAnswer__label">Respuesta para planificar</span>
+          <h2>Usa las estimaciones como punto de partida</h2>
+          <p>Los tiempos de viaje en Ecuador dependen de mucho más que la distancia. Las vías de montaña, el tráfico urbano, el clima, las obras, la hora de recogida, el equipaje y las paradas pueden modificar un traslado. Usa el estimador para comparar rutas conocidas y luego confirma el horario y el precio vigentes antes de reservar. Es una herramienta de investigación, no una cotización en vivo ni una garantía de llegada.</p>
+        </div>
+        <div class="transport-intro__signals" aria-label="Principios importantes de planificación">
+          <div class="transport-signal">Planifica con margen de tiempo</div>
+          <div class="transport-signal">Ajusta el vehículo al equipaje</div>
+          <div class="transport-signal">Confirma el precio antes de reservar</div>
+        </div>
       </div>
     </section>
 
     <div class="wrap">
       <section class="selector-card" aria-label="Estimador de transporte">
         <div class="selector-top">
-          <div></div>
+          <div class="selector-copy" aria-label="Texto de introducción del estimador">
+            <span class="pill">Estimaciones rápidas de traslados</span>
+            <h2>Construye un plan de traslado realista</h2>
+            <p>Selecciona el punto de partida y el destino, y luego añade tu grupo y equipaje. Las rutas conocidas muestran una estimación; las rutas no verificadas quedan claramente identificadas.</p>
+            <div class="route-visual" aria-label="Resumen de la ruta seleccionada">
+              <div class="route-node"><small>Desde</small><strong id="routeFromBadge">Elige</strong></div>
+              <div class="route-line"><span class="route-time" id="routeTimeBadge">Estimación de ruta</span></div>
+              <div class="route-node"><small>Hasta</small><strong id="routeToBadge">Elige</strong></div>
+            </div>
+          </div>
 
           <div class="selector-controls" aria-label="Controles de transporte">
             <label for="fromSelect">Ubicación</label>
@@ -428,23 +444,11 @@
             </select>
           </div>
 
-          <div class="selector-copy" aria-label="Texto de introducción del estimador">
-            <div style="padding:14px 0 6px 0;">
-              <span class="pill">Estimaciones rápidas de traslados</span>
-            </div>
-          </div>
         </div>
 
         <div class="selector-body">
-          <div class="card" style="box-shadow:none;border:0;padding:0;background:transparent;">
-            <h2 style="margin-bottom:10px;">Planifica traslados antes de aterrizar</h2>
-            <p>
-              Elige dónde estás y a dónde vas, luego ajusta pasajeros y maletas.
-              Esta página mostrará un tiempo estimado y un rango aproximado de costo cuando agreguemos precios.
-            </p>
-
             <div class="results-grid" aria-label="Cuadrícula de resultados del estimador">
-              <div class="card" style="margin:0;">
+              <div class="card result-card result-card--route">
                 <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
                   <h2 style="margin:0;color:#0f2f62;font-size:20px;">Tu ruta</h2>
                   <span id="statusPill" class="status warn" aria-live="polite">Selecciona dos lugares</span>
@@ -474,10 +478,20 @@
                   Tip: Cuando agregues precios, puedes definir rangos distintos para día vs noche, entre semana vs fin de semana
                   y recogida en aeropuerto vs recogida en ciudad.
                 </p>
+                <div class="route-checklist">
+                  <div class="hint" aria-label="Antes de confirmar un traslado">
+                    <div class="hint-title">Antes de confirmar</div>
+                    <ul>
+                      <li>Comparte el punto exacto de recogida y la hora del vuelo o reserva</li>
+                      <li>Cuenta maletas grandes, equipo especial y necesidades de movilidad</li>
+                      <li>Pregunta si las paradas y el tiempo de espera están incluidos</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
 
-              <div class="card" style="margin:0;">
-                <h2 style="margin-bottom:10px;">Qué estimaremos</h2>
+              <div class="card result-card result-card--quote">
+                <h2 style="margin-bottom:10px;">Qué incluye una estimación útil</h2>
                 <p>
                   Publicamos solo información de planificación que podemos explicar con claridad. Los precios aparecerán cuando estén verificados la ruta, el vehículo, las inclusiones y la disponibilidad del operador.
                 </p>
@@ -501,17 +515,19 @@
                 </div>
               </div>
             </div>
-
-          </div>
+            <div class="estimator-footer">
+              <div><h3>¿Necesitas revisar la ruta junto con tu itinerario?</h3><p>Usa el planificador para conectar traslados con vuelos, lodges, salidas fijas y márgenes realistas.</p></div>
+              <a class="btn btnPrimary" href="/es/planificador-de-viajes/" data-analytics-event="trip_builder_start" data-analytics-label="Planificar transporte desde el estimador" data-analytics-location="transportation_estimator">Planifica la ruta completa</a>
+            </div>
         </div>
       </section>
       <section class="transport-section" aria-labelledby="planificar-traslado-heading">
         <div class="card">
           <h2 id="planificar-traslado-heading">Planifica el traslado en el orden correcto</h2>
           <div class="planning-grid">
-            <article class="planning-item"><h3>1. Fija los horarios clave</h3><p>Empieza con el registro del vuelo, los traslados de lodges, las salidas en bote y cualquier reserva con una hora de llegada definida.</p></article>
-            <article class="planning-item"><h3>2. Añade margen a la ruta</h3><p>Reserva tiempo adicional para el tráfico, el clima, el estado de las vías, las paradas y la coordinación de recogida.</p></article>
-            <article class="planning-item"><h3>3. Confirma el vehículo</h3><p>Verifica pasajeros, equipaje, necesidades de accesibilidad, sillas infantiles y tipo de camino antes de aceptar una cotización.</p></article>
+            <article class="planning-item"><span class="step-number">1</span><h3>Fija los horarios clave</h3><p>Empieza con el registro del vuelo, los traslados de lodges, las salidas en bote y cualquier reserva con una hora de llegada definida.</p></article>
+            <article class="planning-item"><span class="step-number">2</span><h3>Añade margen a la ruta</h3><p>Reserva tiempo adicional para el tráfico, el clima, el estado de las vías, las paradas y la coordinación de recogida.</p></article>
+            <article class="planning-item"><span class="step-number">3</span><h3>Confirma el vehículo</h3><p>Verifica pasajeros, equipaje, necesidades de accesibilidad, sillas infantiles y tipo de camino antes de aceptar una cotización.</p></article>
           </div>
           <div class="cta-row"><a class="btn btnPrimary" href="/es/planificador-de-viajes/" data-analytics-event="trip_builder_start" data-analytics-label="Crear itinerario con transporte" data-analytics-location="transportation_guide">Crea tu plan de viaje</a><a class="btn btnGhost" href="/es/contacto/" data-analytics-event="contact_click" data-analytics-label="Consultar sobre transporte" data-analytics-location="transportation_guide">Consulta sobre transporte</a></div>
         </div>
@@ -531,10 +547,12 @@
 
       <section class="transport-section transport-faq" aria-labelledby="preguntas-transporte-heading">
         <div class="card">
-          <h2 id="preguntas-transporte-heading">Preguntas sobre transporte</h2>
-          <details><summary>¿Los tiempos de traslado están garantizados?</summary><p>No. Son estimaciones para planificar. El tráfico, las obras viales, el clima, la logística de recogida, las paradas y la ruta elegida pueden cambiar el tiempo real.</p></details>
-          <details><summary>¿El estimador ofrece precios confirmados?</summary><p>Todavía no. Las rutas sin precios comerciales verificados muestran “Próximamente”. Solicita un plan de viaje para recibir una opción de transporte actual y confirmada por el operador.</p></details>
-          <details><summary>¿Debo añadir tiempo adicional antes de un vuelo?</summary><p>Sí. Añade un margen adecuado para el aeropuerto, la ruta, la hora, el clima y los requisitos de registro de la aerolínea. Nunca trates una estimación vial como garantía de llegada.</p></details>
+          <div class="faq-intro"><span class="pill">Respuestas claras</span><h2 id="preguntas-transporte-heading">Preguntas sobre transporte</h2><p>Usa estas respuestas para no confundir una estimación de planificación con un servicio confirmado o un horario garantizado.</p></div>
+          <div class="faq-list">
+            <details><summary>¿Los tiempos de traslado están garantizados?</summary><p>No. Son estimaciones para planificar. El tráfico, las obras viales, el clima, la logística de recogida, las paradas y la ruta elegida pueden cambiar el tiempo real.</p></details>
+            <details><summary>¿El estimador ofrece precios confirmados?</summary><p>Todavía no. Las rutas sin precios comerciales verificados muestran “Próximamente”. Solicita un plan de viaje para recibir una opción de transporte actual y confirmada por el operador.</p></details>
+            <details><summary>¿Debo añadir tiempo adicional antes de un vuelo?</summary><p>Sí. Añade un margen adecuado para el aeropuerto, la ruta, la hora, el clima y los requisitos de registro de la aerolínea. Nunca trates una estimación vial como garantía de llegada.</p></details>
+          </div>
         </div>
       </section>
 
@@ -586,6 +604,9 @@
     const carOut = byId("carOut");
     const suvOut = byId("suvOut");
     const noteOut = byId("noteOut");
+    const routeFromBadge = byId("routeFromBadge");
+    const routeToBadge = byId("routeToBadge");
+    const routeTimeBadge = byId("routeTimeBadge");
 
     function formatTime(minutes){
       if (!Number.isFinite(minutes)) return "Agrega datos de ruta";
@@ -643,6 +664,9 @@
 
       fromOut.textContent = getLocName(from);
       toOut.textContent = getLocName(to);
+      routeFromBadge.textContent = from ? getLocName(from) : "Elige";
+      routeToBadge.textContent = to ? getLocName(to) : "Elige";
+      routeTimeBadge.textContent = "Estimación de ruta";
 
       vehicleOut.textContent = suggestVehicle(pax, bags);
 
@@ -652,6 +676,7 @@
         carOut.textContent = "Próximamente";
         suvOut.textContent = "Próximamente";
         noteOut.textContent = "Elige dos lugares diferentes para estimar tiempo y costo.";
+        routeTimeBadge.textContent = "Elige otro destino";
         return;
       }
 
@@ -662,6 +687,7 @@
         suvOut.textContent = "Próximamente";
         noteOut.textContent =
           "Cuando agreguemos precios por ruta, verás rangos para auto y SUV según pasajeros y maletas.";
+        routeTimeBadge.textContent = "Selecciona dos lugares";
         return;
       }
 
@@ -675,11 +701,13 @@
         suvOut.textContent = "Próximamente";
         noteOut.textContent =
           "Puedes agregar esta ruta en ROUTE_DATA dentro del script. Define el tiempo en minutos y luego agrega rangos para auto y SUV.";
+        routeTimeBadge.textContent = "Ruta no verificada";
         return;
       }
 
       setStatus("Estimación lista", "ok");
       timeOut.textContent = formatTime(data.minutes);
+      routeTimeBadge.textContent = formatTime(data.minutes);
 
       carOut.textContent = formatUSDRange(data.carMin, data.carMax);
       suvOut.textContent = formatUSDRange(data.suvMin, data.suvMax);
