@@ -130,7 +130,8 @@
       "/ecuador-amazon-galapagos-itinerary/": "/es/itinerario-amazonia-galapagos/",
       "/ecuador-birdwatching-itinerary/": "/es/itinerario-aviturismo-ecuador/",
       "/tours/ecuador-choco-biodiversity/": "/es/tours/biodiversidad-choco-ecuador/",
-      "/tours/ecuador-photo-tour/": "/es/tours/tour-fotografia-ecuador/"
+      "/tours/ecuador-photo-tour/": "/es/tours/tour-fotografia-ecuador/",
+      "/tours/ecuador-birds-mammals/": "/es/tours/aves-mamiferos-ecuador/"
     };
     if (itineraryMap[p]) return itineraryMap[p];
 
@@ -184,7 +185,8 @@
       "/es/itinerario-amazonia-galapagos/": "/ecuador-amazon-galapagos-itinerary/",
       "/es/itinerario-aviturismo-ecuador/": "/ecuador-birdwatching-itinerary/",
       "/es/tours/biodiversidad-choco-ecuador/": "/tours/ecuador-choco-biodiversity/",
-      "/es/tours/tour-fotografia-ecuador/": "/tours/ecuador-photo-tour/"
+      "/es/tours/tour-fotografia-ecuador/": "/tours/ecuador-photo-tour/",
+      "/es/tours/aves-mamiferos-ecuador/": "/tours/ecuador-birds-mammals/"
     };
     if (itineraryMap[p]) return itineraryMap[p];
 
@@ -231,6 +233,11 @@
 
   function getCounterpartPath(path) {
     var p = normalizePath(path || "/");
+    var targetLanguage = isSpanishPath(p) ? "en" : "es";
+    var alternate = document.querySelector('link[rel="alternate"][hreflang="' + targetLanguage + '"]');
+    if (alternate && alternate.href) {
+      try { return new URL(alternate.href, location.href).pathname; } catch (error) {}
+    }
     return isSpanishPath(p) ? buildEnglishPath(p) : buildSpanishPath(p);
   }
 
