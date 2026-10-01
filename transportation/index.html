@@ -34,7 +34,7 @@
   <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
-  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-planning.css?v=20261001d" data-cluster="planning">
+  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-planning.css?v=20261001e" data-cluster="planning">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -154,27 +154,31 @@
     }
 
     .selector-top{
-      padding:18px 18px 0;
+      padding:clamp(24px,4vw,38px);
       display:grid;
-      grid-template-columns:1fr auto;
-      gap:12px;
-      align-items:start;
+      grid-template-columns:minmax(0,1.12fr) minmax(330px,.88fr);
+      gap:28px;
+      align-items:stretch;
     }
 
     .selector-controls{
-      grid-column:2;
-      grid-row:1;
-      justify-self:end;
+      grid-column:auto;
+      grid-row:auto;
+      justify-self:stretch;
 
       display:grid;
-      grid-template-columns:auto 260px;
-      gap:10px 10px;
+      grid-template-columns:auto minmax(0,1fr);
+      gap:12px 14px;
       align-items:center;
+      padding:22px;
+      border-radius:20px;
+      background:linear-gradient(145deg,#0f2f62,#034ea2);
+      box-shadow:0 20px 40px rgba(3,78,162,.2);
     }
 
     .selector-controls label{
       font-weight:800;
-      color:#0f2f62;
+      color:#fff;
       font-size:13px;
       letter-spacing:0.02em;
       text-align:left;
@@ -195,7 +199,7 @@
       cursor:pointer;
       outline:none;
       min-width:0;
-      width:260px;
+      width:100%;
       box-shadow:0 14px 30px rgba(3,78,162,0.10);
       background-image:
         linear-gradient(45deg, transparent 50%, #0f2f62 50%),
@@ -215,8 +219,11 @@
     }
 
     .selector-copy{
-      grid-column:1 / -1;
-      padding:0 18px 0;
+      grid-column:auto;
+      padding:0;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
     }
 
     .selector-body{
@@ -226,17 +233,16 @@
     @media(max-width:900px){
       .selector-top{ grid-template-columns:1fr; }
       .selector-controls{
-        grid-column:1;
-        justify-self:stretch;
-        grid-template-columns:1fr;
+        grid-template-columns:120px minmax(0,1fr);
       }
-      .selector-controls label{ margin-top:8px; }
       .selector-controls select{ width:100%; min-width:0; }
       .hero-banner{min-height:290px}
     }
 
     @media(max-width:620px){
       .hero-content{padding:16px}
+      .selector-top{padding:20px}
+      .selector-controls{grid-template-columns:1fr;padding:18px}
     }
 
     /* ===== TRANSPORT RESULTS UI ===== */
