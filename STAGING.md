@@ -249,3 +249,13 @@ Completed for staging on 2026-10-02:
 The partner pages now use the recommendations cluster, application pages declare conversion intent, Explore pages use the discovery cluster, reviews use the trust cluster, and comparison pages use the editorial cluster. Each page now carries explicit language, topic and funnel metadata for attribution. Long Spanish partner and review descriptions were tightened, structured modification dates were refreshed where present, and existing pricing-plan messaging, forms, affiliate links, review interactions, internal routes and bilingual relationships were preserved.
 
 Next build batch: remaining utility and blog-hub pages, followed by the final full-site audit and Screaming Frog crawl.
+
+### Batch 15: blog and utility completion
+
+Completed for staging on 2026-10-02:
+
+- Blog, About, Mission, Contact, FAQs, Privacy Policy, Terms of Service and Terms and Conditions bilingual pairs
+
+The blog pair now uses the editorial cluster; trust and utility pages use the trust cluster; and Contact pages explicitly declare conversion intent. All sixteen pages now carry consistent language, topic and funnel metadata, with refreshed structured modification dates. The remaining sitewide overlength metadata candidates were also rewritten, and all explicit cluster stylesheet cache keys were normalized to the current release version.
+
+This completes page-level cluster assignment for every canonical sitemap URL. The remaining release gate is a full browser and Screaming Frog crawl, not additional bulk page assignment.
