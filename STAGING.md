@@ -189,3 +189,13 @@ Completed for staging on 2026-10-02:
 These eight pages now use the experiences cluster and declare their specific experience, destination or topic plus language and consideration-stage role. Metadata now uses natural search phrases—including “avistamiento de aves” rather than the weaker abbreviated wording—and provides direct planning answers. The Mindo pair explicitly supports the specialist birdwatching funnel while preserving existing content, FAQs and internal routes.
 
 Next build batch: editorial guides and high-intent commercial collections.
+
+### Batch 9: national and regional editorial guides
+
+Completed for staging on 2026-10-02:
+
+- Best things to do in Ecuador, best places to visit in Ecuador, Andes, Amazon, Coast and Galápagos travel guides, and Ecuador UNESCO World Heritage bilingual pairs
+
+These fourteen pages now use the editorial cluster and declare their topic, language, awareness-stage role and region where applicable. Long Spanish titles and descriptions were tightened into natural search language, modification dates were refreshed, and search, social and structured-data wording remains aligned. Existing long-form guidance, FAQs, answer sections, internal routes and bilingual relationships were preserved.
+
+Next build batch: seasonal, packing, Quito, Mindo, family and spotlight editorial guides.
