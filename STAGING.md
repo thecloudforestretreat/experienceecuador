@@ -451,3 +451,16 @@ Both luxury-travel collections now open with a direct answer that defines luxury
 A five-row table compares Quito with the Andes, Andes with cloud forest, an Amazon stay, a Galápagos-focused trip and a private multi-region route. The table identifies where higher-comfort planning can add value and what travelers must confirm about rooms, vehicles, guides, meals, reserve access, shared services, equipment, vessels, flights, fees, suppliers, support and cancellation terms. No live property, vessel, price or availability claim is invented.
 
 A sixth visible and structured FAQ explains what a luxury proposal should specify, while a five-item `ItemList` mirrors the relevant planning paths. The Spanish page received a full natural-language pass that replaces literal phrases including “ritmo curado,” “viaje firma,” “capa de fauna,” “pulido” and visible lodge terminology with natural Ecuadorian Spanish. Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and six structured FAQs, five structured route paths, no duplicate IDs, no missing links or images, valid executable JavaScript, complete attribution on all internal links, the approved recommendations blue-and-gold cluster, the Montserrat/Inter foundation and the current `site-config.js` chain. The next recommended authority pair is the bilingual Amazon-versus-Galápagos comparison guide.
+
+### Batch 29: Amazon-versus-Galápagos decision pair
+
+Completed for staging on 2026-10-02:
+
+- `/ecuador-amazon-vs-galapagos/`
+- `/es/amazonia-vs-galapagos/`
+
+Both comparison guides now open with a direct answer that distinguishes visible island and marine wildlife from rainforest immersion, biodiversity and guided interpretation without declaring either region universally better. A six-row decision table compares encounter style, environments, access, daily rhythm, accommodation and cost drivers, with a specific verification point for every row.
+
+A new combination section distinguishes a compressed 10–12-day trip, a disciplined 12–14-day framework and a more comfortable 15-day-or-longer route. These are planning models rather than packages or guarantees, and the pages direct readers into the existing bilingual Amazon–Galápagos itinerary before nonrefundable services are booked.
+
+A sixth visible and structured FAQ covers access, named accommodations or vessels, guiding, meals, equipment, fees, baggage, cancellation terms and weather buffers. A five-item `ItemList` mirrors the principal regional and itinerary guides. The Spanish page replaces imported lodging and snorkeling terms, awkward comparison labels and literal route language with natural Ecuadorian Spanish. Local validation checks one doctype and H1 per page, one direct-answer block, six comparison rows, six visible and structured FAQs, five structured planning paths, internal-link attribution, approved blue-and-gold editorial styling, Montserrat/Inter typography and the current `site-config.js` injection chain. The next recommended authority pair is the bilingual family-friendly itinerary guide.
