@@ -464,3 +464,16 @@ Both comparison guides now open with a direct answer that distinguishes visible 
 A new combination section distinguishes a compressed 10–12-day trip, a disciplined 12–14-day framework and a more comfortable 15-day-or-longer route. These are planning models rather than packages or guarantees, and the pages direct readers into the existing bilingual Amazon–Galápagos itinerary before nonrefundable services are booked.
 
 A sixth visible and structured FAQ covers access, named accommodations or vessels, guiding, meals, equipment, fees, baggage, cancellation terms and weather buffers. A five-item `ItemList` mirrors the principal regional and itinerary guides. The Spanish page replaces imported lodging and snorkeling terms, awkward comparison labels and literal route language with natural Ecuadorian Spanish. Local validation checks one doctype and H1 per page, one direct-answer block, six comparison rows, six visible and structured FAQs, five structured planning paths, internal-link attribution, approved blue-and-gold editorial styling, Montserrat/Inter typography and the current `site-config.js` injection chain. The next recommended authority pair is the bilingual family-friendly itinerary guide.
+
+### Batch 30: family-friendly itinerary authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/family-friendly-ecuador-itinerary/`
+- `/es/itinerario-familiar-ecuador/`
+
+Both itinerary guides now open with a direct answer that prioritizes two or three bases, arrival recovery, altitude adjustment, one principal nature block and family-specific checks. A five-row decision table compares Quito with Mindo, the nearby Andes, Galápagos or the Amazon, plus a broader Andes–Galápagos route. Each row includes a useful planning range, family fit and concrete items to verify about transfers, rooms, mobility, activity ages, child seats, flights, vessels, baggage, guides, rest time and included services.
+
+The existing destination cards, planning guidance and balanced 10-day example remain in place, while unsupported winner and price language has been qualified. A sixth visible and structured FAQ covers room configuration, child seats, age and height limits, intensity, altitude, mobility, transport, guides, meals, equipment, fees, baggage, cancellation terms, insurance and current guidance. A five-item `ItemList` mirrors the relevant family, Galápagos, Mindo, wildlife-comparison and lodging guides.
+
+The former `TouristTrip` schema was removed because these pages are planning frameworks rather than verified bookable products. The Spanish page now uses natural South American Spanish, including “esnórquel,” “fauna emblemática,” “alojamientos en la selva” and “traslados bien coordinados.” Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and structured FAQs, five structured planning paths, no duplicate IDs, no missing internal targets, complete content-link attribution, the approved blue-and-gold editorial bundle, Montserrat/Inter typography and the current `site-config.js` chain. The next recommended deep-authority pair is the bilingual Amazon travel guide.
