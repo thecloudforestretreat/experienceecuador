@@ -169,3 +169,13 @@ Completed for staging on 2026-10-02:
 These eight pages now use the destinations cluster and consistently declare their Galápagos region, language and consideration-stage role. Search, social and structured-data metadata now answers island-specific planning intent for bases, wildlife, beaches, transfers and realistic stay length. Spanish titles and descriptions were shortened into natural regional phrasing, modification dates were refreshed, and the existing FAQs, bilingual relationships and internal planning pathways were preserved.
 
 Next build batch: experience and activity clusters, followed by planning and commercial-intent pages.
+
+### Batch 7: core experience categories
+
+Completed for staging on 2026-10-02:
+
+- Adventure, nature, wildlife and birding, relaxation, culinary and culture bilingual category pairs
+
+These twelve pages now use the experiences cluster and consistently declare their category, language and consideration-stage role. Long and generic titles were replaced with focused search language, especially across the Spanish pages; descriptions now give direct route-planning answers; and search, social and structured-data wording remains aligned. Existing detailed copy, FAQs, regional pathways and bilingual relationships were preserved.
+
+Next build batch: experience children for birdwatching, Baños adventure and culinary must-eats, then editorial guides and commercial collections.
