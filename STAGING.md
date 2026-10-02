@@ -300,3 +300,14 @@ Completed for staging on 2026-10-02:
 Both national discovery guides now answer the primary query directly, compare twelve concrete Ecuador experiences, distribute internal authority into every major regional and experience cluster, provide a four-region planning table, align route ambition with trip duration, and expand the visible FAQ and FAQ schema to six matched questions. The Spanish page uses Ecuadorian Spanish with full accents, while both pages preserve the prior regional framework, canonical and hreflang relationships, analytics attributes, trip-builder conversion path and injected site configuration.
 
 The editorial cluster stylesheet now includes responsive authority-answer, signature-experience, comparison-table and duration components. Its cache key was advanced across all editorial-cluster pages. Browser QA also found and corrected a central cache-version mismatch: the injected `site-config.js` had been replacing newer cluster URLs with an older CSS key. The central configuration, its loader and every `site.js` consumer now share the current release keys. Local validation found one H1, no duplicate IDs, valid JSON-LD, no missing internal targets and 38 internal links on each upgraded page. The next substantive pair is the national best-places-to-visit collection.
+
+### Batch 18: national best-places authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/best-places-to-visit-in-ecuador/`
+- `/es/mejores-lugares-para-visitar-ecuador/`
+
+Both national destination guides now provide a direct answer to the primary query, a linked twelve-place planning shortlist, a six-row comparison of destination types, and six matched visible and structured FAQs. ItemList schema mirrors the twelve real destination pages, while the new shortlist routes authority to Quito, Galápagos, Mindo, Cotopaxi, Baños, Cuenca, Otavalo, Yasuní, Puerto López, Guayaquil, Chocó Andino and Isabela. Redundant self-links were removed, the Spanish birdwatching phrase was normalized to “Tours de avistamiento de aves en Ecuador,” and all internal links retain page-level attribution metadata.
+
+Local validation found one H1 per page, no duplicate IDs, valid JSON-LD and executable JavaScript, no missing local link targets, twelve visible shortlist entries, a twelve-item structured list, six visible FAQs, six structured FAQs and 36/33 unique internal destinations in English/Spanish. The next substantive authority pair is the national Ecuador travel-guide pair.
