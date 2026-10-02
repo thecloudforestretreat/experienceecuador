@@ -100,6 +100,10 @@
     trust: "cluster-trust.css"
   });
 
+  var PAGE_CLUSTER_VERSIONS = Object.freeze({
+    recommendations: "20261002f"
+  });
+
   function normalizePath(path) {
     var normalized = String(path || "/").split("?")[0].split("#")[0] || "/";
     if (normalized.charAt(0) !== "/") normalized = "/" + normalized;
@@ -144,7 +148,7 @@
       current.rel = "stylesheet";
       document.head.appendChild(current);
     }
-    current.href = "/assets/css/" + filename + "?v=20261002e";
+    current.href = "/assets/css/" + filename + "?v=" + (PAGE_CLUSTER_VERSIONS[cluster] || "20261002e");
     current.dataset.cluster = cluster;
     if (body) {
       body.classList.add("eeClusterPage", "eeCluster--" + cluster);
