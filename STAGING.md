@@ -259,3 +259,20 @@ Completed for staging on 2026-10-02:
 The blog pair now uses the editorial cluster; trust and utility pages use the trust cluster; and Contact pages explicitly declare conversion intent. All sixteen pages now carry consistent language, topic and funnel metadata, with refreshed structured modification dates. The remaining sitewide overlength metadata candidates were also rewritten, and all explicit cluster stylesheet cache keys were normalized to the current release version.
 
 This completes page-level cluster assignment for every canonical sitemap URL. The remaining release gate is a full browser and Screaming Frog crawl, not additional bulk page assignment.
+
+### Final staging crawl: 213 canonical URLs
+
+Completed on 2026-10-02 with Screaming Frog in List Mode against the staging hostname only:
+
+- 213 of 213 submitted URLs crawled successfully
+- 213 HTTP 200 responses and 213 HTML documents
+- zero missing page titles, meta descriptions, H1 headings or canonical links
+- zero titles over 60 characters or under 30 characters
+- zero meta descriptions over 160 characters or under 70 characters
+- all 213 canonical elements point to the corresponding production hostname
+- all 213 staging responses carry `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`
+- language detection is balanced across 107 English and 106 Spanish documents
+- median unique inlinks is 8 and median unique outlinks is 13
+- no near-duplicate groups were reported in the exported Internal crawl
+
+The final crawl confirms the page foundation and metadata release gates. Its text-only link graph reports 83 pages with fewer than six unique source-HTML inlinks, including 14 with zero, and the bilingual Explore hubs each have only two unique source-HTML outlinks. Because the shared header and footer are injected at runtime, these figures are a conservative floor rather than the rendered-site total. JavaScript rendering is locked behind a Screaming Frog licence in the installed unlicensed edition, so rendered-link verification remains a browser QA item. The source-HTML gaps are still useful remediation targets before production release. Production remains unchanged and no indexing request has been made.
