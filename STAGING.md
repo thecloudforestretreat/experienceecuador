@@ -239,3 +239,13 @@ Completed for staging on 2026-10-02:
 These eighteen pages now explicitly load the recommendations cluster and declare their language, member identity, category, location, region and conversion-stage role. Overlong member titles and descriptions were tightened while preserving branded intent, modification dates were refreshed where structured dates existed, and the existing member details, referral links, analytics attributes, bilingual relationships and conversion paths were preserved.
 
 Next build batch: partner acquisition, Explore affiliate hubs, reviews and comparison pages.
+
+### Batch 14: monetization, trust and comparison pages
+
+Completed for staging on 2026-10-02:
+
+- Partner overview and application, Explore affiliate network, traveler reviews, and Amazon-versus-Galápagos bilingual pairs
+
+The partner pages now use the recommendations cluster, application pages declare conversion intent, Explore pages use the discovery cluster, reviews use the trust cluster, and comparison pages use the editorial cluster. Each page now carries explicit language, topic and funnel metadata for attribution. Long Spanish partner and review descriptions were tightened, structured modification dates were refreshed where present, and existing pricing-plan messaging, forms, affiliate links, review interactions, internal routes and bilingual relationships were preserved.
+
+Next build batch: remaining utility and blog-hub pages, followed by the final full-site audit and Screaming Frog crawl.
