@@ -425,3 +425,16 @@ Both family-travel collections retain their existing image-led destination and e
 A five-row decision table now compares Quito with cloud forest, Andes with Amazon, mainland with Galápagos, a Galápagos-focused route and a private multigenerational route. Each row includes a planning range, family fit and concrete items to confirm before booking without presenting the examples as fixed packages. A sixth visible and structured FAQ covers rooms, child seats, activity restrictions, transfers, guides, meals, cancellation terms, insurance and current guidance, while a five-item `ItemList` mirrors the route pathways.
 
 The Spanish page received an additional natural-language pass that removes imported “outdoor” and “lodge” wording, replaces awkward literal phrasing, and normalizes “Tours de avistamiento de aves en Ecuador.” Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and six structured FAQs, five structured route paths, no duplicate IDs, no missing internal targets, valid executable JavaScript, complete analytics attribution on all internal links, the approved recommendations blue-and-gold cluster, the Montserrat/Inter header foundation and the current `site-config.js` injection chain. The next recommended authority pair is the bilingual private-tour planning guide.
+
+### Batch 27: private-tour planning authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/ecuador-private-tours/`
+- `/es/tours-privados-ecuador/`
+
+Both private-tour collections now open with a direct answer that defines private travel without equating it automatically with luxury or an all-inclusive package. Four facts explain a useful planning range, likely traveler fit, components a private arrangement may include and the operating and commercial terms that must always be verified.
+
+A five-row decision table compares Quito with the nearby Andes, Andes with cloud forest, Andes with Amazon, mainland with Galápagos and a custom wildlife route. Each row includes a planning range, intended fit and specific questions about driver-guide roles, reserve access, transport, meals, fees, flights, boats, baggage, specialist guides, permits and weather buffers. The page does not invent live packages, prices or availability.
+
+A sixth visible and structured FAQ explains what a useful private-tour quote should itemize, while a five-item `ItemList` mirrors the route paths. The Spanish page received a natural-language pass that removes literal constructions such as “flujo,” “transiciones limpias,” “Andes más bosque nublado” and imported lodge terminology. Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and six structured FAQs, five structured route paths, no duplicate IDs, no missing links or images, valid executable JavaScript, complete attribution on all internal links, the approved recommendations blue-and-gold cluster, the Montserrat/Inter foundation and the current `site-config.js` chain. The next recommended authority pair is the bilingual luxury-travel planning guide.
