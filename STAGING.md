@@ -399,3 +399,16 @@ Both seasonal guides now open with a direct answer that distinguishes year-round
 An official-source verification section now directs readers to Ecuador's Ministry of Tourism portal and explains which flights, roads, marine conditions, transfers, lodge programs, reserve access, cancellation terms, and weather-sensitive activities require current confirmation. A sixth visible and structured FAQ covers prebooking date checks, while a five-item `ItemList` mirrors the regional season paths.
 
 The Spanish page received a language pass that normalizes alojamiento and esnórquel terminology while preserving natural Ecuadorian phrasing and correct accents. Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and six structured FAQs, five structured regional paths, no duplicate IDs, no missing local link targets, valid executable JavaScript, complete analytics attribution, the approved editorial blue-and-gold cluster bundle, and the current `site-config.js` injection chain. The next recommended authority pair is the bilingual packing-list guide.
+
+### Batch 25: packing-list authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/ecuador-packing-list-by-region/`
+- `/es/lista-equipaje-ecuador-por-region/`
+
+Both packing guides now open with a direct answer that establishes a compact national base kit and separates it from region-specific equipment. A five-row decision table compares Galápagos, the Andes and Quito, the Pacific Coast, the Amazon, and Mindo–Chocó by core clothing, useful extras, and the baggage, access, weather, accommodation, or activity details travelers should confirm before packing.
+
+A four-part transfer-day kit keeps documents, personal essentials, a flexible weather layer, and first-night basics visible without making unsupported medical or operational promises. A sixth visible and structured FAQ covers predeparture confirmation, while a five-item `ItemList` mirrors the regional guide paths. The Spanish page replaces imported lodging and clothing terms with natural Ecuadorian Spanish and uses the accepted spelling “esnórquel.”
+
+Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and six structured FAQs, five structured regional paths, no missing local targets, valid executable JavaScript, complete analytics attribution on all internal links, the approved editorial blue-and-gold bundle, the corrected Montserrat/Inter header foundation, and the current `site-config.js` injection chain. The next recommended authority pair is the bilingual family-vacation planning guide.
