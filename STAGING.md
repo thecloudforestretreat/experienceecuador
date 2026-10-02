@@ -360,3 +360,16 @@ Local validation found one H1 per page, no duplicate IDs, five comparison rows, 
 The post-deploy review of Batches 20 and 21 exposed legacy brown design tokens in `cluster-recommendations.css`: `#a45b1a`, `#67370d` and `#fff5e9`, plus hard-coded brown FAQ icons and warm beige disclosure surfaces. Those values were inherited by direct-answer headings, table row labels, fact cards and recommendation components on the four newly upgraded accommodation pages.
 
 The recommendations cluster now uses the approved Experience Ecuador brand blue (`#034ea2`), dark blue (`#0f2f62`), shared pale blue and neutral surfaces. Gold (`#f2b441`) remains reserved for primary actions and small deliberate emphasis. All brown and unapproved beige tokens were removed from the bundle. A cluster-specific cache version was introduced so the recommendations correction does not unnecessarily version the other seven cluster bundles, while the central site configuration and all 231 page loaders were advanced to guarantee that browsers receive the corrected stylesheet. The correction applies to every recommendations-cluster page, including the four Batch 20–21 pages.
+
+### Batch 22: Amazon lodging authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/ecuador-amazon-lodges/`
+- `/es/lodges-amazonia-ecuador/`
+
+Both guides now open with a direct answer that distinguishes fixed-access Yasuní and Cuyabeno programs from more flexible road-connected stays around Tena and Misahuallí. A five-row comparison table covers access models, realistic stay ranges and the transport, guide, meal, equipment, fee and buffer details travelers should verify before booking.
+
+The pair now links to two published Amazon recommendation profiles and includes a separately attributed partner-acquisition path for local operators. A sixth visible and structured FAQ explains what a lodge package may include, while a two-item `ItemList` mirrors the published profiles without presenting them as a quality ranking. Missing Misahuallí image references were replaced with tracked Amazon imagery so the pages do not depend on uncommitted assets.
+
+The Spanish page received a full language-quality pass: its H1 and metadata now use natural phrasing, false accents and misspellings were removed, Yasuní and Misahuallí were normalized in visible text, interrogative punctuation was repaired, and schema URLs were corrected to the real unaccented route. Local validation found one doctype and H1 per page, no duplicate IDs, five comparison rows, two profile links, one partner path, six visible and six structured FAQs, no missing local links or images, valid executable JavaScript and full analytics attribution. The next substantive pair is the national birdwatching-tour authority guide.
