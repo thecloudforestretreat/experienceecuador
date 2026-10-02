@@ -116,4 +116,15 @@ Completed on staging on 2026-10-01:
 
 These twelve hub pages now declare their page cluster, topic cluster, language and funnel stage consistently. Their correct cluster bundle is loaded explicitly, primary actions use the shared gold conversion treatment, and stale structured-data modification dates were refreshed where applicable. Existing useful copy, FAQ content, internal pathways and bilingual parity were preserved.
 
-Next build batch: the four regional hub pairs for Andes, Amazon, Coast and Galápagos. After those hubs pass QA, continue through their destination children rather than applying undifferentiated bulk rewrites.
+### Batch 2: regional hubs
+
+Completed on staging on 2026-10-01:
+
+- `/regions/andes/` ↔ `/es/regiones/andes/`
+- `/regions/amazon/` ↔ `/es/regiones/amazonia/`
+- `/regions/coast/` ↔ `/es/regiones/costa/`
+- `/regions/galapagos/` ↔ `/es/regiones/galapagos/`
+
+The eight regional hubs now use the destinations cluster, declare a normalized `region_hub` page type and carry explicit region, topic, language and consideration-stage metadata. Overlong Spanish search titles and descriptions were rewritten for clarity and natural Ecuadorian Spanish, including correction of the incorrect `volcánes` spelling. Social metadata and structured-data descriptions were kept aligned with the visible search metadata.
+
+Next build batch: destination children, beginning with the highest-authority Andes pair set, then Amazon, Coast and Galápagos. Apply page-specific review rather than undifferentiated bulk copy changes.
