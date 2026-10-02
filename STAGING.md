@@ -373,3 +373,16 @@ Both guides now open with a direct answer that distinguishes fixed-access Yasun�
 The pair now links to two published Amazon recommendation profiles and includes a separately attributed partner-acquisition path for local operators. A sixth visible and structured FAQ explains what a lodge package may include, while a two-item `ItemList` mirrors the published profiles without presenting them as a quality ranking. Missing Misahuallí image references were replaced with tracked Amazon imagery so the pages do not depend on uncommitted assets.
 
 The Spanish page received a full language-quality pass: its H1 and metadata now use natural phrasing, false accents and misspellings were removed, Yasuní and Misahuallí were normalized in visible text, interrogative punctuation was repaired, and schema URLs were corrected to the real unaccented route. Local validation found one doctype and H1 per page, no duplicate IDs, five comparison rows, two profile links, one partner path, six visible and six structured FAQs, no missing local links or images, valid executable JavaScript and full analytics attribution. The next substantive pair is the national birdwatching-tour authority guide.
+
+### Batch 23: national birdwatching-tour authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/ecuador-birdwatching-tours/`
+- `/es/tours-avistamiento-aves-ecuador/`
+
+Both authority guides now open with a direct answer explaining how to organize a first Ecuador birdwatching route by elevation, habitat, dawn access and guide fit. A five-row decision table compares a Mindo introduction, a northwest cloud-forest route, a high-Andes and Mindo combination, a cloud-forest and Amazon route, and a custom specialist itinerary with realistic starting ranges and protected planning requirements.
+
+The pair now provides a deliberate handoff from national research into the Mindo Bird Watching ecosystem through the published recommendation profile, the national birdwatching itinerary and the specialist sister site. Each path has distinct analytics attribution. A sixth visible and structured FAQ covers prebooking verification, and a four-item `ItemList` mirrors the principal research and specialist paths.
+
+The Spanish page received an additional language-quality pass that replaces visible English birding jargon with natural avistamiento de aves, aviturismo and observadores de aves terminology, while preserving the recognized Mindo Bird Watching brand. Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and six structured FAQs, four structured planning paths, no duplicate IDs, no missing local link targets, complete analytics attribution and the current injected `site-config.js` chain. The next substantive pair should be selected from the remaining high-priority inventory after the Batch 23 staging review.
