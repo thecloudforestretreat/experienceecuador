@@ -209,3 +209,13 @@ Completed for staging on 2026-10-02:
 These fourteen pages now use the editorial cluster and declare their topic, language, funnel stage and destination where applicable. Overlong titles were tightened, the Spanish Mindo cloud-forest metadata was rewritten into natural planning language, modification dates were refreshed, and existing detailed answers, FAQs, bilingual relationships and internal routes were preserved.
 
 Next build batch: high-intent accommodation, tour and travel-style collections.
+
+### Batch 11: commercial-intent collections
+
+Completed for staging on 2026-10-02:
+
+- Where to stay in Ecuador, Amazon lodges, birdwatching tours, cloud-forest lodging, family vacations, luxury travel and private tours bilingual pairs
+
+These fourteen pages now use the recommendations cluster and declare their commercial topic, language, consideration-stage role and region where applicable. Titles and descriptions were tightened around high-intent search language, modification dates were refreshed, and the Spanish birdwatching page now consistently uses the natural phrase “Tours de avistamiento de aves en Ecuador” in both metadata and its visible H1. Existing comparison content, FAQs, recommendation routes, bilingual relationships and conversion paths were preserved.
+
+Next build batch: regional trip-intake and trip-builder conversion pages.
