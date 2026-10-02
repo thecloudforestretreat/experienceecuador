@@ -341,3 +341,16 @@ Both accommodation guides now open with a direct, route-first answer and four sc
 The guides now connect traveler research to the recommendation directory and connect Ecuadorian businesses to the partner program with distinct attribution events. A sixth bilingual FAQ addresses nights per base, visible FAQ content matches structured FAQ coverage, and a six-item `ItemList` mirrors the regional stay strategies. The Spanish partner path was corrected to the existing `/es/aliados/` route, and the natural phrase “Tours de avistamiento de aves en Ecuador” remains normalized.
 
 Local validation found one H1 per page, no duplicate IDs, six visible and six structured FAQs, six structured stay strategies, six regional cards, one direct-answer block, no missing local link targets and complete analytics attribution on internal links. The next substantive pair is the cloud-forest lodging authority guide.
+
+### Batch 21: cloud-forest lodging authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/ecuador-cloud-forest-lodges/`
+- `/es/hospedaje-bosque-nublado-ecuador/`
+
+Both guides now open with a direct answer that distinguishes Mindo access from more remote Chocó Andino immersion and identifies a realistic two-to-four-night starting range. A five-row comparison table separates Mindo town bases, Mindo reserve lodges, Chocó Andino lodges, Quito-edge nature stays and private multi-base routes, with practical verification points for transport, meals, guiding, trail access, connectivity and cancellation terms.
+
+The pair now connects research to three real recommendation profiles—The Cloud Forest Retreat, Hacienda Verde Niebla and Mindo Glambird—without presenting inclusion as a quality ranking. Separate traveler and partner paths lead to the recommendation directory and the English or Spanish partner program with distinct attribution events. A sixth FAQ covers prebooking verification, visible and structured FAQ coverage match, and a three-item `ItemList` mirrors the featured profiles. The Spanish H1 and birdwatching language were normalized to natural Ecuadorian Spanish.
+
+Local validation found one H1 per page, no duplicate IDs, five comparison rows, three featured-profile links, six visible and six structured FAQs, three structured profile items, one direct-answer block, no missing local targets, valid executable JavaScript and complete analytics attribution on internal links. The next substantive pair is the Amazon lodging authority guide.
