@@ -101,6 +101,7 @@
   });
 
   var PAGE_CLUSTER_VERSIONS = Object.freeze({
+    editorial: "20261002g",
     recommendations: "20261002f"
   });
 
