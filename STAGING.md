@@ -149,3 +149,13 @@ Completed for staging on 2026-10-02:
 These eight pages now use the destinations cluster and consistently declare their Amazon region, language and consideration-stage role. Search, social and structured-data metadata were aligned around destination-specific planning intent; English titles and descriptions were tightened; Spanish titles and descriptions use natural South American Spanish; and modification dates were refreshed. Existing FAQs, visible planning content, bilingual relationships and internal routes were preserved.
 
 Next build batch: Coast destination children, followed by Galápagos destination children.
+
+### Batch 5: Coast destinations
+
+Completed for staging on 2026-10-02:
+
+- Guayaquil, Salinas, Montañita, Puerto López and La Ruta del Sol bilingual destination pairs
+
+These ten pages now use the destinations cluster and consistently declare their Coast region, language and consideration-stage role. Generic metadata was replaced with destination-specific search intent across search, social and structured-data descriptions. Spanish titles were shortened and normalized, modification dates were refreshed, and duplicate document declarations on the Puerto López pair were removed. Existing visible content, FAQs, bilingual relationships and internal planning routes were preserved.
+
+Next build batch: Galápagos destination children.
