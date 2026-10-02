@@ -98,3 +98,22 @@ The 213 canonical sitemap targets were audited against the staging repository on
 - Twenty-two crawl-visible links to missing or legacy targets were corrected to direct canonical destinations.
 
 The remaining 72 titles over 60 characters and 56 descriptions over 160 characters are editorial prioritization candidates, not structural failures. Review them against GSC query intent and CTR before shortening them in bulk.
+
+## Full-site upgrade program
+
+The full-site program is tracked separately from shared-runtime coverage. Loading the current header, footer, analytics runtime or cache key does not count as a page-level SEO/AEO/GEO upgrade.
+
+### Batch 1: authority hubs
+
+Completed on staging on 2026-10-01:
+
+- `/` ↔ `/es/`
+- `/ecuador-travel-guide/` ↔ `/es/guia-viaje-ecuador/`
+- `/regions/` ↔ `/es/regiones/`
+- `/experiences/` ↔ `/es/experiencias/`
+- `/plan-your-trip/` ↔ `/es/planifica-tu-viaje/`
+- `/recommendations/` ↔ `/es/recomendados/`
+
+These twelve hub pages now declare their page cluster, topic cluster, language and funnel stage consistently. Their correct cluster bundle is loaded explicitly, primary actions use the shared gold conversion treatment, and stale structured-data modification dates were refreshed where applicable. Existing useful copy, FAQ content, internal pathways and bilingual parity were preserved.
+
+Next build batch: the four regional hub pairs for Andes, Amazon, Coast and Galápagos. After those hubs pass QA, continue through their destination children rather than applying undifferentiated bulk rewrites.
