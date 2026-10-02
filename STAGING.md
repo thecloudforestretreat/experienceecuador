@@ -128,3 +128,14 @@ Completed on staging on 2026-10-01:
 The eight regional hubs now use the destinations cluster, declare a normalized `region_hub` page type and carry explicit region, topic, language and consideration-stage metadata. Overlong Spanish search titles and descriptions were rewritten for clarity and natural Ecuadorian Spanish, including correction of the incorrect `volcánes` spelling. Social metadata and structured-data descriptions were kept aligned with the visible search metadata.
 
 Next build batch: destination children, beginning with the highest-authority Andes pair set, then Amazon, Coast and Galápagos. Apply page-specific review rather than undifferentiated bulk copy changes.
+
+### Batch 3: Andes destinations
+
+Completed on staging on 2026-10-02:
+
+- Baños, Chocó Andino, Cotacachi, Cotopaxi, Cuenca, Mindo, Otavalo, Papallacta, Quito and Zuleta bilingual destination pairs
+- Quito one-day, two-day and three-day bilingual itinerary pairs
+
+The twenty destination pages now use the destinations cluster and declare their Andes region and consideration-stage role. The six duration-based Quito pages use the planning cluster and the normalized `itinerary_guide` page type. Overlong English and Spanish titles were shortened without removing destination intent, long Quito descriptions were rewritten to direct planning answers, South American Spanish capitalization and accent usage were normalized, and modification dates were refreshed.
+
+Next build batch: Amazon destination children for Tena, Misahuallí, Cuyabeno and Yasuní, followed by Coast and Galápagos destination children.
