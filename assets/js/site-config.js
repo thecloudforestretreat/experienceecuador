@@ -103,7 +103,8 @@
   var PAGE_CLUSTER_VERSIONS = Object.freeze({
     destinations: "20261002c",
     editorial: "20261002g",
-    recommendations: "20261002f"
+    recommendations: "20261002f",
+    planning: "20261002h"
   });
 
   function normalizePath(path) {
