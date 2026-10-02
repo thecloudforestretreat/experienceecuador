@@ -328,3 +328,16 @@ Local validation found one H1 per page, no duplicate IDs, valid JSON-LD and exec
 The post-deploy review exposed a selector collision between the shared cluster foundation and the editorial comparison-table wrapper. The base bundle had treated the wrapper as the table itself, placing its minimum width on the wrong element and applying the dark header background to body row headings. That produced low-contrast trip-duration labels and could clip wide tables at smaller breakpoints.
 
 The shared table component now supports both legacy table-class markup and the current scroll-wrapper markup, keeps minimum width on the table, gives body row headings a transparent surface with dark brand-blue text, and preserves horizontal scrolling on narrow screens. The editorial palette was consolidated from purple and multiple one-off blues and golds to the established Experience Ecuador brand blue, dark blue, single action gold, white and shared neutral tokens. The cluster button treatment now uses the same single gold token without introducing a second gradient color. Cache keys were advanced across the central configuration, cluster imports and every site loader so the correction cannot be hidden by stale injected CSS.
+
+### Batch 20: national accommodation-planning authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/where-to-stay-in-ecuador/`
+- `/es/donde-alojarse-ecuador/`
+
+Both accommodation guides now open with a direct, route-first answer and four scannable planning facts. A six-row comparison table distinguishes gateway cities, Andes bases, cloud-forest lodges, Amazon lodges, Pacific Coast bases and Galápagos stays with realistic starting ranges and verification requirements. The regional discovery section is now a balanced six-card grid covering Quito, the Andes, cloud forest, Amazon, the Pacific Coast and Galápagos, eliminating the former desktop gap while directing authority into each relevant planning cluster.
+
+The guides now connect traveler research to the recommendation directory and connect Ecuadorian businesses to the partner program with distinct attribution events. A sixth bilingual FAQ addresses nights per base, visible FAQ content matches structured FAQ coverage, and a six-item `ItemList` mirrors the regional stay strategies. The Spanish partner path was corrected to the existing `/es/aliados/` route, and the natural phrase “Tours de avistamiento de aves en Ecuador” remains normalized.
+
+Local validation found one H1 per page, no duplicate IDs, six visible and six structured FAQs, six structured stay strategies, six regional cards, one direct-answer block, no missing local link targets and complete analytics attribution on internal links. The next substantive pair is the cloud-forest lodging authority guide.
