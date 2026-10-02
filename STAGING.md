@@ -412,3 +412,16 @@ Both packing guides now open with a direct answer that establishes a compact nat
 A four-part transfer-day kit keeps documents, personal essentials, a flexible weather layer, and first-night basics visible without making unsupported medical or operational promises. A sixth visible and structured FAQ covers predeparture confirmation, while a five-item `ItemList` mirrors the regional guide paths. The Spanish page replaces imported lodging and clothing terms with natural Ecuadorian Spanish and uses the accepted spelling “esnórquel.”
 
 Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and six structured FAQs, five structured regional paths, no missing local targets, valid executable JavaScript, complete analytics attribution on all internal links, the approved editorial blue-and-gold bundle, the corrected Montserrat/Inter header foundation, and the current `site-config.js` injection chain. The next recommended authority pair is the bilingual family-vacation planning guide.
+
+### Batch 26: family-vacation planning authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/ecuador-family-vacations/`
+- `/es/vacaciones-familiares-ecuador/`
+
+Both family-travel collections retain their existing image-led destination and experience content while adding a direct answer focused on realistic base count, transfer rhythm, downtime, age fit, mobility and group interests. Four planning facts summarize a useful trip-length range, a simpler first route, wildlife-led options and the family details that should shape the itinerary.
+
+A five-row decision table now compares Quito with cloud forest, Andes with Amazon, mainland with Galápagos, a Galápagos-focused route and a private multigenerational route. Each row includes a planning range, family fit and concrete items to confirm before booking without presenting the examples as fixed packages. A sixth visible and structured FAQ covers rooms, child seats, activity restrictions, transfers, guides, meals, cancellation terms, insurance and current guidance, while a five-item `ItemList` mirrors the route pathways.
+
+The Spanish page received an additional natural-language pass that removes imported “outdoor” and “lodge” wording, replaces awkward literal phrasing, and normalizes “Tours de avistamiento de aves en Ecuador.” Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and six structured FAQs, five structured route paths, no duplicate IDs, no missing internal targets, valid executable JavaScript, complete analytics attribution on all internal links, the approved recommendations blue-and-gold cluster, the Montserrat/Inter header foundation and the current `site-config.js` injection chain. The next recommended authority pair is the bilingual private-tour planning guide.
