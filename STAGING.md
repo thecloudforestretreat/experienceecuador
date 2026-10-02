@@ -139,3 +139,13 @@ Completed on staging on 2026-10-02:
 The twenty destination pages now use the destinations cluster and declare their Andes region and consideration-stage role. The six duration-based Quito pages use the planning cluster and the normalized `itinerary_guide` page type. Overlong English and Spanish titles were shortened without removing destination intent, long Quito descriptions were rewritten to direct planning answers, South American Spanish capitalization and accent usage were normalized, and modification dates were refreshed.
 
 Next build batch: Amazon destination children for Tena, Misahuallí, Cuyabeno and Yasuní, followed by Coast and Galápagos destination children.
+
+### Batch 4: Amazon destinations
+
+Completed for staging on 2026-10-02:
+
+- Tena, Misahuallí, Cuyabeno Wildlife Reserve and Yasuní National Park bilingual destination pairs
+
+These eight pages now use the destinations cluster and consistently declare their Amazon region, language and consideration-stage role. Search, social and structured-data metadata were aligned around destination-specific planning intent; English titles and descriptions were tightened; Spanish titles and descriptions use natural South American Spanish; and modification dates were refreshed. Existing FAQs, visible planning content, bilingual relationships and internal routes were preserved.
+
+Next build batch: Coast destination children, followed by Galápagos destination children.
