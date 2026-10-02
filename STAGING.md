@@ -386,3 +386,16 @@ Both authority guides now open with a direct answer explaining how to organize a
 The pair now provides a deliberate handoff from national research into the Mindo Bird Watching ecosystem through the published recommendation profile, the national birdwatching itinerary and the specialist sister site. Each path has distinct analytics attribution. A sixth visible and structured FAQ covers prebooking verification, and a four-item `ItemList` mirrors the principal research and specialist paths.
 
 The Spanish page received an additional language-quality pass that replaces visible English birding jargon with natural avistamiento de aves, aviturismo and observadores de aves terminology, while preserving the recognized Mindo Bird Watching brand. Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and six structured FAQs, four structured planning paths, no duplicate IDs, no missing local link targets, complete analytics attribution and the current injected `site-config.js` chain. The next substantive pair should be selected from the remaining high-priority inventory after the Batch 23 staging review.
+
+### Batch 24: best-time-to-visit authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/best-time-to-visit-ecuador/`
+- `/es/mejor-epoca-para-visitar-ecuador/`
+
+Both seasonal guides now open with a direct answer that distinguishes year-round travel from region-specific planning. A five-row comparison table covers Galápagos, the Andes, the Pacific Coast, the Amazon, and Mindo with useful seasonal patterns, traveler priorities, and the conditions that should be reconfirmed before booking. The guidance avoids promising daily weather or wildlife sightings and connects travelers to the relevant regional planning guides.
+
+An official-source verification section now directs readers to Ecuador's Ministry of Tourism portal and explains which flights, roads, marine conditions, transfers, lodge programs, reserve access, cancellation terms, and weather-sensitive activities require current confirmation. A sixth visible and structured FAQ covers prebooking date checks, while a five-item `ItemList` mirrors the regional season paths.
+
+The Spanish page received a language pass that normalizes alojamiento and esnórquel terminology while preserving natural Ecuadorian phrasing and correct accents. Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and six structured FAQs, five structured regional paths, no duplicate IDs, no missing local link targets, valid executable JavaScript, complete analytics attribution, the approved editorial blue-and-gold cluster bundle, and the current `site-config.js` injection chain. The next recommended authority pair is the bilingual packing-list guide.
