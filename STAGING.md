@@ -555,3 +555,20 @@ Both activity guides now open with a direct answer that organizes Mindo around t
 A five-row decision table compares birdwatching, waterfalls and trails, butterflies and nature stops, chocolate and local food, and tubing or ziplining. Every row identifies the intended traveler, a useful planning window and what to verify about the named site or operator, road and weather conditions, guide specialty, ethics, equipment, accessibility, age or weight limits, insurance, entrances, dietary needs, inclusions and cancellation terms. Access, weather, wildlife, schedules and availability are treated as date-specific conditions rather than guarantees.
 
 A sixth visible and structured FAQ consolidates the activity-booking checks, while a five-item `ItemList` mirrors the principal Mindo, birdwatching, Chocó Andino and planning paths. The Spanish page replaces imported `birding`, `tubing`, `canopy`, `lodge`, `snorkel`, `capa`, `encaje` and “más fuerte” phrasing with natural Ecuadorian Spanish and correct accents. Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and six structured FAQs, five structured planning paths, no duplicate IDs, no missing internal targets or assets, valid executable JavaScript, complete analytics attribution on internal links, local image references, the approved editorial blue-and-gold bundle, Montserrat/Inter typography and the current `site-config.js` injection chain. The next recommended deep-authority pair is the bilingual Quito travel guide.
+
+### Mindo specialist funnel enhancement
+
+The two Mindo guide pairs now include contextual handoffs to the live Mindo Bird Watching tour and activity pages and to Chocó Andino Tours. These links appear after the traveler has enough context to choose the relevant specialist, open in a new tab and use the dedicated `sister_site_click` event with location, page type and partner attribution. Mindo Tours is intentionally withheld from the visitor path because its public site currently presents a coming-soon page and the corresponding Experience Ecuador member page is an empty placeholder; it should be added only after substantive public content is available.
+
+### Batch 37: Quito travel-guide authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/quito-travel-guide/`
+- `/es/guia-viaje-quito/`
+
+Both Quito guides now open with a direct answer that protects the arrival night, accounts for altitude, recommends two or three days when culture or a nearby outing matters, and requires buffers before Galápagos flights, Amazon departures or longer Andes transfers. The pages connect the decision directly to the Andes guide, Mindo guide and transportation planning before the traveler reserves hotel nights.
+
+A five-row decision table compares a one-night arrival, two-day cultural stay, three-day city base, Quito-and-Mindo route and Quito before a fixed departure. Every row identifies the useful trip fit, a realistic route pattern and exact items to confirm, including flight times, airport and activity transfers, neighborhood, room and check-in details, altitude, mobility, guides, entrances, road conditions, operator, pickup, inclusions, baggage, return margins and contingency planning.
+
+A sixth visible and structured FAQ consolidates the booking checks, while a five-item `ItemList` mirrors the main Andes, Mindo, transportation, lodging and Trip Builder paths. The Spanish page replaces literal planning language such as `capa`, “encaje,” “suma,” “más fuerte” and “más suave” with natural Ecuadorian Spanish. Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and six structured FAQs, five structured planning paths, no duplicate IDs, no missing internal targets or assets, valid JSON-LD, complete analytics attribution on internal links, local image references, the approved editorial blue-and-gold bundle, Montserrat/Inter typography and the current `site-config.js` injection chain.
