@@ -438,3 +438,16 @@ Both private-tour collections now open with a direct answer that defines private
 A five-row decision table compares Quito with the nearby Andes, Andes with cloud forest, Andes with Amazon, mainland with Galápagos and a custom wildlife route. Each row includes a planning range, intended fit and specific questions about driver-guide roles, reserve access, transport, meals, fees, flights, boats, baggage, specialist guides, permits and weather buffers. The page does not invent live packages, prices or availability.
 
 A sixth visible and structured FAQ explains what a useful private-tour quote should itemize, while a five-item `ItemList` mirrors the route paths. The Spanish page received a natural-language pass that removes literal constructions such as “flujo,” “transiciones limpias,” “Andes más bosque nublado” and imported lodge terminology. Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and six structured FAQs, five structured route paths, no duplicate IDs, no missing links or images, valid executable JavaScript, complete attribution on all internal links, the approved recommendations blue-and-gold cluster, the Montserrat/Inter foundation and the current `site-config.js` chain. The next recommended authority pair is the bilingual luxury-travel planning guide.
+
+### Batch 28: luxury-travel planning authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/ecuador-luxury-travel/`
+- `/es/viajes-de-lujo-ecuador/`
+
+Both luxury-travel collections now open with a direct answer that defines luxury through specified comfort, privacy, service, access and logistical support rather than an unsupported premium label. Four planning facts distinguish potential value from assumptions and require named properties, categories, service levels, inclusions and commercial terms to be confirmed in writing.
+
+A five-row table compares Quito with the Andes, Andes with cloud forest, an Amazon stay, a Galápagos-focused trip and a private multi-region route. The table identifies where higher-comfort planning can add value and what travelers must confirm about rooms, vehicles, guides, meals, reserve access, shared services, equipment, vessels, flights, fees, suppliers, support and cancellation terms. No live property, vessel, price or availability claim is invented.
+
+A sixth visible and structured FAQ explains what a luxury proposal should specify, while a five-item `ItemList` mirrors the relevant planning paths. The Spanish page received a full natural-language pass that replaces literal phrases including “ritmo curado,” “viaje firma,” “capa de fauna,” “pulido” and visible lodge terminology with natural Ecuadorian Spanish. Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and six structured FAQs, five structured route paths, no duplicate IDs, no missing links or images, valid executable JavaScript, complete attribution on all internal links, the approved recommendations blue-and-gold cluster, the Montserrat/Inter foundation and the current `site-config.js` chain. The next recommended authority pair is the bilingual Amazon-versus-Galápagos comparison guide.
