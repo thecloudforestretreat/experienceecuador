@@ -199,3 +199,13 @@ Completed for staging on 2026-10-02:
 These fourteen pages now use the editorial cluster and declare their topic, language, awareness-stage role and region where applicable. Long Spanish titles and descriptions were tightened into natural search language, modification dates were refreshed, and search, social and structured-data wording remains aligned. Existing long-form guidance, FAQs, answer sections, internal routes and bilingual relationships were preserved.
 
 Next build batch: seasonal, packing, Quito, Mindo, family and spotlight editorial guides.
+
+### Batch 10: planning and destination editorial guides
+
+Completed for staging on 2026-10-02:
+
+- Seasonal spotlights, family-friendly Ecuador itinerary, Quito travel guide, regional packing list, best time to visit Ecuador, best things to do in Mindo and Mindo cloud-forest guide bilingual pairs
+
+These fourteen pages now use the editorial cluster and declare their topic, language, funnel stage and destination where applicable. Overlong titles were tightened, the Spanish Mindo cloud-forest metadata was rewritten into natural planning language, modification dates were refreshed, and existing detailed answers, FAQs, bilingual relationships and internal routes were preserved.
+
+Next build batch: high-intent accommodation, tour and travel-style collections.
