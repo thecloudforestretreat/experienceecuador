@@ -229,3 +229,13 @@ Completed for staging on 2026-10-02:
 These ten pages now explicitly load the planning cluster and consistently declare their language, planning topic, conversion-stage role and region where applicable. Long regional titles were tightened without weakening high-intent search language, trip-builder modification dates were refreshed, and the existing form fields, lead-capture flow, analytics attributes, bilingual relationships and planning content were preserved.
 
 Next build batch: recommendation member pages and partner acquisition pages.
+
+### Batch 13: recommendation member profiles
+
+Completed for staging on 2026-10-02:
+
+- Nine bilingual recommendation-member pairs covering Las Nubes, Hacienda Verde Niebla, The Cloud Forest Retreat, Mindo Bird Watching, Mindo Glambird, Roca Mía, Mindo Eco Chalet, Mindo Eco Suite and Mindo Glamping Yurt
+
+These eighteen pages now explicitly load the recommendations cluster and declare their language, member identity, category, location, region and conversion-stage role. Overlong member titles and descriptions were tightened while preserving branded intent, modification dates were refreshed where structured dates existed, and the existing member details, referral links, analytics attributes, bilingual relationships and conversion paths were preserved.
+
+Next build batch: partner acquisition, Explore affiliate hubs, reviews and comparison pages.
