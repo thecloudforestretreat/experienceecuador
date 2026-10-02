@@ -612,6 +612,35 @@
         return t.indexOf("featured partner spot") === 0;
       }
 
+      function curateResults(items){
+        var real = [];
+        var placeholders = [];
+        var realCategories = {};
+
+        for (var i=0; i<items.length; i++){
+          if (isPlaceholderItem(items[i])){
+            placeholders.push(items[i]);
+          } else {
+            real.push(items[i]);
+            realCategories[items[i].category] = true;
+          }
+        }
+
+        var availableByCategory = {};
+        for (var j=0; j<placeholders.length; j++){
+          var category = placeholders[j].category || "other";
+          if (!realCategories[category] && !availableByCategory[category]){
+            availableByCategory[category] = placeholders[j];
+          }
+        }
+
+        var available = Object.keys(availableByCategory).map(function(category){
+          return availableByCategory[category];
+        });
+        var slots = real.length ? ((3 - (real.length % 3)) % 3) : 1;
+        return real.concat(available.slice(0, slots));
+      }
+
       function normalizeImages(item){
         var isPh = isPlaceholderItem(item);
         var cat = String((item && item.category) || "").toLowerCase();
@@ -824,6 +853,7 @@
           out.push(it);
         }
 
+        out = curateResults(out);
         elCards.innerHTML = out.map(cardHtml).join("");
         setCount(out.length);
 
