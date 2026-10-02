@@ -6,20 +6,20 @@
   --ee-cluster-soft:#edf5ff;
   --ee-cluster-warm:#fff8e7;
   --ee-action-gold:#f2b441;
-  --ee-action-gold-hover:#ffd06f;
+  --ee-action-gold-hover:var(--ee-action-gold);
 }
 
 .eeClusterPage main{overflow:hidden}
 .eeClusterPage .btnPrimary{
-  background:linear-gradient(135deg,var(--ee-action-gold),var(--ee-action-gold-hover));
-  color:#17233b;
+  background:var(--ee-action-gold);
+  color:var(--brand-blue-dark,#0f2f62);
   border-color:rgba(116,72,8,.22);
   box-shadow:0 16px 34px rgba(164,100,12,.24);
 }
 .eeClusterPage .btnPrimary:hover{
-  background:linear-gradient(135deg,var(--ee-action-gold-hover),#ffe09a);
-  color:#10213b;
-  filter:none;
+  background:var(--ee-action-gold-hover);
+  color:var(--brand-blue-dark,#0f2f62);
+  filter:brightness(.96);
 }
 .eeClusterPage .btnPrimary:focus-visible{
   outline:3px solid rgba(242,180,65,.38);
@@ -56,13 +56,24 @@
 .eeClusterPage .eeDecision p,
 .eeClusterPage .eeRoute p,
 .eeClusterPage .eeEvidence p{font-size:16px;line-height:1.72}
-.eeClusterPage .eeDecisionTableWrap{overflow-x:auto;margin-top:18px;border:1px solid rgba(3,78,162,.13);border-radius:16px}
-.eeClusterPage .eeDecisionTable{width:100%;border-collapse:collapse;min-width:720px;background:#fff}
-.eeClusterPage .eeDecisionTable th,
-.eeClusterPage .eeDecisionTable td{padding:14px 16px;border-bottom:1px solid rgba(3,78,162,.11);text-align:left;vertical-align:top;line-height:1.5}
-.eeClusterPage .eeDecisionTable th{background:var(--ee-cluster-accent-dark);color:#fff;font-size:13px}
-.eeClusterPage .eeDecisionTable tbody tr:nth-child(even){background:var(--ee-cluster-soft)}
-.eeClusterPage .eeDecisionTable tbody tr:last-child td{border-bottom:0}
+.eeClusterPage .eeDecisionTableWrap,
+.eeClusterPage .eeDecisionTable:not(table){overflow-x:auto;margin-top:18px;border:1px solid rgba(3,78,162,.13);border-radius:16px;background:var(--card,#fff)}
+.eeClusterPage table.eeDecisionTable,
+.eeClusterPage .eeDecisionTable:not(table)>table{width:100%;min-width:720px;border-collapse:collapse;background:var(--card,#fff)}
+.eeClusterPage table.eeDecisionTable th,
+.eeClusterPage table.eeDecisionTable td,
+.eeClusterPage .eeDecisionTable:not(table)>table th,
+.eeClusterPage .eeDecisionTable:not(table)>table td{padding:14px 16px;border-bottom:1px solid rgba(3,78,162,.11);text-align:left;vertical-align:top;line-height:1.5}
+.eeClusterPage table.eeDecisionTable thead th,
+.eeClusterPage .eeDecisionTable:not(table)>table thead th{background:var(--ee-cluster-accent-dark);color:#fff;font-size:13px}
+.eeClusterPage table.eeDecisionTable tbody th,
+.eeClusterPage .eeDecisionTable:not(table)>table tbody th{background:transparent;color:var(--ee-cluster-accent-dark)}
+.eeClusterPage table.eeDecisionTable tbody tr:nth-child(even),
+.eeClusterPage .eeDecisionTable:not(table)>table tbody tr:nth-child(even){background:var(--ee-cluster-soft)}
+.eeClusterPage table.eeDecisionTable tbody tr:last-child th,
+.eeClusterPage table.eeDecisionTable tbody tr:last-child td,
+.eeClusterPage .eeDecisionTable:not(table)>table tbody tr:last-child th,
+.eeClusterPage .eeDecisionTable:not(table)>table tbody tr:last-child td{border-bottom:0}
 .eeClusterPage .eeFacts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0}
 .eeClusterPage .eeFact{padding:16px;border:1px solid rgba(3,78,162,.13);border-radius:16px;background:var(--ee-cluster-soft)}
 .eeClusterPage .eeFact strong,.eeClusterPage .eeFact span{display:block}
