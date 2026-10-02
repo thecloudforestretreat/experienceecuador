@@ -179,3 +179,13 @@ Completed for staging on 2026-10-02:
 These twelve pages now use the experiences cluster and consistently declare their category, language and consideration-stage role. Long and generic titles were replaced with focused search language, especially across the Spanish pages; descriptions now give direct route-planning answers; and search, social and structured-data wording remains aligned. Existing detailed copy, FAQs, regional pathways and bilingual relationships were preserved.
 
 Next build batch: experience children for birdwatching, Baños adventure and culinary must-eats, then editorial guides and commercial collections.
+
+### Batch 8: experience children
+
+Completed for staging on 2026-10-02:
+
+- Mindo birdwatching, Quito birdwatching, Baños adventure and Ecuadorian must-eat foods bilingual pairs
+
+These eight pages now use the experiences cluster and declare their specific experience, destination or topic plus language and consideration-stage role. Metadata now uses natural search phrases—including “avistamiento de aves” rather than the weaker abbreviated wording—and provides direct planning answers. The Mindo pair explicitly supports the specialist birdwatching funnel while preserving existing content, FAQs and internal routes.
+
+Next build batch: editorial guides and high-intent commercial collections.
