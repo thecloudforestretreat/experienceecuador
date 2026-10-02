@@ -477,3 +477,16 @@ Both itinerary guides now open with a direct answer that prioritizes two or thre
 The existing destination cards, planning guidance and balanced 10-day example remain in place, while unsupported winner and price language has been qualified. A sixth visible and structured FAQ covers room configuration, child seats, age and height limits, intensity, altitude, mobility, transport, guides, meals, equipment, fees, baggage, cancellation terms, insurance and current guidance. A five-item `ItemList` mirrors the relevant family, Galápagos, Mindo, wildlife-comparison and lodging guides.
 
 The former `TouristTrip` schema was removed because these pages are planning frameworks rather than verified bookable products. The Spanish page now uses natural South American Spanish, including “esnórquel,” “fauna emblemática,” “alojamientos en la selva” and “traslados bien coordinados.” Local validation found one doctype and H1 per page, one direct-answer block, five comparison rows, six visible and structured FAQs, five structured planning paths, no duplicate IDs, no missing internal targets, complete content-link attribution, the approved blue-and-gold editorial bundle, Montserrat/Inter typography and the current `site-config.js` chain. The next recommended deep-authority pair is the bilingual Amazon travel guide.
+
+### Batch 31: Amazon travel-guide authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/amazon-travel-guide/`
+- `/es/guia-viaje-amazonia/`
+
+Both Amazon guides now open with a direct answer that prioritizes access pattern, habitat and nature experience, realistic wildlife expectations, guide quality, daily schedule, group size and named accommodation over a simplistic preference for remoteness. The hero copy is shorter and more useful, while the existing destination, experience, route and internal-authority sections remain intact.
+
+A five-row decision table compares Tena, Misahuallí, Yasuní, Cuyabeno and an Amazon-plus-another-region route. Every row states the useful trip fit, expected access pattern and concrete items to confirm, including activity sites, road and river transfers, boat operators, meeting points, guide ratios, rooms, meals, equipment, connectivity, baggage, buffers and cancellation terms. Access and wildlife are presented as date-specific conditions rather than guarantees.
+
+A sixth visible and structured FAQ covers the exact gateway, transfer sequence, named accommodation and room, private or shared services, meals, drinking water, equipment, difficulty, fees, connectivity, baggage rules, cancellation terms, emergency procedures and current access. A five-item `ItemList` mirrors the main destination and lodging paths. The Spanish page replaces imported `lodge`, `timing`, `flujo` and “pulida” language with natural Ecuadorian Spanish while retaining the existing legacy lodging URL. Local validation found one doctype and H1, one direct-answer block, five comparison rows, six visible and structured FAQs, five structured destination paths, no duplicate IDs, no missing internal targets, complete content-link attribution, the approved blue-and-gold editorial bundle, Montserrat/Inter typography and the current `site-config.js` chain. The next recommended deep-authority pair is the bilingual Andes travel guide.
