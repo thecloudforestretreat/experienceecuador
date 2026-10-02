@@ -311,3 +311,14 @@ Completed for staging on 2026-10-02:
 Both national destination guides now provide a direct answer to the primary query, a linked twelve-place planning shortlist, a six-row comparison of destination types, and six matched visible and structured FAQs. ItemList schema mirrors the twelve real destination pages, while the new shortlist routes authority to Quito, Galápagos, Mindo, Cotopaxi, Baños, Cuenca, Otavalo, Yasuní, Puerto López, Guayaquil, Chocó Andino and Isabela. Redundant self-links were removed, the Spanish birdwatching phrase was normalized to “Tours de avistamiento de aves en Ecuador,” and all internal links retain page-level attribution metadata.
 
 Local validation found one H1 per page, no duplicate IDs, valid JSON-LD and executable JavaScript, no missing local link targets, twelve visible shortlist entries, a twelve-item structured list, six visible FAQs, six structured FAQs and 36/33 unique internal destinations in English/Spanish. The next substantive authority pair is the national Ecuador travel-guide pair.
+
+### Batch 19: national Ecuador travel-guide pair
+
+Completed for staging on 2026-10-02:
+
+- `/ecuador-travel-guide/`
+- `/es/guia-viaje-ecuador/`
+
+Both national planning guides now open with a direct answer explaining realistic trip scope, followed by an ordered planning summary. The itinerary section was upgraded from three unlinked summary cards to a four-duration comparison table covering 5–7, 8–10, 12–14 and 15+ day routes, with attributed links into the Coast, Amazon–Galápagos and national birdwatching itinerary funnels. A new six-step booking sequence covers fixed transport, overnight bases, route connections, guided priorities, recovery time and predeparture verification through current official sources. The visible FAQ and FAQ schema now contain six matched questions, including what to reserve first, and structured modification dates were refreshed.
+
+Local validation found one H1 per page, no duplicate IDs, valid JSON-LD and executable JavaScript, no missing local targets, full attribution on all 27 internal links, six visible and six structured FAQs, and complete bilingual component parity. The next substantive pair is the national accommodation-planning authority guide.
