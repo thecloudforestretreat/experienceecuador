@@ -159,3 +159,13 @@ Completed for staging on 2026-10-02:
 These ten pages now use the destinations cluster and consistently declare their Coast region, language and consideration-stage role. Generic metadata was replaced with destination-specific search intent across search, social and structured-data descriptions. Spanish titles were shortened and normalized, modification dates were refreshed, and duplicate document declarations on the Puerto López pair were removed. Existing visible content, FAQs, bilingual relationships and internal planning routes were preserved.
 
 Next build batch: Galápagos destination children.
+
+### Batch 6: Galápagos destinations
+
+Completed for staging on 2026-10-02:
+
+- Santa Cruz, San Cristóbal, Isabela and Floreana bilingual island pairs
+
+These eight pages now use the destinations cluster and consistently declare their Galápagos region, language and consideration-stage role. Search, social and structured-data metadata now answers island-specific planning intent for bases, wildlife, beaches, transfers and realistic stay length. Spanish titles and descriptions were shortened into natural regional phrasing, modification dates were refreshed, and the existing FAQs, bilingual relationships and internal planning pathways were preserved.
+
+Next build batch: experience and activity clusters, followed by planning and commercial-intent pages.
