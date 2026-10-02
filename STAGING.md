@@ -637,3 +637,16 @@ Both three-day pages now open with a direct answer that assigns the first day to
 A five-row decision table compares a Cotopaxi route, an Otavalo route, a Mindo cloud-forest route, three days entirely within Quito and a departure-safe structure. Each row identifies its useful fit, realistic sequence and details to verify, including provider, park or reserve access, road and weather conditions, market-day relevance, named stops, guide specialty, activity level, walking, meals, equipment, inclusions, baggage, flight margin, cancellation terms and contingency planning. No operator, access, schedule, price, wildlife outcome or availability is invented.
 
 Six visible and structured FAQs match across both languages, while a five-item `ItemList` connects the Quito overview, Quito travel guide, one- and two-day itineraries and the Mindo cloud-forest guide. The four-card continuation row links Cotopaxi, Otavalo, Baños and Mindo without an incomplete desktop row. The Spanish page replaces literal `capa`, `flujo`, `hub`, `encaja`, “más fuerte,” “más suave,” “pago visual,” “más limpio” and awkward forest-direction phrasing with natural Ecuadorian Spanish. Local validation found one doctype and H1 per page, one direct-answer block, five decision rows, six visible and structured FAQs, five structured planning paths, no duplicate IDs, no missing internal targets or assets, valid JSON-LD, complete analytics attribution on internal links, the approved planning bundle, Montserrat/Inter typography and the current cache-busted `site-config.js` injection chain.
+
+### Batch 43: national spectacled bear authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/spectacled-bear-ecuador-guide/`
+- `/es/guia-oso-de-anteojos-ecuador/`
+
+This bilingual pair serves as a national species and trip-planning guide rather than a commercial tour page. It explains identity, habitat and distribution across Ecuador, conservation, regional differences, ethical observation and how to assess a responsible specialist. It explicitly states that sightings are never guaranteed and that Mindo or an ordinary Andes or Chocó Andino visit should not be represented as a bear tour.
+
+The pages use `WebPage`, `Article`, `Taxon`, `FAQPage` and `BreadcrumbList` schema, six matching visible and structured FAQs, the approved editorial blue-and-gold cluster and three locally hosted reference images. Tracked pathways distinguish Experience Ecuador research, Chocó Andino conservation context and Mindo Bird Watching field expertise and private-tour conversion. Eight English and eight Spanish contextual source pages now link to the corresponding national guide, including wildlife, nature, Andes, Chocó Andino, national planning and MBW member pages. Page-specific WhatsApp prompts remain controlled by the centralized injected `site-config.js`.
+
+The pair is included in `sitemap.xml` with a 2026-10-02 modification date. This brings the completed deep-authority program to 28 bilingual pairs / 56 pages. Production remains unchanged; staging stays non-indexable until final browser QA and the full Screaming Frog crawl are complete.

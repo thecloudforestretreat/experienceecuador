@@ -85,6 +85,30 @@
         t3: "Hola. ¿Cuál es su horario de atención?\n\nPágina: {url}",
         t4: "Hola. Tengo una pregunta.\n\nPágina: {url}",
         t5: "Hola. Quiero hablar con un especialista en viajes.\n\nPágina: {url}"
+      },
+      "/spectacled-bear-ecuador-guide/": {
+        q1: "Plan a wildlife route",
+        q2: "Ask about ethical viewing",
+        q3: "Compare Andean regions",
+        q4: "Find a specialist",
+        q5: "Ask a bear question",
+        t1: "Hi! I want help planning a responsible wildlife route in Ecuador.\n\nPage: {url}",
+        t2: "Hi! I have a question about ethical spectacled bear viewing in Ecuador.\n\nPage: {url}",
+        t3: "Hi! I want to compare Ecuador's Andean regions for a wildlife trip.\n\nPage: {url}",
+        t4: "Hi! I want help evaluating a responsible wildlife specialist.\n\nPage: {url}",
+        t5: "Hi! I have a question about spectacled bears in Ecuador.\n\nPage: {url}"
+      },
+      "/es/guia-oso-de-anteojos-ecuador/": {
+        q1: "Planificar una ruta de fauna",
+        q2: "Consultar observación ética",
+        q3: "Comparar regiones andinas",
+        q4: "Encontrar un especialista",
+        q5: "Consultar sobre el oso",
+        t1: "Hola. Quiero ayuda para planificar una ruta responsable de fauna en Ecuador.\n\nPágina: {url}",
+        t2: "Hola. Tengo una consulta sobre la observación ética del oso de anteojos en Ecuador.\n\nPágina: {url}",
+        t3: "Hola. Quiero comparar regiones andinas de Ecuador para un viaje de fauna.\n\nPágina: {url}",
+        t4: "Hola. Quiero ayuda para evaluar a un especialista responsable en fauna.\n\nPágina: {url}",
+        t5: "Hola. Tengo una consulta sobre el oso de anteojos en Ecuador.\n\nPágina: {url}"
       }
     }
   };
@@ -102,7 +126,7 @@
 
   var PAGE_CLUSTER_VERSIONS = Object.freeze({
     destinations: "20261002c",
-    editorial: "20261002g",
+    editorial: "20261002h",
     recommendations: "20261002f",
     planning: "20261002h"
   });
