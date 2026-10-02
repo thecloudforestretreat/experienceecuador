@@ -219,3 +219,13 @@ Completed for staging on 2026-10-02:
 These fourteen pages now use the recommendations cluster and declare their commercial topic, language, consideration-stage role and region where applicable. Titles and descriptions were tightened around high-intent search language, modification dates were refreshed, and the Spanish birdwatching page now consistently uses the natural phrase “Tours de avistamiento de aves en Ecuador” in both metadata and its visible H1. Existing comparison content, FAQs, recommendation routes, bilingual relationships and conversion paths were preserved.
 
 Next build batch: regional trip-intake and trip-builder conversion pages.
+
+### Batch 12: trip-builder and regional conversion pages
+
+Completed for staging on 2026-10-02:
+
+- Main Ecuador trip builder plus Andes, Amazon, Coast and Galápagos regional planning-intake bilingual pairs
+
+These ten pages now explicitly load the planning cluster and consistently declare their language, planning topic, conversion-stage role and region where applicable. Long regional titles were tightened without weakening high-intent search language, trip-builder modification dates were refreshed, and the existing form fields, lead-capture flow, analytics attributes, bilingual relationships and planning content were preserved.
+
+Next build batch: recommendation member pages and partner acquisition pages.
