@@ -276,3 +276,14 @@ Completed on 2026-10-02 with Screaming Frog in List Mode against the staging hos
 - no near-duplicate groups were reported in the exported Internal crawl
 
 The final crawl confirms the page foundation and metadata release gates. Its text-only link graph reports 83 pages with fewer than six unique source-HTML inlinks, including 14 with zero, and the bilingual Explore hubs each have only two unique source-HTML outlinks. Because the shared header and footer are injected at runtime, these figures are a conservative floor rather than the rendered-site total. JavaScript rendering is locked behind a Screaming Frog licence in the installed unlicensed edition, so rendered-link verification remains a browser QA item. The source-HTML gaps are still useful remediation targets before production release. Production remains unchanged and no indexing request has been made.
+
+### Batch 16: recommendations authority hubs
+
+Completed for staging on 2026-10-02:
+
+- `/recommendations/`
+- `/es/recomendados/`
+
+This is the first post-foundation substantive page-pair upgrade. Both recommendation hubs now include an image-led discovery hero, the gold primary action style, category entry points, a transparent recommendation methodology, decision-support guidance, the existing dynamic filters and member cards, featured-profile links, regional planning pathways, bilingual FAQs, FAQ schema and final trip-planning conversion actions. Static crawlable content increased from 134 to more than 800 words in English and from 148 to more than 850 words in Spanish while preserving the existing recommendation data, filter behavior and member attribution events.
+
+The shared recommendations cluster stylesheet was expanded for desktop and mobile symmetry, compact card composition, wrapped pills and tags, responsive grids and reduced dead space. Its cache key was advanced across every page that consumes the bundle. The next substantive content batch is the national planning authority group, beginning with the bilingual “best things to do in Ecuador” pair.
