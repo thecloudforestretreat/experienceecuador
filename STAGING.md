@@ -289,3 +289,14 @@ This is the first post-foundation substantive page-pair upgrade. Both recommenda
 The shared recommendations cluster stylesheet was expanded for desktop and mobile symmetry, compact card composition, wrapped pills and tags, responsive grids and reduced dead space. Its cache key was advanced across every page that consumes the bundle. The next substantive content batch is the national planning authority group, beginning with the bilingual “best things to do in Ecuador” pair.
 
 Post-deploy browser QA confirmed 15 balanced default results: 13 real listings plus two category-specific partner opportunities, replacing the previous 109-card output caused by 96 repeated placeholders. The shared Spanish recommendation and experience data was normalized for Ecuadorian Spanish accents, including “observación,” “Amazonía,” “región,” “río,” “Gastronomía” and “Relajación.” Both languages retain the injected WhatsApp configuration, and staging remains noindex with analytics disabled.
+
+### Batch 17: national things-to-do authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/best-things-to-do-in-ecuador/`
+- `/es/mejores-cosas-que-hacer-en-ecuador/`
+
+Both national discovery guides now answer the primary query directly, compare twelve concrete Ecuador experiences, distribute internal authority into every major regional and experience cluster, provide a four-region planning table, align route ambition with trip duration, and expand the visible FAQ and FAQ schema to six matched questions. The Spanish page uses Ecuadorian Spanish with full accents, while both pages preserve the prior regional framework, canonical and hreflang relationships, analytics attributes, trip-builder conversion path and injected site configuration.
+
+The editorial cluster stylesheet now includes responsive authority-answer, signature-experience, comparison-table and duration components. Its cache key was advanced across all editorial-cluster pages. Local validation found one H1, no duplicate IDs, valid JSON-LD, no missing internal targets and 38 internal links on each upgraded page. The next substantive pair is the national best-places-to-visit collection.
