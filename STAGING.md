@@ -653,6 +653,8 @@ The pair is included in `sitemap.xml` with a 2026-10-02 modification date. This 
 
 Post-deployment visual QA found that the unsupported `btnSecondary` class left secondary actions unstyled on the new guides and their 16 contextual inlink cards. Every Batch 43 secondary action now uses the established `btnGhost` treatment. The MBW specialist card contains separate primary guide and secondary private-experience buttons with intentional spacing, and the final recommendation CTA is also a visible secondary button. Direct HTTP verification returned 200 for the English and Spanish MBW guide, MBW private-tour and Chocó Andino regional-guide destinations. The shared runtime key was advanced again so cached configuration cannot rewrite the corrected editorial bundle to its previous version.
 
+The national guides now cite Ecuador's official Andean Bear Conservation Action Plan before the international references and show a bilingual editorial review date. Their `Article` schema includes organization-level authorship plus matching `datePublished` and `dateModified` values, improving source transparency without inventing an individual reviewer.
+
 ### Batch 44: Cotopaxi destination authority pair
 
 Completed for staging on 2026-10-02:
