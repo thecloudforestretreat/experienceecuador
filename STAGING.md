@@ -735,3 +735,19 @@ Contextual discovery links raise Cotacachi and Zuleta to eight unique same-langu
 This batch brings the completed deep-authority program to 37 bilingual pairs / 74 pages out of 217 submitted sitemap URLs, leaving 143 sitemap pages for page-level upgrades. Production remains unchanged and staging stays non-indexable until final browser QA and the full Screaming Frog crawl are complete.
 
 Post-deployment Chrome QA passed across all six Batch 48 pages at 1440-pixel desktop and 390-pixel mobile widths. Every render has no horizontal overflow, one authority answer, five decision rows, six FAQs, the approved gold primary actions and destination cluster styling. The localized WhatsApp menus expose five correct page-specific prompts. Staging applies `noindex,nofollow,noarchive,nosnippet` and keeps GTM disabled unless analytics debug mode is explicitly enabled.
+
+### Batch 49: Misahuallí, Cuyabeno and Yasuní Amazon destination authority set
+
+Completed for staging on 2026-10-02:
+
+- `/regions/amazon/misahualli/` and `/es/regiones/amazonia/misahualli/`
+- `/regions/amazon/cuyabeno-wildlife-reserve/` and `/es/regiones/amazonia/cuyabeno-reserva-faunistica/`
+- `/regions/amazon/yasuni-national-park/` and `/es/regiones/amazonia/parque-nacional-yasuni/`
+
+Each bilingual pair now opens with a destination-specific direct answer, a five-row decision table, six matching visible and structured FAQs and five structured onward-planning paths. Misahuallí is positioned as a one-to-three-day river-town introduction with responsible community and wildlife practices; Cuyabeno protects three to five days and requires the accommodation and complete land-and-canoe transfer to be selected together; Yasuní protects four to seven days and requires an authorized accommodation and the complete remote transfer system to be confirmed first. No animal encounter, water level, weather, access, schedule, operator, price or availability is represented as guaranteed.
+
+The Spanish copy was corrected where imported phrasing weakened clarity. In particular, a legacy Yasuní passage that incorrectly described the park like an easy-access Tena-area gateway was replaced with accurate remote, biodiversity-led planning guidance. High-visibility `rainforest` and `lodge` wording was also normalized to natural South American Spanish in titles, descriptions, hero copy and primary planning sections.
+
+All six destinations already have at least eight unique same-language inbound source pages. The Spanish Cuyabeno URL, which was missing from the submitted sitemap even though the page exists and has a valid English counterpart, has been added with the current modification date. The other five sitemap entries now carry the same date. Page-specific English and Spanish WhatsApp prompts are controlled by the centralized injected `site-config.js`, and the shared runtime cache key has advanced to `20261002p`.
+
+Local validation found one doctype and H1 per page, one authority-answer block, five decision rows, six visible and structured FAQs, five structured planning paths, no duplicate IDs, no missing internal targets or assets, valid JSON-LD, JavaScript and XML, and the approved destination cluster stylesheet. This batch brings the completed deep-authority program to 40 bilingual pairs / 80 pages out of 217 submitted sitemap URLs, leaving 137 sitemap pages for page-level upgrades (36.9% complete). Production remains unchanged and staging stays non-indexable until final browser QA and the full Screaming Frog crawl are complete.
