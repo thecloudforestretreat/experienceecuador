@@ -279,11 +279,14 @@
   });
 
   var PAGE_CLUSTER_VERSIONS = Object.freeze({
+    discovery: "20261003b58",
+    hubs: "20261003b58",
     destinations: "20261003d",
     experiences: "20261003c",
     editorial: "20261003j",
     recommendations: "20261003g",
-    planning: "20261003i"
+    planning: "20261003i",
+    trust: "20261003b58"
   });
 
   function normalizePath(path) {
