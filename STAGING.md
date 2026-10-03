@@ -667,3 +667,18 @@ Six visible and structured FAQs now match across both languages. A five-item `It
 Page-specific English and Spanish WhatsApp prompts are now controlled by the injected centralized `site-config.js`, and the shared runtime cache key has advanced to `20261002k`. Local validation found one doctype and H1 per page, one direct-answer block, five decision rows, six visible and structured FAQs, five structured planning paths, no duplicate IDs, no missing internal targets or assets, valid JSON-LD and JavaScript, complete analytics attribution on internal links, the approved destination cluster palette and the current injectable foundation. This brings the completed deep-authority program to 29 bilingual pairs / 58 pages. Production remains unchanged; staging stays non-indexable until final browser QA and the full Screaming Frog crawl are complete.
 
 Post-deployment Chrome QA passed at 1440-pixel desktop and 390-pixel mobile widths in both languages. Neither page has horizontal overflow; both render the destination cluster, five decision rows and six FAQs with the approved gold primary action and blue heading colors. The centralized widget exposes the five Cotopaxi-specific prompts in each language. Staging rewrites the page robots directive to `noindex,nofollow,noarchive,nosnippet` and does not load GTM unless analytics debug mode is explicitly enabled.
+
+### Batch 45: Baños destination authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/regions/andes/banos/`
+- `/es/regiones/andes/banos/`
+
+Both destination pages now open with a direct answer that recommends two or three nights, a dedicated waterfall day and one additional adventure, viewpoint or hot-springs priority. The answer requires travelers to confirm the operating provider, guide, current route, pickup, transportation, equipment, activity requirements, inclusions and cancellation terms before booking. It connects directly to transportation planning and the upgraded Cotopaxi destination pair.
+
+A five-row decision table compares a two-night first stay, a balanced three-night stay, scenery without extreme sports, an adventure-priority stay and a Cotopaxi–Baños route. Each row identifies its best fit, a realistic structure and the provider, access, guide, activity, equipment, insurance, mobility, thermal-bath, room, luggage, road, timing and cancellation details that still require confirmation. No operator, route condition, access, price, schedule or availability is invented.
+
+Six visible and structured FAQs now match across both languages, and a five-item `ItemList` connects adventure, nature, Cotopaxi, transportation and Trip Builder paths. Nine English and nine Spanish contextual source pages link into the pair, excluding each destination page itself. The Spanish page replaces literal uses of `flujo`, `capa`, `encaja`, `checklist`, `outdoor`, “más fuerte,” and “se sienta” with natural South American Spanish.
+
+Page-specific English and Spanish WhatsApp prompts are controlled by the centralized injected `site-config.js`; the shared runtime cache key has advanced to `20261002l`. Local validation found one doctype and H1 per page, one direct-answer block, five decision rows, six visible and structured FAQs, five structured planning paths, no duplicate IDs, no missing internal targets or assets, valid JSON-LD and JavaScript, complete analytics attribution on internal links and the approved destination cluster palette. This brings the completed deep-authority program to 30 bilingual pairs / 60 pages. Production remains unchanged and staging stays non-indexable until final QA and the full Screaming Frog crawl are complete.

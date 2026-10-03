@@ -133,6 +133,30 @@
         t3: "Hola. Quiero confirmar la altitud, el nivel de actividad y el acceso vigente a Cotopaxi.\n\nPágina: {url}",
         t4: "Hola. Quiero ayuda para organizar el transporte de una ruta por Cotopaxi.\n\nPágina: {url}",
         t5: "Hola. Tengo una consulta sobre una visita a Cotopaxi.\n\nPágina: {url}"
+      },
+      "/regions/andes/banos/": {
+        q1: "Plan a Baños stay",
+        q2: "Compare two or three nights",
+        q3: "Check an adventure activity",
+        q4: "Arrange transportation",
+        q5: "Ask a Baños question",
+        t1: "Hi! I want help planning a stay in Baños.\n\nPage: {url}",
+        t2: "Hi! I want to compare a two-night and three-night Baños plan.\n\nPage: {url}",
+        t3: "Hi! I want help checking an adventure activity, provider and current conditions in Baños.\n\nPage: {url}",
+        t4: "Hi! I want help arranging transportation for a Baños route.\n\nPage: {url}",
+        t5: "Hi! I have a question about visiting Baños.\n\nPage: {url}"
+      },
+      "/es/regiones/andes/banos/": {
+        q1: "Planificar una estadía en Baños",
+        q2: "Comparar dos o tres noches",
+        q3: "Consultar una actividad de aventura",
+        q4: "Organizar transporte",
+        q5: "Consultar sobre Baños",
+        t1: "Hola. Quiero ayuda para planificar una estadía en Baños.\n\nPágina: {url}",
+        t2: "Hola. Quiero comparar un plan de dos y tres noches en Baños.\n\nPágina: {url}",
+        t3: "Hola. Quiero consultar una actividad de aventura, el operador y las condiciones vigentes en Baños.\n\nPágina: {url}",
+        t4: "Hola. Quiero ayuda para organizar el transporte de una ruta por Baños.\n\nPágina: {url}",
+        t5: "Hola. Tengo una consulta sobre una visita a Baños.\n\nPágina: {url}"
       }
     }
   };
