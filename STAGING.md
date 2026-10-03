@@ -823,3 +823,19 @@ The centralized injected `site-config.js` supplies five localized WhatsApp promp
 Local validation found one H1 and authority answer per target page, five decision rows, six visible and structured FAQs, five structured planning paths, no duplicate IDs, valid JSON-LD, JavaScript and sitemap XML. Sitemap modification dates were updated for every changed canonical entry. This batch brings the completed deep-authority program to 52 bilingual pairs / 104 pages out of 218 canonical sitemap URLs, leaving 114 pages for page-level upgrades (47.7% complete). Production remains unchanged and staging stays non-indexable until final browser QA and the full Screaming Frog crawl are complete.
 
 Post-deployment browser QA passed across all six Batch 53 targets at 1280-pixel desktop and 390 × 844 mobile widths. Every target has no page-level horizontal overflow, one authority answer, five decision rows, six visible FAQs, one six-question `FAQPage`, five structured planning paths and five correct localized WhatsApp choices. The browser confirmed Experience blue/navy headings, gold `rgb(242, 180, 65)` primary actions, Experiences `20261003c`, Destinations `20261003d`, runtime `site.js?v=20261003t`, staging `noindex,nofollow,noarchive,nosnippet` and no GTM load outside analytics debug mode. Visual review of the Spanish Mindo destination confirmed clean mobile wrapping, balanced hero actions and no off-palette controls.
+
+### Batch 54: Galápagos hub, Santa Cruz and San Cristóbal authority set
+
+Completed for staging on 2026-10-03:
+
+- `/regions/galapagos/` and `/es/regiones/galapagos/`
+- `/regions/galapagos/santa-cruz-island/` and `/es/regiones/galapagos/santa-cruz-island/`
+- `/regions/galapagos/san-cristobal-island/` and `/es/regiones/galapagos/san-cristobal-island/`
+
+The regional hub now tells travelers to choose a cruise or land-based structure first, protect the fixed flight and inter-island transport chain and select island bases before adding excursions. Santa Cruz protects three to five nights, the multi-stage Baltra transfer and one or two priority licensed excursions. San Cristóbal protects a flexible major marine day, licensed access, swimming and safety requirements and recovery time. Every page states that weather, ocean conditions, access and wildlife activity require current confirmation and cannot be guaranteed.
+
+Each page now has a destination-specific direct answer, five-row comparison table, six matching visible and structured FAQs and five structured planning paths. Existing contextual authority provides 23 English and Spanish sources to the Galápagos hub and nine per language to Santa Cruz. A new contextual planning link raises San Cristóbal to eight unique same-language inbound sources.
+
+The Spanish pages received a South American Spanish quality pass that removes imported `hub`, `tour`, `checklist`, `capa`, “más fuerte,” “más limpia,” `fluido` and repeated “se sienta” wording from visible planning copy without altering URL slugs. The centralized injected configuration supplies five localized WhatsApp prompts for all six targets and advances the shared runtime key to `20261003u`. The approved Destinations cluster remains `20261003d` with blue, navy, pale-blue and gold styling only.
+
+Local validation found one H1 and authority answer per target, five decision rows, six visible and structured FAQs, five structured planning paths, no duplicate IDs, no missing local pages or assets and valid JSON-LD, JavaScript and sitemap XML. Sitemap modification dates were updated for all changed canonical URLs. This batch brings the completed deep-authority program to 55 bilingual pairs / 110 pages out of 218 canonical sitemap URLs, leaving 108 pages for page-level upgrades (50.5% complete). Production remains unchanged and staging stays non-indexable until final browser QA and the full Screaming Frog crawl are complete.
