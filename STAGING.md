@@ -719,3 +719,17 @@ Six visible and structured FAQs match on every page, and every pair has a five-i
 The centralized injected `site-config.js` now supplies five destination-specific WhatsApp prompts in each language, and the shared runtime cache key has advanced to `20261002n`. This batch brings the completed deep-authority program to 34 bilingual pairs / 68 pages out of 217 submitted sitemap URLs, leaving 149 sitemap pages for page-level upgrades. Production remains unchanged and staging stays non-indexable until final browser QA and the full Screaming Frog crawl are complete.
 
 Post-deployment Chrome QA passed across all six pages at 1440-pixel desktop and 390-pixel mobile widths. Every render has no horizontal overflow, one authority answer, five complete decision rows, six FAQs, the approved gold primary actions and destination cluster styling. All six localized WhatsApp menus expose five page-specific prompts. Staging applies `noindex,nofollow,noarchive,nosnippet` and does not load GTM unless analytics debug mode is explicitly enabled.
+
+### Batch 48: Cotacachi, Zuleta and Tena destination authority set
+
+Completed for staging on 2026-10-02:
+
+- `/regions/andes/cotacachi/` and `/es/regiones/andes/cotacachi/`
+- `/regions/andes/zuleta/` and `/es/regiones/andes/zuleta/`
+- `/regions/amazon/tena/` and `/es/regiones/amazonia/tena/`
+
+Each pair now has a destination-specific direct answer, five-row decision table, six matching visible and structured FAQs and five structured planning paths. Cotacachi separates Cuicocha viewpoints, active lake options, artisan context and Otavalo combinations; Zuleta makes host permission, workshops, private land and community access explicit; Tena requires current confirmation for river level, provider, safety, equipment, wildlife, weather, lodge and road or boat transfers. No access, host, operator, activity condition, wildlife outcome, price or availability is invented.
+
+Contextual discovery links raise Cotacachi and Zuleta to eight unique same-language inbound source pages; Tena already exceeds that threshold. The Spanish pages replace imported or literal `outdoor`, `rainforest`, `lodge`, `capa`, `encaja`, “más fuerte,” “más limpia” and “se sienta” language where it affects visitor-facing planning copy. The centralized injected configuration supplies five localized WhatsApp prompts for every page and advances the shared runtime cache key to `20261002o`.
+
+This batch brings the completed deep-authority program to 37 bilingual pairs / 74 pages out of 217 submitted sitemap URLs, leaving 143 sitemap pages for page-level upgrades. Production remains unchanged and staging stays non-indexable until final browser QA and the full Screaming Frog crawl are complete.
