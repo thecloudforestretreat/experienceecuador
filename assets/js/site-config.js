@@ -109,6 +109,30 @@
         t3: "Hola. Quiero comparar regiones andinas de Ecuador para un viaje de fauna.\n\nPágina: {url}",
         t4: "Hola. Quiero ayuda para evaluar a un especialista responsable en fauna.\n\nPágina: {url}",
         t5: "Hola. Tengo una consulta sobre el oso de anteojos en Ecuador.\n\nPágina: {url}"
+      },
+      "/regions/andes/cotopaxi/": {
+        q1: "Plan a Cotopaxi visit",
+        q2: "Compare day trip or overnight",
+        q3: "Check altitude and access",
+        q4: "Arrange transportation",
+        q5: "Ask a Cotopaxi question",
+        t1: "Hi! I want help planning a Cotopaxi visit.\n\nPage: {url}",
+        t2: "Hi! I want to compare a Cotopaxi day trip with an overnight stay.\n\nPage: {url}",
+        t3: "Hi! I want to confirm altitude, activity level and current access for Cotopaxi.\n\nPage: {url}",
+        t4: "Hi! I want help arranging transportation for a Cotopaxi route.\n\nPage: {url}",
+        t5: "Hi! I have a question about visiting Cotopaxi.\n\nPage: {url}"
+      },
+      "/es/regiones/andes/cotopaxi/": {
+        q1: "Planificar una visita a Cotopaxi",
+        q2: "Comparar excursión o estadía",
+        q3: "Consultar altitud y acceso",
+        q4: "Organizar transporte",
+        q5: "Consultar sobre Cotopaxi",
+        t1: "Hola. Quiero ayuda para planificar una visita a Cotopaxi.\n\nPágina: {url}",
+        t2: "Hola. Quiero comparar una excursión a Cotopaxi con una estadía de una noche.\n\nPágina: {url}",
+        t3: "Hola. Quiero confirmar la altitud, el nivel de actividad y el acceso vigente a Cotopaxi.\n\nPágina: {url}",
+        t4: "Hola. Quiero ayuda para organizar el transporte de una ruta por Cotopaxi.\n\nPágina: {url}",
+        t5: "Hola. Tengo una consulta sobre una visita a Cotopaxi.\n\nPágina: {url}"
       }
     }
   };

@@ -652,3 +652,16 @@ The pages use `WebPage`, `Article`, `Taxon`, `FAQPage` and `BreadcrumbList` sche
 The pair is included in `sitemap.xml` with a 2026-10-02 modification date. This brings the completed deep-authority program to 28 bilingual pairs / 56 pages. Production remains unchanged; staging stays non-indexable until final browser QA and the full Screaming Frog crawl are complete.
 
 Post-deployment visual QA found that the unsupported `btnSecondary` class left secondary actions unstyled on the new guides and their 16 contextual inlink cards. Every Batch 43 secondary action now uses the established `btnGhost` treatment. The MBW specialist card contains separate primary guide and secondary private-experience buttons with intentional spacing, and the final recommendation CTA is also a visible secondary button. Direct HTTP verification returned 200 for the English and Spanish MBW guide, MBW private-tour and Chocó Andino regional-guide destinations. The shared runtime key was advanced again so cached configuration cannot rewrite the corrected editorial bundle to its previous version.
+
+### Batch 44: Cotopaxi destination authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/regions/andes/cotopaxi/`
+- `/es/regiones/andes/cotopaxi/`
+
+Both destination pages now open with a direct answer that distinguishes a focused day trip from a one-night stay and protects the route against altitude, weather, road and current-access uncertainty. The new five-row decision table compares a Quito day trip, Quito with one night, a Quito–Cotopaxi–Baños route, a photography-focused visit and a more active high-altitude day. Each option identifies its best fit, a realistic structure and the exact access, guide, transport, activity, equipment, meal, room, cancellation and timing details that still require confirmation. No current park access, weather, provider, schedule, price or availability is invented.
+
+Six visible and structured FAQs now match across both languages. A five-item `ItemList` links the most useful onward planning paths: Quito, the Andes travel guide, Quito in three days, transportation and Baños. Contextual links connect Cotopaxi with the Quito and Andes authority clusters, lodging guidance, recommended providers and the centralized Trip Builder. The Spanish page replaces literal or unnatural uses of “limpio,” “más fuerte,” `encaja`, `capa` and `outdoor` with natural South American Spanish.
+
+Page-specific English and Spanish WhatsApp prompts are now controlled by the injected centralized `site-config.js`, and the shared runtime cache key has advanced to `20261002k`. Local validation found one doctype and H1 per page, one direct-answer block, five decision rows, six visible and structured FAQs, five structured planning paths, no duplicate IDs, no missing internal targets or assets, valid JSON-LD and JavaScript, complete analytics attribution on internal links, the approved destination cluster palette and the current injectable foundation. This brings the completed deep-authority program to 29 bilingual pairs / 58 pages. Production remains unchanged; staging stays non-indexable until final browser QA and the full Screaming Frog crawl are complete.
