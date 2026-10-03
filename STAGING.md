@@ -771,3 +771,17 @@ The Experiences cluster source no longer contains its inherited brown `#9b5f15`,
 Local validation found one H1 and authority answer per page, five decision rows, six visible and structured FAQs, five structured planning paths, no duplicate IDs, no missing local targets, valid JSON-LD, JavaScript and sitemap XML, and natural South American Spanish in the upgraded high-visibility sections. This batch brings the completed deep-authority program to 43 bilingual pairs / 86 pages out of 218 canonical sitemap URLs, leaving 132 pages for page-level upgrades (39.4% complete). Production remains unchanged and staging stays non-indexable until final browser QA and the full Screaming Frog crawl are complete.
 
 Post-deployment browser QA passed across all six Batch 50 pages at 1440 × 1000 desktop and 390 × 844 mobile viewports. Every render has no horizontal overflow, one authority answer, five complete decision rows, six FAQs and five localized WhatsApp options. The browser confirmed `cluster-experiences.css?v=20261002b`, blue `#034ea2`, navy `#0f2f62`, gold `rgb(242, 180, 65)`, runtime `site.js?v=20261002q`, staging `noindex,nofollow,noarchive,nosnippet` and no GTM load. Visual review of the Spanish wildlife page confirmed balanced hero and authority layouts with no empty grid slots or off-palette brown surfaces.
+
+### Batch 51: adventure, relaxation and culture authority set
+
+Completed for staging on 2026-10-02:
+
+- `/experiences/adventure/` and `/es/experiencias/aventura/`
+- `/experiences/relaxation/` and `/es/experiencias/relajacion/`
+- `/experiences/culture/` and `/es/experiencias/cultura/`
+
+Each bilingual pair now opens with a direct planning answer and a five-row decision table, followed by six matching visible and structured FAQs and five structured onward-planning paths. Adventure prioritizes qualified operators, safety systems, realistic difficulty, weather and recovery. Relaxation protects a two- or three-night restorative base while requiring named rooms, facilities and services rather than unsupported wellness claims. Culture prioritizes real schedules, local guides or hosts, community permission, etiquette, accessibility and photography consent.
+
+Existing contextual authority already exceeds the eight-source threshold: Adventure has 32 English and 26 Spanish unique inbound source pages, Relaxation has 38 and 31, and Culture has 25 in each language. The Spanish pages received an additional language-quality pass that removes visible `reset`, `slow travel`, `lodges`, `sightseeing`, `timing`, and repeated literal `capa`, `encaja` and “más fuerte” phrasing from high-visibility sections.
+
+The six pages retain the approved Experiences cluster `20261002b`. The centralized injected configuration now supplies five page-specific WhatsApp prompts in each language and advances the shared runtime cache key to `20261002r`. Local validation found one H1 and authority answer per page, five decision rows, six visible and structured FAQs, five structured planning paths, no duplicate IDs, no missing local targets, valid JSON-LD, JavaScript and sitemap XML. This batch brings the completed deep-authority program to 46 bilingual pairs / 92 pages out of 218 canonical sitemap URLs, leaving 126 pages for page-level upgrades (42.2% complete). Production remains unchanged and staging stays non-indexable until final browser QA and the full Screaming Frog crawl are complete.
