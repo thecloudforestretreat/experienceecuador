@@ -118,6 +118,12 @@
         q1: "Postular como aliado", q2: "Comparar modalidades", q3: "Consultar los referidos", q4: "Colaboración editorial", q5: "Consultar una alianza",
         t1: "Hola. Represento un negocio ecuatoriano y quiero postular como aliado.\n\nPágina: {url}", t2: "Hola. Quiero comparar las modalidades gratuita, mensual y anual.\n\nPágina: {url}", t3: "Hola. Quiero entender el seguimiento y la atribución de referidos.\n\nPágina: {url}", t4: "Hola. Quiero proponer una colaboración editorial o de destino.\n\nPágina: {url}", t5: "Hola. Tengo una consulta sobre alianzas.\n\nPágina: {url}"
       },
+      "/partners/join/": {q1:"Application requirements",q2:"Compare participation options",q3:"Check destination fit",q4:"Ask about images and permissions",q5:"Partner application question",t1:"Hi! I want to confirm the partner application requirements.\n\nPage: {url}",t2:"Hi! I want to compare free, monthly, and annual participation options.\n\nPage: {url}",t3:"Hi! I want to check whether my Ecuador business fits the right region and category.\n\nPage: {url}",t4:"Hi! I have a question about partner images and publication permissions.\n\nPage: {url}",t5:"Hi! I have a partner application question.\n\nPage: {url}"},
+      "/es/aliados/unirse/": {q1:"Requisitos de postulación",q2:"Comparar modalidades",q3:"Revisar compatibilidad",q4:"Consultar imágenes y permisos",q5:"Consulta sobre la postulación",t1:"Hola. Quiero confirmar los requisitos para postular como aliado.\n\nPágina: {url}",t2:"Hola. Quiero comparar las modalidades gratuita, mensual y anual.\n\nPágina: {url}",t3:"Hola. Quiero revisar la región y categoría adecuadas para mi negocio en Ecuador.\n\nPágina: {url}",t4:"Hola. Tengo una consulta sobre imágenes y permisos de publicación.\n\nPágina: {url}",t5:"Hola. Tengo una consulta sobre la postulación de aliados.\n\nPágina: {url}"},
+      "/privacy-policy/": {q1:"Ask a privacy question",q2:"Request a correction",q3:"Understand analytics",q4:"Ask about referral data",q5:"Contact the privacy team",t1:"Hi! I have a question about the Experience Ecuador privacy policy.\n\nPage: {url}",t2:"Hi! I want to request a correction or deletion and can identify the relevant record.\n\nPage: {url}",t3:"Hi! I want to understand analytics and attribution data.\n\nPage: {url}",t4:"Hi! I have a question about referral and external-provider data.\n\nPage: {url}",t5:"Hi! I want to contact Experience Ecuador about privacy.\n\nPage: {url}"},
+      "/es/politica-de-privacidad/": {q1:"Hacer una consulta de privacidad",q2:"Solicitar una corrección",q3:"Entender la analítica",q4:"Consultar datos de referidos",q5:"Contactar por privacidad",t1:"Hola. Tengo una consulta sobre la Política de Privacidad de Experience Ecuador.\n\nPágina: {url}",t2:"Hola. Quiero solicitar una corrección o eliminación y puedo identificar el registro.\n\nPágina: {url}",t3:"Hola. Quiero entender los datos de analítica y atribución.\n\nPágina: {url}",t4:"Hola. Tengo una consulta sobre datos de referidos y proveedores externos.\n\nPágina: {url}",t5:"Hola. Quiero contactar a Experience Ecuador por privacidad.\n\nPágina: {url}"},
+      "/terms/": {q1:"Ask about the terms",q2:"Clarify a provider responsibility",q3:"Report site misuse",q4:"Ask about content permissions",q5:"Contact Experience Ecuador",t1:"Hi! I have a question about the Experience Ecuador terms.\n\nPage: {url}",t2:"Hi! I want to clarify Experience Ecuador and provider responsibilities.\n\nPage: {url}",t3:"Hi! I want to report possible misuse of the site.\n\nPage: {url}",t4:"Hi! I have a question about content permissions or licensing.\n\nPage: {url}",t5:"Hi! I want to contact Experience Ecuador about these terms.\n\nPage: {url}"},
+      "/es/terminos/": {q1:"Consultar los términos",q2:"Aclarar una responsabilidad",q3:"Reportar uso indebido",q4:"Consultar permisos de contenido",q5:"Contactar a Experience Ecuador",t1:"Hola. Tengo una consulta sobre los términos de Experience Ecuador.\n\nPágina: {url}",t2:"Hola. Quiero aclarar las responsabilidades de Experience Ecuador y del proveedor.\n\nPágina: {url}",t3:"Hola. Quiero reportar un posible uso indebido del sitio.\n\nPágina: {url}",t4:"Hola. Tengo una consulta sobre permisos de contenido o licencias.\n\nPágina: {url}",t5:"Hola. Quiero contactar a Experience Ecuador sobre estos términos.\n\nPágina: {url}"},
       "/contact/": {
         q1: "Plan my trip",
         q2: "Business profile inquiry",
@@ -348,9 +354,9 @@
     destinations: "20261003d59g61",
     experiences: "20261003cg61",
     editorial: "20261003j61g61",
-    recommendations: "20261003r61a",
+    recommendations: "20261003r62",
     planning: "20261003p60g61",
-    trust: "20261003b61a"
+    trust: "20261003b62"
   });
 
   function normalizePath(path) {

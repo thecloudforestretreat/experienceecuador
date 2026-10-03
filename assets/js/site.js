@@ -39,7 +39,7 @@
     window.__eeSiteConfigLoading=true;
     const siteConfigScript=document.createElement("script");
     siteConfigScript.async=false;
-    siteConfigScript.src="/assets/js/site-config.js?v=20261003ag";
+    siteConfigScript.src="/assets/js/site-config.js?v=20261003ah";
     siteConfigScript.addEventListener("load",()=>{window.__eeSiteConfigLoading=false;});
     siteConfigScript.addEventListener("error",()=>{window.__eeSiteConfigLoading=false;});
     document.head.appendChild(siteConfigScript);

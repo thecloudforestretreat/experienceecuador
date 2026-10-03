@@ -1007,3 +1007,19 @@ Local validation confirms valid JSON-LD, JavaScript and sitemap XML; one authori
 The first deployed mobile assertion exposed a clipped-content condition that a simple document-overflow check did not reveal: the decision table's 820-pixel intrinsic width expanded the parent grid track while the page clipped the result. The Trust and Recommendations foundation mains now use an explicit `minmax(0,1fr)` track and their sections have `min-width:0`, keeping the table horizontally scrollable without widening the hero or CTA sections. At 390 pixels, every target now renders a 362-pixel hero, 320-pixel full-width CTA buttons inside the viewport and a contained scroll region for the decision table. The correction is captured by Trust `20261003b61a` and Recommendations `20261003r61a`.
 
 Post-correction browser QA passed on all six pages at 1280 × 900 desktop and 390 × 844 mobile widths on the custom staging domain. Every page returns HTTP 200 with `noindex,nofollow,noarchive,nosnippet`, has no page-level overflow, keeps all CTA buttons inside the viewport, contains the decision-table scroll region, loads five localized WhatsApp actions and the approved gold primary color, loads all main images and produces no browser errors. GTM remains disabled on staging. The final immutable deployment is `https://7fbd2b4c.experienceecuador-staging.pages.dev` from content commit `aa46ef9`; the custom staging domain serves the same corrected release.
+
+### Batch 62: Partner application and consolidated legal foundation
+
+Completed for staging on 2026-10-03:
+
+- `/partners/join/` and `/es/aliados/unirse/`
+- `/privacy-policy/` and `/es/politica-de-privacidad/`
+- `/terms/` and `/es/terminos/`
+
+The partner application retains its existing form workflow, dynamic location and experience choices, image-upload path, Turnstile integration and configured submission endpoint. The surrounding page now explains application readiness, review criteria, free/monthly/annual participation, media permissions and disclosure without promising placement, timing, traffic, leads or a fixed trial. The unsupported three-month trial statement was removed.
+
+Privacy now explains forms, analytics, first- and recent-touch attribution, referral clicks, providers, retention and visitor choices in a direct-answer structure. Terms preserves and consolidates the existing policy substance around travel information, independent providers, bookings, acceptable use, intellectual property, availability and liability. No new legal-compliance claim was added. The duplicate `/terms-of-service/` and `/es/terminos-de-servicio/` sitemap entries were retired and permanently redirect to `/terms/` and `/es/terminos/` so each language has one authoritative terms URL.
+
+Every target has one H1, one direct answer, five decision rows, six matching visible and structured FAQs and a five-item `ItemList`. The existing trust gateway on the homepage, About, Mission, Contact, Recommendations, Trip Builder, Ecuador Travel Guide and Blog now includes the application, privacy and terms routes in both languages, providing at least eight same-language contextual inlinks to each target. Primary actions remain approved gold and secondary actions remain white with blue outlines.
+
+The pages use only Global plus their assigned cluster. Partner application uses Recommendations `20261003r62`; Privacy and Terms use Trust `20261003b62`. Runtime and centralized configuration advance together to `20261003ah`, with five localized WhatsApp prompts for each target. The sitemap now contains 216 canonical URLs after retiring the duplicate bilingual terms pair. This batch brings the completed deep-authority program to 79 bilingual pairs / 158 pages, leaving 58 canonical pages for page-level upgrades (73.1% complete). Production remains unchanged and staging stays non-indexable pending final browser QA and the full Screaming Frog crawl.
