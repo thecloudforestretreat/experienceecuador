@@ -34,334 +34,12 @@
   <!-- Global header/footer CSS (required) -->
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css?v=20261001d">
-  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-planning.css?v=20261003p60" data-cluster="planning">
+  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-planning.css?v=20261003p63" data-cluster="planning">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@graph":[
-      {"@type":"WebPage","@id":"https://experienceecuador.com/transportation/#webpage","url":"https://experienceecuador.com/transportation/","name":"Transportation Planning in Ecuador","description":"Estimate transfer times and plan airport, Quito, Mindo, and Cotacachi ground transportation before traveling in Ecuador.","inLanguage":"en","isPartOf":{"@id":"https://experienceecuador.com/#website"}},
-      {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://experienceecuador.com/"},{"@type":"ListItem","position":2,"name":"Transportation","item":"https://experienceecuador.com/transportation/"}]},
-      {"@type":"FAQPage","mainEntity":[
-        {"@type":"Question","name":"Are the transfer times guaranteed?","acceptedAnswer":{"@type":"Answer","text":"No. They are planning estimates. Traffic, road works, weather, pickup logistics, stops, and the selected route can change the actual time."}},
-        {"@type":"Question","name":"Does the estimator provide confirmed prices?","acceptedAnswer":{"@type":"Answer","text":"Not yet. Routes without verified commercial pricing display Coming soon. Request a trip plan for a current, operator-confirmed transport option."}},
-        {"@type":"Question","name":"Should I add extra time before a flight?","acceptedAnswer":{"@type":"Answer","text":"Yes. Build in a buffer appropriate to the airport, route, time of day, weather, and airline check-in requirements rather than treating a road estimate as a departure guarantee."}}
-      ]}
-    ]
-  }
-  </script>
-  <style>
-    :root{
-      --brand-blue:#034EA2;
-      --charcoal:#1F1F1F;
-      --slate:#6E7B8B;
-      --ok:#0f8a5f;
-      --warn:#b65b00;
-    }
-
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--charcoal);
-      background:#f6f8fb;
-    }
-
-    a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-
-    /* ===== HERO (image behind title) ===== */
-    .hero{
-      position:relative;
-      max-width:1100px;
-      margin:0 auto;
-      padding:22px 18px 12px;
-    }
-
-    .hero-banner{
-      position:relative;
-      border-radius:24px;
-      overflow:hidden;
-      box-shadow:0 22px 60px rgba(0,0,0,0.18);
-      min-height:320px;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)),
-        url("/assets/images/pages/EE-Assets-Transportation-01.jpg") center/cover no-repeat;
-    }
-
-    .hero-content{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:flex-end;
-      padding:22px;
-    }
-
-    .hero-title{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:clamp(34px,4.6vw,54px);
-      letter-spacing:-0.03em;
-      color:#fff;
-      margin:0;
-      line-height:1.05;
-      text-shadow:0 10px 30px rgba(0,0,0,0.35);
-    }
-
-    /* ===== CONTENT ===== */
-    .wrap{
-      max-width:1100px;
-      margin:0 auto;
-      padding:0 18px 60px;
-    }
-
-    .card{
-      background:#fff;
-      border-radius:22px;
-      padding:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
-    }
-
-    .card h2{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:22px;
-      margin:0 0 10px;
-      color:var(--brand-blue);
-      letter-spacing:-0.02em;
-    }
-
-    .card p{
-      margin:0;
-      line-height:1.75;
-      font-size:15.8px;
-      color:#2a2f36;
-      max-width:85ch;
-    }
-
-    /* ===== SELECTOR CARD (matches your standardized selector layout) ===== */
-    .selector-card{
-      background:#fff;
-      border-radius:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
-      overflow:hidden;
-      margin-top:18px;
-    }
-
-    .selector-top{
-      padding:clamp(24px,4vw,38px);
-      display:grid;
-      grid-template-columns:minmax(0,1.12fr) minmax(330px,.88fr);
-      gap:28px;
-      align-items:stretch;
-    }
-
-    .selector-controls{
-      grid-column:auto;
-      grid-row:auto;
-      justify-self:stretch;
-
-      display:grid;
-      grid-template-columns:auto minmax(0,1fr);
-      gap:12px 14px;
-      align-items:center;
-      padding:22px;
-      border-radius:20px;
-      background:linear-gradient(145deg,#0f2f62,#034ea2);
-      box-shadow:0 20px 40px rgba(3,78,162,.2);
-    }
-
-    .selector-controls label{
-      font-weight:800;
-      color:#fff;
-      font-size:13px;
-      letter-spacing:0.02em;
-      text-align:left;
-      white-space:nowrap;
-    }
-
-    .selector-controls select{
-      appearance:none;
-      -webkit-appearance:none;
-      -moz-appearance:none;
-      border:1px solid rgba(3,78,162,0.22);
-      background:#fff;
-      color:#0f2f62;
-      font-weight:700;
-      padding:11px 42px 11px 12px;
-      border-radius:14px;
-      font-size:14px;
-      cursor:pointer;
-      outline:none;
-      min-width:0;
-      width:100%;
-      box-shadow:0 14px 30px rgba(3,78,162,0.10);
-      background-image:
-        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
-        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
-        linear-gradient(to right, transparent, transparent);
-      background-position:
-        calc(100% - 18px) 50%,
-        calc(100% - 12px) 50%,
-        0 0;
-      background-size:6px 6px, 6px 6px, 100% 100%;
-      background-repeat:no-repeat;
-    }
-
-    .selector-controls select:focus{
-      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
-      border-color:rgba(3,78,162,0.45);
-    }
-
-    .selector-copy{
-      grid-column:auto;
-      padding:0;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-    }
-
-    .selector-body{
-      padding:22px;
-    }
-
-    @media(max-width:900px){
-      .selector-top{ grid-template-columns:1fr; }
-      .selector-controls{
-        grid-template-columns:120px minmax(0,1fr);
-      }
-      .selector-controls select{ width:100%; min-width:0; }
-      .hero-banner{min-height:290px}
-    }
-
-    @media(max-width:620px){
-      .hero-content{padding:16px}
-      .selector-top{padding:20px}
-      .selector-controls{grid-template-columns:1fr;padding:18px}
-    }
-
-    /* ===== TRANSPORT RESULTS UI ===== */
-    .results-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
-      margin-top:18px;
-    }
-
-    @media(max-width:900px){
-      .results-grid{grid-template-columns:1fr}
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(3,78,162,0.08);
-      border:1px solid rgba(3,78,162,0.14);
-      color:#0f2f62;
-      font-weight:800;
-      font-size:13px;
-      letter-spacing:0.01em;
-    }
-
-    .muted{
-      color:#24324a;
-      opacity:.9;
-      font-size:14.6px;
-      line-height:1.6;
-      margin-top:10px;
-    }
-
-    .kv{
-      display:grid;
-      grid-template-columns:170px 1fr;
-      gap:10px 14px;
-      margin-top:14px;
-      align-items:start;
-    }
-
-    .k{
-      color:#0f2f62;
-      font-weight:900;
-      font-size:13px;
-      letter-spacing:0.02em;
-    }
-
-    .v{
-      color:#1f2a3a;
-      font-weight:700;
-      font-size:14.6px;
-      line-height:1.45;
-    }
-
-    .hint{
-      margin-top:14px;
-      border-radius:18px;
-      padding:14px;
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      border:1px solid rgba(3,78,162,0.12);
-    }
-
-    .hint-title{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      margin:0 0 8px;
-      color:#0f2f62;
-      letter-spacing:-0.02em;
-      font-size:16px;
-    }
-
-    .hint ul{
-      margin:0;
-      padding-left:18px;
-      color:#24324a;
-      opacity:.95;
-      line-height:1.7;
-      font-size:14.6px;
-    }
-
-    .status{
-      display:inline-flex;
-      align-items:center;
-      padding:6px 10px;
-      border-radius:999px;
-      font-weight:900;
-      font-size:12px;
-      letter-spacing:0.02em;
-      border:1px solid rgba(0,0,0,0.08);
-      background:#fff;
-      color:#0f2f62;
-    }
-    .status.ok{ border-color: rgba(15,138,95,0.25); background: rgba(15,138,95,0.08); color: var(--ok); }
-    .status.warn{ border-color: rgba(182,91,0,0.25); background: rgba(182,91,0,0.08); color: var(--warn); }
-    .language-links{max-width:1100px;margin:0 auto;padding:0 18px 8px;display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
-    .language-links a{padding:8px 12px;border:1px solid rgba(3,78,162,.18);border-radius:999px;background:#fff;color:#0f2f62;font-size:13px;font-weight:800}
-    .language-links a[aria-current="page"]{background:#0f2f62;color:#fff}
-    .transport-intro{max-width:1100px;margin:18px auto 0;padding:0 18px}
-    .transport-intro .card{border-left:6px solid var(--brand-blue)}
-    .transport-intro h2,.transport-section h2{font-family:Montserrat,Inter,sans-serif;color:#0f2f62;letter-spacing:-.025em}
-    .transport-section{max-width:1100px;margin:24px auto;padding:0 18px}
-    .transport-section>.card{padding:clamp(22px,4vw,38px)}
-    .transport-section p{line-height:1.72}
-    .planning-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
-    .planning-item{padding:18px;border:1px solid rgba(3,78,162,.14);border-radius:17px;background:#eef5fd}
-    .planning-item h3{margin:0 0 8px;color:#0f2f62;font:800 17px/1.25 Montserrat,Inter,sans-serif}
-    .planning-item p{margin:0;color:#526176;font-size:14px;line-height:1.55}
-    .cta-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:20px}
-    .transport-faq details{margin-top:10px;padding:16px 18px;border:1px solid rgba(3,78,162,.14);border-radius:15px;background:#fff}
-    .transport-faq summary{cursor:pointer;color:#0f2f62;font-weight:800}
-    .transport-faq details p{margin:10px 0 0}
-    .pill{max-width:100%;white-space:normal;line-height:1.35}
-    @media(max-width:780px){.planning-grid{grid-template-columns:1fr}}
-    @media(max-width:620px){.kv{grid-template-columns:1fr}.status{white-space:normal;text-align:center}.selector-body{padding:16px}.card{padding:18px}}
-  </style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://experienceecuador.com/transportation/#webpage", "url": "https://experienceecuador.com/transportation/", "name": "Transportation Planning in Ecuador", "description": "Estimate transfer time and plan realistic ground transportation in Ecuador.", "inLanguage": "en", "dateModified": "2026-10-03", "isPartOf": {"@type": "WebSite", "name": "Experience Ecuador", "url": "https://experienceecuador.com/"}}, {"@type": "FAQPage", "@id": "https://experienceecuador.com/transportation/#faq", "mainEntity": [{"@type": "Question", "name": "Are the transfer times guaranteed?", "acceptedAnswer": {"@type": "Answer", "text": "No. They are planning estimates. Traffic, road works, weather, pickup logistics, stops, and the selected route can change the actual time."}}, {"@type": "Question", "name": "Does the estimator provide confirmed prices?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. Routes without verified commercial pricing display Coming soon. Request a trip plan for a current, operator-confirmed transport option."}}, {"@type": "Question", "name": "Should I add extra time before a flight?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Build in a buffer appropriate to the airport, route, time of day, weather, and airline check-in requirements rather than treating a road estimate as a departure guarantee."}}, {"@type": "Question", "name": "How should I choose between a car and an SUV?", "acceptedAnswer": {"@type": "Answer", "text": "Match the vehicle to passengers, full-size luggage, equipment, mobility needs, child seats, road type, and comfort. Confirm actual capacity with the operator."}}, {"@type": "Question", "name": "Are stops and waiting time included?", "acceptedAnswer": {"@type": "Answer", "text": "Not automatically. Ask whether planned stops, flight delays, waiting time, parking, tolls, and pickup changes are included in the confirmed quote."}}, {"@type": "Question", "name": "Can Experience Ecuador confirm a transfer booking?", "acceptedAnswer": {"@type": "Answer", "text": "The estimator itself cannot. A service is confirmed only when the responsible provider verifies route, vehicle, date, pickup, inclusions, availability, price, payment, and cancellation terms."}}]}, {"@type": "ItemList", "@id": "https://experienceecuador.com/transportation/#decision-list", "name": "Plan Ecuador transportation in the right order", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Anchor fixed transport"}, {"@type": "ListItem", "position": 2, "name": "Compare realistic transfer time"}, {"@type": "ListItem", "position": 3, "name": "Match vehicle and luggage"}, {"@type": "ListItem", "position": 4, "name": "Confirm operator and price"}, {"@type": "ListItem", "position": 5, "name": "Protect the onward connection"}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://experienceecuador.com/"}, {"@type": "ListItem", "position": 2, "name": "Transportation", "item": "https://experienceecuador.com/transportation/"}]}]}</script>
 </head>
 <body class="eeClusterPage eeCluster--planning eeTransportPage" data-page-type="transportation_guide" data-page-language="en" data-page-cluster="planning" data-topic-cluster="ecuador-transportation" data-funnel-stage="consideration">
   <div id="siteHeader"></div>
@@ -393,6 +71,7 @@
         </div>
       </div>
     </section>
+    <section class="transport-decision" data-ee-decision><div class="transport-decision-head"><span class="pill">Decision guide</span><h2>Plan transportation in the right order</h2><p>Build the route around fixed commitments, realistic road time, the correct vehicle, and an operator-confirmed service.</p></div><div class="transport-table-wrap"><table><thead><tr><th>Planning step</th><th>What to anchor</th><th>What to verify</th><th>Why it matters</th></tr></thead><tbody><tr><td>Anchor fixed transport</td><td>Flights, lodge boats, trains, and timed reservations</td><td>Check-in or meeting deadline</td><td>These pieces are hardest to replace</td></tr><tr><td>Compare realistic transfer time</td><td>Route, date, time of day, and planned stops</td><td>Traffic, weather, works, and road type</td><td>Distance alone does not predict duration</td></tr><tr><td>Match vehicle and luggage</td><td>Passengers, bags, equipment, and accessibility</td><td>Actual vehicle capacity and comfort</td><td>A legal seat count may not fit luggage</td></tr><tr><td>Confirm operator and price</td><td>Pickup, destination, inclusions, and availability</td><td>Final USD price and cancellation terms</td><td>The estimator is not a live quote</td></tr><tr><td>Protect the onward connection</td><td>Arrival margin before the next fixed service</td><td>Delay plan and contact procedure</td><td>A buffer reduces missed connections</td></tr></tbody></table></div></section>
 <div class="wrap">
 
   <section class="selector-card" aria-label="Transportation estimator">
@@ -446,8 +125,8 @@
     <div class="selector-body">
         <div class="results-grid" aria-label="Estimator results grid">
           <div class="card result-card result-card--route">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-              <h2 style="margin:0;color:#0f2f62;font-size:20px;">Your Route</h2>
+            <div class="result-card-head">
+              <h2 class="result-card-title">Your Route</h2>
               <span id="statusPill" class="status warn" aria-live="polite">Select two places</span>
             </div>
 
@@ -488,7 +167,7 @@
           </div>
 
           <div class="card result-card result-card--quote">
-            <h2 style="margin-bottom:10px;">What a useful estimate includes</h2>
+            <h2 class="result-card-quote-title">What a useful estimate includes</h2>
             <p>
               We publish only planning information that can be explained clearly. Commercial prices will appear only after route, vehicle, inclusions, and operator availability are verified.
             </p>
@@ -546,11 +225,7 @@
       <section class="transport-section transport-faq" aria-labelledby="transport-faq-heading">
         <div class="card">
           <div class="faq-intro"><span class="pill">Clear answers</span><h2 id="transport-faq-heading">Transportation planning questions</h2><p>Use these answers to avoid treating a planning estimate as a confirmed service or guaranteed schedule.</p></div>
-          <div class="faq-list">
-            <details><summary>Are the transfer times guaranteed?</summary><p>No. They are planning estimates. Traffic, road works, weather, pickup logistics, stops, and the selected route can change the actual time.</p></details>
-            <details><summary>Does the estimator provide confirmed prices?</summary><p>Not yet. Routes without verified commercial pricing display “Coming soon.” Request a trip plan for a current, operator-confirmed transport option.</p></details>
-            <details><summary>Should I add extra time before a flight?</summary><p>Yes. Build in a buffer appropriate to the airport, route, time of day, weather, and airline check-in requirements. Never treat a road estimate as a departure guarantee.</p></details>
-          </div>
+          <div class="faq-list"><details data-analytics-event="faq_expand" data-analytics-label="Are the transfer times guaranteed?" data-analytics-location="faq"><summary>Are the transfer times guaranteed?</summary><p>No. They are planning estimates. Traffic, road works, weather, pickup logistics, stops, and the selected route can change the actual time.</p></details><details data-analytics-event="faq_expand" data-analytics-label="Does the estimator provide confirmed prices?" data-analytics-location="faq"><summary>Does the estimator provide confirmed prices?</summary><p>Not yet. Routes without verified commercial pricing display Coming soon. Request a trip plan for a current, operator-confirmed transport option.</p></details><details data-analytics-event="faq_expand" data-analytics-label="Should I add extra time before a flight?" data-analytics-location="faq"><summary>Should I add extra time before a flight?</summary><p>Yes. Build in a buffer appropriate to the airport, route, time of day, weather, and airline check-in requirements rather than treating a road estimate as a departure guarantee.</p></details><details data-analytics-event="faq_expand" data-analytics-label="How should I choose between a car and an SUV?" data-analytics-location="faq"><summary>How should I choose between a car and an SUV?</summary><p>Match the vehicle to passengers, full-size luggage, equipment, mobility needs, child seats, road type, and comfort. Confirm actual capacity with the operator.</p></details><details data-analytics-event="faq_expand" data-analytics-label="Are stops and waiting time included?" data-analytics-location="faq"><summary>Are stops and waiting time included?</summary><p>Not automatically. Ask whether planned stops, flight delays, waiting time, parking, tolls, and pickup changes are included in the confirmed quote.</p></details><details data-analytics-event="faq_expand" data-analytics-label="Can Experience Ecuador confirm a transfer booking?" data-analytics-location="faq"><summary>Can Experience Ecuador confirm a transfer booking?</summary><p>The estimator itself cannot. A service is confirmed only when the responsible provider verifies route, vehicle, date, pickup, inclusions, availability, price, payment, and cancellation terms.</p></details></div>
         </div>
       </section>
 
@@ -747,11 +422,11 @@
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(() => {
         const s = document.createElement("script");
-        s.src = "/assets/js/site.js?v=20261003af";
+        s.src = "/assets/js/site.js?v=20261003ai";
         document.body.appendChild(s);
       }).catch(() => {
         const s = document.createElement("script");
-        s.src = "/assets/js/site.js?v=20261003af";
+        s.src = "/assets/js/site.js?v=20261003ai";
         document.body.appendChild(s);
       });
     })();

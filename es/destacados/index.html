@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css?v=20261001d">
   <link rel="stylesheet" href="/assets/css/site.css">
-  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-editorial.css?v=20261003j61" data-cluster="editorial">
+  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-editorial.css?v=20261003j63" data-cluster="editorial">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -119,426 +119,9 @@
     ]
   }
   </script>
-  <style>
-    :root{
-      --brand-blue:#034EA2;
-      --charcoal:#1F1F1F;
-      --slate:#6E7B8B;
-
-      --bg:#f6f8fb;
-      --card:#ffffff;
-      --border:rgba(0,0,0,0.06);
-      --shadow:0 18px 55px rgba(3,78,162,0.12);
-
-      --radius-xl:24px;
-      --max:1100px;
-    }
-
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--charcoal);
-      background:linear-gradient(180deg,#ffffff 0%, #f6f8fb 100%);
-    }
-    a{ color:inherit; text-decoration:none; }
-    img{ max-width:100%; display:block; user-select:none; -webkit-user-drag:none; }
-
-    .wrap{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:42px 18px 0;
-    }
-
-    .hero h1{
-      font-family:Montserrat,Inter,sans-serif;
-      font-size:clamp(36px,4.5vw,56px);
-      font-weight:800;
-      margin:0 0 10px;
-      letter-spacing:-0.03em;
-      color:var(--brand-blue);
-    }
-    .hero p{
-      max-width:78ch;
-      color:var(--slate);
-      font-size:17px;
-      line-height:1.65;
-      margin:0;
-    }
-    #siteHeader[data-current-lang] + .rawLangLinks{
-      max-width:var(--max);
-      margin:18px auto 0;
-      padding:0 18px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      align-items:center;
-    }
-    #siteHeader[data-current-lang] + .rawLangLinks a{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:32px;
-      padding:7px 12px;
-      border:1px solid rgba(3,78,162,.18);
-      border-radius:999px;
-      background:#fff;
-      color:var(--charcoal);
-      font-size:12.5px;
-      font-weight:900;
-      line-height:1;
-      box-shadow:0 10px 24px rgba(3,78,162,.08);
-      transition:background-color .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease;
-    }
-    #siteHeader[data-current-lang] + .rawLangLinks a:hover,
-    #siteHeader[data-current-lang] + .rawLangLinks a:focus-visible{
-      background:rgba(3,78,162,.06);
-      border-color:rgba(3,78,162,.32);
-      color:var(--brand-blue);
-      outline:none;
-    }
-    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"],
-    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]{
-      background:#0f5cc0;
-      border-color:#0f5cc0;
-      color:#fff;
-      box-shadow:0 16px 34px rgba(15,92,192,.18);
-    }
-    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:hover,
-    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:focus-visible,
-    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:hover,
-    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:focus-visible{
-      background:#0c4f9c;
-      border-color:#0c4f9c;
-      color:#fff;
-    }
-
-    .card{
-      background:var(--card);
-      border-radius:22px;
-      padding:18px;
-      border:1px solid var(--border);
-      box-shadow:var(--shadow);
-    }
-
-    .spotlightCard{
-      margin-top:18px;
-      padding:0;
-      overflow:hidden;
-    }
-
-    .spotHead{
-      padding:18px 18px 10px;
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-    .spotHead h2{
-      margin:0;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      color:#0f2f62;
-      font-size:20px;
-    }
-    .spotHead .hint{
-      margin:0;
-      color:var(--slate);
-      font-size:13px;
-      font-weight:600;
-      line-height:1.4;
-    }
-
-    .carousel{
-      position:relative;
-      padding:0 18px 18px;
-    }
-
-    .viewport{
-      overflow:hidden;
-      border-radius:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      background:#fff;
-    }
-
-    .track{
-      display:flex;
-      width:100%;
-      transition:transform 420ms ease;
-      will-change:transform;
-    }
-
-    .slide{
-      min-width:100%;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:0;
-      background:#fff;
-    }
-
-    .slideMedia{
-      position:relative;
-      overflow:hidden;
-      background:#eef2f7;
-      aspect-ratio: 16 / 9;
-    }
-    .slideMedia img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      transform:scale(1.01);
-    }
-    .slideMedia::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.06), rgba(0,0,0,0.20));
-      pointer-events:none;
-    }
-
-    .slideTitleOverlay{
-      position:absolute;
-      left:16px;
-      right:16px;
-      bottom:14px;
-      z-index:1;
-      color:#fff;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:clamp(18px,2.3vw,28px);
-      line-height:1.12;
-      text-shadow:0 16px 45px rgba(0,0,0,0.35);
-      max-width:30ch;
-    }
-
-    .slideBody{
-      padding:16px 16px 18px;
-    }
-
-    .metaRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      margin:0 0 10px;
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(0,0,0,0.08);
-      background:rgba(255,255,255,0.92);
-      font-weight:800;
-      font-size:12px;
-      color:#1f2a3a;
-      white-space:nowrap;
-    }
-    .pill a{
-      color:var(--brand-blue);
-      font-weight:900;
-      text-decoration:underline;
-      text-underline-offset:3px;
-    }
-
-    .copy{
-      margin:0;
-      color:#2a2f36;
-      line-height:1.75;
-      font-size:15.6px;
-    }
-
-    .keyBox{
-      margin-top:12px;
-      border-radius:18px;
-      border:1px solid rgba(3,78,162,0.14);
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      padding:14px;
-    }
-    .keyBox h3{
-      margin:0 0 8px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      color:#0f2f62;
-      font-size:16px;
-    }
-    .keyBox ul{
-      margin:0;
-      padding-left:18px;
-      line-height:1.7;
-      font-size:14.6px;
-      color:#24324a;
-    }
-
-    .ctaRow{
-      margin-top:14px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:14px;
-      font-weight:900;
-      font-size:14px;
-      border:1px solid transparent;
-      cursor:pointer;
-      user-select:none;
-      transition:transform .15s ease, filter .15s ease;
-    }
-    .btnPrimary{
-      background:var(--brand-blue);
-      color:#fff;
-      box-shadow:0 18px 40px rgba(3,78,162,0.18);
-    }
-    .btnPrimary:hover{ filter:brightness(.97); transform:translateY(-1px); }
-    .btnGhost{
-      background:#fff;
-      color:#0f2f62;
-      border-color:rgba(3,78,162,0.22);
-      box-shadow:0 12px 26px rgba(3,78,162,0.08);
-    }
-    .btnGhost:hover{ transform:translateY(-1px); }
-
-    .navBtn{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:44px;
-      height:44px;
-      border-radius:999px;
-      border:1px solid rgba(0,0,0,0.10);
-      background:rgba(255,255,255,0.92);
-      box-shadow:0 16px 40px rgba(0,0,0,0.12);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      user-select:none;
-      z-index:5;
-    }
-    .navBtn:hover{ filter:brightness(.98); }
-    .navBtn:active{ transform:translateY(-50%) scale(0.98); }
-
-    .navPrev{ left:8px; }
-    .navNext{ right:8px; }
-    .navBtn svg{ width:18px; height:18px; }
-
-    .dots{
-      margin-top:10px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-    }
-    .dot{
-      width:10px;
-      height:10px;
-      border-radius:999px;
-      border:1px solid rgba(3,78,162,0.30);
-      background:rgba(3,78,162,0.10);
-      cursor:pointer;
-    }
-    .dot[aria-current="true"]{
-      background:rgba(3,78,162,0.85);
-      border-color:rgba(3,78,162,0.85);
-    }
-
-    .gridBelow{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:14px;
-    }
-    .miniCard{
-      background:#fff;
-      border-radius:22px;
-      padding:18px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.10);
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      min-height:140px;
-    }
-    .miniCard h3{
-      margin:0;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      color:#0f2f62;
-      font-size:16px;
-    }
-    .miniCard p{
-      margin:0;
-      color:#2a2f36;
-      line-height:1.65;
-      font-size:14.6px;
-      opacity:.96;
-      flex:1;
-    }
-    .miniCard a{
-      color:var(--brand-blue);
-      font-weight:900;
-      font-size:13.5px;
-      width:max-content;
-      text-decoration:underline;
-      text-underline-offset:3px;
-    }
-    .seoLinks{
-      margin-top:18px;
-    }
-    .seoLinks h2{
-      margin:0 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-size:20px;
-      line-height:1.2;
-      letter-spacing:-0.02em;
-      color:#0f2f62;
-    }
-    .seoLinks a{
-      color:var(--brand-blue);
-      font-weight:800;
-      text-decoration:underline;
-      text-underline-offset:3px;
-    }
-
-    @media(max-width:950px){
-      #siteHeader[data-current-lang] + .rawLangLinks{
-        margin:14px auto 16px;
-        padding:0 16px;
-        gap:10px;
-      }
-      #siteHeader[data-current-lang] + .rawLangLinks a{
-        min-height:34px;
-        padding:8px 13px;
-        font-size:13.5px;
-      }
-      .wrap{ padding-top:28px; }
-      .gridBelow{ grid-template-columns:1fr; }
-      .navPrev{ left:6px; }
-      .navNext{ right:6px; }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      .track{ transition:none !important; }
-      .btn{ transition:none !important; }
-    }
-  </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "@id": "https://experienceecuador.com/es/destacados/#faq", "mainEntity": [{"@type": "Question", "name": "¿Las fechas de los destacados están garantizadas?", "acceptedAnswer": {"@type": "Answer", "text": "No. Pueden provenir de calendarios publicados o ventanas naturales esperadas. Confirma la fuente responsable y las condiciones vigentes antes de comprometer viajes no reembolsables."}}, {"@type": "Question", "name": "¿Con qué frecuencia debo revisar un evento estacional?", "acceptedAnswer": {"@type": "Answer", "text": "Revísalo al planificar, antes de reservar transporte o alojamiento fijo y poco antes del viaje. Los eventos naturales y la operación local pueden cambiar."}}, {"@type": "Question", "name": "¿Debo cambiar mi ruta por un solo destacado?", "acceptedAnswer": {"@type": "Answer", "text": "Solo si la experiencia es prioritaria y aceptas el traslado, costo e incertidumbre adicionales. Mantén realista el itinerario completo."}}, {"@type": "Question", "name": "¿Qué debo reservar primero durante un feriado importante?", "acceptedAnswer": {"@type": "Answer", "text": "Protege primero vuelos fijos, alojamiento escaso y traslados esenciales. Mantén flexibles las actividades alrededor de esos elementos."}}, {"@type": "Question", "name": "¿Cómo planifico una ventana de fauna o floración?", "acceptedAnswer": {"@type": "Answer", "text": "Usa un rango de fechas, conserva flexibilidad e identifica otra experiencia natural cercana por si cambian las condiciones."}}, {"@type": "Question", "name": "¿Dónde puedo armar el resto de la ruta?", "acceptedAnswer": {"@type": "Answer", "text": "Usa las guías regionales y el Planificador de Viajes para conectar el destacado con bases, transporte y experiencias realistas."}}]}, {"@type": "ItemList", "@id": "https://experienceecuador.com/es/destacados/#decision-list", "name": "Evaluar un destacado de viaje de Ecuador", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Confianza en las fechas"}, {"@type": "ListItem", "position": 2, "name": "Compatibilidad con la ruta"}, {"@type": "ListItem", "position": 3, "name": "Presión de reservas"}, {"@type": "ListItem", "position": 4, "name": "Compatibilidad con tu interés"}, {"@type": "ListItem", "position": 5, "name": "Plan alternativo"}]}]}</script>
 </head>
-<body class="eeClusterPage eeCluster--editorial" data-page-type="guide_page" data-page-language="es" data-topic="seasonal-spotlights" data-page-cluster="editorial" data-funnel-stage="awareness">
+<body class="eeClusterPage eeCluster--editorial spotlightFoundationPage" data-page-type="guide_page" data-page-language="es" data-topic="seasonal-spotlights" data-page-cluster="editorial" data-funnel-stage="awareness">
   <div id="siteHeader" data-current-lang="es"></div>
   <nav class="rawLangLinks" aria-label="Selector de idioma">
     <a href="https://experienceecuador.com/spotlights/" lang="en" hreflang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch" data-analytics-page-type="guide_page" data-analytics-target-language="en">English</a>
@@ -551,6 +134,8 @@
         Explora eventos de temporada, momentos de naturaleza, fechas clave e ideas oportunas para viajar por Ecuador. Usa estos destacados para decidir a dónde ir, cuándo viajar y qué experiencias priorizar.
       </p>
     </section>
+    <section class="spotlightAnswer" data-ee-answer><div><span class="sectionKicker">Respuesta directa</span><h2>¿Cómo debes usar los destacados de viaje de Ecuador?</h2><p>Trata cada destacado como una pista de planificación sensible al tiempo, no como una promesa permanente. Revisa la ventana del evento o la fauna, conéctala con la región y experiencia correctas y confirma fechas, acceso, precios, vías y operación antes de cambiar tu ruta.</p></div><aside><h3>Antes de cambiar la ruta</h3><div>Revisa fuente y fecha</div><div>Protege transporte y alojamiento</div><div>Confirma las condiciones otra vez</div></aside></section>
+    <section class="spotlightDecision" data-ee-decision><div class="spotlightSectionHead"><span class="sectionKicker">Guía de decisión</span><h2>Decide si un destacado pertenece a tu viaje</h2><p>Usa estas cinco verificaciones antes de añadir un evento estacional o una ventana natural breve.</p></div><div class="spotlightTableWrap"><table><thead><tr><th>Verificación</th><th>Qué revisar</th><th>Por qué importa</th><th>Siguiente acción</th></tr></thead><tbody><tr><td>Confianza en las fechas</td><td>Fecha publicada, fuente y actualización</td><td>Las ventanas pueden cambiar o vencer</td><td>Verifica cerca del viaje</td></tr><tr><td>Compatibilidad con la ruta</td><td>Distancia desde tus bases confirmadas</td><td>Un evento breve puede crear un gran desvío</td><td>Compara el traslado</td></tr><tr><td>Presión de reservas</td><td>Alojamiento, transporte y demanda festiva</td><td>Los eventos reducen disponibilidad</td><td>Reserva temprano lo fijo</td></tr><tr><td>Compatibilidad con tu interés</td><td>Cultura, naturaleza, fauna o familia</td><td>Un evento popular no sirve a todos</td><td>Conéctalo con tu prioridad</td></tr><tr><td>Plan alternativo</td><td>Otra opción por clima, floración, fauna u horario</td><td>La naturaleza y operación cambian</td><td>Conserva un sustituto cercano</td></tr></tbody></table></div></section>
 <section class="card spotlightCard" aria-label="Carrusel de destacados">
   <div class="spotHead">
     <h2>Destacados</h2>
@@ -581,8 +166,8 @@
 
           <div class="slideBody">
             <div class="metaRow" aria-label="Etiquetas del destacado">
-              <div class="pill">Región: <a href="/es/regiones/andes/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Andes</a></div>
-              <div class="pill">Experiencia: <a href="/es/experiencias/naturaleza/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Naturaleza</a></div>
+              <div class="pill">Región: <a href="/es/regiones/andes/" data-analytics-event="related_content_click" data-analytics-label="Andes" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Andes</a></div>
+              <div class="pill">Experiencia: <a href="/es/experiencias/naturaleza/" data-analytics-event="related_content_click" data-analytics-label="Naturaleza" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Naturaleza</a></div>
               <div class="pill">Ventana: 12 al 22 de enero de 2026</div>
             </div>
 
@@ -601,8 +186,8 @@
             </div>
 
             <div class="ctaRow" aria-label="Enlaces para planificar">
-              <a class="btn btnPrimary" href="/es/regiones/andes/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Los Andes</a>
-              <a class="btn btnGhost" href="/es/experiencias/naturaleza/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Naturaleza</a>
+              <a class="btn btnPrimary" href="/es/regiones/andes/" data-analytics-event="related_content_click" data-analytics-label="Explorar Los Andes" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Los Andes</a>
+              <a class="btn btnGhost" href="/es/experiencias/naturaleza/" data-analytics-event="related_content_click" data-analytics-label="Explorar Naturaleza" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Naturaleza</a>
             </div>
           </div>
         </article>
@@ -615,8 +200,8 @@
 
           <div class="slideBody">
             <div class="metaRow" aria-label="Etiquetas del destacado">
-              <div class="pill">Región: <a href="/es/regiones/andes/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Andes</a></div>
-              <div class="pill">Experiencia: <a href="/es/experiencias/cultura/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Cultura</a></div>
+              <div class="pill">Región: <a href="/es/regiones/andes/" data-analytics-event="related_content_click" data-analytics-label="Andes" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Andes</a></div>
+              <div class="pill">Experiencia: <a href="/es/experiencias/cultura/" data-analytics-event="related_content_click" data-analytics-label="Cultura" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Cultura</a></div>
               <div class="pill">Ventana: 14 al 17 de febrero de 2026</div>
             </div>
 
@@ -635,8 +220,8 @@
             </div>
 
             <div class="ctaRow" aria-label="Enlaces para planificar">
-              <a class="btn btnPrimary" href="/es/regiones/andes/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Los Andes</a>
-              <a class="btn btnGhost" href="/es/experiencias/cultura/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Cultura</a>
+              <a class="btn btnPrimary" href="/es/regiones/andes/" data-analytics-event="related_content_click" data-analytics-label="Explorar Los Andes" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Los Andes</a>
+              <a class="btn btnGhost" href="/es/experiencias/cultura/" data-analytics-event="related_content_click" data-analytics-label="Explorar Cultura" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Cultura</a>
             </div>
           </div>
         </article>
@@ -649,8 +234,8 @@
 
           <div class="slideBody">
             <div class="metaRow" aria-label="Etiquetas del destacado">
-              <div class="pill">Región: <a href="/es/regiones/andes/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Andes</a></div>
-              <div class="pill">Experiencia: <a href="/es/experiencias/naturaleza/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Naturaleza</a></div>
+              <div class="pill">Región: <a href="/es/regiones/andes/" data-analytics-event="related_content_click" data-analytics-label="Andes" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Andes</a></div>
+              <div class="pill">Experiencia: <a href="/es/experiencias/naturaleza/" data-analytics-event="related_content_click" data-analytics-label="Naturaleza" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Naturaleza</a></div>
               <div class="pill">Ventana: Diario 06:00 a 18:00</div>
             </div>
 
@@ -672,8 +257,8 @@
             </div>
 
             <div class="ctaRow" aria-label="Enlaces para planificar">
-              <a class="btn btnPrimary" href="/es/regiones/andes/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Los Andes</a>
-              <a class="btn btnGhost" href="/es/experiencias/naturaleza/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Naturaleza</a>
+              <a class="btn btnPrimary" href="/es/regiones/andes/" data-analytics-event="related_content_click" data-analytics-label="Explorar Los Andes" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Los Andes</a>
+              <a class="btn btnGhost" href="/es/experiencias/naturaleza/" data-analytics-event="related_content_click" data-analytics-label="Explorar Naturaleza" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Naturaleza</a>
             </div>
           </div>
         </article>
@@ -693,30 +278,32 @@
   <div class="miniCard" data-analytics-event="related_content_click" data-analytics-label="Mini card" data-analytics-location="more_spotlights" data-analytics-page-type="guide_page">
     <h3>Próximamente</h3>
     <p>Más momentos de temporada en Ecuador, desde ventanas de vida silvestre hasta eventos naturales de corta duración que vale la pena planificar.</p>
-    <a href="/es/regiones/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Regiones</a>
+    <a href="/es/regiones/" data-analytics-event="related_content_click" data-analytics-label="Explorar Regiones" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Regiones</a>
   </div>
   <div class="miniCard" data-analytics-event="related_content_click" data-analytics-label="Mini card" data-analytics-location="more_spotlights" data-analytics-page-type="guide_page">
     <h3>Cómo usar los destacados</h3>
     <p>Cada destacado resume cuándo y dónde ocurre algo especial. Usa esto para elegir fechas y luego explora la región o la experiencia para armar el resto del viaje.</p>
-    <a href="/es/experiencias/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Experiencias</a>
+    <a href="/es/experiencias/" data-analytics-event="related_content_click" data-analytics-label="Explorar Experiencias" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explorar Experiencias</a>
   </div>
   <div class="miniCard" data-analytics-event="related_content_click" data-analytics-label="Mini card" data-analytics-location="more_spotlights" data-analytics-page-type="guide_page">
     <h3>Solo lo esencial</h3>
     <p>Estos destacados se enfocan en lo más importante: el mejor momento para ir, qué esperar y cómo planificar sin complicar tu viaje.</p>
-    <a href="/es/planificador-de-viajes/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="seo_links" data-analytics-page-type="guide_page">Usar el Planificador</a>
+    <a href="/es/planificador-de-viajes/" data-analytics-event="related_content_click" data-analytics-label="Usar el Planificador" data-analytics-location="seo_links" data-analytics-page-type="guide_page">Usar el Planificador</a>
   </div>
 </section>
 
 <section class="card seoLinks" aria-label="Planificar con destacados de Ecuador">
   <h2>Planifica con ideas de temporada en Ecuador</h2>
   <p class="copy">
-    Combina estos destacados con la <a href="/es/mejor-epoca-para-visitar-ecuador/" data-analytics-event="internal_link_click" data-analytics-label="" data-analytics-location="body" data-analytics-page-type="guide_page">mejor época para visitar Ecuador</a>,
-    la <a href="/es/guia-viaje-ecuador/" data-analytics-event="internal_link_click" data-analytics-label="" data-analytics-location="body" data-analytics-page-type="guide_page">guía de viaje de Ecuador</a> y los <a href="/es/recomendados/" data-analytics-event="inline_recommendation_click" data-analytics-label="" data-analytics-location="seo_links" data-analytics-page-type="guide_page">alojamientos y experiencias recomendadas</a>.
-    Para armar una ruta a medida, empieza con el <a href="/es/planificador-de-viajes/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="seo_links" data-analytics-page-type="guide_page">planificador de viajes por Ecuador</a>.
+    Combina estos destacados con la <a href="/es/mejor-epoca-para-visitar-ecuador/" data-analytics-event="internal_link_click" data-analytics-label="mejor época para visitar Ecuador" data-analytics-location="body" data-analytics-page-type="guide_page">mejor época para visitar Ecuador</a>,
+    la <a href="/es/guia-viaje-ecuador/" data-analytics-event="internal_link_click" data-analytics-label="guía de viaje de Ecuador" data-analytics-location="body" data-analytics-page-type="guide_page">guía de viaje de Ecuador</a> y los <a href="/es/recomendados/" data-analytics-event="inline_recommendation_click" data-analytics-label="alojamientos y experiencias recomendadas" data-analytics-location="seo_links" data-analytics-page-type="guide_page">alojamientos y experiencias recomendadas</a>.
+    Para armar una ruta a medida, empieza con el <a href="/es/planificador-de-viajes/" data-analytics-event="related_content_click" data-analytics-label="planificador de viajes por Ecuador" data-analytics-location="seo_links" data-analytics-page-type="guide_page">planificador de viajes por Ecuador</a>.
   </p>
 </section>
 
-<div style="height:40px;"></div>
+
+<section class="spotlightFaq"><div class="spotlightSectionHead"><span class="sectionKicker">Preguntas frecuentes</span><h2>Preguntas sobre planificación estacional</h2></div><div class="spotlightFaqList"><details data-analytics-event="faq_expand" data-analytics-label="¿Las fechas de los destacados están garantizadas?" data-analytics-location="faq"><summary>¿Las fechas de los destacados están garantizadas?</summary><p>No. Pueden provenir de calendarios publicados o ventanas naturales esperadas. Confirma la fuente responsable y las condiciones vigentes antes de comprometer viajes no reembolsables.</p></details><details data-analytics-event="faq_expand" data-analytics-label="¿Con qué frecuencia debo revisar un evento estacional?" data-analytics-location="faq"><summary>¿Con qué frecuencia debo revisar un evento estacional?</summary><p>Revísalo al planificar, antes de reservar transporte o alojamiento fijo y poco antes del viaje. Los eventos naturales y la operación local pueden cambiar.</p></details><details data-analytics-event="faq_expand" data-analytics-label="¿Debo cambiar mi ruta por un solo destacado?" data-analytics-location="faq"><summary>¿Debo cambiar mi ruta por un solo destacado?</summary><p>Solo si la experiencia es prioritaria y aceptas el traslado, costo e incertidumbre adicionales. Mantén realista el itinerario completo.</p></details><details data-analytics-event="faq_expand" data-analytics-label="¿Qué debo reservar primero durante un feriado importante?" data-analytics-location="faq"><summary>¿Qué debo reservar primero durante un feriado importante?</summary><p>Protege primero vuelos fijos, alojamiento escaso y traslados esenciales. Mantén flexibles las actividades alrededor de esos elementos.</p></details><details data-analytics-event="faq_expand" data-analytics-label="¿Cómo planifico una ventana de fauna o floración?" data-analytics-location="faq"><summary>¿Cómo planifico una ventana de fauna o floración?</summary><p>Usa un rango de fechas, conserva flexibilidad e identifica otra experiencia natural cercana por si cambian las condiciones.</p></details><details data-analytics-event="faq_expand" data-analytics-label="¿Dónde puedo armar el resto de la ruta?" data-analytics-location="faq"><summary>¿Dónde puedo armar el resto de la ruta?</summary><p>Usa las guías regionales y el Planificador de Viajes para conectar el destacado con bases, transporte y experiencias realistas.</p></details></div></section>
+<div class="spotlightSpacer" aria-hidden="true"></div>
   </main>
 <script>
     (function(){
@@ -795,9 +382,9 @@
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(function(){
-        if (!document.querySelector('script[src="/assets/js/site.js?v=20261003af"]')) {
+        if (!document.querySelector('script[src="/assets/js/site.js?v=20261003ai"]')) {
           var s = document.createElement("script");
-          s.src = "/assets/js/site.js?v=20261003af";
+          s.src = "/assets/js/site.js?v=20261003ai";
           document.body.appendChild(s);
         }
       });

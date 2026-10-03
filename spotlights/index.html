@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css?v=20261001d">
   <link rel="stylesheet" href="/assets/css/site.css">
-  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-editorial.css?v=20261003j61" data-cluster="editorial">
+  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-editorial.css?v=20261003j63" data-cluster="editorial">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -119,426 +119,9 @@
     ]
   }
   </script>
-  <style>
-    :root{
-      --brand-blue:#034EA2;
-      --charcoal:#1F1F1F;
-      --slate:#6E7B8B;
-
-      --bg:#f6f8fb;
-      --card:#ffffff;
-      --border:rgba(0,0,0,0.06);
-      --shadow:0 18px 55px rgba(3,78,162,0.12);
-
-      --radius-xl:24px;
-      --max:1100px;
-    }
-
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--charcoal);
-      background:linear-gradient(180deg,#ffffff 0%, #f6f8fb 100%);
-    }
-    a{ color:inherit; text-decoration:none; }
-    img{ max-width:100%; display:block; user-select:none; -webkit-user-drag:none; }
-
-    .wrap{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:42px 18px 0;
-    }
-
-    .hero h1{
-      font-family:Montserrat,Inter,sans-serif;
-      font-size:clamp(36px,4.5vw,56px);
-      font-weight:800;
-      margin:0 0 10px;
-      letter-spacing:-0.03em;
-      color:var(--brand-blue);
-    }
-    .hero p{
-      max-width:78ch;
-      color:var(--slate);
-      font-size:17px;
-      line-height:1.65;
-      margin:0;
-    }
-    #siteHeader[data-current-lang] + .rawLangLinks{
-      max-width:var(--max);
-      margin:18px auto 0;
-      padding:0 18px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      align-items:center;
-    }
-    #siteHeader[data-current-lang] + .rawLangLinks a{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:32px;
-      padding:7px 12px;
-      border:1px solid rgba(3,78,162,.18);
-      border-radius:999px;
-      background:#fff;
-      color:var(--charcoal);
-      font-size:12.5px;
-      font-weight:900;
-      line-height:1;
-      box-shadow:0 10px 24px rgba(3,78,162,.08);
-      transition:background-color .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease;
-    }
-    #siteHeader[data-current-lang] + .rawLangLinks a:hover,
-    #siteHeader[data-current-lang] + .rawLangLinks a:focus-visible{
-      background:rgba(3,78,162,.06);
-      border-color:rgba(3,78,162,.32);
-      color:var(--brand-blue);
-      outline:none;
-    }
-    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"],
-    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]{
-      background:#0f5cc0;
-      border-color:#0f5cc0;
-      color:#fff;
-      box-shadow:0 16px 34px rgba(15,92,192,.18);
-    }
-    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:hover,
-    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:focus-visible,
-    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:hover,
-    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:focus-visible{
-      background:#0c4f9c;
-      border-color:#0c4f9c;
-      color:#fff;
-    }
-
-    .card{
-      background:var(--card);
-      border-radius:22px;
-      padding:18px;
-      border:1px solid var(--border);
-      box-shadow:var(--shadow);
-    }
-
-    .spotlightCard{
-      margin-top:18px;
-      padding:0;
-      overflow:hidden;
-    }
-
-    .spotHead{
-      padding:18px 18px 10px;
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-    .spotHead h2{
-      margin:0;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      color:#0f2f62;
-      font-size:20px;
-    }
-    .spotHead .hint{
-      margin:0;
-      color:var(--slate);
-      font-size:13px;
-      font-weight:600;
-      line-height:1.4;
-    }
-
-    .carousel{
-      position:relative;
-      padding:0 18px 18px;
-    }
-
-    .viewport{
-      overflow:hidden;
-      border-radius:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      background:#fff;
-    }
-
-    .track{
-      display:flex;
-      width:100%;
-      transition:transform 420ms ease;
-      will-change:transform;
-    }
-
-    .slide{
-      min-width:100%;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:0;
-      background:#fff;
-    }
-
-    .slideMedia{
-      position:relative;
-      overflow:hidden;
-      background:#eef2f7;
-      aspect-ratio: 16 / 9;
-    }
-    .slideMedia img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      transform:scale(1.01);
-    }
-    .slideMedia::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.06), rgba(0,0,0,0.20));
-      pointer-events:none;
-    }
-
-    .slideTitleOverlay{
-      position:absolute;
-      left:16px;
-      right:16px;
-      bottom:14px;
-      z-index:1;
-      color:#fff;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:clamp(18px,2.3vw,28px);
-      line-height:1.12;
-      text-shadow:0 16px 45px rgba(0,0,0,0.35);
-      max-width:30ch;
-    }
-
-    .slideBody{
-      padding:16px 16px 18px;
-    }
-
-    .metaRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      margin:0 0 10px;
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(0,0,0,0.08);
-      background:rgba(255,255,255,0.92);
-      font-weight:800;
-      font-size:12px;
-      color:#1f2a3a;
-      white-space:nowrap;
-    }
-    .pill a{
-      color:var(--brand-blue);
-      font-weight:900;
-      text-decoration:underline;
-      text-underline-offset:3px;
-    }
-
-    .copy{
-      margin:0;
-      color:#2a2f36;
-      line-height:1.75;
-      font-size:15.6px;
-    }
-
-    .keyBox{
-      margin-top:12px;
-      border-radius:18px;
-      border:1px solid rgba(3,78,162,0.14);
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      padding:14px;
-    }
-    .keyBox h3{
-      margin:0 0 8px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      color:#0f2f62;
-      font-size:16px;
-    }
-    .keyBox ul{
-      margin:0;
-      padding-left:18px;
-      line-height:1.7;
-      font-size:14.6px;
-      color:#24324a;
-    }
-
-    .ctaRow{
-      margin-top:14px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:14px;
-      font-weight:900;
-      font-size:14px;
-      border:1px solid transparent;
-      cursor:pointer;
-      user-select:none;
-      transition:transform .15s ease, filter .15s ease;
-    }
-    .btnPrimary{
-      background:var(--brand-blue);
-      color:#fff;
-      box-shadow:0 18px 40px rgba(3,78,162,0.18);
-    }
-    .btnPrimary:hover{ filter:brightness(.97); transform:translateY(-1px); }
-    .btnGhost{
-      background:#fff;
-      color:#0f2f62;
-      border-color:rgba(3,78,162,0.22);
-      box-shadow:0 12px 26px rgba(3,78,162,0.08);
-    }
-    .btnGhost:hover{ transform:translateY(-1px); }
-
-    .navBtn{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:44px;
-      height:44px;
-      border-radius:999px;
-      border:1px solid rgba(0,0,0,0.10);
-      background:rgba(255,255,255,0.92);
-      box-shadow:0 16px 40px rgba(0,0,0,0.12);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      user-select:none;
-      z-index:5;
-    }
-    .navBtn:hover{ filter:brightness(.98); }
-    .navBtn:active{ transform:translateY(-50%) scale(0.98); }
-
-    .navPrev{ left:8px; }
-    .navNext{ right:8px; }
-    .navBtn svg{ width:18px; height:18px; }
-
-    .dots{
-      margin-top:10px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-    }
-    .dot{
-      width:10px;
-      height:10px;
-      border-radius:999px;
-      border:1px solid rgba(3,78,162,0.30);
-      background:rgba(3,78,162,0.10);
-      cursor:pointer;
-    }
-    .dot[aria-current="true"]{
-      background:rgba(3,78,162,0.85);
-      border-color:rgba(3,78,162,0.85);
-    }
-
-    .gridBelow{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:14px;
-    }
-    .miniCard{
-      background:#fff;
-      border-radius:22px;
-      padding:18px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.10);
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      min-height:140px;
-    }
-    .miniCard h3{
-      margin:0;
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      color:#0f2f62;
-      font-size:16px;
-    }
-    .miniCard p{
-      margin:0;
-      color:#2a2f36;
-      line-height:1.65;
-      font-size:14.6px;
-      opacity:.96;
-      flex:1;
-    }
-    .miniCard a{
-      color:var(--brand-blue);
-      font-weight:900;
-      font-size:13.5px;
-      width:max-content;
-      text-decoration:underline;
-      text-underline-offset:3px;
-    }
-    .seoLinks{
-      margin-top:18px;
-    }
-    .seoLinks h2{
-      margin:0 0 10px;
-      font-family:Montserrat,Inter,sans-serif;
-      font-size:20px;
-      line-height:1.2;
-      letter-spacing:-0.02em;
-      color:#0f2f62;
-    }
-    .seoLinks a{
-      color:var(--brand-blue);
-      font-weight:800;
-      text-decoration:underline;
-      text-underline-offset:3px;
-    }
-
-    @media(max-width:950px){
-      #siteHeader[data-current-lang] + .rawLangLinks{
-        margin:14px auto 16px;
-        padding:0 16px;
-        gap:10px;
-      }
-      #siteHeader[data-current-lang] + .rawLangLinks a{
-        min-height:34px;
-        padding:8px 13px;
-        font-size:13.5px;
-      }
-      .wrap{ padding-top:28px; }
-      .gridBelow{ grid-template-columns:1fr; }
-      .navPrev{ left:6px; }
-      .navNext{ right:6px; }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      .track{ transition:none !important; }
-      .btn{ transition:none !important; }
-    }
-  </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "@id": "https://experienceecuador.com/spotlights/#faq", "mainEntity": [{"@type": "Question", "name": "Are spotlight dates guaranteed?", "acceptedAnswer": {"@type": "Answer", "text": "No. Dates may be based on published schedules or expected natural windows. Verify the responsible source and current conditions before committing nonrefundable travel."}}, {"@type": "Question", "name": "How often should I recheck a seasonal event?", "acceptedAnswer": {"@type": "Answer", "text": "Recheck when planning, again before booking fixed transport or lodging, and shortly before travel. Natural events and local operations can change."}}, {"@type": "Question", "name": "Should I reroute a trip for one spotlight?", "acceptedAnswer": {"@type": "Answer", "text": "Only when the experience is a high priority and the extra travel time, cost, and uncertainty are acceptable. Keep the broader itinerary realistic."}}, {"@type": "Question", "name": "What should I book first around a major holiday?", "acceptedAnswer": {"@type": "Answer", "text": "Protect fixed flights, scarce lodging, and essential transfers first. Leave flexible activities around those anchors."}}, {"@type": "Question", "name": "How should I plan for a wildlife or bloom window?", "acceptedAnswer": {"@type": "Answer", "text": "Use a date range rather than a single guaranteed day, allow flexibility, and identify another nearby nature experience if conditions shift."}}, {"@type": "Question", "name": "Where can I build the rest of the route?", "acceptedAnswer": {"@type": "Answer", "text": "Use the regional guides and Trip Builder to connect a spotlight with realistic bases, transport, and other experiences."}}]}, {"@type": "ItemList", "@id": "https://experienceecuador.com/spotlights/#decision-list", "name": "Evaluate an Ecuador travel spotlight", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Timing confidence"}, {"@type": "ListItem", "position": 2, "name": "Route fit"}, {"@type": "ListItem", "position": 3, "name": "Booking pressure"}, {"@type": "ListItem", "position": 4, "name": "Experience fit"}, {"@type": "ListItem", "position": 5, "name": "Fallback plan"}]}]}</script>
 </head>
-<body class="eeClusterPage eeCluster--editorial" data-page-type="guide_page" data-page-language="en" data-topic="seasonal-spotlights" data-page-cluster="editorial" data-funnel-stage="awareness">
+<body class="eeClusterPage eeCluster--editorial spotlightFoundationPage" data-page-type="guide_page" data-page-language="en" data-topic="seasonal-spotlights" data-page-cluster="editorial" data-funnel-stage="awareness">
   <div id="siteHeader" data-current-lang="en"></div>
   <nav class="rawLangLinks" aria-label="Language switch">
     <a href="https://experienceecuador.com/spotlights/" lang="en" hreflang="en" aria-current="page" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch" data-analytics-page-type="guide_page" data-analytics-target-language="en">English</a>
@@ -551,6 +134,8 @@
         Discover seasonal highlights, events, wildlife moments, and timing notes across Ecuador. Use these spotlights to decide where to go, when to travel, and which experiences to prioritize.
       </p>
     </section>
+    <section class="spotlightAnswer" data-ee-answer><div><span class="sectionKicker">Direct answer</span><h2>How should you use Ecuador travel spotlights?</h2><p>Treat each spotlight as a time-sensitive planning lead, not a permanent promise. Check the event or wildlife window, connect it to the correct region and experience, then verify current dates, access, prices, road conditions, and operating details before changing a route.</p></div><aside><h3>Before changing your route</h3><div>Check the source and date</div><div>Protect transport and lodging</div><div>Verify conditions again</div></aside></section>
+    <section class="spotlightDecision" data-ee-decision><div class="spotlightSectionHead"><span class="sectionKicker">Decision guide</span><h2>Decide whether a spotlight belongs in your trip</h2><p>Use these five checks before adding a seasonal event or short-lived nature window.</p></div><div class="spotlightTableWrap"><table><thead><tr><th>Planning check</th><th>What to review</th><th>Why it matters</th><th>Next action</th></tr></thead><tbody><tr><td>Timing confidence</td><td>Published date, source, and update status</td><td>Seasonal windows can shift or expire</td><td>Verify close to travel</td></tr><tr><td>Route fit</td><td>Distance from your confirmed bases</td><td>A short event can create a long detour</td><td>Compare transfer time</td></tr><tr><td>Booking pressure</td><td>Lodging, transport, and holiday demand</td><td>Events can reduce availability</td><td>Reserve fixed pieces early</td></tr><tr><td>Experience fit</td><td>Culture, nature, wildlife, or family priority</td><td>A popular event may not fit every traveler</td><td>Match it to your trip goal</td></tr><tr><td>Fallback plan</td><td>Weather, bloom, wildlife, or schedule alternative</td><td>Nature and operations can change</td><td>Keep a nearby substitute</td></tr></tbody></table></div></section>
 <section class="card spotlightCard" aria-label="Spotlight carousel">
   <div class="spotHead">
     <h2>Featured Spotlights</h2>
@@ -597,8 +182,8 @@
 
           <div class="slideBody">
             <div class="metaRow" aria-label="Spotlight tags">
-              <div class="pill">Region: <a href="/regions/andes/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Andes</a></div>
-              <div class="pill">Experience: <a href="/experiences/nature/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Nature</a></div>
+              <div class="pill">Region: <a href="/regions/andes/" data-analytics-event="related_content_click" data-analytics-label="Andes" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Andes</a></div>
+              <div class="pill">Experience: <a href="/experiences/nature/" data-analytics-event="related_content_click" data-analytics-label="Nature" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Nature</a></div>
               <div class="pill">Window: Jan 12 to Jan 22, 2026</div>
             </div>
 
@@ -617,8 +202,8 @@
             </div>
 
             <div class="ctaRow" aria-label="Plan links">
-              <a class="btn btnPrimary" href="/regions/andes/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore the Andes</a>
-              <a class="btn btnGhost" href="/experiences/nature/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore Nature</a>
+              <a class="btn btnPrimary" href="/regions/andes/" data-analytics-event="related_content_click" data-analytics-label="Explore the Andes" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore the Andes</a>
+              <a class="btn btnGhost" href="/experiences/nature/" data-analytics-event="related_content_click" data-analytics-label="Explore Nature" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore Nature</a>
             </div>
           </div>
         </article>
@@ -632,8 +217,8 @@
 
           <div class="slideBody">
             <div class="metaRow" aria-label="Spotlight tags">
-              <div class="pill">Region: <a href="/regions/andes/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Andes</a></div>
-              <div class="pill">Experience: <a href="/experiences/culture/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Culture</a></div>
+              <div class="pill">Region: <a href="/regions/andes/" data-analytics-event="related_content_click" data-analytics-label="Andes" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Andes</a></div>
+              <div class="pill">Experience: <a href="/experiences/culture/" data-analytics-event="related_content_click" data-analytics-label="Culture" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Culture</a></div>
               <div class="pill">Window: Feb 14 to Feb 17, 2026</div>
             </div>
 
@@ -652,8 +237,8 @@
             </div>
 
             <div class="ctaRow" aria-label="Plan links">
-              <a class="btn btnPrimary" href="/regions/andes/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore the Andes</a>
-              <a class="btn btnGhost" href="/experiences/culture/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore Culture</a>
+              <a class="btn btnPrimary" href="/regions/andes/" data-analytics-event="related_content_click" data-analytics-label="Explore the Andes" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore the Andes</a>
+              <a class="btn btnGhost" href="/experiences/culture/" data-analytics-event="related_content_click" data-analytics-label="Explore Culture" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore Culture</a>
             </div>
           </div>
         </article>
@@ -667,8 +252,8 @@
 
           <div class="slideBody">
             <div class="metaRow" aria-label="Spotlight tags">
-              <div class="pill">Region: <a href="/regions/andes/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Andes</a></div>
-              <div class="pill">Experience: <a href="/experiences/nature/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Nature</a></div>
+              <div class="pill">Region: <a href="/regions/andes/" data-analytics-event="related_content_click" data-analytics-label="Andes" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Andes</a></div>
+              <div class="pill">Experience: <a href="/experiences/nature/" data-analytics-event="related_content_click" data-analytics-label="Nature" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Nature</a></div>
               <div class="pill">Window: Daily 06:00 to 18:00</div>
             </div>
 
@@ -690,8 +275,8 @@
             </div>
 
             <div class="ctaRow" aria-label="Plan links">
-              <a class="btn btnPrimary" href="/regions/andes/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore the Andes</a>
-              <a class="btn btnGhost" href="/experiences/nature/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore Nature</a>
+              <a class="btn btnPrimary" href="/regions/andes/" data-analytics-event="related_content_click" data-analytics-label="Explore the Andes" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore the Andes</a>
+              <a class="btn btnGhost" href="/experiences/nature/" data-analytics-event="related_content_click" data-analytics-label="Explore Nature" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore Nature</a>
             </div>
           </div>
         </article>
@@ -711,30 +296,32 @@
   <div class="miniCard" data-analytics-event="related_content_click" data-analytics-label="Mini card" data-analytics-location="more_spotlights" data-analytics-page-type="guide_page">
     <h3>Coming next</h3>
     <p>More seasonal moments across Ecuador, from wildlife windows to short-lived natural events worth timing your trip around.</p>
-    <a href="/regions/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore Regions</a>
+    <a href="/regions/" data-analytics-event="related_content_click" data-analytics-label="Explore Regions" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore Regions</a>
   </div>
   <div class="miniCard" data-analytics-event="related_content_click" data-analytics-label="Mini card" data-analytics-location="more_spotlights" data-analytics-page-type="guide_page">
     <h3>How to use spotlights</h3>
     <p>Each spotlight highlights when and where something special is happening. Use it to decide timing, then explore the region or experience to plan the rest of your trip.</p>
-    <a href="/experiences/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore Experiences</a>
+    <a href="/experiences/" data-analytics-event="related_content_click" data-analytics-label="Explore Experiences" data-analytics-location="spotlight_slide" data-analytics-page-type="guide_page">Explore Experiences</a>
   </div>
   <div class="miniCard" data-analytics-event="related_content_click" data-analytics-label="Mini card" data-analytics-location="more_spotlights" data-analytics-page-type="guide_page">
     <h3>Keep it high signal</h3>
     <p>These highlights focus only on what matters most: the best time to go, what to expect, and how to plan without overcomplicating your trip.</p>
-    <a href="/trip-builder/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="seo_links" data-analytics-page-type="guide_page">Try Trip Builder</a>
+    <a href="/trip-builder/" data-analytics-event="related_content_click" data-analytics-label="Try Trip Builder" data-analytics-location="seo_links" data-analytics-page-type="guide_page">Try Trip Builder</a>
   </div>
 </section>
 
 <section class="card seoLinks" aria-label="Plan with Ecuador travel spotlights">
   <h2>Plan with seasonal Ecuador travel insights</h2>
   <p class="copy">
-    Pair these timely spotlights with the <a href="/best-time-to-visit-ecuador/" data-analytics-event="internal_link_click" data-analytics-label="" data-analytics-location="body" data-analytics-page-type="guide_page">best time to visit Ecuador</a>,
-    the <a href="/ecuador-travel-guide/" data-analytics-event="internal_link_click" data-analytics-label="" data-analytics-location="body" data-analytics-page-type="guide_page">Ecuador travel guide</a>, and <a href="/recommendations/" data-analytics-event="inline_recommendation_click" data-analytics-label="" data-analytics-location="seo_links" data-analytics-page-type="guide_page">recommended stays and experiences</a>.
-    For a custom route, start with the <a href="/trip-builder/" data-analytics-event="related_content_click" data-analytics-label="" data-analytics-location="seo_links" data-analytics-page-type="guide_page">Ecuador trip builder</a> and connect the right regions, dates, and travel style.
+    Pair these timely spotlights with the <a href="/best-time-to-visit-ecuador/" data-analytics-event="internal_link_click" data-analytics-label="best time to visit Ecuador" data-analytics-location="body" data-analytics-page-type="guide_page">best time to visit Ecuador</a>,
+    the <a href="/ecuador-travel-guide/" data-analytics-event="internal_link_click" data-analytics-label="Ecuador travel guide" data-analytics-location="body" data-analytics-page-type="guide_page">Ecuador travel guide</a>, and <a href="/recommendations/" data-analytics-event="inline_recommendation_click" data-analytics-label="recommended stays and experiences" data-analytics-location="seo_links" data-analytics-page-type="guide_page">recommended stays and experiences</a>.
+    For a custom route, start with the <a href="/trip-builder/" data-analytics-event="related_content_click" data-analytics-label="Ecuador trip builder" data-analytics-location="seo_links" data-analytics-page-type="guide_page">Ecuador trip builder</a> and connect the right regions, dates, and travel style.
   </p>
 </section>
 
-<div style="height:40px;"></div>
+
+<section class="spotlightFaq"><div class="spotlightSectionHead"><span class="sectionKicker">Frequently asked questions</span><h2>Seasonal planning questions</h2></div><div class="spotlightFaqList"><details data-analytics-event="faq_expand" data-analytics-label="Are spotlight dates guaranteed?" data-analytics-location="faq"><summary>Are spotlight dates guaranteed?</summary><p>No. Dates may be based on published schedules or expected natural windows. Verify the responsible source and current conditions before committing nonrefundable travel.</p></details><details data-analytics-event="faq_expand" data-analytics-label="How often should I recheck a seasonal event?" data-analytics-location="faq"><summary>How often should I recheck a seasonal event?</summary><p>Recheck when planning, again before booking fixed transport or lodging, and shortly before travel. Natural events and local operations can change.</p></details><details data-analytics-event="faq_expand" data-analytics-label="Should I reroute a trip for one spotlight?" data-analytics-location="faq"><summary>Should I reroute a trip for one spotlight?</summary><p>Only when the experience is a high priority and the extra travel time, cost, and uncertainty are acceptable. Keep the broader itinerary realistic.</p></details><details data-analytics-event="faq_expand" data-analytics-label="What should I book first around a major holiday?" data-analytics-location="faq"><summary>What should I book first around a major holiday?</summary><p>Protect fixed flights, scarce lodging, and essential transfers first. Leave flexible activities around those anchors.</p></details><details data-analytics-event="faq_expand" data-analytics-label="How should I plan for a wildlife or bloom window?" data-analytics-location="faq"><summary>How should I plan for a wildlife or bloom window?</summary><p>Use a date range rather than a single guaranteed day, allow flexibility, and identify another nearby nature experience if conditions shift.</p></details><details data-analytics-event="faq_expand" data-analytics-label="Where can I build the rest of the route?" data-analytics-location="faq"><summary>Where can I build the rest of the route?</summary><p>Use the regional guides and Trip Builder to connect a spotlight with realistic bases, transport, and other experiences.</p></details></div></section>
+<div class="spotlightSpacer" aria-hidden="true"></div>
   </main>
 <script>
     (function(){
@@ -813,9 +400,9 @@
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(function(){
-        if (!document.querySelector('script[src="/assets/js/site.js?v=20261003af"]')) {
+        if (!document.querySelector('script[src="/assets/js/site.js?v=20261003ai"]')) {
           var s = document.createElement("script");
-          s.src = "/assets/js/site.js?v=20261003af";
+          s.src = "/assets/js/site.js?v=20261003ai";
           document.body.appendChild(s);
         }
       });
