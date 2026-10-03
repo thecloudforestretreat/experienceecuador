@@ -307,7 +307,7 @@
     hubs: "20261003b58",
     destinations: "20261003d",
     experiences: "20261003c",
-    editorial: "20261003j",
+    editorial: "20261003j59",
     recommendations: "20261003g",
     planning: "20261003i",
     trust: "20261003b58"
