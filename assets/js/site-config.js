@@ -94,6 +94,30 @@
         t4: "Hola. Estoy buscando tours y experiencias para este itinerario.\n\nPágina: {url}",
         t5: "Hola. Tengo una pregunta sobre esta página de itinerario.\n\nPágina: {url}"
       },
+      "/faqs/": {
+        q1: "Plan my Ecuador trip", q2: "Choose the right region", q3: "Understand recommendations", q4: "Business participation", q5: "Ask another question",
+        t1: "Hi! I want help planning my Ecuador trip.\n\nPage: {url}", t2: "Hi! I want help choosing the right Ecuador region.\n\nPage: {url}", t3: "Hi! I want to understand how recommendations and referrals work.\n\nPage: {url}", t4: "Hi! I represent an Ecuador business and want to ask about participation.\n\nPage: {url}", t5: "Hi! I have a question that is not answered on the FAQ page.\n\nPage: {url}"
+      },
+      "/es/preguntas-frecuentes/": {
+        q1: "Planificar mi viaje", q2: "Elegir la región correcta", q3: "Entender los recomendados", q4: "Participación de negocios", q5: "Hacer otra consulta",
+        t1: "Hola. Quiero ayuda para planificar mi viaje por Ecuador.\n\nPágina: {url}", t2: "Hola. Quiero ayuda para elegir la región correcta de Ecuador.\n\nPágina: {url}", t3: "Hola. Quiero entender cómo funcionan los recomendados y referidos.\n\nPágina: {url}", t4: "Hola. Represento un negocio ecuatoriano y quiero consultar sobre participación.\n\nPágina: {url}", t5: "Hola. Tengo una consulta que no está respondida en esta página.\n\nPágina: {url}"
+      },
+      "/reviews/": {
+        q1: "Send traveler feedback", q2: "Report a correction", q3: "Ask about review sources", q4: "Plan my trip", q5: "Contact the team",
+        t1: "Hi! I want to send feedback about my Experience Ecuador journey.\n\nPage: {url}", t2: "Hi! I want to report a correction and can identify the exact page.\n\nPage: {url}", t3: "Hi! I have a question about review sources or verification.\n\nPage: {url}", t4: "Hi! I want help planning my Ecuador trip.\n\nPage: {url}", t5: "Hi! I want to contact the Experience Ecuador team.\n\nPage: {url}"
+      },
+      "/es/resenas/": {
+        q1: "Enviar una opinión", q2: "Reportar una corrección", q3: "Consultar las fuentes", q4: "Planificar mi viaje", q5: "Contactar al equipo",
+        t1: "Hola. Quiero enviar una opinión sobre mi experiencia con Experience Ecuador.\n\nPágina: {url}", t2: "Hola. Quiero reportar una corrección y puedo identificar la página exacta.\n\nPágina: {url}", t3: "Hola. Tengo una consulta sobre las fuentes o la verificación de reseñas.\n\nPágina: {url}", t4: "Hola. Quiero ayuda para planificar mi viaje por Ecuador.\n\nPágina: {url}", t5: "Hola. Quiero contactar al equipo de Experience Ecuador.\n\nPágina: {url}"
+      },
+      "/partners/": {
+        q1: "Apply as a partner", q2: "Compare participation options", q3: "Ask about referrals", q4: "Editorial collaboration", q5: "Partnership question",
+        t1: "Hi! I represent an Ecuador business and want to apply as a partner.\n\nPage: {url}", t2: "Hi! I want to compare free, monthly, and annual participation options.\n\nPage: {url}", t3: "Hi! I want to understand referral tracking and attribution.\n\nPage: {url}", t4: "Hi! I want to propose an editorial or destination collaboration.\n\nPage: {url}", t5: "Hi! I have a partnership question.\n\nPage: {url}"
+      },
+      "/es/aliados/": {
+        q1: "Postular como aliado", q2: "Comparar modalidades", q3: "Consultar los referidos", q4: "Colaboración editorial", q5: "Consultar una alianza",
+        t1: "Hola. Represento un negocio ecuatoriano y quiero postular como aliado.\n\nPágina: {url}", t2: "Hola. Quiero comparar las modalidades gratuita, mensual y anual.\n\nPágina: {url}", t3: "Hola. Quiero entender el seguimiento y la atribución de referidos.\n\nPágina: {url}", t4: "Hola. Quiero proponer una colaboración editorial o de destino.\n\nPágina: {url}", t5: "Hola. Tengo una consulta sobre alianzas.\n\nPágina: {url}"
+      },
       "/contact/": {
         q1: "Plan my trip",
         q2: "Business profile inquiry",
@@ -319,14 +343,14 @@
   });
 
   var PAGE_CLUSTER_VERSIONS = Object.freeze({
-    discovery: "20261003b58",
-    hubs: "20261003b58",
-    destinations: "20261003d59",
-    experiences: "20261003c",
-    editorial: "20261003j61",
-    recommendations: "20261003g",
-    planning: "20261003p60",
-    trust: "20261003b60"
+    discovery: "20261003b58g61",
+    hubs: "20261003b58g61",
+    destinations: "20261003d59g61",
+    experiences: "20261003cg61",
+    editorial: "20261003j61g61",
+    recommendations: "20261003r61",
+    planning: "20261003p60g61",
+    trust: "20261003b61"
   });
 
   function normalizePath(path) {
