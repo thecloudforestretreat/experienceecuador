@@ -963,3 +963,21 @@ The Destination key advances to `20261003d59`; its consumers use runtime/config 
 A second visual audit confirmed that the UNESCO pair still mixed modern Editorial authority components with legacy Global sections and lacked the approved Google-font dependency. The pair now uses a dedicated heritage variant inside the shared Editorial bundle: a shorter bilingual H1, consistent 1064-pixel rendered section widths, unified navy 800-weight headings, 18-pixel card geometry, pale-blue CTA treatment, gold primary actions and responsive single-column mobile grids. Hero and card artwork now use semantic Editorial classes, and both HTML pages contain zero inline `style` attributes and no additional page stylesheet.
 
 All 38 Editorial consumers advance to cluster `20261003j60` and runtime/config `20261003ae` with header loader `20261003s`. Browser QA confirms that Montserrat 800 and Inter 400 are actually loaded on both UNESCO languages, not merely declared as fallbacks. Both pages retain one H1, one authority answer, five decision rows, six matching visible and structured FAQs, one five-item `ItemList`, five localized WhatsApp actions, zero page overflow, staging `noindex,nofollow,noarchive,nosnippet` and no GTM outside analytics debug mode. The final immutable deployment is `https://fc9119c2.experienceecuador-staging.pages.dev` from commit `8ffb9d4`; the custom staging domain serves the same correction.
+
+### Batch 60: Mission, Blog and Trip Builder platform foundation set
+
+Completed for staging on 2026-10-03:
+
+- `/mission/` and `/es/mision/`
+- `/blog/` and `/es/blog/`
+- `/trip-builder/` and `/es/planificador-de-viajes/`
+
+This batch addresses three platform-wide roles identified in the enriched sitemap. Mission was a thin trust page with only one recorded inbound source per language. Blog was a well-linked content directory but had generic analytics labels, only four visible FAQs and page-authored image styles. Trip Builder was already one of the strongest conversion pages—with 60 English and 71 Spanish unique inbound sources in the source workbook—but still carried roughly 890 lines of duplicated page-local CSS and only three visible and structured FAQs.
+
+Mission now explains the traveler-research role, the free/monthly/annual local-business visibility model, transparent recommendations, responsible travel standards and measurable attribution without presenting the platform as a confirmed booking provider. Blog now begins with a research answer and a five-path guide-selection matrix. Trip Builder retains its complete interactive logic while adding a direct planning answer, a five-row route-duration matrix and explicit confirmation boundaries.
+
+Every page has one H1, one direct-answer component, five decision rows, six matching visible and structured FAQs and at least one five-item `ItemList`. Mission and Blog each receive contextual links from eight same-language source pages, raising both to at least eight unique editorial inlink sources. Generic or empty analytics labels were removed from all six targets. The centralized `site-config.js` supplies five localized WhatsApp actions for each URL.
+
+No new color family or page stylesheet was introduced. Mission uses Global plus Trust `20261003b60`; Blog uses Global plus Editorial `20261003j61`; and Trip Builder uses Global plus Planning `20261003p60`. The duplicated Trip Builder design system now lives in one bilingual, page-scoped Planning-cluster variant. All six HTML files contain zero authored inline style blocks and zero `style` attributes. Runtime/config advance together to `20261003af`, while the header loader advances to `20261003t`.
+
+Local validation confirms valid JSON-LD, JavaScript, CSS and sitemap XML; one authority answer, five complete decision rows, six visible FAQs, six structured questions and at least five structured list items per page; no duplicate IDs; no missing local links or assets; and no empty analytics labels. Sitemap modification dates are current for all six canonicals. This batch brings the completed deep-authority program to 73 bilingual pairs / 146 pages out of 218 canonical sitemap URLs, leaving 72 pages for page-level upgrades (67.0% complete). Production remains unchanged and staging stays non-indexable until browser QA and the final Screaming Frog crawl are complete.

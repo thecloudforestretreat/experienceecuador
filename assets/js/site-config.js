@@ -54,6 +54,22 @@
         q1: "Elegir una región", q2: "Comparar dos regiones", q3: "Planificar varias regiones", q4: "Consultar logística regional", q5: "Consultar sobre regiones",
         t1: "Hola. Quiero ayuda para elegir una región de Ecuador.\n\nPágina: {url}", t2: "Hola. Quiero comparar dos regiones de Ecuador.\n\nPágina: {url}", t3: "Hola. Quiero ayuda para planificar una ruta realista por varias regiones.\n\nPágina: {url}", t4: "Hola. Quiero consultar transporte, tiempos y logística de una región.\n\nPágina: {url}", t5: "Hola. Tengo una consulta sobre las regiones de Ecuador.\n\nPágina: {url}"
       },
+      "/mission/": {
+        q1: "Start planning Ecuador", q2: "Learn how recommendations work", q3: "Suggest a correction", q4: "Business participation", q5: "Ask about our mission",
+        t1: "Hi! I want help starting my Ecuador trip plan.\n\nPage: {url}", t2: "Hi! I want to understand how Experience Ecuador recommendations work.\n\nPage: {url}", t3: "Hi! I want to suggest a correction or update.\n\nPage: {url}", t4: "Hi! I represent an Ecuador business and want to ask about participation.\n\nPage: {url}", t5: "Hi! I have a question about the Experience Ecuador mission.\n\nPage: {url}"
+      },
+      "/es/mision/": {
+        q1: "Empezar a planificar Ecuador", q2: "Conocer las recomendaciones", q3: "Sugerir una corrección", q4: "Participación de negocios", q5: "Preguntar por la misión",
+        t1: "Hola. Quiero empezar a planificar mi viaje por Ecuador.\n\nPágina: {url}", t2: "Hola. Quiero entender cómo funcionan las recomendaciones de Experience Ecuador.\n\nPágina: {url}", t3: "Hola. Quiero sugerir una corrección o actualización.\n\nPágina: {url}", t4: "Hola. Represento un negocio ecuatoriano y quiero consultar sobre participación.\n\nPágina: {url}", t5: "Hola. Tengo una consulta sobre la misión de Experience Ecuador.\n\nPágina: {url}"
+      },
+      "/blog/": {
+        q1: "Choose my first guide", q2: "Compare Ecuador regions", q3: "Find an itinerary", q4: "Check current travel details", q5: "Ask a planning question",
+        t1: "Hi! I want help choosing the best Ecuador guide to start with.\n\nPage: {url}", t2: "Hi! I want help comparing Ecuador regions.\n\nPage: {url}", t3: "Hi! I want to find an itinerary that fits my trip.\n\nPage: {url}", t4: "Hi! I want to confirm current travel details for an article.\n\nPage: {url}", t5: "Hi! I have an Ecuador planning question.\n\nPage: {url}"
+      },
+      "/es/blog/": {
+        q1: "Elegir mi primera guía", q2: "Comparar regiones", q3: "Buscar un itinerario", q4: "Confirmar datos actuales", q5: "Hacer una consulta",
+        t1: "Hola. Quiero elegir la mejor guía de Ecuador para empezar.\n\nPágina: {url}", t2: "Hola. Quiero comparar regiones de Ecuador.\n\nPágina: {url}", t3: "Hola. Quiero encontrar un itinerario adecuado para mi viaje.\n\nPágina: {url}", t4: "Hola. Quiero confirmar información actual de un artículo.\n\nPágina: {url}", t5: "Hola. Tengo una consulta de planificación sobre Ecuador.\n\nPágina: {url}"
+      },
       "/trip-builder/": {
         q1: "Plan my itinerary",
         q2: "Choose regions",
@@ -307,10 +323,10 @@
     hubs: "20261003b58",
     destinations: "20261003d59",
     experiences: "20261003c",
-    editorial: "20261003j60",
+    editorial: "20261003j61",
     recommendations: "20261003g",
-    planning: "20261003i",
-    trust: "20261003b58"
+    planning: "20261003p60",
+    trust: "20261003b60"
   });
 
   function normalizePath(path) {

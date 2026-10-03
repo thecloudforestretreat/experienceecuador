@@ -69,3 +69,900 @@
 .eeClusterPage.eeTransportPage .faq-intro p{color:#526176}.eeClusterPage.eeTransportPage .faq-intro .pill{margin-bottom:12px}
 @media(max-width:900px){.eeClusterPage.eeTransportPage .transport-intro .card,.eeClusterPage.eeTransportPage .selector-top,.eeClusterPage.eeTransportPage .transport-faq>.card{grid-template-columns:1fr}.eeClusterPage.eeTransportPage .transport-intro .card{background:linear-gradient(180deg,#fff 0%,#fff 58%,#eef5fd 58%,#f8fbff 100%)}.eeClusterPage.eeTransportPage .transport-intro__signals{grid-template-columns:repeat(3,minmax(0,1fr))}.eeClusterPage.eeTransportPage .selector-controls{grid-template-columns:120px minmax(0,1fr)}}
 @media(max-width:620px){.eeClusterPage.eeTransportPage .transport-intro__signals{grid-template-columns:1fr}.eeClusterPage.eeTransportPage .selector-top{padding:20px}.eeClusterPage.eeTransportPage .selector-controls{grid-template-columns:1fr;padding:18px}.eeClusterPage.eeTransportPage .route-visual{grid-template-columns:1fr;gap:10px}.eeClusterPage.eeTransportPage .route-node{width:100%}.eeClusterPage.eeTransportPage .route-line{height:36px;width:3px;margin:auto;background:linear-gradient(#034ea2,#f2b441)}.eeClusterPage.eeTransportPage .route-line:before{top:0;left:50%;transform:translate(-50%,-50%)}.eeClusterPage.eeTransportPage .route-line:after{top:auto;bottom:0;right:auto;left:50%;transform:translate(-50%,50%)}.eeClusterPage.eeTransportPage .route-time{left:16px;top:50%;transform:translateY(-50%)}.eeClusterPage.eeTransportPage .estimator-footer{align-items:flex-start;flex-direction:column}.eeClusterPage.eeTransportPage .estimator-footer .btnPrimary{width:100%}.eeClusterPage.eeTransportPage .cta-row .btn{width:100%}}
+
+
+/* Trip Builder scoped workspace: shared bilingual controls, output and research guide. */
+
+    .eeClusterPage.planningBuilderPage{
+      --brand-blue:#034EA2;
+      --charcoal:#1F1F1F;
+      --slate:#6E7B8B;
+      --soft:#f6f8fb;
+
+      /* Forces the Flights form "input column" to start at a consistent left edge */
+      --mini-label-col:78px;
+      --days-select-max:92px;
+    }
+
+    .eeClusterPage.planningBuilderPage #siteHeader[data-current-lang] + .rawLangLinks{
+      max-width:var(--max);
+      margin:18px auto 0;
+      padding:0 18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+    .eeClusterPage.planningBuilderPage #siteHeader[data-current-lang] + .rawLangLinks a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:40px;
+      padding:0 14px;
+      border:1px solid rgba(3,78,162,.18);
+      border-radius:999px;
+      background:#fff;
+      color:#0f2f62;
+      font-size:12.5px;
+      font-weight:800;
+      box-shadow:0 10px 24px rgba(3,78,162,.08);
+      text-decoration:none;
+      transition:background-color .18s ease,color .18s ease,border-color .18s ease,box-shadow .18s ease;
+    }
+    .eeClusterPage.planningBuilderPage #siteHeader[data-current-lang] + .rawLangLinks a:hover,
+    .eeClusterPage.planningBuilderPage #siteHeader[data-current-lang] + .rawLangLinks a:focus-visible{
+      background:#eef4ff;
+      border-color:rgba(3,78,162,.28);
+      color:#034ea2;
+      outline:none;
+    }
+    .eeClusterPage.planningBuilderPage #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"],
+    .eeClusterPage.planningBuilderPage #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]{
+      background:#034ea2;
+      border-color:#034ea2;
+      color:#fff;
+      box-shadow:0 10px 24px rgba(3,78,162,.18);
+    }
+    .eeClusterPage.planningBuilderPage #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:hover,
+    .eeClusterPage.planningBuilderPage #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:focus-visible,
+    .eeClusterPage.planningBuilderPage #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:hover,
+    .eeClusterPage.planningBuilderPage #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:focus-visible{
+      background:#023a7a;
+      border-color:#023a7a;
+      color:#fff;
+    }
+
+    .eeClusterPage.planningBuilderPage *{box-sizing:border-box}
+    .eeClusterPage.planningBuilderPage{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--charcoal);
+      background:var(--soft);
+    }
+
+    .eeClusterPage.planningBuilderPage a{text-decoration:none;color:inherit}
+    .eeClusterPage.planningBuilderPage img{max-width:100%;display:block}
+
+    /* ===== HERO ===== */
+    .eeClusterPage.planningBuilderPage .hero{
+      position:relative;
+      max-width:1100px;
+      margin:0 auto;
+      padding:22px 18px 12px;
+    }
+
+    .eeClusterPage.planningBuilderPage .hero-banner{
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 22px 60px rgba(0,0,0,0.18);
+      min-height:320px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)),
+        url("/assets/images/EE-Assets-55-Hero-Trip-builder.jpg") center/cover no-repeat;
+    }
+
+    .eeClusterPage.planningBuilderPage .hero-content{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:flex-end;
+      padding:22px;
+    }
+
+    .eeClusterPage.planningBuilderPage .hero-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:clamp(34px,4.6vw,54px);
+      letter-spacing:-0.03em;
+      color:#fff;
+      margin:0;
+      line-height:1.05;
+      text-shadow:0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    /* ===== WRAP ===== */
+    .eeClusterPage.planningBuilderPage .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 18px 60px;
+    }
+
+    .eeClusterPage.planningBuilderPage .card{
+      background:#fff;
+      border-radius:22px;
+      padding:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      min-width:0;
+    }
+
+    .eeClusterPage.planningBuilderPage .card h2{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:22px;
+      margin:0 0 10px;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+    }
+
+    .eeClusterPage.planningBuilderPage .card p{
+      margin:0;
+      line-height:1.75;
+      font-size:15.8px;
+      color:#2a2f36;
+      max-width:90ch;
+    }
+
+    .eeClusterPage.planningBuilderPage .section-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:24px;
+      margin:0 0 14px;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+    }
+
+    /* ===== BUILDER + FLIGHTS LAYOUT (DESKTOP) ===== */
+    .eeClusterPage.planningBuilderPage .builder-layout{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: minmax(0, 2.45fr) minmax(300px, 1.15fr);
+      gap:14px;
+      align-items:stretch;
+    }
+
+    .eeClusterPage.planningBuilderPage .builder-card,
+    .eeClusterPage.planningBuilderPage .flights-card{
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      min-width:0;
+    }
+
+    /* ===== BUILDER CARD ===== */
+    .eeClusterPage.planningBuilderPage .builder-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .eeClusterPage.planningBuilderPage .controls-grid{
+      display:grid;
+      grid-template-columns:auto 260px;
+      gap:10px 12px;
+      align-items:center;
+    }
+
+    .eeClusterPage.planningBuilderPage .controls-grid label{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+      text-align:left;
+    }
+
+    .eeClusterPage.planningBuilderPage .controls-grid select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-weight:700;
+      padding:11px 42px 11px 12px;
+      border-radius:14px;
+      font-size:14px;
+      cursor:pointer;
+      outline:none;
+      min-width:0;
+      width:260px;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      background-image:
+        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
+        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%,
+        0 0;
+      background-size:6px 6px, 6px 6px, 100% 100%;
+      background-repeat:no-repeat;
+    }
+
+    .eeClusterPage.planningBuilderPage .controls-grid select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    /* Desktop only: make "Number of days" bubble tighter (max is double digits) */
+    @media(min-width:901px){
+      .eeClusterPage.planningBuilderPage #daysSelect{
+        width:92px;
+      }
+      .eeClusterPage.planningBuilderPage .controls-grid{
+        grid-template-columns:auto 92px;
+      }
+    }
+
+    .eeClusterPage.planningBuilderPage .pill-row{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .eeClusterPage.planningBuilderPage .pill{
+      border:1px solid rgba(3,78,162,0.16);
+      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
+      color:#0f2f62;
+      padding:10px 12px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+      max-width:100%;
+    }
+
+    .eeClusterPage.planningBuilderPage .pill[aria-pressed="true"]{
+      background:rgba(3,78,162,0.12);
+      border-color:rgba(3,78,162,0.28);
+      box-shadow:0 12px 26px rgba(3,78,162,0.10);
+    }
+
+    .eeClusterPage.planningBuilderPage .pill-row.experiences-grid{
+      display:grid;
+      grid-template-columns:repeat(3, max-content);
+      gap:10px 12px;
+      align-items:start;
+      justify-content:start;
+    }
+
+    .eeClusterPage.planningBuilderPage .region-hint{
+      margin-top:10px;
+      color:#24324a;
+      opacity:.95;
+      font-size:14.6px;
+      line-height:1.55;
+      white-space:normal;
+      overflow-wrap:anywhere;
+      word-break:break-word;
+      max-width:100%;
+    }
+
+    .eeClusterPage.planningBuilderPage .regions-tip{
+      margin-top:8px;
+      color:#24324a;
+      opacity:.95;
+      font-size:13.2px;
+      line-height:1.45;
+      max-width:90ch;
+    }
+
+    .eeClusterPage.planningBuilderPage .actions{
+      margin-top:18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .eeClusterPage.planningBuilderPage .btn{
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-weight:900;
+      padding:12px 14px;
+      border-radius:16px;
+      cursor:pointer;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      letter-spacing:-0.01em;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+
+    .eeClusterPage.planningBuilderPage .btn.primary{
+      background:var(--ee-action-gold);
+      color:#13233d;
+      border-color:var(--ee-action-gold);
+      box-shadow:0 12px 28px rgba(242,180,65,.24);
+    }
+
+    .eeClusterPage.planningBuilderPage .btn:disabled{
+      opacity:.6;
+      cursor:not-allowed;
+    }
+
+    /* ===== FLIGHTS BOX ===== */
+    .eeClusterPage.planningBuilderPage .mini-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:24px;
+      margin:0 0 12px;
+      color:var(--brand-blue);
+      letter-spacing:-0.02em;
+      text-transform:none;
+    }
+
+    .eeClusterPage.planningBuilderPage .mini-grid{
+      display:grid;
+      grid-template-columns:var(--mini-label-col) 1fr;
+      gap:10px 10px;
+      align-items:center;
+      width:100%;
+      max-width:100%;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    .eeClusterPage.planningBuilderPage .mini-grid > *{ min-width:0; }
+
+    .eeClusterPage.planningBuilderPage .mini-grid label{
+      font-weight:800;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+      white-space:nowrap;
+      text-align:left;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    .eeClusterPage.planningBuilderPage .mini-grid input,
+    .eeClusterPage.planningBuilderPage .mini-grid select{
+      display:block;
+      width:100%;
+      max-width:100%;
+      min-width:0;
+      border:1px solid rgba(3,78,162,0.22);
+      background:#fff;
+      color:#0f2f62;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-weight:700;
+      padding:10px 12px;
+      border-radius:14px;
+      font-size:14px;
+      outline:none;
+      box-shadow:0 14px 30px rgba(3,78,162,0.10);
+      height:44px;
+      line-height:22px;
+    }
+
+    .eeClusterPage.planningBuilderPage .mini-grid input[type="date"]{
+      -webkit-appearance:none;
+      appearance:none;
+      width:100%;
+      max-width:100%;
+      min-width:0;
+      height:44px;
+    }
+
+    .eeClusterPage.planningBuilderPage .mini-grid input:focus,
+    .eeClusterPage.planningBuilderPage .mini-grid select:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    /* Align Search flights button to the SAME input column as the fields above */
+    .eeClusterPage.planningBuilderPage .mini-actions{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:var(--mini-label-col) 1fr;
+      gap:10px 10px;
+      align-items:center;
+      width:100%;
+    }
+    .eeClusterPage.planningBuilderPage .mini-actions .btn{
+      width:100%;
+      justify-self:stretch;
+    }
+    .eeClusterPage.planningBuilderPage .mini-actions .mini-spacer{
+      display:block;
+      width:100%;
+      height:1px;
+    }
+
+    .eeClusterPage.planningBuilderPage .mini-hint{
+      margin-top:12px;
+      color:#24324a;
+      opacity:.95;
+      font-size:13.6px;
+      line-height:1.45;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    .eeClusterPage.planningBuilderPage .mini-link{
+      color:#0f2f62;
+      font-weight:900;
+      text-decoration:none;
+      text-underline-offset:3px;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    /* ===== ITINERARY OUTPUT ===== */
+    .eeClusterPage.planningBuilderPage .itinerary{
+      margin-top:16px;
+    }
+
+    .eeClusterPage.planningBuilderPage .itinerary-shell{
+      margin-top:12px;
+      background:#fff;
+      border-radius:22px;
+      padding:22px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 18px 55px rgba(3,78,162,0.12);
+      min-height:140px;
+      min-width:0;
+    }
+
+    .eeClusterPage.planningBuilderPage .itinerary-shell .hint{ margin-top:0; }
+
+    .eeClusterPage.planningBuilderPage .day-card{
+      border-radius:18px;
+      border:1px solid rgba(0,0,0,0.06);
+      background:#fff;
+      padding:16px;
+      box-shadow:0 14px 34px rgba(3,78,162,0.10);
+    }
+    .eeClusterPage.planningBuilderPage .day-card + .day-card{ margin-top:12px; }
+
+    .eeClusterPage.planningBuilderPage .day-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      margin:0 0 8px;
+      color:#0f2f62;
+      letter-spacing:-0.02em;
+      font-size:18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .eeClusterPage.planningBuilderPage .tag{
+      font-size:12px;
+      font-weight:900;
+      color:#0f2f62;
+      background:rgba(3,78,162,0.10);
+      border:1px solid rgba(3,78,162,0.18);
+      padding:6px 10px;
+      border-radius:999px;
+      white-space:nowrap;
+    }
+
+    .eeClusterPage.planningBuilderPage .slot{
+      margin-top:10px;
+      padding:12px;
+      border-radius:14px;
+      background:linear-gradient(180deg, rgba(3,78,162,0.05), rgba(3,78,162,0.02));
+      border:1px solid rgba(3,78,162,0.12);
+    }
+
+    .eeClusterPage.planningBuilderPage .slot h4{
+      margin:0 0 6px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:13px;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+    }
+
+    .eeClusterPage.planningBuilderPage .slot .title{
+      font-weight:900;
+      color:#0f2f62;
+      margin:0 0 4px;
+    }
+
+    .eeClusterPage.planningBuilderPage .slot .meta{
+      color:#24324a;
+      opacity:.95;
+      font-size:14px;
+      line-height:1.55;
+      margin:0;
+    }
+
+    .eeClusterPage.planningBuilderPage .hint{
+      margin-top:10px;
+      color:#24324a;
+      opacity:.95;
+      font-size:14.6px;
+      line-height:1.6;
+    }
+
+    .eeClusterPage.planningBuilderPage .itinerary-actions{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+    }
+
+    .eeClusterPage.planningBuilderPage .copy-status{
+      color:#24324a;
+      font-size:13px;
+      font-weight:700;
+      min-height:18px;
+    }
+
+    .eeClusterPage.planningBuilderPage .selection-links{
+      margin-top:14px;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(3,78,162,0.12);
+      background:rgba(3,78,162,0.04);
+    }
+
+    .eeClusterPage.planningBuilderPage .selection-links-title{
+      margin:0 0 8px;
+      font-weight:900;
+      color:#0f2f62;
+      font-size:14px;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    .eeClusterPage.planningBuilderPage .selection-link-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .eeClusterPage.planningBuilderPage .selection-link{
+      display:inline-flex;
+      align-items:center;
+      min-height:34px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(3,78,162,0.18);
+      background:#fff;
+      color:#0f2f62;
+      text-decoration:none;
+      font-weight:800;
+      font-size:13px;
+      line-height:1.2;
+    }
+
+    /* ===== EMAIL ITINERARY SECTION ===== */
+    .eeClusterPage.planningBuilderPage .email-divider{
+      margin-top:16px;
+      padding-top:16px;
+      border-top:1px solid rgba(0,0,0,0.06);
+    }
+
+    .eeClusterPage.planningBuilderPage .email-title{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      font-size:18px;
+      margin:0 0 6px;
+      color:#0f2f62;
+      letter-spacing:-0.02em;
+    }
+
+    .eeClusterPage.planningBuilderPage .email-sub{
+      margin:0 0 12px;
+      color:#6E7B8B;
+      font-size:14.6px;
+      line-height:1.55;
+      max-width:none;
+    }
+
+    .eeClusterPage.planningBuilderPage .email-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr 1.3fr;
+      gap:10px;
+      align-items:end;
+    }
+
+    .eeClusterPage.planningBuilderPage .field{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+      margin:0;
+    }
+
+    .eeClusterPage.planningBuilderPage .field label{
+      font-weight:800;
+      font-size:13px;
+      color:#0f2f62;
+      letter-spacing:.01em;
+    }
+
+    .eeClusterPage.planningBuilderPage .input{
+      width:100%;
+      border-radius:14px;
+      border:1px solid rgba(3,78,162,.18);
+      background:#fff;
+      padding:12px 12px;
+      font-size:15px;
+      font-weight:600;
+      color:#162b55;
+      outline:none;
+      box-shadow:0 10px 26px rgba(3,78,162,.06);
+      font-family:inherit;
+      height:44px;
+    }
+
+    .eeClusterPage.planningBuilderPage .input:focus{
+      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
+      border-color:rgba(3,78,162,0.45);
+    }
+
+    .eeClusterPage.planningBuilderPage .invite-card{
+      margin-top:14px;
+      border-radius:18px;
+      border:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.015));
+      padding:14px;
+    }
+
+    .eeClusterPage.planningBuilderPage .invite-card-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:12px;
+    }
+
+    .eeClusterPage.planningBuilderPage .invite-title{
+      font-weight:900;
+      color:#0f2f62;
+      letter-spacing:-0.01em;
+    }
+
+    .eeClusterPage.planningBuilderPage .invite-hint{
+      margin-top:10px;
+      color:#24324a;
+      opacity:.95;
+      font-size:13.6px;
+      line-height:1.45;
+    }
+
+    .eeClusterPage.planningBuilderPage .invite-row{
+      display:grid;
+      grid-template-columns:1fr 1fr 1.3fr;
+      gap:10px;
+      align-items:end;
+    }
+
+    .eeClusterPage.planningBuilderPage .invite-row + .invite-row{ margin-top:14px; }
+
+    /* Remove button sits UNDER the row, aligned right */
+    .eeClusterPage.planningBuilderPage .invite-row-actions{
+      display:flex;
+      justify-content:flex-end;
+      margin-top:10px;
+    }
+
+    .eeClusterPage.planningBuilderPage .recipients-wrap{
+      margin-top:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:flex-start;
+    }
+
+    .eeClusterPage.planningBuilderPage .recipient-count{
+      font-weight:900;
+      color:#0f2f62;
+    }
+
+    .eeClusterPage.planningBuilderPage .send-btn{
+      width:auto;
+    }
+
+    .eeClusterPage.planningBuilderPage .statusPill{
+      display:none;
+      margin-top:12px;
+      width:fit-content;
+      padding:9px 12px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:13px;
+      border:1px solid rgba(3,78,162,.18);
+      background:rgba(3,78,162,.06);
+      color:#0f2f62;
+    }
+    .eeClusterPage.planningBuilderPage .statusPill.show{ display:inline-flex; }
+
+.eeClusterPage.planningBuilderPage .seo-block{
+  margin-top:16px;
+  background:#fff;
+  border-radius:22px;
+  padding:22px;
+  border:1px solid rgba(0,0,0,0.06);
+  box-shadow:0 18px 55px rgba(3,78,162,0.12);
+}
+
+.eeClusterPage.planningBuilderPage .seo-block h2{
+  font-family:Montserrat,Inter,sans-serif;
+  font-weight:800;
+  font-size:24px;
+  margin:0 0 14px;
+  color:var(--brand-blue);
+  letter-spacing:-0.02em;
+}
+
+.eeClusterPage.planningBuilderPage .seo-block h3{
+  font-family:Montserrat,Inter,sans-serif;
+  font-weight:800;
+  font-size:18px;
+  margin:20px 0 10px;
+  color:#0f2f62;
+  letter-spacing:-0.02em;
+}
+
+.eeClusterPage.planningBuilderPage .seo-block p,
+.eeClusterPage.planningBuilderPage .seo-block li{
+  color:#24324a;
+  font-size:15.8px;
+  line-height:1.75;
+}
+
+.eeClusterPage.planningBuilderPage .seo-block ul{
+  margin:10px 0 0 20px;
+  padding:0;
+}
+
+.eeClusterPage.planningBuilderPage .seo-block a{
+  color:#0f2f62;
+  font-weight:800;
+  text-decoration:none;
+  text-underline-offset:3px;
+}
+
+.eeClusterPage.planningBuilderPage .seo-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px 24px;
+  margin-top:14px;
+}
+
+.eeClusterPage.planningBuilderPage .seo-card{
+  border:1px solid rgba(3,78,162,0.12);
+  border-radius:18px;
+  padding:16px;
+  background:linear-gradient(180deg, rgba(3,78,162,0.04), rgba(3,78,162,0.015));
+}
+
+.eeClusterPage.planningBuilderPage .faq-list{
+  display:grid;
+  gap:14px;
+  margin-top:14px;
+}
+
+.eeClusterPage.planningBuilderPage .faq-item{
+  border:1px solid rgba(3,78,162,0.12);
+  border-radius:18px;
+  padding:16px;
+  background:#fff;
+  box-shadow:0 10px 26px rgba(3,78,162,.06);
+}
+
+/* ===== MOBILE ===== */
+    @media(max-width:900px){
+      .eeClusterPage.planningBuilderPage .hero-banner{min-height:290px}
+
+      .eeClusterPage.planningBuilderPage .seo-grid{ grid-template-columns:1fr; }
+
+      .eeClusterPage.planningBuilderPage .builder-layout{
+        grid-template-columns:1fr;
+        gap:14px;
+      }
+
+      .eeClusterPage.planningBuilderPage #flightsDesktop{ display:none !important; }
+
+      .eeClusterPage.planningBuilderPage #flightsMobile{
+        display:block !important;
+        width:100%;
+        max-width:100%;
+        margin:14px 0 0;
+      }
+
+      .eeClusterPage.planningBuilderPage .controls-grid{ grid-template-columns:1fr; }
+      .eeClusterPage.planningBuilderPage .controls-grid select{ width:100%; }
+
+      .eeClusterPage.planningBuilderPage .mini-grid{ grid-template-columns:1fr; }
+
+      /* mini-actions becomes a single column on mobile */
+      .eeClusterPage.planningBuilderPage .mini-actions{
+        grid-template-columns:1fr;
+        justify-content:start;
+      }
+      .eeClusterPage.planningBuilderPage .mini-actions .mini-spacer{ display:none; }
+
+      .eeClusterPage.planningBuilderPage .itinerary-shell{
+        padding:18px;
+        min-height:130px;
+      }
+
+      .eeClusterPage.planningBuilderPage .pill-row.experiences-grid{
+        grid-template-columns:repeat(2, 1fr);
+      }
+      .eeClusterPage.planningBuilderPage .pill-row.experiences-grid .pill{
+        width:100%;
+        text-align:center;
+      }
+
+      .eeClusterPage.planningBuilderPage #regionsPills{
+        display:grid;
+        grid-template-columns:repeat(4, 1fr);
+        gap:10px;
+        margin-top:14px;
+      }
+      .eeClusterPage.planningBuilderPage #regionsPills .pill{
+        width:100%;
+        text-align:center;
+        white-space:nowrap;
+      }
+
+      /* Email stacks */
+      .eeClusterPage.planningBuilderPage .email-grid{
+        grid-template-columns:1fr;
+      }
+
+      .eeClusterPage.planningBuilderPage .invite-row{
+        grid-template-columns:1fr;
+      }
+
+      /* Add + Remove aligned right, same size feel */
+      .eeClusterPage.planningBuilderPage .invite-card-head .btn{
+        padding:12px 14px;
+        border-radius:16px;
+      }
+
+      .eeClusterPage.planningBuilderPage .invite-row-actions .btn{
+        padding:12px 14px;
+        border-radius:16px;
+      }
+
+      /* Send button full width under recipient count */
+      .eeClusterPage.planningBuilderPage .send-btn{
+        width:100%;
+      }
+
+      .eeClusterPage.planningBuilderPage .recipients-wrap{
+        width:100%;
+      }
+    }
+
+    @media(max-width:620px){
+      .eeClusterPage.planningBuilderPage .hero-content{padding:16px}
+
+      .eeClusterPage.planningBuilderPage .pill-row.experiences-grid{ grid-template-columns:1fr; }
+
+      .eeClusterPage.planningBuilderPage #regionsPills{
+        grid-template-columns:repeat(4, 1fr);
+        gap:8px;
+      }
+      .eeClusterPage.planningBuilderPage #regionsPills .pill{
+        padding:10px 8px;
+        font-size:12.5px;
+      }
+    }
+
+.eeClusterPage.planningBuilderPage .builder-heading{margin-bottom:10px}.eeClusterPage.planningBuilderPage .builder-top{margin-top:14px}.eeClusterPage.planningBuilderPage .builder-group--regions{margin-top:16px}.eeClusterPage.planningBuilderPage .builder-group--experiences{margin-top:18px}.eeClusterPage.planningBuilderPage .builder-subheading{margin-bottom:10px;color:#0f2f62;font-size:18px}.eeClusterPage.planningBuilderPage .itinerary-heading{margin:0 0 12px}.eeClusterPage.planningBuilderPage .flights-mobile{display:none}.eeClusterPage.planningBuilderPage .hint--notes{margin-bottom:12px}.eeClusterPage.planningBuilderPage .meta--spaced{margin-top:6px}.eeClusterPage.planningBuilderPage .meta--note{margin-top:8px;opacity:.9}.eeClusterPage.planningBuilderPage .meta-line{opacity:.9}
+.eeClusterPage.planningBuilderPage .tripBuilderAnswer{margin:24px 0}

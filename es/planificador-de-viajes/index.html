@@ -50,7 +50,7 @@
         "url":"https://experienceecuador.com/es/planificador-de-viajes/",
         "description":"Planifica tu viaje a Ecuador con un itinerario personalizado por Andes, Amazonía, Costa y Galápagos según duración y estilo de viaje.",
         "inLanguage":"es",
-        "dateModified":"2026-10-02",
+        "dateModified":"2026-10-03",
         "isPartOf":{
           "@type":"WebSite",
           "name":"Experience Ecuador",
@@ -90,7 +90,10 @@
               "@type":"Answer",
               "text":"Sí. Muchos viajeros combinan Quito, los Andes, la Amazonía o la Costa con Galápagos. Una ruta bien planificada ayuda a equilibrar días de vuelo, traslados y ritmo de actividades."
             }
-          }
+          },
+        {"@type":"Question","name":"¿El Planificador realiza una reserva confirmada?","acceptedAnswer":{"@type":"Answer","text":"No. Crea un marco de planificación. Vuelos, alojamiento, guías, permisos, precios, disponibilidad, accesibilidad y condiciones operativas deben confirmarse con el proveedor responsable."}},
+        {"@type":"Question","name":"¿Cuántas regiones debería elegir?","acceptedAnswer":{"@type":"Answer","text":"La mayoría de los viajes cortos funcionan mejor con una o dos regiones. Agrega otra únicamente cuando la duración y el transporte fijo permitan una estadía útil."}},
+        {"@type":"Question","name":"¿Qué hago después de generar el itinerario?","acceptedAnswer":{"@type":"Answer","text":"Guarda o envía el borrador, revisa las guías regionales y recomendaciones, y pide a un proveedor calificado que confirme transporte, disponibilidad, ritmo y condiciones actuales."}}
         ]
       },
       {
@@ -108,906 +111,16 @@
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css?v=20261001d">
   <link rel="stylesheet" href="/assets/css/site.css">
-  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-planning.css?v=20261002a" data-cluster="planning">
+  <link id="eePageClusterCss" rel="stylesheet" href="/assets/css/cluster-planning.css?v=20261003p60" data-cluster="planning">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --brand-blue:#034EA2;
-      --charcoal:#1F1F1F;
-      --slate:#6E7B8B;
-      --soft:#f6f8fb;
-
-      /* Align Flights fields + CTA like EN */
-      --mini-label-col: 78px;
-
-      /* Desktop cap for "Número de días" bubble like EN */
-      --days-select-max: 92px;
-    }
-
-    #siteHeader[data-current-lang] + .rawLangLinks{
-      max-width:var(--max);
-      margin:18px auto 0;
-      padding:0 18px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      align-items:center;
-    }
-    #siteHeader[data-current-lang] + .rawLangLinks a{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:40px;
-      padding:0 14px;
-      border:1px solid rgba(3,78,162,.18);
-      border-radius:999px;
-      background:#fff;
-      color:#0f2f62;
-      font-size:12.5px;
-      font-weight:800;
-      box-shadow:0 10px 24px rgba(3,78,162,.08);
-      text-decoration:none;
-      transition:background-color .18s ease,color .18s ease,border-color .18s ease,box-shadow .18s ease;
-    }
-    #siteHeader[data-current-lang] + .rawLangLinks a:hover,
-    #siteHeader[data-current-lang] + .rawLangLinks a:focus-visible{
-      background:#eef4ff;
-      border-color:rgba(3,78,162,.28);
-      color:#034ea2;
-      outline:none;
-    }
-    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"],
-    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]{
-      background:#034ea2;
-      border-color:#034ea2;
-      color:#fff;
-      box-shadow:0 10px 24px rgba(3,78,162,.18);
-    }
-    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:hover,
-    #siteHeader[data-current-lang="en"] + .rawLangLinks a[lang="en"]:focus-visible,
-    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:hover,
-    #siteHeader[data-current-lang="es"] + .rawLangLinks a[lang="es"]:focus-visible{
-      background:#023a7a;
-      border-color:#023a7a;
-      color:#fff;
-    }
-
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--charcoal);
-      background:var(--soft);
-    }
-
-    a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-
-    /* ===== HERO ===== */
-    .hero{
-      position:relative;
-      max-width:1100px;
-      margin:0 auto;
-      padding:22px 18px 12px;
-    }
-
-    .hero-banner{
-      position:relative;
-      border-radius:24px;
-      overflow:hidden;
-      box-shadow:0 22px 60px rgba(0,0,0,0.18);
-      min-height:320px;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)),
-        url("/assets/images/EE-Assets-55-Hero-Trip-builder.jpg") center/cover no-repeat;
-    }
-
-    .hero-content{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:flex-end;
-      padding:22px;
-    }
-
-    .hero-title{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:clamp(34px,4.6vw,54px);
-      letter-spacing:-0.03em;
-      color:#fff;
-      margin:0;
-      line-height:1.05;
-      text-shadow:0 10px 30px rgba(0,0,0,0.35);
-    }
-
-    /* ===== WRAP ===== */
-    .wrap{
-      max-width:1100px;
-      margin:0 auto;
-      padding:0 18px 60px;
-    }
-
-    .card{
-      background:#fff;
-      border-radius:22px;
-      padding:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
-      min-width:0;
-    }
-
-    .card h2{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:22px;
-      margin:0 0 10px;
-      color:var(--brand-blue);
-      letter-spacing:-0.02em;
-    }
-
-    .card p{
-      margin:0;
-      line-height:1.75;
-      font-size:15.8px;
-      color:#2a2f36;
-      max-width:90ch;
-    }
-
-    .section-title{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:24px;
-      margin:0 0 14px;
-      color:var(--brand-blue);
-      letter-spacing:-0.02em;
-    }
-
-    /* ===== BUILDER + FLIGHTS LAYOUT (DESKTOP) ===== */
-    .builder-layout{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: minmax(0, 2.45fr) minmax(300px, 1.15fr);
-      gap:14px;
-      align-items:stretch;
-    }
-
-    .builder-card,
-    .flights-card{
-      height:100%;
-      display:flex;
-      flex-direction:column;
-      min-width:0;
-    }
-
-    /* ===== BUILDER CARD ===== */
-    .builder-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-    }
-
-    .controls-grid{
-      display:grid;
-      grid-template-columns:auto 260px;
-      gap:10px 12px;
-      align-items:center;
-    }
-
-    .controls-grid label{
-      font-weight:800;
-      color:#0f2f62;
-      font-size:13px;
-      letter-spacing:0.02em;
-      text-align:left;
-    }
-
-    .controls-grid select{
-      appearance:none;
-      -webkit-appearance:none;
-      -moz-appearance:none;
-      border:1px solid rgba(3,78,162,0.22);
-      background:#fff;
-      color:#0f2f62;
-      font-weight:700;
-      padding:11px 42px 11px 12px;
-      border-radius:14px;
-      font-size:14px;
-      cursor:pointer;
-      outline:none;
-      min-width:0;
-      width:260px;
-      box-shadow:0 14px 30px rgba(3,78,162,0.10);
-      background-image:
-        linear-gradient(45deg, transparent 50%, #0f2f62 50%),
-        linear-gradient(135deg, #0f2f62 50%, transparent 50%),
-        linear-gradient(to right, transparent, transparent);
-      background-position:
-        calc(100% - 18px) 50%,
-        calc(100% - 12px) 50%,
-        0 0;
-      background-size:6px 6px, 6px 6px, 100% 100%;
-      background-repeat:no-repeat;
-    }
-
-    .controls-grid select:focus{
-      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
-      border-color:rgba(3,78,162,0.45);
-    }
-
-    /* Desktop only: make "Número de días" bubble tighter like EN */
-    @media(min-width:901px){
-      .controls-grid{
-        grid-template-columns:auto var(--days-select-max);
-      }
-      #daysSelect{
-        width:100%;
-        max-width:var(--days-select-max);
-      }
-    }
-
-    .pill-row{
-      margin-top:14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .pill{
-      border:1px solid rgba(3,78,162,0.16);
-      background:linear-gradient(180deg, rgba(3,78,162,0.06), rgba(3,78,162,0.02));
-      color:#0f2f62;
-      padding:10px 12px;
-      border-radius:999px;
-      font-weight:800;
-      font-size:13px;
-      cursor:pointer;
-      user-select:none;
-      max-width:100%;
-    }
-
-    .pill[aria-pressed="true"]{
-      background:rgba(3,78,162,0.12);
-      border-color:rgba(3,78,162,0.28);
-      box-shadow:0 12px 26px rgba(3,78,162,0.10);
-    }
-
-    .pill-row.experiences-grid{
-      display:grid;
-      grid-template-columns:repeat(3, max-content);
-      gap:10px 12px;
-      align-items:start;
-      justify-content:start;
-    }
-
-    .region-hint{
-      margin-top:10px;
-      color:#24324a;
-      opacity:.95;
-      font-size:14.6px;
-      line-height:1.55;
-      white-space:normal;
-      overflow-wrap:anywhere;
-      word-break:break-word;
-      max-width:100%;
-    }
-
-    .regions-tip{
-      margin-top:8px;
-      color:#24324a;
-      opacity:.95;
-      font-size:13.2px;
-      line-height:1.45;
-      max-width:90ch;
-    }
-
-    .actions{
-      margin-top:18px;
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      border:1px solid rgba(3,78,162,0.22);
-      background:#fff;
-      color:#0f2f62;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      font-weight:900;
-      padding:12px 14px;
-      border-radius:16px;
-      cursor:pointer;
-      box-shadow:0 14px 30px rgba(3,78,162,0.10);
-      letter-spacing:-0.01em;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      white-space:nowrap;
-    }
-
-    .btn.primary{
-      background:var(--brand-blue);
-      color:#fff;
-      border-color:rgba(3,78,162,0.35);
-    }
-
-    .btn:disabled{
-      opacity:.6;
-      cursor:not-allowed;
-    }
-
-    /* ===== FLIGHTS BOX ===== */
-    .mini-title{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:24px;
-      margin:0 0 12px;
-      color:var(--brand-blue);
-      letter-spacing:-0.02em;
-      text-transform:none;
-    }
-
-    /* Match EN: fixed label column so CTA aligns with input column */
-    .mini-grid{
-      display:grid;
-      grid-template-columns:var(--mini-label-col) 1fr;
-      gap:10px 10px;
-      align-items:center;
-      width:100%;
-      max-width:100%;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-
-    .mini-grid > *{ min-width:0; }
-
-    .mini-grid label{
-      font-weight:800;
-      color:#0f2f62;
-      font-size:13px;
-      letter-spacing:0.02em;
-      white-space:nowrap;
-      text-align:left;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-
-    .mini-grid input,
-    .mini-grid select{
-      display:block;
-      width:100%;
-      max-width:100%;
-      min-width:0;
-      border:1px solid rgba(3,78,162,0.22);
-      background:#fff;
-      color:#0f2f62;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      font-weight:700;
-      padding:10px 12px;
-      border-radius:14px;
-      font-size:14px;
-      outline:none;
-      box-shadow:0 14px 30px rgba(3,78,162,0.10);
-      height:44px;
-      line-height:22px;
-    }
-
-    .mini-grid input[type="date"]{
-      -webkit-appearance:none;
-      appearance:none;
-      width:100%;
-      max-width:100%;
-      min-width:0;
-      height:44px;
-    }
-
-    .mini-grid input:focus,
-    .mini-grid select:focus{
-      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
-      border-color:rgba(3,78,162,0.45);
-    }
-
-    /* Match EN: CTA row aligned to input column */
-    .mini-actions{
-      margin-top:12px;
-      display:grid;
-      grid-template-columns:var(--mini-label-col) 1fr;
-      gap:10px 10px;
-      align-items:center;
-      width:100%;
-    }
-    .mini-actions .btn{
-      width:100%;
-      justify-self:stretch;
-    }
-    .mini-actions .mini-spacer{
-      display:block;
-      width:100%;
-      height:1px;
-    }
-
-    .mini-hint{
-      margin-top:12px;
-      color:#24324a;
-      opacity:.95;
-      font-size:13.6px;
-      line-height:1.45;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-
-    .mini-link{
-      color:#0f2f62;
-      font-weight:900;
-      text-decoration:underline;
-      text-underline-offset:3px;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-
-    /* ===== ITINERARY OUTPUT ===== */
-    .itinerary{
-      margin-top:16px;
-    }
-
-    .itinerary-shell{
-      margin-top:12px;
-      background:#fff;
-      border-radius:22px;
-      padding:22px;
-      border:1px solid rgba(0,0,0,0.06);
-      box-shadow:0 18px 55px rgba(3,78,162,0.12);
-      min-height:140px;
-      min-width:0;
-    }
-
-    .itinerary-shell .hint{ margin-top:0; }
-
-    .day-card{
-      border-radius:18px;
-      border:1px solid rgba(0,0,0,0.06);
-      background:#fff;
-      padding:16px;
-      box-shadow:0 14px 34px rgba(3,78,162,0.10);
-    }
-    .day-card + .day-card{ margin-top:12px; }
-
-    .day-title{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      margin:0 0 8px;
-      color:#0f2f62;
-      letter-spacing:-0.02em;
-      font-size:18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .tag{
-      font-size:12px;
-      font-weight:900;
-      color:#0f2f62;
-      background:rgba(3,78,162,0.10);
-      border:1px solid rgba(3,78,162,0.18);
-      padding:6px 10px;
-      border-radius:999px;
-      white-space:nowrap;
-    }
-
-    .slot{
-      margin-top:10px;
-      padding:12px;
-      border-radius:14px;
-      background:linear-gradient(180deg, rgba(3,78,162,0.05), rgba(3,78,162,0.02));
-      border:1px solid rgba(3,78,162,0.12);
-    }
-
-    .slot h4{
-      margin:0 0 6px;
-      font-weight:900;
-      color:#0f2f62;
-      font-size:13px;
-      letter-spacing:0.02em;
-      text-transform:uppercase;
-    }
-
-    .slot .title{
-      font-weight:900;
-      color:#0f2f62;
-      margin:0 0 4px;
-    }
-
-    .slot .meta{
-      color:#24324a;
-      opacity:.95;
-      font-size:14px;
-      line-height:1.55;
-      margin:0;
-    }
-
-    .hint{
-      margin-top:10px;
-      color:#24324a;
-      opacity:.95;
-      font-size:14.6px;
-      line-height:1.6;
-    }
-
-    .itinerary-actions{
-      margin-top:14px;
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      gap:10px;
-    }
-
-    .copy-status{
-      color:#24324a;
-      font-size:13px;
-      font-weight:700;
-      min-height:18px;
-    }
-
-    .selection-links{
-      margin-top:14px;
-      padding:12px;
-      border-radius:14px;
-      border:1px solid rgba(3,78,162,0.12);
-      background:rgba(3,78,162,0.04);
-    }
-
-    .selection-links-title{
-      margin:0 0 8px;
-      font-weight:900;
-      color:#0f2f62;
-      font-size:14px;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-
-    .selection-link-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-
-    .selection-link{
-      display:inline-flex;
-      align-items:center;
-      min-height:34px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(3,78,162,0.18);
-      background:#fff;
-      color:#0f2f62;
-      text-decoration:none;
-      font-weight:800;
-      font-size:13px;
-      line-height:1.2;
-    }
-
-    /* ===== EMAIL ITINERARY SECTION ===== */
-    .email-divider{
-      margin-top:16px;
-      padding-top:16px;
-      border-top:1px solid rgba(0,0,0,0.06);
-    }
-
-    .email-title{
-      font-family:Montserrat,Inter,sans-serif;
-      font-weight:800;
-      font-size:18px;
-      margin:0 0 6px;
-      color:#0f2f62;
-      letter-spacing:-0.02em;
-    }
-
-    .email-sub{
-      margin:0 0 12px;
-      color:#6E7B8B;
-      font-size:14.6px;
-      line-height:1.55;
-      max-width:none;
-    }
-
-    .email-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr 1.3fr;
-      gap:10px;
-      align-items:end;
-    }
-
-    .field{
-      display:flex;
-      flex-direction:column;
-      gap:7px;
-      margin:0;
-    }
-
-    .field label{
-      font-weight:800;
-      font-size:13px;
-      color:#0f2f62;
-      letter-spacing:.01em;
-    }
-
-    .input{
-      width:100%;
-      border-radius:14px;
-      border:1px solid rgba(3,78,162,.18);
-      background:#fff;
-      padding:12px 12px;
-      font-size:15px;
-      font-weight:600;
-      color:#162b55;
-      outline:none;
-      box-shadow:0 10px 26px rgba(3,78,162,.06);
-      font-family:inherit;
-      height:44px;
-    }
-
-    .input:focus{
-      box-shadow:0 0 0 4px rgba(3,78,162,0.16);
-      border-color:rgba(3,78,162,0.45);
-    }
-
-    .invite-card{
-      margin-top:14px;
-      border-radius:18px;
-      border:1px solid rgba(0,0,0,0.06);
-      background:linear-gradient(180deg, rgba(3,78,162,0.03), rgba(3,78,162,0.015));
-      padding:14px;
-    }
-
-    .invite-card-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:12px;
-    }
-
-    .invite-title{
-      font-weight:900;
-      color:#0f2f62;
-      letter-spacing:-0.01em;
-    }
-
-    .invite-hint{
-      margin-top:10px;
-      color:#24324a;
-      opacity:.95;
-      font-size:13.6px;
-      line-height:1.45;
-    }
-
-    .invite-row{
-      display:grid;
-      grid-template-columns:1fr 1fr 1.3fr;
-      gap:10px;
-      align-items:end;
-    }
-
-    .invite-row + .invite-row{ margin-top:14px; }
-
-    .invite-row-actions{
-      display:flex;
-      justify-content:flex-end;
-      margin-top:10px;
-    }
-
-    .recipients-wrap{
-      margin-top:14px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      align-items:flex-start;
-    }
-
-    .recipient-count{
-      font-weight:900;
-      color:#0f2f62;
-    }
-
-    .send-btn{
-      width:auto;
-    }
-
-    .statusPill{
-      display:none;
-      margin-top:12px;
-      width:fit-content;
-      padding:9px 12px;
-      border-radius:999px;
-      font-weight:900;
-      font-size:13px;
-      border:1px solid rgba(3,78,162,.18);
-      background:rgba(3,78,162,.06);
-      color:#0f2f62;
-    }
-    .statusPill.show{ display:inline-flex; }
-
-.seo-block{
-  margin-top:16px;
-  background:#fff;
-  border-radius:22px;
-  padding:22px;
-  border:1px solid rgba(0,0,0,0.06);
-  box-shadow:0 18px 55px rgba(3,78,162,0.12);
-}
-
-.seo-block h2{
-  font-family:Montserrat,Inter,sans-serif;
-  font-weight:800;
-  font-size:24px;
-  margin:0 0 14px;
-  color:var(--brand-blue);
-  letter-spacing:-0.02em;
-}
-
-.seo-block h3{
-  font-family:Montserrat,Inter,sans-serif;
-  font-weight:800;
-  font-size:18px;
-  margin:20px 0 10px;
-  color:#0f2f62;
-  letter-spacing:-0.02em;
-}
-
-.seo-block p,
-.seo-block li{
-  color:#24324a;
-  font-size:15.8px;
-  line-height:1.75;
-}
-
-.seo-block a{
-  color:inherit;
-  text-decoration:none;
-}
-
-.seo-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:14px 24px;
-  margin-top:14px;
-}
-
-.seo-card{
-  border:1px solid rgba(3,78,162,0.12);
-  border-radius:18px;
-  padding:16px;
-  background:linear-gradient(180deg, rgba(3,78,162,0.04), rgba(3,78,162,0.015));
-}
-
-.faq-list{
-  display:grid;
-  gap:14px;
-  margin-top:14px;
-}
-
-.faq-item{
-  border:1px solid rgba(3,78,162,0.12);
-  border-radius:18px;
-  padding:16px;
-  background:#fff;
-  box-shadow:0 10px 26px rgba(3,78,162,.06);
-}
-
-    /* ===== MOBILE ===== */
-    @media(max-width:900px){
-      .hero-banner{min-height:290px}
-
-      .seo-grid{ grid-template-columns:1fr; }
-
-      .builder-layout{
-        grid-template-columns:1fr;
-        gap:14px;
-      }
-
-      #flightsDesktop{ display:none !important; }
-
-      #flightsMobile{
-        display:block !important;
-        width:100%;
-        max-width:100%;
-        margin:14px 0 0;
-      }
-
-      .controls-grid{ grid-template-columns:1fr; }
-      .controls-grid select{ width:100%; max-width:none; }
-
-      .mini-grid{ grid-template-columns:1fr; }
-
-      /* mini-actions becomes single column on mobile */
-      .mini-actions{
-        grid-template-columns:1fr;
-        justify-content:start;
-      }
-      .mini-actions .mini-spacer{ display:none; }
-
-      .itinerary-shell{
-        padding:18px;
-        min-height:130px;
-      }
-
-      .pill-row.experiences-grid{
-        grid-template-columns:repeat(2, 1fr);
-      }
-      .pill-row.experiences-grid .pill{
-        width:100%;
-        text-align:center;
-        white-space:nowrap;
-        overflow:hidden;
-        text-overflow:ellipsis;
-      }
-
-      #regionsPills{
-        display:grid;
-        grid-template-columns:repeat(4, 1fr);
-        gap:10px;
-        margin-top:14px;
-      }
-      #regionsPills .pill{
-        width:100%;
-        text-align:center;
-        white-space:nowrap;
-        overflow:hidden;
-        text-overflow:ellipsis;
-      }
-
-      /* Email stacks */
-      .email-grid{
-        grid-template-columns:1fr;
-      }
-
-      .invite-row{
-        grid-template-columns:1fr;
-      }
-
-      .invite-card-head .btn{
-        padding:12px 14px;
-        border-radius:16px;
-      }
-
-      .invite-row-actions .btn{
-        padding:12px 14px;
-        border-radius:16px;
-      }
-
-      .send-btn{
-        width:100%;
-      }
-
-      .recipients-wrap{
-        width:100%;
-      }
-    }
-
-    @media(max-width:620px){
-      .hero-content{padding:16px}
-
-      .pill-row.experiences-grid{ grid-template-columns:1fr; }
-
-      #regionsPills{
-        grid-template-columns:repeat(4, 1fr);
-        gap:8px;
-      }
-      #regionsPills .pill{
-        padding:10px 8px;
-        font-size:12.5px;
-      }
-    }
-  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","@id":"https://experienceecuador.com/es/planificador-de-viajes/#planning-steps","name":"Pasos para crear un itinerario por Ecuador","itemListElement":[{"@type":"ListItem","position":1,"name":"Elegir la duración"},{"@type":"ListItem","position":2,"name":"Seleccionar regiones realistas"},{"@type":"ListItem","position":3,"name":"Seleccionar experiencias prioritarias"},{"@type":"ListItem","position":4,"name":"Generar y revisar la ruta"},{"@type":"ListItem","position":5,"name":"Confirmar la logística con proveedores responsables"}]}</script>
 </head>
 
-<body class="eeClusterPage eeCluster--planning" data-page-type="trip_builder" data-page-language="es" data-topic="trip-builder" data-page-cluster="planning" data-funnel-stage="conversion">
+<body class="eeClusterPage eeCluster--planning planningBuilderPage" data-page-type="trip_builder" data-page-language="es" data-topic="trip-builder" data-page-cluster="planning" data-funnel-stage="conversion">
   <div id="siteHeader" data-current-lang="es"></div>
   <nav class="rawLangLinks" aria-label="Selector de idioma">
     <a href="https://experienceecuador.com/trip-builder/" lang="en" hreflang="en" data-analytics-event="language_switch_click" data-analytics-label="English" data-analytics-location="language_switch" data-analytics-page-type="trip_builder" data-analytics-target-language="en">English</a>
@@ -1024,22 +137,23 @@
     </section>
 
     <div class="wrap">
+      <section class="eeAuthorityAnswer tripBuilderAnswer" aria-labelledby="trip-builder-answer"><div class="eeAuthorityAnswer__copy"><span class="sectionKicker">Respuesta de planificación</span><h2 id="trip-builder-answer">¿Cómo deberías usar este Planificador de viajes por Ecuador?</h2><p>Elige primero los días disponibles y selecciona únicamente las regiones y experiencias que más importan. Usa la ruta generada como un marco de investigación, no como un paquete confirmado, y verifica vuelos, traslados, alojamiento, guías, precios, accesibilidad y condiciones operativas antes de reservar.</p></div><aside class="eeAuthorityAnswer__steps" aria-label="Secuencia del Planificador"><h3>Construye en este orden</h3><div class="eeAuthorityAnswer__step">1. Protege fechas y vuelos fijos</div><div class="eeAuthorityAnswer__step">2. Selecciona regiones realistas</div><div class="eeAuthorityAnswer__step">3. Agrega prioridades y confirma la logística</div></aside></section>
       <section class="builder-layout" aria-label="Planificador de viaje y vuelos">
         <section class="card builder-card" aria-label="Asistente del planificador">
-          <h2 style="margin-bottom:10px;">Crea un itinerario personalizado por Ecuador</h2>
+          <h2 class="builder-heading">Crea un itinerario personalizado por Ecuador</h2>
           <p>
             Planifica un itinerario por Ecuador según tu estilo de viaje, las regiones que prefieres y la duración disponible. Usa este planificador para comparar ideas entre Andes, Amazonía, Costa y Galápagos, y luego convierte la sugerencia en un viaje mucho más personalizado.
           </p>
 
-          <div class="builder-top" style="margin-top:14px;">
+          <div class="builder-top">
             <div class="controls-grid" aria-label="Controles del planificador">
               <label for="daysSelect">Número de días</label>
               <select id="daysSelect" data-analytics-event="trip_builder_days_change" data-analytics-page-type="trip_builder"></select>
             </div>
           </div>
 
-          <div style="margin-top:16px;">
-            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Elige Regiones</div>
+          <div class="builder-group builder-group--regions">
+            <div class="section-title builder-subheading">Elige Regiones</div>
 
             <div class="regions-tip">
               Consejo: si seleccionas varias regiones, la herramienta dividirá los días automáticamente y sugerira un ritmo más ligero para traslados.
@@ -1049,8 +163,8 @@
             <div class="region-hint" id="regionHint"></div>
           </div>
 
-          <div style="margin-top:18px;">
-            <div class="section-title" style="font-size:18px;margin-bottom:10px;color:#0f2f62;">Elige Experiencias</div>
+          <div class="builder-group builder-group--experiences">
+            <div class="section-title builder-subheading">Elige Experiencias</div>
             <div class="pill-row experiences-grid" id="experiencesPills" aria-label="Selección de experiencias"></div>
           </div>
 
@@ -1096,7 +210,7 @@
 
       <section class="itinerary" aria-label="Itinerario generado">
         <div class="itinerary-shell" aria-label="Contenedor de salida del itinerario">
-          <h2 class="section-title" style="margin:0 0 12px;">Tu itinerario sugerido</h2>
+          <h2 class="section-title itinerary-heading">Tu itinerario sugerido</h2>
           <div id="output" class="hint">Selecciona días, regiones y experiencias. Luego haz clic en "Generar itinerario".</div>
           <div class="itinerary-actions" aria-label="Acciones del itinerario">
             <button class="btn" id="copyItineraryBtn" type="button" disabled data-analytics-event="secondary_cta_click" data-analytics-label="Copiar itinerario" data-analytics-location="itinerary_output">Copiar itinerario</button>
@@ -1152,7 +266,7 @@
         </div>
       </section>
 
-      <aside class="card flights-card" id="flightsMobile" aria-label="Vuelos (móvil)" style="display:none;">
+      <aside class="card flights-card flights-mobile" id="flightsMobile" aria-label="Vuelos (móvil)">
         <p class="mini-title">Vuelos</p>
 
         <div class="mini-grid">
@@ -1201,7 +315,7 @@
     <div class="seo-card">
       <h3>Combinaciones populares para viajar por Ecuador</h3>
       <p>
-        Muchos viajeros combinan <a href="/es/regiones/andes/" data-analytics-event="internal_link_click" data-analytics-label="" data-analytics-location="body" data-analytics-page-type="trip_builder">los Andes</a> con <a href="/es/regiones/amazonia/" data-analytics-event="internal_link_click" data-analytics-label="" data-analytics-location="body" data-analytics-page-type="trip_builder">la Amazonía</a>, o unen <a href="/es/regiones/costa/" data-analytics-event="internal_link_click" data-analytics-label="" data-analytics-location="body" data-analytics-page-type="trip_builder">la Costa</a> con <a href="/es/regiones/galapagos/" data-analytics-event="internal_link_click" data-analytics-label="" data-analytics-location="body" data-analytics-page-type="trip_builder">Galápagos</a>. Los viajes cortos suelen funcionar mejor con una o dos regiones. Los itinerarios más largos permiten cruzar varios paisajes sin que cada día se convierta en un traslado.
+        Muchos viajeros combinan <a href="/es/regiones/andes/" data-analytics-event="internal_link_click" data-analytics-label="Trip Builder contextual link" data-analytics-location="body" data-analytics-page-type="trip_builder">los Andes</a> con <a href="/es/regiones/amazonia/" data-analytics-event="internal_link_click" data-analytics-label="Trip Builder contextual link" data-analytics-location="body" data-analytics-page-type="trip_builder">la Amazonía</a>, o unen <a href="/es/regiones/costa/" data-analytics-event="internal_link_click" data-analytics-label="Trip Builder contextual link" data-analytics-location="body" data-analytics-page-type="trip_builder">la Costa</a> con <a href="/es/regiones/galapagos/" data-analytics-event="internal_link_click" data-analytics-label="Trip Builder contextual link" data-analytics-location="body" data-analytics-page-type="trip_builder">Galápagos</a>. Los viajes cortos suelen funcionar mejor con una o dos regiones. Los itinerarios más largos permiten cruzar varios paisajes sin que cada día se convierta en un traslado.
       </p>
     </div>
   </div>
@@ -1213,7 +327,7 @@
 
   <h3>Explora Ecuador por región y estilo de viaje</h3>
   <p>
-    Usa estos enlaces prioritarios para pasar de la planificación a una investigación más profunda. Cuando tengas una ruta inicial, explora <a href="/es/recomendados/" data-analytics-event="internal_link_click" data-analytics-label="" data-analytics-location="body" data-analytics-page-type="trip_builder">recomendados y servicios en Ecuador</a> para conectar tu itinerario con alojamientos, experiencias y miembros curados.
+    Usa estos enlaces prioritarios para pasar de la planificación a una investigación más profunda. Cuando tengas una ruta inicial, explora <a href="/es/recomendados/" data-analytics-event="internal_link_click" data-analytics-label="Trip Builder contextual link" data-analytics-location="body" data-analytics-page-type="trip_builder">recomendados y servicios en Ecuador</a> para conectar tu itinerario con alojamientos, experiencias y miembros curados.
   </p>
   <div class="seo-link-grid" aria-label="Tarjetas de enlaces internos sobre regiones y experiencias">
     <a class="seo-link-card" href="/es/regiones/galapagos/" data-analytics-event="internal_link_click" data-analytics-label="Ideas de itinerario Galápagos" data-analytics-location="priority_links" data-analytics-link-type="internal" data-analytics-page-type="trip_builder">
@@ -1263,7 +377,8 @@
     </a>
   </div>
 
-  <h2>Preguntas frecuentes sobre como planificar un viaje a Ecuador</h2>
+  <h2>Elige una estructura de ruta realista</h2><p>Usa el planificador para probar combinaciones y confirma el transporte fijo y las condiciones operativas antes de reservar.</p><div class="eeDecisionTable"><table><thead><tr><th>Tiempo disponible</th><th>Estructura de ruta realista</th><th>Qué proteger antes de reservar</th></tr></thead><tbody><tr><td>5–6 días</td><td>Quito más una base cercana en los Andes o el bosque nublado</td><td>Adaptación a la altura y tiempo de traslado terrestre</td></tr><tr><td>7–9 días</td><td>Una región continental más Quito, o un plan enfocado en Galápagos</td><td>Vuelos nacionales y traslados fijos de islas o lodges</td></tr><tr><td>10–12 días</td><td>Dos regiones continentales compatibles, o continente más Galápagos</td><td>Un margen entre segmentos de transporte fijo</td></tr><tr><td>13–15 días</td><td>Dos grandes regiones con tiempo para experiencias más profundas</td><td>Descanso, lavandería, equipaje y dirección de la ruta</td></tr><tr><td>16+ días</td><td>Una ruta multirregional con menos transiciones apresuradas</td><td>Acceso estacional y costo de conexiones distantes</td></tr></tbody></table></div>
+<h2>Preguntas frecuentes sobre como planificar un viaje a Ecuador</h2>
   <div class="faq-list">
     <div class="faq-item">
       <h3>Cuántos días deberia pasar en Ecuador?</h3>
@@ -1283,11 +398,15 @@
         Sí. Si estás empezando a organizar el viaje, esta página te ayuda a comparar duración, combinaciones regionales y estilo de viaje antes de profundizar en guías de destino y logística.
       </p>
     </div>
-  </div>
+      <div class="faq-item" data-analytics-event="faq_expand" data-analytics-label="¿El Planificador realiza una reserva confirmada?" data-analytics-location="trip_builder_faq"><h3>¿El Planificador realiza una reserva confirmada?</h3><p>No. Crea un marco de planificación. Vuelos, alojamiento, guías, permisos, precios, disponibilidad, accesibilidad y condiciones operativas deben confirmarse con el proveedor responsable.</p></div>
+    <div class="faq-item" data-analytics-event="faq_expand" data-analytics-label="¿Cuántas regiones debería elegir?" data-analytics-location="trip_builder_faq"><h3>¿Cuántas regiones debería elegir?</h3><p>La mayoría de los viajes cortos funcionan mejor con una o dos regiones. Agrega otra únicamente cuando la duración y el transporte fijo permitan una estadía útil.</p></div>
+    <div class="faq-item" data-analytics-event="faq_expand" data-analytics-label="¿Qué hago después de generar el itinerario?" data-analytics-location="trip_builder_faq"><h3>¿Qué hago después de generar el itinerario?</h3><p>Guarda o envía el borrador, revisa las guías regionales y recomendaciones, y pide a un proveedor calificado que confirme transporte, disponibilidad, ritmo y condiciones actuales.</p></div>
+</div>
 </section>
 
     </div>
   <section class="eeCrossLink" aria-label="Sobre Experience Ecuador"><div class="eeCrossLink__copy"><strong>Cómo Experience Ecuador apoya tu investigación</strong><span>Conoce cómo la plataforma conecta regiones, herramientas de itinerario, recomendados y apoyo de planificación.</span></div><div class="eeCrossLink__actions"><a class="eeCrossLink__link" href="/es/sobre-nosotros/" data-analytics-event="internal_link_click" data-analytics-label="Sobre Experience Ecuador" data-analytics-location="related_content" data-analytics-page-type="about_inlink">Sobre Experience Ecuador</a></div></section>
+<section class="eeCrossLink batch60ResearchLinks" aria-label="Estándares de investigación de Experience Ecuador"><div class="eeCrossLink__copy"><strong>Investiga Ecuador con un marco más claro</strong><span>Conoce la misión de la plataforma y usa el blog para comparar rutas, temporadas y decisiones prácticas.</span></div><div class="eeCrossLink__actions"><a class="eeCrossLink__link" href="/es/mision/" data-analytics-event="internal_link_click" data-analytics-label="Misión de Experience Ecuador" data-analytics-location="contextual_research_links">Nuestra misión</a><a class="eeCrossLink__link" href="/es/blog/" data-analytics-event="internal_link_click" data-analytics-label="Blog de viajes por Ecuador" data-analytics-location="contextual_research_links">Blog de viajes</a></div></section>
 </main>
 <script>
     // ===== CONFIG: your Apps Script Web App URL =====
@@ -1560,7 +679,7 @@
       }
 
       const warningHtml = (result.warnings || []).length
-        ? "<div class='hint' style='margin-bottom:12px;'><strong>Notas de planificación:</strong><br>" +
+        ? "<div class='hint hint--notes'><strong>Notas de planificación:</strong><br>" +
           result.warnings.map(w => "- " + w).join("<br>") +
           "</div>"
         : "";
@@ -1581,10 +700,10 @@
                 Ritmo: ${block.pace} |
                 Horas: ${block.duration_hours}
               </p>
-              <p class="meta" style="margin-top:6px;">
+              <p class="meta meta--spaced">
                 Experiencias: ${block.matchedExperiences.join(", ")}
               </p>
-              <p class="meta" style="margin-top:6px;">
+              <p class="meta meta--spaced">
                 ${block.summary || "No hay resumen disponible."}
               </p>
             </div>
@@ -2419,18 +1538,18 @@ function regionName(id){
         const baseNote = blockNotes(block);
         if (!baseNote && !splitExplain) return "";
         if (baseNote && splitExplain) {
-          return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Nota:</strong> " + baseNote + "<br><strong>Nota:</strong> " + splitExplain + "</p>";
+          return "<p class='meta meta--note'><strong>Nota:</strong> " + baseNote + "<br><strong>Nota:</strong> " + splitExplain + "</p>";
         }
         if (baseNote) {
-          return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Nota:</strong> " + baseNote + "</p>";
+          return "<p class='meta meta--note'><strong>Nota:</strong> " + baseNote + "</p>";
         }
-        return "<p class='meta' style='margin-top:8px;opacity:.9'><strong>Nota:</strong> " + splitExplain + "</p>";
+        return "<p class='meta meta--note'><strong>Nota:</strong> " + splitExplain + "</p>";
       })();
 
       div.innerHTML = `
         <h4>${label}</h4>
         <div class="title">${blockTitle(block)}</div>
-        <p class="meta">${blockSummary(block)}${metaLine ? "<br><span style='opacity:.9'>" + metaLine + "</span>" : ""}</p>
+        <p class="meta">${blockSummary(block)}${metaLine ? "<br><span class='meta-line'>" + metaLine + "</span>" : ""}</p>
         ${noteHtml}
       `;
       return div;
@@ -2829,9 +1948,9 @@ function regionName(id){
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(function(){
-        if (!document.querySelector('script[src="/assets/js/site.js?v=20261002c"]')) {
+        if (!document.querySelector('script[src="/assets/js/site.js?v=20261003af"]')) {
           var s = document.createElement("script");
-          s.src = "/assets/js/site.js?v=20261002c";
+          s.src = "/assets/js/site.js?v=20261003af";
           document.body.appendChild(s);
         }
       });
