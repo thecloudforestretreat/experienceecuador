@@ -703,3 +703,17 @@ Six visible and structured FAQs match exactly across both languages. A five-item
 Page-specific English and Spanish WhatsApp prompts are controlled by the centralized injected `site-config.js`; the shared runtime cache key has advanced to `20261002m`. Local validation found one doctype and H1 per page, one authority-answer block, five decision rows, six visible and structured FAQs, five structured planning paths, no duplicate IDs, no missing internal targets or assets, valid JSON-LD, JavaScript and XML, complete analytics attribution on internal links and the approved destination cluster palette. This brings the completed deep-authority program to 31 bilingual pairs / 62 pages out of 217 submitted sitemap URLs, leaving 155 sitemap pages for page-level upgrades. Production remains unchanged and staging stays non-indexable until final browser QA and the full Screaming Frog crawl are complete.
 
 Post-deployment Chrome QA passed at 1440-pixel desktop and 390-pixel mobile widths in both languages. Neither page has horizontal overflow or incomplete content rows; both render the authority answer, five decision rows and six FAQs with the approved gold primary actions and navy/blue destination headings. The centralized widget exposes the five Papallacta-specific prompts in each language. Staging rewrites robots to `noindex,nofollow,noarchive,nosnippet` and does not load GTM unless analytics debug mode is explicitly enabled.
+
+### Batch 47: northern and southern Andes destination authority set
+
+Completed for staging on 2026-10-02:
+
+- `/regions/andes/otavalo/` and `/es/regiones/andes/otavalo/`
+- `/regions/andes/cuenca/` and `/es/regiones/andes/cuenca/`
+- `/regions/andes/choco-andino/` and `/es/regiones/andes/choco-andino/`
+
+Each bilingual pair now opens with a destination-specific direct answer and a five-row decision table. Otavalo distinguishes a focused market-and-culture day from a one-night northern Andes route; Cuenca protects two or three nights for its walkable cultural core before adding a verified excursion; Chocó Andino recommends one cloud-forest base and explicitly treats wildlife activity, weather, roads and sightings as current conditions rather than guarantees. All pages identify the exact guide, access, transport, room, meal, mobility, equipment, etiquette, timing and cancellation details that still require confirmation without inventing operators, schedules, prices or availability.
+
+Six visible and structured FAQs match on every page, and every pair has a five-item structured planning list. Existing authority already supplies at least eight unique same-language inlink sources to each destination; two additional contextual source links were added for Cuenca to bring it to that threshold. Spanish copy was normalized away from imported or literal uses of `reset`, `outdoor`, `capa`, `encaja`, “más fuerte,” “más limpia” and “se sienta.”
+
+The centralized injected `site-config.js` now supplies five destination-specific WhatsApp prompts in each language, and the shared runtime cache key has advanced to `20261002n`. This batch brings the completed deep-authority program to 34 bilingual pairs / 68 pages out of 217 submitted sitemap URLs, leaving 149 sitemap pages for page-level upgrades. Production remains unchanged and staging stays non-indexable until final browser QA and the full Screaming Frog crawl are complete.
