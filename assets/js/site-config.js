@@ -38,6 +38,22 @@
       t5: "Hola. Tengo una consulta sobre Experience Ecuador.\n\nPágina: {url}"
     },
     pages: {
+      "/": {
+        q1: "Plan my Ecuador trip", q2: "Compare regions", q3: "Find recommendations", q4: "Ask about an experience", q5: "Contact the team",
+        t1: "Hi! I want help planning my Ecuador trip.\n\nPage: {url}", t2: "Hi! I want help comparing Ecuador's regions.\n\nPage: {url}", t3: "Hi! I want help finding a relevant stay, tour or travel service.\n\nPage: {url}", t4: "Hi! I have a question about an Ecuador experience.\n\nPage: {url}", t5: "Hi! I want to contact the Experience Ecuador team.\n\nPage: {url}"
+      },
+      "/es/": {
+        q1: "Planificar mi viaje", q2: "Comparar regiones", q3: "Buscar recomendados", q4: "Consultar una experiencia", q5: "Contactar al equipo",
+        t1: "Hola. Quiero ayuda para planificar mi viaje por Ecuador.\n\nPágina: {url}", t2: "Hola. Quiero ayuda para comparar las regiones de Ecuador.\n\nPágina: {url}", t3: "Hola. Quiero encontrar un alojamiento, tour o servicio de viaje relevante.\n\nPágina: {url}", t4: "Hola. Tengo una consulta sobre una experiencia en Ecuador.\n\nPágina: {url}", t5: "Hola. Quiero contactar al equipo de Experience Ecuador.\n\nPágina: {url}"
+      },
+      "/regions/": {
+        q1: "Choose an Ecuador region", q2: "Compare two regions", q3: "Plan a multi-region route", q4: "Check regional logistics", q5: "Ask a region question",
+        t1: "Hi! I want help choosing an Ecuador region.\n\nPage: {url}", t2: "Hi! I want help comparing two Ecuador regions.\n\nPage: {url}", t3: "Hi! I want help planning a realistic multi-region Ecuador route.\n\nPage: {url}", t4: "Hi! I want to check transport, timing and logistics for an Ecuador region.\n\nPage: {url}", t5: "Hi! I have a question about Ecuador's regions.\n\nPage: {url}"
+      },
+      "/es/regiones/": {
+        q1: "Elegir una región", q2: "Comparar dos regiones", q3: "Planificar varias regiones", q4: "Consultar logística regional", q5: "Consultar sobre regiones",
+        t1: "Hola. Quiero ayuda para elegir una región de Ecuador.\n\nPágina: {url}", t2: "Hola. Quiero comparar dos regiones de Ecuador.\n\nPágina: {url}", t3: "Hola. Quiero ayuda para planificar una ruta realista por varias regiones.\n\nPágina: {url}", t4: "Hola. Quiero consultar transporte, tiempos y logística de una región.\n\nPágina: {url}", t5: "Hola. Tengo una consulta sobre las regiones de Ecuador.\n\nPágina: {url}"
+      },
       "/trip-builder/": {
         q1: "Plan my itinerary",
         q2: "Choose regions",
@@ -63,28 +79,28 @@
         t5: "Hola. Tengo una pregunta sobre esta página de itinerario.\n\nPágina: {url}"
       },
       "/contact/": {
-        q1: "Start WhatsApp chat",
-        q2: "Plan my trip",
-        q3: "Business hours",
+        q1: "Plan my trip",
+        q2: "Business profile inquiry",
+        q3: "Partnership or media",
         q4: "Ask a question",
-        q5: "Talk to a specialist",
-        t1: "Hi! I want to start a WhatsApp chat.\n\nPage: {url}",
-        t2: "Hi! I want help planning my Ecuador trip.\n\nPage: {url}",
-        t3: "Hi! What are your business hours?\n\nPage: {url}",
+        q5: "Follow up on a request",
+        t1: "Hi! I want help planning my Ecuador trip.\n\nPage: {url}",
+        t2: "Hi! I represent an Ecuador business and want to ask about a recommendation profile.\n\nPage: {url}",
+        t3: "Hi! I have a partnership or media inquiry for Experience Ecuador.\n\nPage: {url}",
         t4: "Hi! I have a question.\n\nPage: {url}",
-        t5: "Hi! I want to speak with a travel specialist.\n\nPage: {url}"
+        t5: "Hi! I want to follow up on an existing request.\n\nPage: {url}"
       },
       "/es/contacto/": {
-        q1: "Escribir por WhatsApp",
-        q2: "Planificar mi viaje",
-        q3: "Horario de atención",
+        q1: "Planificar mi viaje",
+        q2: "Consultar un perfil de negocio",
+        q3: "Alianza o prensa",
         q4: "Hacer una consulta",
-        q5: "Hablar con un especialista",
-        t1: "Hola. Quiero escribir por WhatsApp.\n\nPágina: {url}",
-        t2: "Hola. Quiero ayuda para planificar mi viaje por Ecuador.\n\nPágina: {url}",
-        t3: "Hola. ¿Cuál es su horario de atención?\n\nPágina: {url}",
+        q5: "Dar seguimiento",
+        t1: "Hola. Quiero ayuda para planificar mi viaje por Ecuador.\n\nPágina: {url}",
+        t2: "Hola. Represento un negocio de Ecuador y quiero consultar sobre un perfil recomendado.\n\nPágina: {url}",
+        t3: "Hola. Tengo una consulta de alianza o prensa para Experience Ecuador.\n\nPágina: {url}",
         t4: "Hola. Tengo una pregunta.\n\nPágina: {url}",
-        t5: "Hola. Quiero hablar con un especialista en viajes.\n\nPágina: {url}"
+        t5: "Hola. Quiero dar seguimiento a una solicitud anterior.\n\nPágina: {url}"
       },
       "/spectacled-bear-ecuador-guide/": {
         q1: "Plan a wildlife route",
