@@ -126,7 +126,7 @@
 
   var PAGE_CLUSTER_VERSIONS = Object.freeze({
     destinations: "20261002c",
-    editorial: "20261002h",
+    editorial: "20261002i",
     recommendations: "20261002f",
     planning: "20261002h"
   });
