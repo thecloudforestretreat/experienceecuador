@@ -348,9 +348,9 @@
     destinations: "20261003d59g61",
     experiences: "20261003cg61",
     editorial: "20261003j61g61",
-    recommendations: "20261003r61",
+    recommendations: "20261003r61a",
     planning: "20261003p60g61",
-    trust: "20261003b61"
+    trust: "20261003b61a"
   });
 
   function normalizePath(path) {
