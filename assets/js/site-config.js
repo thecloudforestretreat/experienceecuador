@@ -102,6 +102,30 @@
         t4: "Hola. Tengo una pregunta.\n\nPágina: {url}",
         t5: "Hola. Quiero dar seguimiento a una solicitud anterior.\n\nPágina: {url}"
       },
+      "/about/": {
+        q1: "Start researching Ecuador", q2: "Build my itinerary", q3: "Review recommendations", q4: "Business profile inquiry", q5: "Ask about Experience Ecuador",
+        t1: "Hi! I want help choosing where to start my Ecuador research.\n\nPage: {url}", t2: "Hi! I want help organizing my Ecuador itinerary.\n\nPage: {url}", t3: "Hi! I want help finding a relevant recommendation.\n\nPage: {url}", t4: "Hi! I represent an Ecuador business and want to ask about a profile or partnership.\n\nPage: {url}", t5: "Hi! I have a question about Experience Ecuador.\n\nPage: {url}"
+      },
+      "/es/sobre-nosotros/": {
+        q1: "Empezar a investigar Ecuador", q2: "Armar mi itinerario", q3: "Revisar recomendados", q4: "Consultar un perfil de negocio", q5: "Preguntar sobre Experience Ecuador",
+        t1: "Hola. Quiero ayuda para elegir por dónde empezar mi investigación sobre Ecuador.\n\nPágina: {url}", t2: "Hola. Quiero ayuda para organizar mi itinerario por Ecuador.\n\nPágina: {url}", t3: "Hola. Quiero ayuda para encontrar un recomendado relevante.\n\nPágina: {url}", t4: "Hola. Represento un negocio de Ecuador y quiero consultar sobre un perfil o alianza.\n\nPágina: {url}", t5: "Hola. Tengo una consulta sobre Experience Ecuador.\n\nPágina: {url}"
+      },
+      "/regions/andes/": {
+        q1: "Plan an Andes route", q2: "Choose an Andes base", q3: "Compare highland destinations", q4: "Check altitude and logistics", q5: "Ask about the Andes",
+        t1: "Hi! I want help planning an Ecuador Andes route.\n\nPage: {url}", t2: "Hi! I want help choosing Quito, Cuenca or another Andes base.\n\nPage: {url}", t3: "Hi! I want to compare destinations in Ecuador's Andes.\n\nPage: {url}", t4: "Hi! I want to review altitude, transport, access and current conditions for an Andes trip.\n\nPage: {url}", t5: "Hi! I have a question about Ecuador's Andes.\n\nPage: {url}"
+      },
+      "/es/regiones/andes/": {
+        q1: "Planificar una ruta andina", q2: "Elegir una base en la Sierra", q3: "Comparar destinos andinos", q4: "Consultar altitud y logística", q5: "Preguntar por los Andes",
+        t1: "Hola. Quiero ayuda para planificar una ruta por los Andes de Ecuador.\n\nPágina: {url}", t2: "Hola. Quiero ayuda para elegir Quito, Cuenca u otra base andina.\n\nPágina: {url}", t3: "Hola. Quiero comparar destinos de los Andes de Ecuador.\n\nPágina: {url}", t4: "Hola. Quiero revisar altitud, transporte, acceso y condiciones vigentes para un viaje por la Sierra.\n\nPágina: {url}", t5: "Hola. Tengo una consulta sobre los Andes de Ecuador.\n\nPágina: {url}"
+      },
+      "/ecuador-unesco-world-heritage-sites/": {
+        q1: "Plan a heritage route", q2: "Compare the five properties", q3: "Ask about the Tentative List", q4: "Check access and guides", q5: "Ask a UNESCO question",
+        t1: "Hi! I want help planning an Ecuador World Heritage route.\n\nPage: {url}", t2: "Hi! I want help comparing Ecuador's five World Heritage properties.\n\nPage: {url}", t3: "Hi! I have a question about Ecuador's UNESCO Tentative List.\n\nPage: {url}", t4: "Hi! I want to confirm access, permits, transport and guiding for a heritage visit.\n\nPage: {url}", t5: "Hi! I have a question about UNESCO World Heritage in Ecuador.\n\nPage: {url}"
+      },
+      "/es/patrimonio-mundial-ecuador/": {
+        q1: "Planificar una ruta patrimonial", q2: "Comparar los cinco bienes", q3: "Consultar la Lista Indicativa", q4: "Revisar acceso y guías", q5: "Hacer una consulta UNESCO",
+        t1: "Hola. Quiero ayuda para planificar una ruta por el Patrimonio Mundial de Ecuador.\n\nPágina: {url}", t2: "Hola. Quiero comparar los cinco bienes de Patrimonio Mundial de Ecuador.\n\nPágina: {url}", t3: "Hola. Tengo una consulta sobre la Lista Indicativa de Ecuador ante la UNESCO.\n\nPágina: {url}", t4: "Hola. Quiero confirmar acceso, permisos, transporte y guianza para una visita patrimonial.\n\nPágina: {url}", t5: "Hola. Tengo una consulta sobre el Patrimonio Mundial UNESCO en Ecuador.\n\nPágina: {url}"
+      },
       "/spectacled-bear-ecuador-guide/": {
         q1: "Plan a wildlife route",
         q2: "Ask about ethical viewing",

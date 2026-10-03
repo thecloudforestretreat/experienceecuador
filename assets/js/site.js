@@ -39,7 +39,7 @@
     window.__eeSiteConfigLoading=true;
     const siteConfigScript=document.createElement("script");
     siteConfigScript.async=false;
-    siteConfigScript.src="/assets/js/site-config.js?v=20261003aa";
+    siteConfigScript.src="/assets/js/site-config.js?v=20261003ab";
     siteConfigScript.addEventListener("load",()=>{window.__eeSiteConfigLoading=false;});
     siteConfigScript.addEventListener("error",()=>{window.__eeSiteConfigLoading=false;});
     document.head.appendChild(siteConfigScript);
@@ -48,7 +48,7 @@
     window.__eeHeaderLoading=true;
     const headerScript=document.createElement("script");
     headerScript.async=false;
-    headerScript.src="/assets/js/header.js?v=20261003o";
+    headerScript.src="/assets/js/header.js?v=20261003p";
     headerScript.addEventListener("load",()=>{window.__eeHeaderLoading=false;});
     headerScript.addEventListener("error",()=>{window.__eeHeaderLoading=false;});
     document.head.appendChild(headerScript);
