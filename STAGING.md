@@ -686,3 +686,18 @@ Six visible and structured FAQs now match across both languages, and a five-item
 Page-specific English and Spanish WhatsApp prompts are controlled by the centralized injected `site-config.js`; the shared runtime cache key has advanced to `20261002l`. Local validation found one doctype and H1 per page, one direct-answer block, five decision rows, six visible and structured FAQs, five structured planning paths, no duplicate IDs, no missing internal targets or assets, valid JSON-LD and JavaScript, complete analytics attribution on internal links and the approved destination cluster palette. This brings the completed deep-authority program to 30 bilingual pairs / 60 pages. Production remains unchanged and staging stays non-indexable until final QA and the full Screaming Frog crawl are complete.
 
 Post-deployment Chrome QA passed at 1440-pixel desktop and 390-pixel mobile widths in both languages. Neither page has horizontal overflow or incomplete card rows; both render the approved gold primary actions and blue headings, five decision rows and six FAQs. The centralized widget exposes the five Baños-specific prompts in each language. Staging rewrites robots to `noindex,nofollow,noarchive,nosnippet` and does not load GTM unless analytics debug mode is explicitly enabled.
+
+### Batch 46: Papallacta destination authority pair
+
+Completed for staging on 2026-10-02:
+
+- `/regions/andes/papallacta/`
+- `/es/regiones/andes/papallacta/`
+
+Both destination pages now open with a direct answer that recommends either a focused day trip or one restorative night. Travelers are told to confirm the named thermal facility, current day-use or overnight access, reservations, pools and spa services included, room, meals, transportation, cancellation terms, altitude considerations and operator health guidance. No current access, facility, schedule, price, package or availability is invented.
+
+A five-row decision table compares a Quito day trip, one-night recovery stay, thermal-only visit, thermal pools with light nature and an onward Andes road segment. Each option identifies its best fit, a realistic structure and the exact access, reservation, room, meal, transport, luggage, trail, weather, equipment, timing and cancellation details that still require confirmation.
+
+Six visible and structured FAQs match exactly across both languages. A five-item `ItemList` connects Quito, relaxation, nature, transportation and Trip Builder planning paths. Eight unique English and eight unique Spanish contextual source pages now link into the pair, excluding each Papallacta destination page itself. The Spanish page replaces literal or unnatural uses of `relax`, `reset`, `outdoor`, `capa`, “más fuerte,” “más limpia” and “se sienta” with natural South American Spanish.
+
+Page-specific English and Spanish WhatsApp prompts are controlled by the centralized injected `site-config.js`; the shared runtime cache key has advanced to `20261002m`. Local validation found one doctype and H1 per page, one authority-answer block, five decision rows, six visible and structured FAQs, five structured planning paths, no duplicate IDs, no missing internal targets or assets, valid JSON-LD, JavaScript and XML, complete analytics attribution on internal links and the approved destination cluster palette. This brings the completed deep-authority program to 31 bilingual pairs / 62 pages out of 217 submitted sitemap URLs, leaving 155 sitemap pages for page-level upgrades. Production remains unchanged and staging stays non-indexable until final browser QA and the full Screaming Frog crawl are complete.

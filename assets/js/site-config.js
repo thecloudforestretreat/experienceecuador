@@ -157,6 +157,30 @@
         t3: "Hola. Quiero consultar una actividad de aventura, el operador y las condiciones vigentes en Baños.\n\nPágina: {url}",
         t4: "Hola. Quiero ayuda para organizar el transporte de una ruta por Baños.\n\nPágina: {url}",
         t5: "Hola. Tengo una consulta sobre una visita a Baños.\n\nPágina: {url}"
+      },
+      "/regions/andes/papallacta/": {
+        q1: "Plan a Papallacta visit",
+        q2: "Compare day trip or overnight",
+        q3: "Check thermal access",
+        q4: "Arrange transportation",
+        q5: "Ask a Papallacta question",
+        t1: "Hi! I want help planning a Papallacta visit.\n\nPage: {url}",
+        t2: "Hi! I want to compare a Papallacta day trip with an overnight stay.\n\nPage: {url}",
+        t3: "Hi! I want to confirm current thermal access, inclusions and booking requirements in Papallacta.\n\nPage: {url}",
+        t4: "Hi! I want help arranging transportation for a Papallacta route.\n\nPage: {url}",
+        t5: "Hi! I have a question about visiting Papallacta.\n\nPage: {url}"
+      },
+      "/es/regiones/andes/papallacta/": {
+        q1: "Planificar una visita a Papallacta",
+        q2: "Comparar excursión o noche",
+        q3: "Consultar acceso a las termas",
+        q4: "Organizar transporte",
+        q5: "Consultar sobre Papallacta",
+        t1: "Hola. Quiero ayuda para planificar una visita a Papallacta.\n\nPágina: {url}",
+        t2: "Hola. Quiero comparar una excursión a Papallacta con una estadía de una noche.\n\nPágina: {url}",
+        t3: "Hola. Quiero confirmar el acceso vigente a las termas, las inclusiones y los requisitos de reserva en Papallacta.\n\nPágina: {url}",
+        t4: "Hola. Quiero ayuda para organizar el transporte de una ruta por Papallacta.\n\nPágina: {url}",
+        t5: "Hola. Tengo una consulta sobre una visita a Papallacta.\n\nPágina: {url}"
       }
     }
   };
