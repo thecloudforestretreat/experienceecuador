@@ -1045,3 +1045,23 @@ Runtime and centralized configuration advance together to `20261003ai`, with fiv
 This batch brings the completed deep-authority program to 82 bilingual pairs / 164 pages out of 216 canonical sitemap URLs, leaving 52 pages for page-level upgrades (75.9% complete). Production remains unchanged and staging stays non-indexable until post-deployment browser QA and the final Screaming Frog crawl are complete.
 
 Post-deployment browser QA passed on all six pages at 1280 × 900 desktop and 390 × 844 mobile widths. Every route returns HTTP 200 with `noindex,nofollow,noarchive,nosnippet`, one H1, one direct answer, five decision rows, six visible FAQs, five route-specific WhatsApp actions, approved gold `rgb(242, 180, 65)` primary actions, no broken images, no page-level overflow and no browser errors. GTM remains disabled outside analytics debug mode. Both carousels advance and both transportation estimators populate seven locations and return the expected two-hour airport-to-Mindo planning result. The immutable deployment is `https://f1975c3a.experienceecuador-staging.pages.dev` from content commit `1cbbeb4`; the custom staging domain serves the same release.
+
+### Batch 64: flagship Mindo and Chocó Andino recommendation profiles
+
+Completed for staging on 2026-10-04:
+
+- `/recommendations/members/andes/mindo/mindo-bird-watching/` and `/es/recomendados/miembros/andes/mindo/mindo-bird-watching/`
+- `/recommendations/members/andes/choco-andino/the-cloud-forest-retreat/` and `/es/recomendados/miembros/andes/choco-andino/the-cloud-forest-retreat/`
+- `/recommendations/members/andes/mindo/roca-mia/` and `/es/recomendados/miembros/andes/mindo/roca-mia/`
+
+This batch upgrades two Tier 1 specialist funnels and the remaining member profile with the strongest supplied GSC opportunity. Mindo Bird Watching and The Cloud Forest Retreat connect national research to qualified cloud-forest expertise and accommodation planning. Roca Mía records 34 English and 31 Spanish impressions in the supplied 16-month export, with average positions 3.74 and 4.94, so the existing URL and intent were preserved while its answer and conversion layers were strengthened.
+
+Every page now has one direct answer, a five-row decision table, six matching visible and structured FAQs and a five-item `ItemList`. The decision content distinguishes verified profile context from details that only the responsible specialist or property can confirm, including the assigned guide or accommodation, access, current conditions, inclusions, price, availability, payment and cancellation. Wildlife sightings are explicitly not guaranteed. Unverified `Offer` availability markup was removed from the Mindo Bird Watching and Cloud Forest Retreat profiles.
+
+The former member-only stylesheet is now migrated into a page-scoped Recommendations variant. All six pages use only Global plus Recommendations `20261004r64`, with approved navy and blue surfaces, gold `#f2b441` primary actions and white-blue secondary actions. There are no authored inline styles or legacy member stylesheet links. Existing carousels, maps, contact paths and referral attribution are retained.
+
+Eight high-authority same-language gateway pages now link contextually to all three profiles: the homepage, About, Mission, Contact, Recommendations, Trip Builder, Ecuador Travel Guide and Blog. Repository-wide counts are at least 13 inbound sources for each Mindo Bird Watching language page, 12 for each Cloud Forest Retreat page and eight for each Roca Mía page. Every new link carries a descriptive analytics label.
+
+The centralized injected configuration supplies five localized WhatsApp prompts for all six routes. Config and Recommendations advance to `20261004r64`; `site.js` and `header.js` load the configuration with key `20261004aj`. Sitemap dates are current for the six profiles and all sixteen contextual source pages.
+
+Local validation confirms one H1, one direct answer, five decision rows, six visible and structured FAQs, at least five structured list items, valid JSON-LD, valid JavaScript and CSS, 216 canonical sitemap URLs, no empty analytics labels, no broken images, no page-level overflow and no browser errors. Desktop and mobile browser checks at 1280 × 900 and 390 × 844 confirm five route-specific WhatsApp actions, working carousels, the assigned Recommendations cluster and approved gold primary actions. This batch brings the completed deep-authority program to 85 bilingual pairs / 170 pages out of 216 canonical sitemap URLs, leaving 46 pages for page-level upgrades (78.7% complete). Production remains unchanged and staging stays non-indexable until the final Screaming Frog crawl and release approval.
