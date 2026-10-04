@@ -1198,3 +1198,23 @@ Local structural validation confirms valid JSON-LD, one H1 and answer, five deci
 The remaining pairs are the Chocó biodiversity and Ecuador photography concepts, which remain gated on operator, price, availability and commercial approval, plus Andes–Amazon exotic, Wild Andes bears and birds, Galápagos wildlife and nature and Galápagos wildlife and bird photography.
 
 Post-deployment browser QA passed across all six Batch 70 pages on the custom staging domain at 1280 × 900 desktop and 390 × 844 mobile widths. Every route returns HTTP 200, loads Planning `20261004p70`, has one H1 and direct answer, five decision rows, six route steps, six visible FAQs, five localized WhatsApp actions, approved gold `rgb(242, 180, 65)` primary actions, complete hero imagery, no broken images, no clipped controls, no page-level overflow and no browser errors. GTM remains disabled outside analytics debug mode. Staging returns `x-robots-tag: noindex, nofollow, noarchive, nosnippet`. The representative immutable route also passed at both widths. The immutable deployment is `https://7536ef47.experienceecuador-staging.pages.dev` from content commit `cc1466a`; the custom staging domain serves the same release.
+
+### Batch 71: cross-region and Galápagos wildlife research
+
+Prepared for staging on 2026-10-04:
+
+- `/tours/ecuador-the-andes-and-amazon-exotic/` and `/es/tours/andes-amazonia-exotica-ecuador/`
+- `/tours/ecuador-wild-andes-bears-birds-explorer/` and `/es/tours/andes-salvajes-osos-aves-ecuador/`
+- `/tours/galapagos-islands-wildlife-nature/` and `/es/tours/galapagos-fauna-naturaleza/`
+
+This verification-first batch preserves the existing route content while strengthening its research, answer and conversion boundaries. Andes–Amazon retains a fourteen-day sequence connecting the Chocó, Amazon lowlands, east slope and high Andes with protected flight, river and road transfers. Bears and birds retains a ten-day tracker-led concept governed by lawful access, local relationships, animal-welfare rules and sensitive-location protection. Galápagos retains a five-day Santa Cruz base with authorized excursion windows rather than promised islands. None guarantees wildlife, operating access, departures, guides, lodging, vessels, price or availability.
+
+Every page now has one H1 and direct answer, five complete decision rows, six route steps, six matching visible and structured FAQs and a five-item `ItemList`. The expanded questions cover duration, prelaunch status, wildlife uncertainty, ethical or protected-area requirements, mobility and safety and the facts that must be verified before a quote. No page includes `Offer` schema. Metadata, Article descriptions and modification dates are current, and all main-content links have explicit event, label and location attribution.
+
+All six pages use Global plus Planning `20261004p71`. Hero artwork now comes from semantic route classes inside the shared Planning bundle, eliminating the remaining page-level hero styles. Approved navy, blue and gold remain the interface palette, with gold `#f2b441` primary actions and white-blue secondary actions. The centralized injected configuration supplies five localized WhatsApp prompts for each route, while `site.js` and `header.js` load `site-config.js` with key `20261004aq`.
+
+Eight bilingual authority gateways now include all three pairs. Repository-wide inlink counts are seventeen per Andes–Amazon page, fifteen per bears-and-birds page and sixteen per Galápagos-wildlife page. The bear research entity list also connects the national spectacled-bear guide to the Mindo Bird Watching specialist profile. Sitemap dates are current for the six targets and sixteen gateway pages.
+
+Local structural validation confirms one H1 and answer, five decision rows, six route steps, six visible/schema-matched FAQs, at least five structured entities, zero `Offer` assertions, zero unlabeled main-content links, zero inline styles, valid JSON-LD and JavaScript, balanced CSS, resolved local references and 216 canonical sitemap URLs. Browser QA passed across all twelve desktop/mobile combinations at 1280 × 900 and 390 × 844 with complete hero imagery, balanced grids, five localized WhatsApp actions, approved gold primary actions and no broken images, clipped controls, overflow, GTM load or browser errors. This batch brings the completed program to 105 bilingual pairs / 210 pages out of 216 canonical sitemap URLs, leaving 6 pages / 3 pairs (97.2% complete). Production remains unchanged.
+
+The remaining pairs are Ecuador photography, Galápagos wildlife and bird photography and Chocó biodiversity. The two photography concepts and Chocó biodiversity remain verification-first and must not claim unapproved operators, prices, dates or availability.
