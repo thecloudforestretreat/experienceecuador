@@ -1242,3 +1242,28 @@ Local validation confirms one H1 and answer, five decision rows, six route steps
 This batch completes the page-level upgrade program at 108 bilingual pairs / 216 canonical pages (100%). This does not authorize production release or indexing. The next release gate is a full staging crawl, source-of-truth reconciliation, analytics/tag verification and correction of any crawl findings before final approval.
 
 Post-deployment browser QA passed across all six Batch 72 pages on the custom staging domain at 1280 × 900 desktop and 390 × 844 mobile widths. An initial custom-domain pass briefly returned mixed prior/new HTML and CSS during deployment propagation, so sign-off was held; the complete twelve-case retest used the content-commit cache key and passed. Every route returns HTTP 200, loads Planning `20261004p72`, has one H1 and direct answer, five decision rows, six route steps, six visible FAQs, five localized WhatsApp actions, approved gold `rgb(242, 180, 65)` primary actions, complete hero imagery, no broken images, no clipped controls, no page-level overflow and no browser errors. GTM remains disabled outside analytics debug mode. Staging returns `x-robots-tag: noindex, nofollow, noarchive, nosnippet`, and the representative immutable route passed at both widths. The immutable deployment is `https://0e5f94e9.experienceecuador-staging.pages.dev` from content commit `91ebfb5`; the custom staging domain serves the same release.
+
+## Final staging release gate — 2026-10-04
+
+The definitive rendered crawl covers 220 canonical sitemap URLs, including the late-reconciled Las Nubes and Hotel Patio Andaluz bilingual member pairs. Release commit `dc1a756` is deployed at `https://1f17c73f.experienceecuador-staging.pages.dev` and the custom staging domain serves the same release. Production and indexing remain unchanged.
+
+- 220 of 220 pages return HTTP 200.
+- Zero pages fail the H1, main-content, canonical, language, reciprocal hreflang, JSON-LD, runtime or horizontal-overflow checks.
+- Zero duplicate title or meta-description groups were found; no title is outside the 30–60 character review band and no description is outside the 80–160 character review band.
+- Zero unknown internal paths remain.
+- Every canonical page has at least six unique internal inlinks; the site median is eleven and maximum crawl depth is three.
+- Focused real-network retesting cleared the ten audit-runner network warnings: all ten pages returned HTTP 200 with no page or request errors.
+- Cold-load layout shift is resolved in the shared runtime. The Trip Builder measured 0 CLS and the representative member profile measured 0.00012.
+- The source-of-truth workbook now includes all 220 canonical URLs and a dedicated `Release Gate 2026-10-04` tab with the full rendered-crawl evidence.
+- The audit export is stored at `audits/experienceecuador-staging-release-gate-2026-10-04.csv`.
+
+### Search and analytics status
+
+- Google Search Console reports the submitted `/sitemap.xml` as successful, with 201 discovered URLs at its last read on 2026-09-28. The repository sitemap now contains 220 canonical URLs. Do not resubmit or request indexing until this release is approved and deployed to production.
+- The site uses GTM `GTM-WJQXQR2H`, GA4 measurement ID `G-3EDLVGV2HD` and stream ID `13129495694`. The stream is active and enhanced measurement is enabled.
+- First-touch and last-touch attribution, hidden form attribution fields, outbound referral decoration and the centralized `site-config.js` WhatsApp configuration passed staging QA.
+- Custom site events now enter `dataLayer` directly with debug context. A generic GA4 custom-event forwarding tag still must be created and published in GTM, then verified in GA4 DebugView. This is the only technical blocker to rating Analytics at or above 9.5/10.
+
+### Release decision
+
+The technical, content, bilingual and internal-authority staging gates pass. The remaining release steps are: publish and verify the GTM custom-event tag, obtain visual approval, promote the approved commit to production, run the production crawl, then submit the production sitemap and selectively request indexing. Do not remove the staging `X-Robots-Tag` protection or index staging.
