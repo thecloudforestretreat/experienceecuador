@@ -1284,3 +1284,14 @@ The complete staging release was fast-forwarded to `main` and published as produ
 - The production crawl export is stored at `audits/experienceecuador-production-release-crawl-2026-10-05.csv`; the reusable crawler is `scripts/live-release-audit.mjs`.
 
 Live form submission testing remains pending because each test creates an external inbox, spreadsheet, subscription or email side effect and the protected forms require valid test identity data and, where applicable, a user-completed Turnstile challenge.
+
+### Production form QA — 2026-10-05
+
+Authorized submissions used the shared production QA identity and the label `[PRODUCTION QA TEST — DELETE]`.
+
+- Contact passed: the UI returned its received-message state, and Gmail received both the internal notification and sender confirmation.
+- Andes regional trip intake passed: the UI returned its received-profile state, and Gmail received both the internal profile notification and traveler confirmation.
+- Trip Builder itinerary email passed: the UI reported one recipient, and Gmail received both the itinerary and internal request notification.
+- Partner application passed end to end: the embedded iframe did not return its optional confirmation message, but Gmail received both the internal partner application and applicant confirmation. This is a front-end confirmation limitation, not a delivery failure.
+- Language-immersion interest passed: the UI returned its received-interest state, and Gmail received both the internal interest notification and traveler confirmation.
+- Newsletter signup did not pass end to end. The include displays a fallback success message after 1.2 seconds, but its Google Apps Script deployment returns HTTP 403 (`You need access`) to an unauthenticated production request. The newsletter include is also not mounted by any public page. Corrective work requires access to the newsletter Apps Script project so its web-app deployment can be set to execute with the owner and allow anyone, followed by replacement of the misleading timer fallback with a verifiable response path and an approved public placement.
