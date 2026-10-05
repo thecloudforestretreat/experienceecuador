@@ -488,82 +488,15 @@
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(function(){
-        if (!document.querySelector('script[src="/assets/js/site.js?v=20261004at"]')) {
+        if (!document.querySelector('script[src="/assets/js/site.js?v=20261004au"]')) {
           var s = document.createElement("script");
-          s.src = "/assets/js/site.js?v=20261004at";
+          s.src = "/assets/js/site.js?v=20261004au";
           document.body.appendChild(s);
         }
       });
     })();
   </script>
 <script>
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "page_view_enhanced",
-      page_type: "recommendation_member_page",
-      page_language: "es",
-      page_path: "/es/recomendados/miembros/andes/choco-andino/hacienda-verde-niebla/"
-    });
-  </script>
-
-  <script>
-    (function(){
-      function safeTrack(name, params){
-        if (typeof window.gtag !== "function") return;
-        try { window.gtag("event", name, params || {}); } catch(e){}
-      }
-      function safeTrackWhenReady(name, params, attempts){
-        var tries = typeof attempts === "number" ? attempts : 20;
-        if (typeof window.gtag === "function") { safeTrack(name, params); return; }
-        if (tries <= 0) return;
-        setTimeout(function(){ safeTrackWhenReady(name, params, tries - 1); }, 300);
-      }
-      var pageMeta = {
-        page_type: "member",
-        page_language: document.body.getAttribute("data-page-language") || "",
-        page_path: window.location.pathname || "/",
-        member_name: "Hacienda Verde Niebla",
-        member_category: "lodging",
-        member_location: "choco-andino",
-        region: "andes",
-        experience_type: "nature"
-      };
-      safeTrackWhenReady("page_view_enhanced", pageMeta);
-
-      var scrollMarks = {25:false, 50:false, 75:false, 90:false};
-      function checkScrollDepth(){
-        var doc = document.documentElement;
-        var body = document.body;
-        var scrollTop = window.pageYOffset || doc.scrollTop || body.scrollTop || 0;
-        var height = Math.max(body.scrollHeight, doc.scrollHeight, body.offsetHeight, doc.offsetHeight, body.clientHeight, doc.clientHeight);
-        var viewport = window.innerHeight || doc.clientHeight || 0;
-        var percent = height <= viewport ? 100 : Math.round(((scrollTop + viewport) / height) * 100);
-        [25,50,75,90].forEach(function(mark){
-          if(!scrollMarks[mark] && percent >= mark){
-            scrollMarks[mark] = true;
-            safeTrack("scroll_depth", Object.assign({}, pageMeta, { scroll_percent: mark }));
-          }
-        });
-      }
-      window.addEventListener("scroll", checkScrollDepth, { passive: true });
-      window.addEventListener("load", checkScrollDepth);
-
-      document.addEventListener("click", function(e){
-        var el = e.target && e.target.closest ? e.target.closest("[data-analytics-event]") : null;
-        if(!el) return;
-        var params = Object.assign({}, pageMeta, {
-          cta_label: el.getAttribute("data-analytics-label") || (el.textContent || "").trim(),
-          cta_location: el.getAttribute("data-analytics-location") || "",
-          link_text: (el.textContent || "").trim(),
-          link_url: el.getAttribute("href") || "",
-          section_name: el.getAttribute("data-analytics-location") || ""
-        });
-        safeTrack(el.getAttribute("data-analytics-event"), params);
-      }, true);
-    })();
-  </script>
-
-  <script>
     (function(){
       function initCarousel(root){
         if(!root) return;

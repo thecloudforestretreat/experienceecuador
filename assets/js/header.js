@@ -41,7 +41,7 @@
     window.__eeSiteConfigLoading = true;
     var siteConfigScript = document.createElement("script");
     siteConfigScript.async = false;
-    siteConfigScript.src = "/assets/js/site-config.js?v=20261004at";
+    siteConfigScript.src = "/assets/js/site-config.js?v=20261004au";
     siteConfigScript.addEventListener("load", function () { window.__eeSiteConfigLoading = false; });
     siteConfigScript.addEventListener("error", function () { window.__eeSiteConfigLoading = false; });
     document.head.appendChild(siteConfigScript);
@@ -69,7 +69,7 @@
     window.__eeAttributionLoading = true;
     var attributionScript = document.createElement("script");
     attributionScript.async = true;
-    attributionScript.src = "/assets/js/attribution.js?v=20261004as";
+    attributionScript.src = "/assets/js/attribution.js?v=20261004au";
     document.head.appendChild(attributionScript);
   }
 
@@ -642,18 +642,9 @@
       : {};
     var data = eeAnalyticsCleanPayload(Object.assign({}, attribution, debug, payload || {}));
     try {
-      if (eventName.indexOf("partner_") === 0 && window.dataLayer && Array.isArray(window.dataLayer)) {
-        window.dataLayer.push(Object.assign({ event: eventName }, data));
-        return true;
-      }
-      if (typeof window.gtag === "function") {
-        window.gtag("event", eventName, data);
-        return true;
-      }
-      if (window.dataLayer && Array.isArray(window.dataLayer)) {
-        window.dataLayer.push(Object.assign({ event: eventName }, data));
-        return true;
-      }
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(Object.assign({ event: eventName }, data));
+      return true;
     } catch (e) {}
     return false;
   }

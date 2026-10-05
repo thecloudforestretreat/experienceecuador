@@ -211,8 +211,7 @@
   };
 
   window.dataLayer = window.dataLayer || [];
-  if (typeof window.gtag === "function") window.gtag("event", "traffic_attribution", eventParameters());
-  else window.dataLayer.push(Object.assign({ event: "traffic_attribution" }, eventParameters()));
+  window.dataLayer.push(Object.assign({ event: "traffic_attribution" }, eventParameters()));
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initializeDocument);
   else initializeDocument();

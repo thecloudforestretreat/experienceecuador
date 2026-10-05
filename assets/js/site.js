@@ -39,7 +39,7 @@
     window.__eeSiteConfigLoading=true;
     const siteConfigScript=document.createElement("script");
     siteConfigScript.async=false;
-    siteConfigScript.src="/assets/js/site-config.js?v=20261004at";
+    siteConfigScript.src="/assets/js/site-config.js?v=20261004au";
     siteConfigScript.addEventListener("load",()=>{window.__eeSiteConfigLoading=false;});
     siteConfigScript.addEventListener("error",()=>{window.__eeSiteConfigLoading=false;});
     document.head.appendChild(siteConfigScript);
@@ -48,7 +48,7 @@
     window.__eeHeaderLoading=true;
     const headerScript=document.createElement("script");
     headerScript.async=false;
-    headerScript.src="/assets/js/header.js?v=20261004at";
+    headerScript.src="/assets/js/header.js?v=20261004au";
     headerScript.addEventListener("load",()=>{window.__eeHeaderLoading=false;});
     headerScript.addEventListener("error",()=>{window.__eeHeaderLoading=false;});
     document.head.appendChild(headerScript);
@@ -68,7 +68,7 @@
     window.__eeAttributionLoading=true;
     const attributionScript=document.createElement("script");
     attributionScript.async=true;
-    attributionScript.src="/assets/js/attribution.js?v=20261004as";
+    attributionScript.src="/assets/js/attribution.js?v=20261004au";
     document.head.appendChild(attributionScript);
   }
   const ENDPOINT="https://script.google.com/macros/s/AKfycbw3VE2lIwy5cg_XqZmVVFBsA-dkXlLcDDiIRiPi6sW_8PWnP7yVdLLbh0xiV7I9tQXkqg/exec";
@@ -85,9 +85,7 @@
       ...(window.EEAttribution?.getEventParameters?.()||{}),
       ...extra
     };
-    if(event.startsWith("partner_")) window.dataLayer.push({event,...payload});
-    else if(typeof window.gtag==="function") window.gtag("event",event,payload);
-    else window.dataLayer.push({event,...payload});
+    window.dataLayer.push({event,...payload});
   };
   const capitalizeName=value=>String(value||"").trim().replace(
     /(^|[\s'’-])([a-záéíóúüñ])/giu,

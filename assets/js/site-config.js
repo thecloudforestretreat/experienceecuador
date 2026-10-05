@@ -529,8 +529,6 @@
 
     if (window.eeAnalytics && typeof window.eeAnalytics.send === "function") {
       window.eeAnalytics.send("whatsapp_click", payload);
-    } else if (typeof window.gtag === "function") {
-      window.gtag("event", "whatsapp_click", payload);
     } else {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push(Object.assign({ event: "whatsapp_click" }, payload));
