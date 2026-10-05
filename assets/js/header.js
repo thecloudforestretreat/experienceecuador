@@ -69,7 +69,7 @@
     window.__eeAttributionLoading = true;
     var attributionScript = document.createElement("script");
     attributionScript.async = true;
-    attributionScript.src = "/assets/js/attribution.js?v=20260922c";
+    attributionScript.src = "/assets/js/attribution.js?v=20261004as";
     document.head.appendChild(attributionScript);
   }
 
@@ -637,7 +637,10 @@
     var attribution = window.EEAttribution && window.EEAttribution.getEventParameters
       ? window.EEAttribution.getEventParameters()
       : {};
-    var data = eeAnalyticsCleanPayload(Object.assign({}, attribution, payload || {}));
+    var debug = window.EE_ENV && !window.EE_ENV.isProduction && window.EE_ENV.analyticsEnabled
+      ? { debug_mode: true }
+      : {};
+    var data = eeAnalyticsCleanPayload(Object.assign({}, attribution, debug, payload || {}));
     try {
       if (eventName.indexOf("partner_") === 0 && window.dataLayer && Array.isArray(window.dataLayer)) {
         window.dataLayer.push(Object.assign({ event: eventName }, data));

@@ -48,7 +48,7 @@
     window.__eeHeaderLoading=true;
     const headerScript=document.createElement("script");
     headerScript.async=false;
-    headerScript.src="/assets/js/header.js?v=20261003t";
+    headerScript.src="/assets/js/header.js?v=20261004as";
     headerScript.addEventListener("load",()=>{window.__eeHeaderLoading=false;});
     headerScript.addEventListener("error",()=>{window.__eeHeaderLoading=false;});
     document.head.appendChild(headerScript);
@@ -68,7 +68,7 @@
     window.__eeAttributionLoading=true;
     const attributionScript=document.createElement("script");
     attributionScript.async=true;
-    attributionScript.src="/assets/js/attribution.js?v=20260922c";
+    attributionScript.src="/assets/js/attribution.js?v=20261004as";
     document.head.appendChild(attributionScript);
   }
   const ENDPOINT="https://script.google.com/macros/s/AKfycbw3VE2lIwy5cg_XqZmVVFBsA-dkXlLcDDiIRiPi6sW_8PWnP7yVdLLbh0xiV7I9tQXkqg/exec";
@@ -81,6 +81,7 @@
       page_language:document.documentElement.lang,
       page_path:location.pathname,
       region:document.body.dataset.region||"ecuador",
+      ...(!IS_PRODUCTION&&ANALYTICS_ENABLED?{debug_mode:true}:{}),
       ...(window.EEAttribution?.getEventParameters?.()||{}),
       ...extra
     };

@@ -143,7 +143,7 @@
 
   function eventParameters() {
     var data = payload();
-    return {
+    var result = {
       first_touch_source: data.first_touch_source,
       first_touch_medium: data.first_touch_medium,
       first_touch_campaign: data.first_touch_campaign,
@@ -152,6 +152,10 @@
       last_touch_campaign: data.last_touch_campaign,
       first_landing_page: data.first_landing_page
     };
+    if (window.EE_ENV && !window.EE_ENV.isProduction && window.EE_ENV.analyticsEnabled) {
+      result.debug_mode = true;
+    }
+    return result;
   }
 
   function decoratePayload(target) {
