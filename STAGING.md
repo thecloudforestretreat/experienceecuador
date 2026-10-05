@@ -1220,3 +1220,23 @@ Local structural validation confirms one H1 and answer, five decision rows, six 
 The remaining pairs are Ecuador photography, Galápagos wildlife and bird photography and Chocó biodiversity. The two photography concepts and Chocó biodiversity remain verification-first and must not claim unapproved operators, prices, dates or availability.
 
 Post-deployment browser QA passed across all six Batch 71 pages on the custom staging domain at 1280 × 900 desktop and 390 × 844 mobile widths. Every route returns HTTP 200, loads Planning `20261004p71`, has one H1 and direct answer, five decision rows, six route steps, six visible FAQs, five localized WhatsApp actions, approved gold `rgb(242, 180, 65)` primary actions, complete hero imagery, no broken images, no clipped controls, no page-level overflow and no browser errors. GTM remains disabled outside analytics debug mode, and staging returns `x-robots-tag: noindex, nofollow, noarchive, nosnippet`. The representative immutable route also passed at both widths. The immutable deployment is `https://11d44909.experienceecuador-staging.pages.dev` from content commit `17bc557`; the custom staging domain serves the same release.
+
+### Batch 72: final biodiversity and photography research set
+
+Prepared for staging on 2026-10-04:
+
+- `/tours/ecuador-choco-biodiversity/` and `/es/tours/biodiversidad-choco-ecuador/`
+- `/tours/ecuador-photo-tour/` and `/es/tours/tour-fotografia-ecuador/`
+- `/tours/galapagos-wildlife-bird-photography/` and `/es/tours/galapagos-fotografia-fauna-aves/`
+
+This final page-level batch retains all three pairs as verification-first research frameworks. Chocó biodiversity organizes seven to nine days by elevation, repeat field windows, reserve access and current local expertise. Mainland photography organizes eight to ten days around light, habitat, equipment, fewer bases and ethical wildlife practice. Galápagos photography retains an eight-day San Cristóbal, Isabela and Santa Cruz framework controlled by park authorization, inter-island transport, baggage, marine conditions and naturalist guidance. None claims a confirmed operator, departure, reserve or visitor-site access, accommodation, vessel, price, availability, wildlife sighting or photograph.
+
+Every page now has one H1 and direct answer, five complete decision rows, six route steps, six matching visible and structured FAQs and a five-item `ItemList`. Chocó and mainland photography gained a fifth verification decision covering specialist/reserve fit and ethical field practice. The FAQs cover duration, prelaunch status, wildlife uncertainty, access or ethics, equipment or mobility and the facts required before a quote. No page contains `Offer` schema. Metadata, Article descriptions and modification dates are current, and all main-content links carry explicit event, label and location attribution.
+
+All six pages use Global plus Planning `20261004p72`. Semantic route classes in the shared Planning bundle now supply every hero image, eliminating the last inline hero styles in this set. Approved navy, blue and gold remain the interface palette, with gold `#f2b441` primary actions and white-blue secondary actions. The centralized injected configuration supplies five localized WhatsApp prompts for each route, while `site.js` and `header.js` load `site-config.js` with key `20261004ar`.
+
+Eight bilingual authority gateways now include all three pairs. Repository-wide inlink counts are fifteen sources per Chocó biodiversity page, seventeen per mainland photography page and eighteen per Galápagos photography page. The Chocó entity path connects the regional guide, Mindo guide, birdwatching itinerary, lodge guide and Mindo Bird Watching specialist profile. Sitemap dates are current for the six targets and sixteen gateway pages.
+
+Local validation confirms one H1 and answer, five decision rows, six route steps, six visible/schema-matched FAQs, five structured research entities, zero `Offer` assertions, zero unlabeled main-content links, zero inline styles, valid JSON-LD and JavaScript, balanced CSS, resolved local references and 216 canonical sitemap URLs. Browser QA passed across all twelve desktop/mobile combinations at 1280 × 900 and 390 × 844 with complete hero imagery, balanced grids, five localized WhatsApp actions, approved gold primary actions and no broken images, clipped controls, overflow, GTM load or browser errors.
+
+This batch completes the page-level upgrade program at 108 bilingual pairs / 216 canonical pages (100%). This does not authorize production release or indexing. The next release gate is a full staging crawl, source-of-truth reconciliation, analytics/tag verification and correction of any crawl findings before final approval.
