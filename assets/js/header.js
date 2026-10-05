@@ -41,7 +41,7 @@
     window.__eeSiteConfigLoading = true;
     var siteConfigScript = document.createElement("script");
     siteConfigScript.async = false;
-    siteConfigScript.src = "/assets/js/site-config.js?v=20261004ar";
+    siteConfigScript.src = "/assets/js/site-config.js?v=20261004at";
     siteConfigScript.addEventListener("load", function () { window.__eeSiteConfigLoading = false; });
     siteConfigScript.addEventListener("error", function () { window.__eeSiteConfigLoading = false; });
     document.head.appendChild(siteConfigScript);

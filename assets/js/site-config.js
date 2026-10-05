@@ -461,7 +461,17 @@
       current.rel = "stylesheet";
       document.head.appendChild(current);
     }
-    current.href = "/assets/css/" + filename + "?v=" + (PAGE_CLUSTER_VERSIONS[cluster] || "20261002e");
+    var expectedPath = "/assets/css/" + filename;
+    var currentPath = "";
+    if (current.getAttribute("href")) {
+      try { currentPath = new URL(current.href, window.location.href).pathname; }
+      catch (error) { currentPath = current.getAttribute("href").split("?")[0]; }
+    }
+    // Keep an already-correct render-blocking stylesheet in place. Reassigning
+    // the same file after first paint triggers a duplicate fetch and layout shift.
+    if (currentPath !== expectedPath) {
+      current.href = expectedPath + "?v=" + (PAGE_CLUSTER_VERSIONS[cluster] || "20261002e");
+    }
     current.dataset.cluster = cluster;
     if (body) {
       body.classList.add("eeClusterPage", "eeCluster--" + cluster);
