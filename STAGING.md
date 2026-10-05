@@ -1269,3 +1269,18 @@ The definitive rendered crawl covers 220 canonical sitemap URLs, including the l
 ### Release decision
 
 The technical, content, bilingual, internal-authority and analytics staging gates pass. The remaining release steps are: obtain visual approval, promote the approved commit to production, run the production crawl, then submit the production sitemap and selectively request indexing. Do not remove the staging `X-Robots-Tag` protection or index staging.
+
+## Production release — 2026-10-05
+
+The complete staging release was fast-forwarded to `main` and published as production commit `3aee789`. The staging-only `_headers` file was removed from the production release so the public site does not inherit the staging `X-Robots-Tag` directive. `robots.txt` continues to reference `https://experienceecuador.com/sitemap.xml`.
+
+- The live sitemap contains 220 canonical URLs.
+- A full HTTP production crawl returned HTTP 200 for 220 of 220 sitemap URLs.
+- The structured production release audit found zero failures across HTTP status, redirects, title, meta description, H1, canonical, language, `x-default` hreflang, robots indexability, JSON-LD presence, shared `site.js` injection and page-cluster CSS.
+- Representative English and Spanish pages, Contact, Trip Builder, Partner application, the spectacled-bear guide and the centralized `site-config.js` asset return HTTP 200.
+- The legacy `/es/experiencias/avisamiento/mindo/` route returns a permanent redirect to `/es/experiencias/avistamiento/mindo/`.
+- The live API health endpoint returns HTTP 200, the Contact endpoint is available for POST, and the Partner application configuration returns the production Google Apps Script URL plus the approved Turnstile host list.
+- Google Search Console accepted a fresh submission of `/sitemap.xml` on 2026-10-05. Its previously displayed discovered-page total of 201 will update only after Google processes the new sitemap.
+- The production crawl export is stored at `audits/experienceecuador-production-release-crawl-2026-10-05.csv`; the reusable crawler is `scripts/live-release-audit.mjs`.
+
+Live form submission testing remains pending because each test creates an external inbox, spreadsheet, subscription or email side effect and the protected forms require valid test identity data and, where applicable, a user-completed Turnstile challenge.
