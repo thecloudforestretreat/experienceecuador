@@ -1195,7 +1195,7 @@ function createPill(item, type) {
       const maxRegions = getMaxRegionsForDays(days);
 
       if (selectedRegions.length === 0) {
-        els.regionHint.textContent = "Select at least one region. Trips of 10 days or less work best with up to 3 regions. Trips of 11+ days can include up to 4 regions.";
+        els.regionHint.textContent = "Select at least one region. Start with one or two regions. The tool allows up to 3 for trips of 10 days or less, but transfer time may make fewer regions more practical. Trips of 11+ days can include up to 4 regions.";
         return;
       }
 
@@ -1212,7 +1212,7 @@ function createPill(item, type) {
       if (selectedRegions.length > maxRegions) {
         hints.push("Please select no more than 4 regions for this trip.");
       } else if (days <= 10) {
-        hints.push("Trips of 10 days or less work best with up to 3 regions.");
+        hints.push("Start with one or two regions. The tool allows up to 3 for trips of 10 days or less, but transfer time may make fewer regions more practical.");
       } else {
         hints.push("Trips of 11+ days can include up to 4 regions, but expect more transfers.");
       }
@@ -1443,7 +1443,7 @@ function regionName(id){
 
       const disclaimer = document.createElement('div');
       disclaimer.className = "hint";
-      disclaimer.innerHTML = "<strong>Note:</strong> This is a suggested itinerary generated from your selections. Times and logistics can vary by season, traffic, and exact pickup locations.";
+      disclaimer.innerHTML = "<strong>Planning draft:</strong> Activity order and durations are estimates, not a timed schedule or confirmed availability. Check locations, transfers, opening times and current conditions with the responsible providers before booking.";
       wrap.appendChild(disclaimer);
 
       plan.forEach(d => {
@@ -1573,6 +1573,10 @@ function regionName(id){
       return "Part";
     }
 
+    function planningBlockLabel(block){
+      return Number(block.duration_hours) >= 6 ? "Full-day planning idea" : "Activity idea";
+    }
+
     function renderSlot(label, block, regionId){
       const div = document.createElement('div');
       div.className = "slot";
@@ -1602,7 +1606,7 @@ function regionName(id){
       })();
 
       div.innerHTML = `
-        <h4>${label}</h4>
+        <h4>${planningBlockLabel(block)}</h4>
         <div class="title">${block.title}</div>
         <p class="meta">${block.summary || ""}${metaLine ? "<br><span class='meta-line'>" + metaLine + "</span>" : ""}</p>
         ${noteHtml}
@@ -1637,6 +1641,7 @@ function regionName(id){
       lines.push(`Experiences: ${Array.from(state.selectedExperienceIds).map(experienceName).join(", ") || "N/A"}`);
       lines.push("");
       lines.push("Suggested itinerary");
+      lines.push("Planning draft: activity order and durations are estimates, not confirmed times or availability. Verify locations, transfers and current operating details before booking.");
       lines.push("");
 
       plan.forEach(d => {
@@ -1653,7 +1658,7 @@ function regionName(id){
           });
 
           ordered.forEach(b => {
-            const when = b.time_of_day ? capitalize(b.time_of_day) : "Day";
+            const when = planningBlockLabel(b);
             const dur = b.duration_hours ? ` (${b.duration_hours}h)` : "";
             const loc = b.location_id ? locationName(d.region_id, b.location_id) : "";
             const metaBits = [];

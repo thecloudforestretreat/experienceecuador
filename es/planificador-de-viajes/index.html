@@ -1206,7 +1206,7 @@ function createPill(item, type) {
       const maxRegions = getMaxRegionsForDays(days);
 
       if (selectedRegions.length === 0) {
-        els.regionHint.textContent = "Selecciona al menos una región. Los viajes de 10 días o menos funcionan mejor con hasta 3 regiones. Los viajes de 11+ días pueden incluir hasta 4 regiones.";
+        els.regionHint.textContent = "Selecciona al menos una región. Empieza con una o dos regiones. La herramienta permite hasta 3 para viajes de 10 días o menos, pero los traslados pueden hacer más práctica una ruta corta. Los viajes de 11+ días pueden incluir hasta 4 regiones.";
         return;
       }
 
@@ -1223,7 +1223,7 @@ function createPill(item, type) {
       if (selectedRegions.length > maxRegions) {
         hints.push("Selecciona no más de 4 regiones para este viaje.");
       } else if (days <= 10) {
-        hints.push("Los viajes de 10 días o menos funcionan mejor con hasta 3 regiones.");
+        hints.push("Empieza con una o dos regiones. La herramienta permite hasta 3 para viajes de 10 días o menos, pero los traslados pueden hacer más práctica una ruta corta.");
       } else {
         hints.push("Los viajes de 11+ días pueden incluir hasta 4 regiones, pero espera más traslados.");
       }
@@ -1467,7 +1467,7 @@ function regionName(id){
 
       const disclaimer = document.createElement('div');
       disclaimer.className = "hint";
-      disclaimer.innerHTML = "<strong>Nota:</strong> Este es un itinerario sugerido generado según tus selecciones. Los tiempos y la logística pueden variar según la temporada, el tráfico y los puntos exactos de recogida.";
+      disclaimer.innerHTML = "<strong>Borrador de planificación:</strong> El orden y la duración de las actividades son estimaciones, no horarios ni disponibilidad confirmados. Revisa ubicaciones, traslados, horarios de atención y condiciones vigentes con los proveedores antes de reservar.";
       wrap.appendChild(disclaimer);
 
       plan.forEach(d => {
@@ -1597,6 +1597,10 @@ function regionName(id){
       return "Parte";
     }
 
+    function planningBlockLabel(block){
+      return Number(block.duration_hours) >= 6 ? "Idea para un día completo" : "Idea de actividad";
+    }
+
     function renderSlot(label, block, regionId){
       const div = document.createElement('div');
       div.className = "slot";
@@ -1626,7 +1630,7 @@ function regionName(id){
       })();
 
       div.innerHTML = `
-        <h4>${label}</h4>
+        <h4>${planningBlockLabel(block)}</h4>
         <div class="title">${blockTitle(block)}</div>
         <p class="meta">${blockSummary(block)}${metaLine ? "<br><span class='meta-line'>" + metaLine + "</span>" : ""}</p>
         ${noteHtml}
@@ -1663,6 +1667,7 @@ function regionName(id){
       lines.push(`Experiencias: ${Array.from(state.selectedExperienceIds).map(experienceName).join(", ") || "N/A"}`);
       lines.push("");
       lines.push("Itinerario sugerido");
+      lines.push("Borrador de planificación: el orden y la duración son estimaciones, no horarios ni disponibilidad confirmados. Verifica ubicaciones, traslados y condiciones vigentes antes de reservar.");
       lines.push("");
 
       plan.forEach(d => {
@@ -1679,7 +1684,7 @@ function regionName(id){
           });
 
           ordered.forEach(b => {
-            const when = b.time_of_day ? capitalizeEs(b.time_of_day) : "Día";
+            const when = planningBlockLabel(b);
             const dur = b.duration_hours ? ` (${b.duration_hours}h)` : "";
             const loc = b.location_id ? locationName(d.region_id, b.location_id) : "";
             const metaBits = [];
