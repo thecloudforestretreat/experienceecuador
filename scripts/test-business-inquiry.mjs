@@ -41,3 +41,10 @@ assert.equal(run(delivery).ok,true);assert.equal(storedRows.length,1);assert.equ
 assert.equal(run(delivery).ok,true);assert.equal(storedRows.length,1);
 assert.equal(run({...delivery,turnstile_verified:false}).ok,false);
 console.log('PASS: receiver gateway authentication, fixed destination, formula neutralization, 16-column order, duplicate delivery protection, verification requirement.');
+
+for (const route of ['explore/index.html','es/explora/index.html']) {
+  const html=fs.readFileSync(new URL('../'+route,import.meta.url),'utf8');
+  for(const type of ['Learn more','Collaborate','Website review']) assert.ok(html.includes('<option value="'+type+'">'),route+' is missing a selectable '+type+' option');
+  assert.doesNotMatch(html,/<\/option\s+[^>]+>/i);
+}
+console.log('PASS: all three inquiry types have valid selectable option elements on both pages.');

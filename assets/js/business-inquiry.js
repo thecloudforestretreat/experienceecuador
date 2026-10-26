@@ -30,7 +30,7 @@
   const invalidate = message => {
     token = '';
     submit.disabled = true;
-    setStatus(message, true);
+    if (!received) setStatus(message, true);
   };
   async function init() {
     try {
