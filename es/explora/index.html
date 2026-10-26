@@ -61,6 +61,7 @@
   }
   </script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "@id": "https://experienceecuador.com/es/explora/#faq", "mainEntity": [{"@type": "Question", "name": "¿Los seis sitios pertenecen a la misma empresa?", "acceptedAnswer": {"@type": "Answer", "text": "Se presentan como una red local afiliada. Cada sitio tiene su propia función, contenido, oferta y ruta directa de contacto o reserva."}}, {"@type": "Question", "name": "¿Dónde debo empezar a planificar Ecuador?", "acceptedAnswer": {"@type": "Answer", "text": "Empieza con Experience Ecuador para comparar regiones, tiempos, rutas y estilos de viaje. Pasa a un sitio especialista cuando necesites conocimiento local más profundo."}}, {"@type": "Question", "name": "¿Seguir un enlace crea una reserva?", "acceptedAnswer": {"@type": "Answer", "text": "No. Una reserva existe cuando el proveedor responsable confirma servicio, disponibilidad, precio, inclusiones, pago y condiciones."}}, {"@type": "Question", "name": "¿Qué sitio es mejor para observar aves?", "acceptedAnswer": {"@type": "Answer", "text": "Mindo Bird Watching es el embudo especialista en avistamiento de aves. Experience Ecuador aporta el contexto nacional y la planificación de ruta alrededor de esa experiencia."}}, {"@type": "Question", "name": "¿Qué sitio debo usar para la Amazonía?", "acceptedAnswer": {"@type": "Answer", "text": "Usa Experience the Amazon para profundizar en la Amazonía después de ubicar el bloque de selva dentro del itinerario nacional con Experience Ecuador."}}, {"@type": "Question", "name": "¿Se rastrean los referidos y relaciones comerciales?", "acceptedAnswer": {"@type": "Answer", "text": "Los clics salientes pueden conservar contexto de origen y atribución para entender referidos. El sitio de destino aplica sus propias prácticas de privacidad y reserva."}}]}, {"@type": "ItemList", "@id": "https://experienceecuador.com/es/explora/#decision-list", "name": "Elegir la ruta especialista de Ecuador", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Investigación nacional"}, {"@type": "ListItem", "position": 2, "name": "Aves y vida silvestre"}, {"@type": "ListItem", "position": 3, "name": "Planificación de la Amazonía"}, {"@type": "ListItem", "position": 4, "name": "Actividades en Mindo y Chocó"}, {"@type": "ListItem", "position": 5, "name": "Senderos o estadía privada"}]}]}</script>
+  <link rel="stylesheet" href="/assets/css/business-inquiry.css?v=20261026a">
 </head>
 <body class="eeClusterPage eeCluster--discovery networkFoundationPage" data-page-type="affiliate_hub" data-page-language="es" data-topic="ecuador-network" data-page-cluster="discovery" data-funnel-stage="discovery">
   <div id="siteHeader" data-current-lang="es"></div>
@@ -77,6 +78,7 @@
           <div class="sectionKicker">Nuestras marcas afiliadas</div>
           <h1 class="exploreTitle" id="explore-title">Explora Más de Ecuador</h1>
           <p class="exploreLead">Descubre una red local dedicada a la vida silvestre, los bosques nublados, la Amazonía, los senderos, los tours y las estadías tranquilas en la montaña. Elige la experiencia para tu próxima aventura.</p>
+          <div class="networkActions" lang="en"><a class="btn btnPrimary" href="#affiliate-title">Explore our experiences</a><a class="btn btnGhost" href="#business-inquiry">Get in touch</a></div>
         </div>
       </div>
     </section>
@@ -129,6 +131,30 @@
       </div>
     </section>
 
+    
+<section class="networkSection businessInquiry" id="business-inquiry" lang="en" aria-labelledby="inquiry-title">
+  <div class="networkSectionHead"><span class="sectionKicker">Get in touch</span><h2 id="inquiry-title">What would you like to explore?</h2><p>Ask about an experience, suggest a collaboration, or tell us about a website you’d like reviewed.</p></div>
+  <form id="businessInquiryForm" action="/api/business-inquiry" method="post">
+    <p>Fields marked * are required.</p>
+    <div class="inquiryNames">
+      <label>First name *<input name="first_name" autocomplete="given-name" autocapitalize="words" maxlength="100" required></label>
+      <label>Last name *<input name="last_name" autocomplete="family-name" autocapitalize="words" maxlength="100" required></label>
+    </div>
+    <label>Email *<input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+    <label>I’m interested in… *<select name="inquiry_type" required><option value="">Choose an option</option value="Learn more">Learning more / planning a visit</option><option value="Collaborate">Collaborating</option><option value="Website review">Reviewing my website</option></select></label>
+    <fieldset data-inquiry-types="Collaborate,Website review" hidden disabled><legend>Your business</legend><label>Organization<input name="organization" autocomplete="organization" maxlength="200"></label><label>Website URL <span id="website-required"></span><input name="website_url" type="url" placeholder="https://example.com" maxlength="2048" aria-describedby="website-help"></label><p id="website-help">Include https:// at the start. Required for a website review.</p></fieldset>
+    <fieldset data-inquiry-types="Learn more" hidden disabled><legend>Your visit</legend><label>Experience or destination<input name="experience" maxlength="200"></label><label>Travel dates (optional)<input name="travel_dates" placeholder="Approximate dates are fine" maxlength="200"></label></fieldset>
+    <fieldset data-inquiry-types="Website review" hidden disabled><legend>Your website</legend><label>What would you like to improve?<textarea name="improvement_goals" rows="3" maxlength="2000"></textarea></label></fieldset>
+    <label>Message *<textarea name="message" rows="5" minlength="10" maxlength="5000" required></textarea></label>
+    <div class="inquiryTrap" aria-hidden="true"><label>Leave this empty<input name="company_fax" tabindex="-1" autocomplete="off"></label></div>
+    <p>We’ll use your details to respond to this inquiry. Read our <a href="/privacy-policy/">privacy policy</a>. Sending an inquiry does not create a booking.</p>
+    <div id="inquiry-turnstile"></div>
+    <p id="inquiry-status" role="status" aria-live="polite">Loading secure verification…</p>
+    <button class="btn btnPrimary" type="submit" disabled>Send inquiry</button>
+    <noscript>Please enable JavaScript to use this secure form, or visit our <a href="/contact/">contact page</a>.</noscript>
+  </form>
+</section>
+
     <section class="networkFaq"><div class="networkSectionHead"><span class="sectionKicker">Preguntas frecuentes</span><h2>Preguntas sobre la red afiliada</h2></div><div class="networkFaqList"><details data-analytics-event="faq_expand" data-analytics-label="¿Los seis sitios pertenecen a la misma empresa?" data-analytics-location="faq"><summary>¿Los seis sitios pertenecen a la misma empresa?</summary><p>Se presentan como una red local afiliada. Cada sitio tiene su propia función, contenido, oferta y ruta directa de contacto o reserva.</p></details><details data-analytics-event="faq_expand" data-analytics-label="¿Dónde debo empezar a planificar Ecuador?" data-analytics-location="faq"><summary>¿Dónde debo empezar a planificar Ecuador?</summary><p>Empieza con Experience Ecuador para comparar regiones, tiempos, rutas y estilos de viaje. Pasa a un sitio especialista cuando necesites conocimiento local más profundo.</p></details><details data-analytics-event="faq_expand" data-analytics-label="¿Seguir un enlace crea una reserva?" data-analytics-location="faq"><summary>¿Seguir un enlace crea una reserva?</summary><p>No. Una reserva existe cuando el proveedor responsable confirma servicio, disponibilidad, precio, inclusiones, pago y condiciones.</p></details><details data-analytics-event="faq_expand" data-analytics-label="¿Qué sitio es mejor para observar aves?" data-analytics-location="faq"><summary>¿Qué sitio es mejor para observar aves?</summary><p>Mindo Bird Watching es el embudo especialista en avistamiento de aves. Experience Ecuador aporta el contexto nacional y la planificación de ruta alrededor de esa experiencia.</p></details><details data-analytics-event="faq_expand" data-analytics-label="¿Qué sitio debo usar para la Amazonía?" data-analytics-location="faq"><summary>¿Qué sitio debo usar para la Amazonía?</summary><p>Usa Experience the Amazon para profundizar en la Amazonía después de ubicar el bloque de selva dentro del itinerario nacional con Experience Ecuador.</p></details><details data-analytics-event="faq_expand" data-analytics-label="¿Se rastrean los referidos y relaciones comerciales?" data-analytics-location="faq"><summary>¿Se rastrean los referidos y relaciones comerciales?</summary><p>Los clics salientes pueden conservar contexto de origen y atribución para entender referidos. El sitio de destino aplica sus propias prácticas de privacidad y reserva.</p></details></div></section>
 </main>
 
@@ -152,5 +178,6 @@
     })();
   </script>
   <script src="/assets/js/site.js?v=20261004au"></script>
+  <script src="/assets/js/business-inquiry.js?v=20261026a" defer></script>
 </body>
 </html>
