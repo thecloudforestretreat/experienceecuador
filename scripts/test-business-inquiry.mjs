@@ -20,3 +20,24 @@ globalThis.fetch=async(url)=>String(url).includes('siteverify')?Response.json({s
 assert.equal((await onRequest({request:req({...base,turnstile_token:'test'}),env})).status,502);
 globalThis.fetch=original;
 console.log('PASS: name normalization, required fields, conditional URL, size limits, honeypot, origin checks, missing/failed/wrong-host/wrong-action Turnstile, successful save and failed save.');
+
+// Exercise the Apps Script receiver independently of Google with test doubles.
+const vm=await import('node:vm');
+const receiver=fs.readFileSync(new URL('../deployment/business-inquiries/Code.gs',import.meta.url),'utf8');
+let storedRows=[];
+const context={
+  ContentService:{MimeType:{JSON:'json'},createTextOutput:text=>({text,setMimeType(){return this;}})},
+  PropertiesService:{getScriptProperties:()=>({getProperty:()=> 'mock-secret'})},
+  LockService:{getScriptLock:()=>({waitLock(){},hasLock:()=>true,releaseLock(){}})},
+  SpreadsheetApp:{openById:id=>{assert.equal(id,'182aFZzuQA7Vicbh0GY5hdvicrp4caxKsYmRRfZ_BgTc');return {getSheetByName:name=>{assert.equal(name,'Inquiries');return {
+    getRange:(...args)=>({getValue:()=> 'Inquiry ID',createTextFinder:id=>({matchEntireCell(){return this;},findNext:()=>storedRows.find(r=>r[0]===id)}),setNumberFormat(){return this;},setValues:rows=>{storedRows.push(...rows);}}),getLastRow:()=>storedRows.length+1
+  };}};},flush(){}}
+};
+vm.createContext(context);vm.runInContext(receiver,context);
+const delivery={...base,inquiry_id:crypto.randomUUID(),submitted_at:new Date().toISOString(),sheet_id:'182aFZzuQA7Vicbh0GY5hdvicrp4caxKsYmRRfZ_BgTc',turnstile_verified:true,gateway_secret:'mock-secret',message:'=IMPORTXML("https://example.com","//a")'};
+const run=p=>JSON.parse(context.doPost({postData:{contents:JSON.stringify(p)}}).text);
+assert.equal(run({...delivery,gateway_secret:'wrong'}).ok,false);assert.equal(storedRows.length,0);
+assert.equal(run(delivery).ok,true);assert.equal(storedRows.length,1);assert.equal(storedRows[0][11].startsWith("'="),true);assert.equal(storedRows[0].length,16);
+assert.equal(run(delivery).ok,true);assert.equal(storedRows.length,1);
+assert.equal(run({...delivery,turnstile_verified:false}).ok,false);
+console.log('PASS: receiver gateway authentication, fixed destination, formula neutralization, 16-column order, duplicate delivery protection, verification requirement.');
