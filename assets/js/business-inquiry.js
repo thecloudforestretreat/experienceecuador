@@ -37,18 +37,27 @@
       const response = await fetch('/api/business-inquiry', {cache:'no-store'});
       const config = await response.json();
       if (!response.ok || !config.ready || !config.sitekey) throw new Error();
-      window.eeInquiryTurnstileReady = () => {
-        widget = window.turnstile.render('#inquiry-turnstile', {
-          sitekey:config.sitekey, action:'business_inquiry', language:'en', theme:'light',
-          callback: value => {token=value; submit.disabled=busy; if (!received) setStatus('Ready to send.');},
-          'expired-callback': () => invalidate('Verification expired. Please verify again.'),
-          'error-callback': () => invalidate('Verification could not load. Please retry or reload this page.')
-        });
+      const container = document.getElementById('inquiry-turnstile');
+      window.eeInquiryVerified = value => {
+        token=value; submit.disabled=busy;
+        if (!received) setStatus('Ready to send.');
       };
+      window.eeInquiryExpired = () => invalidate('Verification expired. Please verify again.');
+      window.eeInquiryError = () => invalidate('Verification could not load. Please reload this page.');
+      container.classList.add('cf-turnstile');
+      container.dataset.sitekey=config.sitekey;
+      container.dataset.action='business_inquiry';
+      container.dataset.language='en';
+      container.dataset.theme='light';
+      container.dataset.callback='eeInquiryVerified';
+      container.dataset.expiredCallback='eeInquiryExpired';
+      container.dataset.errorCallback='eeInquiryError';
+      widget='#inquiry-turnstile';
       const script = document.createElement('script');
-      script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=eeInquiryTurnstileReady&render=explicit';
+      script.src='https://challenges.cloudflare.com/turnstile/v0/api.js';
       script.async=true;
-      script.onerror=()=>invalidate('Verification could not load. Please reload this page.');
+      script.defer=true;
+      script.onerror=window.eeInquiryError;
       document.head.appendChild(script);
     } catch { invalidate('The inquiry form is temporarily unavailable. Please use our contact page.'); }
   }
