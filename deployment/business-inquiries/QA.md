@@ -15,3 +15,13 @@
 - Evidence: local screenshots `outputs/ee-business-inquiry-live-success.png` and `outputs/ee-business-inquiry-fields-qa.png` in the task workspace. No credentials or verification tokens are in the repository.
 
 QA rows are explicitly marked `[QA TEST — IGNORE]` and use `qa@example.com`; they are not customer leads.
+
+## Final live verification
+
+- Final code commit: `542137ca`; Cloudflare production deployment `292e1803` succeeded.
+- Corrected malformed placeholder closing markup that prevented the `Learn more` option from being selectable. The static QA script now verifies all three valid option elements on both routes.
+- Saved confirmations are preserved if a subsequent Turnstile refresh expires or fails.
+- Live Spanish-route learning-more submission passed: reference `b6118cd0-c465-4c5b-a42f-d5a4f5802265`, verified in `Inquiries` row 4. Stored fields include `José`, `De La Cruz`, the test destination and travel dates, source `/es/explora/`, form language `en`, and Turnstile verified `Yes`.
+- The final browser check confirms the restored learning-more path is selectable and reveals its destination/date fields. Collaboration reveals organization and optional website; website review requires the URL and reveals improvement goals.
+- Three synthetic QA rows remain clearly labeled in their message or organization; no customer submission was used for testing.
+- Screenshot: `outputs/ee-business-inquiry-spanish-route-success.png` in the task workspace.
