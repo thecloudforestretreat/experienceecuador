@@ -50,3 +50,12 @@ QA rows are explicitly marked `[QA TEST — IGNORE]` and use `qa@example.com`; t
 - Deployed receiver version 4, preserving the endpoint, gateway configuration, permissions and queue behavior. Only the brand list and signature layout changed in the live source.
 - Live form QA reference `603a5796-bcc9-4f98-bcec-c9bd2a4055b6`, marked `[QA TEST — IGNORE]`, saved in row 9. Gmail exact-reference search returned two confirmations, one admin and one guest. Inspected both signatures and verified all seven linked brands. All seven logo images loaded in the received guest email.
 - Screenshot: `outputs/ee-seven-brand-signature.png` in the task workspace. Code commit `81b1ff39`.
+
+## Approved compact signature published — 2026-10-26
+
+- Owner approved the revised emailed preview and explicitly requested final publication.
+- Experience Ecuador sits beside team details; six affiliated brands form a three-column, two-row grid. Affiliate logo boxes are 48px with equal image and caption row heights. All seven brands remain linked in HTML and plain text.
+- Desktop preview visually checked. At 390px, page width equals viewport and all affiliate logos render at 48×48 without horizontal overflow. Owner accepted the visual preview.
+- Automated inquiry and email suite passed; no changes to intake, authorization, recipient routing or delivery queue logic.
+- Existing Apps Script receiver successfully updated to version 5 at 8:58 PM America/New_York. Deployment URL and private gateway configuration retained. Both recipient emails share the published signature function.
+- Approved source pushed as `bca9dd15`. Deployment success screenshot: `outputs/ee-compact-signature-live-deployment.png`; approved layout screenshot: `outputs/ee-signature-compact.png` in task workspace.
