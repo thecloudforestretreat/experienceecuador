@@ -8,6 +8,12 @@
   let token = '';
   let busy = false;
   let received = false;
+  let submissionId = '';
+  let lastFingerprint = '';
+  let verificationTimer;
+  const retry = document.createElement('button');
+  retry.type='button'; retry.textContent='Retry verification'; retry.hidden=true;
+  status.after(retry);
   const setStatus = (message, error = false) => {
     status.textContent = message;
     status.dataset.error = String(error);
@@ -30,7 +36,8 @@
   const invalidate = message => {
     token = '';
     submit.disabled = true;
-    if (!received) setStatus(message, true);
+    clearTimeout(verificationTimer);
+    if (!received) {setStatus(message, true); retry.hidden=false;}
   };
   async function init() {
     try {
@@ -39,11 +46,13 @@
       if (!response.ok || !config.ready || !config.sitekey) throw new Error();
       const container = document.getElementById('inquiry-turnstile');
       window.eeInquiryVerified = value => {
+        clearTimeout(verificationTimer); retry.hidden=true;
         token=value; submit.disabled=busy;
         if (!received) setStatus('Ready to send.');
       };
       window.eeInquiryExpired = () => invalidate('Verification expired. Please verify again.');
-      window.eeInquiryError = () => invalidate('Verification could not load. Please reload this page.');
+      window.eeInquiryError = () => invalidate('Verification could not load. Please retry below.');
+      window.eeInquiryUnsupported = () => invalidate('Your browser could not complete verification. Please try another browser or use our contact page.');
       container.classList.add('cf-turnstile');
       container.dataset.sitekey=config.sitekey;
       container.dataset.action='business_inquiry';
@@ -52,6 +61,7 @@
       container.dataset.callback='eeInquiryVerified';
       container.dataset.expiredCallback='eeInquiryExpired';
       container.dataset.errorCallback='eeInquiryError';
+      container.dataset.unsupportedCallback='eeInquiryUnsupported';
       widget='#inquiry-turnstile';
       const script = document.createElement('script');
       script.src='https://challenges.cloudflare.com/turnstile/v0/api.js';
@@ -59,8 +69,17 @@
       script.defer=true;
       script.onerror=window.eeInquiryError;
       document.head.appendChild(script);
+      verificationTimer=setTimeout(()=>invalidate('Verification is taking longer than expected. Please retry below.'),30000);
     } catch { invalidate('The inquiry form is temporarily unavailable. Please use our contact page.'); }
   }
+  retry.addEventListener('click',()=>{
+    if (busy) return;
+    retry.hidden=true; setStatus('Loading secure verification…');
+    if (window.turnstile && widget !== undefined) {
+      window.turnstile.reset(widget);
+      verificationTimer=setTimeout(()=>invalidate('Verification is taking longer than expected. Please retry below.'),30000);
+    } else {init();}
+  });
   form.addEventListener('submit', async event => {
     event.preventDefault();
     if (busy) return;
@@ -72,11 +91,15 @@
     const payload=Object.fromEntries(new FormData(form));
     payload.turnstile_token=token;
     payload.source_page=location.pathname;
+    const fields=['first_name','last_name','email','inquiry_type','organization','website_url','experience','travel_dates','improvement_goals','message','source_page'];
+    const fingerprint=JSON.stringify(fields.map(key=>payload[key] || ''));
+    if (!submissionId || fingerprint!==lastFingerprint) {submissionId=crypto.randomUUID();lastFingerprint=fingerprint;}
+    payload.submission_id=submissionId;
     try {
       const response=await fetch('/api/business-inquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       const result=await response.json();
       if (!response.ok || result.ok !== true) throw new Error(result.message || 'Your inquiry could not be saved. Please try again.');
-      received=true; form.reset(); updateFields();
+      received=true; submissionId=''; lastFingerprint=''; form.reset(); updateFields();
       setStatus('Thank you. Your inquiry has been received. Reference: '+result.inquiry_id);
       window.dataLayer?.push({event:'business_inquiry_success',inquiry_type:payload.inquiry_type,form_language:'en'});
     } catch(error) {setStatus(error.message || 'Your inquiry could not be saved. Please try again.',true);}
