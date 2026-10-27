@@ -36,13 +36,14 @@ export async function onRequest({request,env}) {
     const body=await request.text(); if(body.length>18000) return json({ok:false,message:'Inquiry is too large.'},413);
     payload=JSON.parse(body); fields=validate(payload);
   } catch(error) {return json({ok:false,message:error.message || 'Invalid inquiry.'},400);}
+  if(payload.submission_id != null && (typeof payload.submission_id!=='string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(payload.submission_id))) return json({ok:false,message:'Invalid submission reference.'},400);
   const token=payload.turnstile_token;
   if(typeof token!=='string' || !token || token.length>2048) return json({ok:false,message:'Please complete the security verification.'},400);
   try {
     const verifyResponse=await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify',{method:'POST',body:new URLSearchParams({secret:env.TURNSTILE_SECRET,response:token,remoteip:request.headers.get('CF-Connecting-IP')||''}),signal:AbortSignal.timeout(10000)});
     const verification=await verifyResponse.json();
     if(!verifyResponse.ok || !verification.success || verification.action!=='business_inquiry' || verification.hostname!==new URL(request.url).hostname) return json({ok:false,message:'Security verification failed. Please verify again.'},403);
-    const inquiry_id=crypto.randomUUID();
+    const inquiry_id=payload.submission_id || crypto.randomUUID();
     const response=await fetch(env.BUSINESS_INQUIRY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...fields,inquiry_id,submitted_at:new Date().toISOString(),form_language:'en',status:'New',turnstile_verified:true,sheet_id:SHEET_ID,gateway_secret:env.BUSINESS_INQUIRY_SECRET}),signal:AbortSignal.timeout(20000)});
     const result=await response.json();
     if(!response.ok || result.ok!==true || result.inquiry_id!==inquiry_id) throw new Error('Save failed');
