@@ -42,3 +42,11 @@ QA rows are explicitly marked `[QA TEST — IGNORE]` and use `qa@example.com`; t
 - Verification retry retains entered values. Regression after a successful submission: starting another inquiry correctly exposes verification recovery when needed, preserves the new name, and returns to Ready to send after verification.
 - Automated suite passed: validation, origin checks, Turnstile failures/hostname/action, stable submission IDs, receiver authorization and duplicate handling, formula neutralization, safe HTML, guest privacy, queue-only intake, quota deferral, bounded retries, partial recipient failures and ambiguous delivery protection.
 - Evidence in task workspace: `outputs/ee-inquiry-email-previews/guest-received-gmail.png` and `outputs/ee-inquiry-email-previews/mobile-collaboration-success.png`.
+
+## Complete network signature — 2026-10-26
+
+- Added the existing official PNG logos and site links for Chocó Andino Tours, Mindo Tours and Mindo Trail Club to both recipient templates. All three logo URLs returned HTTP 200 and image/png.
+- Seven-brand signature uses four rows, two columns, with the final logo centered. Plain-text signature includes all seven site links. Automated suite passed with eight total email images (header plus seven signature logos).
+- Deployed receiver version 4, preserving the endpoint, gateway configuration, permissions and queue behavior. Only the brand list and signature layout changed in the live source.
+- Live form QA reference `603a5796-bcc9-4f98-bcec-c9bd2a4055b6`, marked `[QA TEST — IGNORE]`, saved in row 9. Gmail exact-reference search returned two confirmations, one admin and one guest. Inspected both signatures and verified all seven linked brands. All seven logo images loaded in the received guest email.
+- Screenshot: `outputs/ee-seven-brand-signature.png` in the task workspace. Code commit `81b1ff39`.
