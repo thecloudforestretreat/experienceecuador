@@ -8,6 +8,7 @@
   let token = '';
   let busy = false;
   let received = false;
+  let submissionFailed = false;
   let submissionId = '';
   let lastFingerprint = '';
   let verificationTimer;
@@ -37,7 +38,7 @@
     token = '';
     submit.disabled = true;
     clearTimeout(verificationTimer);
-    if (!received) {setStatus(message, true); retry.hidden=false;}
+    if (!received) {if (!submissionFailed) setStatus(message, true); retry.hidden=false;}
   };
   async function init() {
     try {
@@ -48,7 +49,7 @@
       window.eeInquiryVerified = value => {
         clearTimeout(verificationTimer); retry.hidden=true;
         token=value; submit.disabled=busy;
-        if (!received) setStatus('Ready to send.');
+        if (!received && !submissionFailed) setStatus('Ready to send.');
       };
       window.eeInquiryExpired = () => invalidate('Verification expired. Please verify again.');
       window.eeInquiryError = () => invalidate('Verification could not load. Please retry below.');
@@ -72,9 +73,15 @@
       verificationTimer=setTimeout(()=>invalidate('Verification is taking longer than expected. Please retry below.'),30000);
     } catch { invalidate('The inquiry form is temporarily unavailable. Please use our contact page.'); }
   }
+  form.addEventListener('input',()=>{
+    if (!received && !submissionFailed) return;
+    received=false; submissionFailed=false;
+    setStatus(token?'Ready to send.':'Please complete security verification again.');
+    retry.hidden=!!token;
+  });
   retry.addEventListener('click',()=>{
     if (busy) return;
-    retry.hidden=true; setStatus('Loading secure verification…');
+    received=false; submissionFailed=false; retry.hidden=true; setStatus('Loading secure verification…');
     if (window.turnstile && widget !== undefined) {
       window.turnstile.reset(widget);
       verificationTimer=setTimeout(()=>invalidate('Verification is taking longer than expected. Please retry below.'),30000);
@@ -83,7 +90,7 @@
   form.addEventListener('submit', async event => {
     event.preventDefault();
     if (busy) return;
-    received=false;
+    received=false; submissionFailed=false;
     ['first_name','last_name'].forEach(name => {form.elements[name].value=capitalize(form.elements[name].value);});
     if (!form.reportValidity()) return;
     if (!token) {invalidate('Please complete the security verification.'); return;}
@@ -102,7 +109,7 @@
       received=true; submissionId=''; lastFingerprint=''; form.reset(); updateFields();
       setStatus('Thank you. Your inquiry has been received. Reference: '+result.inquiry_id);
       window.dataLayer?.push({event:'business_inquiry_success',inquiry_type:payload.inquiry_type,form_language:'en'});
-    } catch(error) {setStatus(error.message || 'Your inquiry could not be saved. Please try again.',true);}
+    } catch(error) {submissionFailed=true; setStatus(error.message || 'Your inquiry could not be saved. Please try again.',true);}
     finally {
       busy=false; token=''; submit.disabled=true;
       if (window.turnstile && widget !== undefined) window.turnstile.reset(widget);
