@@ -25,3 +25,20 @@ QA rows are explicitly marked `[QA TEST — IGNORE]` and use `qa@example.com`; t
 - The final browser check confirms the restored learning-more path is selectable and reveals its destination/date fields. Collaboration reveals organization and optional website; website review requires the URL and reveals improvement goals.
 - Three synthetic QA rows remain clearly labeled in their message or organization; no customer submission was used for testing.
 - Screenshot: `outputs/ee-business-inquiry-spanish-route-success.png` in the task workspace.
+
+## Email confirmations and regression QA — 2026-10-26
+
+- Published email workflow in PR #10; final application commit `2a41028b`, successful production deployment `b4435c40`.
+- Owner approved email and background-trigger permissions. Apps Script receiver version 3 is deployed; the one-minute email queue trigger is installed.
+- Both confirmations include the established team signature, plain-text fallback and linked logos for Experience Ecuador, Mindo Bird Watching, Experience the Amazon and The Cloud Forest Retreat. All four image URLs returned HTTP 200 with PNG content.
+- Live collaboration test on `/es/explora/`: `86c6c2bc-e53b-43cf-97c4-016f3a172188` (row 5).
+- Live website-review test on `/explore/`: `e008a2e8-9f08-48be-808a-e85005441a96` (row 6).
+- Live learning-more test on `/explore/`: `cb434231-1382-415b-941a-b3ea1ceb6a02` (row 7).
+- Directly checked private Sheet range A5:V7: each inquiry was saved with verified Turnstile, normalized names, correct conditional fields and English form language. Both recipient statuses are Sent, attempt count is 1, and last-error cells are blank.
+- Exact Gmail subject search returned six messages: one admin and one guest confirmation per reference, with no duplicates. Inspected received guest and admin messages: guest replies route to the owner; admin replies route to the submitting guest. The admin's private Sheet link opens the matching inquiry row. Actual received email displayed all four logos.
+- All new test inquiries are marked `[QA TEST — IGNORE]` and sent only to owner-controlled plus aliases. Earlier QA rows were not retroactively emailed.
+- Mobile collaboration form tested at 390px: English language, single-column names, page width equal to viewport, no horizontal overflow. Desktop and both routes passed.
+- Native validation checked for malformed email and missing required website URL; irrelevant hidden fields are disabled. Accented names, apostrophes and existing mixed case are preserved correctly.
+- Verification retry retains entered values. Regression after a successful submission: starting another inquiry correctly exposes verification recovery when needed, preserves the new name, and returns to Ready to send after verification.
+- Automated suite passed: validation, origin checks, Turnstile failures/hostname/action, stable submission IDs, receiver authorization and duplicate handling, formula neutralization, safe HTML, guest privacy, queue-only intake, quota deferral, bounded retries, partial recipient failures and ambiguous delivery protection.
+- Evidence in task workspace: `outputs/ee-inquiry-email-previews/guest-received-gmail.png` and `outputs/ee-inquiry-email-previews/mobile-collaboration-success.png`.
