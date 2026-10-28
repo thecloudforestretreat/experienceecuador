@@ -11,7 +11,8 @@
   const track=(event,days)=>{
     if(!window.EE_ENV?.analyticsEnabled&&!['experienceecuador.com','www.experienceecuador.com'].includes(location.hostname))return;
     window.dataLayer=window.dataLayer||[];
-    window.dataLayer.push({event,route_id:'ruta-del-sol',route_days:Number(days),page_language:lang,region:'coast'});
+    // Reuse the site's existing click-event contract; no GTM permission changes are needed.
+    window.dataLayer.push({event:'hub_section_cta_click',cta_label:event,cta_location:'ruta_route_planner',page_type:document.body.dataset.pageType||'region_destination_page',page_path:location.pathname,route_id:'ruta-del-sol',route_days:Number(days),page_language:lang,region:'coast'});
   };
   let config;
   try{
