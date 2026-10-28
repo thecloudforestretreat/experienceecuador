@@ -21,20 +21,30 @@
     config=await response.json();
     if(!config.plans||!['3','5','7'].every(d=>config.plans[d]))throw Error('Invalid route data');
   }catch{
-    const button=document.querySelector('#ruta-load-map');
-    if(button){button.disabled=true;button.textContent=es?'Usa el enlace de Google Maps de abajo':'Use the Google Maps link below';}
+    const status=document.querySelector('#ruta-map-status');
+    if(status)status.textContent=es?'El mapa sigue disponible; usa el enlace de indicaciones si lo necesitas.':'The map remains available; use the directions link if needed.';
     if(isContext){const banner=document.querySelector('#ruta-context');banner.hidden=false;document.querySelector('#ruta-context-status').textContent=es?'Escribe Ruta del Sol y la duración que prefieres en las notas de Costa.':'Please write Ruta del Sol and your preferred duration in the Coast notes.';}
     return;
   }
   if(planner){
-    let selected=['3','5','7'].includes(query.get('days'))?query.get('days'):'5',mapLoaded=false;
+    let selected=['3','5','7'].includes(query.get('days'))?query.get('days'):'5';
     const frame=document.querySelector('#ruta-map-frame');
+    const fullscreen=frame.querySelector('[data-ruta-fullscreen]');
+    if(fullscreen&&typeof frame.requestFullscreen==='function'){
+      fullscreen.hidden=false;
+      fullscreen.addEventListener('click',async()=>{
+        try{if(document.fullscreenElement===frame)await document.exitFullscreen();else await frame.requestFullscreen();}
+        catch{document.querySelector('#ruta-map-status').textContent=es?'Abre Google Maps para ver la ruta en una ventana completa.':'Open Google Maps to view the route in a full window.';}
+      });
+      document.addEventListener('fullscreenchange',()=>{fullscreen.textContent=document.fullscreenElement===frame?(es?'Salir de pantalla completa':'Exit full screen'):(es?'⛶ Pantalla completa':'⛶ Full-screen map');});
+    }
+
     const renderMap=()=>{
       const embed=config.plans[selected].embed;
       const src=(es?embed.replaceAll('!1sen!2sus','!1ses!2sus'):embed)+'&hl='+lang;
       let iframe=frame.querySelector('iframe');
       if(iframe&&iframe.getAttribute('src')===src)return;
-      if(!iframe){iframe=document.createElement('iframe');iframe.title=es?'Ruta del Sol: recorrido en Google Maps':'Ruta del Sol route in Google Maps';iframe.loading='lazy';iframe.referrerPolicy='strict-origin-when-cross-origin';iframe.allowFullscreen=true;frame.replaceChildren(iframe);}
+      if(!iframe){iframe=document.createElement('iframe');iframe.title=es?'Ruta del Sol: recorrido en Google Maps':'Ruta del Sol route in Google Maps';iframe.loading='lazy';iframe.referrerPolicy='strict-origin-when-cross-origin';iframe.allowFullscreen=true;frame.append(iframe);}
       iframe.src=src;
     };
     const render=()=>{
@@ -48,12 +58,13 @@
       document.querySelector('#ruta-directions').href=p.directions+'&hl='+lang;
       const profile=es?'/es/planifica-tu-viaje/costa/':'/plan-your-trip/coast/';
       document.querySelector('#ruta-inquiry').href=profile+'?route=ruta-del-sol&days='+selected+'#ruta-context';
-      if(mapLoaded)renderMap();
+      renderMap();
+      const status=document.querySelector('#ruta-map-status');
+      if(status)status.textContent=(es?'Mapa del ejemplo de ':'Map for the ')+selected+(es?' días. Puedes ampliar, desplazar o usar pantalla completa.':'-day example. Zoom, pan or use full screen.');
     };
     planner.querySelector('.rutaControls').hidden=false;
     planner.querySelectorAll('input[name="ruta_days"]').forEach(input=>{input.checked=input.value===selected;});
     planner.querySelectorAll('input[name="ruta_days"]').forEach(input=>input.addEventListener('change',()=>{if(!input.checked||!config.plans[input.value])return;selected=input.value;render();const url=new URL(location.href);url.searchParams.set('days',selected);history.replaceState(null,'',url);track('route_plan_select',selected);}));
-    document.querySelector('#ruta-load-map').addEventListener('click',()=>{mapLoaded=true;renderMap();track('route_map_load',selected);});
     document.querySelector('#ruta-inquiry').addEventListener('click',()=>track('route_inquiry_click',selected));
     document.querySelector('#ruta-directions').addEventListener('click',()=>track('route_directions_click',selected));
     render();
