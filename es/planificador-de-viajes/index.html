@@ -1909,7 +1909,7 @@ function regionName(id){
         safeAnalyticsFormStart("trip_builder_email_form");
 
         if (!TRIP_EMAIL_WEBAPP_URL || TRIP_EMAIL_WEBAPP_URL.indexOf("http") !== 0) {
-          setEmailStatus("Falta la URL del Web App. Pega tu URL de Apps Script en TRIP_EMAIL_WEBAPP_URL.", "error");
+          setEmailStatus("El envío por correo no está disponible en este momento. Escríbenos a info@experienceecuador.com.", "error");
           return;
         }
 
@@ -1942,7 +1942,9 @@ function regionName(id){
           regions: Array.from(state.selectedRegionIds).map(regionName).join(", "),
           experiences: Array.from(state.selectedExperienceIds).map(experienceName).join(", "),
           itinerary_text: state.lastItineraryText,
-          page_url: window.location.href,
+          language: "es",
+          source: "trip-builder",
+          page_url: window.location.origin + window.location.pathname,
           user_agent: navigator.userAgent,
 
           invitees_json: JSON.stringify(invitees),
@@ -1960,6 +1962,10 @@ function regionName(id){
           invited_3_last_name:  invitees[2] ? (invitees[2].last_name || "") : "",
           invited_3_email:      invitees[2] ? (invitees[2].email || "") : ""
         };
+
+        if (window.EEAttribution && window.EEAttribution.decoratePayload) {
+          window.EEAttribution.decoratePayload(payload);
+        }
 
         if (!payload.first_name || !payload.last_name) {
           setEmailStatus("Por favor completa nombre y apellido del viajero principal.", "error");
@@ -2034,9 +2040,9 @@ function regionName(id){
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(function(){
-        if (!document.querySelector('script[src="/assets/js/site.js?v=20261004au"]')) {
+        if (!document.querySelector('script[src="/assets/js/site.js?v=20261105-enquiry"]')) {
           var s = document.createElement("script");
-          s.src = "/assets/js/site.js?v=20261004au";
+          s.src = "/assets/js/site.js?v=20261105-enquiry";
           document.body.appendChild(s);
         }
       });

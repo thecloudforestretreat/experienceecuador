@@ -1883,7 +1883,7 @@ function regionName(id){
         safeAnalyticsFormStart("trip_builder_email_form");
 
         if (!TRIP_EMAIL_WEBAPP_URL || TRIP_EMAIL_WEBAPP_URL.indexOf("http") !== 0) {
-          setEmailStatus("Missing Web App URL. Paste your Apps Script deployment URL into TRIP_EMAIL_WEBAPP_URL.", "error");
+          setEmailStatus("Email is temporarily unavailable. Please contact info@experienceecuador.com.", "error");
           return;
         }
 
@@ -1916,7 +1916,9 @@ function regionName(id){
           regions: Array.from(state.selectedRegionIds).map(regionName).join(", "),
           experiences: Array.from(state.selectedExperienceIds).map(experienceName).join(", "),
           itinerary_text: state.lastItineraryText,
-          page_url: window.location.href,
+          language: "en",
+          source: "trip-builder",
+          page_url: window.location.origin + window.location.pathname,
           user_agent: navigator.userAgent,
 
           invitees_json: JSON.stringify(invitees),
@@ -1934,6 +1936,10 @@ function regionName(id){
           invited_3_last_name:  invitees[2] ? (invitees[2].last_name || "") : "",
           invited_3_email:      invitees[2] ? (invitees[2].email || "") : ""
         };
+
+        if (window.EEAttribution && window.EEAttribution.decoratePayload) {
+          window.EEAttribution.decoratePayload(payload);
+        }
 
         if (!payload.first_name || !payload.last_name) {
           setEmailStatus("Please fill first name and last name for the main traveler.", "error");
@@ -1957,7 +1963,7 @@ function regionName(id){
             json = await res.json().catch(() => null);
           } else {
             await res.text().catch(() => "");
-            setEmailStatus("Email failed. Your Apps Script Web App access is likely not set to Anyone. Update Deploy settings and try again.", "error");
+            setEmailStatus("We could not send your itinerary. Please try again or contact info@experienceecuador.com.", "error");
             safeAnalyticsEmit("form_submit_error", { form_name: "trip_builder_email_form", error_message: "webapp_access_error" });
             tripEmailEls.btn.textContent = "Email itinerary";
             enableEmailButtonIfReady();
@@ -2006,9 +2012,9 @@ function regionName(id){
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(function(){
-        if (!document.querySelector('script[src="/assets/js/site.js?v=20261004au"]')) {
+        if (!document.querySelector('script[src="/assets/js/site.js?v=20261105-enquiry"]')) {
           var s = document.createElement("script");
-          s.src = "/assets/js/site.js?v=20261004au";
+          s.src = "/assets/js/site.js?v=20261105-enquiry";
           document.body.appendChild(s);
         }
       });

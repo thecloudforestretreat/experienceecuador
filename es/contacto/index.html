@@ -344,12 +344,17 @@
         }catch(e){}
       }
       function markContactFormStarted(){
-        safeAnalyticsEmit("form_start", { form_name: "ee_contact_form" });
+        if(window.eeAnalytics && window.eeAnalytics.markFormStart){
+          window.eeAnalytics.markFormStart("ee_contact_form", document.getElementById("eeContactForm"));
+        }else if(!document.getElementById("eeContactForm").__eeAnalyticsFormStarted){
+          document.getElementById("eeContactForm").__eeAnalyticsFormStarted = true;
+          safeAnalyticsEmit("form_start", { form_name: "ee_contact_form" });
+        }
       }
       function trackContactFormResult(ok, message){
         safeAnalyticsEmit(ok ? "form_submit_success" : "form_submit_error", {
           form_name: "ee_contact_form",
-          error_message: ok ? "" : (message || "")
+          error_message: ok ? "" : (message || "submission_failed")
         });
         if(ok) safeAnalyticsEmit("contact_form_submit", { form_name: "ee_contact_form" });
       }
@@ -425,11 +430,7 @@
         status.classList.add("show");
       }
       function publicErrorMessage(data, fallback){
-        var raw = (data && (data.email_error || data.message)) ? String(data.email_error || data.message) : "";
-        if(/TURNSTILE|SECRET|TOKEN|ENV|CONFIG/i.test(raw)){
-          return "No pudimos verificar el control anti-spam. Inténtalo de nuevo en un momento o escríbenos por correo.";
-        }
-        return raw || fallback;
+        return 'No pudimos enviar tu mensaje. Inténtalo de nuevo o escríbenos directamente por correo.';
       }
       if(form){
         ["first_name", "last_name"].forEach(function(id){
@@ -439,6 +440,7 @@
 
         form.addEventListener("submit", function(ev){
           ev.preventDefault();
+          if(submitBtn && submitBtn.disabled) return;
           markContactFormStarted();
           var tsInput = form.querySelector('input[name="cf-turnstile-response"]');
           var tsToken = tsInput ? (tsInput.value || "").trim() : "";
@@ -478,20 +480,21 @@
             credentials: "omit",
             body: JSON.stringify(payload)
           }).then(function(res){
-            return res.json();
+            return res.json().then(function(data){ return res.ok ? data : {ok:false, code:"http_error"}; });
           }).then(function(data){
-            if(data && data.ok){
+            if(data && data.ok === true){
               setStatus("success", "Enviado. Recibimos tu mensaje y te responderemos pronto.");
               trackContactFormResult(true, "");
             }else{
               var publicMessage = publicErrorMessage(data, "Inténtalo nuevamente.");
               setStatus("error", "Error al enviar. " + publicMessage);
-              trackContactFormResult(false, publicMessage);
+              trackContactFormResult(false, "submission_failed");
             }
           }).catch(function(err){
             setStatus("error", "Error al enviar. Inténtalo de nuevo en un momento o escríbenos por correo.");
             trackContactFormResult(false, "Network or submit error");
           }).finally(function(){
+            try{ if(window.turnstile) window.turnstile.reset(); }catch(e){}
             if(submitBtn){
               submitBtn.disabled = false;
               submitBtn.removeAttribute("aria-disabled");
@@ -519,9 +522,9 @@
         inject("siteHeader", "/assets/includes/header.html"),
         inject("siteFooter", "/assets/includes/footer.html")
       ]).then(function(){
-        if (!document.querySelector('script[src="/assets/js/site.js?v=20261004au"]')) {
+        if (!document.querySelector('script[src="/assets/js/site.js?v=20261105-enquiry"]')) {
           var s = document.createElement("script");
-          s.src = "/assets/js/site.js?v=20261004au";
+          s.src = "/assets/js/site.js?v=20261105-enquiry";
           document.body.appendChild(s);
         }
       });
