@@ -8,6 +8,8 @@ const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/st
   vm.createContext(ctx);vm.runInContext(source.slice(a,b),ctx);ctx.window.eeAnalytics={markFormStart:ctx.eeAnalyticsMarkFormStart};
   const start=html.indexOf('      function markContactFormStarted'),end=html.indexOf('      function trackContactFormResult',start);vm.runInContext(html.slice(start,end),ctx);
   ctx.eeAnalyticsMarkFormStart('ee_contact_form',form);ctx.markContactFormStarted();assert.deepEqual(events,['form_start']);
+  const phone={cc:{value:'1'},num:{value:''},full:{value:''},digitsOnly:v=>String(v||'').replace(/\D/g,'')};
+  vm.createContext(phone);const ps=html.indexOf('      function updatePhone()'),pe=html.indexOf('      if(cc && num && full)',ps);vm.runInContext(html.slice(ps,pe),phone);phone.updatePhone();assert.equal(phone.full.value,'');phone.num.value='305 555 0100';phone.updatePhone();assert.equal(phone.full.value,'+13055550100');
   for(const script of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)){if(script[1].includes('application/ld+json'))JSON.parse(script[2]);else new Function(script[2]);}
  }
  const {onRequestPost}=await import('data:text/javascript;base64,'+Buffer.from(fs.readFileSync('functions/api/contact-submit.js','utf8')).toString('base64'));
