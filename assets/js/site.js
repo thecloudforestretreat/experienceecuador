@@ -48,7 +48,7 @@
     window.__eeHeaderLoading=true;
     const headerScript=document.createElement("script");
     headerScript.async=false;
-    headerScript.src="/assets/js/header.js?v=20261004au";
+    headerScript.src="/assets/js/header.js?v=20261105-analytics";
     headerScript.addEventListener("load",()=>{window.__eeHeaderLoading=false;});
     headerScript.addEventListener("error",()=>{window.__eeHeaderLoading=false;});
     document.head.appendChild(headerScript);

@@ -640,7 +640,7 @@
     var debug = window.EE_ENV && !window.EE_ENV.isProduction && window.EE_ENV.analyticsEnabled
       ? { debug_mode: true }
       : {};
-    var data = eeAnalyticsCleanPayload(Object.assign({}, attribution, debug, payload || {}));
+    var data = eeAnalyticsCleanPayload(Object.assign({}, eeAnalyticsGetPageMeta(), attribution, debug, payload || {}));
     try {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push(Object.assign({ event: eventName }, data));
@@ -745,6 +745,15 @@
     setTimeout(checkScrollDepth, 800);
   }
 
+  function eeAnalyticsMarkFormStart(formName, form) {
+    form = form || Array.prototype.find.call(document.querySelectorAll("form"), function (candidate) {
+      return (candidate.getAttribute("data-analytics-form") || candidate.name || candidate.id) === formName;
+    });
+    if (form && form.__eeAnalyticsFormStarted) return false;
+    if (form) form.__eeAnalyticsFormStarted = true;
+    return eeAnalyticsSend("form_start", Object.assign({}, eeAnalyticsGetPageMeta(), { form_name: formName }));
+  }
+
   function eeAnalyticsInitForms() {
     if (document.__eeAnalyticsFormsInit) return;
     document.__eeAnalyticsFormsInit = true;
@@ -757,9 +766,8 @@
     document.addEventListener("focusin", function (e) {
       var form = e.target && e.target.closest ? e.target.closest("form") : null;
       if (!form || form.__eeAnalyticsFormStarted) return;
-      form.__eeAnalyticsFormStarted = true;
       var formName = form.getAttribute("data-analytics-form") || form.getAttribute("name") || form.getAttribute("id") || "form";
-      eeAnalyticsSend("form_start", Object.assign({}, eeAnalyticsGetPageMeta(), { form_name: formName }));
+      eeAnalyticsMarkFormStart(formName, form);
     }, true);
   }
 
@@ -772,6 +780,8 @@
 
   window.eeAnalytics = {
     send: eeAnalyticsSend,
+    emit: eeAnalyticsSend,
+    markFormStart: eeAnalyticsMarkFormStart,
     pageMeta: eeAnalyticsGetPageMeta,
     trackClick: eeAnalyticsTrackClick
   };
