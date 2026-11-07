@@ -4,8 +4,8 @@
   if (window.EE_SITE_CONFIG) return;
 
   var CONTACT = {
-    whatsappNumberDigits: "13054585402",
-    whatsappDisplay: "+1 (305) 458-5402",
+    whatsappNumberDigits: "593969076501",
+    whatsappDisplay: "+593 96 907 6501",
     email: "info@experienceecuador.com"
   };
 
